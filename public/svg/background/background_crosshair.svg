@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title desc">
+  <title id="title">Card Registration Mark</title>
+  <desc>Fine archival target mark used on location cards.</desc>
+  <style>
+    :root { color: #b88b64; }
+    .guide { fill: none; stroke: currentColor; stroke-width: .8; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+    .hair { fill: none; stroke: currentColor; stroke-width: .55; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+    .dot { fill: currentColor; }
+  </style>
+  <g opacity=".74">
+    <path class="guide" d="M60 24v72M24 60h72"/>
+    <path class="hair" d="M60 13v8M60 99v8M13 60h8M99 60h8"/>
+    <path class="hair" d="M60 38v44M38 60h44"/>
+    <circle class="hair" cx="60" cy="60" r="18"/>
+    <path class="hair" d="M47.3 47.3 42 42M72.7 72.7 78 78M72.7 47.3 78 42M47.3 72.7 42 78"/>
+    <path class="hair" d="M30.4 52.5A30.5 30.5 0 0 1 52.5 30.4M67.5 30.4A30.5 30.5 0 0 1 89.6 52.5M89.6 67.5A30.5 30.5 0 0 1 67.5 89.6M52.5 89.6A30.5 30.5 0 0 1 30.4 67.5"/>
+    <circle class="dot" cx="60" cy="60" r="2.35"/>
+  </g>
+</svg>

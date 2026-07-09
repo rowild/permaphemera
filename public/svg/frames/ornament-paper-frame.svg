@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="100" viewBox="0 0 140 100" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="paperFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf4e8"/>
+      <stop offset=".55" stop-color="#f0e4d2"/>
+      <stop offset="1" stop-color="#ddc8ab"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff5e6"/>
+      <stop offset=".5" stop-color="#b9906f"/>
+      <stop offset="1" stop-color="#816449"/>
+    </linearGradient>
+  </defs>
+  <path d="M15 3H125V6H130V11H137V89H130V94H125V97H15V94H10V89H3V11H10V6H15V3Z" fill="#694a2e" fill-opacity=".16" transform="translate(0 2)"/>
+  <path d="M15 3H125V6H130V11H137V89H130V94H125V97H15V94H10V89H3V11H10V6H15V3Z" fill="url(#paperFill)" stroke="url(#edge)" stroke-width=".9"/>
+  <path d="M17 6H123V9H128V14H134V86H128V91H123V94H17V91H12V86H6V14H12V9H17V6Z" fill="none" stroke="#b9906f" stroke-width=".65" stroke-opacity=".74"/>
+  <path d="M19.5 8.5H120.5V11.5H125.5V16.5H131.5V83.5H125.5V88.5H120.5V91.5H19.5V88.5H14.5V83.5H8.5V16.5H14.5V11.5H19.5V8.5Z" fill="none" stroke="#fff6e7" stroke-width=".55" stroke-opacity=".5"/>
+</svg>

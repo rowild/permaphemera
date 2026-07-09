@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 220" role="img" aria-labelledby="title desc">
+<title id="title">Sponsor Strip Scrollable</title>
+<desc>Wide sponsor strip with eight recreated partner icons. Use it at min-width/max-content inside an overflow-x container.</desc>
+
+<style>
+  :root { color: #c7a783; }
+  .line { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .thin { fill: none; stroke: currentColor; stroke-width: .9; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .hair { fill: none; stroke: currentColor; stroke-width: .55; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .fill { fill: currentColor; stroke: none; }
+  .soft { opacity: .42; }
+</style>
+
+
+<rect class="hair" x="12" y="12" width="1580" height="196" rx="0"/>
+<path class="thin" d="M32 12h-20v20M1568 12h20v20M32 208h-20v-20M1568 208h20v-20"/>
+<g transform="translate(40,34)"><path class="line" d="M14 74h68M20 66h56M24 34h48M20 28h56L48 16 20 28Z"/><path class="line" d="M29 38v24M41 38v24M55 38v24M67 38v24"/><path class="thin" d="M25 68h46M29 30h38"/></g>
+<text x="88" y="150" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">AURELIA</text>
+<text x="88" y="170" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">KULTURSTIFTUNG</text>
+<path class="hair" d="M182 48v104"/><path class="thin" d="M177 100h10M182 95v10"/>
+<g transform="translate(230,34)"><path class="line" d="M38 14h20v20h24v24H58v24H38V58H14V34h24V14Z"/><path class="thin" d="M42 18h12v20h24v16H54v24H42V54H18V38h24V18Z"/><circle class="fill" cx="48" cy="48" r="2"/></g>
+<text x="278" y="150" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">ÖSTERREICHISCHES</text>
+<text x="278" y="170" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">KULTURFORUM</text>
+<path class="hair" d="M372 48v104"/><path class="thin" d="M367 100h10M372 95v10"/>
+<g transform="translate(420,34)"><circle class="line" cx="48" cy="48" r="33"/><circle class="hair" cx="48" cy="48" r="26"/><path class="line" d="M48 18v60M18 48h60"/><path class="thin" d="M29 29l38 38M67 29L29 67"/><path class="thin" d="M48 24c7 10 13 16 24 24-11 8-17 14-24 24-7-10-13-16-24-24 11-8 17-14 24-24Z"/></g>
+<text x="468" y="150" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">FUNDAMENTUM</text>
+<text x="468" y="170" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">ARCHIVUM</text>
+<path class="hair" d="M562 48v104"/><path class="thin" d="M557 100h10M562 95v10"/>
+<g transform="translate(610,34)"><path class="line" d="M28 20h40M24 28h48M30 70h36M24 78h48"/><path class="line" d="M34 32v34M44 32v34M54 32v34M64 32v34"/><path class="thin" d="M30 24h36M30 74h36"/></g>
+<text x="658" y="150" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">INSTITUT FÜR</text>
+<text x="658" y="170" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">ZEITKULTUR</text>
+<path class="hair" d="M752 48v104"/><path class="thin" d="M747 100h10M752 95v10"/>
+<g transform="translate(800,34)"><path class="line" d="M22 22h52v52H22V22Z"/><path class="line" d="M30 30h36v36H30V30Z"/><path class="line" d="M38 38h20v20H38V38Z"/><path class="line" d="M46 46h8v8h-8v-8Z"/></g>
+<text x="848" y="150" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">MEMORIA</text>
+<text x="848" y="170" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">FOUNDATION</text>
+<path class="hair" d="M942 48v104"/><path class="thin" d="M937 100h10M942 95v10"/>
+<g transform="translate(990,34)"><path class="line" d="M48 47C35 34 35 22 48 12c13 10 13 22 0 35Z"/><path class="line" d="M49 48c13-13 25-13 35 0-10 13-22 13-35 0Z"/><path class="line" d="M48 49c13 13 13 25 0 35-13-10-13-22 0-35Z"/><path class="line" d="M47 48c-13 13-25 13-35 0 10-13 22-13 35 0Z"/></g>
+<text x="1038" y="150" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">CANON</text>
+<text x="1038" y="170" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">HERITAGE TRUST</text>
+<path class="hair" d="M1132 48v104"/><path class="thin" d="M1127 100h10M1132 95v10"/>
+<g transform="translate(1180,34)"><circle class="line" cx="48" cy="48" r="32"/><path class="thin" d="M34 64l10-32 10 32M38 52h12"/><path class="thin" d="M58 32v32h8c9 0 15-6 15-16s-6-16-15-16h-8Z"/></g>
+<text x="1228" y="150" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">ART + DESIGN</text>
+<text x="1228" y="170" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">AUSTRIA</text>
+<path class="hair" d="M1322 48v104"/><path class="thin" d="M1317 100h10M1322 95v10"/>
+<g transform="translate(1370,34)"><path class="line" d="M18 74V38L48 18l30 20v36"/><path class="thin" d="M28 74V44l20-14 20 14v30"/><path class="thin" d="M38 74V50h20v24"/><path class="hair" d="M18 74h60M48 18v56"/></g>
+<text x="1418" y="150" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">EUROPEAN</text>
+<text x="1418" y="170" text-anchor="middle" font-family="serif" font-size="15" letter-spacing="1.2" fill="currentColor">HERITAGE ALLIANCE</text>
+</svg>

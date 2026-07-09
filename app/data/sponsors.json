@@ -1,0 +1,30 @@
+[
+  {
+    "id": "aurelia-kulturstiftung",
+    "name": "Aurelia Kulturstiftung"
+  },
+  {
+    "id": "oesterreichisches-kulturforum",
+    "name": "Oesterreichisches Kulturforum"
+  },
+  {
+    "id": "fundamentum-archivum",
+    "name": "Fundamentum Archivum"
+  },
+  {
+    "id": "institut-fuer-zeitkultur",
+    "name": "Institut fuer Zeitkultur"
+  },
+  {
+    "id": "memoria-foundation",
+    "name": "Memoria Foundation"
+  },
+  {
+    "id": "canon-heritage-trust",
+    "name": "Canon Heritage Trust"
+  },
+  {
+    "id": "art-design-austria",
+    "name": "Art + Design Austria"
+  }
+]

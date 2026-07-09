@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title desc">
+<title id="title">Permaphemera Seal</title>
+<desc>Round footer seal with a tiny building and compass mark, rebuilt as SVG.</desc>
+
+<style>
+  :root { color: #c7a783; }
+  .line { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .thin { fill: none; stroke: currentColor; stroke-width: .9; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .hair { fill: none; stroke: currentColor; stroke-width: .55; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .fill { fill: currentColor; stroke: none; }
+  .soft { opacity: .42; }
+</style>
+
+<circle class="line" cx="90" cy="90" r="72"/>
+<circle class="hair" cx="90" cy="90" r="58"/>
+<path class="thin" d="M48 112h84M58 104h64M68 96h44M56 88h68L90 68 56 88Z"/>
+<path class="thin" d="M66 94v18M78 94v18M90 94v18M102 94v18M114 94v18"/>
+<path class="hair" d="M61 118h58"/>
+<path class="line" d="M90 30l5 38 38 5-38 5-5 38-5-38-38-5 38-5 5-38Z" opacity=".35"/>
+<path class="hair" d="M90 18v16M90 146v16M18 90h16M146 90h16"/>
+<text x="90" y="24" text-anchor="middle" font-family="serif" font-size="8" letter-spacing="2.2" fill="currentColor">PERMANENTLY PRESERVED</text>
+<text x="90" y="160" text-anchor="middle" font-family="serif" font-size="8" letter-spacing="2.2" fill="currentColor">TEMPORARILY ENDURING</text>
+</svg>

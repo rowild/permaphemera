@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 520" role="img" aria-labelledby="title desc">
+<title id="title">Background Column Left</title>
+<desc>Subtle architectural column background element based on the left footer decoration.</desc>
+
+<style>
+  :root { color: #c7a783; }
+  .line { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .thin { fill: none; stroke: currentColor; stroke-width: .9; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .hair { fill: none; stroke: currentColor; stroke-width: .55; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .fill { fill: currentColor; stroke: none; }
+  .soft { opacity: .42; }
+</style>
+
+
+<g class="soft">
+  <path class="thin" d="M16 506h140M26 486h120M38 466h96"/>
+  <path class="thin" d="M54 210v252M78 210v252M102 210v252M126 210v252"/>
+  <path class="hair" d="M58 210c5 12 15 12 20 0M82 210c5 12 15 12 20 0M106 210c5 12 15 12 20 0"/>
+  <path class="thin" d="M36 196h104M28 176h120M22 160h132"/>
+  <path class="thin" d="M38 130c16 18 82 18 98 0M48 114c14 14 64 14 78 0"/>
+  <path class="line" d="M22 154c16-10 20-28 28-44 8-18 26-28 40-12 14-16 32-6 40 12 8 16 12 34 28 44"/>
+  <path class="thin" d="M54 82c0 18 72 18 72 0M62 60c0 16 56 16 56 0"/>
+  <path class="hair" d="M0 506h14M156 506h20M12 160h10M154 160h22"/>
+  <path class="hair" d="M52 132c-6-10-14-16-24-16M128 132c6-10 14-16 24-16"/>
+  <circle class="hair" cx="90" cy="116" r="17"/>
+</g>
+
+</svg>

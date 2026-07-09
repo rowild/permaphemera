@@ -1,0 +1,21 @@
+[
+  {
+    "id": "location-spittal",
+    "slug": "spittal-an-der-drau",
+    "city_name": "Spittal an der Drau",
+    "postal_code": "9800",
+    "state": "Carinthia",
+    "country": "Austria",
+    "image": "/images/landing/parkschloessl.jpg",
+    "translations": [
+      {
+        "languages_code": "en",
+        "description": "Pilot location for the first PERMAPHEMERA exhibition archive."
+      },
+      {
+        "languages_code": "de",
+        "description": "Pilotstandort fuer das erste PERMAPHEMERA-Ausstellungsarchiv."
+      }
+    ]
+  }
+]

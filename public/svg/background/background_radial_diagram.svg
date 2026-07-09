@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-labelledby="title desc">
+<title id="title">Background Radial Diagram</title>
+<desc>Subtle right-side radial drafting diagram from the dark footer design, rebuilt as SVG.</desc>
+
+<style>
+  :root { color: #c7a783; }
+  .line { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .thin { fill: none; stroke: currentColor; stroke-width: .9; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .hair { fill: none; stroke: currentColor; stroke-width: .55; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .fill { fill: currentColor; stroke: none; }
+  .soft { opacity: .42; }
+</style>
+
+
+<g class="soft">
+  <circle class="thin" cx="110" cy="110" r="76"/>
+  <circle class="hair" cx="110" cy="110" r="58"/>
+  <circle class="hair" cx="110" cy="110" r="96"/>
+  <path class="hair" d="M110 12v196M12 110h196M41 41l138 138M179 41L41 179"/>
+  <path class="thin" d="M110 34a76 76 0 0 1 76 76"/>
+  <path class="hair" d="M110 14a96 96 0 0 1 96 96"/>
+  <path class="hair" d="M110 26l7-10M124 28l5-11M138 32l4-12M151 38l7-10M163 46l8-8M174 56l10-6M184 68l10-4M191 82l12-2M195 96l12-1"/>
+  <circle class="fill" cx="110" cy="110" r="2"/>
+  <circle class="hair" cx="110" cy="110" r="6"/>
+</g>
+
+</svg>

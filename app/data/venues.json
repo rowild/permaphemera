@@ -1,0 +1,67 @@
+[
+  {
+    "id": "venue-parkschloessl",
+    "slug": "parkschloessl",
+    "location_id": "location-spittal",
+    "name": "Parkschlössl",
+    "city": "Spittal an der Drau",
+    "address": "Spittal an der Drau, Austria",
+    "website_url": "",
+    "image": "/images/landing/locations/location_01.png",
+    "featured": true
+  },
+  {
+    "id": "venue-kuenstlerhaus-wien",
+    "slug": "kuenstlerhaus-wien",
+    "location_id": "location-wien",
+    "name": "Kuenstlerhaus Wien",
+    "city": "Vienna",
+    "address": "Vienna, Austria",
+    "image": "/images/landing/locations/location_02.png"
+  },
+  {
+    "id": "venue-werkraum-bregenzerwald",
+    "slug": "werkraum-bregenzerwald",
+    "location_id": "location-bregenz",
+    "name": "Werkraum Bregenzerwald",
+    "city": "Bregenz",
+    "address": "Bregenz, Austria",
+    "image": "/images/landing/locations/location_03.png"
+  },
+  {
+    "id": "venue-traklhaus",
+    "slug": "galerie-im-traklhaus",
+    "location_id": "location-salzburg",
+    "name": "Galerie im Traklhaus",
+    "city": "Salzburg",
+    "address": "Salzburg, Austria",
+    "image": "/images/landing/locations/location_04.png"
+  },
+  {
+    "id": "venue-neue-galerie-graz",
+    "slug": "neue-galerie-graz",
+    "location_id": "location-graz",
+    "name": "Neue Galerie Graz",
+    "city": "Graz",
+    "address": "Graz, Austria",
+    "image": "/images/landing/locations/location_05.png"
+  },
+  {
+    "id": "venue-lentos",
+    "slug": "lentos-kunstmuseum",
+    "location_id": "location-linz",
+    "name": "Lentos Kunstmuseum",
+    "city": "Linz",
+    "address": "Linz, Austria",
+    "image": "/images/landing/locations/location_06.png"
+  },
+  {
+    "id": "venue-kunsthalle-innsbruck",
+    "slug": "kunsthalle-innsbruck",
+    "location_id": "location-innsbruck",
+    "name": "Kunsthalle Innsbruck",
+    "city": "Innsbruck",
+    "address": "Innsbruck, Austria",
+    "image": "/images/landing/locations/location_07.png"
+  }
+]

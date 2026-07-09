@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 240" role="img" aria-labelledby="title desc">
+<title id="title">Background Measure Marks</title>
+<desc>Architectural measurement marks and tiny numerals used as a subtle background ornament.</desc>
+
+<style>
+  :root { color: #c7a783; }
+  .line { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .thin { fill: none; stroke: currentColor; stroke-width: .9; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .hair { fill: none; stroke: currentColor; stroke-width: .55; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .fill { fill: currentColor; stroke: none; }
+  .soft { opacity: .42; }
+</style>
+
+
+<g class="soft">
+  <path class="hair" d="M40 28h98M40 28v-10M138 28v-10M40 28v14M138 28v14"/>
+  <path class="hair" d="M54 28v-6M68 28v-6M82 28v-6M96 28v-6M110 28v-6M124 28v-6"/>
+  <text x="42" y="14" font-family="serif" font-size="15" fill="currentColor">3.20</text>
+  <path class="hair" d="M136 54v130M136 54h-13M136 184h-13M136 54h15M136 184h15"/>
+  <path class="hair" d="M136 72h-8M136 90h-8M136 108h-8M136 126h-8M136 144h-8M136 162h-8"/>
+  <text x="150" y="126" font-family="serif" font-size="13" fill="currentColor" transform="rotate(-90 150 126)">2.70</text>
+  <path class="hair" d="M30 208h82M30 208v-9M112 208v-9M30 208v13M112 208v13"/>
+  <text x="31" y="235" font-family="serif" font-size="13" fill="currentColor">2.10</text>
+</g>
+
+</svg>
