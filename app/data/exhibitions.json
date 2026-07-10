@@ -7,7 +7,7 @@
     "venue": "Belvedere 21",
     "city": "Vienna",
     "date_range": "15.02.2024 - 20.05.2024",
-    "image": "/images/landing/parkschloessl.jpg",
+    "image": "/images/landing/locations/location_07.png",
     "featured": true
   },
   {
@@ -18,7 +18,7 @@
     "venue": "Leopold Museum",
     "city": "Vienna",
     "date_range": "10.10.2023 - 28.01.2024",
-    "image": "/images/landing/parkschloessl.jpg"
+    "image": "/images/landing/locations/location_03.png"
   },
   {
     "id": "exhibition-state-of-repair",
@@ -28,7 +28,7 @@
     "venue": "Kunsthalle Wien",
     "city": "Vienna",
     "date_range": "22.06.2023 - 03.09.2023",
-    "image": "/images/landing/parkschloessl.jpg"
+    "image": "/images/landing/locations/location_09.png"
   },
   {
     "id": "exhibition-ways-of-being",
@@ -38,6 +38,6 @@
     "venue": "Kunsthaus Graz",
     "city": "Graz",
     "date_range": "16.03.2023 - 11.06.2023",
-    "image": "/images/landing/parkschloessl.jpg"
+    "image": "/images/landing/locations/location_05.png"
   }
 ]

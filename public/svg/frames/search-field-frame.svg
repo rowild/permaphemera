@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="field-fill" x1="0" x2="0" y1="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffaf1"/>
+      <stop offset="0.62" stop-color="#f8efe2"/>
+      <stop offset="1" stop-color="#ead7bc"/>
+    </linearGradient>
+  </defs>
+  <path
+    d="M13 1H51A12 12 0 0 0 63 13V51A12 12 0 0 0 51 63H13A12 12 0 0 0 1 51V13A12 12 0 0 0 13 1Z"
+    fill="url(#field-fill)"
+    stroke="#c4a784"
+    stroke-width="1"
+    stroke-opacity="0.72"
+  />
+  <path
+    d="M16.492 5H47.508A16 16 0 0 0 59 16.492V47.508A16 16 0 0 0 47.508 59H16.492A16 16 0 0 0 5 47.508V16.492A16 16 0 0 0 16.492 5Z"
+    fill="none"
+    stroke="#fffaf0"
+    stroke-width="1"
+    stroke-opacity="0.94"
+  />
+</svg>

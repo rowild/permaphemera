@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
   Building2,
-  CalendarDays,
   Eye,
   Landmark,
   Route,
@@ -17,6 +16,18 @@ const featuredExhibition = exhibitions.find((exhibition) => exhibition.featured)
 const sideExhibitions = exhibitions.filter((exhibition) => exhibition.id !== featuredExhibition.id)
 const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#']
 const highlightedLetters = ['A', 'B', 'K', 'L', 'R', 'V', 'W']
+const artistGroupOrder = ['A', 'B', 'G', 'K', 'L', 'R', 'V', 'W']
+const artistGroupBySlug: Record<string, string> = {
+  'anselm-kiefer': 'A',
+  'brigitte-kowanz': 'B',
+  'birgit-juergenssen': 'B',
+  'guenter-brus': 'G',
+  'oskar-kokoschka': 'K',
+  'maria-lassnig': 'L',
+  'raqs-media-collective': 'R',
+  'valie-export': 'V',
+  'franz-west': 'W'
+}
 const heroImages = [
   '/images/landing/parkschloessl.jpg',
   ...Array.from(
@@ -27,6 +38,11 @@ const heroImages = [
 ]
 const kaleidoscopeRef = ref<{ rotateBy: (direction: number) => void } | null>(null)
 const venueStackRef = ref<HTMLElement | null>(null)
+const artistStackRef = ref<HTMLElement | null>(null)
+const locationSearchQuery = ref('')
+const exhibitionSearchQuery = ref('')
+const artistSearchQuery = ref('')
+const preservedExhibitionCount = exhibitions.length
 const methodSteps = [
   {
     icon: Building2,
@@ -49,13 +65,41 @@ const methodSteps = [
 ]
 
 const artistsByLetter = computed(() => {
-  return highlightedLetters
+  const query = artistSearchQuery.value.trim().toLocaleLowerCase()
+
+  return artistGroupOrder
     .map((letter) => ({
       letter,
-      artists: artists.filter((artist) => artist.name.startsWith(letter))
+      artists: artists.filter((artist) => {
+        if (artistGroupBySlug[artist.slug] !== letter) {
+          return false
+        }
+
+        return !query || [artist.name, artist.location, artist.years]
+          .some((value) => value.toLocaleLowerCase().includes(query))
+      })
     }))
     .filter((group) => group.artists.length)
 })
+
+const venueMatchesSearch = (venue: (typeof venues)[number]) => {
+  const query = locationSearchQuery.value.trim().toLocaleLowerCase()
+
+  return !query || [venue.name, venue.city, venue.address]
+    .some((value) => value.toLocaleLowerCase().includes(query))
+}
+
+const exhibitionMatchesSearch = (exhibition: (typeof exhibitions)[number]) => {
+  const query = exhibitionSearchQuery.value.trim().toLocaleLowerCase()
+
+  return !query || [
+    exhibition.title,
+    exhibition.artist,
+    exhibition.venue,
+    exhibition.city,
+    exhibition.date_range
+  ].some((value) => value.toLocaleLowerCase().includes(query))
+}
 
 const setVenueStackRef = (element: unknown, slug: string) => {
   if (slug === 'kunsthalle-innsbruck') {
@@ -87,13 +131,23 @@ const getVenueStackFrames = () => {
   return gsap.utils.toArray<HTMLElement>(venueStackRef.value.querySelectorAll('.venue-stack-frame'))
 }
 
+const getVenuePaperclips = () => {
+  if (!venueStackRef.value) {
+    return []
+  }
+
+  return gsap.utils.toArray<HTMLElement>(venueStackRef.value.querySelectorAll('.venue-paperclip'))
+}
+
 const spreadVenueStack = () => {
   if (!venueStackRef.value) {
     return
   }
 
   const frames = getVenueStackFrames()
+  const paperclips = getVenuePaperclips()
   gsap.killTweensOf(frames)
+  gsap.killTweensOf(paperclips)
   gsap.to(frames, {
     x: (index) => stackFrameHover[index]?.x ?? 0,
     y: (index) => stackFrameHover[index]?.y ?? 0,
@@ -101,6 +155,12 @@ const spreadVenueStack = () => {
     duration: 0.34,
     ease: 'power2.out',
     stagger: 0.018
+  })
+  gsap.to(paperclips, {
+    y: -6,
+    rotate: 5,
+    duration: 0.34,
+    ease: 'power2.out'
   })
 }
 
@@ -110,7 +170,9 @@ const settleVenueStack = () => {
   }
 
   const frames = getVenueStackFrames()
+  const paperclips = getVenuePaperclips()
   gsap.killTweensOf(frames)
+  gsap.killTweensOf(paperclips)
   gsap.to(frames, {
     x: (index) => stackFrameRest[index]?.x ?? 0,
     y: (index) => stackFrameRest[index]?.y ?? 0,
@@ -118,11 +180,60 @@ const settleVenueStack = () => {
     duration: 0.28,
     ease: 'power2.out'
   })
+  gsap.to(paperclips, {
+    y: 0,
+    rotate: 0,
+    duration: 0.28,
+    ease: 'power2.out'
+  })
+}
+
+const artistStackRest = [
+  { x: -8, y: 7, rotate: -4 },
+  { x: 9, y: 6, rotate: 3.5 },
+  { x: -4, y: -4, rotate: -1.8 },
+  { x: 5, y: -2, rotate: 1.4 },
+  { x: 0, y: 0, rotate: -0.4 }
+]
+
+const artistStackHover = [
+  { x: -16, y: 12, rotate: -6 },
+  { x: 18, y: 10, rotate: 5.5 },
+  { x: -9, y: -10, rotate: -3 },
+  { x: 11, y: -7, rotate: 2.6 },
+  { x: 2, y: -2, rotate: 0 }
+]
+
+const animateArtistStack = (expanded: boolean) => {
+  if (!artistStackRef.value) {
+    return
+  }
+
+  const sheets = gsap.utils.toArray<HTMLElement>(artistStackRef.value.querySelectorAll('.artist-stack-sheet'))
+  const paperclips = gsap.utils.toArray<HTMLElement>(artistStackRef.value.querySelectorAll('.venue-paperclip'))
+  const targets = expanded ? artistStackHover : artistStackRest
+
+  gsap.killTweensOf([...sheets, ...paperclips])
+  gsap.to(sheets, {
+    x: (index) => targets[index]?.x ?? 0,
+    y: (index) => targets[index]?.y ?? 0,
+    rotate: (index) => targets[index]?.rotate ?? 0,
+    duration: expanded ? 0.36 : 0.28,
+    ease: 'power2.out',
+    stagger: expanded ? 0.018 : 0
+  })
+  gsap.to(paperclips, {
+    y: expanded ? -5 : 0,
+    rotate: expanded ? 5 : 0,
+    duration: expanded ? 0.36 : 0.28,
+    ease: 'power2.out'
+  })
 }
 </script>
 
 <template>
   <main class="site-shell">
+    <span class="global-right-ruler" aria-hidden="true" />
     <header class="site-header">
       <a class="brand" href="#top" aria-label="PERMAPHEMERA home">PERMAPHEMERA</a>
       <nav class="desktop-nav" aria-label="Primary navigation">
@@ -205,11 +316,17 @@ const settleVenueStack = () => {
         <p>Explore exhibition spaces and archives in cities and towns across the country.</p>
       </div>
 
-      <form class="search-bar" action="#locations">
+      <form class="search-bar location-search" role="search" @submit.prevent>
         <div class="search-field-frame">
           <Search :size="24" />
-          <label class="sr-only" for="archive-search">Search archive</label>
-          <input id="archive-search" type="search" placeholder="Search by gallery, artist, exhibition, date..." />
+          <label class="sr-only" for="location-search">Search locations</label>
+          <input
+            id="location-search"
+            v-model="locationSearchQuery"
+            name="location-search"
+            type="search"
+            placeholder="Search locations by gallery, city or town..."
+          />
         </div>
         <button type="submit">
           <span>Search</span>
@@ -218,23 +335,33 @@ const settleVenueStack = () => {
       </form>
 
       <div class="venue-grid">
-        <article class="venue-card venue-card-featured">
+        <a
+          v-show="venueMatchesSearch(featuredVenue)"
+          class="venue-card venue-card-featured"
+          href="#locations"
+          :aria-label="`Open ${featuredVenue.name} archive`"
+        >
           <span class="venue-card-media">
-            <img :src="featuredVenue.image" :alt="featuredVenue.name" />
+            <VenueMaskedImage :src="featuredVenue.image" :alt="featuredVenue.name" />
           </span>
           <div class="venue-card-body">
             <h3>{{ featuredVenue.name }}</h3>
             <p>{{ featuredVenue.city }}</p>
-            <a href="#locations">Open archive <ArchiveArrow /></a>
+            <span class="venue-card-divider" aria-hidden="true" />
+            <span class="venue-card-link">Open archive <ArchiveArrow /></span>
           </div>
-        </article>
+          <VenueCardFrame />
+        </a>
 
-        <article
+        <component
           v-for="venue in otherVenues"
           :key="venue.id"
+          :is="venue.slug === 'kunsthalle-innsbruck' ? 'article' : 'a'"
+          v-show="venueMatchesSearch(venue)"
           class="venue-card"
           :class="{ 'venue-card-stack': venue.slug === 'kunsthalle-innsbruck' }"
-          :aria-label="venue.slug === 'kunsthalle-innsbruck' ? venue.name : undefined"
+          :href="venue.slug === 'kunsthalle-innsbruck' ? undefined : '#locations'"
+          :aria-label="venue.slug === 'kunsthalle-innsbruck' ? 'Show more locations' : `Open ${venue.name} archive`"
           :ref="(element) => setVenueStackRef(element, venue.slug)"
           @mouseenter="venue.slug === 'kunsthalle-innsbruck' && spreadVenueStack()"
           @mouseleave="venue.slug === 'kunsthalle-innsbruck' && settleVenueStack()"
@@ -248,6 +375,7 @@ const settleVenueStack = () => {
               aria-hidden="true"
             >
               <img :src="venue.image" alt="" />
+              <VenueCardFrame />
             </span>
             <button class="button button-primary venue-stack-button" type="button">
               Show more
@@ -256,14 +384,15 @@ const settleVenueStack = () => {
             <span class="venue-paperclip venue-paperclip-front" aria-hidden="true" />
           </template>
           <span v-if="venue.slug !== 'kunsthalle-innsbruck'" class="venue-card-media">
-            <img :src="venue.image" :alt="venue.name" />
+            <VenueMaskedImage :src="venue.image" :alt="venue.name" />
           </span>
           <div v-if="venue.slug !== 'kunsthalle-innsbruck'" class="venue-card-body">
             <h3>{{ venue.name }}</h3>
             <p>{{ venue.city }}</p>
-            <a href="#locations">Open archive <ArchiveArrow /></a>
+            <span class="venue-card-link">Open archive <ArchiveArrow /></span>
           </div>
-        </article>
+          <VenueCardFrame v-if="venue.slug !== 'kunsthalle-innsbruck'" />
+        </component>
       </div>
 
       <button class="button button-primary section-cta" type="button">
@@ -279,40 +408,79 @@ const settleVenueStack = () => {
         <p>Selected exhibitions preserved as navigable spatial records.</p>
       </div>
 
+      <form class="search-bar exhibition-search" role="search" @submit.prevent>
+        <div class="search-field-frame">
+          <Search :size="24" />
+          <label class="sr-only" for="exhibition-search">Search exhibitions</label>
+          <input
+            id="exhibition-search"
+            v-model="exhibitionSearchQuery"
+            name="exhibition-search"
+            type="search"
+            placeholder="Search exhibitions by title, artist or year..."
+          />
+        </div>
+        <button type="submit">
+          <span>Search</span>
+          <ArchiveArrow />
+        </button>
+      </form>
+
       <div class="exhibition-layout">
-        <article class="featured-record">
+        <ExhibitionFrameCard
+          v-show="exhibitionMatchesSearch(featuredExhibition)"
+          class="featured-record"
+          href="#method"
+          :aria-label="`Open ${featuredExhibition.title} record`"
+        >
           <img :src="featuredExhibition.image" :alt="featuredExhibition.title" />
-          <button class="record-arrow record-arrow-left" type="button" aria-label="Previous exhibition">
-            <ArchiveArrow direction="left" />
-          </button>
-          <button class="record-arrow record-arrow-right" type="button" aria-label="Next exhibition">
-            <ArchiveArrow />
-          </button>
           <div class="record-overlay">
             <div>
               <h3>{{ featuredExhibition.title }}</h3>
               <p class="artist-name">{{ featuredExhibition.artist }}</p>
-              <p>{{ featuredExhibition.venue }}, {{ featuredExhibition.city }}</p>
-              <p class="date-line"><CalendarDays :size="18" /> {{ featuredExhibition.date_range }}</p>
+              <span class="record-divider" aria-hidden="true" />
+              <p class="record-meta-line">
+                <span class="record-meta-icon record-meta-icon-location" aria-hidden="true" />
+                {{ featuredExhibition.venue }}, {{ featuredExhibition.city }}
+              </p>
+              <p class="record-meta-line">
+                <span class="record-meta-icon record-meta-icon-calendar" aria-hidden="true" />
+                {{ featuredExhibition.date_range }}
+              </p>
             </div>
-            <a class="button button-primary" href="#method">
+            <span class="button button-primary record-primary-label">
               Enter 360 record
               <ArchiveArrow />
-            </a>
+            </span>
           </div>
-        </article>
+          <span class="record-embellishment" aria-hidden="true" />
+        </ExhibitionFrameCard>
 
         <div class="record-list">
-          <article v-for="exhibition in sideExhibitions" :key="exhibition.id" class="record-card">
-            <img :src="exhibition.image" :alt="exhibition.title" />
-            <div>
+          <ExhibitionFrameCard
+            v-for="exhibition in sideExhibitions"
+            :key="exhibition.id"
+            v-show="exhibitionMatchesSearch(exhibition)"
+            class="record-card"
+            href="#exhibitions"
+            :aria-label="`Open ${exhibition.title} record`"
+          >
+            <img class="record-card-image" :src="exhibition.image" :alt="exhibition.title" />
+            <div class="record-card-copy">
               <h3>{{ exhibition.artist }}. {{ exhibition.title }}</h3>
               <p class="artist-name">{{ exhibition.artist }}</p>
-              <p>{{ exhibition.venue }}, {{ exhibition.city }}</p>
-              <p class="date-line"><CalendarDays :size="16" /> {{ exhibition.date_range }}</p>
-              <a href="#exhibitions">Open record <ArchiveArrow /></a>
+              <p class="record-meta-line">
+                <span class="record-meta-icon record-meta-icon-location" aria-hidden="true" />
+                {{ exhibition.venue }}, {{ exhibition.city }}
+              </p>
+              <p class="record-meta-line">
+                <span class="record-meta-icon record-meta-icon-calendar" aria-hidden="true" />
+                {{ exhibition.date_range }}
+              </p>
+              <span class="record-link-label">Open record <ArchiveArrow /></span>
             </div>
-          </article>
+            <span class="record-embellishment" aria-hidden="true" />
+          </ExhibitionFrameCard>
         </div>
       </div>
     </section>
@@ -325,11 +493,19 @@ const settleVenueStack = () => {
           <p>Browse practices documented across temporary exhibitions.</p>
         </div>
 
-        <form class="artist-search" action="#artists">
-          <Search :size="22" />
-          <label class="sr-only" for="artist-search">Search artists</label>
-          <input id="artist-search" type="search" placeholder="Search artist, exhibition, gallery or year..." />
-          <button type="submit">Search <ArchiveArrow /></button>
+        <form class="search-bar artist-search" role="search" @submit.prevent>
+          <div class="search-field-frame">
+            <Search :size="22" />
+            <label class="sr-only" for="artist-search">Search artists</label>
+            <input
+              id="artist-search"
+              v-model="artistSearchQuery"
+              name="artist-search"
+              type="search"
+              placeholder="Search artists by name..."
+            />
+          </div>
+          <button type="submit"><span>Search</span> <ArchiveArrow /></button>
         </form>
 
         <div class="alphabet-filter" aria-label="Artist alphabet filter">
@@ -359,8 +535,8 @@ const settleVenueStack = () => {
       </div>
 
       <aside class="archive-sidebar">
-        <p class="eyebrow">Archive span</p>
-        <strong>1926-2025</strong>
+        <p class="eyebrow">Exhibitions preserved</p>
+        <strong>{{ preservedExhibitionCount }}</strong>
         <p class="eyebrow">Locations</p>
         <ul>
           <li>Wien</li>
@@ -370,11 +546,29 @@ const settleVenueStack = () => {
           <li>Innsbruck</li>
         </ul>
         <a href="#locations">View all locations <ArchiveArrow /></a>
-        <button class="paper-note" type="button">
-          Show more artists
-          <ArchiveArrow />
-        </button>
+        <a
+          ref="artistStackRef"
+          class="artist-paper-stack"
+          href="#artists"
+          aria-label="Show more artists"
+          @mouseenter="animateArtistStack(true)"
+          @mouseleave="animateArtistStack(false)"
+        >
+          <span class="venue-paperclip venue-paperclip-behind artist-paperclip" aria-hidden="true" />
+          <span v-for="sheet in 5" :key="sheet" class="artist-stack-sheet" aria-hidden="true">
+            <VenueCardFrame />
+          </span>
+          <span class="artist-stack-label">Show more artists <ArchiveArrow /></span>
+          <span class="venue-paperclip venue-paperclip-front artist-paperclip" aria-hidden="true" />
+        </a>
       </aside>
+
+      <img
+        class="artists-section-divider"
+        src="/images/landing/artists/section-divider.png"
+        alt=""
+        aria-hidden="true"
+      />
     </section>
 
     <section id="method" class="section-band method-section">
@@ -389,16 +583,30 @@ const settleVenueStack = () => {
       </div>
 
       <div class="method-image-stack">
-        <div class="paper-layer paper-layer-back" />
+        <span class="venue-paperclip venue-paperclip-behind method-paperclip" aria-hidden="true" />
+        <div class="paper-layer paper-layer-back">
+          <span class="method-archive-label">Belvedere 21, Wien<br />Exhibition record<br />15.02.-20.05.2024</span>
+        </div>
         <div class="paper-layer paper-layer-mid" />
+        <div class="paper-layer paper-layer-side">
+          <img src="/images/landing/locations/location_10.png" alt="" />
+        </div>
         <figure>
-          <img :src="featuredVenue.image" alt="Archived exhibition room with navigation markers" />
+          <img src="/images/landing/locations/location_07.png" alt="Archived exhibition room with navigation markers" />
           <figcaption>Viewpoint 05 / 18</figcaption>
+          <svg class="method-route" viewBox="0 0 800 500" aria-hidden="true">
+            <path d="M390 382C350 344 355 307 410 296S522 314 560 347 638 382 684 405" />
+            <circle cx="360" cy="304" r="12" />
+            <circle cx="410" cy="296" r="12" />
+            <circle cx="560" cy="347" r="13" />
+            <circle cx="684" cy="405" r="13" />
+          </svg>
           <span class="pano-marker marker-a" />
           <span class="pano-marker marker-b" />
           <span class="pano-marker marker-c" />
           <span class="pano-arrow"><ArchiveArrow direction="up" /></span>
         </figure>
+        <span class="venue-paperclip venue-paperclip-front method-paperclip" aria-hidden="true" />
       </div>
 
       <div class="method-steps">
@@ -422,6 +630,7 @@ const settleVenueStack = () => {
           <div class="sponsor-names">
             <span v-for="sponsor in sponsors" :key="sponsor.id">{{ sponsor.name }}</span>
           </div>
+          <p class="sponsor-scroll-hint"><ArchiveArrow direction="left" /> Scroll to explore more partners <ArchiveArrow /></p>
         </div>
       </section>
 
@@ -456,7 +665,11 @@ const settleVenueStack = () => {
           <a href="/">Accessibility</a>
           <a href="/">Cookies</a>
         </nav>
-        <img class="footer-seal" src="/svg/permaphemera_seal.svg" alt="" />
+        <img
+          class="footer-seal"
+          src="/images/landing/footer/permanently-preserved-stamp.png"
+          alt="Permanently preserved, temporarily enduring"
+        />
       </section>
 
       <div class="footer-bottom">

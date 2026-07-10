@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 436 560" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="paper" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fbf3e6"/>
+      <stop offset=".56" stop-color="#f0e1cd"/>
+      <stop offset="1" stop-color="#dec8a9"/>
+    </linearGradient>
+    <radialGradient id="warmth" cx=".5" cy=".36" r=".74">
+      <stop offset="0" stop-color="#fff7eb" stop-opacity=".34"/>
+      <stop offset=".72" stop-color="#ead4b5" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#b99872" stop-opacity=".18"/>
+    </radialGradient>
+  </defs>
+  <path d="M24 2H412C412 15 423 26 434 26V534C423 534 412 545 412 558H24C24 545 13 534 2 534V26C13 26 24 15 24 2Z" fill="#6e4d2f" opacity=".14" transform="translate(0 3)"/>
+  <path d="M24 2H412C412 15 423 26 434 26V534C423 534 412 545 412 558H24C24 545 13 534 2 534V26C13 26 24 15 24 2Z" fill="url(#paper)" stroke="#c0a17c" stroke-width="2.4"/>
+  <path d="M24 2H412C412 15 423 26 434 26V534C423 534 412 545 412 558H24C24 545 13 534 2 534V26C13 26 24 15 24 2Z" fill="url(#warmth)"/>
+  <path d="M33 12H403C403 22 414 36 424 36V524C414 524 403 538 403 548H33C33 538 22 524 12 524V36C22 36 33 22 33 12Z" fill="none" stroke="#fff2df" stroke-width="2.1" opacity=".8"/>
+  <path d="M39 19H397C397 28 407 40 416 40V520C407 520 397 532 397 541H39C39 532 29 520 20 520V40C29 40 39 28 39 19Z" fill="none" stroke="#9c7b55" stroke-width="1.25" opacity=".42"/>
+</svg>
