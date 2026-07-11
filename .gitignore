@@ -15,10 +15,27 @@ logs
 
 # Misc
 .DS_Store
+Thumbs.db
 .fleet
 .idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+*~
+*.af~lock~
 
 # Local env files
 .env
 .env.*
 !.env.example
+
+# Test and coverage output
+coverage/
+playwright-report/
+test-results/
+
+# Local design source and backup material
+/_Material/
+/_BU/
