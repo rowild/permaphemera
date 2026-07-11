@@ -8,6 +8,7 @@
 - Configured Nuxt to use dedicated development port `4991` by default and updated the local run documentation accordingly.
 - Added a project-level `.gitignore` for Nuxt, Node, test, environment, log, editor, and operating-system artifacts, with local `_Material/` and `_BU/` design-working directories explicitly excluded from version control.
 - Updated project and agent documentation so the style guide is the required reference for new or materially redesigned frontend pages.
+- Made `frontend/` the standalone Git repository and project root, consolidating `AGENTS.md`, `README.md`, `changelog.md`, `.gitignore`, and the style guide there so all future commits and release closeouts are strictly limited to the frontend application.
 
 ## 0.0.2 - 2026-07-11 07:50:55 CEST
 
