@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.6 - 2026-07-11 19:24:54 CEST
+
+- Added the first routed location dossier for Parkschlössl in Spittal an der Drau, combining the verified Bahnhofstraße 1a address and map coordinates with the established parchment, archival-frame, measurement, typography, and responsive design system.
+- Added seven real 2026 Parkschlössl exhibition records from the supplied invitations, including typed local JSON metadata, optimized WebP artwork extracted from the PDFs, direct source-invitation links, and reusable location/exhibition data access through `useArchiveData`.
+- Reworked the location exhibition index into compact single-column records with hover, focus, and click selection, a sticky active preview, preloaded image swaps, visible loading and failure states, keyboard-accessible preview controls, and responsive preview-first mobile composition.
+- Added a dynamic exhibition-detail route with curatorial summary, dates, venue, hours, vernissage, source PDF, related records, and an explicitly unavailable future 360-degree experience entry point.
+- Extracted the landing page header and footer into shared routed components, added real active navigation and an accessible mobile menu, and upgraded the sponsor strip with keyboard-operable scroll controls while preserving pointer dragging.
+- Extended the global archival CSS architecture with namespaced location and exhibition layouts, responsive rules, focus and reduced-motion states, reusable frame geometry, corrected venue-section spacing, and the architectural preservation stamp.
+- Updated the frontend data contracts with location-exhibition records and venue coordinates, retained the backend-free JSON-first architecture, and verified the complete release with a successful Nuxt production build.
+
 ## 0.0.5 - 2026-07-11 17:55:55 CEST
 
 - Refactored the hero orbit from twelve independently generated SVG paths into one canonical curved-arrow geometry reused at twelve rotated positions, then added staggered GSAP path drawing, arrowhead fades, clockwise/counterclockwise sequencing, and a progressively slowing ritardando.

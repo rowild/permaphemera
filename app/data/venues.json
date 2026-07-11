@@ -5,7 +5,9 @@
     "location_id": "location-spittal",
     "name": "Parkschlössl",
     "city": "Spittal an der Drau",
-    "address": "Spittal an der Drau, Austria",
+    "address": "Bahnhofstraße 1a, 9800 Spittal an der Drau, Austria",
+    "latitude": 46.7983583,
+    "longitude": 13.4928504,
     "website_url": "",
     "image": "/images/landing/locations/location_01.png",
     "featured": true

@@ -5,7 +5,7 @@ import {
 } from '@lucide/vue'
 import { gsap } from 'gsap'
 
-const { artists, exhibitions, sponsors, venues } = useArchiveData()
+const { artists, exhibitions, venues } = useArchiveData()
 
 const featuredVenue = venues.find((venue) => venue.featured) ?? venues[0]
 const otherVenues = venues.filter((venue) => venue.id !== featuredVenue.id)
@@ -45,10 +45,6 @@ const kaleidoscopeRef = ref<{
 } | null>(null)
 const venueStackRef = ref<HTMLElement | null>(null)
 const artistStackRef = ref<HTMLElement | null>(null)
-const sponsorStripRef = ref<HTMLElement | null>(null)
-let sponsorDragStartX = 0
-let sponsorDragStartScroll = 0
-let sponsorDragging = false
 const locationSearchQuery = ref('')
 const exhibitionSearchQuery = ref('')
 const artistSearchQuery = ref('')
@@ -73,33 +69,6 @@ const methodSteps = [
     text: 'The experience remains navigable long after the exhibition has ended.'
   }
 ]
-
-const startSponsorDrag = (event: PointerEvent) => {
-  const strip = sponsorStripRef.value
-  if (!strip) return
-
-  sponsorDragging = true
-  sponsorDragStartX = event.clientX
-  sponsorDragStartScroll = strip.scrollLeft
-  strip.setPointerCapture(event.pointerId)
-  strip.classList.add('is-dragging')
-}
-
-const moveSponsorDrag = (event: PointerEvent) => {
-  const strip = sponsorStripRef.value
-  if (!strip || !sponsorDragging) return
-
-  strip.scrollLeft = sponsorDragStartScroll - (event.clientX - sponsorDragStartX)
-}
-
-const endSponsorDrag = (event: PointerEvent) => {
-  const strip = sponsorStripRef.value
-  if (!strip || !sponsorDragging) return
-
-  sponsorDragging = false
-  if (strip.hasPointerCapture(event.pointerId)) strip.releasePointerCapture(event.pointerId)
-  strip.classList.remove('is-dragging')
-}
 
 const artistsByLetter = computed(() => {
   const query = artistSearchQuery.value.trim().toLocaleLowerCase()
@@ -269,27 +238,7 @@ const animateArtistStack = (expanded: boolean) => {
 <template>
   <main class="site-shell">
     <span class="global-right-ruler" aria-hidden="true" />
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="PERMAPHEMERA home">PERMAPHEMERA</a>
-      <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#locations">Archive</a>
-        <a href="#locations">Galleries</a>
-        <a href="#artists">Artists</a>
-        <a href="#exhibitions">Exhibitions</a>
-        <a href="#method">About</a>
-      </nav>
-      <div class="header-actions">
-        <div class="language-switch" aria-label="Language switcher">
-          <a href="/" aria-current="page">EN</a>
-          <span>/</span>
-          <a href="/">DE</a>
-        </div>
-        <button class="icon-button mobile-menu" type="button" aria-label="Open menu">
-          <span class="svg-icon svg-icon-menu" aria-hidden="true" />
-        </button>
-        <span class="desktop-compass svg-icon svg-icon-menu" aria-hidden="true" />
-      </div>
-    </header>
+    <ArchiveHeader skip-target="top" />
 
     <section id="top" class="hero-section section-band">
       <div class="hero-copy">
@@ -674,97 +623,6 @@ const animateArtistStack = (expanded: boolean) => {
       </div>
     </section>
 
-    <footer class="site-footer">
-      <section class="supporters">
-        <p class="eyebrow">Supporters & partners</p>
-        <h2>Supported by institutions that care for <span>cultural memory.</span></h2>
-        <div class="sponsor-frame">
-          <div
-            ref="sponsorStripRef"
-            class="sponsor-strip"
-            aria-label="Supporters and partners"
-            @pointerdown="startSponsorDrag"
-            @pointermove="moveSponsorDrag"
-            @pointerup="endSponsorDrag"
-            @pointercancel="endSponsorDrag"
-          >
-            <div class="sponsor-track">
-              <template v-for="(sponsor, index) in sponsors" :key="sponsor.id">
-                <div class="sponsor-mark">
-                  <img
-                    :src="`/images/landing/sponsors/${sponsor.id}.png`"
-                    alt=""
-                    aria-hidden="true"
-                    draggable="false"
-                  />
-                  <span>{{ sponsor.name }}</span>
-                </div>
-                <img
-                  v-if="index < sponsors.length - 1"
-                  class="sponsor-divider"
-                  src="/images/landing/sponsors/divider.png"
-                  alt=""
-                  aria-hidden="true"
-                  draggable="false"
-                />
-              </template>
-            </div>
-          </div>
-          <p class="sponsor-scroll-hint"><ArchiveArrow direction="left" /> Scroll to explore more partners <ArchiveArrow /></p>
-        </div>
-      </section>
-
-      <section class="footer-links">
-        <div class="footer-brand">
-          <strong>PERMAPHEMERA</strong>
-          <img class="footer-brand-rule" src="/images/landing/footer/details/brand-rule.png" alt="" aria-hidden="true" />
-          <p>A curated Austrian archive of 360-degree exhibition documentation.</p>
-          <div class="language-switch">
-            <a href="/" aria-current="page">EN</a>
-            <span>/</span>
-            <a href="/">DE</a>
-          </div>
-        </div>
-        <nav aria-label="Footer explore navigation">
-          <p>Explore</p>
-          <a href="#locations">Archive</a>
-          <a href="#locations">Galleries</a>
-          <a href="#artists">Artists</a>
-          <a href="#exhibitions">Exhibitions</a>
-        </nav>
-        <nav aria-label="Footer information navigation">
-          <p>Information</p>
-          <a href="#method">About</a>
-          <a href="#method">How it works</a>
-          <a href="mailto:archive@example.test">Contact</a>
-        </nav>
-        <nav aria-label="Footer legal navigation">
-          <p>Legal</p>
-          <a href="/">Imprint</a>
-          <a href="/">Privacy Policy</a>
-          <a href="/">Terms & Conditions</a>
-          <a href="/">Accessibility</a>
-          <a href="/">Cookies</a>
-        </nav>
-        <img
-          class="footer-seal"
-          src="/images/landing/footer/permanently-preserved-stamp.png"
-          alt="Permanently preserved, temporarily enduring"
-        />
-      </section>
-
-      <div class="footer-bottom">
-        <div class="footer-bottom-group footer-bottom-left">
-          <span>&copy; 2026 PERMAPHEMERA. All rights reserved.</span>
-        </div>
-        <div class="footer-bottom-group footer-bottom-center-group">
-          <img class="footer-bottom-center" src="/images/landing/footer/details/copyright-center.png" alt="" aria-hidden="true" />
-        </div>
-        <div class="footer-bottom-group footer-bottom-right">
-          <span>Curated independently in Austria.</span>
-          <img class="footer-bottom-end" src="/images/landing/footer/details/copyright-end.png" alt="" aria-hidden="true" />
-        </div>
-      </div>
-    </footer>
+    <ArchiveFooter />
   </main>
 </template>

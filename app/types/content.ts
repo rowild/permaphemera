@@ -21,6 +21,8 @@ export interface Venue {
   name: string
   city: string
   address: string
+  latitude?: number
+  longitude?: number
   website_url?: string
   image: string
   featured?: boolean
@@ -44,6 +46,28 @@ export interface Exhibition {
   city: string
   date_range: string
   image: string
+  featured?: boolean
+}
+
+export interface LocationExhibition {
+  id: string
+  slug: string
+  title: string
+  artist: string
+  venue_slug: string
+  venue: string
+  city: string
+  start_date: string
+  end_date: string
+  date_range: string
+  image: string
+  image_alt: string
+  summary: string
+  description?: string
+  medium?: string
+  opening_hours: string
+  vernissage: string
+  source_pdf: string
   featured?: boolean
 }
 

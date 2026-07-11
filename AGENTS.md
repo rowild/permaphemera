@@ -2,7 +2,7 @@
 
 ## Project State
 
-This repository is the PERMAPHEMERA frontend: the first working milestone for a curated archive of temporary exhibitions and spatial memories. It currently implements the complete landing page with local content and assets; backend and deployment work remain deferred.
+This repository is the PERMAPHEMERA frontend: the first working milestone for a curated archive of temporary exhibitions and spatial memories. It implements the complete landing page plus the first local-data location and exhibition detail routes; backend, 360-viewer, and deployment work remain deferred.
 
 The primary active plan is `../_Plans/exhibitions-plan.md`. Treat `../_Plans/original chat.md` as historical context, not as the current implementation source of truth. These files are adjacent workspace references outside this Git repository.
 
@@ -34,9 +34,13 @@ The frontend foundation is complete:
 
 - Nuxt 4, Vue 3, TypeScript, Vite, and Tailwind CSS v4
 - Local JSON data exposed through `app/composables/useArchiveData.ts`
-- A single landing route in `app/pages/index.vue`
-- Reusable Vue components for the hero kaleidoscope, venue masks/frames, exhibition cards, and archive arrows
+- The landing route in `app/pages/index.vue`
+- A Parkschlössl location dossier in `app/pages/locations/parkschloessl-spittal-drau.vue`
+- Dynamic exhibition records in `app/pages/exhibitions/[slug].vue`
+- Reusable Vue components for shared header/footer navigation, hero kaleidoscope, venue masks/frames, exhibition cards, and archive arrows
 - Responsive hero, locations, selected exhibitions, artists, archive-method, sponsors, and dark-footer sections
+- Seven 2026 Parkschlössl records with PDF-derived local metadata and optimized runtime artwork
+- A compact selectable exhibition ledger with preloaded active preview, loading/error states, and responsive mobile composition
 - GSAP interactions and a Three.js-powered hero kaleidoscope
 - Runtime images and SVGs under `public/`
 
@@ -59,6 +63,7 @@ app/data/locations.json
 app/data/venues.json
 app/data/artists.json
 app/data/exhibitions.json
+app/data/location-exhibitions.json
 app/data/sponsors.json
 ```
 
@@ -66,7 +71,7 @@ Keep the local JSON shape compatible with the future Directus schema in `../_Pla
 
 ## Current Scope And Deferred Work
 
-The current site is a visual prototype: navigation links are section anchors, search filters local data, language controls are presentational, and archive/detail actions do not yet lead to dedicated application routes. Directus remains part of the future production architecture, but it is not part of the current frontend milestone.
+The current site is a visual prototype: landing search filters local data, language controls remain presentational, and the 360-degree exhibition experience is not yet connected. Location and exhibition actions now use real Nuxt routes backed by local JSON. Directus remains part of the future production architecture, but it is not part of the current frontend milestone.
 
 Defer these until after the Nuxt frontend basis and landing page are working:
 
@@ -86,6 +91,7 @@ When assets are needed by the running Nuxt prototype, copy or export only the ne
 
 ```text
 public/images/landing/
+public/images/locations/
 ```
 
 Local source ornaments may be available under `../_Material/`, but `_Material/` and `_BU/` working directories must not be treated as checkout dependencies. Copy every asset required at runtime into `public/` or import it from `app/assets/`.
@@ -104,6 +110,8 @@ Verify at least:
 - Search and archive section responsiveness
 - Footer sponsor strip behavior
 - Text fit inside buttons, cards, and navigation elements
+- Parkschlössl location layout and compact preview interaction on desktop and mobile
+- Exhibition detail layout, source links, related records, and unavailable 360 state
 
 Avoid backend plumbing, admin tooling, or deployment work until the frontend basis has been created and the landing page is visually aligned with the mockups.
 

@@ -1,18 +1,23 @@
 # PERMAPHEMERA
 
-PERMAPHEMERA is a curated digital archive for temporary exhibitions and spatial memories. This repository currently contains a frontend-only landing-page prototype based on the supplied editorial mockups.
+PERMAPHEMERA is a curated digital archive for temporary exhibitions and spatial memories. This repository contains a frontend-only archive prototype based on the supplied editorial mockups and locally sourced exhibition material.
 
 ## Status
 
-The first Nuxt frontend milestone is implemented. The landing page includes:
+The first Nuxt frontend milestone is implemented. It includes:
 
 - responsive header and hero with an interactive kaleidoscope;
 - searchable locations, exhibitions, and artist archive sections;
 - framed venue and exhibition cards backed by local JSON;
 - an illustrated explanation of the archive method;
 - a horizontally draggable sponsor strip and dark editorial footer.
+- a routed Parkschlössl location dossier with verified venue metadata;
+- seven real 2026 Parkschlössl exhibition records derived from local source PDFs;
+- a compact selectable exhibition ledger with a preloaded, responsive active preview;
+- dynamic exhibition-detail pages with practical metadata, source invitations, and related records;
+- shared routed header/footer components and a functional mobile navigation menu.
 
-The prototype does not connect to Directus or another live backend. Detail pages, real language switching, deployment infrastructure, and the interactive 360-degree exhibition viewer remain future work.
+The prototype does not connect to Directus or another live backend. Real language switching, deployment infrastructure, and the interactive 360-degree exhibition viewer remain future work. The exhibition pages deliberately show the 360 entry point as unavailable until a real spatial record is connected.
 
 The active architecture plan is `../_Plans/exhibitions-plan.md`; the design references are under `../_Plans/designs/landing-page/`. These planning files are adjacent workspace material and are not part of this frontend Git repository.
 
@@ -48,8 +53,11 @@ app/components/                reusable visual components
 app/composables/               local archive data adapter
 app/data/                      JSON content source
 app/pages/index.vue            landing page composition and interactions
+app/pages/locations/           location dossiers
+app/pages/exhibitions/         dynamic exhibition records
 app/assets/css/main.css        visual system and responsive layout
 public/images/landing/         raster assets used by the site
+public/images/locations/       optimized location/exhibition artwork
 public/svg/                    frames, icons, and ornaments
 docs/STYLE_GUIDE.md            reusable frontend design system and page rules
 docs/tailwindcss-v4-usage.md   Tailwind v4 notation and project architecture rules
@@ -61,11 +69,15 @@ changelog.md                   version history
 
 Local JSON files live in `app/data/`. Keep their shape compatible with the future Directus schema documented in `../_Plans/exhibitions-plan.md` so the adapter can later change without rewriting components.
 
-## Implemented Landing Sections
+## Implemented Routes And Sections
 
-The single route in `app/pages/index.vue` contains the hero, locations, selected exhibitions, artists, archive method, sponsors, and footer. Search fields filter the local JSON collections. Section navigation works through anchors; the language switcher and archive/detail links are visual placeholders for later milestones.
+The landing route in `app/pages/index.vue` contains the hero, locations, selected exhibitions, artists, archive method, sponsors, and footer. Search fields filter the local JSON collections. Its shared header and footer provide routed navigation, active states, an accessible mobile menu, and sponsor-strip controls; the language switcher remains presentational.
 
-The hero kaleidoscope uses Three.js triangles with GSAP-driven unfolding, directional ritardando, and damped per-slice rotations. Its orbit is one reusable SVG arrow rendered at twelve rotations with a staggered path reveal; the centre wheel control replays the complete entrance for testing. Custom image masks and frames are implemented as Vue/SVG components, and runtime artwork is served from `public/images/landing/` and `public/svg/`.
+`app/pages/locations/parkschloessl-spittal-drau.vue` presents the verified Parkschlössl venue details and seven 2026 exhibitions as compact, keyboard-accessible records. Hover, focus, or click selects a sticky preview; images are preloaded before the active preview changes and a visible archival loader or error state covers the transition.
+
+`app/pages/exhibitions/[slug].vue` resolves the same local exhibition data into individual records with dates, opening hours, vernissage, source PDF, related exhibitions, and a prepared—but disabled—360-degree experience section.
+
+The hero kaleidoscope uses Three.js triangles with GSAP-driven unfolding, directional ritardando, and damped per-slice rotations. Its orbit is one reusable SVG arrow rendered at twelve rotations with a staggered path reveal; the centre wheel control replays the complete entrance for testing. Custom image masks and frames are implemented as Vue/SVG components, and runtime artwork is served from `public/images/landing/`, `public/images/locations/`, and `public/svg/`.
 
 ## Design Guidance
 
