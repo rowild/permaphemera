@@ -18,6 +18,8 @@ Start the Vite-powered Nuxt development server:
 pnpm dev
 ```
 
+The configured local URL is `http://localhost:4991`.
+
 Build for production:
 
 ```bash

@@ -33,6 +33,12 @@ const heroImages = [
   ),
   '/images/landing/kaleidoscope/locations/location_01.png'
 ]
+const venueStackImages = [
+  '/images/landing/kaleidoscope/locations/location_07.png',
+  '/images/landing/kaleidoscope/locations/location_08.png',
+  '/images/landing/kaleidoscope/locations/location_09.png',
+  '/images/landing/kaleidoscope/locations/location_10.png'
+]
 const kaleidoscopeRef = ref<{ rotateBy: (direction: number) => void } | null>(null)
 const venueStackRef = ref<HTMLElement | null>(null)
 const artistStackRef = ref<HTMLElement | null>(null)
@@ -139,16 +145,14 @@ const stackFrameRest = [
   { x: -12, y: 7, rotate: -5 },
   { x: 11, y: 8, rotate: 4.5 },
   { x: -6, y: -6, rotate: -2.5 },
-  { x: 7, y: -3, rotate: 2 },
-  { x: 0, y: 0, rotate: -0.6 }
+  { x: 7, y: -3, rotate: 2 }
 ]
 
 const stackFrameHover = [
   { x: -24, y: 13, rotate: -7.2 },
   { x: 23, y: 11, rotate: 6.2 },
   { x: -11, y: -13, rotate: -4 },
-  { x: 16, y: -9, rotate: 3.4 },
-  { x: 3, y: -3, rotate: -0.2 }
+  { x: 16, y: -9, rotate: 3.4 }
 ]
 
 const getVenueStackFrames = () => {
@@ -397,12 +401,13 @@ const animateArtistStack = (expanded: boolean) => {
           <template v-if="venue.slug === 'kunsthalle-innsbruck'">
             <span class="venue-paperclip venue-paperclip-behind" aria-hidden="true" />
             <span
-              v-for="frameIndex in 5"
-              :key="frameIndex"
+              v-for="(image, index) in venueStackImages"
+              :key="image"
               class="venue-stack-frame"
+              :class="`venue-stack-frame-${index + 1}`"
               aria-hidden="true"
             >
-              <img :src="venue.image" alt="" />
+              <VenueMaskedImage :src="image" alt="" shape="frame" />
               <VenueCardFrame />
             </span>
             <button class="button button-primary venue-stack-button" type="button">

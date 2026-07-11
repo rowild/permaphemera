@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
+  devServer: {
+    port: 4991
+  },
   css: ['~/assets/css/main.css'],
   app: {
     head: {

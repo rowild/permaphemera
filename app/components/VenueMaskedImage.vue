@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { createVenueMediaPath } from '../utils/venueFrameGeometry'
+import { computed, onBeforeUnmount, onMounted, ref, useId } from 'vue'
+import { createVenueInnerFramePath, createVenueMediaPath } from '../utils/venueFrameGeometry'
 
 const props = defineProps<{
   src: string
   alt: string
+  shape?: 'media' | 'frame'
 }>()
 
 const svgRef = ref<SVGSVGElement | null>(null)
@@ -12,19 +13,12 @@ const width = ref(436)
 const height = ref(220)
 let resizeObserver: ResizeObserver | null = null
 
-const maskId = computed(() => {
-  let hash = 0
-  const source = `${props.src}-${props.alt}`
-
-  for (let index = 0; index < source.length; index += 1) {
-    hash = (hash * 31 + source.charCodeAt(index)) >>> 0
-  }
-
-  return `venue-image-mask-${hash.toString(36)}`
-})
+const maskId = `venue-image-mask-${useId().replaceAll(':', '')}`
 
 const maskPathD = computed(() => {
-  return createVenueMediaPath(width.value, height.value)
+  return props.shape === 'frame'
+    ? createVenueInnerFramePath(width.value, height.value)
+    : createVenueMediaPath(width.value, height.value)
 })
 
 const updateSize = () => {
@@ -60,8 +54,9 @@ onBeforeUnmount(() => {
     class="venue-card-image"
     :viewBox.attr="`0 0 ${width} ${height}`"
     preserveAspectRatio="none"
-    role="img"
-    :aria-label="props.alt"
+    :role="props.alt ? 'img' : undefined"
+    :aria-label="props.alt || undefined"
+    :aria-hidden="props.alt ? undefined : 'true'"
   >
     <defs>
       <mask
