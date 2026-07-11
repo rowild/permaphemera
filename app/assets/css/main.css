@@ -577,15 +577,23 @@ a:hover .archive-arrow-right {
   color: rgba(139, 68, 49, 0.74);
 }
 
-.hero-kaleidoscope__orbit path {
+.hero-kaleidoscope__arrow {
+  opacity: 0;
+}
+
+.hero-kaleidoscope__arrow-line {
   fill: none;
+  stroke: url("#hero-orbit-gradient");
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
   stroke-width: 0.18;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.hero-kaleidoscope__orbit marker path {
+.hero-kaleidoscope__arrow-head {
   fill: currentColor;
+  opacity: 0;
   stroke: none;
 }
 

@@ -39,7 +39,10 @@ const venueStackImages = [
   '/images/landing/kaleidoscope/locations/location_09.png',
   '/images/landing/kaleidoscope/locations/location_10.png'
 ]
-const kaleidoscopeRef = ref<{ rotateBy: (direction: number) => void } | null>(null)
+const kaleidoscopeRef = ref<{
+  rotateBy: (direction: number) => void
+  replayIntro: () => void
+} | null>(null)
 const venueStackRef = ref<HTMLElement | null>(null)
 const artistStackRef = ref<HTMLElement | null>(null)
 const sponsorStripRef = ref<HTMLElement | null>(null)
@@ -317,15 +320,15 @@ const animateArtistStack = (expanded: boolean) => {
             class="wheel-control wheel-control-left"
             type="button"
             aria-label="Rotate kaleidoscope counterclockwise"
-            @click="kaleidoscopeRef?.rotateBy(-1)"
+            @click="kaleidoscopeRef?.rotateBy(1)"
           >
             <span class="wheel-control-plane" aria-hidden="true" />
           </button>
           <button
             class="wheel-control wheel-control-up"
             type="button"
-            aria-label="Rotate kaleidoscope forward"
-            @click="kaleidoscopeRef?.rotateBy(1)"
+            aria-label="Replay kaleidoscope entrance animation"
+            @click="kaleidoscopeRef?.replayIntro()"
           >
             <span class="wheel-control-plane" aria-hidden="true" />
           </button>
@@ -333,7 +336,7 @@ const animateArtistStack = (expanded: boolean) => {
             class="wheel-control wheel-control-right"
             type="button"
             aria-label="Rotate kaleidoscope clockwise"
-            @click="kaleidoscopeRef?.rotateBy(1)"
+            @click="kaleidoscopeRef?.rotateBy(-1)"
           >
             <span class="wheel-control-plane" aria-hidden="true" />
           </button>

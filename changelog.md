@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.5 - 2026-07-11 17:55:55 CEST
+
+- Refactored the hero orbit from twelve independently generated SVG paths into one canonical curved-arrow geometry reused at twelve rotated positions, then added staggered GSAP path drawing, arrowhead fades, clockwise/counterclockwise sequencing, and a progressively slowing ritardando.
+- Rebuilt the Three.js kaleidoscope entrance around per-slice radial pivots so textured triangles unfold visibly from edge-on to face-on with configurable clockwise staggering, increasing start gaps and durations, elastic overshoot, reduced-motion handling, and an overlap beginning at arrow twelve.
+- Turned the three kaleidoscope controls into distinct interactions: counterclockwise and clockwise one-slice rotations now travel through the triangles as lagged seven-step damped ripples, while the centre control resets and replays the complete entrance animation for rapid testing.
+
 ## 0.0.4 - 2026-07-11 16:42:27 CEST
 
 - Added a detailed Tailwind CSS v4 usage guide covering utility shorthand, arbitrary values and properties, variants, CSS-first directives, static Vue class detection, token strategy, reusable-component boundaries, and a selective migration assessment.

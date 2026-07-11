@@ -65,7 +65,7 @@ Local JSON files live in `app/data/`. Keep their shape compatible with the futur
 
 The single route in `app/pages/index.vue` contains the hero, locations, selected exhibitions, artists, archive method, sponsors, and footer. Search fields filter the local JSON collections. Section navigation works through anchors; the language switcher and archive/detail links are visual placeholders for later milestones.
 
-The hero kaleidoscope uses Three.js, while GSAP drives landing-page interactions. Custom image masks and frames are implemented as Vue/SVG components, and runtime artwork is served from `public/images/landing/` and `public/svg/`.
+The hero kaleidoscope uses Three.js triangles with GSAP-driven unfolding, directional ritardando, and damped per-slice rotations. Its orbit is one reusable SVG arrow rendered at twelve rotations with a staggered path reveal; the centre wheel control replays the complete entrance for testing. Custom image masks and frames are implemented as Vue/SVG components, and runtime artwork is served from `public/images/landing/` and `public/svg/`.
 
 ## Design Guidance
 

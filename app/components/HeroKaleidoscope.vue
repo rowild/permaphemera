@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { gsap } from 'gsap'
 import * as THREE from 'three'
 
 const props = defineProps<{
@@ -12,25 +13,43 @@ const orbitRadius = 52
 const kaleidoscopeViewSize = 2.35
 const radialOffsetPixels = 10
 const sliceAngle = (Math.PI * 2) / 12
-const orbitSegments = Array.from({ length: 12 }, (_, index) => ({
-  id: index,
-  d: describeOrbitArc(index * 30 + 2, index * 30 + 28),
-  gradientId: `hero-orbit-gradient-${index}`,
-  gradient: describeOrbitGradient(index * 30 + 2, index * 30 + 28)
-}))
+const orbitStartAngle = 2
+const orbitEndAngle = 28
+const orbitArrowPath = describeOrbitArc(orbitStartAngle, orbitEndAngle)
+const orbitArrowGradient = describeOrbitGradient(orbitStartAngle, orbitEndAngle)
+const orbitArrowHead = describeArrowHead(orbitEndAngle)
+const orbitSegments = Array.from({ length: 12 }, (_, index) => ({ id: index, rotation: index * 30 }))
+type StaggerDirection = 'cw' | 'ccw'
+const introConfig = {
+  arrowDuration: 0.9,
+  arrowStagger: 0.14,
+  arrowStaggerRitardando: 0.008,
+  arrowStaggerDirection: 'cw' as StaggerDirection,
+  trianglesStartAtArrow: 12,
+  triangleDuration: 2.05,
+  triangleDurationRitardando: 0.075,
+  triangleStagger: 0.12,
+  triangleStaggerRitardando: 0.02,
+  triangleStaggerDirection: 'cw' as StaggerDirection
+}
+const rotationConfig = {
+  triangleStagger: 0.035,
+  settleOffsets: [0.14, -0.1, 0.07, -0.045, 0.027, -0.014, 0.006, 0],
+  settleDurations: [0.55, 0.18, 0.16, 0.14, 0.12, 0.1, 0.09, 0.08]
+}
 
 let renderer: THREE.WebGLRenderer | null = null
 let scene: THREE.Scene | null = null
 let camera: THREE.OrthographicCamera | null = null
-let wheelGroup: THREE.Group | null = null
-let currentWheelRotation = 0
-let targetWheelRotation = 0
 let frameId = 0
 let resizeObserver: ResizeObserver | null = null
+let introTimeline: gsap.core.Timeline | null = null
+let rotationTimeline: gsap.core.Timeline | null = null
 const disposableGeometries: THREE.BufferGeometry[] = []
 const disposableMaterials: THREE.Material[] = []
 const disposableTextures: THREE.Texture[] = []
 const sliceMeshes: THREE.Mesh[] = []
+const slicePivots: THREE.Group[] = []
 
 function pointOnOrbit(angleDegrees: number, radius = orbitRadius) {
   const radians = (angleDegrees - 90) * (Math.PI / 180)
@@ -64,6 +83,25 @@ function describeOrbitGradient(startAngle: number, endAngle: number) {
   }
 }
 
+function describeArrowHead(angleDegrees: number) {
+  const tip = pointOnOrbit(angleDegrees)
+  const angle = angleDegrees * (Math.PI / 180)
+  const tangent = { x: Math.cos(angle), y: Math.sin(angle) }
+  const normal = { x: -tangent.y, y: tangent.x }
+  const length = 0.78
+  const halfWidth = 0.34
+  const base = {
+    x: tip.x - tangent.x * length,
+    y: tip.y - tangent.y * length
+  }
+
+  return [
+    `${tip.x.toFixed(3)},${tip.y.toFixed(3)}`,
+    `${(base.x + normal.x * halfWidth).toFixed(3)},${(base.y + normal.y * halfWidth).toFixed(3)}`,
+    `${(base.x - normal.x * halfWidth).toFixed(3)},${(base.y - normal.y * halfWidth).toFixed(3)}`
+  ].join(' ')
+}
+
 function createTriangleGeometry() {
   const innerOffset = 0
   const outerRadius = 0.98
@@ -91,37 +129,173 @@ function createTriangleGeometry() {
 
 function render() {
   if (!renderer || !scene || !camera) return
-  if (wheelGroup) {
-    const rotationDelta = targetWheelRotation - currentWheelRotation
-
-    if (Math.abs(rotationDelta) > 0.0005) {
-      currentWheelRotation += rotationDelta * 0.11
-    } else {
-      currentWheelRotation = targetWheelRotation
-    }
-
-    wheelGroup.rotation.z = currentWheelRotation
-  }
 
   renderer.render(scene, camera)
   frameId = window.requestAnimationFrame(render)
 }
 
 function rotateBy(direction: number) {
-  targetWheelRotation += direction * sliceAngle
+  if (!slicePivots.length || rotationTimeline?.isActive()) return
+
+  const normalizedDirection = direction < 0 ? -1 : 1
+  const staggerDirection: StaggerDirection = normalizedDirection > 0 ? 'ccw' : 'cw'
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (reduceMotion) {
+    slicePivots.forEach((pivot) => {
+      pivot.rotation.z += normalizedDirection * sliceAngle
+    })
+    return
+  }
+
+  const timeline = gsap.timeline({
+    onComplete: () => {
+      rotationTimeline = null
+    }
+  })
+
+  slicePivots.forEach((pivot, index) => {
+    const staggerRank = getStaggerRank(index, slicePivots.length, staggerDirection, 'ccw')
+    const targetRotation = pivot.rotation.z + normalizedDirection * sliceAngle
+    const settle = gsap.timeline()
+
+    rotationConfig.settleOffsets.forEach((offset, settleIndex) => {
+      settle.to(pivot.rotation, {
+        z: targetRotation + normalizedDirection * sliceAngle * offset,
+        duration: rotationConfig.settleDurations[settleIndex],
+        ease: settleIndex === 0 ? 'power2.inOut' : 'sine.inOut'
+      })
+    })
+
+    timeline.add(settle, staggerRank * rotationConfig.triangleStagger)
+  })
+
+  rotationTimeline = timeline
+}
+
+function replayIntro() {
+  if (!slicePivots.length) return
+
+  introTimeline?.kill()
+  rotationTimeline?.kill()
+  rotationTimeline = null
+
+  slicePivots.forEach((pivot, index) => {
+    pivot.rotation.z = index * sliceAngle
+  })
+  sliceMeshes.forEach((mesh) => {
+    mesh.rotation.x = Math.PI / 2
+  })
+
+  createIntroTimeline()
 }
 
 defineExpose({
-  rotateBy
+  rotateBy,
+  replayIntro
 })
 
 function applyRadialSliceOffset(renderedSize: number) {
   const outwardOffset = (radialOffsetPixels / Math.max(renderedSize, 1)) * kaleidoscopeViewSize
 
-  sliceMeshes.forEach((mesh, index) => {
-    mesh.position.x = Math.cos(index * sliceAngle) * outwardOffset
-    mesh.position.y = Math.sin(index * sliceAngle) * outwardOffset
+  sliceMeshes.forEach((mesh) => {
+    mesh.position.x = outwardOffset
+    mesh.position.y = 0
   })
+}
+
+function getStaggerRank(
+  index: number,
+  count: number,
+  direction: StaggerDirection,
+  positiveIndexDirection: StaggerDirection
+) {
+  if (direction === positiveIndexDirection || index === 0) return index
+
+  return count - index
+}
+
+function getRitardandoOffset(rank: number, baseStagger: number, ritardando: number) {
+  return rank * baseStagger + ((rank * (rank - 1)) / 2) * ritardando
+}
+
+function createIntroTimeline() {
+  if (!containerRef.value) return
+
+  const arrows = gsap.utils.toArray<SVGGElement>(
+    containerRef.value.querySelectorAll('.hero-kaleidoscope__arrow')
+  )
+  const arrowLines = arrows.map((arrow) => arrow.querySelector<SVGUseElement>('.hero-kaleidoscope__arrow-line'))
+  const arrowHeads = arrows.map((arrow) => arrow.querySelector<SVGUseElement>('.hero-kaleidoscope__arrow-head'))
+  const arrowPath = containerRef.value.querySelector<SVGPathElement>('#hero-orbit-arrow-line')
+  const pathLength = arrowPath?.getTotalLength() ?? 24
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  gsap.set(arrows, { opacity: 0 })
+  gsap.set(arrowLines, { strokeDasharray: pathLength, strokeDashoffset: pathLength })
+  gsap.set(arrowHeads, { opacity: 0 })
+
+  if (reduceMotion) {
+    gsap.set(arrows, { opacity: 1 })
+    gsap.set(arrowLines, { strokeDashoffset: 0 })
+    gsap.set(arrowHeads, { opacity: 1 })
+    sliceMeshes.forEach((mesh) => {
+      mesh.rotation.x = 0
+    })
+    return
+  }
+
+  const timeline = gsap.timeline({ delay: 0.15 })
+
+  arrows.forEach((arrow, index) => {
+    const staggerRank = getStaggerRank(index, arrows.length, introConfig.arrowStaggerDirection, 'cw')
+    const start = getRitardandoOffset(
+      staggerRank,
+      introConfig.arrowStagger,
+      introConfig.arrowStaggerRitardando
+    )
+
+    timeline.to(arrow, { opacity: 1, duration: introConfig.arrowDuration * 0.65, ease: 'power2.out' }, start)
+    timeline.to(
+      arrowLines[index],
+      { strokeDashoffset: 0, duration: introConfig.arrowDuration, ease: 'power2.inOut' },
+      start
+    )
+    timeline.to(
+      arrowHeads[index],
+      { opacity: 1, duration: introConfig.arrowDuration * 0.24, ease: 'power2.out' },
+      start + introConfig.arrowDuration * 0.72
+    )
+  })
+
+  const triangleStart = getRitardandoOffset(
+    Math.max(1, introConfig.trianglesStartAtArrow) - 1,
+    introConfig.arrowStagger,
+    introConfig.arrowStaggerRitardando
+  )
+
+  sliceMeshes.forEach((mesh, index) => {
+    const staggerRank = getStaggerRank(
+      index,
+      sliceMeshes.length,
+      introConfig.triangleStaggerDirection,
+      'ccw'
+    )
+    const start = triangleStart + getRitardandoOffset(
+      staggerRank,
+      introConfig.triangleStagger,
+      introConfig.triangleStaggerRitardando
+    )
+    const duration = introConfig.triangleDuration + staggerRank * introConfig.triangleDurationRitardando
+
+    timeline.to(
+      mesh.rotation,
+      { x: 0, duration, ease: 'elastic.out(1, 0.32)' },
+      start
+    )
+  })
+
+  introTimeline = timeline
 }
 
 function resize() {
@@ -178,7 +352,6 @@ onMounted(async () => {
   })
 
   const wheel = new THREE.Group()
-  wheelGroup = wheel
 
   textures.forEach((texture, index) => {
     const geometry = createTriangleGeometry()
@@ -188,14 +361,18 @@ onMounted(async () => {
       transparent: true
     })
     const mesh = new THREE.Mesh(geometry, material)
+    const pivot = new THREE.Group()
 
-    mesh.rotation.z = index * sliceAngle
+    pivot.rotation.z = index * sliceAngle
+    mesh.rotation.x = Math.PI / 2
     mesh.renderOrder = index
+    pivot.add(mesh)
 
     disposableGeometries.push(geometry)
     disposableMaterials.push(material)
     sliceMeshes.push(mesh)
-    wheel.add(mesh)
+    slicePivots.push(pivot)
+    wheel.add(pivot)
   })
 
   scene.add(wheel)
@@ -204,24 +381,27 @@ onMounted(async () => {
   resizeObserver.observe(containerRef.value)
   resize()
   render()
+  createIntroTimeline()
 })
 
 onBeforeUnmount(() => {
   if (frameId) window.cancelAnimationFrame(frameId)
   resizeObserver?.disconnect()
+  introTimeline?.kill()
+  rotationTimeline?.kill()
 
   disposableGeometries.forEach((geometry) => geometry.dispose())
   disposableMaterials.forEach((material) => material.dispose())
   disposableTextures.forEach((texture) => texture.dispose())
   sliceMeshes.length = 0
+  slicePivots.length = 0
   renderer?.dispose()
 
   renderer = null
   scene = null
   camera = null
-  wheelGroup = null
-  currentWheelRotation = 0
-  targetWheelRotation = 0
+  introTimeline = null
+  rotationTimeline = null
 })
 </script>
 
@@ -230,39 +410,30 @@ onBeforeUnmount(() => {
     <canvas ref="canvasRef" class="hero-kaleidoscope__canvas" aria-hidden="true" />
     <svg class="hero-kaleidoscope__orbit" viewBox="0 0 100 100" aria-hidden="true">
       <defs>
-        <marker
-          id="hero-orbit-arrow"
-          markerWidth="4"
-          markerHeight="4"
-          refX="3.45"
-          refY="2"
-          orient="auto"
-          markerUnits="strokeWidth"
-        >
-          <path d="M 0 0 L 4 2 L 0 4 Z" />
-        </marker>
         <linearGradient
-          v-for="segment in orbitSegments"
-          :id="segment.gradientId"
-          :key="segment.gradientId"
+          id="hero-orbit-gradient"
           gradientUnits="userSpaceOnUse"
-          :x1.attr="segment.gradient.x1"
-          :y1.attr="segment.gradient.y1"
-          :x2.attr="segment.gradient.x2"
-          :y2.attr="segment.gradient.y2"
+          :x1.attr="orbitArrowGradient.x1"
+          :y1.attr="orbitArrowGradient.y1"
+          :x2.attr="orbitArrowGradient.x2"
+          :y2.attr="orbitArrowGradient.y2"
         >
           <stop offset="0%" stop-color="currentColor" stop-opacity="0.08" />
           <stop offset="56%" stop-color="currentColor" stop-opacity="0.5" />
           <stop offset="100%" stop-color="currentColor" stop-opacity="0.94" />
         </linearGradient>
+        <path id="hero-orbit-arrow-line" :d="orbitArrowPath" />
+        <polygon id="hero-orbit-arrow-head" :points="orbitArrowHead" />
       </defs>
-      <path
+      <g
         v-for="segment in orbitSegments"
         :key="segment.id"
-        :d="segment.d"
-        :stroke="`url(#${segment.gradientId})`"
-        marker-end="url(#hero-orbit-arrow)"
-      />
+        class="hero-kaleidoscope__arrow"
+        :transform="`rotate(${segment.rotation} 50 50)`"
+      >
+        <use class="hero-kaleidoscope__arrow-line" href="#hero-orbit-arrow-line" />
+        <use class="hero-kaleidoscope__arrow-head" href="#hero-orbit-arrow-head" />
+      </g>
     </svg>
   </div>
 </template>
