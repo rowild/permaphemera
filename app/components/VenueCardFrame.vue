@@ -50,7 +50,7 @@ onBeforeUnmount(() => {
 
 <template>
   <span ref="frameRef" class="venue-card-paper" aria-hidden="true">
-    <svg :viewBox="`0 0 ${width} ${height}`" preserveAspectRatio="none">
+    <svg :viewBox.attr="`0 0 ${width} ${height}`" preserveAspectRatio="none">
       <defs>
         <linearGradient
           :id="paperGradientId"
@@ -58,7 +58,7 @@ onBeforeUnmount(() => {
           x1="0"
           x2="0"
           y1="0"
-          :y2="height"
+          :y2.attr="height"
         >
           <stop offset="0" stop-color="#fffdf8" />
           <stop offset="0.58" stop-color="#fbf5eb" />
@@ -74,7 +74,7 @@ onBeforeUnmount(() => {
     </svg>
   </span>
   <span class="venue-card-frame" aria-hidden="true">
-    <svg :viewBox="`0 0 ${width} ${height}`" preserveAspectRatio="none">
+    <svg :viewBox.attr="`0 0 ${width} ${height}`" preserveAspectRatio="none">
       <path
         :d="outerPathD"
         fill="none"

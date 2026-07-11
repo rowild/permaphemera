@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import {
-  Building2,
-  Eye,
   Landmark,
-  Route,
   Search
 } from '@lucide/vue'
 import { gsap } from 'gsap'
@@ -39,30 +36,61 @@ const heroImages = [
 const kaleidoscopeRef = ref<{ rotateBy: (direction: number) => void } | null>(null)
 const venueStackRef = ref<HTMLElement | null>(null)
 const artistStackRef = ref<HTMLElement | null>(null)
+const sponsorStripRef = ref<HTMLElement | null>(null)
+let sponsorDragStartX = 0
+let sponsorDragStartScroll = 0
+let sponsorDragging = false
 const locationSearchQuery = ref('')
 const exhibitionSearchQuery = ref('')
 const artistSearchQuery = ref('')
 const preservedExhibitionCount = exhibitions.length
 const methodSteps = [
   {
-    icon: Building2,
+    icon: '/images/landing/method/steps/captured.png',
     number: '01',
     title: 'Captured',
     text: 'Panoramas, perspectives, and details are recorded on site with care and precision.'
   },
   {
-    icon: Route,
+    icon: '/images/landing/method/steps/connected.png',
     number: '02',
     title: 'Connected',
     text: 'Viewpoints are linked to recreate how the exhibition unfolded in space.'
   },
   {
-    icon: Eye,
+    icon: '/images/landing/method/steps/preserved.png',
     number: '03',
     title: 'Preserved',
     text: 'The experience remains navigable long after the exhibition has ended.'
   }
 ]
+
+const startSponsorDrag = (event: PointerEvent) => {
+  const strip = sponsorStripRef.value
+  if (!strip) return
+
+  sponsorDragging = true
+  sponsorDragStartX = event.clientX
+  sponsorDragStartScroll = strip.scrollLeft
+  strip.setPointerCapture(event.pointerId)
+  strip.classList.add('is-dragging')
+}
+
+const moveSponsorDrag = (event: PointerEvent) => {
+  const strip = sponsorStripRef.value
+  if (!strip || !sponsorDragging) return
+
+  strip.scrollLeft = sponsorDragStartScroll - (event.clientX - sponsorDragStartX)
+}
+
+const endSponsorDrag = (event: PointerEvent) => {
+  const strip = sponsorStripRef.value
+  if (!strip || !sponsorDragging) return
+
+  sponsorDragging = false
+  if (strip.hasPointerCapture(event.pointerId)) strip.releasePointerCapture(event.pointerId)
+  strip.classList.remove('is-dragging')
+}
 
 const artistsByLetter = computed(() => {
   const query = artistSearchQuery.value.trim().toLocaleLowerCase()
@@ -483,6 +511,13 @@ const animateArtistStack = (expanded: boolean) => {
           </ExhibitionFrameCard>
         </div>
       </div>
+
+      <img
+        class="exhibitions-section-divider"
+        src="/images/landing/exhibitions/background/exhibitions-section-divider.png"
+        alt=""
+        aria-hidden="true"
+      />
     </section>
 
     <section id="artists" class="section-band artists-section">
@@ -583,41 +618,51 @@ const animateArtistStack = (expanded: boolean) => {
       </div>
 
       <div class="method-image-stack">
-        <span class="venue-paperclip venue-paperclip-behind method-paperclip" aria-hidden="true" />
-        <div class="paper-layer paper-layer-back">
-          <span class="method-archive-label">Belvedere 21, Wien<br />Exhibition record<br />15.02.-20.05.2024</span>
-        </div>
-        <div class="paper-layer paper-layer-mid" />
-        <div class="paper-layer paper-layer-side">
-          <img src="/images/landing/locations/location_10.png" alt="" />
-        </div>
-        <figure>
-          <img src="/images/landing/locations/location_07.png" alt="Archived exhibition room with navigation markers" />
-          <figcaption>Viewpoint 05 / 18</figcaption>
-          <svg class="method-route" viewBox="0 0 800 500" aria-hidden="true">
-            <path d="M390 382C350 344 355 307 410 296S522 314 560 347 638 382 684 405" />
-            <circle cx="360" cy="304" r="12" />
-            <circle cx="410" cy="296" r="12" />
-            <circle cx="560" cy="347" r="13" />
-            <circle cx="684" cy="405" r="13" />
-          </svg>
-          <span class="pano-marker marker-a" />
-          <span class="pano-marker marker-b" />
-          <span class="pano-marker marker-c" />
-          <span class="pano-arrow"><ArchiveArrow direction="up" /></span>
-        </figure>
-        <span class="venue-paperclip venue-paperclip-front method-paperclip" aria-hidden="true" />
+        <img
+          src="/images/landing/method/archive-method-composition.png"
+          alt="Layered archival papers framing a museum walkthrough with connected navigation points"
+        />
       </div>
 
       <div class="method-steps">
         <article v-for="step in methodSteps" :key="step.number">
-          <component :is="step.icon" :size="42" stroke-width="1.4" />
+          <img class="method-step-icon" :src="step.icon" alt="" aria-hidden="true" />
           <div>
-            <p>{{ step.number }}</p>
+            <p class="method-step-number">
+              {{ step.number }}
+            </p>
             <h3>{{ step.title }}</h3>
             <span>{{ step.text }}</span>
           </div>
         </article>
+      </div>
+
+      <div class="method-details">
+        <blockquote class="method-quote">
+          <img src="/images/landing/method/details/quote-mark.png" alt="" aria-hidden="true" />
+          <p>Not a replica.<br />A record of <em>presence.</em></p>
+        </blockquote>
+
+        <dl class="method-facts">
+          <div>
+            <dt>Technology</dt>
+            <dd>360° Capture<br />&amp; Spatial Mapping</dd>
+          </div>
+          <div>
+            <dt>Curation</dt>
+            <dd>Selected Exhibitions<br />Across Austria</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>Pilot Archive<br />In Development</dd>
+          </div>
+        </dl>
+
+        <img
+          class="method-archive-stamp"
+          src="/images/landing/method/details/archive-stamp.png"
+          alt="Permaphemera Archive"
+        />
       </div>
     </section>
 
@@ -625,10 +670,37 @@ const animateArtistStack = (expanded: boolean) => {
       <section class="supporters">
         <p class="eyebrow">Supporters & partners</p>
         <h2>Supported by institutions that care for <span>cultural memory.</span></h2>
-        <div class="sponsor-strip" aria-label="Supporters and partners">
-          <img src="/svg/sponsor_strip_scrollable.svg" alt="" />
-          <div class="sponsor-names">
-            <span v-for="sponsor in sponsors" :key="sponsor.id">{{ sponsor.name }}</span>
+        <div class="sponsor-frame">
+          <div
+            ref="sponsorStripRef"
+            class="sponsor-strip"
+            aria-label="Supporters and partners"
+            @pointerdown="startSponsorDrag"
+            @pointermove="moveSponsorDrag"
+            @pointerup="endSponsorDrag"
+            @pointercancel="endSponsorDrag"
+          >
+            <div class="sponsor-track">
+              <template v-for="(sponsor, index) in sponsors" :key="sponsor.id">
+                <div class="sponsor-mark">
+                  <img
+                    :src="`/images/landing/sponsors/${sponsor.id}.png`"
+                    alt=""
+                    aria-hidden="true"
+                    draggable="false"
+                  />
+                  <span>{{ sponsor.name }}</span>
+                </div>
+                <img
+                  v-if="index < sponsors.length - 1"
+                  class="sponsor-divider"
+                  src="/images/landing/sponsors/divider.png"
+                  alt=""
+                  aria-hidden="true"
+                  draggable="false"
+                />
+              </template>
+            </div>
           </div>
           <p class="sponsor-scroll-hint"><ArchiveArrow direction="left" /> Scroll to explore more partners <ArchiveArrow /></p>
         </div>
@@ -637,6 +709,7 @@ const animateArtistStack = (expanded: boolean) => {
       <section class="footer-links">
         <div class="footer-brand">
           <strong>PERMAPHEMERA</strong>
+          <img class="footer-brand-rule" src="/images/landing/footer/details/brand-rule.png" alt="" aria-hidden="true" />
           <p>A curated Austrian archive of 360-degree exhibition documentation.</p>
           <div class="language-switch">
             <a href="/" aria-current="page">EN</a>
@@ -673,8 +746,16 @@ const animateArtistStack = (expanded: boolean) => {
       </section>
 
       <div class="footer-bottom">
-        <span>&copy; 2026 PERMAPHEMERA. All rights reserved.</span>
-        <span>Curated independently in Austria.</span>
+        <div class="footer-bottom-group footer-bottom-left">
+          <span>&copy; 2026 PERMAPHEMERA. All rights reserved.</span>
+        </div>
+        <div class="footer-bottom-group footer-bottom-center-group">
+          <img class="footer-bottom-center" src="/images/landing/footer/details/copyright-center.png" alt="" aria-hidden="true" />
+        </div>
+        <div class="footer-bottom-group footer-bottom-right">
+          <span>Curated independently in Austria.</span>
+          <img class="footer-bottom-end" src="/images/landing/footer/details/copyright-end.png" alt="" aria-hidden="true" />
+        </div>
       </div>
     </footer>
   </main>

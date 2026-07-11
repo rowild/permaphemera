@@ -58,7 +58,7 @@ onBeforeUnmount(() => {
   <svg
     ref="svgRef"
     class="venue-card-image"
-    :viewBox="`0 0 ${width} ${height}`"
+    :viewBox.attr="`0 0 ${width} ${height}`"
     preserveAspectRatio="none"
     role="img"
     :aria-label="props.alt"
@@ -68,8 +68,8 @@ onBeforeUnmount(() => {
         :id="maskId"
         x="0"
         y="0"
-        :width="width"
-        :height="height"
+        :width.attr="width"
+        :height.attr="height"
         maskUnits="userSpaceOnUse"
         maskContentUnits="userSpaceOnUse"
         style="mask-type: alpha"
@@ -78,11 +78,11 @@ onBeforeUnmount(() => {
       </mask>
     </defs>
     <image
-      :href="props.src"
+      :href.attr="props.src"
       x="0"
       y="0"
-      :width="width"
-      :height="height"
+      :width.attr="width"
+      :height.attr="height"
       preserveAspectRatio="xMidYMid slice"
       :mask="`url(#${maskId})`"
     />

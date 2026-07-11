@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="method-paper" x1="0" x2="0" y1="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffaf1"/>
+      <stop offset="0.58" stop-color="#f7eddf"/>
+      <stop offset="1" stop-color="#ead9c1"/>
+    </linearGradient>
+  </defs>
+  <path
+    d="M13 1H51A12 12 0 0 0 63 13V51A12 12 0 0 0 51 63H13A12 12 0 0 0 1 51V13A12 12 0 0 0 13 1Z"
+    fill="url(#method-paper)"
+    stroke="#b69169"
+    stroke-width="1.2"
+  />
+  <path
+    d="M16.5 5H47.5A16 16 0 0 0 59 16.5V47.5A16 16 0 0 0 47.5 59H16.5A16 16 0 0 0 5 47.5V16.5A16 16 0 0 0 16.5 5Z"
+    fill="none"
+    stroke="#fffaf0"
+    stroke-width="1"
+    stroke-opacity="0.9"
+  />
+</svg>

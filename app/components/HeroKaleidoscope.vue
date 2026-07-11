@@ -246,10 +246,10 @@ onBeforeUnmount(() => {
           :id="segment.gradientId"
           :key="segment.gradientId"
           gradientUnits="userSpaceOnUse"
-          :x1="segment.gradient.x1"
-          :y1="segment.gradient.y1"
-          :x2="segment.gradient.x2"
-          :y2="segment.gradient.y2"
+          :x1.attr="segment.gradient.x1"
+          :y1.attr="segment.gradient.y1"
+          :x2.attr="segment.gradient.x2"
+          :y2.attr="segment.gradient.y2"
         >
           <stop offset="0%" stop-color="currentColor" stop-opacity="0.08" />
           <stop offset="56%" stop-color="currentColor" stop-opacity="0.5" />

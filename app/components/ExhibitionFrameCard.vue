@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
   >
     <svg
       class="exhibition-card-mask-defs"
-      :viewBox="`0 0 ${width} ${height}`"
+      :viewBox.attr="`0 0 ${width} ${height}`"
       aria-hidden="true"
     >
       <defs>
