@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.4 - 2026-07-11 16:42:27 CEST
+
+- Added a detailed Tailwind CSS v4 usage guide covering utility shorthand, arbitrary values and properties, variants, CSS-first directives, static Vue class detection, token strategy, reusable-component boundaries, and a selective migration assessment.
+- Established a strict project-wide prohibition on Vue scoped styles and CSS Modules; all custom CSS must remain globally imported, searched for existing equivalents, and namespaced when page-specific.
+- Recreated the landing page's sponsor, archive-method, exhibition, artist, and footer ornaments as clean transparent raster artwork derived from the supplied landing-page mockups while preserving the archival, hand-drawn drafting character.
+- Replaced 34 canonical runtime PNG ornaments with the new versions while retaining matching `_recreated_anew` source copies for comparison and future refinement; photographic location and method-composition assets remain unchanged.
+- Removed the additional CSS opacity reduction from the centered and terminal copyright-row ornaments so their native PNG color and alpha render without browser-side darkening.
+
 ## 0.0.3 - 2026-07-11 08:21:47 CEST
 
 - Added a comprehensive PERMAPHEMERA web style guide covering the implemented visual system, responsive layouts, typography, color, spacing, imagery, UI/UX, accessibility, content voice, and frontend naming conventions.

@@ -52,6 +52,7 @@ app/assets/css/main.css        visual system and responsive layout
 public/images/landing/         raster assets used by the site
 public/svg/                    frames, icons, and ornaments
 docs/STYLE_GUIDE.md            reusable frontend design system and page rules
+docs/tailwindcss-v4-usage.md   Tailwind v4 notation and project architecture rules
 AGENTS.md                      repository instructions for coding agents
 changelog.md                   version history
 ```
@@ -68,6 +69,8 @@ The hero kaleidoscope uses Three.js, while GSAP drives landing-page interactions
 
 ## Design Guidance
 
-Read `docs/STYLE_GUIDE.md` before designing or implementing a new page. `AGENTS.md` instructs coding agents to load the guide only for design-related work, avoiding unnecessary context use during unrelated tasks.
+Read `docs/STYLE_GUIDE.md` before designing or implementing a new page. Read `docs/tailwindcss-v4-usage.md` before adding or migrating Tailwind classes. Vue scoped styles and CSS Modules are prohibited: custom rules belong in the globally imported CSS architecture and must reuse existing tokens and component rules wherever possible.
+
+The hand-drawn archival ornaments are transparent PNGs reconstructed from the landing-page mockups. Canonical runtime files live in their normal section folders under `public/images/landing/`; matching `_recreated_anew/` folders preserve the reconstructed versions for comparison and future refinement. Photographic venue and archive-method compositions are intentionally separate and must not be regenerated as ornaments.
 
 Local design-source and backup folders named `_Material/` and `_BU/` are intentionally ignored. Runtime assets required by the application must live under `public/` or `app/assets/`.

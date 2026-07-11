@@ -10,7 +10,9 @@ The primary active plan is `../_Plans/exhibitions-plan.md`. Treat `../_Plans/ori
 
 Current website design inputs live in `../_Plans/designs/landing-page/`.
 
-The reusable visual and implementation rules derived from the landing page live in `docs/STYLE_GUIDE.md`. Read and follow that guide when creating or materially redesigning any frontend page so typography, color, spacing, imagery, components, interactions, accessibility, naming, and responsive behavior remain consistent.
+The reusable visual and implementation rules derived from the landing page live in `docs/STYLE_GUIDE.md`. Read and follow that guide when creating or materially redesigning any frontend page so typography, color, spacing, imagery, components, interactions, accessibility, naming, and responsive behavior remain consistent. Tailwind CSS v4 notation and architecture rules live in `docs/tailwindcss-v4-usage.md`; read that guide before adding or migrating Tailwind classes.
+
+Vue `<style scoped>` blocks and CSS Modules are prohibited. Tailwind utilities belong in templates, while every custom CSS rule belongs in the globally imported CSS architecture. Search for and reuse an existing token, utility, semantic component rule, or page namespace before adding a new rule.
 
 The first implemented page must follow these mockups:
 
@@ -87,6 +89,8 @@ public/images/landing/
 ```
 
 Local source ornaments may be available under `../_Material/`, but `_Material/` and `_BU/` working directories must not be treated as checkout dependencies. Copy every asset required at runtime into `public/` or import it from `app/assets/`.
+
+Hand-drawn archival ornaments use transparent PNGs reconstructed from the approved landing-page mockups. Their canonical runtime files remain in the normal section folders below `public/images/landing/`; matching `_recreated_anew/` folders preserve the reconstructed source set for comparison and refinement. Use the mockups—not older extracted PNGs—as the visual source when recreating an ornament. Do not regenerate photographic location images or photographic archive-method compositions as line-art assets.
 
 ## Frontend Quality Bar
 

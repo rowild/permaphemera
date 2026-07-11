@@ -2114,14 +2114,12 @@ a:hover .archive-arrow-right {
 .footer-bottom-center {
   width: min(16rem, 24vw);
   height: auto;
-  opacity: 0.38;
 }
 
 .footer-bottom-end {
   width: 2.1rem;
   height: auto;
   justify-self: end;
-  opacity: 0.38;
 }
 
 @media (max-width: 1100px) {

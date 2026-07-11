@@ -91,7 +91,7 @@ public/images/landing/        raster compositions and extracted details
 public/svg/                   scalable frames, icons, rules, and ornaments
 ```
 
-New global tokens and truly reusable primitives belong in `main.css` or a future organized design-system layer. Page-only rules should remain page-scoped or use a page namespace. Do not duplicate an existing frame, arrow, heading, search field, or archive-card treatment.
+New global tokens and truly reusable primitives belong in `main.css` or a future organized design-system layer. **Vue `<style scoped>` blocks and CSS Modules are prohibited.** Page-only rules belong in the globally imported CSS architecture and must use a route/domain namespace to avoid collisions. Before adding any rule, search the global styles and reuse an existing frame, arrow, heading, search field, archive-card treatment, token, utility, or component pattern wherever possible. Tailwind-specific conventions and notation are defined in `docs/tailwindcss-v4-usage.md`.
 
 ## 5. Color System
 
