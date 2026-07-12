@@ -25,13 +25,14 @@ const artistGroupBySlug: Record<string, string> = {
   'valie-export': 'V',
   'franz-west': 'W'
 }
+const locationImagePool = Array.from(
+  { length: 40 },
+  (_, index) => `/images/landing/locations/location_${String(index + 1).padStart(2, '0')}.png`
+)
 const heroImages = [
   '/images/landing/parkschloessl.jpg',
-  ...Array.from(
-    { length: 10 },
-    (_, index) => `/images/landing/kaleidoscope/locations/location_${String(index + 1).padStart(2, '0')}.png`
-  ),
-  '/images/landing/kaleidoscope/locations/location_01.png'
+  ...locationImagePool.slice(0, 10),
+  locationImagePool[0]
 ]
 const venueStackImages = [
   '/images/landing/kaleidoscope/locations/location_07.png',
@@ -43,12 +44,59 @@ const kaleidoscopeRef = ref<{
   rotateBy: (direction: number) => void
   replayIntro: () => void
 } | null>(null)
+const kaleidoscopeAnimating = ref(true)
+const wheelControlsRevealed = ref(false)
+const wheelControlsRef = ref<HTMLElement | null>(null)
+const heroScrollCueVisible = ref(false)
 const venueStackRef = ref<HTMLElement | null>(null)
 const artistStackRef = ref<HTMLElement | null>(null)
 const locationSearchQuery = ref('')
 const exhibitionSearchQuery = ref('')
 const artistSearchQuery = ref('')
 const preservedExhibitionCount = exhibitions.length
+
+function handleKaleidoscopeAnimationState(isAnimating: boolean) {
+  kaleidoscopeAnimating.value = isAnimating
+
+  // Fallback for interrupted/reduced-motion timelines. The normal entrance is
+  // cued slightly before the kaleidoscope intro completes.
+  if (!isAnimating) {
+    revealWheelControls()
+    heroScrollCueVisible.value = true
+  }
+}
+
+function revealWheelControls() {
+  if (wheelControlsRevealed.value || !wheelControlsRef.value) return
+
+  const controls = gsap.utils.toArray<HTMLElement>(
+    wheelControlsRef.value.querySelectorAll('.wheel-control')
+  )
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  gsap.killTweensOf(controls)
+  gsap.set(controls, {
+    opacity: reduceMotion ? 1 : 0,
+    '--wheel-control-reveal-y': reduceMotion ? '0rem' : '0.85rem'
+  })
+  wheelControlsRevealed.value = true
+
+  if (reduceMotion) return
+
+  gsap.to(controls, {
+    opacity: 1,
+    duration: 0.42,
+    stagger: 0.12,
+    ease: 'power2.out'
+  })
+  gsap.to(controls, {
+    '--wheel-control-reveal-y': '0rem',
+    duration: 1.1,
+    stagger: 0.12,
+    ease: 'elastic.out(1, 0.55)'
+  })
+}
+
 const methodSteps = [
   {
     icon: '/images/landing/method/steps/captured.png',
@@ -262,35 +310,77 @@ const animateArtistStack = (expanded: boolean) => {
       </div>
 
       <div class="hero-wheel-area">
-        <HeroKaleidoscope ref="kaleidoscopeRef" :images="heroImages" />
+        <HeroKaleidoscope
+          ref="kaleidoscopeRef"
+          :images="heroImages"
+          :image-pool="locationImagePool"
+          @animation-state-change="handleKaleidoscopeAnimationState"
+          @controls-reveal="revealWheelControls"
+        />
 
-        <div class="wheel-controls" aria-label="Kaleidoscope navigation">
-          <button
-            class="wheel-control wheel-control-left"
-            type="button"
-            aria-label="Rotate kaleidoscope counterclockwise"
-            @click="kaleidoscopeRef?.rotateBy(1)"
-          >
-            <span class="wheel-control-plane" aria-hidden="true" />
-          </button>
-          <button
-            class="wheel-control wheel-control-up"
-            type="button"
-            aria-label="Replay kaleidoscope entrance animation"
-            @click="kaleidoscopeRef?.replayIntro()"
-          >
-            <span class="wheel-control-plane" aria-hidden="true" />
-          </button>
-          <button
-            class="wheel-control wheel-control-right"
-            type="button"
-            aria-label="Rotate kaleidoscope clockwise"
-            @click="kaleidoscopeRef?.rotateBy(-1)"
-          >
-            <span class="wheel-control-plane" aria-hidden="true" />
-          </button>
+        <div
+          ref="wheelControlsRef"
+          class="wheel-controls"
+          :class="{ 'is-revealed': wheelControlsRevealed }"
+          aria-label="Kaleidoscope navigation"
+        >
+          <div class="wheel-control-deck">
+            <button
+              class="wheel-control wheel-control-left"
+              :class="{ 'is-disabled': kaleidoscopeAnimating }"
+              type="button"
+              :disabled="kaleidoscopeAnimating"
+              aria-label="Rotate kaleidoscope counterclockwise"
+              @click="kaleidoscopeRef?.rotateBy(1)"
+            >
+              <span class="wheel-control-visual" aria-hidden="true">
+                <span class="wheel-control-plane" />
+              </span>
+            </button>
+            <button
+              class="wheel-control wheel-control-up"
+              :class="{ 'is-disabled': kaleidoscopeAnimating }"
+              type="button"
+              :disabled="kaleidoscopeAnimating"
+              aria-label="Replay kaleidoscope entrance animation"
+              @click="kaleidoscopeRef?.replayIntro()"
+            >
+              <span class="wheel-control-visual" aria-hidden="true">
+                <span class="wheel-control-plane" />
+              </span>
+            </button>
+            <button
+              class="wheel-control wheel-control-right"
+              :class="{ 'is-disabled': kaleidoscopeAnimating }"
+              type="button"
+              :disabled="kaleidoscopeAnimating"
+              aria-label="Rotate kaleidoscope clockwise"
+              @click="kaleidoscopeRef?.rotateBy(-1)"
+            >
+              <span class="wheel-control-visual" aria-hidden="true">
+                <span class="wheel-control-plane" />
+              </span>
+            </button>
+          </div>
         </div>
       </div>
+
+      <Transition name="hero-scroll-cue">
+        <a
+          v-if="heroScrollCueVisible"
+          class="hero-scroll-cue"
+          href="#locations"
+          aria-label="Continue to locations"
+        >
+          <span class="hero-scroll-cue-rule" aria-hidden="true" />
+          <span class="hero-scroll-cue-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="presentation">
+              <path class="hero-scroll-cue-arrow" d="M16 5v20m-7-7 7 7 7-7" />
+            </svg>
+          </span>
+          <span class="hero-scroll-cue-rule" aria-hidden="true" />
+        </a>
+      </Transition>
     </section>
 
     <section id="locations" class="section-band locations-section">
@@ -471,7 +561,7 @@ const animateArtistStack = (expanded: boolean) => {
 
       <img
         class="exhibitions-section-divider"
-        src="/images/landing/exhibitions/background/exhibitions-section-divider.png"
+        src="/svg/dividers/exhibitions-section-divider.svg"
         alt=""
         aria-hidden="true"
       />
@@ -557,7 +647,7 @@ const animateArtistStack = (expanded: boolean) => {
 
       <img
         class="artists-section-divider"
-        src="/images/landing/artists/section-divider.png"
+        src="/svg/dividers/artists-section-divider.svg"
         alt=""
         aria-hidden="true"
       />

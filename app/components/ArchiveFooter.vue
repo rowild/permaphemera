@@ -1,13 +1,23 @@
 <script setup lang="ts">
 const { sponsors } = useArchiveData()
 const sponsorStripRef = ref<HTMLElement | null>(null)
+const sponsorTrackRef = ref<HTMLElement | null>(null)
+const sponsorNeedsScroll = ref(false)
 let dragStartX = 0
 let dragStartScroll = 0
 let dragging = false
+let sponsorResizeObserver: ResizeObserver | null = null
+
+const updateSponsorOverflow = () => {
+  const strip = sponsorStripRef.value
+  if (!strip) return
+
+  sponsorNeedsScroll.value = strip.scrollWidth > strip.clientWidth + 1
+}
 
 const startDrag = (event: PointerEvent) => {
   const strip = sponsorStripRef.value
-  if (!strip) return
+  if (!strip || !sponsorNeedsScroll.value) return
 
   dragging = true
   dragStartX = event.clientX
@@ -34,6 +44,19 @@ const endDrag = (event: PointerEvent) => {
 const scrollSponsors = (direction: number) => {
   sponsorStripRef.value?.scrollBy({ left: direction * 320, behavior: 'smooth' })
 }
+
+onMounted(async () => {
+  await nextTick()
+  updateSponsorOverflow()
+
+  sponsorResizeObserver = new ResizeObserver(updateSponsorOverflow)
+  if (sponsorStripRef.value) sponsorResizeObserver.observe(sponsorStripRef.value)
+  if (sponsorTrackRef.value) sponsorResizeObserver.observe(sponsorTrackRef.value)
+})
+
+onBeforeUnmount(() => {
+  sponsorResizeObserver?.disconnect()
+})
 </script>
 
 <template>
@@ -41,46 +64,47 @@ const scrollSponsors = (direction: number) => {
     <section class="supporters">
       <p class="eyebrow">Supporters & partners</p>
       <h2>Supported by institutions that care for <span>cultural memory.</span></h2>
-      <div class="sponsor-frame">
+      <div class="sponsor-frame" :class="{ 'has-overflow': sponsorNeedsScroll }">
         <div
           ref="sponsorStripRef"
           class="sponsor-strip"
+          :class="{ 'has-overflow': sponsorNeedsScroll }"
           aria-label="Supporters and partners"
-          tabindex="0"
+          :tabindex="sponsorNeedsScroll ? 0 : -1"
           @pointerdown="startDrag"
           @pointermove="moveDrag"
           @pointerup="endDrag"
           @pointercancel="endDrag"
         >
-          <div class="sponsor-track">
+          <div ref="sponsorTrackRef" class="sponsor-track">
             <template v-for="(sponsor, index) in sponsors" :key="sponsor.id">
               <div class="sponsor-mark">
                 <img :src="`/images/landing/sponsors/${sponsor.id}.png`" alt="" aria-hidden="true" draggable="false" />
                 <span>{{ sponsor.name }}</span>
               </div>
-              <img
+              <span
                 v-if="index < sponsors.length - 1"
                 class="sponsor-divider"
-                src="/images/landing/sponsors/divider.png"
-                alt=""
                 aria-hidden="true"
-                draggable="false"
               />
             </template>
           </div>
         </div>
-        <div class="sponsor-scroll-hint" aria-label="Sponsor carousel controls">
-          <button type="button" aria-label="Scroll sponsors left" @click="scrollSponsors(-1)"><ArchiveArrow direction="left" /></button>
-          <span>Scroll to explore more partners</span>
-          <button type="button" aria-label="Scroll sponsors right" @click="scrollSponsors(1)"><ArchiveArrow /></button>
-        </div>
+      </div>
+      <div v-if="sponsorNeedsScroll" class="sponsor-scroll-hint" aria-label="Sponsor carousel controls">
+        <button type="button" aria-label="Scroll sponsors left" @click="scrollSponsors(-1)"><ArchiveArrow direction="left" /></button>
+        <span>Scroll to explore more partners</span>
+        <button type="button" aria-label="Scroll sponsors right" @click="scrollSponsors(1)"><ArchiveArrow /></button>
       </div>
     </section>
 
     <section class="footer-links">
       <div class="footer-brand">
-        <strong>PERMAPHEMERA</strong>
-        <img class="footer-brand-rule" src="/images/landing/footer/details/brand-rule.png" alt="" aria-hidden="true" />
+        <NuxtLink class="footer-brand-lockup" to="/" aria-label="PERMAPHEMERA home">
+          <span class="footer-brand-mark" aria-hidden="true" />
+          <strong>PERMAPHEMERA</strong>
+        </NuxtLink>
+        <span class="footer-brand-rule" aria-hidden="true" />
         <p>A curated Austrian archive of 360-degree exhibition documentation.</p>
         <div class="language-switch">
           <a href="/" aria-current="page">EN</a><span>/</span><a href="/">DE</a>
@@ -109,11 +133,11 @@ const scrollSponsors = (direction: number) => {
     <div class="footer-bottom">
       <div class="footer-bottom-group footer-bottom-left"><span>&copy; 2026 PERMAPHEMERA. All rights reserved.</span></div>
       <div class="footer-bottom-group footer-bottom-center-group">
-        <img class="footer-bottom-center" src="/images/landing/footer/details/copyright-center.png" alt="" aria-hidden="true" />
+        <span class="footer-bottom-center" aria-hidden="true" />
       </div>
       <div class="footer-bottom-group footer-bottom-right">
         <span>Curated independently in Austria.</span>
-        <img class="footer-bottom-end" src="/images/landing/footer/details/copyright-end.png" alt="" aria-hidden="true" />
+        <span class="footer-bottom-end" aria-hidden="true" />
       </div>
     </div>
   </footer>

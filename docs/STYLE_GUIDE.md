@@ -66,9 +66,9 @@ Layouts are balanced rather than perfectly symmetrical. Featured records may occ
 
 Use clipped corners, fine frames, paper layers, stamps, rulers, crosshairs, dividers, and handwritten-like archival arrangements. Do not imitate physical objects with heavy photorealistic effects. The existing treatment is mostly flat, translucent, and restrained.
 
-### 3.4 Rust is semantic emphasis
+### 3.4 Red is semantic emphasis
 
-The rust accent identifies selected words, active states, navigational signals, section labels, and archival marks. It is not a general background color and should not flood large areas except inside the primary framed button.
+The red accent identifies selected words, active states, navigational signals, section labels, and archival marks. It is not a general background color and should not flood large areas except inside the primary framed button.
 
 ### 3.5 Negative space is part of the archive
 
@@ -106,9 +106,16 @@ Use the existing CSS custom properties:
 | `--color-archive-ink` | `#191714` | primary text and strong marks |
 | `--color-archive-muted` | `#786f62` | body copy, metadata, inactive controls |
 | `--color-archive-line` | `#c9b9a0` | fine rules, quiet borders, dividers |
-| `--color-archive-rust` | `#a6523c` | semantic accent and active state |
-| `--color-archive-copper` | `#b87a50` | warmer secondary accent, primarily on dark surfaces |
+| `--color-archive-red` | `#a6523c` | semantic accent and active state |
+| `--color-archive-ochre` | `#ca9e51` | static archival ornament, especially on dark surfaces |
 | `--color-archive-night` | `#17130f` | dark footer and night surface |
+
+These two accents have strict, separate roles:
+
+- **Archive red is the primary semantic accent.** It is the exact color used by “worlds” in the landing hero. Use it for heading emphasis on parchment, links, active/current states, hover and focus feedback, interactive arrows and icons, loaders, and the primary action frame.
+- **Archive ochre is the secondary decorative accent.** It is derived from the visible average of the “Permanently Preserved” footer seal. Use it for static ornaments, rules, sponsor framing, footer column labels, and non-interactive labels on night surfaces.
+- On dark surfaces, interactive text and icons still change to archive red. Static decorative elements remain archive ochre.
+- Do not introduce near-red or near-ochre literals. Opacity variants must derive from `--color-archive-red-rgb` or `--color-archive-ochre-rgb`, so lowering intensity never changes hue.
 
 ### 5.2 Supporting colors already in use
 
@@ -119,7 +126,6 @@ These colors are implementation-specific refinements and should be promoted to t
 | `#fff7eb` | primary-button text and warm light ink |
 | `#f3e6d2` | large headings on the dark footer |
 | `#eadcc7` | default footer text |
-| `#c7a783` | sponsor names on the dark surface |
 | `#5d4a35` | secondary-button text |
 | `#493c2f` | expressive quotation text |
 | `#5c4b3b` | archive-method facts |
@@ -131,10 +137,10 @@ A typical light page should visually approximate:
 
 - 75–85% parchment and warm neutral space;
 - 10–18% black/brown ink, photography, and dark details;
-- 3–7% rust/copper emphasis;
+- 3–7% red/ochre emphasis;
 - less than 3% fine lines, ornaments, and translucent drafting marks.
 
-Rust should remain scarce enough to retain meaning. On a new page, use it for the strongest phrase within a heading, the current or active state, key icon masks, eyebrow text, and primary interaction frames.
+Red should remain scarce enough to retain meaning. On a new page, use it for the strongest phrase within a heading, the current or active state, key icon masks, eyebrow text, and primary interaction frames.
 
 ### 5.4 Background construction
 
@@ -147,15 +153,15 @@ Rules:
 - Place marks partly outside the content grid to suggest a larger drawing sheet.
 - Do not repeat a conspicuous ornament multiple times within the same viewport.
 - Decorative layers must use `pointer-events: none` and remain outside the accessibility tree.
-- On dark surfaces, recolor archival artwork through controlled opacity/filtering rather than introducing unrelated ornament families.
+- On dark surfaces, recolor archival artwork with the archive-ochre token through masks and controlled opacity rather than filters that shift its hue.
 
 ### 5.5 Contrast
 
 - Use archive ink for primary reading text on parchment.
 - Use archive muted only for supporting copy and metadata, never tiny essential text on a low-contrast surface.
 - Use `#fff7eb`, `#eadcc7`, or `#f3e6d2` on the night surface.
-- Copper and rust on dark backgrounds should be reserved for labels and accents; verify contrast for text smaller than 18px.
-- Never rely on rust alone to communicate state: pair it with underline, weight, `aria-current`, shape, or descriptive text.
+- Ochre and red on dark backgrounds should be reserved for labels and accents; verify contrast for text smaller than 18px.
+- Never rely on red alone to communicate state: pair it with underline, weight, `aria-current`, shape, or descriptive text.
 
 ## 6. Typography
 
@@ -205,7 +211,7 @@ Hero and section headings use:
 - line-height `0.98` for compact editorial stacking;
 - no artificial letter spacing;
 - sentence case rather than title case;
-- one or more rust-colored `<span>` phrases;
+- one or more red-colored `<span>` phrases;
 - deliberately controlled maximum widths.
 
 Recommended pattern:
@@ -216,7 +222,7 @@ Recommended pattern:
 <p>One concise explanatory sentence.</p>
 ```
 
-Do not color isolated random words. The rust phrase should carry the conceptual turn of the heading: ephemeral/permanent, encounter/trace, archive/presence.
+Do not color isolated random words. The red phrase should carry the conceptual turn of the heading: ephemeral/permanent, encounter/trace, archive/presence.
 
 ### 6.5 Body copy
 
@@ -229,14 +235,14 @@ Do not color isolated random words. The rust phrase should carry the conceptual 
 
 ### 6.6 Eyebrows and labels
 
-Eyebrows are rust, uppercase, `0.95rem`, weight 500, with `0.06em` tracking. They frequently pair with a horizontal ornamental mark.
+Eyebrows are red, uppercase, `0.95rem`, weight 500, with `0.06em` tracking. They frequently pair with a horizontal ornamental mark.
 
 Definition labels and archival microcopy may use:
 
 - `0.72–0.95rem`;
 - uppercase;
 - tracking between `0.06em` and `0.1em`;
-- muted brown, copper, or rust;
+- muted brown, ochre, or red;
 - short phrases only.
 
 Avoid setting full paragraphs in uppercase or widely tracked type.
@@ -251,12 +257,13 @@ Avoid setting full paragraphs in uppercase or widely tracked type.
 - mobile tracking `0.13em`;
 - single line at every breakpoint.
 
-The footer wordmark uses `1.7rem` and `0.16em` tracking. Do not distort, italicize, outline, or place the name inside a badge.
+The footer wordmark uses `1.7rem` and `0.16em` tracking. Do not distort, italicize, outline, or place the name inside a badge. **A logo or wordmark must never be underlined, including on hover, focus, or current-page states.** Its color may change, but its lockup remains undecorated.
 
 ### 6.8 Links
 
-- In navigation and footer contexts, hover uses rust plus a 1px underline.
-- Underline offset is generous (`0.28em`) so the line feels editorial.
+- In navigation and footer contexts, hover uses archive red plus the archival line graphic from `/svg/background/header-divider.svg`; never use the browser's text underline for these links.
+- Implement the graphic underline as a `currentColor` mask in a pseudo-element. Fade opacity from `0` to roughly `0.82` in `160ms`, while gently expanding it from about `scaleX(0.76)` to `scaleX(1)` in about `210ms`.
+- Hover color transitions are quick: `160ms ease-out`. Icons inheriting `currentColor` must transition with their label rather than snapping separately.
 - Artist names are underlined by default with a smaller `0.16em` offset.
 - Do not remove focus indication.
 - Do not use default browser blue.
@@ -412,15 +419,15 @@ Rules:
 - Keep the brand at the left edge and on one line.
 - Keep primary navigation concise: one-word or short labels.
 - Use section anchors only on single-page contexts; new routed pages should use real Nuxt links and accurate active state.
-- The language switch is `EN / DE`, with the active language in rust and `aria-current`.
+- The language switch is `EN / DE`, with the active language in red and `aria-current`.
 - A mobile-menu button must open a real, keyboard-accessible menu before production. The current landing control is presentational and should not be copied without behavior.
 - The compass/menu icon is a mask using `currentColor`, allowing semantic recoloring.
 
 ### 9.2 Navigation state
 
 - Default: archive ink.
-- Hover: rust plus underline.
-- Current page/section: rust and an accessible state attribute.
+- Hover: archive red plus the fading archival-rule underline.
+- Current page/section: archive red, the archival-rule underline, and an accessible state attribute.
 - Focus: visible outline or equivalent high-contrast focus ring.
 - Never indicate navigation state through motion alone.
 
@@ -430,7 +437,7 @@ Every major page section should begin with a consistent heading block:
 
 - optional eyebrow plus an ornamental trailing rule;
 - concise H1 or H2;
-- rust emphasis within the title;
+- red emphasis within the title;
 - one supporting sentence;
 - maximum title width around `58rem` and support width around `54rem`.
 
@@ -454,7 +461,7 @@ This is a nine-slice treatment. Do not replace `border-image` with a stretched b
 
 ### 11.2 Primary button
 
-- warm rust-filled framed surface;
+- warm red-filled framed surface;
 - light text `#fff7eb`;
 - icon or directional arrow where meaningful;
 - height generally `4rem` or `3.55rem` in compact search/section controls;
@@ -473,7 +480,7 @@ This is a nine-slice treatment. Do not replace `border-image` with a stretched b
 - Active: `scale(0.97)` plus a 1px downward shift.
 - Arrow: translate roughly `0.32rem` in the direction of travel.
 - Transition: about `140ms` for press geometry and `320–380ms` for directional or tonal refinement.
-- Focus-visible: must be explicitly visible; add a consistent rust/ink outline to all framed buttons when expanding the component system.
+- Focus-visible: must be explicitly visible; add a consistent red/ink outline to all framed buttons when expanding the component system.
 - Disabled: reduce contrast and prevent motion, but keep text readable. Do not use opacity below roughly 0.5 for required information.
 
 ### 11.5 Button copy
@@ -516,7 +523,7 @@ Field characteristics:
 - transparent center over the page paper;
 - minimum height `4rem`;
 - inset padding around `1.15rem`;
-- rust search icon;
+- red search icon;
 - serif input text at `1rem`;
 - no browser-default border or background.
 
@@ -749,7 +756,7 @@ The artist archive behaves like an editorial index:
 - three columns on desktop, two on tablet, one on mobile;
 - dashed column rules;
 - letter groups that avoid column breaks;
-- rust letter heading plus ornamental horizontal rule;
+- red letter heading plus ornamental horizontal rule;
 - each row contains name, location/years, record count, and arrow;
 - names are visibly linked.
 
@@ -757,7 +764,7 @@ The artist archive behaves like an editorial index:
 
 - Use a wrapping horizontal list.
 - Default letters are muted.
-- Available/active letters are rust and medium weight.
+- Available/active letters are red and medium weight.
 - Disabled letters should use actual disabled semantics when they cannot be selected.
 - Selected filter state must use `aria-pressed`, `aria-current`, or an equivalent programmatic state.
 - Keep the control a real list or grouped set of buttons; do not use plain spans.
@@ -809,8 +816,10 @@ Rules:
 The established motion range is:
 
 - press feedback: about `140ms`;
+- navigation and icon color changes: `160ms ease-out`;
+- archival-rule underline fade: `160ms`, with a subtle `210ms` horizontal settling motion;
 - arrow and paper settling: `280–360ms`;
-- tonal hover change: `360–380ms`;
+- larger tonal or surface hover change: `360–380ms`;
 - easing: `cubic-bezier(0.22, 1, 0.36, 1)`, standard material-like press easing, or GSAP `power2.out`.
 
 ### 18.2 Interaction patterns
@@ -846,7 +855,7 @@ The footer is a deliberate tonal conclusion, not a generic utility bar.
 
 - Full-viewport-width framed strip within the footer.
 - Marks are vertically centered in fixed-width cells.
-- Names are uppercase, copper-beige, tracked, and centered.
+- Names are uppercase, ochre-beige, tracked, and centered.
 - Dividers are narrow and translucent.
 - Strip supports horizontal scrolling and pointer dragging.
 - A centered directional instruction explains interaction.
@@ -863,11 +872,11 @@ Desktop columns:
 4. Legal;
 5. archival seal.
 
-Column labels use copper uppercase text. Links use warm light text and rust/underline hover behavior. Decorative vertical separators disappear when the footer collapses.
+Column labels use ochre uppercase text. Links use warm light text and the shared red/archival-rule hover behavior. Logo lockups never receive that underline. Footer-menu vertical separators use the same archive-ochre mask treatment and `0.48` opacity as the sponsor-row dividers; decorative vertical separators disappear when the footer collapses.
 
 ### 19.4 Copyright line
 
-Use three balanced groups on desktop and a vertical stack on mobile. Maintain subdued text and ornamental center/end details. Do not overcrowd this area with secondary navigation already present above.
+Use three balanced groups on desktop and a vertical stack on mobile. The center and end ornaments use the same archive-ochre color and the same `0.72` CSS opacity. Their source masks must first be normalized to the same maximum alpha; equal CSS opacity alone does not create equal visual intensity when a source PNG contains built-in transparency. Never tune their hue or brightness independently. Maintain subdued text and do not overcrowd this area with secondary navigation already present above.
 
 ## 20. Content Voice
 
@@ -1012,7 +1021,7 @@ New pages must design states in the same visual language.
 
 - State what could not be loaded.
 - Preserve the parchment canvas and page structure.
-- Use rust for the key status phrase, not a bright red alert panel.
+- Use red for the key status phrase, not a bright red alert panel.
 - Provide a concrete retry or navigation path.
 
 ### 23.4 Success or confirmation
@@ -1055,7 +1064,7 @@ The first viewport should establish page identity through type and one strong sp
 
 - lead with serif typography and curatorial copy;
 - use warm paper and ink as the dominant visual field;
-- highlight conceptually meaningful words in rust;
+- highlight conceptually meaningful words in red;
 - preserve generous margins and maximum reading widths;
 - mix disciplined grids with small archival irregularities;
 - reuse custom SVG frames and linework;
@@ -1070,7 +1079,7 @@ The first viewport should establish page identity through type and one strong sp
 - introduce a generic UI kit appearance;
 - use pills, large corner radii, glassmorphism, or loud gradients;
 - use pure white backgrounds or pure black footer text without warm toning;
-- saturate the page with rust;
+- saturate the page with red;
 - center all text and cards;
 - compress section spacing to fit more content above the fold;
 - add ornaments without hierarchy or spatial purpose;
@@ -1086,7 +1095,7 @@ The first viewport should establish page identity through type and one strong sp
 
 - [ ] The page reads as PERMAPHEMERA without relying on the logo alone.
 - [ ] One H1 clearly states the page purpose.
-- [ ] Heading emphasis uses rust intentionally.
+- [ ] Heading emphasis uses red intentionally.
 - [ ] Eyebrows, labels, and body copy follow the established type roles.
 - [ ] Terminology matches the domain definitions in this guide.
 

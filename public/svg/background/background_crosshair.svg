@@ -2,7 +2,7 @@
   <title id="title">Card Registration Mark</title>
   <desc>Fine archival target mark used on location cards.</desc>
   <style>
-    :root { color: #b88b64; }
+    :root { color: #ca9e51; }
     .guide { fill: none; stroke: currentColor; stroke-width: .8; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
     .hair { fill: none; stroke: currentColor; stroke-width: .55; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
     .dot { fill: currentColor; }

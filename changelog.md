@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.7 - 2026-07-12 19:38:13 CEST
+
+- Rebuilt the hero kaleidoscope around perspective-projected, dual-layer Three.js slices that unfold around their own median axes with elastic settling, directional ritardando, stronger spatial tilt, coordinated clockwise/counterclockwise orbit-arrow choreography, and clean SVG hydration attributes.
+- Added a forty-image randomized location pool—including thirty new generated archive-location scenes—with idle background preloading, cached selection, overlapping one-second scale/fade swaps, retained old imagery during loading, and per-triangle loading indicators.
+- Upgraded the three wheel controls with shared 3D perspective, consistent hit targets, transparent idle states, directional hover/press feedback, explicit animation-disabled states, a staggered elastic entrance overlapping the hero finish, and a replay action that exits then rebuilds the kaleidoscope with fresh imagery.
+- Added the post-intro archival scroll cue, subtle card lift/image-zoom feedback, animated location-list arrows, conditional sponsor scrolling guidance, and refined footer navigation with fading archival-rule underlines that never decorate logo lockups.
+- Established the archive-temple identity across header, footer, browser favicon, Apple touch icon, and installable web-app icon variants; added the web manifest, theme color, normalized footer ornament masks, and equalized sponsor/menu/copyright ornament intensity.
+- Consolidated the interface into archive red `#a6523c` for semantic and interactive emphasis and archive ochre `#ca9e51` for static decoration, replacing near-duplicate colors and filter-based approximations across CSS, buttons, SVG ornaments, routed dark panels, and footer assets.
+- Updated the project instructions, README, style guide, and Tailwind guidance with the new hero architecture, identity assets, semantic color roles, animated underline system, logo invariants, divider treatment, and verification expectations; added Vite dependency pre-bundling for Lucide, GSAP, and Three.js.
+
 ## 0.0.6 - 2026-07-11 19:24:54 CEST
 
 - Added the first routed location dossier for Parkschlössl in Spittal an der Drau, combining the verified Bahnhofstraße 1a address and map coordinates with the established parchment, archival-frame, measurement, typography, and responsive design system.

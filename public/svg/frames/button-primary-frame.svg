@@ -1,15 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" preserveAspectRatio="none">
-  <defs>
-    <linearGradient id="button-fill" x1="0" x2="0" y1="0" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ca785d"/>
-      <stop offset="0.55" stop-color="#b7664e"/>
-      <stop offset="1" stop-color="#9e503e"/>
-    </linearGradient>
-  </defs>
   <path
     d="M13 1H51A12 12 0 0 0 63 13V51A12 12 0 0 0 51 63H13A12 12 0 0 0 1 51V13A12 12 0 0 0 13 1Z"
-    fill="url(#button-fill)"
-    stroke="#a95843"
+    fill="#a6523c"
+    stroke="#a6523c"
     stroke-width="1"
   />
   <path

@@ -26,7 +26,9 @@ The first implemented page must follow these mockups:
 
 Use `landing-page-06-sponsors-and-footer.png` only as the light footer alternative unless the user explicitly switches direction.
 
-The visual language is archival and editorial: warm parchment background, serif display typography, black ink text, muted rust/copper accents, fine linework, compass/measurement motifs, restrained paper/card edges, and subtle shadows.
+The visual language is archival and editorial: warm parchment background, serif display typography, black ink text, muted red/ochre accents, fine linework, compass/measurement motifs, restrained paper/card edges, and subtle shadows.
+
+Logo and wordmark lockups must never be underlined. Navigation/footer text links use the fading archival-rule underline defined in `docs/STYLE_GUIDE.md`, with quick animated color changes rather than browser-default underline behavior.
 
 ## Current Frontend Implementation
 
@@ -41,7 +43,8 @@ The frontend foundation is complete:
 - Responsive hero, locations, selected exhibitions, artists, archive-method, sponsors, and dark-footer sections
 - Seven 2026 Parkschlössl records with PDF-derived local metadata and optimized runtime artwork
 - A compact selectable exhibition ledger with preloaded active preview, loading/error states, and responsive mobile composition
-- GSAP interactions and a Three.js-powered hero kaleidoscope
+- GSAP interactions and a perspective-projected Three.js hero kaleidoscope with coordinated orbit arrows, replay choreography, randomized preloaded image swaps, and explicit loading/disabled states
+- A responsive archival-temple identity with browser/touch/web-app icons and a documented two-accent red/ochre color system
 - Runtime images and SVGs under `public/`
 
 Run commands from this repository root with pnpm. `pnpm build` is the primary release verification command. The build currently succeeds; Vite reports non-fatal resolution notices for root-relative `public/` asset URLs and a client chunk-size warning.

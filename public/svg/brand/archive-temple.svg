@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">PERMAPHEMERA archive temple</title>
+  <desc id="desc">An archival line drawing of a classical pediment and four columns.</desc>
+  <g fill="none" stroke="#a6523c" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 23 32 8l25 15" stroke-width="2.4"/>
+    <path d="M11 23h42M13 27h38" stroke-width="1.8"/>
+    <path d="m18 21 14-8 14 8Z" stroke-width="1.1"/>
+    <circle cx="32" cy="18" r="1.45" fill="#a6523c" stroke="none"/>
+    <path d="M15 30h6M16 33h4M16 47h4M15 50h6M25 30h6M26 33h4M26 47h4M25 50h6M35 30h6M36 33h4M36 47h4M35 50h6M45 30h6M46 33h4M46 47h4M45 50h6" stroke-width="1.5"/>
+    <path d="M18 33v14M28 33v14M38 33v14M48 33v14" stroke-width="1.8"/>
+    <path d="M12 51h40M9 55h46M7 58h50" stroke-width="1.8"/>
+  </g>
+</svg>

@@ -26,7 +26,16 @@ const links = [
 <template>
   <header class="site-header">
     <a class="skip-link" :href="`#${props.skipTarget}`">Skip to content</a>
-    <NuxtLink class="brand" to="/" aria-label="PERMAPHEMERA home">PERMAPHEMERA</NuxtLink>
+    <NuxtLink class="brand" to="/" aria-label="PERMAPHEMERA home">
+      <img
+        class="brand-mark"
+        src="/svg/brand/archive-temple.svg"
+        alt=""
+        width="64"
+        height="64"
+      >
+      <span>PERMAPHEMERA</span>
+    </NuxtLink>
     <nav class="desktop-nav" aria-label="Primary navigation">
       <NuxtLink
         v-for="link in links"

@@ -61,7 +61,7 @@ A Tailwind class generally has this form:
 Examples:
 
 ```html
-<div class="flex grow gap-6 p-4 md:grid md:grid-cols-2 hover:text-archive-rust">
+<div class="flex grow gap-6 p-4 md:grid md:grid-cols-2 hover:text-archive-red">
 ```
 
 - `flex` is a utility with no value.
@@ -69,12 +69,12 @@ Examples:
 - `gap-6` combines the `gap` utility with a theme-backed value.
 - `md:` is a responsive variant.
 - `hover:` is a state variant.
-- `text-archive-rust` is generated from `--color-archive-rust` in `@theme`.
+- `text-archive-red` is generated from `--color-archive-red` in `@theme`.
 
 Variants can be stacked:
 
 ```html
-<a class="md:hover:text-archive-rust focus-visible:outline-2">
+<a class="md:hover:text-archive-red focus-visible:outline-2">
 ```
 
 Read stacked variants from left to right: at the `md` breakpoint, while hovered, apply the text color.
@@ -147,7 +147,7 @@ Use the design scale or a named project token whenever possible:
 ```html
 <section class="bg-archive-paper text-archive-ink">
 <p class="text-archive-muted">
-<span class="font-display text-archive-rust">
+<span class="font-display text-archive-red">
 <div class="gap-6 p-8">
 ```
 
@@ -156,7 +156,7 @@ The color and font utilities above exist because `main.css` defines variables su
 ```css
 @theme {
   --color-archive-paper: #f2eadc;
-  --color-archive-rust: #a6523c;
+  --color-archive-red: #a6523c;
   --font-display: "Cormorant Garamond", serif;
 }
 ```
@@ -169,7 +169,7 @@ Theme values are preferable because they:
 - remain available as ordinary CSS variables at runtime;
 - reduce nearly identical arbitrary values.
 
-Do not use `text-[#a6523c]` when `text-archive-rust` exists.
+Do not use `text-[#a6523c]` when `text-archive-red` exists.
 
 ## 7. Square brackets: arbitrary values
 
@@ -294,7 +294,7 @@ Variants are prefixes ending in `:`.
 ### 10.1 Interaction and state
 
 ```html
-<a class="text-archive-ink hover:text-archive-rust focus-visible:outline-2 active:opacity-80">
+<a class="text-archive-ink hover:text-archive-red focus-visible:outline-2 active:opacity-80">
 <input class="disabled:cursor-not-allowed disabled:opacity-50">
 ```
 
@@ -326,7 +326,7 @@ Repeated breakpoints belong in `@theme` as named `--breakpoint-*` tokens instead
 
 ```html
 <a class="group">
-  <span class="text-archive-ink group-hover:text-archive-rust">Open archive</span>
+  <span class="text-archive-ink group-hover:text-archive-red">Open archive</span>
 </a>
 ```
 
@@ -334,7 +334,7 @@ Name groups when nested groups could be ambiguous:
 
 ```html
 <article class="group/card">
-  <a class="group/action group-hover/card:text-archive-rust">
+  <a class="group/action group-hover/card:text-archive-red">
 ```
 
 ### 10.4 Sibling state with `peer`
@@ -349,7 +349,7 @@ The peer must be a previous sibling because of how the CSS sibling selector work
 ### 10.5 Data and ARIA state
 
 ```html
-<button class="aria-expanded:text-archive-rust">
+<button class="aria-expanded:text-archive-red">
 <li class="data-[active=true]:underline">
 ```
 
@@ -369,7 +369,7 @@ Use native states and meaningful attributes before introducing JS-only styling f
 An arbitrary variant is a selector or at-rule in brackets before the utility:
 
 ```html
-<li class="[&.is-active]:text-archive-rust">
+<li class="[&.is-active]:text-archive-red">
 <div class="[&_p]:mt-4">
 <div class="[&>svg]:size-5">
 <div class="[@supports(display:grid)]:grid">
@@ -402,7 +402,7 @@ Use `@theme` for tokens that must generate utilities:
 
 ```css
 @theme {
-  --color-archive-rust: #a6523c;
+  --color-archive-red: #a6523c;
   --font-display: "Cormorant Garamond", serif;
   --breakpoint-wide: 80rem;
 }
@@ -435,7 +435,7 @@ Register a repeated project state globally:
 @custom-variant current (&[aria-current="page"]);
 ```
 
-Then use `current:text-archive-rust`. Prefer standard variants such as `aria-*` when they already express the state.
+Then use `current:text-archive-red`. Prefer standard variants such as `aria-*` when they already express the state.
 
 ### 12.5 `@variant`
 
@@ -446,7 +446,7 @@ Within global custom CSS, apply a Tailwind variant:
   color: var(--color-archive-ink);
 
   @variant hover {
-    color: var(--color-archive-rust);
+    color: var(--color-archive-red);
   }
 }
 ```
@@ -473,7 +473,7 @@ Map states or props to complete static strings:
 
 ```ts
 const toneClasses = {
-  archive: 'text-archive-rust hover:text-archive-copper',
+  archive: 'text-archive-ink hover:text-archive-red',
   neutral: 'text-archive-muted hover:text-archive-ink',
 } as const
 ```
@@ -488,7 +488,7 @@ Vue object and array syntax is safe when every possible class exists literally:
 <button
   class="transition-colors"
   :class="{
-    'text-archive-rust underline': active,
+    'text-archive-red underline': active,
     'text-archive-muted': !active,
   }"
 >
