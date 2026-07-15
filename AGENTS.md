@@ -2,7 +2,7 @@
 
 ## Project State
 
-This repository is the PERMAPHEMERA frontend: the first working milestone for a curated archive of temporary exhibitions and spatial memories. It implements the complete landing page, routed gallery and exhibition indexes, and local-data detail routes; backend, 360-viewer, and deployment work remain deferred.
+This repository is the PERMAPHEMERA frontend: the first working milestone for a curated archive of temporary exhibitions and spatial memories. It implements the complete landing page, routed gallery and exhibition indexes, and local-data detail routes as a client-rendered static SPA; backend, 360-viewer, and provider-specific deployment work remain deferred.
 
 The primary active plan is `../_Plans/exhibitions-plan.md`. Treat `../_Plans/original chat.md` as historical context, not as the current implementation source of truth. These files are adjacent workspace references outside this Git repository.
 
@@ -39,6 +39,7 @@ Logo and wordmark lockups must never be underlined. Navigation/footer text links
 The frontend foundation is complete:
 
 - Nuxt 4, Vue 3, TypeScript, Vite, and Tailwind CSS v4
+- Global SPA rendering (`ssr: false`) with `pnpm build` generating the shared-host-ready `.output/public/` directory
 - Nuxt i18n with German as the unprefixed fallback locale, English under `/en/`, and root-entry browser-language detection
 - Local JSON data exposed through the locale-reactive `app/composables/useArchiveData.ts`
 - English source records in `app/data/` with German content overlays in `app/data/translations/de/`
@@ -57,7 +58,7 @@ The frontend foundation is complete:
 - A responsive archival-temple identity with browser/touch/web-app icons and a documented two-accent red/ochre color system
 - Runtime images and SVGs under `public/`
 
-Run commands from this repository root with pnpm. `pnpm check:tailwind` verifies that bracketed candidates have no canonical Tailwind equivalent and that structural markers remain spaced and CSS-inert; `pnpm check:i18n` verifies message parity, content-overlay coverage, stable content identifiers, locale switching, and privacy-notice wiring. The focused `check:directories`, `check:artists`, `check:links`, `check:locations`, and `check:mobile` scripts protect index/detail routing and shared frames, the artist modal, archive link variants, gallery browser, and compact responsive contracts. `pnpm build` is the primary release verification command. The build currently succeeds; Vite reports non-fatal resolution notices for root-relative `public/` asset URLs and a client chunk-size warning.
+Run commands from this repository root with pnpm. `pnpm check:tailwind` verifies that bracketed candidates have no canonical Tailwind equivalent and that structural markers remain spaced and CSS-inert; `pnpm check:i18n` verifies message parity, content-overlay coverage, stable content identifiers, locale switching, and privacy-notice wiring. The focused `check:directories`, `check:artists`, `check:links`, `check:locations`, and `check:mobile` scripts protect index/detail routing and shared frames, the artist modal, archive link variants, gallery browser, and compact responsive contracts. `pnpm build` is the primary release verification command and must remain an alias for static SPA generation, not a Nitro server build. Its complete deployable output is `.output/public/`; `public/.htaccess` supplies the Apache fallback for clean client-side routes. The build currently succeeds; Vite reports non-fatal resolution notices for root-relative `public/` asset URLs and a client chunk-size warning.
 
 ## Data Rules
 

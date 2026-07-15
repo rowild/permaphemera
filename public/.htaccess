@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Serve real files unchanged. Directories still pass through the SPA router,
+  # because archive source files and application routes share /locations/.
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Let the client-side Nuxt router resolve every clean URL.
+  RewriteRule ^ index.html [L]
+</IfModule>

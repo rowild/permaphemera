@@ -25,7 +25,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 - a responsive temple-mark identity with browser, Apple touch, and installable web-app icons;
 - a two-accent design system using one semantic archive red and one decorative archive ochre across light and dark surfaces.
 
-The prototype does not connect to Directus or another live backend. It uses local English source records, local German translation overlays, and bundled UI locale files; deployment infrastructure and the interactive 360-degree exhibition viewer remain future work. The exhibition pages deliberately show the 360 entry point as unavailable until a real spatial record is connected.
+The prototype does not connect to Directus or another live backend. It uses local English source records, local German translation overlays, and bundled UI locale files. Production is configured as a client-rendered SPA for static shared hosting; provider-specific infrastructure and the interactive 360-degree exhibition viewer remain future work. The exhibition pages deliberately show the 360 entry point as unavailable until a real spatial record is connected.
 
 The active architecture plan is `../_Plans/exhibitions-plan.md`; the design references are under `../_Plans/designs/landing-page/`. These planning files are adjacent workspace material and are not part of this frontend Git repository.
 
@@ -59,9 +59,11 @@ pnpm build
 pnpm preview
 ```
 
+`pnpm build` always generates the client-rendered SPA and writes the complete deployable website to `.output/public/`; it does not produce or require a Node server bundle. `pnpm preview` serves that directory locally for production-output checks. Upload the contents of `.output/public/` to the shared host's document root. The bundled `public/.htaccess` preserves clean client-side routes on Apache-compatible hosting by sending unmatched requests to `index.html`. Hosting under a subdirectory instead of the domain root requires a matching Nuxt `app.baseURL` and asset-path audit.
+
 `pnpm check:tailwind` loads the project Tailwind design system and fails when bracket notation has an exact canonical utility equivalent or when a human-readable structural marker is unspaced or CSS-active. `pnpm check:i18n` verifies UI message parity, translated record coverage, stable content identifiers, localized route switching, and global privacy-notice wiring. `pnpm check:directories` protects gallery coverage, canonical index/detail routing, search contracts, and shared frame usage. The remaining focused checks protect artist modal routing and accessibility, archive text-link variants, the location exhibition browser, and compact responsive-density contracts.
 
-The production build succeeds. It currently emits non-fatal Vite notices for root-relative assets served from `public/` and a client chunk-size warning caused by the graphics-heavy landing experience.
+The static SPA build succeeds. It currently emits non-fatal Vite notices for root-relative assets served from `public/` and a client chunk-size warning caused by the graphics-heavy landing experience.
 
 ## Repository Map
 
