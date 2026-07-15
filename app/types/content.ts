@@ -6,11 +6,19 @@ export interface LocationTranslation {
 export interface Location {
   id: string
   slug: string
+  name: string
   city_name: string
   postal_code: string
   state: string
   country: string
+  address: string
+  latitude?: number
+  longitude?: number
+  website_url?: string
   image: string
+  image_alt: string
+  archive_number: string
+  featured?: boolean
   translations: LocationTranslation[]
   description?: string
 }

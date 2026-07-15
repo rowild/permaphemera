@@ -6,7 +6,7 @@ import { gsap } from 'gsap'
 import { buildArtistDirectory } from '~/utils/artistDirectory'
 import type { Exhibition, Venue } from '~/types/content'
 
-const { artists, exhibitions, locationExhibitions, venues } = useArchiveData()
+const { artists, locations, locationExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const directoryArtists = computed(() => buildArtistDirectory(artists.value, locationExhibitions.value))
@@ -16,12 +16,50 @@ useSeoMeta({
   description: () => t('site.seoDescription')
 })
 
-const featuredVenue = computed(() => venues.value.find((venue) => venue.featured) ?? venues.value[0]!)
-const otherVenues = computed(() => venues.value.filter((venue) => venue.id !== featuredVenue.value.id))
-const venueStackVenue = computed(() => otherVenues.value.find((venue) => venue.slug === 'kunsthalle-innsbruck'))
-const regularVenues = computed(() => otherVenues.value.filter((venue) => venue.id !== venueStackVenue.value?.id))
-const featuredExhibition = computed(() => exhibitions.value.find((exhibition) => exhibition.featured) ?? exhibitions.value[0]!)
-const sideExhibitions = computed(() => exhibitions.value.filter((exhibition) => exhibition.id !== featuredExhibition.value.id))
+const directoryVenues = computed<Venue[]>(() => locations.value.map((location) => ({
+  id: `venue-${location.id}`,
+  slug: location.slug,
+  location_id: location.id,
+  name: location.name,
+  city: location.city_name,
+  address: location.address,
+  website_url: location.website_url,
+  image: location.image,
+  featured: location.featured,
+  archive_number: location.archive_number
+})))
+const featuredVenue = computed(() => directoryVenues.value.find((venue) => venue.featured) ?? directoryVenues.value[0]!)
+const otherVenues = computed(() => directoryVenues.value.filter((venue) => venue.id !== featuredVenue.value.id))
+const defaultLandingVenueSlugs = new Set([
+  'the-smallest-gallery-graz',
+  'artelier-contemporary-graz',
+  'citygalerie-linz',
+  'galerie-verve-vienna',
+  'kunstverein-baden'
+])
+const venueStackVenue = computed(() => otherVenues.value.find((venue) => venue.slug === 'kunstforum-montafon-schruns'))
+const regularVenues = computed(() => locationSearchQuery.value.trim()
+  ? otherVenues.value
+  : otherVenues.value.filter((venue) => defaultLandingVenueSlugs.has(venue.slug)))
+const selectedExhibitions = computed<Exhibition[]>(() => [...locationExhibitions.value]
+  .sort((left, right) => {
+    if (Boolean(left.featured) !== Boolean(right.featured)) return left.featured ? -1 : 1
+    return left.start_date.localeCompare(right.start_date)
+  })
+  .slice(0, 5)
+  .map((exhibition) => ({
+    id: exhibition.id,
+    slug: exhibition.slug,
+    title: exhibition.title,
+    artist: exhibition.artist,
+    venue: exhibition.venue,
+    city: exhibition.city,
+    date_range: exhibition.date_range,
+    image: exhibition.image,
+    featured: exhibition.featured
+  })))
+const featuredExhibition = computed(() => selectedExhibitions.value.find((exhibition) => exhibition.featured) ?? selectedExhibitions.value[0]!)
+const sideExhibitions = computed(() => selectedExhibitions.value.filter((exhibition) => exhibition.id !== featuredExhibition.value.id))
 const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
 const artistGroupOrder = ['B', 'E', 'J', 'K', 'L', 'R', 'W']
 const locationImagePool = Array.from(
@@ -51,7 +89,7 @@ const locationSearchQuery = ref('')
 const exhibitionSearchQuery = ref('')
 const artistSearchQuery = ref('')
 const openLandingArtistSlug = ref('')
-const preservedExhibitionCount = computed(() => exhibitions.value.length)
+const preservedExhibitionCount = computed(() => locationExhibitions.value.length)
 const availableArtistLetters = computed(() => new Set(directoryArtists.value.map((artist) => artist.letter)))
 const artistLetterRoute = (letter: string) => ({
   path: localePath('/artists/'),
@@ -294,12 +332,12 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
         />
 
         <ArchivePaperStack
-          v-if="venueStackVenue"
-          v-show="venueMatchesSearch(venueStackVenue)"
+          v-if="venueStackVenue && !locationSearchQuery"
           stack-id="venue-discovery"
           :items="venueStackItems"
           :label="$t('common.more')"
           variant="venue"
+          :to="localePath('/locations/')"
         />
       </div>
 
@@ -327,7 +365,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           v-show="exhibitionMatchesSearch(featuredExhibition)"
           :exhibition="featuredExhibition"
           variant="featured"
-          href="#method"
+          :href="localePath(`/exhibitions/${featuredExhibition.slug}/`)"
         />
 
         <div class="[ record-list ] grid h-160 grid-rows-4 gap-[1.05rem] tablet:h-auto tablet:grid-cols-2 tablet:grid-rows-2 tablet:gap-5 compact:contents">
@@ -336,7 +374,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
             :key="exhibition.id"
             v-show="exhibitionMatchesSearch(exhibition)"
             :exhibition="exhibition"
-            href="#exhibitions"
+            :href="localePath(`/exhibitions/${exhibition.slug}/`)"
           />
         </div>
       </div>
@@ -402,7 +440,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           class="hidden tablet:grid"
           :items="[
             { label: $t('landing.sidebar.preserved'), value: preservedExhibitionCount },
-            { label: $t('landing.sidebar.locations'), value: venues.length },
+            { label: $t('landing.sidebar.locations'), value: locations.length },
             { label: $t('landing.sidebar.directory'), value: 'A–Z' }
           ]"
         />

@@ -12,6 +12,11 @@ export interface OrnamentTransform {
   active: string
 }
 
+export interface DirectoryImageTransform {
+  rest: string
+  active: string
+}
+
 const hashString = (value: string) => {
   let hash = 2166136261
 
@@ -80,5 +85,16 @@ export const createOrnamentTransform = (contentId: string, featured = false): Or
     bottom: `${between(random, featured ? 0.05 : -0.35, featured ? 0.25 : 0.35).toFixed(2)}rem`,
     rest: `rotate(${rotation.toFixed(2)}deg)`,
     active: `rotate(${(rotation + turn).toFixed(2)}deg) scale(1.04)`
+  }
+}
+
+export const createDirectoryImageTransform = (contentId: string): DirectoryImageTransform => {
+  const random = seededRandom(`directory-image:${contentId}`)
+  const rotation = between(random, -1.15, 1.15)
+  const horizontalShift = between(random, -2.5, 2.5)
+
+  return {
+    rest: `translateX(${horizontalShift.toFixed(2)}px) rotate(${rotation.toFixed(2)}deg)`,
+    active: `translateX(${horizontalShift.toFixed(2)}px) rotate(${(rotation * 0.35).toFixed(2)}deg) scale(1.012)`
   }
 }

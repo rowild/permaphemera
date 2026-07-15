@@ -30,7 +30,7 @@ const handlePointerDown = (event: PointerEvent) => {
   activePointerId = event.pointerId
   pointerStartX = event.clientX
   scrollStartX = rail.value.scrollLeft
-  rail.value.setPointerCapture(event.pointerId)
+  dragging.value = false
 }
 
 const handlePointerMove = (event: PointerEvent) => {
@@ -39,6 +39,9 @@ const handlePointerMove = (event: PointerEvent) => {
   const distance = event.clientX - pointerStartX
   if (!dragging.value && Math.abs(distance) < 4) return
 
+  if (!dragging.value && !rail.value.hasPointerCapture(event.pointerId)) {
+    rail.value.setPointerCapture(event.pointerId)
+  }
   dragging.value = true
   rail.value.scrollLeft = scrollStartX - distance
   event.preventDefault()

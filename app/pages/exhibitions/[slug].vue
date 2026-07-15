@@ -2,7 +2,7 @@
 import { CalendarDays, Clock3, FileText, MapPin } from '@lucide/vue'
 
 const route = useRoute()
-const { locationExhibitions } = useArchiveData()
+const { locations, locationExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const routeSlug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
@@ -12,7 +12,16 @@ if (!exhibition.value) {
   throw createError({ statusCode: 404, statusMessage: t('exhibition.notFound') })
 }
 
-const relatedExhibitions = computed(() => locationExhibitions.value.filter((item) => item.slug !== exhibition.value?.slug).slice(0, 3))
+const gallery = computed(() => locations.value.find((item) => item.slug === exhibition.value?.venue_slug))
+const relatedExhibitions = computed(() => locationExhibitions.value
+  .filter((item) => item.slug !== exhibition.value?.slug)
+  .sort((left, right) => Number(right.venue_slug === exhibition.value?.venue_slug) - Number(left.venue_slug === exhibition.value?.venue_slug))
+  .slice(0, 3))
+const recordNumber = computed(() => {
+  const index = locationExhibitions.value.findIndex((item) => item.id === exhibition.value?.id)
+  return String(Math.max(0, index) + 1).padStart(2, '0')
+})
+const galleryPath = computed(() => localePath(`/locations/${exhibition.value?.venue_slug}/`))
 
 useSeoMeta({
   title: () => `${exhibition.value?.title} · ${exhibition.value?.artist} · PERMAPHEMERA`,
@@ -28,17 +37,23 @@ useSeoMeta({
     <div id="main-content">
       <section class="[ exhibition-detail-hero ] [ section-band ] relative mx-auto grid min-h-[calc(100vh-6.4rem)] max-w-[105rem] grid-cols-[minmax(30rem,1.2fr)_minmax(23rem,0.8fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:min-h-auto tablet:grid-cols-1 tablet:gap-10 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-16" aria-labelledby="exhibition-title">
         <div class="[ exhibition-detail-visual ] min-w-0 tablet:row-start-1">
-          <ArchiveFramedImage
-            class="[ exhibition-detail-image ] aspect-[1.48] rotate-[-0.45deg] compact:aspect-[1.28] compact:rotate-0"
-            :src="exhibition.image"
-            :alt="exhibition.image_alt"
-          />
+          <div class="relative">
+            <ArchiveFramedImage
+              class="[ exhibition-detail-image ] aspect-[1.48] rotate-[-0.45deg] compact:aspect-[1.28] compact:rotate-0"
+              :src="exhibition.image"
+              :alt="exhibition.image_alt"
+            />
+            <div class="absolute -right-4 -bottom-5 z-6 grid size-28 -rotate-6 place-content-center rounded-full border border-archive-red/42 bg-archive-paper/92 text-center text-archive-red compact:-right-1 compact:-bottom-3 compact:size-20" aria-hidden="true">
+              <span class="text-xs tracking-widest uppercase">EX</span>
+              <strong class="text-4xl leading-none font-light compact:text-3xl">{{ recordNumber }}</strong>
+            </div>
+          </div>
           <p class="[ exhibition-detail-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-[0.86rem] text-archive-muted italic compact:mt-2 compact:ml-2 compact:text-xs"><span class="not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('exhibition.preservedRecord') }}</span> · {{ $t('exhibition.season') }}</p>
         </div>
 
         <div class="[ exhibition-detail-copy ] tablet:row-start-2">
           <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/locations/parkschloessl-spittal-drau/')">Parkschlössl</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ exhibition.title }}</span>
+            <ArchiveTextLink :to="localePath('/exhibitions/')">{{ $t('navigation.exhibitions') }}</ArchiveTextLink><span aria-hidden="true">/</span><ArchiveTextLink :to="galleryPath">{{ gallery?.name ?? exhibition.venue }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ exhibition.title }}</span>
           </ArchiveBreadcrumb>
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.recordEyebrow') }}</p>
           <h1 id="exhibition-title" class="m-0 font-display text-[clamp(3.2rem,4.8vw,5.3rem)] font-light leading-[0.92] text-archive-red compact:text-5xl compact:leading-none">{{ exhibition.title }}</h1>
@@ -64,8 +79,8 @@ useSeoMeta({
             <ArchiveButton class="compact:flex-1" variant="secondary" :href="exhibition.source_pdf" target="_blank" rel="noreferrer">
               <FileText :size="20" aria-hidden="true" /> <span class="compact:hidden">{{ $t('exhibition.viewOriginal') }} </span>{{ $t('exhibition.invitation') }}
             </ArchiveButton>
-            <ArchiveTextLink class="[ exhibition-back-link ] compact:min-h-11" :to="localePath('/locations/parkschloessl-spittal-drau/')" icon-position="start" icon-motion="left">
-              {{ $t('exhibition.back') }}
+            <ArchiveTextLink class="[ exhibition-back-link ] compact:min-h-11" :to="galleryPath" icon-position="start" icon-motion="left">
+              {{ $t('exhibition.backToGallery', { name: gallery?.name ?? exhibition.venue }) }}
               <template #icon><ArchiveArrow direction="left" /></template>
             </ArchiveTextLink>
           </div>
@@ -101,10 +116,10 @@ useSeoMeta({
         </div>
       </section>
 
-      <section class="[ exhibition-related ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8" aria-labelledby="related-title">
+      <section v-if="relatedExhibitions.length" class="[ exhibition-related ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8" aria-labelledby="related-title">
         <div class="[ section-heading ] relative z-1 mb-10 compact:mb-5">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.relatedEyebrow') }}</p>
-          <h2 id="related-title" class="m-0 max-w-232 font-display text-[clamp(2.25rem,3.65vw,3.85rem)] font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccent') }}</span></h2>
+          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.relatedEyebrowAt', { name: gallery?.name ?? exhibition.venue }) }}</p>
+          <h2 id="related-title" class="m-0 max-w-232 font-display text-[clamp(2.25rem,3.65vw,3.85rem)] font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccentAt', { name: gallery?.name ?? exhibition.venue }) }}</span></h2>
         </div>
         <div class="[ exhibition-related-grid ] grid grid-cols-3 gap-6 compact:grid-cols-1">
           <RelatedExhibitionCard

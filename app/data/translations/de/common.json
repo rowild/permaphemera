@@ -2,6 +2,10 @@
   "places": {
     "Austria": "Österreich",
     "Carinthia": "Kärnten",
+    "Lower Austria": "Niederösterreich",
+    "Upper Austria": "Oberösterreich",
+    "Styria": "Steiermark",
+    "Tyrol": "Tirol",
     "Vienna": "Wien",
     "New Delhi / Vienna": "Neu-Delhi / Wien"
   }

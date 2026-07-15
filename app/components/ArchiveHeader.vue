@@ -19,9 +19,9 @@ watch(() => route.fullPath, () => {
 
 const primaryLinks = computed(() => [
   { label: t('navigation.archive'), to: localePath('/#locations'), key: 'archive' },
-  { label: t('navigation.galleries'), to: localePath('/locations/parkschloessl-spittal-drau/'), key: 'galleries' },
+  { label: t('navigation.galleries'), to: localePath('/locations/'), key: 'galleries' },
   { label: t('navigation.artists'), to: localePath('/artists/'), key: 'artists' },
-  { label: t('navigation.exhibitions'), to: localePath('/exhibitions/all-the-magic/'), key: 'exhibitions' }
+  { label: t('navigation.exhibitions'), to: localePath('/exhibitions/'), key: 'exhibitions' }
 ] as const)
 
 const openCookieSettings = () => {

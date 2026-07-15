@@ -9,6 +9,8 @@ The first Nuxt frontend milestone is implemented. It includes:
 - responsive header and hero with an interactive, replayable kaleidoscope and randomized preloaded image pool;
 - searchable locations, exhibitions, and artist archive sections;
 - framed venue and exhibition cards backed by local JSON;
+- a searchable, URL-filterable gallery atlas with 26 small Austrian galleries across all nine federal states;
+- a searchable exhibition index with reusable framed record cards and direct detail routes;
 - an illustrated explanation of the archive method;
 - a horizontally draggable sponsor strip and dark editorial footer;
 - dynamic gallery dossiers with location-specific record search, currently led by Parkschlössl;
@@ -49,6 +51,7 @@ Build and preview production output:
 pnpm check:tailwind
 pnpm check:i18n
 pnpm check:artists
+pnpm check:directories
 pnpm check:links
 pnpm check:locations
 pnpm check:mobile
@@ -56,7 +59,7 @@ pnpm build
 pnpm preview
 ```
 
-`pnpm check:tailwind` loads the project Tailwind design system and fails when bracket notation has an exact canonical utility equivalent or when a human-readable structural marker is unspaced or CSS-active. `pnpm check:i18n` verifies UI message parity, translated record coverage, stable content identifiers, localized route switching, and global privacy-notice wiring. The remaining focused checks protect artist modal routing and accessibility, archive text-link variants, the location exhibition browser, and compact responsive-density contracts.
+`pnpm check:tailwind` loads the project Tailwind design system and fails when bracket notation has an exact canonical utility equivalent or when a human-readable structural marker is unspaced or CSS-active. `pnpm check:i18n` verifies UI message parity, translated record coverage, stable content identifiers, localized route switching, and global privacy-notice wiring. `pnpm check:directories` protects gallery coverage, canonical index/detail routing, search contracts, and shared frame usage. The remaining focused checks protect artist modal routing and accessibility, archive text-link variants, the location exhibition browser, and compact responsive-density contracts.
 
 The production build succeeds. It currently emits non-fatal Vite notices for root-relative assets served from `public/` and a client chunk-size warning caused by the graphics-heavy landing experience.
 
@@ -69,8 +72,10 @@ app/data/                      JSON content source
 app/data/translations/de/      German record-field translation overlays
 i18n/locales/                  English and German UI/accessibility messages
 app/pages/index.vue            landing page composition and interactions
+app/pages/locations/index.vue  searchable Austrian gallery atlas
 app/pages/locations/[slug].vue dynamic gallery dossiers
-app/pages/exhibitions/         dynamic exhibition records
+app/pages/exhibitions/index.vue searchable exhibition archive
+app/pages/exhibitions/[slug].vue dynamic exhibition records
 app/pages/artists/index.vue    searchable artist directory
 app/assets/css/main.css        theme, base rules, and branded visual infrastructure
 public/images/landing/         raster assets used by the site
@@ -84,7 +89,7 @@ changelog.md                   version history
 
 ## Data Source
 
-Local JSON files live in `app/data/`. English is the canonical record language; ID-keyed German field overlays live in `app/data/translations/de/`. `app/composables/useArchiveData.ts` combines them reactively for the active locale while stable IDs, slugs, media paths, relations, and sorting dates remain in the canonical records. UI, navigation, SEO, accessibility, and privacy-notice messages live in `i18n/locales/en.json` and `i18n/locales/de.json`.
+Local JSON files live in `app/data/`. English is the canonical record language; ID-keyed German field overlays live in `app/data/translations/de/`, while `locations.json` retains its Directus-style per-record translation array for gallery descriptions. `app/composables/useArchiveData.ts` combines both forms reactively for the active locale while stable IDs, slugs, media paths, relations, and sorting dates remain in the canonical records. UI, navigation, SEO, accessibility, and privacy-notice messages live in `i18n/locales/en.json` and `i18n/locales/de.json`.
 
 The content stays inside the application bundle instead of `public/`: the existing data adapter uses static local imports, so locale changes require neither a remote server nor client-side HTTP requests. This keeps the current frontend-only architecture intact while leaving the adapter boundary available for a future Directus migration.
 
@@ -94,9 +99,11 @@ The landing route in `app/pages/index.vue` contains the hero, locations, selecte
 
 The site-styled privacy notice explains that language-preference cookie without claiming consent for analytics or advertising that the app does not use. Dismissal is remembered locally under `permaphemera-cookie-notice-dismissed`; the footer's cookie-settings action reopens the notice.
 
-`app/pages/locations/[slug].vue` resolves gallery metadata from `venues.json`. Every gallery route includes the shared framed search control; Parkschlössl currently adds seven 2026 exhibitions as compact, keyboard-accessible records. Search filters immediately across artist, title, date, medium, and record copy while preserving `q` in the route. Hover, focus, or click selects a sticky preview; images are preloaded before the active preview changes and a visible archival loader or error state covers the transition.
+`app/pages/locations/index.vue` is the canonical gallery atlas. It reads all 26 gallery profiles from `locations.json`, searches names, towns, states, addresses, and descriptions immediately, preserves search/state filters in the URL, and exposes all nine federal states on a draggable filter rail. The landing-page gallery selection now derives from that same source and links its paper stack to the complete atlas.
 
-`app/pages/exhibitions/[slug].vue` resolves the same local exhibition data into individual records with dates, opening hours, vernissage, source PDF, related exhibitions, and a prepared—but disabled—360-degree experience section.
+`app/pages/locations/[slug].vue` resolves every gallery from `locations.json`, then layers optional richer dossier fields from `venues.json`. Every gallery route therefore works even before exhibition records exist. Parkschlössl retains its seven 2026 exhibitions as compact, keyboard-accessible records. Search filters immediately across artist, title, date, medium, and record copy while preserving `q` in the route. Hover, focus, or click selects a sticky preview; images are preloaded before the active preview changes and a visible archival loader or error state covers the transition.
+
+`app/pages/exhibitions/index.vue` searches every routed local exhibition across title, artist, gallery, city, date, medium, and record text while preserving `q` in the URL. `app/pages/exhibitions/[slug].vue` resolves the same data into individual records with dates, opening hours, vernissage, source PDF, gallery-aware breadcrumbs and return paths, related exhibitions, and a prepared—but disabled—360-degree experience section.
 
 `app/pages/artists/index.vue` expands the landing-page artist preview into a text-led directory. It combines the artist and exhibition datasets, splits multi-artist credits into individual entries, presents personal names in `Family, Given` form, and exposes URL-backed name/location/year search and alphabet filters. Each available alphabet item and each longer-group action is a real Nuxt link to `/artists/?letter=<letter>`, preserves an active search query, and creates an ordinary browser-history entry. Organization names retain their natural order. The all-letters view shows at most five names per letter through the single `artistsPerLetterPreview` setting; longer groups link into their complete letter view. Artists with routed records open a focus-trapped exhibition modal from either the name or information control; artists without records remain visibly muted non-interactive text.
 

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "nuxt build",
     "check:artists": "node scripts/check-artist-directory-modal.mjs",
+    "check:directories": "node scripts/check-directory-routes.mjs",
     "check:i18n": "node scripts/check-i18n-privacy.mjs",
     "check:links": "node scripts/check-archive-text-links.mjs",
     "check:locations": "node scripts/check-location-exhibition-browser.mjs",

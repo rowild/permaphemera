@@ -41,6 +41,7 @@ export function useArchiveData() {
 
   const locationsForLocale = computed(() => (locations as Location[]).map((location) => ({
     ...location,
+    city_name: translatePlace(location.city_name, locale.value),
     state: translatePlace(location.state, locale.value),
     country: translatePlace(location.country, locale.value),
     description: location.translations.find((translation) => translation.languages_code === locale.value)?.description

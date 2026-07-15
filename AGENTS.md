@@ -2,7 +2,7 @@
 
 ## Project State
 
-This repository is the PERMAPHEMERA frontend: the first working milestone for a curated archive of temporary exhibitions and spatial memories. It implements the complete landing page plus the first local-data location and exhibition detail routes; backend, 360-viewer, and deployment work remain deferred.
+This repository is the PERMAPHEMERA frontend: the first working milestone for a curated archive of temporary exhibitions and spatial memories. It implements the complete landing page, routed gallery and exhibition indexes, and local-data detail routes; backend, 360-viewer, and deployment work remain deferred.
 
 The primary active plan is `../_Plans/exhibitions-plan.md`. Treat `../_Plans/original chat.md` as historical context, not as the current implementation source of truth. These files are adjacent workspace references outside this Git repository.
 
@@ -44,8 +44,10 @@ The frontend foundation is complete:
 - English source records in `app/data/` with German content overlays in `app/data/translations/de/`
 - A local privacy notice for the necessary language-preference cookie, with dismissal stored in the browser
 - The landing route in `app/pages/index.vue`
-- Dynamic gallery dossiers in `app/pages/locations/[slug].vue`, currently led by Parkschlössl
+- A searchable, state-filterable gallery atlas in `app/pages/locations/index.vue`, backed by 26 small Austrian galleries across all nine federal states
+- Dynamic gallery dossiers in `app/pages/locations/[slug].vue`, resolved from `locations.json` and optionally enriched from `venues.json`
 - A routed artist directory in `app/pages/artists/index.vue`
+- A searchable exhibition archive in `app/pages/exhibitions/index.vue`
 - Dynamic exhibition records in `app/pages/exhibitions/[slug].vue`
 - Reusable Vue components for shared header/footer navigation, hero kaleidoscope, venue masks/frames, exhibition cards, and archive arrows
 - Responsive hero, locations, selected exhibitions, artists, archive-method, sponsors, and dark-footer sections
@@ -55,7 +57,7 @@ The frontend foundation is complete:
 - A responsive archival-temple identity with browser/touch/web-app icons and a documented two-accent red/ochre color system
 - Runtime images and SVGs under `public/`
 
-Run commands from this repository root with pnpm. `pnpm check:tailwind` verifies that bracketed candidates have no canonical Tailwind equivalent and that structural markers remain spaced and CSS-inert; `pnpm check:i18n` verifies message parity, content-overlay coverage, stable content identifiers, locale switching, and privacy-notice wiring. The focused `check:artists`, `check:links`, `check:locations`, and `check:mobile` scripts protect the artist modal, archive link variants, gallery browser, and compact responsive contracts. `pnpm build` is the primary release verification command. The build currently succeeds; Vite reports non-fatal resolution notices for root-relative `public/` asset URLs and a client chunk-size warning.
+Run commands from this repository root with pnpm. `pnpm check:tailwind` verifies that bracketed candidates have no canonical Tailwind equivalent and that structural markers remain spaced and CSS-inert; `pnpm check:i18n` verifies message parity, content-overlay coverage, stable content identifiers, locale switching, and privacy-notice wiring. The focused `check:directories`, `check:artists`, `check:links`, `check:locations`, and `check:mobile` scripts protect index/detail routing and shared frames, the artist modal, archive link variants, gallery browser, and compact responsive contracts. `pnpm build` is the primary release verification command. The build currently succeeds; Vite reports non-fatal resolution notices for root-relative `public/` asset URLs and a client chunk-size warning.
 
 ## Data Rules
 
@@ -80,7 +82,7 @@ app/data/sponsors.json
 
 Keep the local JSON shape compatible with the future Directus schema in `../_Plans/exhibitions-plan.md` so the data adapter can later be swapped without rewriting components.
 
-English is the canonical content source. Store German translations for record fields in ID-keyed overlay files under `app/data/translations/de/`; keep IDs, slugs, dates used for sorting, media paths, URLs, and relations in the canonical records. UI and accessibility messages live in the locale files under `i18n/locales/`. Do not move these records into `public/` or fetch them over HTTP unless a future runtime content source genuinely requires it.
+English is the canonical content source. Store German translations for record fields in ID-keyed overlay files under `app/data/translations/de/`; `locations.json` is the existing exception and keeps gallery descriptions in its Directus-style translation array. Keep IDs, slugs, dates used for sorting, media paths, URLs, and relations in the canonical records. UI and accessibility messages live in the locale files under `i18n/locales/`. Do not move these records into `public/` or fetch them over HTTP unless a future runtime content source genuinely requires it.
 
 ## Current Scope And Deferred Work
 
@@ -124,6 +126,7 @@ Verify at least:
 - Footer sponsor strip behavior
 - Text fit inside buttons, cards, and navigation elements
 - Dynamic gallery layout, search, and compact preview interaction on desktop and mobile
+- Gallery and exhibition index search, URL-backed filters, empty states, and dense mobile card grids
 - Artist directory search, five-name alphabet previews, history-backed full-letter routes, and focus-managed exhibition modals across breakpoints
 - Landing, gallery, and exhibition scroll cues fading when their target section enters the viewport, with routed-page dividers following that target section
 - Exhibition detail layout, source links, related records, and unavailable 360 state

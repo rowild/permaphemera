@@ -1,14 +1,42 @@
 <script setup lang="ts">
 import { CalendarDays, ExternalLink, MapPin } from '@lucide/vue'
-import type { LocationExhibition } from '~/types/content'
+import type { LocationExhibition, Venue } from '~/types/content'
 
 const route = useRoute()
 const router = useRouter()
-const { locationExhibitions, venues } = useArchiveData()
+const { locations, locationExhibitions, venues } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const slug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
-const venue = computed(() => venues.value.find((item) => item.slug === slug))
+const location = computed(() => locations.value.find((item) => item.slug === slug))
+const venueDossier = computed(() => venues.value.find((item) => item.location_id === location.value?.id || item.slug === slug))
+const venue = computed<Venue | undefined>(() => {
+  const record = location.value
+  if (!record) return undefined
+
+  const dossier = venueDossier.value
+
+  return {
+    id: dossier?.id ?? `venue-${record.id}`,
+    slug: record.slug,
+    location_id: record.id,
+    name: record.name,
+    city: record.city_name,
+    address: record.address,
+    latitude: record.latitude,
+    longitude: record.longitude,
+    website_url: dossier?.website_url || record.website_url,
+    image: record.image,
+    featured: record.featured,
+    archive_number: record.archive_number,
+    hero_image: dossier?.hero_image ?? record.image,
+    hero_image_alt: dossier?.hero_image_alt ?? record.image_alt,
+    lede: dossier?.lede ?? record.description,
+    image_caption: dossier?.image_caption,
+    coordinate_label: dossier?.coordinate_label,
+    about: dossier?.about
+  }
+})
 
 if (!venue.value) {
   throw createError({ statusCode: 404, statusMessage: t('location.notFound') })
@@ -103,13 +131,25 @@ onMounted(() => {
   if (firstExhibition) selectExhibition(firstExhibition)
 })
 
-const venueIndex = computed(() => venues.value.findIndex((item) => item.id === venue.value?.id))
+const venueIndex = computed(() => locations.value.findIndex((item) => item.id === location.value?.id))
 const archiveNumber = computed(() => venue.value?.archive_number ?? String(venueIndex.value + 1).padStart(2, '0'))
 const plateCode = computed(() => venue.value?.city.slice(0, 2).toLocaleUpperCase() ?? '')
-const locationMapUrl = computed(() => venue.value?.latitude !== undefined && venue.value.longitude !== undefined
-  ? `https://www.google.com/maps/search/?api=1&query=${venue.value.latitude},${venue.value.longitude}`
-  : undefined
-)
+const locationMapUrl = computed(() => {
+  if (!venue.value) return undefined
+  const query = venue.value.latitude !== undefined && venue.value.longitude !== undefined
+    ? `${venue.value.latitude},${venue.value.longitude}`
+    : venue.value.address
+
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
+})
+const websiteLabel = computed(() => {
+  if (!venue.value?.website_url) return ''
+  try {
+    return new URL(venue.value.website_url).hostname.replace(/^www\./, '')
+  } catch {
+    return venue.value.website_url
+  }
+})
 const seasonYears = computed(() => [...new Set(exhibitions.value.map((exhibition) => exhibition.start_date.slice(0, 4)))].join(' · '))
 const locationLedgerItems = computed(() => [
   { label: t('location.ledgerLabels.records'), value: String(exhibitions.value.length).padStart(2, '0') },
@@ -135,7 +175,7 @@ useSeoMeta({
       >
         <div class="[ location-hero-copy ] relative z-2 tablet:row-start-2">
           <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/#locations')">{{ $t('navigation.galleries') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ venue.city }}</span>
+            <ArchiveTextLink :to="localePath('/locations/')">{{ $t('navigation.galleries') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ venue.name }}</span>
           </ArchiveBreadcrumb>
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('location.archiveLocation', { number: archiveNumber }) }}</p>
           <h1 id="location-title" class="[ location-hero-title ] m-0 font-display text-[clamp(3.3rem,5.2vw,5.6rem)] font-light leading-[0.92] compact:text-5xl compact:leading-none">
@@ -152,6 +192,10 @@ useSeoMeta({
             <ArchiveMetadataRow v-if="venue.latitude !== undefined && venue.longitude !== undefined" :label="$t('location.coordinates')" variant="location">
               <template #icon><span class="record-meta-icon record-meta-icon-location" aria-hidden="true" /></template>
               {{ venue.latitude }}° N, {{ venue.longitude }}° E
+            </ArchiveMetadataRow>
+            <ArchiveMetadataRow v-if="venue.website_url" :label="$t('location.website')" variant="location">
+              <template #icon><ExternalLink :size="18" aria-hidden="true" /></template>
+              <ArchiveTextLink :href="venue.website_url" target="_blank" rel="noreferrer" icon-motion="external">{{ websiteLabel }}</ArchiveTextLink>
             </ArchiveMetadataRow>
           </dl>
 
