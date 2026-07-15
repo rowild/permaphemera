@@ -1,10 +1,16 @@
 {
   "name": "frontend",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "nuxt build",
+    "check:artists": "node scripts/check-artist-directory-modal.mjs",
+    "check:i18n": "node scripts/check-i18n-privacy.mjs",
+    "check:links": "node scripts/check-archive-text-links.mjs",
+    "check:locations": "node scripts/check-location-exhibition-browser.mjs",
+    "check:mobile": "node scripts/check-mobile-density.mjs",
+    "check:tailwind": "node scripts/check-tailwind-canonical.mjs",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -13,6 +19,7 @@
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.2.11",
     "@lucide/vue": "^1.23.0",
+    "@nuxtjs/i18n": "10.2.4",
     "@tailwindcss/vite": "^4.3.2",
     "@types/three": "^0.185.0",
     "gsap": "^3.15.0",
@@ -21,5 +28,8 @@
     "three": "^0.185.1",
     "vue": "^3.5.39",
     "vue-router": "^5.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.20"
   }
 }

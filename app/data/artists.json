@@ -70,5 +70,429 @@
     "location": "Vienna",
     "years": "1986-2012",
     "record_count": 3
+  },
+  {
+    "id": "artist-mira-abele",
+    "slug": "mira-abele",
+    "name": "Mira Abele",
+    "location": "Salzburg",
+    "years": "2024-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-jonas-arden",
+    "slug": "jonas-arden",
+    "name": "Jonas Arden",
+    "location": "Linz",
+    "years": "2023-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-lena-bacher",
+    "slug": "lena-bacher",
+    "name": "Lena Bacher",
+    "location": "Graz",
+    "years": "2022-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-pavel-breun",
+    "slug": "pavel-breun",
+    "name": "Pavel Breun",
+    "location": "Vienna",
+    "years": "2021-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-iona-cernek",
+    "slug": "iona-cernek",
+    "name": "Iona Cernek",
+    "location": "Klagenfurt",
+    "years": "2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-timo-corda",
+    "slug": "timo-corda",
+    "name": "Timo Corda",
+    "location": "Innsbruck",
+    "years": "2020-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-mara-degen",
+    "slug": "mara-degen",
+    "name": "Mara Degen",
+    "location": "Bregenz",
+    "years": "2023-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-elias-dorn",
+    "slug": "elias-dorn",
+    "name": "Elias Dorn",
+    "location": "Vienna",
+    "years": "2019-2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-nika-eder",
+    "slug": "nika-eder",
+    "name": "Nika Eder",
+    "location": "Salzburg",
+    "years": "2022-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-samuel-evers",
+    "slug": "samuel-evers",
+    "name": "Samuel Evers",
+    "location": "Graz",
+    "years": "2021-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-livia-falk",
+    "slug": "livia-falk",
+    "name": "Livia Falk",
+    "location": "Linz",
+    "years": "2020-2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-anton-ferner",
+    "slug": "anton-ferner",
+    "name": "Anton Ferner",
+    "location": "Spittal an der Drau",
+    "years": "2025-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-klara-gsell",
+    "slug": "klara-gsell",
+    "name": "Klara Gsell",
+    "location": "Vienna",
+    "years": "2023-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-emil-gruber",
+    "slug": "emil-gruber",
+    "name": "Emil Gruber",
+    "location": "Innsbruck",
+    "years": "2018-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-nora-haid",
+    "slug": "nora-haid",
+    "name": "Nora Haid",
+    "location": "Graz",
+    "years": "2024-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-leander-huber",
+    "slug": "leander-huber",
+    "name": "Leander Huber",
+    "location": "Salzburg",
+    "years": "2021-2023",
+    "record_count": 0
+  },
+  {
+    "id": "artist-mina-illich",
+    "slug": "mina-illich",
+    "name": "Mina Illich",
+    "location": "Linz",
+    "years": "2022-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-tobias-innerhofer",
+    "slug": "tobias-innerhofer",
+    "name": "Tobias Innerhofer",
+    "location": "Bregenz",
+    "years": "2019-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-elsa-jarnik",
+    "slug": "elsa-jarnik",
+    "name": "Elsa Jarnik",
+    "location": "Klagenfurt",
+    "years": "2023-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-milan-jost",
+    "slug": "milan-jost",
+    "name": "Milan Jost",
+    "location": "Vienna",
+    "years": "2020-2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-lora-kain",
+    "slug": "lora-kain",
+    "name": "Lora Kain",
+    "location": "Graz",
+    "years": "2024-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-noah-kern",
+    "slug": "noah-kern",
+    "name": "Noah Kern",
+    "location": "Salzburg",
+    "years": "2022-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-rhea-koller",
+    "slug": "rhea-koller",
+    "name": "Rhea Koller",
+    "location": "Linz",
+    "years": "2021-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-ada-lechner",
+    "slug": "ada-lechner",
+    "name": "Ada Lechner",
+    "location": "Vienna",
+    "years": "2023-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-viktor-loos",
+    "slug": "viktor-loos",
+    "name": "Viktor Loos",
+    "location": "Innsbruck",
+    "years": "2019-2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-thea-mader",
+    "slug": "thea-mader",
+    "name": "Thea Mader",
+    "location": "Bregenz",
+    "years": "2022-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-ivo-moser",
+    "slug": "ivo-moser",
+    "name": "Ivo Moser",
+    "location": "Graz",
+    "years": "2020-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-alma-neri",
+    "slug": "alma-neri",
+    "name": "Alma Neri",
+    "location": "Salzburg",
+    "years": "2024-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-dario-novak",
+    "slug": "dario-novak",
+    "name": "Dario Novak",
+    "location": "Vienna",
+    "years": "2021-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-pia-oberlin",
+    "slug": "pia-oberlin",
+    "name": "Pia Oberlin",
+    "location": "Linz",
+    "years": "2023-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-felix-orter",
+    "slug": "felix-orter",
+    "name": "Felix Orter",
+    "location": "Klagenfurt",
+    "years": "2020-2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-sara-pichler",
+    "slug": "sara-pichler",
+    "name": "Sara Pichler",
+    "location": "Graz",
+    "years": "2022-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-leon-prantl",
+    "slug": "leon-prantl",
+    "name": "Leon Prantl",
+    "location": "Bregenz",
+    "years": "2018-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-mira-quell",
+    "slug": "mira-quell",
+    "name": "Mira Quell",
+    "location": "Vienna",
+    "years": "2024-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-aron-quirin",
+    "slug": "aron-quirin",
+    "name": "Aron Quirin",
+    "location": "Salzburg",
+    "years": "2021-2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-ina-rainer",
+    "slug": "ina-rainer",
+    "name": "Ina Rainer",
+    "location": "Linz",
+    "years": "2023-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-theo-riss",
+    "slug": "theo-riss",
+    "name": "Theo Riss",
+    "location": "Innsbruck",
+    "years": "2020-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-zoe-sattler",
+    "slug": "zoe-sattler",
+    "name": "Zoe Sattler",
+    "location": "Graz",
+    "years": "2022-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-jan-sendl",
+    "slug": "jan-sendl",
+    "name": "Jan Sendl",
+    "location": "Klagenfurt",
+    "years": "2024-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-ella-tauer",
+    "slug": "ella-tauer",
+    "name": "Ella Tauer",
+    "location": "Bregenz",
+    "years": "2021-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-bruno-tesch",
+    "slug": "bruno-tesch",
+    "name": "Bruno Tesch",
+    "location": "Vienna",
+    "years": "2019-2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-mia-uhl",
+    "slug": "mia-uhl",
+    "name": "Mia Uhl",
+    "location": "Salzburg",
+    "years": "2023-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-niko-urban",
+    "slug": "niko-urban",
+    "name": "Niko Urban",
+    "location": "Linz",
+    "years": "2020-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-lea-varga",
+    "slug": "lea-varga",
+    "name": "Lea Varga",
+    "location": "Graz",
+    "years": "2022-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-otto-vogl",
+    "slug": "otto-vogl",
+    "name": "Otto Vogl",
+    "location": "Innsbruck",
+    "years": "2018-2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-anja-wenter",
+    "slug": "anja-wenter",
+    "name": "Anja Wenter",
+    "location": "Bregenz",
+    "years": "2024-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-lio-wurm",
+    "slug": "lio-wurm",
+    "name": "Lio Wurm",
+    "location": "Vienna",
+    "years": "2021-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-mina-xandl",
+    "slug": "mina-xandl",
+    "name": "Mina Xandl",
+    "location": "Salzburg",
+    "years": "2023-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-theo-xaver",
+    "slug": "theo-xaver",
+    "name": "Theo Xaver",
+    "location": "Linz",
+    "years": "2020-2024",
+    "record_count": 0
+  },
+  {
+    "id": "artist-eva-yalin",
+    "slug": "eva-yalin",
+    "name": "Eva Yalin",
+    "location": "Graz",
+    "years": "2022-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-noah-ypern",
+    "slug": "noah-ypern",
+    "name": "Noah Ypern",
+    "location": "Klagenfurt",
+    "years": "2024-2026",
+    "record_count": 0
+  },
+  {
+    "id": "artist-mara-zeller",
+    "slug": "mara-zeller",
+    "name": "Mara Zeller",
+    "location": "Vienna",
+    "years": "2021-2025",
+    "record_count": 0
+  },
+  {
+    "id": "artist-ivo-zorn",
+    "slug": "ivo-zorn",
+    "name": "Ivo Zorn",
+    "location": "Bregenz",
+    "years": "2019-2026",
+    "record_count": 0
   }
 ]

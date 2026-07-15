@@ -12,6 +12,7 @@ export interface Location {
   country: string
   image: string
   translations: LocationTranslation[]
+  description?: string
 }
 
 export interface Venue {
@@ -26,6 +27,13 @@ export interface Venue {
   website_url?: string
   image: string
   featured?: boolean
+  archive_number?: string
+  hero_image?: string
+  hero_image_alt?: string
+  lede?: string
+  image_caption?: string
+  coordinate_label?: string
+  about?: string[]
 }
 
 export interface Artist {
@@ -35,6 +43,20 @@ export interface Artist {
   location: string
   years: string
   record_count: number
+}
+
+export interface ArtistRecordLink {
+  id: string
+  title: string
+  venue: string
+  city: string
+  href: string
+}
+
+export interface DirectoryArtist extends Artist {
+  displayName: string
+  records: ArtistRecordLink[]
+  letter: string
 }
 
 export interface Exhibition {

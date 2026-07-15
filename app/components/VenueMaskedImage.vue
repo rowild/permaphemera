@@ -6,6 +6,7 @@ const props = defineProps<{
   src: string
   alt: string
   shape?: 'media' | 'frame'
+  interactive?: boolean
 }>()
 
 const svgRef = ref<SVGSVGElement | null>(null)
@@ -51,7 +52,7 @@ onBeforeUnmount(() => {
 <template>
   <svg
     ref="svgRef"
-    class="venue-card-image"
+    class="[ venue-card-image ] block w-full border-0 bg-transparent shadow-none"
     :viewBox.attr="`0 0 ${width} ${height}`"
     preserveAspectRatio="none"
     :role="props.alt ? 'img' : undefined"
@@ -73,6 +74,9 @@ onBeforeUnmount(() => {
       </mask>
     </defs>
     <image
+      class="origin-center motion-reduce:transition-none"
+      :class="{ 'transition-transform duration-700 ease-archive-lift group-hover/venue:scale-[1.035]': props.interactive }"
+      style="transform-box: fill-box"
       :href.attr="props.src"
       x="0"
       y="0"

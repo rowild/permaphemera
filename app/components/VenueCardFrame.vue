@@ -49,8 +49,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <span ref="frameRef" class="venue-card-paper" aria-hidden="true">
-    <svg :viewBox.attr="`0 0 ${width} ${height}`" preserveAspectRatio="none">
+  <span ref="frameRef" class="[ venue-card-paper ] pointer-events-none absolute inset-0 z-0 block bg-transparent shadow-none" aria-hidden="true">
+    <svg class="block size-full overflow-visible" :viewBox.attr="`0 0 ${width} ${height}`" preserveAspectRatio="none">
       <defs>
         <linearGradient
           :id="paperGradientId"
@@ -73,8 +73,8 @@ onBeforeUnmount(() => {
       />
     </svg>
   </span>
-  <span class="venue-card-frame" aria-hidden="true">
-    <svg :viewBox.attr="`0 0 ${width} ${height}`" preserveAspectRatio="none">
+  <span class="[ venue-card-frame ] pointer-events-none absolute inset-0 z-5 block bg-transparent shadow-none" aria-hidden="true">
+    <svg class="block size-full overflow-visible" :viewBox.attr="`0 0 ${width} ${height}`" preserveAspectRatio="none">
       <path
         :d="outerPathD"
         fill="none"

@@ -1,7 +1,7 @@
 [
   {
     "id": "venue-parkschloessl",
-    "slug": "parkschloessl",
+    "slug": "parkschloessl-spittal-drau",
     "location_id": "location-spittal",
     "name": "Parkschlössl",
     "city": "Spittal an der Drau",
@@ -10,6 +10,16 @@
     "longitude": 13.4928504,
     "website_url": "",
     "image": "/images/landing/locations/location_01.png",
+    "archive_number": "01",
+    "hero_image": "/images/landing/parkschloessl.jpg",
+    "hero_image_alt": "Front façade of the striped ochre and rose Parkschlössl beneath mature trees",
+    "lede": "A small exhibition house in the park—temporary encounters gathered within a vividly remembered architectural shell.",
+    "image_caption": "The Parkschlössl, recorded from the city park",
+    "coordinate_label": "46° 47′ 54″ N · 13° 29′ 34″ E",
+    "about": [
+      "Set among the trees of Spittal’s city park, the Parkschlössl gives each exhibition an intimate architectural frame. Its striped façade marks a stable point in the city; inside, the sequence of works, visitors and conversations is continually renewed.",
+      "This location page keeps that distinction visible: the place is the anchor, while every exhibition has its own record."
+    ],
     "featured": true
   },
   {

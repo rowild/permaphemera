@@ -14,6 +14,10 @@ The reusable visual and implementation rules derived from the landing page live 
 
 Vue `<style scoped>` blocks and CSS Modules are prohibited. Tailwind utilities belong in templates, while every custom CSS rule belongs in the globally imported CSS architecture. Search for and reuse an existing token, utility, semantic component rule, or page namespace before adding a new rule.
 
+Meaningful structural regions use inert human-readable marker groups such as `[ site-shell ]`, `[ section-band ]`, and `[ location-hero ]` at the start of the `class` attribute. **The spaces immediately inside both brackets are mandatory; `[site-shell]` is prohibited.** HTML tokenizes `[ site-shell ]` as the three classes `[`, `site-shell`, and `]`: the brackets are visual delimiters, while `site-shell` is the inert marker name. None may own CSS declarations or appear in project CSS selectors. Put ordinary styling in Tailwind utilities after the group; use a separately named unbracketed semantic class only when genuine global infrastructure such as a pseudo-element, mask, asset, coordinated descendant system, or complex interaction requires CSS. Marker groups never replace accessibility attributes.
+
+Every repeated content record that can grow from local data or a future CMS must be rendered by a reusable Vue component; pages may loop over those components but must not own duplicate card/row markup. Content-dependent visual variation must also belong to the component. Never encode it with `:nth-child()` or `:nth-of-type()`. For apparently random paper/card placement, derive deterministic pseudo-random values from a stable content ID and apply them at runtime through Vue styles or props. Do not call unseeded `Math.random()` during SSR: it causes hydration differences and unstable layouts.
+
 The first implemented page must follow these mockups:
 
 1. `landing-page-01-hero-section.png`
@@ -35,9 +39,13 @@ Logo and wordmark lockups must never be underlined. Navigation/footer text links
 The frontend foundation is complete:
 
 - Nuxt 4, Vue 3, TypeScript, Vite, and Tailwind CSS v4
-- Local JSON data exposed through `app/composables/useArchiveData.ts`
+- Nuxt i18n with German as the unprefixed fallback locale, English under `/en/`, and root-entry browser-language detection
+- Local JSON data exposed through the locale-reactive `app/composables/useArchiveData.ts`
+- English source records in `app/data/` with German content overlays in `app/data/translations/de/`
+- A local privacy notice for the necessary language-preference cookie, with dismissal stored in the browser
 - The landing route in `app/pages/index.vue`
-- A Parkschlössl location dossier in `app/pages/locations/parkschloessl-spittal-drau.vue`
+- Dynamic gallery dossiers in `app/pages/locations/[slug].vue`, currently led by Parkschlössl
+- A routed artist directory in `app/pages/artists/index.vue`
 - Dynamic exhibition records in `app/pages/exhibitions/[slug].vue`
 - Reusable Vue components for shared header/footer navigation, hero kaleidoscope, venue masks/frames, exhibition cards, and archive arrows
 - Responsive hero, locations, selected exhibitions, artists, archive-method, sponsors, and dark-footer sections
@@ -47,7 +55,7 @@ The frontend foundation is complete:
 - A responsive archival-temple identity with browser/touch/web-app icons and a documented two-accent red/ochre color system
 - Runtime images and SVGs under `public/`
 
-Run commands from this repository root with pnpm. `pnpm build` is the primary release verification command. The build currently succeeds; Vite reports non-fatal resolution notices for root-relative `public/` asset URLs and a client chunk-size warning.
+Run commands from this repository root with pnpm. `pnpm check:tailwind` verifies that bracketed candidates have no canonical Tailwind equivalent and that structural markers remain spaced and CSS-inert; `pnpm check:i18n` verifies message parity, content-overlay coverage, stable content identifiers, locale switching, and privacy-notice wiring. The focused `check:artists`, `check:links`, `check:locations`, and `check:mobile` scripts protect the artist modal, archive link variants, gallery browser, and compact responsive contracts. `pnpm build` is the primary release verification command. The build currently succeeds; Vite reports non-fatal resolution notices for root-relative `public/` asset URLs and a client chunk-size warning.
 
 ## Data Rules
 
@@ -72,15 +80,17 @@ app/data/sponsors.json
 
 Keep the local JSON shape compatible with the future Directus schema in `../_Plans/exhibitions-plan.md` so the data adapter can later be swapped without rewriting components.
 
+English is the canonical content source. Store German translations for record fields in ID-keyed overlay files under `app/data/translations/de/`; keep IDs, slugs, dates used for sorting, media paths, URLs, and relations in the canonical records. UI and accessibility messages live in the locale files under `i18n/locales/`. Do not move these records into `public/` or fetch them over HTTP unless a future runtime content source genuinely requires it.
+
 ## Current Scope And Deferred Work
 
-The current site is a visual prototype: landing search filters local data, language controls remain presentational, and the 360-degree exhibition experience is not yet connected. Location and exhibition actions now use real Nuxt routes backed by local JSON. Directus remains part of the future production architecture, but it is not part of the current frontend milestone.
+The current site is a visual prototype: landing search filters local data, English/German language controls switch locale-aware routes and content, and the 360-degree exhibition experience is not yet connected. Location and exhibition actions use real Nuxt routes backed by local JSON. The privacy notice documents the necessary language-preference cookie and can be reopened from the footer. Directus remains part of the future production architecture, but it is not part of the current frontend milestone.
 
 Defer these until after the Nuxt frontend basis and landing page are working:
 
 - Directus SDK integration
 - Directus collection creation
-- Directus translations setup
+- Directus-backed translations setup
 - Directus calibration extension
 - Cloudflare asset bridge wiring
 - Hetzner deployment configuration
@@ -113,7 +123,9 @@ Verify at least:
 - Search and archive section responsiveness
 - Footer sponsor strip behavior
 - Text fit inside buttons, cards, and navigation elements
-- Parkschlössl location layout and compact preview interaction on desktop and mobile
+- Dynamic gallery layout, search, and compact preview interaction on desktop and mobile
+- Artist directory search, five-name alphabet previews, history-backed full-letter routes, and focus-managed exhibition modals across breakpoints
+- Landing, gallery, and exhibition scroll cues fading when their target section enters the viewport, with routed-page dividers following that target section
 - Exhibition detail layout, source links, related records, and unavailable 360 state
 
 Avoid backend plumbing, admin tooling, or deployment work until the frontend basis has been created and the landing page is visually aligned with the mockups.

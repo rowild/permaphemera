@@ -39,5 +39,15 @@
     "city": "Graz",
     "date_range": "16.03.2023 - 11.06.2023",
     "image": "/images/landing/locations/location_05.png"
+  },
+  {
+    "id": "exhibition-all-the-magic",
+    "slug": "all-the-magic",
+    "title": "All the magic",
+    "artist": "Adi Schmölzer",
+    "venue": "Parkschlössl",
+    "city": "Spittal an der Drau",
+    "date_range": "2–12 June 2026",
+    "image": "/images/locations/parkschloessl/all-the-magic.webp"
   }
 ]

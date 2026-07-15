@@ -11,8 +11,12 @@ const props = withDefaults(
 
 <template>
   <svg
-    class="archive-arrow"
-    :class="`archive-arrow-${props.direction}`"
+    class="[ archive-arrow ] archive-arrow inline-block h-[0.6rem] w-[2.1rem] flex-none overflow-visible stroke-current origin-center transition-transform duration-320 ease-archive-lift motion-reduce:transition-none"
+    :class="[
+      `archive-arrow-${props.direction}`,
+      props.direction === 'left' ? 'rotate-180' : '',
+      props.direction === 'up' ? 'w-10 -rotate-90' : ''
+    ]"
     viewBox="0 0 44 12"
     fill="none"
     aria-hidden="true"

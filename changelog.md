@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.8 - 2026-07-15 12:25:24 CEST
+
+- Completed the Tailwind CSS v4 migration across the landing page, routed gallery and exhibition records, shared navigation, footer, cards, controls, and responsive layouts; reduced the global stylesheet from 4,044 to 883 lines while retaining masks, frame assets, gradients, pseudo-elements, animation systems, and prepared Typography infrastructure globally.
+- Extracted the repeated archive interface into reusable buttons, text links, search fields, metadata and fact ledgers, framed images, dividers, page chrome, paper stacks, venue/exhibition cards, and method/sponsor/footer components; added spaced structural marker rules, canonical-utility enforcement, and stable ID-seeded layout variation without SSR randomness or positional selectors.
+- Added complete Nuxt i18n routing with unprefixed German, English under `/en/`, root-only browser-language detection, route-preserving language controls, localized document metadata, English source records, German ID-keyed content overlays, and parity checks for every UI message and translated collection.
+- Added a site-styled privacy notice for the necessary locale cookie, local dismissal persistence, and cookie-settings actions in the header and responsive footer navigation without introducing analytics, advertising, or live-backend dependencies.
+- Built the routed artist directory with an expanded A–Z dataset, surname-aware display rules, URL-backed search and letter filters, five-name group previews, draggable/keyboard-operable alphabet rails, real exhibition associations, and an accessible focus-trapped exhibition modal for artists with routed records.
+- Generalized the Parkschlössl page into the dynamic `locations/[slug]` gallery route, moved venue dossier fields into local data, localized gallery and exhibition records, persisted gallery search in the URL, refined the selectable preview ledger, and rebuilt exhibition detail pages from shared responsive components.
+- Reworked header and footer navigation for dense tablet/mobile layouts, including an always-available information/legal/language menu, a focus-managed footer drawer, reusable archive link states, compact buttons and metadata, responsive sponsor controls, and shared scroll cues that disappear when their destination enters view.
+- Refined the kaleidoscope entrance and replay fold/fade timing, replaced two Parkschlössl preview artworks, updated the exhibition divider, and added focused checks for Tailwind markers, mobile density, localization/privacy, artist modals, gallery browsing, and archive text-link behavior.
+- Updated `AGENTS.md`, `README.md`, the web style guide, and Tailwind usage guidance with the implemented route architecture, localization model, responsive contracts, component boundaries, CMS-rich-text preparation, and release verification workflow.
+
 ## 0.0.7 - 2026-07-12 19:38:13 CEST
 
 - Rebuilt the hero kaleidoscope around perspective-projected, dual-layer Three.js slices that unfold around their own median axes with elastic settling, directional ritardando, stronger spatial tilt, coordinated clockwise/counterclockwise orbit-arrow choreography, and clean SVG hydration attributes.

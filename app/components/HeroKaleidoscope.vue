@@ -7,6 +7,7 @@ const props = defineProps<{
   images: string[]
   imagePool?: string[]
 }>()
+const { t } = useI18n()
 const emit = defineEmits<{
   animationStateChange: [isAnimating: boolean]
   controlsReveal: []
@@ -55,12 +56,14 @@ const introConfig = {
   arrowStaggerRitardando: 0.008,
   arrowStaggerDirection: 'cw' as StaggerDirection,
   // Positive N: triangle 1 starts with arrow N. Negative N: arrow 1 starts with triangle N.
-  sequenceOverlap: -9,
-  triangleDuration: 2.25,
-  triangleDurationRitardando: 0.075,
-  triangleStagger: 0.12,
-  triangleStaggerRitardando: 0.02,
-  triangleStaggerDirection: 'cw' as StaggerDirection
+  sequenceOverlap: -9
+}
+const triangleAnimationConfig = {
+  duration: 2.25,
+  stagger: 0.12,
+  staggerDirection: 'cw' as StaggerDirection,
+  fadeDuration: 0.72,
+  foldEase: 'power1.inOut'
 }
 const rotationConfig = {
   arrowDuration: 0.72,
@@ -74,8 +77,8 @@ const rotationConfig = {
   bladeCounterTilt: -0.02
 }
 const replayConfig = {
-  exitTimeScale: 1.25,
-  triangleFadeDuration: 0.72
+  exitBaseTimeScale: 1.25,
+  exitSpeedMultiplier: 2
 }
 const imageSwapConfig = {
   duration: 1,
@@ -633,8 +636,10 @@ function createReplayExitTimeline() {
   const arrowHeads = arrows.map((arrow) => arrow.querySelector<SVGUseElement>('.hero-kaleidoscope__arrow-head'))
   const arrowPath = containerRef.value.querySelector<SVGPathElement>('#hero-orbit-arrow-line')
   const pathLength = arrowPath?.getTotalLength() ?? 24
-  const triangleDuration = introConfig.triangleDuration / replayConfig.exitTimeScale
-  const arrowDuration = introConfig.arrowDuration / replayConfig.exitTimeScale
+  const exitTimeScale = replayConfig.exitBaseTimeScale * replayConfig.exitSpeedMultiplier
+  const triangleDuration = triangleAnimationConfig.duration / exitTimeScale
+  const triangleFadeDuration = triangleAnimationConfig.fadeDuration / replayConfig.exitSpeedMultiplier
+  const arrowDuration = introConfig.arrowDuration / exitTimeScale
   const timeline = gsap.timeline({
     onComplete: () => {
       if (replayExitTimeline !== timeline) return
@@ -656,24 +661,24 @@ function createReplayExitTimeline() {
     const entranceRank = getStaggerRank(
       index,
       sliceImageStates.length,
-      introConfig.triangleStaggerDirection,
+      triangleAnimationConfig.staggerDirection,
       'ccw'
     )
     const exitRank = sliceImageStates.length - 1 - entranceRank
-    const start = exitRank * (introConfig.triangleStagger / replayConfig.exitTimeScale)
+    const start = exitRank * (triangleAnimationConfig.stagger / exitTimeScale)
     const bladePivot = sliceBladePivots[index]
     if (!bladePivot) return
     const activeMaterial = state.layers[state.activeIndex].material
-    const fadeStart = start + Math.max(0, triangleDuration - replayConfig.triangleFadeDuration)
+    const fadeStart = start + Math.max(0, triangleDuration - triangleFadeDuration)
 
     timeline.to(
       bladePivot.rotation,
-      { x: Math.PI / 2, duration: triangleDuration, ease: 'power1.inOut' },
+      { x: Math.PI / 2, duration: triangleDuration, ease: triangleAnimationConfig.foldEase },
       start
     )
     timeline.to(
       activeMaterial,
-      { opacity: 0, duration: replayConfig.triangleFadeDuration, ease: 'power2.in' },
+      { opacity: 0, duration: triangleFadeDuration, ease: 'power2.in' },
       fadeStart
     )
   })
@@ -686,7 +691,7 @@ function createReplayExitTimeline() {
       'cw'
     )
     const exitRank = arrows.length - 1 - entranceRank
-    const start = exitRank * (introConfig.arrowStagger / replayConfig.exitTimeScale)
+    const start = exitRank * (introConfig.arrowStagger / exitTimeScale)
 
     timeline.to(arrowHeads[index], { opacity: 0, duration: arrowDuration * 0.22, ease: 'power2.in' }, start)
     timeline.to(arrowLines[index], {
@@ -806,11 +811,7 @@ function createIntroTimeline(delay = 0.15) {
   })
   const overlap = introConfig.sequenceOverlap
   const arrowSequenceStart = overlap < 0
-    ? getRitardandoOffset(
-        Math.min(sliceBladePivots.length, Math.max(1, Math.abs(overlap))) - 1,
-        introConfig.triangleStagger,
-        introConfig.triangleStaggerRitardando
-      )
+    ? (Math.min(sliceBladePivots.length, Math.max(1, Math.abs(overlap))) - 1) * triangleAnimationConfig.stagger
     : 0
   const triangleSequenceStart = overlap > 0
     ? getRitardandoOffset(
@@ -845,21 +846,27 @@ function createIntroTimeline(delay = 0.15) {
     const staggerRank = getStaggerRank(
       index,
       sliceBladePivots.length,
-      introConfig.triangleStaggerDirection,
+      triangleAnimationConfig.staggerDirection,
       'ccw'
     )
-    const start = triangleSequenceStart + getRitardandoOffset(
-      staggerRank,
-      introConfig.triangleStagger,
-      introConfig.triangleStaggerRitardando
-    )
-    const duration = introConfig.triangleDuration + staggerRank * introConfig.triangleDurationRitardando
+    const start = triangleSequenceStart + staggerRank * triangleAnimationConfig.stagger
+    const state = sliceImageStates[index]
+    const activeMaterial = state?.layers[state.activeIndex].material
+
+    if (activeMaterial) activeMaterial.opacity = 0
 
     timeline.to(
       bladePivot.rotation,
-      { x: 0, duration, ease: 'elastic.out(1, 0.32)' },
+      { x: 0, duration: triangleAnimationConfig.duration, ease: triangleAnimationConfig.foldEase },
       start
     )
+    if (activeMaterial) {
+      timeline.to(
+        activeMaterial,
+        { opacity: 1, duration: triangleAnimationConfig.fadeDuration, ease: 'power2.out' },
+        start
+      )
+    }
   })
 
   if (!controlsRevealEmitted) {
@@ -1032,9 +1039,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="containerRef" class="hero-kaleidoscope" aria-label="Rotating archive image wheel">
-    <canvas ref="canvasRef" class="hero-kaleidoscope__canvas" aria-hidden="true" />
-    <svg class="hero-kaleidoscope__orbit" viewBox="0 0 100 100" aria-hidden="true">
+  <div ref="containerRef" class="[ hero-kaleidoscope ] relative mx-auto aspect-square w-[min(42rem,100%)] isolate tablet:w-[min(37rem,100%)] tablet-landscape:w-[min(42vw,31rem,66svh)] tablet-portrait:w-[min(74vw,31rem,44svh)] compact:w-[min(86vw,20rem,44svh)]" :aria-label="t('landing.hero.wheelAria')">
+    <canvas ref="canvasRef" class="[ hero-kaleidoscope-canvas ] absolute inset-0 z-2 size-full" aria-hidden="true" />
+    <svg class="hero-kaleidoscope__orbit pointer-events-none absolute inset-[-2%] z-3 size-[104%] overflow-visible text-archive-red/74" viewBox="0 0 100 100" aria-hidden="true">
       <defs>
         <linearGradient
           id="hero-orbit-gradient"
