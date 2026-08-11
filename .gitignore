@@ -29,6 +29,7 @@ Thumbs.db
 # Local env files
 .env
 .env.*
+!.env.deploy.example
 !.env.example
 
 # Test and coverage output
@@ -40,5 +41,5 @@ test-results/
 /_Material/
 /_BU/
 
-# Deployment credentials
+# Deployment credentials (the example is tracked, see the negation above)
 .env.deploy.local
