@@ -36,6 +36,9 @@ const canvasRef = ref<HTMLCanvasElement | null>(null)
 const readySlices = ref<boolean[]>(Array.from({ length: sliceCount }, () => false))
 const isLoaderVisible = ref(false)
 const isLoaderDismissing = ref(false)
+// Which image is downloading right now, and how much of it has arrived.
+const loadingSliceIndex = ref(0)
+const loadingFraction = ref(0)
 const kaleidoscopeViewSize = 2.35
 const cameraDistance = 3
 const cameraFov = THREE.MathUtils.radToDeg(
@@ -891,21 +894,30 @@ onMounted(async () => {
   renderer.setClearColor(0x000000, 0)
 
   const sourceImages = props.images.length ? props.images : ['/images/landing/parkschloessl.jpg']
-  const textures = await Promise.all(
-    Array.from({ length: sliceCount }, (_, index) => {
-      const url = sourceImages[index % sourceImages.length]!
+  const textures: THREE.Texture[] = []
 
-      return loadTexture(url)
-        .catch((error) => {
-          console.warn(`Could not load kaleidoscope image: ${url}`, error)
-          return getFallbackTexture()
-        })
-        .finally(() => {
-          if (!isActive) return
-          markSliceReady(index)
-        })
-    })
-  )
+  // One image at a time. Twelve parallel requests share the connection and all
+  // finish late together; sequentially, each one lands as soon as it can and
+  // its download percentage is meaningful to show.
+  for (let index = 0; index < sliceCount; index += 1) {
+    const url = sourceImages[index % sourceImages.length]!
+
+    if (isActive) {
+      loadingSliceIndex.value = index
+      loadingFraction.value = 0
+    }
+
+    try {
+      textures.push(await loadTexture(url, (fraction) => {
+        if (isActive) loadingFraction.value = fraction
+      }))
+    } catch (error) {
+      console.warn(`Could not load kaleidoscope image: ${url}`, error)
+      textures.push(getFallbackTexture())
+    }
+
+    if (isActive) markSliceReady(index)
+  }
 
   loadingIconTexture = createLoadingIconTexture()
   const wheel = new THREE.Group()
@@ -1056,6 +1068,8 @@ onBeforeUnmount(() => {
       v-if="isLoaderVisible"
       :ready-slices="readySlices"
       :total="sliceCount"
+      :active-index="loadingSliceIndex"
+      :fraction="loadingFraction"
       :dismissing="isLoaderDismissing"
     />
   </div>

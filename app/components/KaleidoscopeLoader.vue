@@ -1,36 +1,30 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { gsap } from 'gsap'
-import {
-  describeArrowHead,
-  describeOrbitArc,
-  orbitEndAngle,
-  orbitRadius,
-  orbitSegments,
-  orbitStartAngle,
-  pointOnOrbit
-} from '~/utils/orbitGeometry'
+import { computed } from 'vue'
+import { orbitRadius, orbitSegments, pointOnOrbit } from '~/utils/orbitGeometry'
 import { toRomanNumeral } from '~/utils/romanNumerals'
 
 const props = defineProps<{
   readySlices: boolean[]
   total: number
+  activeIndex: number
+  fraction: number
   dismissing?: boolean
 }>()
 const { t } = useI18n()
 
-const sweepRef = ref<SVGGElement | null>(null)
+const circumference = 2 * Math.PI * orbitRadius
 const loadedCount = computed(() => props.readySlices.filter(Boolean).length)
+const clampedFraction = computed(() => Math.min(1, Math.max(0, props.fraction)))
+// The arc measures the image being downloaded right now, so it refills for
+// each one rather than creeping across the whole set.
+const dashOffset = computed(() => (circumference * (1 - clampedFraction.value)).toFixed(3))
+const percentText = computed(() => `${Math.round(clampedFraction.value * 100)}%`)
+const currentNumeral = computed(() => toRomanNumeral(Math.min(props.activeIndex + 1, props.total)))
+const totalNumeral = computed(() => toRomanNumeral(props.total))
 const progressText = computed(() => t('landing.hero.loadingProgress', {
   loaded: loadedCount.value,
   total: props.total
 }))
-// An em dash stands in until the first gallery lands, so the legend never
-// collapses to an empty line.
-const loadedNumeral = computed(() => toRomanNumeral(loadedCount.value) || '—')
-const totalNumeral = computed(() => toRomanNumeral(props.total))
-const sweepArc = describeOrbitArc(orbitStartAngle, orbitEndAngle)
-const sweepHead = describeArrowHead(orbitEndAngle)
 const tickReach = 2.6
 const ticks = orbitSegments.map((segment) => {
   const inner = pointOnOrbit(segment.rotation, orbitRadius - tickReach)
@@ -43,31 +37,6 @@ const ticks = orbitSegments.map((segment) => {
     x2: outer.x.toFixed(3),
     y2: outer.y.toFixed(3)
   }
-})
-
-let sweepTween: gsap.core.Tween | null = null
-
-onMounted(() => {
-  const sweep = sweepRef.value
-  if (!sweep) return
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-  const rotation = { value: 0 }
-
-  // The lone arrow keeps the dial alive while a single large image stalls, so
-  // the discrete ticks can stay honest about actual progress.
-  sweepTween = gsap.to(rotation, {
-    value: 360,
-    duration: 9,
-    ease: 'none',
-    repeat: -1,
-    onUpdate: () => sweep.setAttribute('transform', `rotate(${rotation.value} 50 50)`)
-  })
-})
-
-onBeforeUnmount(() => {
-  sweepTween?.kill()
-  sweepTween = null
 })
 </script>
 
@@ -106,20 +75,22 @@ onBeforeUnmount(() => {
         stroke-width="0.42"
         stroke-linecap="round"
       />
-      <g ref="sweepRef" class="opacity-60">
-        <path
-          class="fill-none stroke-current"
-          :d="sweepArc"
-          stroke-width="0.18"
-          stroke-linecap="round"
-        />
-        <polygon class="fill-current" :points.attr="sweepHead" />
-      </g>
+      <circle
+        class="fill-none stroke-current opacity-80"
+        cx="50"
+        cy="50"
+        :r.attr="orbitRadius"
+        stroke-width="0.5"
+        stroke-linecap="round"
+        :stroke-dasharray.attr="circumference.toFixed(3)"
+        :stroke-dashoffset.attr="dashOffset"
+        transform="rotate(-90 50 50)"
+      />
     </svg>
 
-    <p class="relative grid justify-items-center gap-[0.4rem] text-center font-display">
-      <span class="text-[0.68rem] tracking-[0.34em] text-archive-muted uppercase compact:text-[0.6rem]">{{ t('landing.hero.loadingLabel') }}</span>
-      <span class="text-[1.35rem] tracking-[0.16em] text-archive-red compact:text-lg">{{ loadedNumeral }}<span class="text-archive-muted"> — </span>{{ totalNumeral }}</span>
+    <p class="relative grid justify-items-center gap-[0.35rem] text-center font-display">
+      <span class="text-[0.68rem] tracking-[0.34em] text-archive-muted uppercase compact:text-[0.6rem]">{{ t('landing.hero.loadingLabel') }} {{ currentNumeral }}<span class="text-archive-line"> / </span>{{ totalNumeral }}</span>
+      <span class="text-[1.6rem] leading-none tracking-[0.08em] text-archive-red tabular-nums compact:text-xl">{{ percentText }}</span>
     </p>
   </div>
 </template>
