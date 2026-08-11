@@ -3,6 +3,11 @@
   "version": "0.0.9",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@11.20.0",
+  "engines": {
+    "node": ">=24.11.1 <25",
+    "pnpm": ">=11"
+  },
   "scripts": {
     "build": "nuxt generate",
     "check:artists": "node scripts/check-artist-directory-modal.mjs",
