@@ -10,7 +10,7 @@ import {
   orbitSegments,
   orbitStartAngle
 } from '~/utils/orbitGeometry'
-import { isTextureCached, loadTexture } from '~/utils/kaleidoscopeTextures'
+import { getFallbackTexture, isTextureCached, loadTexture } from '~/utils/kaleidoscopeTextures'
 
 const props = defineProps<{
   images: string[]
@@ -22,8 +22,20 @@ const emit = defineEmits<{
   controlsReveal: []
 }>()
 
+const sliceCount = 12
+const LOADER_GRACE_MS = 180
+const LOADER_MIN_VISIBLE_MS = 500
+const LOADER_HOLD_MS = 120
+const LOADER_FADE_MS = 400
+// The intro begins 100ms into the 400ms fade, leaving 300ms of overlap so the
+// dial's ring dissolves into the arrows drawing along the same orbit.
+const LOADER_INTRO_OVERLAP_SECONDS = 0.1
+
 const containerRef = ref<HTMLDivElement | null>(null)
 const canvasRef = ref<HTMLCanvasElement | null>(null)
+const readySlices = ref<boolean[]>(Array.from({ length: sliceCount }, () => false))
+const isLoaderVisible = ref(false)
+const isLoaderDismissing = ref(false)
 const kaleidoscopeViewSize = 2.35
 const cameraDistance = 3
 const cameraFov = THREE.MathUtils.radToDeg(
@@ -107,6 +119,9 @@ let animationActive = false
 let controlsRevealEmitted = false
 let backgroundPreloadCancelled = false
 let pageLoadHandler: (() => void) | null = null
+let isActive = true
+let loaderShownAt = 0
+let loaderGraceTimer = 0
 const disposableGeometries: THREE.BufferGeometry[] = []
 const disposableMaterials: THREE.Material[] = []
 const sliceImageStates: SliceImageState[] = []
@@ -820,10 +835,47 @@ function resize() {
   renderer.render(scene!, camera)
 }
 
+function markSliceReady(index: number) {
+  const next = [...readySlices.value]
+  next[index] = true
+  readySlices.value = next
+}
+
+function dismissLoader() {
+  window.clearTimeout(loaderGraceTimer)
+
+  if (!isLoaderVisible.value) {
+    createIntroTimeline(LOADER_INTRO_OVERLAP_SECONDS)
+    return
+  }
+
+  const visibleFor = performance.now() - loaderShownAt
+  const wait = Math.max(0, LOADER_MIN_VISIBLE_MS - visibleFor) + LOADER_HOLD_MS
+
+  window.setTimeout(() => {
+    if (!isActive) return
+
+    isLoaderDismissing.value = true
+    createIntroTimeline(LOADER_INTRO_OVERLAP_SECONDS)
+
+    window.setTimeout(() => {
+      if (!isActive) return
+      isLoaderVisible.value = false
+    }, LOADER_FADE_MS)
+  }, wait)
+}
+
 onMounted(async () => {
   if (!containerRef.value || !canvasRef.value) return
 
   setAnimationActive(true)
+
+  loaderGraceTimer = window.setTimeout(() => {
+    if (!isActive) return
+
+    isLoaderVisible.value = true
+    loaderShownAt = performance.now()
+  }, LOADER_GRACE_MS)
 
   scene = new THREE.Scene()
   camera = new THREE.PerspectiveCamera(cameraFov, 1, 0.1, 10)
@@ -840,9 +892,18 @@ onMounted(async () => {
 
   const sourceImages = props.images.length ? props.images : ['/images/landing/parkschloessl.jpg']
   const textures = await Promise.all(
-    Array.from({ length: 12 }, (_, index) => {
-      const url = sourceImages[index % sourceImages.length]
+    Array.from({ length: sliceCount }, (_, index) => {
+      const url = sourceImages[index % sourceImages.length]!
+
       return loadTexture(url)
+        .catch((error) => {
+          console.warn(`Could not load kaleidoscope image: ${url}`, error)
+          return getFallbackTexture()
+        })
+        .finally(() => {
+          if (!isActive) return
+          markSliceReady(index)
+        })
     })
   )
 
@@ -921,11 +982,14 @@ onMounted(async () => {
   resizeObserver.observe(containerRef.value)
   resize()
   render()
-  createIntroTimeline()
+  dismissLoader()
   scheduleBackgroundPreload()
 })
 
 onBeforeUnmount(() => {
+  isActive = false
+  window.clearTimeout(loaderGraceTimer)
+
   if (frameId) window.cancelAnimationFrame(frameId)
   resizeObserver?.disconnect()
   introTimeline?.kill()
@@ -988,5 +1052,11 @@ onBeforeUnmount(() => {
         <use class="hero-kaleidoscope__arrow-head" href="#hero-orbit-arrow-head" />
       </g>
     </svg>
+    <KaleidoscopeLoader
+      v-if="isLoaderVisible"
+      :ready-slices="readySlices"
+      :total="sliceCount"
+      :dismissing="isLoaderDismissing"
+    />
   </div>
 </template>

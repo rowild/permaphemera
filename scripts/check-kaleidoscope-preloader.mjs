@@ -140,7 +140,17 @@ const checks = [
   ['the dial uses a spaced structural marker and no scoped styles', kaleidoscopeLoader.includes('[ kaleidoscope-loader ]') && !kaleidoscopeLoader.includes('[kaleidoscope-loader]') && !kaleidoscopeLoader.includes('<style')],
   ['the dial is inert to pointer input', kaleidoscopeLoader.includes('pointer-events-none')],
   ['loading copy names galleries in both locales', enMessages.landing.hero.loadingLabel === 'Gallery' && deMessages.landing.hero.loadingLabel === 'Galerie'],
-  ['loading progress copy interpolates both counts in both locales', ['{loaded}', '{total}'].every((token) => enMessages.landing.hero.loadingProgress.includes(token) && deMessages.landing.hero.loadingProgress.includes(token))]
+  ['loading progress copy interpolates both counts in both locales', ['{loaded}', '{total}'].every((token) => enMessages.landing.hero.loadingProgress.includes(token) && deMessages.landing.hero.loadingProgress.includes(token))],
+  ['the hero still gates the wheel on every texture', /const textures = await Promise\.all\(/.test(heroKaleidoscope)],
+  ['a failed image resolves to the fallback so the gate cannot hang', heroKaleidoscope.includes('getFallbackTexture()') && /\.catch\(\(error\) => \{[\s\S]*?return getFallbackTexture\(\)/.test(heroKaleidoscope)],
+  ['each texture marks its own slice ready as it settles', heroKaleidoscope.includes('.finally(') && heroKaleidoscope.includes('markSliceReady(index)')],
+  ['marking a slice ready avoids Array.prototype.with', heroKaleidoscope.includes('function markSliceReady') && !heroKaleidoscope.includes('.with(index, true)')],
+  ['slice readiness is the single source of progress truth', heroKaleidoscope.includes('const readySlices = ref<boolean[]>') && !heroKaleidoscope.includes('const loadedCount = ref')],
+  ['late promise callbacks cannot write to an unmounted component', heroKaleidoscope.includes('let isActive = true') && heroKaleidoscope.includes('isActive = false') && /if \(!isActive\) return/.test(heroKaleidoscope)],
+  ['the dial is rendered while loading and receives the slice state', heroKaleidoscope.includes('<KaleidoscopeLoader') && heroKaleidoscope.includes('v-if="isLoaderVisible"') && heroKaleidoscope.includes(':ready-slices="readySlices"') && heroKaleidoscope.includes(':dismissing="isLoaderDismissing"')],
+  ['the dial waits out a grace period and a minimum visible time', heroKaleidoscope.includes('LOADER_GRACE_MS = 180') && heroKaleidoscope.includes('LOADER_MIN_VISIBLE_MS = 500') && heroKaleidoscope.includes('LOADER_HOLD_MS = 120') && heroKaleidoscope.includes('LOADER_FADE_MS = 400')],
+  ['the intro overlaps the dial fade rather than following it', heroKaleidoscope.includes('createIntroTimeline(LOADER_INTRO_OVERLAP_SECONDS)')],
+  ['the grace timer is cleared on unmount', heroKaleidoscope.includes('window.clearTimeout(loaderGraceTimer)')]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)
