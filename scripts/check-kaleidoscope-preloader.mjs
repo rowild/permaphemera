@@ -38,6 +38,8 @@ const kaleidoscopeLoader = await readProjectFile('app/components/KaleidoscopeLoa
 const enMessages = JSON.parse(await readProjectFile('i18n/locales/en.json'))
 const deMessages = JSON.parse(await readProjectFile('i18n/locales/de.json'))
 const preloadTexturePoolSource = extractFunctionSource(heroKaleidoscope, 'preloadTexturePool')
+const rotateBySource = extractFunctionSource(heroKaleidoscope, 'rotateBy')
+const restartIntroSource = extractFunctionSource(heroKaleidoscope, 'restartIntroWithNewImages')
 
 const cacheProbe = await (async () => {
   const calls = []
@@ -136,10 +138,13 @@ const checks = [
   ['the dial draws one tick per wheel position', kaleidoscopeLoader.includes('v-for="tick in ticks"') && kaleidoscopeLoader.includes('orbitSegments.map')],
   ['ticks ink in for slices that have arrived', /props\.readySlices\[tick\.id\]\s*\?\s*'opacity-70'\s*:\s*'opacity-15'/.test(kaleidoscopeLoader)],
   ['the dial honours reduced motion on every transition it runs', (kaleidoscopeLoader.match(/transition-/g) ?? []).length === (kaleidoscopeLoader.match(/motion-reduce:transition-none/g) ?? []).length * 2],
-  ['the dial shows the download percentage of the image in flight', kaleidoscopeLoader.includes('Math.round(clampedFraction.value * 100)') && kaleidoscopeLoader.includes('stroke-dashoffset') && kaleidoscopeLoader.includes('circumference * (1 - clampedFraction.value)')],
+  ['the dial shows the download percentage of the image in flight', kaleidoscopeLoader.includes('Math.round(clampedFraction.value * 100)') && kaleidoscopeLoader.includes('stroke-dashoffset')],
   ['the dial uses a spaced structural marker and no scoped styles', kaleidoscopeLoader.includes('[ kaleidoscope-loader ]') && !kaleidoscopeLoader.includes('[kaleidoscope-loader]') && !kaleidoscopeLoader.includes('<style')],
   ['the dial is inert to pointer input', kaleidoscopeLoader.includes('pointer-events-none')],
-  ['loading copy names galleries in both locales', enMessages.landing.hero.loadingLabel === 'Gallery' && deMessages.landing.hero.loadingLabel === 'Galerie'],
+  ['loading copy is localized for the title and the counter', enMessages.landing.hero.loadingTitle === 'Loading Gallery Image' && deMessages.landing.hero.loadingTitle === 'Galeriebild wird geladen' && ['{current}', '{total}'].every((token) => enMessages.landing.hero.loadingCounter.includes(token) && deMessages.landing.hero.loadingCounter.includes(token))],
+  ['the ring spans all twelve galleries rather than refilling per image', kaleidoscopeLoader.includes('(props.activeIndex + clampedFraction.value) / props.total') && kaleidoscopeLoader.includes('circumference * (1 - overallFraction.value)')],
+  ['the rotate controls reshuffle what is on screen instead of fetching', rotateBySource.includes('shuffleSliceTextures()') && !rotateBySource.includes('randomizeSliceTextures')],
+  ['the middle replay control still fetches fresh imagery', restartIntroSource.includes('randomizeSliceTextures(')],
   ['loading progress copy interpolates both counts in both locales', ['{loaded}', '{total}'].every((token) => enMessages.landing.hero.loadingProgress.includes(token) && deMessages.landing.hero.loadingProgress.includes(token))],
   ['the hero downloads its images one at a time', /for \(let index = 0; index < sliceCount; index \+= 1\)/.test(heroKaleidoscope) && !heroKaleidoscope.includes('const textures = await Promise.all(')],
   ['the hero still gates the wheel on every texture', /const textures: THREE\.Texture\[\] = \[\]/.test(heroKaleidoscope) && heroKaleidoscope.indexOf('textures.push(await loadTexture(') < heroKaleidoscope.indexOf('scene.add(wheel)')],

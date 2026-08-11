@@ -374,6 +374,42 @@ async function assignSliceTexture(
   }
 }
 
+/**
+ * Reshuffles the twelve images already on the wheel into new positions.
+ *
+ * Nothing is fetched: the left and right controls rearrange what the viewer
+ * can already see, so they respond instantly and never show a loading state.
+ * Fetching fresh imagery belongs to the middle replay control.
+ */
+function shuffleSliceTextures() {
+  const current = sliceImageStates.map((state, index) => ({
+    texture: state.layers[state.activeIndex]!.material.map,
+    url: sliceImageUrls[index]!
+  }))
+  const order = shuffled(current.map((_, index) => index))
+
+  // A permutation that leaves an image where it was would read as a dud, so
+  // any fixed point is swapped with its neighbour.
+  order.forEach((source, index) => {
+    if (source !== index) return
+
+    const partner = (index + 1) % order.length
+    ;[order[index], order[partner]] = [order[partner]!, order[index]!]
+  })
+
+  order.forEach((source, index) => {
+    const entry = current[source]
+    if (!entry?.texture) return
+
+    const token = (sliceLoadingTokens[index] ?? 0) + 1
+    sliceLoadingTokens[index] = token
+    sliceTransitionTimelines[index]?.kill()
+    sliceTransitionTimelines[index] = null
+    settleSliceImageLayers(index)
+    animateTextureSwap(index, entry.texture, entry.url, token, true)
+  })
+}
+
 function randomizeSliceTextures(options: TextureAssignmentOptions = {}) {
   const completePool = [...new Set((props.imagePool?.length ? props.imagePool : props.images).filter(Boolean))]
   const pool = options.cachedOnly
@@ -476,7 +512,7 @@ function resetArrowRotations() {
 function rotateBy(direction: number) {
   if (!slicePivots.length || animationActive) return
 
-  void randomizeSliceTextures()
+  shuffleSliceTextures()
   const normalizedDirection = direction < 0 ? -1 : 1
   const isClockwise = normalizedDirection < 0
   const staggerDirection: StaggerDirection = normalizedDirection > 0 ? 'ccw' : 'cw'

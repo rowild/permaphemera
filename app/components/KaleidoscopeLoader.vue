@@ -15,12 +15,19 @@ const { t } = useI18n()
 const circumference = 2 * Math.PI * orbitRadius
 const loadedCount = computed(() => props.readySlices.filter(Boolean).length)
 const clampedFraction = computed(() => Math.min(1, Math.max(0, props.fraction)))
-// The arc measures the image being downloaded right now, so it refills for
-// each one rather than creeping across the whole set.
-const dashOffset = computed(() => (circumference * (1 - clampedFraction.value)).toFixed(3))
+// The ring spans all twelve galleries: each one owns a twelfth of the circle,
+// and that twelfth fills with its own download. So the arc only ever grows.
+const overallFraction = computed(() => Math.min(
+  1,
+  Math.max(0, (props.activeIndex + clampedFraction.value) / props.total)
+))
+const dashOffset = computed(() => (circumference * (1 - overallFraction.value)).toFixed(3))
+// The centre reports the single image in flight, which the ring cannot show.
 const percentText = computed(() => `${Math.round(clampedFraction.value * 100)}%`)
-const currentNumeral = computed(() => toRomanNumeral(Math.min(props.activeIndex + 1, props.total)))
-const totalNumeral = computed(() => toRomanNumeral(props.total))
+const counterText = computed(() => t('landing.hero.loadingCounter', {
+  current: toRomanNumeral(Math.min(props.activeIndex + 1, props.total)),
+  total: toRomanNumeral(props.total)
+}))
 const progressText = computed(() => t('landing.hero.loadingProgress', {
   loaded: loadedCount.value,
   total: props.total
@@ -45,7 +52,7 @@ const ticks = orbitSegments.map((segment) => {
     class="[ kaleidoscope-loader ] pointer-events-none absolute inset-0 z-4 grid place-items-center transition-opacity duration-400 ease-out motion-reduce:transition-none"
     :class="props.dismissing ? 'opacity-0' : 'opacity-100'"
     role="progressbar"
-    :aria-label="t('landing.hero.loadingLabel')"
+    :aria-label="t('landing.hero.loadingTitle')"
     :aria-valuemin="0"
     :aria-valuemax="props.total"
     :aria-valuenow="loadedCount"
@@ -88,8 +95,9 @@ const ticks = orbitSegments.map((segment) => {
       />
     </svg>
 
-    <p class="relative grid justify-items-center gap-[0.35rem] text-center font-display">
-      <span class="text-[0.68rem] tracking-[0.34em] text-archive-muted uppercase compact:text-[0.6rem]">{{ t('landing.hero.loadingLabel') }} {{ currentNumeral }}<span class="text-archive-line"> / </span>{{ totalNumeral }}</span>
+    <p class="relative grid justify-items-center gap-[0.3rem] text-center font-display">
+      <span class="text-[0.68rem] tracking-[0.28em] text-archive-muted uppercase compact:text-[0.58rem]">{{ t('landing.hero.loadingTitle') }}</span>
+      <span class="text-[0.92rem] tracking-[0.2em] text-archive-copy compact:text-xs">{{ counterText }}</span>
       <span class="text-[1.6rem] leading-none tracking-[0.08em] text-archive-red tabular-nums compact:text-xl">{{ percentText }}</span>
     </p>
   </div>
