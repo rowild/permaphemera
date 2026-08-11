@@ -893,6 +893,13 @@ onMounted(async () => {
   renderer.outputColorSpace = THREE.SRGBColorSpace
   renderer.setClearColor(0x000000, 0)
 
+  // Size and clear the drawing buffer before any image is requested. Without
+  // this the canvas keeps its default 300x150 buffer, stretched by CSS and
+  // never drawn, until the whole loading loop finishes — which reads as a
+  // white block over the parchment. The scene is still empty here, so this
+  // paints transparency, never an unfinished wheel.
+  resize()
+
   const sourceImages = props.images.length ? props.images : ['/images/landing/parkschloessl.jpg']
   const textures: THREE.Texture[] = []
 
