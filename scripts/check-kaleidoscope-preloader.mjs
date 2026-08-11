@@ -7,7 +7,71 @@ const readProjectFile = (path) => readFile(resolve(projectRoot, path), 'utf8')
 
 const { toRomanNumeral } = await import('../app/utils/romanNumerals.ts')
 const orbitGeometry = await import('../app/utils/orbitGeometry.ts')
+const { createTextureCache } = await import('../app/utils/textureCache.ts')
 const heroKaleidoscope = await readProjectFile('app/components/HeroKaleidoscope.vue')
+
+const cacheProbe = await (async () => {
+  const calls = []
+  const disposed = []
+  const deferred = new Map()
+
+  const instant = createTextureCache({
+    capacity: 2,
+    load: (url) => { calls.push(url); return Promise.resolve(`texture:${url}`) },
+    dispose: (value) => disposed.push(value)
+  })
+
+  const first = await instant.get('a')
+  const second = await instant.get('a')
+  const cachesRepeatLoads = calls.length === 1 && first === 'texture:a' && second === 'texture:a'
+
+  const gated = createTextureCache({
+    capacity: 8,
+    load: (url) => new Promise((resolvePromise) => deferred.set(url, resolvePromise)),
+    dispose: () => {}
+  })
+  const concurrent = Promise.all([gated.get('b'), gated.get('b')])
+  const pendingCount = deferred.size
+  deferred.get('b')('texture:b')
+  const [left, right] = await concurrent
+  const dedupesInFlightLoads = pendingCount === 1 && left === 'texture:b' && right === 'texture:b'
+
+  await instant.get('b')
+  await instant.get('a')
+  await instant.get('c')
+  const evictsLeastRecentlyUsed = disposed.length === 1 && disposed[0] === 'texture:b'
+    && instant.has('a') && instant.has('c') && !instant.has('b') && instant.size() === 2
+
+  let attempts = 0
+  const flaky = createTextureCache({
+    capacity: 4,
+    load: () => {
+      attempts += 1
+      return attempts === 1 ? Promise.reject(new Error('boom')) : Promise.resolve('texture:d')
+    },
+    dispose: () => {}
+  })
+  await flaky.get('d').catch(() => {})
+  const recovered = await flaky.get('d')
+  const failedLoadsDoNotPoison = attempts === 2 && recovered === 'texture:d'
+
+  const clearing = createTextureCache({
+    capacity: 4,
+    load: (url) => Promise.resolve(`texture:${url}`),
+    dispose: (value) => disposed.push(value)
+  })
+  await clearing.get('e')
+  clearing.clear()
+  const clearDisposesEverything = disposed.includes('texture:e') && clearing.size() === 0 && !clearing.has('e')
+
+  return {
+    cachesRepeatLoads,
+    dedupesInFlightLoads,
+    evictsLeastRecentlyUsed,
+    failedLoadsDoNotPoison,
+    clearDisposesEverything
+  }
+})()
 
 const checks = [
   ['roman numerals convert the single units', toRomanNumeral(1) === 'I' && toRomanNumeral(4) === 'IV' && toRomanNumeral(5) === 'V' && toRomanNumeral(9) === 'IX'],
@@ -21,7 +85,12 @@ const checks = [
   ['the orbit arc is a single short sweep', /^M -?[\d.]+ -?[\d.]+ A 52 52 0 0 1 -?[\d.]+ -?[\d.]+$/.test(orbitGeometry.describeOrbitArc(2, 28))],
   ['the arrow head is a three point polygon', orbitGeometry.describeArrowHead(28).split(' ').length === 3],
   ['the orbit gradient exposes both endpoints as strings', ['x1', 'y1', 'x2', 'y2'].every((key) => typeof orbitGeometry.describeOrbitGradient(2, 28)[key] === 'string')],
-  ['HeroKaleidoscope imports the shared orbit geometry instead of defining it', heroKaleidoscope.includes("from '~/utils/orbitGeometry'") && !heroKaleidoscope.includes('function pointOnOrbit') && !heroKaleidoscope.includes('function describeOrbitArc') && !heroKaleidoscope.includes('function describeArrowHead') && !heroKaleidoscope.includes('const orbitRadius =')]
+  ['HeroKaleidoscope imports the shared orbit geometry instead of defining it', heroKaleidoscope.includes("from '~/utils/orbitGeometry'") && !heroKaleidoscope.includes('function pointOnOrbit') && !heroKaleidoscope.includes('function describeOrbitArc') && !heroKaleidoscope.includes('function describeArrowHead') && !heroKaleidoscope.includes('const orbitRadius =')],
+  ['texture cache serves a repeated url without loading twice', cacheProbe.cachesRepeatLoads],
+  ['texture cache shares one request between concurrent callers', cacheProbe.dedupesInFlightLoads],
+  ['texture cache evicts the least recently used entry and disposes it', cacheProbe.evictsLeastRecentlyUsed],
+  ['a failed load is not cached and can be retried', cacheProbe.failedLoadsDoNotPoison],
+  ['clearing the cache disposes every retained texture', cacheProbe.clearDisposesEverything]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)
