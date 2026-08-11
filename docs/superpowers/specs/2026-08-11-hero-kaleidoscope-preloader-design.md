@@ -102,7 +102,7 @@ const textures = await Promise.all(
       })
       .finally(() => {
         if (!isActive) return
-        readySlices.value = readySlices.value.with(index, true)
+        markSliceReady(index)
       })
   })
 )
@@ -111,6 +111,13 @@ const textures = await Promise.all(
 The `.catch` closes a latent failure mode: today a single failed request rejects
 the `Promise.all`, `onMounted` throws, and the wheel never appears at all. With
 the gate deliberately held closed, that path must resolve rather than hang.
+
+`markSliceReady` replaces the entry by spreading into a new array rather than
+calling `Array.prototype.with`. `.with` is unavailable before Safari 16.4, and it
+would run inside `.finally()`, which sits after the `.catch()` in the chain — so
+a `TypeError` there would reject the whole `Promise.all`, throw out of
+`onMounted`, and leave the hero permanently blank. That is the exact failure this
+design exists to remove.
 
 `readySlices` is the single source of truth for progress; the loaded count is
 derived from it rather than tracked separately. Entries are keyed by **slice
@@ -220,16 +227,29 @@ decorative; the accessible value comes from `aria-valuetext`.
 - The dial is a reusable component, not markup inlined into the hero.
 - No unseeded `Math.random()` during render.
 
-## Deferred work
+## Image optimization — done, via TinyPNG
 
-Recorded here so it is not lost. To be done after the preloader is implemented
-and tested:
+**Completed 2026-08-11 using TinyPNG, not the WebP conversion originally
+proposed here.** The forty location images were recompressed in place as PNG.
+Pixel dimensions are unchanged at 1672×941, filenames and paths are unchanged,
+so no application code referenced these files differently afterwards.
 
-1. Convert `public/images/landing/locations/*.png` and `parkschloessl.jpg` to
-   WebP at 1024 px wide, q80, via a repeatable `scripts/` script using `cwebp`.
-   Measured: 2154 KB → 82 KB at 1200 px q82; blocking payload 20.5 MB → ≈ 0.7 MB
-   and the full 40-image pool 86 MB → ≈ 2.4 MB. The PNGs carry no alpha channel
-   (`magick identify` reports `srgb`, 3 channels), so the lossless format buys
-   nothing.
-2. Decide whether the original PNGs should remain in `public/` once unused, as
-   they are deployed with the build.
+Measured:
+
+| | before | after | saved |
+| --- | --- | --- | --- |
+| `location_01.png` | 2153 KB | 650 KB | 70% |
+| `location_02.png` | 2097 KB | 734 KB | 65% |
+| `location_03.png` | 1887 KB | 565 KB | 70% |
+| whole pool (40 files) | 86 MB | 28 MB | 67% |
+
+TinyPNG keeps the PNG container, so this is a lossy requantization rather than a
+format change. It is a smaller win than the WebP route measured earlier in this
+document (2154 KB → 82 KB at 1200 px q82, a 96% cut), but it required no
+tooling in the repository, no filename changes, and no fallback handling for
+older browsers.
+
+WebP or AVIF therefore remains available as a later step if the hero needs to
+get faster still. Nothing in the current implementation depends on the
+container: `loadTexture` fetches whatever URL it is given as a blob, so a
+format change would only touch the path strings in `app/pages/index.vue`.

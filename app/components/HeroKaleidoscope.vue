@@ -2,6 +2,15 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import * as THREE from 'three'
+import {
+  describeArrowHead,
+  describeOrbitArc,
+  describeOrbitGradient,
+  orbitEndAngle,
+  orbitSegments,
+  orbitStartAngle
+} from '~/utils/orbitGeometry'
+import { getFallbackTexture, isTextureCached, loadTexture } from '~/utils/kaleidoscopeTextures'
 
 const props = defineProps<{
   images: string[]
@@ -13,9 +22,23 @@ const emit = defineEmits<{
   controlsReveal: []
 }>()
 
+const sliceCount = 12
+const LOADER_GRACE_MS = 180
+const LOADER_MIN_VISIBLE_MS = 500
+const LOADER_HOLD_MS = 120
+const LOADER_FADE_MS = 400
+// The intro begins 100ms into the 400ms fade, leaving 300ms of overlap so the
+// dial's ring dissolves into the arrows drawing along the same orbit.
+const LOADER_INTRO_OVERLAP_SECONDS = 0.1
+
 const containerRef = ref<HTMLDivElement | null>(null)
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-const orbitRadius = 52
+const readySlices = ref<boolean[]>(Array.from({ length: sliceCount }, () => false))
+const isLoaderVisible = ref(false)
+const isLoaderDismissing = ref(false)
+// Which image is downloading right now, and how much of it has arrived.
+const loadingSliceIndex = ref(0)
+const loadingFraction = ref(0)
 const kaleidoscopeViewSize = 2.35
 const cameraDistance = 3
 const cameraFov = THREE.MathUtils.radToDeg(
@@ -29,12 +52,9 @@ const triangleCentroidX = (triangleOuterRadius * 2) / 3
 const triangleCentroidY = triangleBaseHeight / 3
 // The requested blade axis runs from A through the midpoint of the opposite B-C edge.
 const triangleMedianAngle = Math.atan2(triangleBaseHeight / 2, triangleOuterRadius)
-const orbitStartAngle = 2
-const orbitEndAngle = 28
 const orbitArrowPath = describeOrbitArc(orbitStartAngle, orbitEndAngle)
 const orbitArrowGradient = describeOrbitGradient(orbitStartAngle, orbitEndAngle)
 const orbitArrowHead = describeArrowHead(orbitEndAngle)
-const orbitSegments = Array.from({ length: 12 }, (_, index) => ({ id: index, rotation: index * 30 }))
 type StaggerDirection = 'cw' | 'ccw'
 type SliceImageLayer = {
   group: THREE.Group
@@ -85,12 +105,14 @@ const imageSwapConfig = {
   incomingStart: 0.22,
   outgoingDuration: 0.72
 }
+// One rotation's worth of replacements, sized to match the texture cache's working set.
+const preloadBatchSize = 12
 const arrowRotationValues = orbitSegments.map((segment) => segment.rotation)
 
 let renderer: THREE.WebGLRenderer | null = null
 let scene: THREE.Scene | null = null
 let camera: THREE.PerspectiveCamera | null = null
-let textureLoader: THREE.TextureLoader | null = null
+let loadingIconTexture: THREE.CanvasTexture | null = null
 let frameId = 0
 let resizeObserver: ResizeObserver | null = null
 let introTimeline: gsap.core.Timeline | null = null
@@ -100,11 +122,11 @@ let animationActive = false
 let controlsRevealEmitted = false
 let backgroundPreloadCancelled = false
 let pageLoadHandler: (() => void) | null = null
+let isActive = true
+let loaderShownAt = 0
+let loaderGraceTimer = 0
 const disposableGeometries: THREE.BufferGeometry[] = []
 const disposableMaterials: THREE.Material[] = []
-const disposableTextures: THREE.Texture[] = []
-const texturePromises = new Map<string, Promise<THREE.Texture>>()
-const textureCache = new Map<string, THREE.Texture>()
 const sliceImageStates: SliceImageState[] = []
 const sliceBladePivots: THREE.Group[] = []
 const slicePivots: THREE.Group[] = []
@@ -113,57 +135,6 @@ const sliceLoadingMaterials: THREE.SpriteMaterial[] = []
 const sliceTransitionTimelines: Array<gsap.core.Timeline | null> = []
 const sliceImageUrls: string[] = []
 const sliceLoadingTokens: number[] = []
-
-function pointOnOrbit(angleDegrees: number, radius = orbitRadius) {
-  const radians = (angleDegrees - 90) * (Math.PI / 180)
-
-  return {
-    x: 50 + radius * Math.cos(radians),
-    y: 50 + radius * Math.sin(radians)
-  }
-}
-
-function describeOrbitArc(startAngle: number, endAngle: number) {
-  const start = pointOnOrbit(startAngle)
-  const end = pointOnOrbit(endAngle)
-  const largeArcFlag = endAngle - startAngle <= 180 ? 0 : 1
-
-  return [
-    `M ${start.x.toFixed(3)} ${start.y.toFixed(3)}`,
-    `A ${orbitRadius} ${orbitRadius} 0 ${largeArcFlag} 1 ${end.x.toFixed(3)} ${end.y.toFixed(3)}`
-  ].join(' ')
-}
-
-function describeOrbitGradient(startAngle: number, endAngle: number) {
-  const start = pointOnOrbit(startAngle)
-  const end = pointOnOrbit(endAngle)
-
-  return {
-    x1: start.x.toFixed(3),
-    y1: start.y.toFixed(3),
-    x2: end.x.toFixed(3),
-    y2: end.y.toFixed(3)
-  }
-}
-
-function describeArrowHead(angleDegrees: number) {
-  const tip = pointOnOrbit(angleDegrees)
-  const angle = angleDegrees * (Math.PI / 180)
-  const tangent = { x: Math.cos(angle), y: Math.sin(angle) }
-  const normal = { x: -tangent.y, y: tangent.x }
-  const length = 0.78
-  const halfWidth = 0.34
-  const base = {
-    x: tip.x - tangent.x * length,
-    y: tip.y - tangent.y * length
-  }
-
-  return [
-    `${tip.x.toFixed(3)},${tip.y.toFixed(3)}`,
-    `${(base.x + normal.x * halfWidth).toFixed(3)},${(base.y + normal.y * halfWidth).toFixed(3)}`,
-    `${(base.x - normal.x * halfWidth).toFixed(3)},${(base.y - normal.y * halfWidth).toFixed(3)}`
-  ].join(' ')
-}
 
 function createTriangleGeometry() {
   const innerOffset = 0
@@ -198,41 +169,6 @@ function render(time = 0) {
   frameId = window.requestAnimationFrame(render)
 }
 
-function prepareTexture(texture: THREE.Texture) {
-  texture.colorSpace = THREE.SRGBColorSpace
-  texture.wrapS = THREE.ClampToEdgeWrapping
-  texture.wrapT = THREE.ClampToEdgeWrapping
-  texture.generateMipmaps = true
-  texture.minFilter = THREE.LinearMipmapLinearFilter
-  texture.magFilter = THREE.LinearFilter
-  disposableTextures.push(texture)
-
-  return texture
-}
-
-function loadTexture(url: string) {
-  const cachedTexture = textureCache.get(url)
-  if (cachedTexture) return Promise.resolve(cachedTexture)
-
-  const pendingTexture = texturePromises.get(url)
-  if (pendingTexture) return pendingTexture
-  if (!textureLoader) return Promise.reject(new Error('Texture loader is not ready.'))
-
-  const texturePromise = textureLoader.loadAsync(url)
-    .then((texture) => {
-      const preparedTexture = prepareTexture(texture)
-      textureCache.set(url, preparedTexture)
-      return preparedTexture
-    })
-    .catch((error) => {
-      texturePromises.delete(url)
-      throw error
-    })
-
-  texturePromises.set(url, texturePromise)
-  return texturePromise
-}
-
 function createLoadingIconTexture() {
   const canvas = document.createElement('canvas')
   canvas.width = 96
@@ -260,7 +196,6 @@ function createLoadingIconTexture() {
 
   const texture = new THREE.CanvasTexture(canvas)
   texture.colorSpace = THREE.SRGBColorSpace
-  disposableTextures.push(texture)
 
   return texture
 }
@@ -415,8 +350,10 @@ async function assignSliceTexture(
   sliceTransitionTimelines[index] = null
   settleSliceImageLayers(index)
 
-  const cachedTexture = textureCache.get(url)
-  if (cachedTexture) {
+  if (isTextureCached(url)) {
+    const cachedTexture = await loadTexture(url)
+    if (sliceLoadingTokens[index] !== token) return
+
     animateTextureSwap(index, cachedTexture, url, token, shouldAnimate)
     return
   }
@@ -437,10 +374,46 @@ async function assignSliceTexture(
   }
 }
 
+/**
+ * Reshuffles the twelve images already on the wheel into new positions.
+ *
+ * Nothing is fetched: the left and right controls rearrange what the viewer
+ * can already see, so they respond instantly and never show a loading state.
+ * Fetching fresh imagery belongs to the middle replay control.
+ */
+function shuffleSliceTextures() {
+  const current = sliceImageStates.map((state, index) => ({
+    texture: state.layers[state.activeIndex]!.material.map,
+    url: sliceImageUrls[index]!
+  }))
+  const order = shuffled(current.map((_, index) => index))
+
+  // A permutation that leaves an image where it was would read as a dud, so
+  // any fixed point is swapped with its neighbour.
+  order.forEach((source, index) => {
+    if (source !== index) return
+
+    const partner = (index + 1) % order.length
+    ;[order[index], order[partner]] = [order[partner]!, order[index]!]
+  })
+
+  order.forEach((source, index) => {
+    const entry = current[source]
+    if (!entry?.texture) return
+
+    const token = (sliceLoadingTokens[index] ?? 0) + 1
+    sliceLoadingTokens[index] = token
+    sliceTransitionTimelines[index]?.kill()
+    sliceTransitionTimelines[index] = null
+    settleSliceImageLayers(index)
+    animateTextureSwap(index, entry.texture, entry.url, token, true)
+  })
+}
+
 function randomizeSliceTextures(options: TextureAssignmentOptions = {}) {
   const completePool = [...new Set((props.imagePool?.length ? props.imagePool : props.images).filter(Boolean))]
   const pool = options.cachedOnly
-    ? completePool.filter((url) => textureCache.has(url))
+    ? completePool.filter((url) => isTextureCached(url))
     : completePool
   if (!pool.length) return Promise.resolve()
 
@@ -475,10 +448,12 @@ function waitForBrowserIdle() {
 
 async function preloadTexturePool() {
   const pool = [...new Set((props.imagePool ?? []).filter(Boolean))]
+  let loadedCount = 0
 
   for (const url of pool) {
     if (backgroundPreloadCancelled) return
-    if (textureCache.has(url)) continue
+    if (isTextureCached(url)) continue
+    if (loadedCount >= preloadBatchSize) return
 
     await waitForBrowserIdle()
     if (backgroundPreloadCancelled) return
@@ -488,6 +463,8 @@ async function preloadTexturePool() {
     } catch (error) {
       console.warn(`Could not preload kaleidoscope image: ${url}`, error)
     }
+
+    loadedCount += 1
   }
 }
 
@@ -535,7 +512,7 @@ function resetArrowRotations() {
 function rotateBy(direction: number) {
   if (!slicePivots.length || animationActive) return
 
-  void randomizeSliceTextures()
+  shuffleSliceTextures()
   const normalizedDirection = direction < 0 ? -1 : 1
   const isClockwise = normalizedDirection < 0
   const staggerDirection: StaggerDirection = normalizedDirection > 0 ? 'ccw' : 'cw'
@@ -897,10 +874,47 @@ function resize() {
   renderer.render(scene!, camera)
 }
 
+function markSliceReady(index: number) {
+  const next = [...readySlices.value]
+  next[index] = true
+  readySlices.value = next
+}
+
+function dismissLoader() {
+  window.clearTimeout(loaderGraceTimer)
+
+  if (!isLoaderVisible.value) {
+    createIntroTimeline(LOADER_INTRO_OVERLAP_SECONDS)
+    return
+  }
+
+  const visibleFor = performance.now() - loaderShownAt
+  const wait = Math.max(0, LOADER_MIN_VISIBLE_MS - visibleFor) + LOADER_HOLD_MS
+
+  window.setTimeout(() => {
+    if (!isActive) return
+
+    isLoaderDismissing.value = true
+    createIntroTimeline(LOADER_INTRO_OVERLAP_SECONDS)
+
+    window.setTimeout(() => {
+      if (!isActive) return
+      isLoaderVisible.value = false
+    }, LOADER_FADE_MS)
+  }, wait)
+}
+
 onMounted(async () => {
   if (!containerRef.value || !canvasRef.value) return
 
   setAnimationActive(true)
+
+  loaderGraceTimer = window.setTimeout(() => {
+    if (!isActive) return
+
+    isLoaderVisible.value = true
+    loaderShownAt = performance.now()
+  }, LOADER_GRACE_MS)
 
   scene = new THREE.Scene()
   camera = new THREE.PerspectiveCamera(cameraFov, 1, 0.1, 10)
@@ -915,16 +929,40 @@ onMounted(async () => {
   renderer.outputColorSpace = THREE.SRGBColorSpace
   renderer.setClearColor(0x000000, 0)
 
-  textureLoader = new THREE.TextureLoader()
-  const sourceImages = props.images.length ? props.images : ['/images/landing/parkschloessl.jpg']
-  const textures = await Promise.all(
-    Array.from({ length: 12 }, (_, index) => {
-      const url = sourceImages[index % sourceImages.length]
-      return loadTexture(url)
-    })
-  )
+  // Size and clear the drawing buffer before any image is requested. Without
+  // this the canvas keeps its default 300x150 buffer, stretched by CSS and
+  // never drawn, until the whole loading loop finishes — which reads as a
+  // white block over the parchment. The scene is still empty here, so this
+  // paints transparency, never an unfinished wheel.
+  resize()
 
-  const loadingIconTexture = createLoadingIconTexture()
+  const sourceImages = props.images.length ? props.images : ['/images/landing/parkschloessl.jpg']
+  const textures: THREE.Texture[] = []
+
+  // One image at a time. Twelve parallel requests share the connection and all
+  // finish late together; sequentially, each one lands as soon as it can and
+  // its download percentage is meaningful to show.
+  for (let index = 0; index < sliceCount; index += 1) {
+    const url = sourceImages[index % sourceImages.length]!
+
+    if (isActive) {
+      loadingSliceIndex.value = index
+      loadingFraction.value = 0
+    }
+
+    try {
+      textures.push(await loadTexture(url, (fraction) => {
+        if (isActive) loadingFraction.value = fraction
+      }))
+    } catch (error) {
+      console.warn(`Could not load kaleidoscope image: ${url}`, error)
+      textures.push(getFallbackTexture())
+    }
+
+    if (isActive) markSliceReady(index)
+  }
+
+  loadingIconTexture = createLoadingIconTexture()
   const wheel = new THREE.Group()
 
   textures.forEach((texture, index) => {
@@ -999,11 +1037,14 @@ onMounted(async () => {
   resizeObserver.observe(containerRef.value)
   resize()
   render()
-  createIntroTimeline()
+  dismissLoader()
   scheduleBackgroundPreload()
 })
 
 onBeforeUnmount(() => {
+  isActive = false
+  window.clearTimeout(loaderGraceTimer)
+
   if (frameId) window.cancelAnimationFrame(frameId)
   resizeObserver?.disconnect()
   introTimeline?.kill()
@@ -1015,9 +1056,8 @@ onBeforeUnmount(() => {
 
   disposableGeometries.forEach((geometry) => geometry.dispose())
   disposableMaterials.forEach((material) => material.dispose())
-  disposableTextures.forEach((texture) => texture.dispose())
-  texturePromises.clear()
-  textureCache.clear()
+  loadingIconTexture?.dispose()
+  loadingIconTexture = null
   sliceImageStates.length = 0
   sliceLoadingSprites.length = 0
   sliceLoadingMaterials.length = 0
@@ -1031,7 +1071,6 @@ onBeforeUnmount(() => {
   renderer = null
   scene = null
   camera = null
-  textureLoader = null
   introTimeline = null
   rotationTimeline = null
   replayExitTimeline = null
@@ -1068,5 +1107,13 @@ onBeforeUnmount(() => {
         <use class="hero-kaleidoscope__arrow-head" href="#hero-orbit-arrow-head" />
       </g>
     </svg>
+    <KaleidoscopeLoader
+      v-if="isLoaderVisible"
+      :ready-slices="readySlices"
+      :total="sliceCount"
+      :active-index="loadingSliceIndex"
+      :fraction="loadingFraction"
+      :dismissing="isLoaderDismissing"
+    />
   </div>
 </template>

@@ -55,6 +55,9 @@
       "replay": "Eingangsanimation des Kaleidoskops wiederholen",
       "rotateClockwise": "Kaleidoskop im Uhrzeigersinn drehen",
       "wheelAria": "Rotierendes Rad aus Archivbildern",
+      "loadingTitle": "Galeriebild wird geladen",
+      "loadingCounter": "{current} von {total}",
+      "loadingProgress": "{loaded} von {total} Galerien geladen",
       "continue": "Weiter zu den Orten"
     },
     "locations": {

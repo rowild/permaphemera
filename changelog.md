@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.10 - 2026-08-11 21:42:52 CEST
+
+- Added an archival orbit-dial preloader to the hero kaleidoscope: the ring spans all twelve galleries with each one owning a twelfth that fills with its own download, while the centre reports the image currently in flight as a localized title, a roman-numeral counter, and its byte percentage.
+- Replaced the blocking parallel texture load with a sequential one-image-at-a-time download, fetched through `XMLHttpRequest` and handed to Three.js as a blob URL, because `ImageLoader` and `TextureLoader` both document `onProgress` as unsupported and can therefore report no per-file byte progress.
+- Fixed a latent failure in which a single unreachable image rejected the gating `Promise.all`, threw out of `onMounted`, and left the hero permanently blank; a failed image now resolves to a transparent fallback and the wheel still appears.
+- Stopped the hero canvas flashing white on reload by sizing and clearing the drawing buffer immediately after the renderer is created, instead of leaving an unsized default buffer stretched across the hero square until every image had loaded.
+- Moved texture caching into a module-scoped LRU cache sized to the twelve displayed images plus the next twelve, so imagery survives component unmount and client-side navigation, and bounded the idle background preload to one rotation's worth instead of the entire pool.
+- Changed the left and right wheel controls to reshuffle the images already on screen rather than fetching new ones, so they respond instantly with no loading state, while the middle replay control still rebuilds the wheel with fresh imagery.
+- Extracted the shared orbit geometry and a roman-numeral helper into `app/utils/`, added a dependency-injected LRU cache with in-flight request sharing, and added `check:preloader` with fifty-three assertions covering all of it.
+- Recompressed the forty location images with TinyPNG in place, taking the pool from 86 MB to 28 MB at unchanged 1672x941 dimensions and unchanged filenames.
+- Added a thirty-day `Cache-Control` header for `/images/` in `public/.htaccess`, and pinned Node to 24.11.1 with `.nvmrc`, `engines.node`, and a `packageManager` entry so builds stay reproducible.
+
 ## 0.0.9 - 2026-08-11 12:27:24 CEST
 
 - Added the approved design specification for the hero kaleidoscope preloader under the new `docs/superpowers/specs/` location, covering the orbit-dial loading state, a module-scoped texture cache that survives component unmount, shared orbit geometry, error handling for failed image loads, and the accessibility and reduced-motion contracts.

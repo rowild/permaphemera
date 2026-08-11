@@ -55,6 +55,9 @@
       "replay": "Replay kaleidoscope entrance animation",
       "rotateClockwise": "Rotate kaleidoscope clockwise",
       "wheelAria": "Rotating archive image wheel",
+      "loadingTitle": "Loading Gallery Image",
+      "loadingCounter": "{current} of {total}",
+      "loadingProgress": "{loaded} of {total} galleries loaded",
       "continue": "Continue to locations"
     },
     "locations": {

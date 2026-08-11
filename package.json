@@ -1,8 +1,13 @@
 {
   "name": "frontend",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@11.20.0",
+  "engines": {
+    "node": ">=24.11.1 <25",
+    "pnpm": ">=11"
+  },
   "scripts": {
     "build": "nuxt generate",
     "check:artists": "node scripts/check-artist-directory-modal.mjs",
@@ -11,6 +16,7 @@
     "check:links": "node scripts/check-archive-text-links.mjs",
     "check:locations": "node scripts/check-location-exhibition-browser.mjs",
     "check:mobile": "node scripts/check-mobile-density.mjs",
+    "check:preloader": "node scripts/check-kaleidoscope-preloader.mjs",
     "check:tailwind": "node scripts/check-tailwind-canonical.mjs",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
