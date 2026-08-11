@@ -2,6 +2,14 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import * as THREE from 'three'
+import {
+  describeArrowHead,
+  describeOrbitArc,
+  describeOrbitGradient,
+  orbitEndAngle,
+  orbitSegments,
+  orbitStartAngle
+} from '~/utils/orbitGeometry'
 
 const props = defineProps<{
   images: string[]
@@ -15,7 +23,6 @@ const emit = defineEmits<{
 
 const containerRef = ref<HTMLDivElement | null>(null)
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-const orbitRadius = 52
 const kaleidoscopeViewSize = 2.35
 const cameraDistance = 3
 const cameraFov = THREE.MathUtils.radToDeg(
@@ -29,12 +36,9 @@ const triangleCentroidX = (triangleOuterRadius * 2) / 3
 const triangleCentroidY = triangleBaseHeight / 3
 // The requested blade axis runs from A through the midpoint of the opposite B-C edge.
 const triangleMedianAngle = Math.atan2(triangleBaseHeight / 2, triangleOuterRadius)
-const orbitStartAngle = 2
-const orbitEndAngle = 28
 const orbitArrowPath = describeOrbitArc(orbitStartAngle, orbitEndAngle)
 const orbitArrowGradient = describeOrbitGradient(orbitStartAngle, orbitEndAngle)
 const orbitArrowHead = describeArrowHead(orbitEndAngle)
-const orbitSegments = Array.from({ length: 12 }, (_, index) => ({ id: index, rotation: index * 30 }))
 type StaggerDirection = 'cw' | 'ccw'
 type SliceImageLayer = {
   group: THREE.Group
@@ -113,57 +117,6 @@ const sliceLoadingMaterials: THREE.SpriteMaterial[] = []
 const sliceTransitionTimelines: Array<gsap.core.Timeline | null> = []
 const sliceImageUrls: string[] = []
 const sliceLoadingTokens: number[] = []
-
-function pointOnOrbit(angleDegrees: number, radius = orbitRadius) {
-  const radians = (angleDegrees - 90) * (Math.PI / 180)
-
-  return {
-    x: 50 + radius * Math.cos(radians),
-    y: 50 + radius * Math.sin(radians)
-  }
-}
-
-function describeOrbitArc(startAngle: number, endAngle: number) {
-  const start = pointOnOrbit(startAngle)
-  const end = pointOnOrbit(endAngle)
-  const largeArcFlag = endAngle - startAngle <= 180 ? 0 : 1
-
-  return [
-    `M ${start.x.toFixed(3)} ${start.y.toFixed(3)}`,
-    `A ${orbitRadius} ${orbitRadius} 0 ${largeArcFlag} 1 ${end.x.toFixed(3)} ${end.y.toFixed(3)}`
-  ].join(' ')
-}
-
-function describeOrbitGradient(startAngle: number, endAngle: number) {
-  const start = pointOnOrbit(startAngle)
-  const end = pointOnOrbit(endAngle)
-
-  return {
-    x1: start.x.toFixed(3),
-    y1: start.y.toFixed(3),
-    x2: end.x.toFixed(3),
-    y2: end.y.toFixed(3)
-  }
-}
-
-function describeArrowHead(angleDegrees: number) {
-  const tip = pointOnOrbit(angleDegrees)
-  const angle = angleDegrees * (Math.PI / 180)
-  const tangent = { x: Math.cos(angle), y: Math.sin(angle) }
-  const normal = { x: -tangent.y, y: tangent.x }
-  const length = 0.78
-  const halfWidth = 0.34
-  const base = {
-    x: tip.x - tangent.x * length,
-    y: tip.y - tangent.y * length
-  }
-
-  return [
-    `${tip.x.toFixed(3)},${tip.y.toFixed(3)}`,
-    `${(base.x + normal.x * halfWidth).toFixed(3)},${(base.y + normal.y * halfWidth).toFixed(3)}`,
-    `${(base.x - normal.x * halfWidth).toFixed(3)},${(base.y - normal.y * halfWidth).toFixed(3)}`
-  ].join(' ')
-}
 
 function createTriangleGeometry() {
   const innerOffset = 0
