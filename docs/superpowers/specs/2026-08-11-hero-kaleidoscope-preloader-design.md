@@ -102,7 +102,7 @@ const textures = await Promise.all(
       })
       .finally(() => {
         if (!isActive) return
-        readySlices.value = readySlices.value.with(index, true)
+        markSliceReady(index)
       })
   })
 )
@@ -111,6 +111,13 @@ const textures = await Promise.all(
 The `.catch` closes a latent failure mode: today a single failed request rejects
 the `Promise.all`, `onMounted` throws, and the wheel never appears at all. With
 the gate deliberately held closed, that path must resolve rather than hang.
+
+`markSliceReady` replaces the entry by spreading into a new array rather than
+calling `Array.prototype.with`. `.with` is unavailable before Safari 16.4, and it
+would run inside `.finally()`, which sits after the `.catch()` in the chain — so
+a `TypeError` there would reject the whole `Promise.all`, throw out of
+`onMounted`, and leave the hero permanently blank. That is the exact failure this
+design exists to remove.
 
 `readySlices` is the single source of truth for progress; the loaded count is
 derived from it rather than tracked separately. Entries are keyed by **slice
