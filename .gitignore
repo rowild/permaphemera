@@ -39,3 +39,6 @@ test-results/
 # Local design source and backup material
 /_Material/
 /_BU/
+
+# Deployment credentials
+.env.deploy.local

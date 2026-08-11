@@ -1,3 +1,11 @@
+# Which dependencies may run install scripts. All are declined: the project
+# builds and deploys without any of these native extras.
+#   - esbuild and @parcel/watcher ship prebuilt binaries through optional
+#     dependencies, so their scripts are not needed.
+#   - cpu-features is an optional native speedup for ssh2, used by the deploy
+#     script. ssh2 falls back to pure JavaScript without it.
 allowBuilds:
-  '@parcel/watcher': set this to true or false
-  esbuild: set this to true or false
+  '@parcel/watcher': false
+  cpu-features: false
+  esbuild: false
+  ssh2: false

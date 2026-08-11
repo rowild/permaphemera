@@ -18,6 +18,8 @@
     "check:mobile": "node scripts/check-mobile-density.mjs",
     "check:preloader": "node scripts/check-kaleidoscope-preloader.mjs",
     "check:tailwind": "node scripts/check-tailwind-canonical.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "deploy:dry-run": "node scripts/deploy.mjs --dry-run",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "serve --single .output/public",
@@ -38,6 +40,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20",
-    "serve": "^14.2.6"
+    "serve": "^14.2.6",
+    "ssh2-sftp-client": "^12.1.1"
   }
 }
