@@ -61,13 +61,13 @@ useSeoMeta({
           <p class="[ exhibition-detail-summary ] max-w-xl text-[1.18rem] leading-[1.52] text-archive-body compact:text-base compact:leading-normal">{{ exhibition.summary }}</p>
 
           <dl class="[ exhibition-detail-meta ] m-0 mt-[1.8rem] border-t border-archive-rule-warm/24 compact:mt-4">
-            <ArchiveMetadataRow :label="$t('exhibition.dates')" variant="exhibition">
-              <template #icon><CalendarDays :size="18" aria-hidden="true" /></template>
-              {{ exhibition.date_range }}
-            </ArchiveMetadataRow>
             <ArchiveMetadataRow :label="$t('exhibition.location')" variant="exhibition">
               <template #icon><MapPin :size="18" aria-hidden="true" /></template>
               {{ exhibition.venue }}, {{ exhibition.city }}
+            </ArchiveMetadataRow>
+            <ArchiveMetadataRow :label="$t('exhibition.dates')" variant="exhibition">
+              <template #icon><CalendarDays :size="18" aria-hidden="true" /></template>
+              {{ exhibition.date_range }}
             </ArchiveMetadataRow>
             <ArchiveMetadataRow :label="$t('exhibition.openingHours')" variant="exhibition">
               <template #icon><Clock3 :size="18" aria-hidden="true" /></template>

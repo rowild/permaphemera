@@ -8,7 +8,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 
 - responsive header and hero with an interactive, replayable kaleidoscope and randomized preloaded image pool;
 - searchable locations, exhibitions, and artist archive sections;
-- framed venue and exhibition cards backed by local JSON;
+- framed venue and exhibition cards backed by local JSON, with single-line overflow-aware titles and custom full-title tooltips;
 - a searchable, URL-filterable gallery atlas with 26 small Austrian galleries across all nine federal states;
 - a searchable exhibition index with reusable framed record cards and direct detail routes;
 - an illustrated explanation of the archive method;
@@ -16,7 +16,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 - dynamic gallery dossiers with location-specific record search, currently led by Parkschlössl;
 - seven real 2026 Parkschlössl exhibition records derived from local source PDFs;
 - a compact selectable exhibition ledger with a preloaded, responsive active preview;
-- dynamic exhibition-detail pages with practical metadata, source invitations, and related records;
+- dynamic exhibition-detail pages with baseline-aligned location, date, and opening-hours metadata, source invitations, and related records;
 - a routed, URL-filterable artist directory with history-aware alphabet routes, compact groups, and on-demand record details;
 - shared hero scroll cues on the landing, gallery, and exhibition routes that fade away when their destination section enters the viewport;
 - shared routed header/footer components, a functional mobile navigation menu, and overflow-aware sponsor controls;
@@ -31,14 +31,16 @@ The active architecture plan is `../_Plans/exhibitions-plan.md`; the design refe
 
 ## Requirements
 
-- A current Node.js release
-- pnpm
+- Node.js 24.11.1, selected through `.nvmrc`
+- pnpm 11 or newer
 
 ## Commands
 
 Run all commands from this directory:
 
 ```bash
+source "$NVM_DIR/nvm.sh"
+nvm use
 pnpm install
 pnpm dev
 ```
@@ -56,10 +58,25 @@ pnpm check:links
 pnpm check:locations
 pnpm check:mobile
 pnpm build
+pnpm generate
 pnpm preview
 ```
 
-`pnpm build` always generates the client-rendered SPA and writes the complete deployable website to `.output/public/`; it does not produce or require a Node server bundle. `pnpm preview` serves that directory locally for production-output checks. Upload the contents of `.output/public/` to the shared host's document root. The bundled `public/.htaccess` preserves clean client-side routes on Apache-compatible hosting by sending unmatched requests to `index.html`. Hosting under a subdirectory instead of the domain root requires a matching Nuxt `app.baseURL` and asset-path audit.
+`pnpm build` and `pnpm generate` both generate the client-rendered SPA and write the complete deployable website to `.output/public/`; neither produces or requires a Node server bundle. `pnpm preview` serves that directory locally for production-output checks. The bundled `public/.htaccess` preserves clean client-side routes on Apache-compatible hosting by sending unmatched requests to `index.html`. Hosting under a subdirectory instead of the domain root requires a matching Nuxt `app.baseURL` and asset-path audit.
+
+The guarded SFTP publisher uses local credentials from the ignored `.env.deploy.local` file. Copy `.env.deploy.example`, fill in the existing shared-host target and OpenSSH private-key path, then verify the full generation/output inspection without uploading:
+
+```bash
+pnpm deploy:dry-run
+```
+
+Publish only when that succeeds:
+
+```bash
+pnpm deploy
+```
+
+The deploy command regenerates the SPA, requires `index.html` and `.htaccess`, validates that the remote path is an account document root under `/www/htdocs/`, uploads `.output/public/` over SFTP, publishes entry documents after hashed assets, and confirms that the remote `.htaccess` exists. It does not provision hosting, databases, SSL, or backend services.
 
 `pnpm check:tailwind` loads the project Tailwind design system and fails when bracket notation has an exact canonical utility equivalent or when a human-readable structural marker is unspaced or CSS-active. `pnpm check:i18n` verifies UI message parity, translated record coverage, stable content identifiers, localized route switching, and global privacy-notice wiring. `pnpm check:directories` protects gallery coverage, canonical index/detail routing, search contracts, and shared frame usage. The remaining focused checks protect artist modal routing and accessibility, archive text-link variants, the location exhibition browser, and compact responsive-density contracts.
 

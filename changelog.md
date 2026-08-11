@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.11 - 2026-08-12 00:14:46 CEST
+
+- Kept secondary landing-page exhibition titles on one clipped line, measured real overflow with `ResizeObserver`, and added a right-to-left hover/focus marquee plus a custom framed full-title tooltip with reduced-motion handling.
+- Reduced the over-image “Open Exhibition” frame to a genuinely inset `9.75rem × 2.75rem` control without shrinking its label, retained the animated archive-red hover/focus state, and protected the dimensions with directory checks.
+- Tightened the landing exhibition artist, location, and date rhythm so wrapped metadata remains inside its card at narrow widths.
+- Renamed the featured action from “Enter 360 record” to “Enter Exhibition” with the equivalent German translation, while preserving the shorter compact label.
+- Reordered exhibition-detail facts to Location, Dates, then Opening Hours and rebuilt their shared row component around a text-owned baseline, isolated icon cell, and equal `1.25rem` label/value line-height so wrapped rows align consistently.
+- Extended the responsive, route, localization, and Tailwind contract checks for the new action copy, title-overflow behavior, compact frame dimensions, metadata order, and baseline structure; reconciled the style guide with each updated interaction and typography rule.
+- Documented the existing static generation and guarded SFTP deployment workflow, including the pinned Node version, local credential file, dry-run command, generated-output validation, and remote `.htaccess` check.
+
 ## 0.0.10 - 2026-08-11 21:42:52 CEST
 
 - Added an archival orbit-dial preloader to the hero kaleidoscope: the ring spans all twelve galleries with each one owning a twelfth that fills with its own download, while the centre reports the image currently in flight as a localized title, a roman-numeral counter, and its byte percentage.

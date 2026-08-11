@@ -296,8 +296,9 @@
   "cards": {
     "openArchive": "Open archive",
     "openVenue": "Open {name} archive",
-    "enter360": "Enter 360 record",
+    "enterExhibition": "Enter Exhibition",
     "enter": "Enter",
+    "fullTitle": "Full title",
     "previewExhibition": "Preview {title}",
     "openExhibitionFor": "Open exhibition: {title}",
     "openExhibition": "Open Exhibition"

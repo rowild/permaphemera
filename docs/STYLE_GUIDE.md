@@ -491,7 +491,7 @@ The compact landing hero uses a centered `1.875rem` primary statement composed a
 
 The compact location grid uses smaller, equal-status venue cards in two columns. A featured desktop card must return to one ordinary grid cell at this breakpoint, and its desktop-only ornamental divider is hidden. Keep the city close to the “Open archive” action, then reserve a normal `1rem` lower padding plus a small link margin so the action never enters the cut-corner frame. The paper-stack discovery action spans the complete two-column row, centers its bounded deck, and reserves enough space above the sheets for the paperclip. It is labelled simply “More” and omits the arrow so its frame can remain short; do not repeat it with a second section-level “Show more” button at any breakpoint. Press feedback may scale the inner button around its center, but must not translate it and cause a visible jump.
 
-The selected-exhibition collection also becomes one two-column compact grid. The featured record and regular records share the same grid rather than retaining a nested one-column list. Every compact copy area retains at least `1rem` horizontal padding inside the cut-corner frame. Regular card titles contain only the exhibition title because the artist remains on the following line; use the compact action label “Open”, keep it clear of the frame edge, and keep every featured-record button intrinsically sized and centered.
+The selected-exhibition collection also becomes one two-column compact grid. The featured record and regular records share the same grid rather than retaining a nested one-column list. Every compact copy area retains at least `1rem` horizontal padding inside the cut-corner frame. Regular card titles contain only the exhibition title because the artist remains on the following line. Keep each title on one clipped line; measure real overflow with `ResizeObserver`, animate overflowing text from right to left on hover/focus, and reveal the complete title in the custom framed tooltip rather than a native `title` attribute. Use tight metadata leading so wrapped artist and location lines cannot push the date through the lower frame. Give the “Open Exhibition” label a narrow, genuinely inset frame with minimal internal padding; reduce the frame rather than the label typography. Keep every featured-record button intrinsically sized and centered.
 
 In the compact archive-method conclusion, leave a clear gap after the framed step table and after the quotation. Keep the three short facts in one row, shorten their vertical dividers to the height of the fact content, and place the archive stamp centered in its own following row with explicit bottom space.
 
@@ -562,7 +562,7 @@ Use direct verbs:
 
 - Explore the archive
 - Open archive
-- Enter 360 record (desktop/tablet); shorten this featured-record action to `Enter`, omit its arrow, reduce it to a `2.5rem` minimum height with compact horizontal padding, and retain at least `1.25rem` of lower frame clearance on compact screens
+- Enter Exhibition (desktop/tablet); shorten this featured-record action to `Enter`, omit its arrow, reduce it to a `2.5rem` minimum height with compact horizontal padding, and retain at least `1.25rem` of lower frame clearance on compact screens
 - View all locations
 - Explore a sample record
 
@@ -661,6 +661,8 @@ Metadata order should remain stable:
 5. record action.
 
 Use semantic `<time>` elements for real dates in future routed pages.
+
+On exhibition detail pages, order the primary facts as Location, Dates, then Opening Hours. The label and value columns share a `1.25rem` line-height and align by their first text baseline. Keep the icon in its own inner grid cell so its box cannot become the row baseline; this preserves the same rhythm when either column wraps.
 
 ### 14.4 Paper stacks
 

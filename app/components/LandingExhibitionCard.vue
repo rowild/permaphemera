@@ -12,12 +12,62 @@ const props = withDefaults(defineProps<{
 })
 
 const active = ref(false)
+const recordTitleViewport = ref<HTMLElement | null>(null)
+const recordTitleText = ref<HTMLElement | null>(null)
+const recordTitleOverflow = ref(false)
+const recordTitleShift = ref(0)
+let recordTitleResizeObserver: ResizeObserver | null = null
+
 const ornament = computed(() => createOrnamentTransform(`exhibition:${props.exhibition.id}`, props.variant === 'featured'))
 const ornamentStyle = computed<CSSProperties>(() => ({
   right: ornament.value.right,
   bottom: ornament.value.bottom,
   transform: active.value ? ornament.value.active : ornament.value.rest
 }))
+const recordTitleStyle = computed(() => ({
+  '--archive-record-title-shift': `${-recordTitleShift.value}px`,
+  '--archive-record-title-duration': `${Math.max(2.8, recordTitleShift.value / 42 + 1.7)}s`
+} as CSSProperties))
+
+const updateRecordTitleOverflow = () => {
+  const viewport = recordTitleViewport.value
+  const title = recordTitleText.value
+
+  if (!viewport || !title) {
+    recordTitleOverflow.value = false
+    recordTitleShift.value = 0
+    return
+  }
+
+  const overflow = Math.max(0, title.scrollWidth - viewport.clientWidth)
+  recordTitleShift.value = Math.ceil(overflow)
+  recordTitleOverflow.value = overflow > 2
+}
+
+onMounted(async () => {
+  await nextTick()
+  updateRecordTitleOverflow()
+
+  if (!recordTitleViewport.value || !recordTitleText.value) {
+    return
+  }
+
+  recordTitleResizeObserver = new ResizeObserver(updateRecordTitleOverflow)
+  recordTitleResizeObserver.observe(recordTitleViewport.value)
+  recordTitleResizeObserver.observe(recordTitleText.value)
+})
+
+watch(
+  () => [props.exhibition.title, props.variant],
+  async () => {
+    await nextTick()
+    updateRecordTitleOverflow()
+  }
+)
+
+onBeforeUnmount(() => {
+  recordTitleResizeObserver?.disconnect()
+})
 </script>
 
 <template>
@@ -55,7 +105,7 @@ const ornamentStyle = computed<CSSProperties>(() => ({
           </p>
         </div>
         <ArchiveButton class="w-fit justify-self-center compact:min-h-10 compact:px-2" as="span" variant="primary">
-          <span class="compact:hidden">{{ $t('cards.enter360') }}</span>
+          <span class="compact:hidden">{{ $t('cards.enterExhibition') }}</span>
           <span class="hidden compact:inline">{{ $t('cards.enter') }}</span>
           <ArchiveArrow class="compact:hidden" />
         </ArchiveButton>
@@ -70,19 +120,38 @@ const ornamentStyle = computed<CSSProperties>(() => ({
           :alt="props.exhibition.title"
         />
         <div class="[ record-card-action ] pointer-events-none absolute inset-0 z-2 flex items-center justify-center p-3 compact:p-1">
-          <ArchiveButton class="min-h-12 gap-2 px-2 text-[0.92rem] whitespace-nowrap compact:min-h-10 compact:gap-0 compact:px-0 compact:text-xs" as="span" variant="secondary">
-            {{ $t('cards.openExhibition') }} <ArchiveArrow class="w-6 compact:hidden" />
+          <ArchiveButton class="archive-record-open-action text-[0.86rem] whitespace-nowrap opacity-90 compact:text-xs" as="span" variant="secondary">
+            <span class="inline-flex scale-85 items-center gap-2 transition-colors duration-200 ease-out group-hover/exhibition:text-archive-red group-focus-visible/exhibition:text-archive-red compact:gap-0 motion-reduce:transition-none">
+              {{ $t('cards.openExhibition') }} <ArchiveArrow class="w-6 compact:hidden" />
+            </span>
           </ArchiveButton>
         </div>
       </div>
       <div class="[ record-card-copy ] archive-record-card-copy relative z-2 flex min-w-0 flex-col px-[1.35rem] pt-[1.1rem] pb-[0.85rem] compact:px-4 compact:pt-3 compact:pb-5">
-        <h3 class="[ record-title ] m-0 max-w-80 font-display text-[1.18rem] font-medium leading-[1.08] compact:text-sm">{{ props.exhibition.title }}</h3>
-        <p class="[ artist-name ] my-[0.08rem] mt-[0.18rem] font-display text-archive-red compact:text-sm">{{ props.exhibition.artist }}</p>
-        <p class="[ record-meta-line ] my-[0.08rem] flex items-center gap-[0.48rem] font-display text-[0.88rem] text-archive-record-meta compact:text-xs">
-          <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-location inline-block size-4 flex-none bg-current" aria-hidden="true" />
+        <div class="[ record-title-shell ] group/title relative min-w-0">
+          <div ref="recordTitleViewport" class="[ record-title-viewport ] overflow-hidden">
+            <h3
+              ref="recordTitleText"
+              class="[ record-title ] m-0 w-max max-w-none font-display text-[1.18rem] font-medium leading-[1.08] whitespace-nowrap compact:text-sm"
+              :class="recordTitleOverflow && active ? 'archive-record-title-marquee' : ''"
+              :style="recordTitleStyle"
+            >{{ props.exhibition.title }}</h3>
+          </div>
+          <span
+            v-if="recordTitleOverflow"
+            class="[ record-title-tooltip ] archive-record-title-tooltip archive-button-secondary-frame pointer-events-none absolute inset-x-0 top-[calc(100%+0.3rem)] z-10 block translate-y-1 scale-95 border-12 border-transparent px-2 py-1 font-display text-sm leading-[1.12] text-archive-ink opacity-0 filter-[drop-shadow(0_0.38rem_0.42rem_rgba(75,52,29,0.18))] transition-[opacity,transform] duration-200 ease-out group-hover/title:translate-y-0 group-hover/title:scale-100 group-hover/title:opacity-100 group-focus-visible/exhibition:translate-y-0 group-focus-visible/exhibition:scale-100 group-focus-visible/exhibition:opacity-100 compact:text-xs motion-reduce:transition-none"
+            aria-hidden="true"
+          >
+            <span class="mb-0.5 block text-[0.58rem] leading-none tracking-[0.09em] text-archive-red uppercase compact:text-[0.5rem]">{{ $t('cards.fullTitle') }}</span>
+            <span class="block">{{ props.exhibition.title }}</span>
+          </span>
+        </div>
+        <p class="[ artist-name ] my-[0.08rem] mt-[0.18rem] font-display leading-[1.1] text-archive-red compact:text-sm">{{ props.exhibition.artist }}</p>
+        <p class="[ record-location-line ] [ record-meta-line ] my-[0.08rem] flex items-start gap-[0.48rem] font-display text-[0.88rem] leading-[1.15] text-archive-record-meta compact:text-xs compact:leading-[1.05]">
+          <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-location mt-[0.08rem] inline-block size-4 flex-none bg-current" aria-hidden="true" />
           {{ props.exhibition.venue }}, {{ props.exhibition.city }}
         </p>
-        <p class="[ record-meta-line ] my-[0.08rem] flex items-center gap-[0.48rem] font-display text-[0.88rem] text-archive-record-meta compact:text-xs">
+        <p class="[ record-date-line ] [ record-meta-line ] my-[0.08rem] flex items-center gap-[0.48rem] font-display text-[0.88rem] leading-[1.15] text-archive-record-meta compact:text-xs compact:leading-[1.05]">
           <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-calendar inline-block size-4 flex-none bg-current" aria-hidden="true" />
           {{ props.exhibition.date_range }}
         </p>
