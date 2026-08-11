@@ -57,6 +57,7 @@ The frontend foundation is complete:
 - Seven 2026 Parkschlössl records with PDF-derived local metadata and optimized runtime artwork
 - A compact selectable exhibition ledger with preloaded active preview, loading/error states, and responsive mobile composition
 - GSAP interactions and a perspective-projected Three.js hero kaleidoscope with coordinated orbit arrows, replay choreography, randomized preloaded image swaps, and explicit loading/disabled states
+- An orbit-dial preloader for the hero: images download one at a time through `XMLHttpRequest` and reach Three.js as blob URLs, because `ImageLoader` and `TextureLoader` document `onProgress` as unsupported and cannot report per-file byte progress. The dial ring spans all twelve galleries, each owning a twelfth filled by its own download, while the centre shows the image in flight. Textures live in a module-scoped LRU cache in `app/utils/kaleidoscopeTextures.ts`, sized to the twelve displayed images plus the next twelve, so they survive component unmount; never call `releaseTextureCache()` from a component lifecycle hook. The wheel is gated on every image and must never render partially built. The left and right controls reshuffle what is already on screen without fetching; only the middle replay control loads new imagery.
 - A responsive archival-temple identity with browser/touch/web-app icons and a documented two-accent red/ochre color system
 - Runtime images and SVGs under `public/`
 

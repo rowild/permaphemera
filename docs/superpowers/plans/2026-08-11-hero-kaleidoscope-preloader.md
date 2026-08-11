@@ -1133,9 +1133,14 @@ git commit -m "fix: address preloader verification findings"
 
 ---
 
-## Deferred to a follow-up
+## Image optimization — done separately, via TinyPNG
 
-Recorded in the spec, out of scope here: converting the location PNGs to WebP (measured 2154 KB → 82 KB, blocking payload 20.5 MB → ~0.7 MB), and deciding whether the originals should remain in `public/`.
+Deferred out of this plan and completed afterwards with TinyPNG rather than the
+WebP conversion proposed here: the forty location images were recompressed in
+place as PNG at unchanged 1672×941 dimensions and unchanged filenames, taking
+the pool from 86 MB to 28 MB (about 70% per file). See the "Image optimization"
+section of the spec for the measurements and for why WebP remains available as
+a later step.
 
 ## Closeout
 
