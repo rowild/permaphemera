@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.9 - 2026-08-11 12:27:24 CEST
+
+- Added the approved design specification for the hero kaleidoscope preloader under the new `docs/superpowers/specs/` location, covering the orbit-dial loading state, a module-scoped texture cache that survives component unmount, shared orbit geometry, error handling for failed image loads, and the accessibility and reduced-motion contracts.
+- Recorded the measured cause of the slow hero entrance in that specification: `onMounted` gates the whole wheel on `await Promise.all(...)` over roughly 20.5 MB of imagery, and the twelve orbit arrows are hidden from first paint, so the hero square stays blank for the entire wait.
+- Documented the deferred image-optimization work with measurements, including the alpha-free location PNGs converting to WebP at roughly 26× smaller, so the blocking payload and the full randomized pool can be reduced after the preloader ships and is tested.
+- Established `docs/superpowers/specs/` as the home for design specifications in `AGENTS.md`.
+- Added the unused `public/svg/clarity--video-camera-line.svg` working asset so the tracked worktree matches the checkout.
+
 ## 0.0.8 - 2026-07-15 12:25:24 CEST
 
 - Completed the Tailwind CSS v4 migration across the landing page, routed gallery and exhibition records, shared navigation, footer, cards, controls, and responsive layouts; reduced the global stylesheet from 4,044 to 883 lines while retaining masks, frame assets, gradients, pseudo-elements, animation systems, and prepared Typography infrastructure globally.
