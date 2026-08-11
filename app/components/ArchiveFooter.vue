@@ -1,12 +1,8 @@
 <script setup lang="ts">
 const { sponsors } = useArchiveData()
-const { t } = useI18n()
 const sponsorStripRef = ref<HTMLElement | null>(null)
-const sponsorTrackRef = ref<HTMLElement | null>(null)
-const sponsorNeedsScroll = ref(false)
-let dragStartX = 0
-let dragStartScroll = 0
-const dragging = ref(false)
+const sponsorSequenceRef = ref<HTMLElement | null>(null)
+const sponsorShouldMarquee = ref(false)
 const footerMenuOpen = ref(false)
 const footerMenuButtonRef = ref<HTMLButtonElement | null>(null)
 const footerDrawerRef = ref<HTMLElement | null>(null)
@@ -16,39 +12,17 @@ let sponsorResizeObserver: ResizeObserver | null = null
 let drawerMediaQuery: MediaQueryList | null = null
 let previousBodyOverflow = ''
 
-const updateSponsorOverflow = () => {
+const updateSponsorMarquee = () => {
   const strip = sponsorStripRef.value
-  if (!strip) return
+  const sequence = sponsorSequenceRef.value
+  if (!strip || !sequence) return
 
-  sponsorNeedsScroll.value = strip.scrollWidth > strip.clientWidth + 1
-}
-
-const startDrag = (event: PointerEvent) => {
-  const strip = sponsorStripRef.value
-  if (!strip || !sponsorNeedsScroll.value) return
-
-  dragging.value = true
-  dragStartX = event.clientX
-  dragStartScroll = strip.scrollLeft
-  strip.setPointerCapture(event.pointerId)
-}
-
-const moveDrag = (event: PointerEvent) => {
-  const strip = sponsorStripRef.value
-  if (!strip || !dragging.value) return
-  strip.scrollLeft = dragStartScroll - (event.clientX - dragStartX)
-}
-
-const endDrag = (event: PointerEvent) => {
-  const strip = sponsorStripRef.value
-  if (!strip || !dragging.value) return
-
-  dragging.value = false
-  if (strip.hasPointerCapture(event.pointerId)) strip.releasePointerCapture(event.pointerId)
-}
-
-const scrollSponsors = (direction: number) => {
-  sponsorStripRef.value?.scrollBy({ left: direction * 320, behavior: 'smooth' })
+  const trailingElement = sequence.lastElementChild
+  const trailingDivider = trailingElement?.matches('.archive-sponsor-divider')
+    ? trailingElement.getBoundingClientRect().width
+    : 0
+  const naturalSequenceWidth = sequence.scrollWidth - trailingDivider
+  sponsorShouldMarquee.value = naturalSequenceWidth > strip.clientWidth + 1
 }
 
 const closeFooterMenu = () => {
@@ -110,11 +84,11 @@ watch(() => route.fullPath, closeFooterMenu)
 
 onMounted(async () => {
   await nextTick()
-  updateSponsorOverflow()
+  updateSponsorMarquee()
 
-  sponsorResizeObserver = new ResizeObserver(updateSponsorOverflow)
+  sponsorResizeObserver = new ResizeObserver(updateSponsorMarquee)
   if (sponsorStripRef.value) sponsorResizeObserver.observe(sponsorStripRef.value)
-  if (sponsorTrackRef.value) sponsorResizeObserver.observe(sponsorTrackRef.value)
+  if (sponsorSequenceRef.value) sponsorResizeObserver.observe(sponsorSequenceRef.value)
 
   drawerMediaQuery = window.matchMedia('(max-width: 1280px)')
   drawerMediaQuery.addEventListener('change', handleDrawerViewportChange)
@@ -132,32 +106,36 @@ onBeforeUnmount(() => {
     <section class="[ supporters ] relative z-1 mx-auto max-w-none">
       <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">{{ $t('footer.supporters') }}</p>
       <h2 class="m-0 max-w-208 font-display text-[clamp(2.6rem,4.1vw,4.15rem)] font-normal leading-[0.98] tracking-normal text-archive-night-heading compact:text-3xl">{{ $t('footer.title') }} <span class="text-archive-ochre">{{ $t('footer.accent') }}</span></h2>
-      <div class="[ sponsor-frame ] archive-sponsor-frame relative left-1/2 mt-10 mb-[3.2rem] w-[calc(100vw-clamp(2rem,5vw,5rem))] -translate-x-1/2 border-16 border-transparent bg-transparent py-[0.4rem] compact:mt-5 compact:mb-6 compact:w-[calc(100vw-1rem)] compact:py-0" :class="{ 'mb-[0.7rem]': sponsorNeedsScroll }">
+      <div class="[ sponsor-frame ] archive-sponsor-frame relative left-1/2 mt-10 mb-[3.2rem] w-[calc(100vw-clamp(2rem,5vw,5rem))] -translate-x-1/2 border-16 border-transparent bg-transparent py-[0.4rem] compact:mt-5 compact:mb-6 compact:w-[calc(100vw-1rem)] compact:py-0">
         <div
           ref="sponsorStripRef"
-          class="[ sponsor-strip ] archive-sponsor-strip scrollbar-none w-full touch-pan-y overflow-x-auto py-[0.7rem] select-none"
-          :class="dragging ? 'cursor-grabbing' : sponsorNeedsScroll ? 'cursor-grab' : 'cursor-default'"
-          :aria-label="$t('footer.supportersAria')"
-          :tabindex="sponsorNeedsScroll ? 0 : -1"
-          @pointerdown="startDrag"
-          @pointermove="moveDrag"
-          @pointerup="endDrag"
-          @pointercancel="endDrag"
+          class="[ sponsor-strip ] archive-sponsor-strip scrollbar-none w-full touch-pan-y overflow-hidden py-[0.7rem] select-none focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-archive-ochre/72"
+          role="region"
+          :aria-label="$t(sponsorShouldMarquee ? 'footer.supportersMarqueeAria' : 'footer.supportersAria')"
+          :tabindex="sponsorShouldMarquee ? 0 : -1"
         >
-          <div ref="sponsorTrackRef" class="[ sponsor-track ] flex w-max items-center px-5">
-            <ArchiveSponsorMark
-              v-for="(sponsor, index) in sponsors"
-              :key="sponsor.id"
-              :sponsor="sponsor"
-              :divider="index < sponsors.length - 1"
-            />
+          <div
+            class="[ sponsor-track ] archive-sponsor-marquee-track flex items-center"
+            :class="sponsorShouldMarquee ? 'is-marquee w-max' : 'w-full justify-center'"
+          >
+            <div ref="sponsorSequenceRef" class="[ sponsor-sequence ] archive-sponsor-sequence flex shrink-0 items-center px-5">
+              <ArchiveSponsorMark
+                v-for="(sponsor, index) in sponsors"
+                :key="sponsor.id"
+                :sponsor="sponsor"
+                :divider="sponsorShouldMarquee || index < sponsors.length - 1"
+              />
+            </div>
+            <div v-if="sponsorShouldMarquee" class="[ sponsor-sequence ] archive-sponsor-sequence flex shrink-0 items-center px-5" aria-hidden="true">
+              <ArchiveSponsorMark
+                v-for="sponsor in sponsors"
+                :key="`loop-${sponsor.id}`"
+                :sponsor="sponsor"
+                divider
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div v-if="sponsorNeedsScroll" class="[ sponsor-scroll-hint ] mx-auto mb-[3.2rem] flex w-fit items-center justify-center gap-[1.2rem] font-display text-[0.98rem] whitespace-nowrap text-archive-ochre/88 compact:mb-6 compact:gap-1 compact:text-xs" :aria-label="$t('footer.carouselAria')">
-        <button class="inline-flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent text-inherit transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red" type="button" :aria-label="$t('footer.scrollLeft')" @click="scrollSponsors(-1)"><ArchiveArrow class="w-[2.2rem]" direction="left" /></button>
-        <span>{{ $t('footer.scrollHint') }}</span>
-        <button class="inline-flex min-h-11 min-w-11 items-center justify-center border-0 bg-transparent text-inherit transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red" type="button" :aria-label="$t('footer.scrollRight')" @click="scrollSponsors(1)"><ArchiveArrow class="w-[2.2rem]" /></button>
       </div>
     </section>
 

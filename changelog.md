@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.12 - 2026-08-12 00:48:27 CEST
+
+- Standardized every comparable exhibition-detail split on the hero's 60/40 column ratio, reused its contained-section gap, and made the hero, About, and spatial-record sections collapse together at the tablet breakpoint so the right field no longer narrows down the page.
+- Replaced the finite sponsor carousel with a slow right-to-left 72-second marquee that uses two equal sequences for a seamless infinite loop, pauses on hover or keyboard focus, and becomes a native static scroller for reduced-motion users.
+- Made the sponsor marquee genuinely content-responsive with `ResizeObserver`: when the natural logo sequence fits, the footer renders one centered, unfocusable sequence with no duplicate, transform, overflow, or animation; resizing or future logo-count changes activate and deactivate the loop automatically.
+- Removed the obsolete sponsor drag state, resize bookkeeping, arrow controls, and their translations, while keeping distinct localized accessibility labels for the static and animated states.
+- Extended the responsive regression checks to protect the exhibition-detail ratios, shared breakpoint, measured sponsor-overflow gate, conditional duplicate, marquee motion, interaction pause, and reduced-motion fallback; reconciled the README, agent guidance, and style guide with the resulting layout and footer behavior.
+
 ## 0.0.11 - 2026-08-12 00:14:46 CEST
 
 - Kept secondary landing-page exhibition titles on one clipped line, measured real overflow with `ResizeObserver`, and added a right-to-left hover/focus marquee plus a custom framed full-title tooltip with reduced-motion handling.

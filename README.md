@@ -12,14 +12,14 @@ The first Nuxt frontend milestone is implemented. It includes:
 - a searchable, URL-filterable gallery atlas with 26 small Austrian galleries across all nine federal states;
 - a searchable exhibition index with reusable framed record cards and direct detail routes;
 - an illustrated explanation of the archive method;
-- a horizontally draggable sponsor strip and dark editorial footer;
+- an overflow-aware sponsor strip that stays centered and static while its logos fit, then becomes a slow seamless marquee when they overflow, inside the dark editorial footer;
 - dynamic gallery dossiers with location-specific record search, currently led by Parkschlössl;
 - seven real 2026 Parkschlössl exhibition records derived from local source PDFs;
 - a compact selectable exhibition ledger with a preloaded, responsive active preview;
-- dynamic exhibition-detail pages with baseline-aligned location, date, and opening-hours metadata, source invitations, and related records;
+- dynamic exhibition-detail pages with consistent 60/40 desktop split sections, baseline-aligned location, date, and opening-hours metadata, source invitations, and related records;
 - a routed, URL-filterable artist directory with history-aware alphabet routes, compact groups, and on-demand record details;
 - shared hero scroll cues on the landing, gallery, and exhibition routes that fade away when their destination section enters the viewport;
-- shared routed header/footer components, a functional mobile navigation menu, and overflow-aware sponsor controls;
+- shared routed header/footer components, a functional mobile navigation menu, and a content-responsive sponsor marquee;
 - complete English/German UI and local content translations with locale-aware routes and a working language switch;
 - a site-styled privacy notice for the necessary language-preference cookie, dismissible and reopenable from the footer;
 - a responsive temple-mark identity with browser, Apple touch, and installable web-app icons;
@@ -114,7 +114,7 @@ The content stays inside the application bundle instead of `public/`: the existi
 
 ## Implemented Routes And Sections
 
-The landing route in `app/pages/index.vue` contains the hero, locations, selected exhibitions, artists, archive method, sponsors, and footer. Search fields filter the locale-reactive local JSON collections. Its shared header and footer provide localized navigation, active states, an always-available header menu, a tablet/mobile footer drawer, sponsor-strip controls, and an English/German switch that preserves the equivalent route (`/` for German and `/en/` for English). German remains the configured fallback locale, while first entry at the root detects the browser language and may redirect English-language browsers to `/en/`; the necessary `permaphemera-locale` cookie remembers detection and explicit choices. Landing-page alphabet links open the full artist directory at the selected letter and preserve an active artist-search term; the alphabet rail also supports dragging, keyboard scrolling, and explicit left/right controls.
+The landing route in `app/pages/index.vue` contains the hero, locations, selected exhibitions, artists, archive method, sponsors, and footer. Search fields filter the locale-reactive local JSON collections. Its shared header and footer provide localized navigation, active states, an always-available header menu, a tablet/mobile footer drawer, and an English/German switch that preserves the equivalent route (`/` for German and `/en/` for English). The sponsor strip measures its natural sequence with `ResizeObserver`: logos remain as one centered static row while they fit, and only real overflow enables the duplicated 72-second right-to-left marquee. German remains the configured fallback locale, while first entry at the root detects the browser language and may redirect English-language browsers to `/en/`; the necessary `permaphemera-locale` cookie remembers detection and explicit choices. Landing-page alphabet links open the full artist directory at the selected letter and preserve an active artist-search term; the alphabet rail also supports dragging, keyboard scrolling, and explicit left/right controls.
 
 The site-styled privacy notice explains that language-preference cookie without claiming consent for analytics or advertising that the app does not use. Dismissal is remembered locally under `permaphemera-cookie-notice-dismissed`; the footer's cookie-settings action reopens the notice.
 

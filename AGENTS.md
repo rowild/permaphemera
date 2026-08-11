@@ -54,6 +54,7 @@ The frontend foundation is complete:
 - Dynamic exhibition records in `app/pages/exhibitions/[slug].vue`
 - Reusable Vue components for shared header/footer navigation, hero kaleidoscope, venue masks/frames, exhibition cards, and archive arrows
 - Responsive hero, locations, selected exhibitions, artists, archive-method, sponsors, and dark-footer sections
+- An overflow-aware sponsor strip that uses `ResizeObserver` to keep one centered static sequence while the logos fit and activates a duplicated, seamless 72-second marquee only when they overflow, with pause and reduced-motion behavior
 - Seven 2026 Parkschlössl records with PDF-derived local metadata and optimized runtime artwork
 - A compact selectable exhibition ledger with preloaded active preview, loading/error states, and responsive mobile composition
 - GSAP interactions and a perspective-projected Three.js hero kaleidoscope with coordinated orbit arrows, replay choreography, randomized preloaded image swaps, and explicit loading/disabled states

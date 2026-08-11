@@ -664,6 +664,8 @@ Use semantic `<time>` elements for real dates in future routed pages.
 
 On exhibition detail pages, order the primary facts as Location, Dates, then Opening Hours. The label and value columns share a `1.25rem` line-height and align by their first text baseline. Keep the icon in its own inner grid cell so its box cannot become the row baseline; this preserves the same rhythm when either column wraps.
 
+Desktop exhibition-detail sections that pair a dominant visual or editorial field with a secondary information field use the hero's `1.2fr / 0.8fr` (60/40) column ratio consistently. Contained sections also reuse the hero's `clamp(3rem, 7vw, 7rem)` inter-column gap; full-bleed tonal sections keep the same ratio without manufacturing a gap between their surfaces. All such splits collapse to one column at the shared tablet breakpoint so the proportion does not drift at intermediate widths.
+
 ### 14.4 Paper stacks
 
 Paper stacks represent additional records or expansion. The current location stack uses four slightly translated and rotated sheets plus a two-layer paperclip.
@@ -911,7 +913,7 @@ The established motion range is:
 - paper stacks spread and clips lift;
 - card ornaments rotate slightly;
 - buttons brighten subtly and compress on press;
-- sponsor strip uses direct pointer dragging with grab/grabbing cursor;
+- sponsor strip measures the natural logo sequence with `ResizeObserver`; while it fits, render one centered sequence with no duplicate, overflow, focus stop, transform, or animation, and only real overflow activates two equal sequences in a slow, seamless right-to-left 72-second loop; hover or keyboard focus pauses that loop, while reduced-motion mode disables it and restores native horizontal scrolling;
 - artist alphabet rails use native horizontal touch scrolling, direct pointer dragging, keyboard arrow scrolling, and explicit left/right controls where the composition calls for them;
 - landing-page alphabet letters use real localized links into the full directory's letter-filtered URL instead of maintaining a second partial filter state;
 - kaleidoscope controls rotate a spatial composition.
@@ -919,7 +921,7 @@ The established motion range is:
 ### 18.3 Motion constraints
 
 - Keep travel distances short.
-- Avoid continuous motion except when a user explicitly controls it.
+- Avoid continuous motion except for the deliberately ambient sponsor marquee, and activate that marquee only when the natural logo sequence actually overflows; every continuous treatment must pause during interaction and become static under reduced-motion preferences.
 - Avoid animating large layout dimensions when transforms can express the same action.
 - Use `will-change` narrowly and only on known animated layers.
 - Implement `prefers-reduced-motion: reduce` before production: remove smooth scrolling, stack spreading, ornament rotation, and nonessential transitions while preserving state change.
@@ -1085,7 +1087,7 @@ Every new page must include:
 Specific current patterns that require completion before reuse:
 
 - the mobile menu button needs an implemented menu and expanded state;
-- sponsor dragging needs keyboard-accessible alternatives;
+- sponsor marquee duplication exists only during measured overflow and stays hidden from assistive technology; the fitting static sequence is not a focus stop, keyboard focus pauses active motion, and reduced-motion mode preserves access through native horizontal scrolling;
 - placeholder links must become accurate destinations;
 - search submit behavior and no-results feedback must be explicit;
 - focus styling should be standardized beyond venue-card focus.

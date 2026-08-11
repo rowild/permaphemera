@@ -729,6 +729,37 @@ a:hover .archive-arrow-right {
   background: transparent;
 }
 
+@keyframes archive-sponsor-marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.archive-sponsor-marquee-track.is-marquee {
+  animation: archive-sponsor-marquee 72s linear infinite;
+  will-change: transform;
+}
+
+.archive-sponsor-strip:hover .archive-sponsor-marquee-track.is-marquee,
+.archive-sponsor-strip:focus-visible .archive-sponsor-marquee-track.is-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-sponsor-strip {
+    overflow-x: auto;
+  }
+
+  .archive-sponsor-marquee-track.is-marquee {
+    animation: none;
+    transform: none;
+  }
+
+  .archive-sponsor-sequence[aria-hidden="true"] {
+    display: none;
+  }
+}
+
 .archive-alphabet-rail {
   scrollbar-width: none;
 }

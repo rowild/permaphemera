@@ -89,7 +89,7 @@ useSeoMeta({
         <ArchiveScrollCue target="#about-exhibition" :label="$t('exhibition.continue')" />
       </section>
 
-      <section id="about-exhibition" class="[ exhibition-detail-body ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_minmax(22rem,0.62fr)] gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-5 compact:px-4 compact:py-8" aria-labelledby="about-exhibition-title">
+      <section id="about-exhibition" class="[ exhibition-detail-body ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(30rem,1.2fr)_minmax(23rem,0.8fr)] gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-5 compact:px-4 compact:py-8" aria-labelledby="about-exhibition-title">
         <div class="[ exhibition-detail-prose ]">
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.aboutEyebrow') }}</p>
           <h2 id="about-exhibition-title" class="m-0 text-[clamp(2.55rem,4.2vw,4.35rem)] font-light leading-[0.98] compact:text-4xl">{{ $t('exhibition.aboutTitle') }} <span class="text-archive-red">{{ $t('exhibition.aboutAccent') }}</span></h2>
@@ -103,7 +103,7 @@ useSeoMeta({
         </dl>
       </section>
 
-      <section id="spatial-record" class="[ exhibition-experience ] archive-exhibition-experience relative grid min-h-140 grid-cols-[minmax(0,1.3fr)_minmax(24rem,0.7fr)] overflow-hidden bg-archive-night text-archive-footer-copy compact:grid-cols-1" aria-labelledby="spatial-record-title">
+      <section id="spatial-record" class="[ exhibition-experience ] archive-exhibition-experience relative grid min-h-140 grid-cols-[minmax(0,1.2fr)_minmax(24rem,0.8fr)] overflow-hidden bg-archive-night text-archive-footer-copy tablet:grid-cols-1" aria-labelledby="spatial-record-title">
         <div class="[ exhibition-experience-image ] min-h-140 bg-cover bg-center brightness-50 saturate-72 compact:min-h-76" :style="{ backgroundImage: `url('${exhibition.image}')` }" aria-hidden="true" />
         <div class="[ exhibition-experience-copy ] archive-exhibition-experience-copy relative z-2 flex flex-col justify-center p-[clamp(3rem,6vw,6rem)] compact:bg-archive-night compact:px-4 compact:py-8">
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.spatialEyebrow') }}</p>
