@@ -9,6 +9,8 @@ const { toRomanNumeral } = await import('../app/utils/romanNumerals.ts')
 const orbitGeometry = await import('../app/utils/orbitGeometry.ts')
 const { createTextureCache } = await import('../app/utils/textureCache.ts')
 const heroKaleidoscope = await readProjectFile('app/components/HeroKaleidoscope.vue')
+const kaleidoscopeTextures = await readProjectFile('app/utils/kaleidoscopeTextures.ts')
+const htaccess = await readProjectFile('public/.htaccess')
 
 const cacheProbe = await (async () => {
   const calls = []
@@ -90,7 +92,15 @@ const checks = [
   ['texture cache shares one request between concurrent callers', cacheProbe.dedupesInFlightLoads],
   ['texture cache evicts the least recently used entry and disposes it', cacheProbe.evictsLeastRecentlyUsed],
   ['a failed load is not cached and can be retried', cacheProbe.failedLoadsDoNotPoison],
-  ['clearing the cache disposes every retained texture', cacheProbe.clearDisposesEverything]
+  ['clearing the cache disposes every retained texture', cacheProbe.clearDisposesEverything],
+  ['the texture cache lives at module scope and is built from the shared policy', kaleidoscopeTextures.includes("from '~/utils/textureCache'") && /createTextureCache<THREE\.Texture>\(/.test(kaleidoscopeTextures) && kaleidoscopeTextures.includes('capacity: 24')],
+  ['the texture module exposes the loading interface the hero needs', ['export function loadTexture', 'export function isTextureCached', 'export function getFallbackTexture', 'export function releaseTextureCache'].every((signature) => kaleidoscopeTextures.includes(signature))],
+  ['cached textures keep the hero colour space and filtering', ['SRGBColorSpace', 'ClampToEdgeWrapping', 'LinearMipmapLinearFilter', 'LinearFilter'].every((setting) => kaleidoscopeTextures.includes(setting))],
+  ['HeroKaleidoscope no longer owns a per-instance texture cache', heroKaleidoscope.includes("from '~/utils/kaleidoscopeTextures'") && !heroKaleidoscope.includes('const textureCache = new Map') && !heroKaleidoscope.includes('const texturePromises = new Map') && !heroKaleidoscope.includes('textureCache.clear()')],
+  ['HeroKaleidoscope stops disposing textures it no longer owns', !heroKaleidoscope.includes('disposableTextures.forEach') && !heroKaleidoscope.includes('const disposableTextures')],
+  ['HeroKaleidoscope still disposes the geometries and materials it does own', heroKaleidoscope.includes('disposableGeometries.forEach((geometry) => geometry.dispose())') && heroKaleidoscope.includes('disposableMaterials.forEach((material) => material.dispose())')],
+  ['the loading sprite texture is disposed with the component that created it', heroKaleidoscope.includes('loadingIconTexture?.dispose()')],
+  ['images are served with a long lived cache header', /Cache-Control.*max-age=2592000/.test(htaccess) && htaccess.includes('mod_headers')]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)

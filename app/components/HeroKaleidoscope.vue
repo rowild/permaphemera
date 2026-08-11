@@ -10,6 +10,7 @@ import {
   orbitSegments,
   orbitStartAngle
 } from '~/utils/orbitGeometry'
+import { isTextureCached, loadTexture } from '~/utils/kaleidoscopeTextures'
 
 const props = defineProps<{
   images: string[]
@@ -94,7 +95,7 @@ const arrowRotationValues = orbitSegments.map((segment) => segment.rotation)
 let renderer: THREE.WebGLRenderer | null = null
 let scene: THREE.Scene | null = null
 let camera: THREE.PerspectiveCamera | null = null
-let textureLoader: THREE.TextureLoader | null = null
+let loadingIconTexture: THREE.CanvasTexture | null = null
 let frameId = 0
 let resizeObserver: ResizeObserver | null = null
 let introTimeline: gsap.core.Timeline | null = null
@@ -106,9 +107,6 @@ let backgroundPreloadCancelled = false
 let pageLoadHandler: (() => void) | null = null
 const disposableGeometries: THREE.BufferGeometry[] = []
 const disposableMaterials: THREE.Material[] = []
-const disposableTextures: THREE.Texture[] = []
-const texturePromises = new Map<string, Promise<THREE.Texture>>()
-const textureCache = new Map<string, THREE.Texture>()
 const sliceImageStates: SliceImageState[] = []
 const sliceBladePivots: THREE.Group[] = []
 const slicePivots: THREE.Group[] = []
@@ -151,41 +149,6 @@ function render(time = 0) {
   frameId = window.requestAnimationFrame(render)
 }
 
-function prepareTexture(texture: THREE.Texture) {
-  texture.colorSpace = THREE.SRGBColorSpace
-  texture.wrapS = THREE.ClampToEdgeWrapping
-  texture.wrapT = THREE.ClampToEdgeWrapping
-  texture.generateMipmaps = true
-  texture.minFilter = THREE.LinearMipmapLinearFilter
-  texture.magFilter = THREE.LinearFilter
-  disposableTextures.push(texture)
-
-  return texture
-}
-
-function loadTexture(url: string) {
-  const cachedTexture = textureCache.get(url)
-  if (cachedTexture) return Promise.resolve(cachedTexture)
-
-  const pendingTexture = texturePromises.get(url)
-  if (pendingTexture) return pendingTexture
-  if (!textureLoader) return Promise.reject(new Error('Texture loader is not ready.'))
-
-  const texturePromise = textureLoader.loadAsync(url)
-    .then((texture) => {
-      const preparedTexture = prepareTexture(texture)
-      textureCache.set(url, preparedTexture)
-      return preparedTexture
-    })
-    .catch((error) => {
-      texturePromises.delete(url)
-      throw error
-    })
-
-  texturePromises.set(url, texturePromise)
-  return texturePromise
-}
-
 function createLoadingIconTexture() {
   const canvas = document.createElement('canvas')
   canvas.width = 96
@@ -213,7 +176,6 @@ function createLoadingIconTexture() {
 
   const texture = new THREE.CanvasTexture(canvas)
   texture.colorSpace = THREE.SRGBColorSpace
-  disposableTextures.push(texture)
 
   return texture
 }
@@ -368,8 +330,10 @@ async function assignSliceTexture(
   sliceTransitionTimelines[index] = null
   settleSliceImageLayers(index)
 
-  const cachedTexture = textureCache.get(url)
-  if (cachedTexture) {
+  if (isTextureCached(url)) {
+    const cachedTexture = await loadTexture(url)
+    if (sliceLoadingTokens[index] !== token) return
+
     animateTextureSwap(index, cachedTexture, url, token, shouldAnimate)
     return
   }
@@ -393,7 +357,7 @@ async function assignSliceTexture(
 function randomizeSliceTextures(options: TextureAssignmentOptions = {}) {
   const completePool = [...new Set((props.imagePool?.length ? props.imagePool : props.images).filter(Boolean))]
   const pool = options.cachedOnly
-    ? completePool.filter((url) => textureCache.has(url))
+    ? completePool.filter((url) => isTextureCached(url))
     : completePool
   if (!pool.length) return Promise.resolve()
 
@@ -431,7 +395,7 @@ async function preloadTexturePool() {
 
   for (const url of pool) {
     if (backgroundPreloadCancelled) return
-    if (textureCache.has(url)) continue
+    if (isTextureCached(url)) continue
 
     await waitForBrowserIdle()
     if (backgroundPreloadCancelled) return
@@ -868,7 +832,6 @@ onMounted(async () => {
   renderer.outputColorSpace = THREE.SRGBColorSpace
   renderer.setClearColor(0x000000, 0)
 
-  textureLoader = new THREE.TextureLoader()
   const sourceImages = props.images.length ? props.images : ['/images/landing/parkschloessl.jpg']
   const textures = await Promise.all(
     Array.from({ length: 12 }, (_, index) => {
@@ -877,7 +840,7 @@ onMounted(async () => {
     })
   )
 
-  const loadingIconTexture = createLoadingIconTexture()
+  loadingIconTexture = createLoadingIconTexture()
   const wheel = new THREE.Group()
 
   textures.forEach((texture, index) => {
@@ -968,9 +931,8 @@ onBeforeUnmount(() => {
 
   disposableGeometries.forEach((geometry) => geometry.dispose())
   disposableMaterials.forEach((material) => material.dispose())
-  disposableTextures.forEach((texture) => texture.dispose())
-  texturePromises.clear()
-  textureCache.clear()
+  loadingIconTexture?.dispose()
+  loadingIconTexture = null
   sliceImageStates.length = 0
   sliceLoadingSprites.length = 0
   sliceLoadingMaterials.length = 0
@@ -984,7 +946,6 @@ onBeforeUnmount(() => {
   renderer = null
   scene = null
   camera = null
-  textureLoader = null
   introTimeline = null
   rotationTimeline = null
   replayExitTimeline = null

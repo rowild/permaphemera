@@ -1,3 +1,11 @@
+<IfModule mod_headers.c>
+  # public/ filenames are not content hashed by nuxt generate, so this is a
+  # deliberate month rather than a year. Rename an image to bust it sooner.
+  <FilesMatch "\.(?:avif|gif|ico|jpe?g|png|svg|webp)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
