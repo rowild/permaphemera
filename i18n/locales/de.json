@@ -296,12 +296,10 @@
   "cards": {
     "openArchive": "Archiv öffnen",
     "openVenue": "Archiv von {name} öffnen",
-    "openRecord": "Eintrag {title} öffnen",
     "enter360": "360°-Eintrag betreten",
     "enter": "Betreten",
-    "openRecordLabel": "Eintrag öffnen",
     "previewExhibition": "{title} als Vorschau anzeigen",
-    "openExhibitionFor": "Ausstellungseintrag für {title} öffnen",
+    "openExhibitionFor": "Ausstellung öffnen: {title}",
     "openExhibition": "Ausstellung öffnen"
   },
   "footer": {

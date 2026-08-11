@@ -296,13 +296,11 @@
   "cards": {
     "openArchive": "Open archive",
     "openVenue": "Open {name} archive",
-    "openRecord": "Open {title} record",
     "enter360": "Enter 360 record",
     "enter": "Enter",
-    "openRecordLabel": "Open record",
     "previewExhibition": "Preview {title}",
-    "openExhibitionFor": "Open the exhibition record for {title}",
-    "openExhibition": "Open exhibition"
+    "openExhibitionFor": "Open exhibition: {title}",
+    "openExhibition": "Open Exhibition"
   },
   "footer": {
     "tagline": "A curated Austrian archive of 360-degree exhibition documentation.",

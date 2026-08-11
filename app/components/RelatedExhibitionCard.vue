@@ -8,9 +8,11 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-  <NuxtLink
-    class="[ related-exhibition-card ] grid grid-rows-[13rem_1fr] border-t border-archive-red/48 bg-archive-record-paper/45 filter-[drop-shadow(0_0.5rem_0.6rem_rgba(75,52,29,0.08))] focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red compact:grid-rows-[8rem_1fr]"
-    :to="localePath(`/exhibitions/${exhibition.slug}`)"
+  <ExhibitionFrameCard
+    class="[ related-exhibition-card ] min-h-100 compact:min-h-68"
+    surface-class="grid grid-rows-[13rem_1fr] bg-archive-record-paper/45 compact:grid-rows-[8rem_1fr]"
+    :href="localePath(`/exhibitions/${exhibition.slug}/`)"
+    :aria-label="$t('cards.openExhibitionFor', { title: exhibition.title })"
   >
     <img class="size-full object-cover" :src="exhibition.image" :alt="exhibition.image_alt" loading="lazy" />
     <div class="flex flex-col p-5 compact:p-3">
@@ -19,7 +21,7 @@ const localePath = useLocalePath()
       </time>
       <h3 class="mt-[0.3rem] mb-0 text-[1.55rem] font-normal leading-[1.05] compact:text-lg">{{ exhibition.title }}</h3>
       <p class="mt-1 mb-4 text-archive-red compact:mb-2 compact:text-sm">{{ exhibition.artist }}</p>
-      <span class="mt-auto flex items-center gap-2 text-archive-red compact:text-sm">{{ $t('cards.openRecordLabel') }} <ArchiveArrow /></span>
+      <span class="mt-auto flex items-center gap-2 text-archive-red compact:text-sm">{{ $t('cards.openExhibition') }} <ArchiveArrow /></span>
     </div>
-  </NuxtLink>
+  </ExhibitionFrameCard>
 </template>

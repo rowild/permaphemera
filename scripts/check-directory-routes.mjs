@@ -13,6 +13,10 @@ const [
   exhibitionsIndex,
   exhibitionDetail,
   exhibitionCard,
+  landingExhibitionCard,
+  relatedExhibitionCard,
+  englishMessages,
+  germanMessages,
   header,
   footerMenu
 ] = await Promise.all([
@@ -24,6 +28,10 @@ const [
   readText('app/pages/exhibitions/index.vue'),
   readText('app/pages/exhibitions/[slug].vue'),
   readText('app/components/ExhibitionDirectoryCard.vue'),
+  readText('app/components/LandingExhibitionCard.vue'),
+  readText('app/components/RelatedExhibitionCard.vue'),
+  readJson('i18n/locales/en.json'),
+  readJson('i18n/locales/de.json'),
   readText('app/components/ArchiveHeader.vue'),
   readText('app/components/ArchiveFooterMenu.vue')
 ])
@@ -56,6 +64,13 @@ assert(exhibitions.length > 0, 'The exhibitions directory needs routed exhibitio
 assert.match(exhibitionsIndex, /<ArchiveSearchForm/, 'The exhibitions index must use the shared search form.')
 assert.match(exhibitionsIndex, /<ExhibitionDirectoryCard[\s\S]*v-for=/, 'The exhibitions index must render reusable exhibition cards.')
 assert.match(exhibitionCard, /<ExhibitionFrameCard/, 'Exhibition cards must use the shared generated cut-corner frame.')
+assert.match(landingExhibitionCard, /\[ record-card-action \][^\n]*items-center justify-center/, 'Landing exhibition actions must stay centered over their images.')
+assert.match(landingExhibitionCard, /\$t\('cards\.openExhibition'\)/, 'Landing exhibition actions must use the shared exhibition label.')
+assert.match(relatedExhibitionCard, /<ExhibitionFrameCard/, 'Related exhibition cards must use the shared generated cut-corner frame.')
+assert.match(relatedExhibitionCard, /\$t\('cards\.openExhibition'\)/, 'Related exhibition cards must use the shared exhibition label.')
+assert.equal(englishMessages.cards.openExhibition, 'Open Exhibition', 'English exhibition actions must use the requested label.')
+assert.equal(germanMessages.cards.openExhibition, 'Ausstellung öffnen', 'German exhibition actions must use the equivalent localized label.')
+assert(![exhibitionCard, landingExhibitionCard, relatedExhibitionCard].some((source) => /openRecord/.test(source)), 'Exhibition cards must not retain the old open-record action keys.')
 assert.match(exhibitionDetail, /localePath\('\/exhibitions\/'\)/, 'Exhibition detail breadcrumbs must return to the exhibition index.')
 assert.match(exhibitionDetail, /galleryPath/, 'Exhibition detail routes must derive their owning gallery route.')
 

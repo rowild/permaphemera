@@ -28,7 +28,7 @@ const ornamentStyle = computed<CSSProperties>(() => ({
       ? 'bg-archive-record-night'
       : 'grid grid-cols-[49%_minmax(0,1fr)] bg-archive-record-paper tablet:grid-cols-1 tablet:grid-rows-[12.5rem_1fr] compact:grid-rows-[7rem_1fr]'"
     :href="props.href"
-    :aria-label="$t('cards.openRecord', { title: props.exhibition.title })"
+    :aria-label="$t('cards.openExhibitionFor', { title: props.exhibition.title })"
     @mouseenter="active = true"
     @mouseleave="active = false"
     @focusin="active = true"
@@ -63,11 +63,18 @@ const ornamentStyle = computed<CSSProperties>(() => ({
     </template>
 
     <template v-else>
-      <img
-        class="[ record-card-image ] size-full min-h-0 object-cover transition-transform duration-700 ease-archive-lift group-hover/exhibition:scale-[1.035] motion-reduce:transition-none"
-        :src="props.exhibition.image"
-        :alt="props.exhibition.title"
-      />
+      <div class="[ record-card-media ] relative min-h-0 overflow-hidden">
+        <img
+          class="[ record-card-image ] size-full min-h-0 object-cover transition-transform duration-700 ease-archive-lift group-hover/exhibition:scale-[1.035] motion-reduce:transition-none"
+          :src="props.exhibition.image"
+          :alt="props.exhibition.title"
+        />
+        <div class="[ record-card-action ] pointer-events-none absolute inset-0 z-2 flex items-center justify-center p-3 compact:p-1">
+          <ArchiveButton class="min-h-12 gap-2 px-2 text-[0.92rem] whitespace-nowrap compact:min-h-10 compact:gap-0 compact:px-0 compact:text-xs" as="span" variant="secondary">
+            {{ $t('cards.openExhibition') }} <ArchiveArrow class="w-6 compact:hidden" />
+          </ArchiveButton>
+        </div>
+      </div>
       <div class="[ record-card-copy ] archive-record-card-copy relative z-2 flex min-w-0 flex-col px-[1.35rem] pt-[1.1rem] pb-[0.85rem] compact:px-4 compact:pt-3 compact:pb-5">
         <h3 class="[ record-title ] m-0 max-w-80 font-display text-[1.18rem] font-medium leading-[1.08] compact:text-sm">{{ props.exhibition.title }}</h3>
         <p class="[ artist-name ] my-[0.08rem] mt-[0.18rem] font-display text-archive-red compact:text-sm">{{ props.exhibition.artist }}</p>
@@ -79,7 +86,6 @@ const ornamentStyle = computed<CSSProperties>(() => ({
           <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-calendar inline-block size-4 flex-none bg-current" aria-hidden="true" />
           {{ props.exhibition.date_range }}
         </p>
-        <span class="[ record-link-label ] mt-auto mb-1 flex items-center self-start gap-2 font-display text-[1.05rem] text-archive-red compact:gap-1 compact:text-sm"><span class="compact:hidden">{{ $t('cards.openRecordLabel') }}</span><span class="hidden compact:inline">{{ $t('common.open') }}</span> <ArchiveArrow class="compact:w-5" /></span>
       </div>
     </template>
 

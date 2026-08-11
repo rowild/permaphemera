@@ -983,7 +983,7 @@ Explain what the archive preserves and how the visitor can engage with it. Use c
 
 ### 20.3 Labels and actions
 
-Use exact nouns and verbs. `Open record` is better than `Discover more`. `Locations` is better than an abstract label like `Places` when the underlying data model is locations.
+Use exact nouns and verbs. `Open Exhibition` is better than `Discover more`. `Locations` is better than an abstract label like `Places` when the underlying data model is locations.
 
 ### 20.4 Naming consistency
 

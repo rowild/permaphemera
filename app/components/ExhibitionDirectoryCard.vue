@@ -30,7 +30,7 @@ const sequence = computed(() => String(props.index + 1).padStart(2, '0'))
       ? 'bg-archive-night'
       : 'grid grid-rows-[16rem_1fr] bg-archive-record-paper compact:grid-rows-[8.5rem_1fr]'"
     :href="localePath(`/exhibitions/${props.exhibition.slug}/`)"
-    :aria-label="$t('cards.openRecord', { title: props.exhibition.title })"
+    :aria-label="$t('cards.openExhibitionFor', { title: props.exhibition.title })"
     @mouseenter="active = true"
     @mouseleave="active = false"
     @focusin="active = true"
@@ -45,7 +45,7 @@ const sequence = computed(() => String(props.index + 1).padStart(2, '0'))
             <h3 class="m-0 max-w-208 text-[clamp(2.8rem,5.2vw,5.4rem)] font-light leading-[0.9] compact:text-4xl">{{ props.exhibition.title }}</h3>
             <p class="mt-2 mb-0 text-[1.35rem] text-archive-ochre compact:text-base">{{ props.exhibition.artist }}</p>
           </div>
-          <span class="flex items-center gap-3 text-[1.08rem] compact:text-sm">{{ $t('cards.openRecordLabel') }} <ArchiveArrow /></span>
+          <span class="flex items-center gap-3 text-[1.08rem] compact:text-sm">{{ $t('cards.openExhibition') }} <ArchiveArrow /></span>
         </div>
       </div>
     </template>
