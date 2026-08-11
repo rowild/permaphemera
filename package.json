@@ -16,6 +16,7 @@
     "check:links": "node scripts/check-archive-text-links.mjs",
     "check:locations": "node scripts/check-location-exhibition-browser.mjs",
     "check:mobile": "node scripts/check-mobile-density.mjs",
+    "check:preloader": "node scripts/check-kaleidoscope-preloader.mjs",
     "check:tailwind": "node scripts/check-tailwind-canonical.mjs",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
