@@ -34,6 +34,9 @@ const { createTextureCache } = await import('../app/utils/textureCache.ts')
 const heroKaleidoscope = await readProjectFile('app/components/HeroKaleidoscope.vue')
 const kaleidoscopeTextures = await readProjectFile('app/utils/kaleidoscopeTextures.ts')
 const htaccess = await readProjectFile('public/.htaccess')
+const kaleidoscopeLoader = await readProjectFile('app/components/KaleidoscopeLoader.vue')
+const enMessages = JSON.parse(await readProjectFile('i18n/locales/en.json'))
+const deMessages = JSON.parse(await readProjectFile('i18n/locales/de.json'))
 const preloadTexturePoolSource = extractFunctionSource(heroKaleidoscope, 'preloadTexturePool')
 
 const cacheProbe = await (async () => {
@@ -125,7 +128,19 @@ const checks = [
   ['HeroKaleidoscope still disposes the geometries and materials it does own', heroKaleidoscope.includes('disposableGeometries.forEach((geometry) => geometry.dispose())') && heroKaleidoscope.includes('disposableMaterials.forEach((material) => material.dispose())')],
   ['the loading sprite texture is disposed with the component that created it', heroKaleidoscope.includes('loadingIconTexture?.dispose()')],
   ['images are served with a long lived cache header', /Cache-Control.*max-age=2592000/.test(htaccess) && htaccess.includes('mod_headers')],
-  ['background preload is capped to one rotation instead of walking the whole pool', /const preloadBatchSize = 12\b/.test(heroKaleidoscope) && /if\s*\([^)]*(>=|>)\s*preloadBatchSize[^)]*\)\s*return/.test(preloadTexturePoolSource)]
+  ['background preload is capped to one rotation instead of walking the whole pool', /const preloadBatchSize = 12\b/.test(heroKaleidoscope) && /if\s*\([^)]*(>=|>)\s*preloadBatchSize[^)]*\)\s*return/.test(preloadTexturePoolSource)],
+  ['the dial reports progress to assistive technology', kaleidoscopeLoader.includes('role="progressbar"') && kaleidoscopeLoader.includes(':aria-valuenow="loadedCount"') && kaleidoscopeLoader.includes(':aria-valuemax="props.total"') && kaleidoscopeLoader.includes(':aria-valuetext="progressText"')],
+  ['the dial derives its count from the ready slices rather than a second counter', kaleidoscopeLoader.includes('props.readySlices.filter(Boolean).length') && !kaleidoscopeLoader.includes('loadedCount.value =')],
+  ['the dial reuses the shared orbit geometry and roman numerals', kaleidoscopeLoader.includes("from '~/utils/orbitGeometry'") && kaleidoscopeLoader.includes("from '~/utils/romanNumerals'")],
+  ['the dial does not reach into the hero SVG defs by id', !kaleidoscopeLoader.includes('#hero-orbit-arrow-line') && !kaleidoscopeLoader.includes('#hero-orbit-arrow-head')],
+  ['the dial draws one tick per wheel position', kaleidoscopeLoader.includes('v-for="tick in ticks"') && kaleidoscopeLoader.includes('orbitSegments.map')],
+  ['ticks ink in for slices that have arrived', /props\.readySlices\[tick\.id\]\s*\?\s*'opacity-70'\s*:\s*'opacity-15'/.test(kaleidoscopeLoader)],
+  ['the dial honours reduced motion for the sweep and the ticks', kaleidoscopeLoader.includes("matchMedia('(prefers-reduced-motion: reduce)')") && kaleidoscopeLoader.includes('motion-reduce:transition-none')],
+  ['the dial kills its sweep on unmount', kaleidoscopeLoader.includes('onBeforeUnmount') && kaleidoscopeLoader.includes('sweepTween?.kill()')],
+  ['the dial uses a spaced structural marker and no scoped styles', kaleidoscopeLoader.includes('[ kaleidoscope-loader ]') && !kaleidoscopeLoader.includes('[kaleidoscope-loader]') && !kaleidoscopeLoader.includes('<style')],
+  ['the dial is inert to pointer input', kaleidoscopeLoader.includes('pointer-events-none')],
+  ['loading copy names galleries in both locales', enMessages.landing.hero.loadingLabel === 'Gallery' && deMessages.landing.hero.loadingLabel === 'Galerie'],
+  ['loading progress copy interpolates both counts in both locales', ['{loaded}', '{total}'].every((token) => enMessages.landing.hero.loadingProgress.includes(token) && deMessages.landing.hero.loadingProgress.includes(token))]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)
