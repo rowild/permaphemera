@@ -90,6 +90,8 @@ const imageSwapConfig = {
   incomingStart: 0.22,
   outgoingDuration: 0.72
 }
+// One rotation's worth of replacements, sized to match the texture cache's working set.
+const preloadBatchSize = 12
 const arrowRotationValues = orbitSegments.map((segment) => segment.rotation)
 
 let renderer: THREE.WebGLRenderer | null = null
@@ -392,10 +394,12 @@ function waitForBrowserIdle() {
 
 async function preloadTexturePool() {
   const pool = [...new Set((props.imagePool ?? []).filter(Boolean))]
+  let loadedCount = 0
 
   for (const url of pool) {
     if (backgroundPreloadCancelled) return
     if (isTextureCached(url)) continue
+    if (loadedCount >= preloadBatchSize) return
 
     await waitForBrowserIdle()
     if (backgroundPreloadCancelled) return
@@ -405,6 +409,8 @@ async function preloadTexturePool() {
     } catch (error) {
       console.warn(`Could not preload kaleidoscope image: ${url}`, error)
     }
+
+    loadedCount += 1
   }
 }
 

@@ -5,12 +5,36 @@ import { fileURLToPath } from 'node:url'
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const readProjectFile = (path) => readFile(resolve(projectRoot, path), 'utf8')
 
+// Extracts a top-level function's full source (brace-matched, not regex-truncated) so
+// checks can assert on what a function actually does rather than on stray text anywhere
+// in the file.
+function extractFunctionSource(source, functionName) {
+  const marker = `function ${functionName}(`
+  const start = source.indexOf(marker)
+  if (start === -1) return ''
+
+  const braceStart = source.indexOf('{', start)
+  if (braceStart === -1) return ''
+
+  let depth = 0
+  for (let index = braceStart; index < source.length; index += 1) {
+    if (source[index] === '{') depth += 1
+    else if (source[index] === '}') {
+      depth -= 1
+      if (depth === 0) return source.slice(start, index + 1)
+    }
+  }
+
+  return source.slice(start)
+}
+
 const { toRomanNumeral } = await import('../app/utils/romanNumerals.ts')
 const orbitGeometry = await import('../app/utils/orbitGeometry.ts')
 const { createTextureCache } = await import('../app/utils/textureCache.ts')
 const heroKaleidoscope = await readProjectFile('app/components/HeroKaleidoscope.vue')
 const kaleidoscopeTextures = await readProjectFile('app/utils/kaleidoscopeTextures.ts')
 const htaccess = await readProjectFile('public/.htaccess')
+const preloadTexturePoolSource = extractFunctionSource(heroKaleidoscope, 'preloadTexturePool')
 
 const cacheProbe = await (async () => {
   const calls = []
@@ -93,14 +117,15 @@ const checks = [
   ['texture cache evicts the least recently used entry and disposes it', cacheProbe.evictsLeastRecentlyUsed],
   ['a failed load is not cached and can be retried', cacheProbe.failedLoadsDoNotPoison],
   ['clearing the cache disposes every retained texture', cacheProbe.clearDisposesEverything],
-  ['the texture cache lives at module scope and is built from the shared policy', kaleidoscopeTextures.includes("from '~/utils/textureCache'") && /createTextureCache<THREE\.Texture>\(/.test(kaleidoscopeTextures) && kaleidoscopeTextures.includes('capacity: 24')],
+  ['the texture cache lives at module scope and is built from the shared policy', kaleidoscopeTextures.includes("from '~/utils/textureCache'") && /createTextureCache<THREE\.Texture>\(/.test(kaleidoscopeTextures) && /const TEXTURE_CAPACITY = 24\b/.test(kaleidoscopeTextures) && kaleidoscopeTextures.includes('capacity: TEXTURE_CAPACITY')],
   ['the texture module exposes the loading interface the hero needs', ['export function loadTexture', 'export function isTextureCached', 'export function getFallbackTexture', 'export function releaseTextureCache'].every((signature) => kaleidoscopeTextures.includes(signature))],
   ['cached textures keep the hero colour space and filtering', ['SRGBColorSpace', 'ClampToEdgeWrapping', 'LinearMipmapLinearFilter', 'LinearFilter'].every((setting) => kaleidoscopeTextures.includes(setting))],
   ['HeroKaleidoscope no longer owns a per-instance texture cache', heroKaleidoscope.includes("from '~/utils/kaleidoscopeTextures'") && !heroKaleidoscope.includes('const textureCache = new Map') && !heroKaleidoscope.includes('const texturePromises = new Map') && !heroKaleidoscope.includes('textureCache.clear()')],
   ['HeroKaleidoscope stops disposing textures it no longer owns', !heroKaleidoscope.includes('disposableTextures.forEach') && !heroKaleidoscope.includes('const disposableTextures')],
   ['HeroKaleidoscope still disposes the geometries and materials it does own', heroKaleidoscope.includes('disposableGeometries.forEach((geometry) => geometry.dispose())') && heroKaleidoscope.includes('disposableMaterials.forEach((material) => material.dispose())')],
   ['the loading sprite texture is disposed with the component that created it', heroKaleidoscope.includes('loadingIconTexture?.dispose()')],
-  ['images are served with a long lived cache header', /Cache-Control.*max-age=2592000/.test(htaccess) && htaccess.includes('mod_headers')]
+  ['images are served with a long lived cache header', /Cache-Control.*max-age=2592000/.test(htaccess) && htaccess.includes('mod_headers')],
+  ['background preload is capped to one rotation instead of walking the whole pool', /const preloadBatchSize = 12\b/.test(heroKaleidoscope) && /if\s*\([^)]*(>=|>)\s*preloadBatchSize[^)]*\)\s*return/.test(preloadTexturePoolSource)]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)

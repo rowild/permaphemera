@@ -1,6 +1,9 @@
 import * as THREE from 'three'
 import { createTextureCache } from '~/utils/textureCache'
 
+// The twelve displayed slices plus one rotation's worth of replacements.
+const TEXTURE_CAPACITY = 24
+
 let textureLoader: THREE.TextureLoader | null = null
 let fallbackTexture: THREE.Texture | null = null
 
@@ -16,8 +19,7 @@ function prepareTexture(texture: THREE.Texture) {
 }
 
 const cache = createTextureCache<THREE.Texture>({
-  // Twelve visible slices plus a full replay's worth of replacements.
-  capacity: 24,
+  capacity: TEXTURE_CAPACITY,
   load: (url) => {
     textureLoader ??= new THREE.TextureLoader()
     return textureLoader.loadAsync(url).then(prepareTexture)
