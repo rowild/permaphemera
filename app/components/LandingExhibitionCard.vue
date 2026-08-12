@@ -129,7 +129,7 @@ onBeforeUnmount(() => {
       </div>
       <div class="[ record-card-copy ] archive-record-card-copy relative z-2 flex min-w-0 flex-col px-[1.35rem] pt-[1.1rem] pb-[0.85rem] compact:px-4 compact:pt-3 compact:pb-5">
         <div class="[ record-title-shell ] group/title relative min-w-0">
-          <div ref="recordTitleViewport" class="[ record-title-viewport ] overflow-hidden">
+          <div ref="recordTitleViewport" class="[ record-title-viewport ] overflow-hidden pb-0.5">
             <h3
               ref="recordTitleText"
               class="[ record-title ] m-0 w-max max-w-none font-display text-[1.18rem] font-medium leading-[1.08] whitespace-nowrap compact:text-sm"

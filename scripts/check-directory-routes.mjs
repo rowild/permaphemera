@@ -72,6 +72,7 @@ assert.match(landingExhibitionCard, /transition-colors[^\n]*group-hover\/exhibit
 assert.match(landingExhibitionCard, /archive-record-open-action[^\n]*text-\[0\.86rem\][^\n]*opacity-90/, 'Landing exhibition actions must use the dedicated compact frame without reducing their label size.')
 assert.match(mainCss, /\.archive-record-open-action\s*\{[^}]*width: min\(9\.75rem, calc\(100% - 2rem\)\);[^}]*min-height: 2\.75rem;[^}]*padding-inline: 0\.1875rem;[^}]*border-width: 0\.5rem;/s, 'Landing exhibition actions must keep a small, genuinely inset frame with minimal padding.')
 assert.match(landingExhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidden/, 'Landing exhibition titles must stay on one clipped line.')
+assert.match(landingExhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidden[^>]*pb-0\.5/, 'Landing exhibition title viewports must reserve two pixels for font descenders.')
 assert.match(landingExhibitionCard, /archive-record-title-marquee/, 'Overflowing landing exhibition titles must use the measured marquee treatment.')
 assert.match(landingExhibitionCard, /ResizeObserver/, 'Landing exhibition title overflow must respond to live card width.')
 assert.match(landingExhibitionCard, /\[ record-title-tooltip \][^\n]*archive-record-title-tooltip/, 'Overflowing landing exhibition titles must expose the custom archival tooltip.')
