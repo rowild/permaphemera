@@ -105,7 +105,7 @@ onBeforeUnmount(restoreBodyScroll)
 
             <header class="pr-12 compact:pr-9">
               <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-sm font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('artists.linkedExhibitions') }}</p>
-              <h2 :id="`${props.modalId}-title`" class="m-0 font-display text-[clamp(2.2rem,5vw,3.8rem)] font-normal leading-none compact:text-3xl">
+              <h2 :id="`${props.modalId}-title`" class="m-0 font-display text-h2-steep font-normal leading-none compact:text-3xl">
                 {{ props.displayName }}
               </h2>
               <p v-if="props.artist.location || props.artist.years" class="mt-3 mb-0 text-sm text-archive-muted">
@@ -122,7 +122,7 @@ onBeforeUnmount(restoreBodyScroll)
                 @click="requestClose"
               >
                 <span class="min-w-0">
-                  <span class="block text-[1.08rem] leading-tight compact:text-sm">{{ record.title }}</span>
+                  <span class="block text-button leading-tight compact:text-sm">{{ record.title }}</span>
                   <span class="mt-1 block text-xs tracking-wide text-archive-light-ink/75">{{ [record.venue, record.city].filter(Boolean).join(' · ') }}</span>
                 </span>
                 <ArchiveArrow class="ml-auto shrink-0" />

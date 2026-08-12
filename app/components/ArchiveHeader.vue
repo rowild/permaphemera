@@ -33,10 +33,10 @@ const openCookieSettings = () => {
 <template>
   <header class="[ site-header ] archive-header-surface sticky top-0 z-30 grid min-h-[6.4rem] grid-cols-[auto_minmax(0,1fr)_auto] content-center items-baseline px-[clamp(1.4rem,5vw,5.2rem)] pt-[2.05rem] tablet:min-h-24 tablet:grid-cols-[1fr_auto] tablet:items-center tablet:pt-[1.9rem] compact:min-h-16 compact:grid-cols-[minmax(0,1fr)_auto] compact:content-start compact:gap-y-0 compact:px-4 compact:pt-2 compact:pb-0">
     <a class="[ skip-link ] absolute left-5 -top-20 z-60 border border-archive-red bg-archive-paper px-4 py-[0.7rem] text-archive-ink focus:top-[0.65rem]" :href="`#${props.skipTarget}`">{{ $t('site.skipToContent') }}</a>
-    <p class="[ header-eyebrow ] col-span-2 m-0 hidden self-end font-display text-[0.6rem] leading-none font-medium tracking-widest text-archive-red/82 compact:block compact:translate-y-2 compact:pl-8 narrow:pl-7">
+    <p class="[ header-eyebrow ] col-span-2 m-0 hidden self-end font-display text-3xs leading-none font-medium tracking-widest text-archive-red/82 compact:block compact:translate-y-2 compact:pl-8 narrow:pl-7">
       {{ $t('site.headerTagline') }}
     </p>
-    <NuxtLink class="[ brand ] inline-flex items-baseline gap-[0.65rem] justify-self-start font-display text-[clamp(1.45rem,1.8vw,1.95rem)] leading-none font-medium tracking-[0.24em] compact:gap-2 compact:text-xl compact:tracking-widest compact:whitespace-nowrap narrow:text-base narrow:tracking-[0.08em]" :to="localePath('/')" :aria-label="$t('site.homeAria')">
+    <NuxtLink class="[ brand ] inline-flex items-baseline gap-[0.65rem] justify-self-start font-display text-brand leading-none font-medium tracking-[0.24em] compact:gap-2 compact:text-xl compact:tracking-widest compact:whitespace-nowrap narrow:text-base narrow:tracking-[0.08em]" :to="localePath('/')" :aria-label="$t('site.homeAria')">
       <img
         class="[ brand-mark ] size-8 flex-none translate-y-0.5 self-baseline object-contain opacity-82 compact:size-6 narrow:size-5"
         src="/svg/brand/archive-temple.svg"
@@ -46,7 +46,7 @@ const openCookieSettings = () => {
       >
       <span>PERMAPHEMERA</span>
     </NuxtLink>
-    <nav class="[ desktop-nav ] archive-primary-nav ml-[clamp(3.5rem,5vw,6rem)] flex items-baseline gap-[clamp(0.75rem,1.2vw,1.25rem)] justify-self-start self-baseline font-display text-[1.12rem] leading-none font-normal whitespace-nowrap tablet:hidden" :aria-label="$t('navigation.primaryAria')">
+    <nav class="[ desktop-nav ] archive-primary-nav ml-[clamp(3.5rem,5vw,6rem)] flex items-baseline gap-[clamp(0.75rem,1.2vw,1.25rem)] justify-self-start self-baseline font-display text-lg leading-none font-normal whitespace-nowrap tablet:hidden" :aria-label="$t('navigation.primaryAria')">
       <template v-for="(link, index) in primaryLinks" :key="link.key">
         <NuxtLink
           class="archive-navigation-link relative no-underline transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red current-page:text-archive-red"
@@ -87,13 +87,13 @@ const openCookieSettings = () => {
         <NuxtLink
           v-for="(link, index) in primaryLinks"
           :key="link.key"
-          class="archive-mobile-navigation-link flex items-baseline gap-4 px-4 py-[0.85rem] text-[1.18rem] text-archive-ink transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red current-page:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red compact:gap-3 compact:px-3 compact:py-2 compact:text-base"
+          class="archive-mobile-navigation-link flex items-baseline gap-4 px-4 py-[0.85rem] text-lg text-archive-ink transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red current-page:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red compact:gap-3 compact:px-3 compact:py-2 compact:text-base"
           :class="{ 'border-t border-archive-rule-warm/16': index > 0 }"
           :to="link.to"
           :aria-current="props.active === link.key ? 'page' : undefined"
           @click="menuOpen = false"
         >
-          <span class="text-[0.72rem] tracking-[0.08em] text-archive-red">{{ String(index + 1).padStart(2, '0') }}</span>
+          <span class="text-xs tracking-[0.08em] text-archive-red">{{ String(index + 1).padStart(2, '0') }}</span>
           <span class="archive-navigation-link relative">{{ link.label }}</span>
         </NuxtLink>
       </div>
@@ -117,7 +117,7 @@ const openCookieSettings = () => {
       </div>
 
       <div class="[ mobile-nav-language ] flex items-center justify-between border-t border-archive-rule-warm/20 px-4 py-3 compact:px-3 compact:py-2.5">
-        <span class="text-[0.68rem] tracking-widest text-archive-red uppercase">{{ $t('language.label') }}</span>
+        <span class="text-2xs tracking-widest text-archive-red uppercase">{{ $t('language.label') }}</span>
         <ArchiveLanguageSwitch />
       </div>
     </nav>

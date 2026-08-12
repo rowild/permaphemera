@@ -21,7 +21,7 @@ const localePath = useLocalePath()
     @focusin="emit('select', props.exhibition)"
   >
     <span
-      class="pointer-events-none absolute top-1/2 left-0 h-[calc(100%-1.4rem)] w-px -translate-y-1/2 bg-archive-red transition-[opacity,transform] duration-240 motion-reduce:transition-none"
+      class="pointer-events-none absolute top-1/2 left-0 h-[calc(100%-1.4rem)] w-px -translate-y-1/2 bg-archive-red transition-[opacity,transform,translate,scale,rotate] duration-240 motion-reduce:transition-none"
       :class="props.selected ? 'scale-y-100 opacity-100' : 'scale-y-60 opacity-0'"
       aria-hidden="true"
     />
@@ -33,11 +33,11 @@ const localePath = useLocalePath()
         :aria-label="$t('cards.previewExhibition', { title: props.exhibition.title })"
         @click="emit('select', props.exhibition)"
       >
-        <span class="[ location-list-number ] mt-[0.2rem] self-start text-[0.82rem] tracking-[0.08em] text-archive-red/62">{{ String(props.index + 1).padStart(2, '0') }}</span>
+        <span class="[ location-list-number ] mt-[0.2rem] self-start text-meta tracking-[0.08em] text-archive-red/62">{{ String(props.index + 1).padStart(2, '0') }}</span>
         <span class="[ location-list-copy ] grid min-w-0">
-          <time class="text-[0.67rem] leading-[1.1] tracking-[0.07em] text-archive-muted uppercase" :datetime="props.exhibition.start_date">{{ props.exhibition.date_range }}</time>
-          <strong class="my-[0.08rem] mt-[0.12rem] text-[clamp(1.08rem,1.45vw,1.28rem)] leading-[1.15] font-normal compact:text-base">{{ props.exhibition.title }}</strong>
-          <small class="truncate pb-[0.16em] text-[0.88rem] leading-[1.1] text-archive-red compact:text-xs">{{ props.exhibition.artist }}</small>
+          <time class="text-2xs leading-[1.1] tracking-[0.07em] text-archive-muted uppercase" :datetime="props.exhibition.start_date">{{ props.exhibition.date_range }}</time>
+          <strong class="my-[0.08rem] mt-[0.12rem] text-lede leading-[1.15] font-normal compact:text-base">{{ props.exhibition.title }}</strong>
+          <small class="truncate pb-[0.16em] text-sm leading-[1.1] text-archive-red compact:text-xs">{{ props.exhibition.artist }}</small>
         </span>
       </button>
       <NuxtLink

@@ -23,7 +23,7 @@ const { t } = useI18n()
 
 <template>
   <section class="[ artist-directory-group ] mb-8 break-inside-avoid compact:mb-4">
-    <h3 class="[ artist-group-heading ] archive-artist-group-heading mb-3 flex items-center gap-[0.8rem] font-display text-[1.42rem] leading-[1.08] font-medium text-archive-red compact:mb-1 compact:gap-2 compact:text-lg">{{ props.group.letter }}</h3>
+    <h3 class="[ artist-group-heading ] archive-artist-group-heading mb-3 flex items-center gap-[0.8rem] font-display text-title leading-[1.08] font-medium text-archive-red compact:mb-1 compact:gap-2 compact:text-lg">{{ props.group.letter }}</h3>
     <ArtistDirectoryEntry
       v-for="artist in props.group.artists"
       :key="artist.id"
@@ -34,7 +34,7 @@ const { t } = useI18n()
     />
     <ArchiveTextLink
       v-if="props.group.hasMore"
-      class="mt-1 text-[0.95rem] compact:text-xs"
+      class="mt-1 text-eyebrow compact:text-xs"
       :to="props.showMoreTo"
     >
       {{ t('artists.showMoreUnder', { count: props.group.total - props.previewLimit, letter: props.group.letter }) }}

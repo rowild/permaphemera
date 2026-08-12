@@ -28,7 +28,7 @@ const transforms = computed(() => createPaperStackTransforms(
 ))
 
 const rootClasses = {
-  artist: 'relative mt-[2.2rem] block h-46 w-full overflow-visible font-display text-[1.35rem] leading-[1.1] text-archive-red shadow-none filter-none tablet:max-w-96',
+  artist: 'relative mt-[2.2rem] block h-46 w-full overflow-visible font-display text-title leading-[1.1] text-archive-red shadow-none filter-none tablet:max-w-96',
   venue: 'group/venue col-start-4 row-start-2 z-1 mt-0 h-53 min-h-0 rotate-[1.5deg] self-center justify-self-stretch overflow-visible border-0 bg-transparent p-0 shadow-none filter-none isolate origin-center will-change-transform tablet:col-auto tablet:row-auto tablet:rotate-none compact:col-span-2 compact:mt-10 compact:h-40 compact:w-full compact:max-w-40 compact:justify-self-center'
 } as const
 
@@ -39,7 +39,7 @@ const paperclipClasses = {
 
 const labelClasses = {
   artist: 'flex w-3/4 items-center justify-center gap-[0.55rem] text-center shadow-none',
-  venue: 'archive-button-primary-frame inline-flex h-[3.55rem] min-h-[3.55rem] w-32 min-w-32 items-center justify-center rounded-none border-12 border-transparent bg-transparent px-3 font-display text-[0.95rem] font-normal whitespace-nowrap text-archive-light-ink shadow-none transition-[filter,transform] duration-[0.38s,0.14s] ease-[ease,cubic-bezier(0.4,0,0.2,1)] hover:brightness-109 hover:contrast-102 hover:saturate-108 active:scale-97 focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red compact:h-12 compact:min-h-12 compact:w-24 compact:min-w-24 compact:px-2 compact:text-sm'
+  venue: 'archive-button-primary-frame inline-flex h-[3.55rem] min-h-[3.55rem] w-32 min-w-32 items-center justify-center rounded-none border-12 border-transparent bg-transparent px-3 font-display text-eyebrow font-normal whitespace-nowrap text-archive-light-ink shadow-none transition-[filter,transform,translate,scale,rotate] duration-[0.38s,0.14s] ease-[ease,cubic-bezier(0.4,0,0.2,1)] hover:brightness-109 hover:contrast-102 hover:saturate-108 active:scale-97 focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red compact:h-12 compact:min-h-12 compact:w-24 compact:min-w-24 compact:px-2 compact:text-sm'
 } as const
 
 const sheetStyle = (index: number): CSSProperties => {

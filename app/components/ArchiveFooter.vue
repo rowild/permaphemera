@@ -104,8 +104,8 @@ onBeforeUnmount(() => {
 <template>
   <footer class="[ site-footer ] archive-footer-surface relative isolate mt-8 overflow-hidden px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3.5rem,5vw,5rem)] pb-[2.3rem] text-archive-footer-copy compact:mt-4 compact:px-4 compact:pt-8 compact:pb-5">
     <section class="[ supporters ] relative z-1 mx-auto max-w-none">
-      <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">{{ $t('footer.supporters') }}</p>
-      <h2 class="m-0 max-w-208 font-display text-[clamp(2.6rem,4.1vw,4.15rem)] font-normal leading-[0.98] tracking-normal text-archive-night-heading compact:text-3xl">{{ $t('footer.title') }} <span class="text-archive-ochre">{{ $t('footer.accent') }}</span></h2>
+      <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">{{ $t('footer.supporters') }}</p>
+      <h2 class="m-0 max-w-208 font-display text-h2-lg font-normal leading-[0.98] tracking-normal text-archive-night-heading compact:text-3xl">{{ $t('footer.title') }} <span class="text-archive-ochre">{{ $t('footer.accent') }}</span></h2>
       <div class="[ sponsor-frame ] archive-sponsor-frame relative left-1/2 mt-10 mb-[3.2rem] w-[calc(100vw-clamp(2rem,5vw,5rem))] -translate-x-1/2 border-16 border-transparent bg-transparent py-[0.4rem] compact:mt-5 compact:mb-6 compact:w-[calc(100vw-1rem)] compact:py-0">
         <div
           ref="sponsorStripRef"

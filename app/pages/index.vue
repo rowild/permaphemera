@@ -232,7 +232,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       class="[ hero-section ] [ section-band ] relative mx-auto grid min-h-[calc(100vh-6.4rem)] max-w-[105rem] grid-cols-[minmax(22rem,0.82fr)_minmax(26rem,1.18fr)] items-center gap-[clamp(2.5rem,5vw,6rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,4vw,4.5rem)] pb-[clamp(5.2rem,7vw,6.5rem)] tablet:min-h-[calc(100svh-6rem)] tablet:grid-cols-1 tablet:content-center tablet:gap-3 tablet:pt-2 tablet:pb-20 tablet-landscape:grid-cols-[minmax(16rem,0.82fr)_minmax(19rem,1.18fr)] tablet-landscape:gap-8 tablet-landscape:pt-6 compact:min-h-[calc(100svh-4rem)] compact:gap-2 compact:px-4 compact:pt-1 compact:pb-20"
     >
       <div class="[ hero-copy ] relative tablet:row-start-2 tablet-landscape:col-start-1 tablet-landscape:row-start-1 tablet-portrait:mx-auto tablet-portrait:max-w-3xl tablet-portrait:text-center compact:text-center">
-        <h1 class="m-0 max-w-124 font-display text-[clamp(3.35rem,5.35vw,5.85rem)] font-light leading-[0.98] tracking-normal tablet-landscape:max-w-96 tablet-landscape:text-[clamp(2.5rem,4.5vw,4.1rem)] tablet-portrait:max-w-none tablet-portrait:text-center tablet-portrait:text-[clamp(2.5rem,6.4vw,4rem)] tablet-portrait:leading-none compact:max-w-none compact:text-center compact:text-3xl compact:leading-none">
+        <h1 class="m-0 max-w-124 font-display text-hero font-light leading-[0.98] tracking-normal tablet-landscape:max-w-96 tablet-landscape:text-h2-lg tablet-portrait:max-w-none tablet-portrait:text-center tablet-portrait:text-h1-steep tablet-portrait:leading-none compact:max-w-none compact:text-center compact:text-3xl compact:leading-none">
           <span class="tablet-portrait:hidden compact:hidden">
             {{ $t('landing.hero.line1') }}
             <span class="block text-archive-red">{{ $t('landing.hero.line1Accent') }}</span>
@@ -244,7 +244,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
             <span class="block">{{ $t('landing.hero.line2') }} <span class="text-archive-red">{{ $t('landing.hero.line2Accent') }}</span></span>
           </span>
         </h1>
-        <p class="mx-0 mt-[1.55rem] mb-[2.2rem] max-w-116 font-display text-[clamp(1.1rem,1.45vw,1.32rem)] leading-tight font-normal text-archive-muted tablet-landscape:mt-4 tablet-landscape:mb-6 tablet-landscape:text-base tablet-portrait:mx-auto tablet-portrait:mt-3 tablet-portrait:mb-4 tablet-portrait:max-w-lg tablet-portrait:text-center tablet-portrait:text-base tablet-portrait:leading-snug compact:mx-auto compact:mt-3 compact:mb-4 compact:max-w-64 compact:text-center compact:text-sm">{{ $t('landing.hero.lede') }}</p>
+        <p class="mx-0 mt-[1.55rem] mb-[2.2rem] max-w-116 font-display text-lede leading-tight font-normal text-archive-muted tablet-landscape:mt-4 tablet-landscape:mb-6 tablet-landscape:text-base tablet-portrait:mx-auto tablet-portrait:mt-3 tablet-portrait:mb-4 tablet-portrait:max-w-lg tablet-portrait:text-center tablet-portrait:text-base tablet-portrait:leading-snug compact:mx-auto compact:mt-3 compact:mb-4 compact:max-w-64 compact:text-center compact:text-sm">{{ $t('landing.hero.lede') }}</p>
         <div class="flex flex-wrap items-center gap-[1.3rem] tablet-landscape:gap-3 tablet-portrait:w-full tablet-portrait:flex-nowrap tablet-portrait:justify-center tablet-portrait:gap-2 compact:w-full compact:flex-nowrap compact:justify-center compact:gap-2">
           <ArchiveButton class="tablet-landscape:px-3 tablet-portrait:w-fit tablet-portrait:flex-none tablet-portrait:min-w-0 tablet-portrait:px-2 compact:w-fit compact:flex-none compact:min-w-0 compact:px-2" href="#locations">
             <span class="[ button-icon ] svg-icon svg-icon-archive inline-block size-[1.45rem] flex-none bg-current" aria-hidden="true" />
@@ -304,9 +304,9 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
 
     <section id="locations" class="[ locations-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8">
       <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
-        <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.locations.eyebrow') }}</p>
-        <h2 class="m-0 max-w-232 font-display text-[clamp(2.25rem,3.65vw,3.85rem)] font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.locations.title') }} <span class="text-archive-red">{{ $t('landing.locations.accent') }}</span></h2>
-        <p class="mt-[0.85rem] mb-0 max-w-216 text-[1.04rem] text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.locations.intro') }}</p>
+        <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.locations.eyebrow') }}</p>
+        <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.locations.title') }} <span class="text-archive-red">{{ $t('landing.locations.accent') }}</span></h2>
+        <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.locations.intro') }}</p>
       </div>
 
       <ArchiveSearchForm
@@ -346,9 +346,9 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
 
     <section id="exhibitions" class="[ exhibitions-section ] [ section-band ] relative isolate mx-auto max-w-[105rem] overflow-hidden px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8">
       <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
-        <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.exhibitions.eyebrow') }}</p>
-        <h2 class="m-0 max-w-232 font-display text-[clamp(2.25rem,3.65vw,3.85rem)] font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></h2>
-        <p class="mt-[0.85rem] mb-0 max-w-216 text-[1.04rem] text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.exhibitions.intro') }}</p>
+        <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.exhibitions.eyebrow') }}</p>
+        <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></h2>
+        <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.exhibitions.intro') }}</p>
       </div>
 
       <ArchiveSearchForm
@@ -385,9 +385,9 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
     <section id="artists" class="[ artists-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] gap-[clamp(2rem,5vw,4.5rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-5 compact:px-4 compact:py-8">
       <div class="[ artists-main ] min-w-0">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.artists.eyebrow') }}</p>
-          <h2 class="m-0 max-w-232 font-display text-[clamp(2.25rem,3.65vw,3.85rem)] font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.artists.title') }} <span class="text-archive-red">{{ $t('landing.artists.accent') }}</span></h2>
-          <p class="mt-[0.85rem] mb-0 max-w-216 text-[1.04rem] text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.artists.intro') }}</p>
+          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.artists.eyebrow') }}</p>
+          <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.artists.title') }} <span class="text-archive-red">{{ $t('landing.artists.accent') }}</span></h2>
+          <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.artists.intro') }}</p>
         </div>
 
         <ArchiveSearchForm
@@ -406,7 +406,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           <template v-for="letter in alphabet" :key="letter">
             <NuxtLink
               v-if="availableArtistLetters.has(letter)"
-              class="inline-flex min-h-11 min-w-7 shrink-0 items-center justify-center text-[1.05rem] text-archive-muted no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-archive-red compact:text-sm"
+              class="inline-flex min-h-11 min-w-7 shrink-0 items-center justify-center text-button text-archive-muted no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-archive-red compact:text-sm"
               :to="artistLetterRoute(letter)"
               :aria-label="$t('landing.artists.openLetter', { letter })"
             >
@@ -414,7 +414,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
             </NuxtLink>
             <span
               v-else
-              class="inline-flex min-h-11 min-w-7 shrink-0 cursor-not-allowed items-center justify-center text-[1.05rem] text-archive-muted opacity-28 compact:text-sm"
+              class="inline-flex min-h-11 min-w-7 shrink-0 cursor-not-allowed items-center justify-center text-button text-archive-muted opacity-28 compact:text-sm"
               aria-disabled="true"
             >
               {{ letter }}
@@ -445,9 +445,9 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           ]"
         />
         <div class="tablet:hidden">
-          <p class="[ eyebrow ] m-0 mb-3 font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.preserved') }}</p>
-          <strong class="[ archive-sidebar-count ] mt-[0.4rem] mb-10 block font-display text-[1.45rem] font-normal">{{ preservedExhibitionCount }}</strong>
-          <p class="[ eyebrow ] m-0 mb-3 font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.locations') }}</p>
+          <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.preserved') }}</p>
+          <strong class="[ archive-sidebar-count ] mt-[0.4rem] mb-10 block font-display text-title font-normal">{{ preservedExhibitionCount }}</strong>
+          <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.locations') }}</p>
           <ul class="[ archive-sidebar-locations ] m-0 mb-6 grid list-none gap-[0.45rem] p-0">
             <li>{{ $t('landing.sidebar.vienna') }}</li>
             <li>Graz</li>
@@ -455,7 +455,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
             <li>Salzburg</li>
             <li>Innsbruck</li>
           </ul>
-          <a class="[ archive-sidebar-link ] flex items-center gap-2 font-display text-[1.05rem] text-archive-red" href="#locations">{{ $t('landing.sidebar.viewAll') }} <ArchiveArrow class="w-[1.65rem]" /></a>
+          <a class="[ archive-sidebar-link ] flex items-center gap-2 font-display text-button text-archive-red" href="#locations">{{ $t('landing.sidebar.viewAll') }} <ArchiveArrow class="w-[1.65rem]" /></a>
           <ArchivePaperStack
             stack-id="artist-directory"
             :items="artistStackItems"
@@ -476,9 +476,9 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
 
     <section id="method" class="[ method-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(20rem,0.58fr)_minmax(36rem,1.42fr)] gap-x-[clamp(2.5rem,4vw,4.5rem)] gap-y-0 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:px-4 compact:py-8">
       <div class="[ method-copy ] relative z-1">
-        <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.method.eyebrow') }}</p>
-        <h2 class="m-0 max-w-232 font-display text-[clamp(2.25rem,3.65vw,3.85rem)] font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.method.title') }} <span class="text-archive-red">{{ $t('landing.method.accent') }}</span></h2>
-        <p class="mt-[0.85rem] mb-0 max-w-216 text-[1.04rem] text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.method.intro') }}</p>
+        <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.method.eyebrow') }}</p>
+        <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.method.title') }} <span class="text-archive-red">{{ $t('landing.method.accent') }}</span></h2>
+        <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.method.intro') }}</p>
         <ArchiveButton class="mt-8 mb-0 w-fit tablet:mb-16 compact:mx-auto compact:mt-5 compact:mb-10 compact:flex" href="#exhibitions">
           {{ $t('landing.method.sample') }}
           <ArchiveArrow />
@@ -505,7 +505,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       <div class="[ method-details ] col-span-full grid grid-cols-[minmax(18rem,1.15fr)_minmax(38rem,2.25fr)_8rem] items-center gap-[clamp(2rem,4vw,4.5rem)] px-11 pt-5 tablet:grid-cols-[minmax(16rem,0.8fr)_minmax(32rem,2fr)_6.5rem] tablet:gap-6 tablet:px-6 compact:mt-8 compact:grid-cols-1 compact:gap-4 compact:px-2 compact:pt-4">
         <blockquote class="[ method-quote ] m-0 grid grid-cols-[3rem_1fr] items-start gap-4 compact:mb-4">
           <img class="h-auto w-[2.6rem]" src="/images/landing/method/details/quote-mark.png" alt="" aria-hidden="true" />
-          <p class="m-0 font-display text-[clamp(1.25rem,1.65vw,1.65rem)] leading-[1.18] text-[#493c2f] italic">{{ $t('landing.method.quoteBefore') }}<br />{{ $t('landing.method.quoteMiddle') }} <em class="font-normal text-archive-red">{{ $t('landing.method.quoteAccent') }}</em></p>
+          <p class="m-0 font-display text-h4 leading-[1.18] text-archive-copy italic">{{ $t('landing.method.quoteBefore') }}<br />{{ $t('landing.method.quoteMiddle') }} <em class="font-normal text-archive-red">{{ $t('landing.method.quoteAccent') }}</em></p>
         </blockquote>
 
         <dl class="[ method-facts ] m-0 grid grid-cols-3 compact:grid-cols-3 compact:gap-0">

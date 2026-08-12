@@ -177,12 +177,12 @@ useSeoMeta({
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/locations/')">{{ $t('navigation.galleries') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ venue.name }}</span>
           </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('location.archiveLocation', { number: archiveNumber }) }}</p>
-          <h1 id="location-title" class="[ location-hero-title ] m-0 font-display text-[clamp(3.3rem,5.2vw,5.6rem)] font-light leading-[0.92] compact:text-5xl compact:leading-none">
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('location.archiveLocation', { number: archiveNumber }) }}</p>
+          <h1 id="location-title" class="[ location-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">
             {{ venue.name }}
-            <span class="mt-[0.35rem] block max-w-116 text-[0.54em] leading-[1.02] text-archive-red">{{ venue.city }}</span>
+            <span class="mt-3 block max-w-116 text-city leading-[1.02] text-archive-red">{{ venue.city }}</span>
           </h1>
-          <p class="[ location-hero-lede ] my-0 mt-[1.6rem] mb-[1.85rem] max-w-136 text-[clamp(1.1rem,1.45vw,1.32rem)] leading-[1.42] text-[#554b40] compact:mt-4 compact:mb-4 compact:text-base compact:leading-normal">{{ venue.lede ?? $t('location.fallbackLede', { city: venue.city }) }}</p>
+          <p class="[ location-hero-lede ] my-0 mt-[1.6rem] mb-[1.85rem] max-w-136 text-lede leading-[1.42] text-archive-body compact:mt-4 compact:mb-4 compact:text-base compact:leading-normal">{{ venue.lede ?? $t('location.fallbackLede', { city: venue.city }) }}</p>
 
           <dl class="[ location-contact-list ] m-0">
             <ArchiveMetadataRow :label="$t('location.address')" variant="location">
@@ -225,14 +225,14 @@ useSeoMeta({
             :src="venue.hero_image ?? venue.image"
             :alt="venue.hero_image_alt ?? $t('location.fallbackAlt', { name: venue.name, city: venue.city })"
           />
-          <figcaption class="[ location-hero-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-[0.86rem] text-archive-muted italic">
+          <figcaption class="[ location-hero-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic">
             <span class="not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('location.figure') }}</span>
             {{ venue.image_caption ?? $t('location.fallbackCaption', { name: venue.name, city: venue.city }) }}
           </figcaption>
           <div class="[ location-plate ] archive-location-plate absolute -right-4 bottom-[-0.4rem] z-6 grid aspect-square w-[7.8rem] -rotate-7 place-content-center rounded-full border border-archive-red/43 bg-archive-paper/90 text-center text-archive-red compact:right-[-0.35rem] compact:bottom-[-0.8rem] compact:w-[6.4rem]" aria-hidden="true">
-            <span class="text-[0.66rem] tracking-[0.12em] uppercase">{{ plateCode }}</span>
-            <strong class="text-[2.2rem] leading-[0.9] font-normal">{{ archiveNumber }}</strong>
-            <small class="max-w-24 text-[0.66rem] tracking-[0.12em] uppercase">{{ venue.coordinate_label ?? venue.city }}</small>
+            <span class="text-2xs tracking-[0.12em] uppercase">{{ plateCode }}</span>
+            <strong class="text-4xl leading-[0.9] font-normal">{{ archiveNumber }}</strong>
+            <small class="max-w-24 text-2xs tracking-[0.12em] uppercase">{{ venue.coordinate_label ?? venue.city }}</small>
           </div>
         </figure>
 
@@ -242,9 +242,9 @@ useSeoMeta({
       <section id="location-exhibitions" class="[ location-exhibitions ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(4rem,7vw,7rem)] pb-[clamp(3rem,5vw,5rem)] compact:px-4 compact:pt-8 compact:pb-8" aria-labelledby="location-exhibitions-title">
         <div class="[ location-exhibitions-intro ] mb-12 grid grid-cols-[minmax(0,1fr)_minmax(20rem,0.55fr)] items-start gap-[clamp(2.5rem,6vw,6rem)] tablet:grid-cols-1 compact:mb-5 compact:gap-4">
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-3">
-            <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('location.ledger', { season: seasonYears || $t('location.recordsPending') }) }}</p>
-            <h2 id="location-exhibitions-title" class="m-0 text-[clamp(2.55rem,4.2vw,4.35rem)] font-light leading-[0.98] compact:text-4xl">{{ $t('location.exhibitionCount', exhibitions.length) }}. <span class="text-archive-red">{{ $t('location.changingSpace') }}</span></h2>
-            <p class="mt-[0.85rem] mb-0 max-w-216 text-[1.04rem] text-archive-muted compact:mt-2 compact:text-sm">{{ $t('location.searchIntro') }}</p>
+            <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('location.ledger', { season: seasonYears || $t('location.recordsPending') }) }}</p>
+            <h2 id="location-exhibitions-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ $t('location.exhibitionCount', exhibitions.length) }}. <span class="text-archive-red">{{ $t('location.changingSpace') }}</span></h2>
+            <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('location.searchIntro') }}</p>
           </div>
           <ArchiveFactLedger class="mt-9 tablet:mt-0" :items="locationLedgerItems" />
         </div>
@@ -257,13 +257,13 @@ useSeoMeta({
           :placeholder="$t('location.searchPlaceholder')"
         />
 
-        <div class="[ location-search-status ] mb-8 flex min-h-8 items-center justify-between gap-4 text-[0.92rem] text-archive-muted compact:mb-4 compact:min-h-0 compact:gap-2 compact:text-xs">
+        <div class="[ location-search-status ] mb-8 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:mb-4 compact:min-h-0 compact:gap-2 compact:text-xs">
           <p class="m-0" role="status" aria-live="polite">{{ $t('location.showing', { visible: filteredExhibitions.length, total: exhibitions.length }) }}</p>
           <button v-if="locationSearchQuery" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="locationSearchQuery = ''">{{ $t('location.clearSearch') }}</button>
         </div>
 
         <div v-if="!filteredExhibitions.length" class="[ location-search-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-          <p class="m-0 text-[1.45rem] text-archive-ink">{{ locationSearchQuery ? $t('location.noMatches', { query: locationSearchQuery }) : $t('location.noRecords', { name: venue.name }) }}</p>
+          <p class="m-0 text-title text-archive-ink">{{ locationSearchQuery ? $t('location.noMatches', { query: locationSearchQuery }) : $t('location.noRecords', { name: venue.name }) }}</p>
           <button v-if="locationSearchQuery" class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="locationSearchQuery = ''">{{ $t('location.showAll', { name: venue.name }) }}</button>
         </div>
 
@@ -291,19 +291,19 @@ useSeoMeta({
               </Transition>
               <div class="[ location-preview-shade ] archive-location-preview-shade absolute inset-x-0 top-[35%] bottom-0" />
               <div class="[ location-preview-copy ] absolute right-[clamp(1.5rem,4vw,3rem)] bottom-[clamp(1.5rem,4vw,2.7rem)] left-[clamp(1.5rem,4vw,3rem)] z-2 text-archive-light-ink compact:right-[1.4rem] compact:bottom-[1.4rem] compact:left-[1.4rem]" aria-live="polite">
-                <p class="[ location-preview-date ] mt-0 mb-[0.4rem] text-[0.76rem] tracking-[0.08em] text-archive-ochre uppercase"><time :datetime="previewExhibition.start_date">{{ previewExhibition.date_range }}</time></p>
-                <h3 class="[ location-preview-title ] m-0 max-w-152 text-[clamp(2rem,3.4vw,3.35rem)] leading-[0.95] font-light">{{ previewExhibition.title }}</h3>
-                <p class="[ artist-name ] mt-[0.4rem] mb-[1.15rem] font-display text-[1.12rem] text-archive-ochre">{{ previewExhibition.artist }}</p>
+                <p class="[ location-preview-date ] mt-0 mb-[0.4rem] text-xs tracking-[0.08em] text-archive-ochre uppercase"><time :datetime="previewExhibition.start_date">{{ previewExhibition.date_range }}</time></p>
+                <h3 class="[ location-preview-title ] m-0 max-w-152 text-h2-sm leading-[0.95] font-light">{{ previewExhibition.title }}</h3>
+                <p class="[ artist-name ] mt-[0.4rem] mb-[1.15rem] font-display text-lg text-archive-ochre">{{ previewExhibition.artist }}</p>
                 <ArchiveTextLink class="[ location-preview-link ] gap-[0.65rem]" surface="night" :to="localePath(`/exhibitions/${previewExhibition.slug}`)">
                   {{ $t('location.openExhibition') }}
                   <template #icon><ArchiveArrow class="w-[1.65rem]" /></template>
                 </ArchiveTextLink>
               </div>
-              <div v-if="previewLoading" class="[ location-preview-loader ] absolute inset-0 z-4 grid place-content-center justify-items-center gap-[0.9rem] bg-archive-paper/92 text-center text-[0.74rem] tracking-[0.09em] text-archive-red uppercase" role="status" aria-live="polite">
+              <div v-if="previewLoading" class="[ location-preview-loader ] absolute inset-0 z-4 grid place-content-center justify-items-center gap-[0.9rem] bg-archive-paper/92 text-center text-xs tracking-[0.09em] text-archive-red uppercase" role="status" aria-live="polite">
                 <span class="[ location-loader-symbol ] archive-location-loader-symbol relative block size-16 rounded-full border border-archive-red/20 border-t-archive-red" aria-hidden="true" />
                 <span>{{ $t('location.loadingPreview') }}</span>
               </div>
-              <div v-else-if="previewLoadFailed" class="[ location-preview-error ] absolute inset-0 z-4 grid place-content-center justify-items-center gap-[0.9rem] bg-archive-paper/92 p-8 text-center text-[0.74rem] tracking-[0.04em] text-archive-ink normal-case" role="status">
+              <div v-else-if="previewLoadFailed" class="[ location-preview-error ] absolute inset-0 z-4 grid place-content-center justify-items-center gap-[0.9rem] bg-archive-paper/92 p-8 text-center text-xs tracking-[0.04em] text-archive-ink normal-case" role="status">
                 {{ $t('location.previewUnavailable') }}
               </div>
             </ExhibitionFrameCard>
@@ -321,13 +321,13 @@ useSeoMeta({
           <img class="w-42 -rotate-4 opacity-48" src="/images/landing/footer/permanently-preserved-stamp.png" alt="" />
         </div>
         <div class="[ location-about-copy ]">
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('location.venueEyebrow') }}</p>
-          <h2 id="location-about-title" class="mb-[1.85rem] text-[clamp(2.55rem,4.2vw,4.35rem)] font-light leading-[0.98] compact:mb-4 compact:text-4xl">{{ $t('location.venueTitle') }} <span class="text-archive-red">{{ $t('location.venueAccent') }}</span></h2>
-          <p v-for="paragraph in venue.about ?? [$t('location.fallbackAbout1', { name: venue.name, city: venue.city }), $t('location.fallbackAbout2')]" :key="paragraph" class="max-w-180 text-[1.06rem] leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ paragraph }}</p>
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('location.venueEyebrow') }}</p>
+          <h2 id="location-about-title" class="mb-[1.85rem] text-h2-lg font-light leading-[0.98] compact:mb-4 compact:text-4xl">{{ $t('location.venueTitle') }} <span class="text-archive-red">{{ $t('location.venueAccent') }}</span></h2>
+          <p v-for="paragraph in venue.about ?? [$t('location.fallbackAbout1', { name: venue.name, city: venue.city }), $t('location.fallbackAbout2')]" :key="paragraph" class="max-w-180 text-button leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ paragraph }}</p>
         </div>
-        <blockquote class="m-0 border-l border-archive-red/48 pl-8 text-[1.35rem] leading-[1.4] italic text-archive-copy-warm tablet:max-w-2xl compact:pl-4 compact:text-base">
+        <blockquote class="m-0 border-l border-archive-red/48 pl-8 text-title leading-[1.4] italic text-archive-copy-warm tablet:max-w-2xl compact:pl-4 compact:text-base">
           “{{ $t('location.quote') }}”
-          <cite class="mt-4 block text-[0.76rem] not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('location.fieldNote') }}</cite>
+          <cite class="mt-4 block text-xs not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('location.fieldNote') }}</cite>
         </blockquote>
       </section>
     </div>

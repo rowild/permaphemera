@@ -51,20 +51,20 @@ const sequence = computed(() => props.location.archive_number || String(props.in
           :alt="props.location.image_alt"
           shape="frame"
         />
-        <span class="absolute top-5 left-5 z-3 bg-archive-paper/88 px-2 py-1 text-xs tracking-widest text-archive-red compact:top-3 compact:left-3 compact:px-1.5 compact:py-0.5 compact:text-[0.62rem]" aria-hidden="true">{{ sequence }}</span>
+        <span class="absolute top-5 left-5 z-3 bg-archive-paper/88 px-2 py-1 text-xs tracking-widest text-archive-red compact:top-3 compact:left-3 compact:px-1.5 compact:py-0.5 compact:text-3xs" aria-hidden="true">{{ sequence }}</span>
       </div>
 
       <div class="[ gallery-directory-card-copy ] relative z-2 flex min-w-0 flex-col px-6 pt-5 pb-6 compact:px-3 compact:pt-2 compact:pb-4">
-        <p class="m-0 flex items-center gap-2 text-xs tracking-widest text-archive-red uppercase compact:text-[0.62rem]">
+        <p class="m-0 flex items-center gap-2 text-xs tracking-widest text-archive-red uppercase compact:text-3xs">
           <span>{{ props.location.state }}</span>
           <span aria-hidden="true">·</span>
           <span>{{ props.location.postal_code }}</span>
         </p>
-        <h3 class="mt-2 mb-0 font-display font-normal leading-none" :class="props.featured ? 'text-[clamp(2.2rem,3.6vw,4rem)] compact:text-3xl' : 'text-[clamp(1.65rem,2.2vw,2.4rem)] compact:text-base'">{{ props.location.name }}</h3>
-        <p class="mt-1 mb-0 text-[1.08rem] text-archive-muted compact:text-xs">{{ props.location.city_name }}</p>
-        <p class="mt-5 mb-5 max-w-152 flex-auto text-[1.02rem] leading-[1.55] text-archive-body compact:hidden">{{ props.location.description }}</p>
+        <h3 class="mt-2 mb-0 font-display font-normal leading-none" :class="props.featured ? 'text-h2 compact:text-3xl' : 'text-h3-sm compact:text-base'">{{ props.location.name }}</h3>
+        <p class="mt-1 mb-0 text-button text-archive-muted compact:text-xs">{{ props.location.city_name }}</p>
+        <p class="mt-5 mb-5 max-w-152 flex-auto text-button leading-[1.55] text-archive-body compact:hidden">{{ props.location.description }}</p>
         <div class="mt-auto flex items-end justify-between gap-4 border-t border-archive-rule-warm/22 pt-4 compact:pt-2">
-          <p class="m-0 text-xs tracking-wider text-archive-muted uppercase compact:text-[0.62rem]">
+          <p class="m-0 text-xs tracking-wider text-archive-muted uppercase compact:text-3xs">
             {{ props.recordCount ? $t('galleries.recordCount', props.recordCount) : $t('galleries.profileOnly') }}
           </p>
           <span class="flex shrink-0 items-center gap-2 text-archive-red compact:gap-1 compact:text-xs">
@@ -76,7 +76,7 @@ const sequence = computed(() => props.location.archive_number || String(props.in
     </div>
     <VenueCardFrame />
     <span
-      class="[ gallery-directory-card-ornament ] archive-crosshair-ornament pointer-events-none absolute z-3 size-20 opacity-50 transition-[transform,opacity] duration-460 ease-archive-lift compact:size-12 motion-reduce:transition-none"
+      class="[ gallery-directory-card-ornament ] archive-crosshair-ornament pointer-events-none absolute z-3 size-20 opacity-50 transition-[transform,translate,scale,rotate,opacity] duration-460 ease-archive-lift compact:size-12 motion-reduce:transition-none"
       :style="ornamentStyle"
       aria-hidden="true"
     />

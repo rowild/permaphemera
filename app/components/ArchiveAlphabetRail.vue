@@ -99,7 +99,7 @@ defineExpose({
 
   <div
     v-if="props.controls"
-    class="[ alphabet-scroll-controls ] mx-auto mt-0 mb-10 flex w-fit items-center justify-center gap-[1.2rem] font-display text-[0.98rem] whitespace-nowrap text-archive-red/86 compact:mb-8 compact:gap-1 compact:text-xs"
+    class="[ alphabet-scroll-controls ] mx-auto mt-0 mb-10 flex w-fit items-center justify-center gap-[1.2rem] font-display text-eyebrow whitespace-nowrap text-archive-red/86 compact:mb-8 compact:gap-1 compact:text-xs"
     :aria-label="resolvedControlsLabel"
   >
     <button

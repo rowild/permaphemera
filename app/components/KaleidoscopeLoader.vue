@@ -98,9 +98,9 @@ const ticks = orbitSegments.map((segment) => {
     <!-- The widget's own aria-label and aria-valuetext already carry this, so
          the visible legend is hidden to avoid a doubled announcement. -->
     <p class="relative grid justify-items-center gap-[0.3rem] text-center font-display" aria-hidden="true">
-      <span class="text-[0.68rem] tracking-[0.28em] text-archive-muted uppercase compact:text-[0.58rem]">{{ t('landing.hero.loadingTitle') }}</span>
-      <span class="text-[0.92rem] tracking-[0.2em] text-archive-copy compact:text-xs">{{ counterText }}</span>
-      <span class="text-[1.6rem] leading-none tracking-[0.08em] text-archive-red tabular-nums compact:text-xl">{{ percentText }}</span>
+      <span class="text-2xs tracking-[0.28em] text-archive-muted uppercase compact:text-3xs">{{ t('landing.hero.loadingTitle') }}</span>
+      <span class="text-eyebrow tracking-[0.2em] text-archive-copy compact:text-xs">{{ counterText }}</span>
+      <span class="text-2xl leading-none tracking-[0.08em] text-archive-red tabular-nums compact:text-xl">{{ percentText }}</span>
     </p>
   </div>
 </template>

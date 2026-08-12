@@ -43,16 +43,16 @@ const localePath = useLocalePath()
       class="[ venue-card-body ] relative z-3 flex flex-auto flex-col px-4 pb-4 compact:px-2 compact:pb-4"
       :class="props.featured ? 'pt-[1.95rem] compact:pt-2' : 'pt-[1.2rem] compact:pt-2'"
     >
-      <h3 class="m-0 font-display text-[clamp(1.25rem,1.75vw,1.8rem)] leading-[1.08] font-medium compact:text-base">{{ props.venue.name }}</h3>
+      <h3 class="m-0 font-display text-h4 leading-[1.08] font-medium compact:text-base">{{ props.venue.name }}</h3>
       <p class="mt-[0.2rem] mb-5 flex-auto text-archive-muted compact:mb-1 compact:text-xs">{{ props.venue.city }}</p>
       <span v-if="props.featured" class="[ venue-card-divider ] archive-venue-card-divider mt-auto block h-[0.7rem] w-[min(15rem,68%)] opacity-68 compact:hidden" aria-hidden="true" />
-      <span class="[ venue-card-link ] mt-auto mb-[0.4rem] flex items-center gap-2 font-display text-[1.05rem] text-archive-red compact:mb-1 compact:gap-1 compact:text-xs">
+      <span class="[ venue-card-link ] mt-auto mb-[0.4rem] flex items-center gap-2 font-display text-button text-archive-red compact:mb-1 compact:gap-1 compact:text-xs">
         {{ $t('cards.openArchive') }} <ArchiveArrow class="w-[1.65rem] compact:w-5" />
       </span>
     </div>
     <VenueCardFrame />
     <span
-      class="[ venue-card-ornament ] archive-crosshair-ornament pointer-events-none absolute z-2 shadow-none transition-[transform,opacity] duration-460 ease-archive-lift motion-reduce:transition-none"
+      class="[ venue-card-ornament ] archive-crosshair-ornament pointer-events-none absolute z-2 shadow-none transition-[transform,translate,scale,rotate,opacity] duration-460 ease-archive-lift motion-reduce:transition-none"
       :class="props.featured ? 'size-29 opacity-66 compact:size-16' : 'size-[5.4rem] opacity-62 compact:size-14'"
       :style="ornamentStyle"
       aria-hidden="true"

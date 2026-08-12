@@ -40,6 +40,59 @@
   --color-archive-record-night: #17140f;
   --color-archive-record-paper: #fffaf3;
   --color-archive-record-meta: #665b4d;
+  /* Type scale. Every font size is a named step; brackets are prohibited
+     (AGENTS.md, docs/CSS_ARCHITECTURE.md §6.1a). Each step pairs its own
+     line-height: display tightens toward 0.98, body/UI sits near 1.5, small
+     metadata needs more leading. Tailwind's xs/sm/base/lg/xl/2xl/3xl/4xl
+     steps stay in use alongside these. Fluid display curves are preserved
+     one-per-role: their vw slopes are deliberate and are not merged. */
+  --text-4xs: 0.5rem;
+  --text-4xs--line-height: 1.45;
+  --text-3xs: 0.6rem;
+  --text-3xs--line-height: 1.42;
+  --text-2xs: 0.675rem;
+  --text-2xs--line-height: 1.4;
+  --text-meta: 0.83rem;
+  --text-meta--line-height: 1.42;
+  --text-eyebrow: 0.95rem;
+  --text-eyebrow--line-height: 1.48;
+  --text-button: 1.05rem;
+  --text-button--line-height: 1.5;
+  --text-title: 1.4rem;
+  --text-title--line-height: 1.32;
+  --text-title-lg: 1.7rem;
+  --text-title-lg--line-height: 1.22;
+  --text-city: 0.54em;
+  --text-city--line-height: 1.02;
+
+  --text-lede: clamp(1.1rem, 1.45vw, 1.32rem);
+  --text-lede--line-height: 1.5;
+  --text-h4: clamp(1.25rem, 1.7vw, 1.72rem);
+  --text-h4--line-height: 1.15;
+  --text-brand: clamp(1.45rem, 1.8vw, 1.95rem);
+  --text-brand--line-height: 1.1;
+  --text-h3-sm: clamp(1.65rem, 2.2vw, 2.4rem);
+  --text-h3-sm--line-height: 1.1;
+  --text-h3: clamp(1.75rem, 2.65vw, 2.62rem);
+  --text-h3--line-height: 1.08;
+  --text-h2-sm: clamp(2rem, 3.4vw, 3.35rem);
+  --text-h2-sm--line-height: 1.05;
+  --text-h2: clamp(2.25rem, 3.65vw, 3.85rem);
+  --text-h2--line-height: 1;
+  --text-h2-steep: clamp(2.2rem, 5vw, 3.8rem);
+  --text-h2-steep--line-height: 1;
+  --text-h2-lg: clamp(2.55rem, 4.3vw, 4.2rem);
+  --text-h2-lg--line-height: 0.98;
+  --text-h1-steep: clamp(2.6rem, 6vw, 4.15rem);
+  --text-h1-steep--line-height: 0.98;
+  --text-h1-sm: clamp(2.8rem, 5.2vw, 5.4rem);
+  --text-h1-sm--line-height: 0.98;
+  --text-h1: clamp(3.2rem, 4.8vw, 5.3rem);
+  --text-h1--line-height: 0.98;
+  --text-hero: clamp(3.32rem, 5.28vw, 5.72rem);
+  --text-hero--line-height: 0.98;
+  --text-hero-xl: clamp(6rem, 11vw, 11rem);
+  --text-hero-xl--line-height: 0.95;
   --font-display: "Cormorant Garamond", "EB Garamond", "Adobe Garamond Pro", "Garamond", "Times New Roman", serif;
   --font-body: "Cormorant Garamond", "EB Garamond", "Adobe Garamond Pro", "Garamond", "Times New Roman", serif;
   --ease-archive-lift: cubic-bezier(0.22, 1, 0.36, 1);

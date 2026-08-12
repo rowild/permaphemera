@@ -31,13 +31,13 @@ const props = withDefaults(defineProps<{
       ]"
     >
       <dt
-        class="text-[0.68rem] leading-tight tracking-widest whitespace-nowrap text-archive-red uppercase compact:text-[0.58rem] compact:tracking-[0.04em]"
+        class="text-2xs leading-tight tracking-widest whitespace-nowrap text-archive-red uppercase compact:text-3xs compact:tracking-[0.04em]"
         :class="props.desktopLayout === 'stacked' ? 'compact:text-balance compact:whitespace-normal' : 'tablet:text-balance tablet:whitespace-normal'"
       >
         {{ item.label }}
       </dt>
       <dd
-        class="m-0 mt-1 min-w-0 text-[1.2rem] leading-tight compact:mt-0.5 compact:text-sm"
+        class="m-0 mt-1 min-w-0 text-lg leading-tight compact:mt-0.5 compact:text-sm"
         :class="props.desktopLayout === 'stacked' ? 'compact:break-words compact:whitespace-normal' : 'tablet:break-words tablet:whitespace-normal'"
       >
         {{ item.value }}

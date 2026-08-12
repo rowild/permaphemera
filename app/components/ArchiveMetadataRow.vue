@@ -12,8 +12,8 @@ const rowClasses: Record<MetadataRowVariant, string> = {
 }
 
 const termClasses: Record<MetadataRowVariant, string> = {
-  exhibition: 'grid grid-cols-[1.125rem_minmax(0,1fr)] items-baseline gap-2 text-[0.78rem] leading-5 tracking-[0.06em] text-archive-red uppercase compact:text-[0.68rem]',
-  location: 'm-0 flex items-center gap-[0.45rem] text-[0.84rem] text-archive-red uppercase compact:text-[0.68rem]',
+  exhibition: 'grid grid-cols-[1.125rem_minmax(0,1fr)] items-baseline gap-2 text-xs leading-5 tracking-[0.06em] text-archive-red uppercase compact:text-2xs',
+  location: 'm-0 flex items-center gap-[0.45rem] text-meta text-archive-red uppercase compact:text-2xs',
 }
 
 const valueClasses: Record<MetadataRowVariant, string> = {

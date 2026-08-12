@@ -48,17 +48,17 @@ useSeoMeta({
               <strong class="text-4xl leading-none font-light compact:text-3xl">{{ recordNumber }}</strong>
             </div>
           </div>
-          <p class="[ exhibition-detail-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-[0.86rem] text-archive-muted italic compact:mt-2 compact:ml-2 compact:text-xs"><span class="not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('exhibition.preservedRecord') }}</span> · {{ $t('exhibition.season') }}</p>
+          <p class="[ exhibition-detail-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic compact:mt-2 compact:ml-2 compact:text-xs"><span class="not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('exhibition.preservedRecord') }}</span> · {{ $t('exhibition.season') }}</p>
         </div>
 
         <div class="[ exhibition-detail-copy ] tablet:row-start-2">
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/exhibitions/')">{{ $t('navigation.exhibitions') }}</ArchiveTextLink><span aria-hidden="true">/</span><ArchiveTextLink :to="galleryPath">{{ gallery?.name ?? exhibition.venue }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ exhibition.title }}</span>
           </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.recordEyebrow') }}</p>
-          <h1 id="exhibition-title" class="m-0 font-display text-[clamp(3.2rem,4.8vw,5.3rem)] font-light leading-[0.92] text-archive-red compact:text-5xl compact:leading-none">{{ exhibition.title }}</h1>
-          <p class="[ exhibition-detail-artist ] mt-[0.8rem] mb-[1.4rem] text-[1.45rem] text-archive-ink compact:mt-2 compact:mb-3 compact:text-lg">{{ exhibition.artist }}</p>
-          <p class="[ exhibition-detail-summary ] max-w-xl text-[1.18rem] leading-[1.52] text-archive-body compact:text-base compact:leading-normal">{{ exhibition.summary }}</p>
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.recordEyebrow') }}</p>
+          <h1 id="exhibition-title" class="m-0 font-display text-h1 font-light leading-[0.92] text-archive-red compact:text-5xl compact:leading-none">{{ exhibition.title }}</h1>
+          <p class="[ exhibition-detail-artist ] mt-[0.8rem] mb-[1.4rem] text-title text-archive-ink compact:mt-2 compact:mb-3 compact:text-lg">{{ exhibition.artist }}</p>
+          <p class="[ exhibition-detail-summary ] max-w-xl text-lg leading-[1.52] text-archive-body compact:text-base compact:leading-normal">{{ exhibition.summary }}</p>
 
           <dl class="[ exhibition-detail-meta ] m-0 mt-[1.8rem] border-t border-archive-rule-warm/24 compact:mt-4">
             <ArchiveMetadataRow :label="$t('exhibition.location')" variant="exhibition">
@@ -91,35 +91,35 @@ useSeoMeta({
 
       <section id="about-exhibition" class="[ exhibition-detail-body ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(30rem,1.2fr)_minmax(23rem,0.8fr)] gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-5 compact:px-4 compact:py-8" aria-labelledby="about-exhibition-title">
         <div class="[ exhibition-detail-prose ]">
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.aboutEyebrow') }}</p>
-          <h2 id="about-exhibition-title" class="m-0 text-[clamp(2.55rem,4.2vw,4.35rem)] font-light leading-[0.98] compact:text-4xl">{{ $t('exhibition.aboutTitle') }} <span class="text-archive-red">{{ $t('exhibition.aboutAccent') }}</span></h2>
-          <p class="max-w-3xl text-[1.16rem] leading-[1.65] text-archive-body compact:text-base compact:leading-normal">{{ exhibition.description || exhibition.summary }}</p>
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.aboutEyebrow') }}</p>
+          <h2 id="about-exhibition-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ $t('exhibition.aboutTitle') }} <span class="text-archive-red">{{ $t('exhibition.aboutAccent') }}</span></h2>
+          <p class="max-w-3xl text-lg leading-[1.65] text-archive-body compact:text-base compact:leading-normal">{{ exhibition.description || exhibition.summary }}</p>
         </div>
         <dl class="[ exhibition-detail-ledger ] m-0 self-start border-t border-archive-red/42 *:border-b *:border-archive-rule-deep/22 *:py-[0.9rem] compact:grid compact:grid-cols-2 compact:gap-x-4 compact:*:py-2">
-          <div><dt class="text-xs leading-normal tracking-[0.08em] text-archive-red uppercase compact:text-[0.68rem]">{{ $t('exhibition.artistParticipants') }}</dt><dd class="mt-[0.18rem] mb-0 text-[1.08rem] compact:text-sm">{{ exhibition.artist }}</dd></div>
-          <div v-if="exhibition.medium"><dt class="text-xs leading-normal tracking-[0.08em] text-archive-red uppercase compact:text-[0.68rem]">{{ $t('exhibition.form') }}</dt><dd class="mt-[0.18rem] mb-0 text-[1.08rem] compact:text-sm">{{ exhibition.medium }}</dd></div>
-          <div><dt class="text-xs leading-normal tracking-[0.08em] text-archive-red uppercase compact:text-[0.68rem]">{{ $t('exhibition.opening') }}</dt><dd class="mt-[0.18rem] mb-0 text-[1.08rem] compact:text-sm">{{ exhibition.vernissage }}</dd></div>
-          <div><dt class="text-xs leading-normal tracking-[0.08em] text-archive-red uppercase compact:text-[0.68rem]">{{ $t('exhibition.admission') }}</dt><dd class="mt-[0.18rem] mb-0 text-[1.08rem] compact:text-sm">{{ $t('common.free') }}</dd></div>
+          <div><dt class="text-xs leading-normal tracking-[0.08em] text-archive-red uppercase compact:text-2xs">{{ $t('exhibition.artistParticipants') }}</dt><dd class="mt-[0.18rem] mb-0 text-button compact:text-sm">{{ exhibition.artist }}</dd></div>
+          <div v-if="exhibition.medium"><dt class="text-xs leading-normal tracking-[0.08em] text-archive-red uppercase compact:text-2xs">{{ $t('exhibition.form') }}</dt><dd class="mt-[0.18rem] mb-0 text-button compact:text-sm">{{ exhibition.medium }}</dd></div>
+          <div><dt class="text-xs leading-normal tracking-[0.08em] text-archive-red uppercase compact:text-2xs">{{ $t('exhibition.opening') }}</dt><dd class="mt-[0.18rem] mb-0 text-button compact:text-sm">{{ exhibition.vernissage }}</dd></div>
+          <div><dt class="text-xs leading-normal tracking-[0.08em] text-archive-red uppercase compact:text-2xs">{{ $t('exhibition.admission') }}</dt><dd class="mt-[0.18rem] mb-0 text-button compact:text-sm">{{ $t('common.free') }}</dd></div>
         </dl>
       </section>
 
       <section id="spatial-record" class="[ exhibition-experience ] archive-exhibition-experience relative grid min-h-140 grid-cols-[minmax(0,1.2fr)_minmax(24rem,0.8fr)] overflow-hidden bg-archive-night text-archive-footer-copy tablet:grid-cols-1" aria-labelledby="spatial-record-title">
         <div class="[ exhibition-experience-image ] min-h-140 bg-cover bg-center brightness-50 saturate-72 compact:min-h-76" :style="{ backgroundImage: `url('${exhibition.image}')` }" aria-hidden="true" />
         <div class="[ exhibition-experience-copy ] archive-exhibition-experience-copy relative z-2 flex flex-col justify-center p-[clamp(3rem,6vw,6rem)] compact:bg-archive-night compact:px-4 compact:py-8">
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.spatialEyebrow') }}</p>
-          <h2 id="spatial-record-title" class="m-0 mb-6 text-[clamp(2.55rem,4.2vw,4.35rem)] font-light leading-[1.06] text-archive-night-heading compact:mb-4 compact:text-4xl">{{ $t('exhibition.spatialTitle') }} <span class="text-archive-red">{{ $t('exhibition.spatialAccent') }}</span></h2>
-          <p class="max-w-136 text-[1.08rem] text-archive-footer-copy/86 compact:text-sm">{{ $t('exhibition.spatialIntro') }}</p>
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.spatialEyebrow') }}</p>
+          <h2 id="spatial-record-title" class="m-0 mb-6 text-h2-lg font-light leading-[1.06] text-archive-night-heading compact:mb-4 compact:text-4xl">{{ $t('exhibition.spatialTitle') }} <span class="text-archive-red">{{ $t('exhibition.spatialAccent') }}</span></h2>
+          <p class="max-w-136 text-button text-archive-footer-copy/86 compact:text-sm">{{ $t('exhibition.spatialIntro') }}</p>
           <ArchiveButton class="mt-[1.4rem] self-start compact:w-full" type="button" disabled>
             {{ $t('exhibition.startExperience') }} <ArchiveArrow />
           </ArchiveButton>
-          <small class="mt-[0.65rem] text-[0.72rem] tracking-[0.08em] text-archive-footer-copy/72 uppercase">{{ $t('exhibition.inPreparation') }}</small>
+          <small class="mt-[0.65rem] text-xs tracking-[0.08em] text-archive-footer-copy/72 uppercase">{{ $t('exhibition.inPreparation') }}</small>
         </div>
       </section>
 
       <section v-if="relatedExhibitions.length" class="[ exhibition-related ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8" aria-labelledby="related-title">
         <div class="[ section-heading ] relative z-1 mb-10 compact:mb-5">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.relatedEyebrowAt', { name: gallery?.name ?? exhibition.venue }) }}</p>
-          <h2 id="related-title" class="m-0 max-w-232 font-display text-[clamp(2.25rem,3.65vw,3.85rem)] font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccentAt', { name: gallery?.name ?? exhibition.venue }) }}</span></h2>
+          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.relatedEyebrowAt', { name: gallery?.name ?? exhibition.venue }) }}</p>
+          <h2 id="related-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccentAt', { name: gallery?.name ?? exhibition.venue }) }}</span></h2>
         </div>
         <div class="[ exhibition-related-grid ] grid grid-cols-3 gap-6 compact:grid-cols-1">
           <RelatedExhibitionCard

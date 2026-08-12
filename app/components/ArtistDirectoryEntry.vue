@@ -53,7 +53,7 @@ watch(() => props.open, async (open) => {
       <button
         v-if="records.length"
         ref="nameButtonRef"
-        class="[ artist-name-button ] archive-navigation-link relative cursor-pointer appearance-none border-0 bg-transparent p-0 text-left font-display text-[1.28rem] leading-tight text-archive-ink no-underline transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-archive-red compact:text-base"
+        class="[ artist-name-button ] archive-navigation-link relative cursor-pointer appearance-none border-0 bg-transparent p-0 text-left font-display text-xl leading-tight text-archive-ink no-underline transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-archive-red compact:text-base"
         type="button"
         :aria-label="$t('artists.openFor', { name: props.artist.name })"
         :aria-controls="modalId"
@@ -65,7 +65,7 @@ watch(() => props.open, async (open) => {
       </button>
       <span
         v-else
-        class="[ artist-name ] font-display text-[1.28rem] leading-tight text-archive-muted opacity-60 compact:text-base"
+        class="[ artist-name ] font-display text-xl leading-tight text-archive-muted opacity-60 compact:text-base"
       >
         {{ displayName }}
       </span>

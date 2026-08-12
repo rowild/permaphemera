@@ -89,13 +89,13 @@ useSeoMeta({
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('galleries.breadcrumb') }}</span>
           </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('galleries.eyebrow') }}</p>
-          <h1 id="galleries-page-title" class="m-0 max-w-232 font-display text-[clamp(3.3rem,5.2vw,5.6rem)] font-light leading-[0.92] tablet:text-[clamp(2.75rem,5.6vw,4.25rem)] compact:text-5xl compact:leading-none">{{ $t('galleries.title') }} <span class="text-archive-red">{{ $t('galleries.accent') }}</span></h1>
-          <p class="mt-[1.4rem] mb-0 max-w-180 text-[1.15rem] leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ $t('galleries.intro') }}</p>
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('galleries.eyebrow') }}</p>
+          <h1 id="galleries-page-title" class="m-0 max-w-232 font-display text-hero font-light leading-[0.92] tablet:text-h1-steep compact:text-5xl compact:leading-none">{{ $t('galleries.title') }} <span class="text-archive-red">{{ $t('galleries.accent') }}</span></h1>
+          <p class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ $t('galleries.intro') }}</p>
         </div>
 
         <div class="[ galleries-atlas-mark ] relative min-h-80 border-l border-archive-red/38 pl-8 tablet:min-h-64 compact:min-h-0 compact:border-t compact:border-l-0 compact:pt-4 compact:pl-0" aria-hidden="true">
-          <p class="m-0 text-[clamp(6rem,11vw,11rem)] font-light leading-[0.72] text-archive-red/88">{{ String(locations.length).padStart(2, '0') }}</p>
+          <p class="m-0 text-hero-xl font-light leading-[0.72] text-archive-red/88">{{ String(locations.length).padStart(2, '0') }}</p>
           <p class="mt-4 mb-0 max-w-48 text-xs tracking-widest text-archive-muted uppercase">{{ $t('galleries.atlasCaption') }}</p>
           <img class="pointer-events-none absolute right-0 bottom-0 w-36 -rotate-8 opacity-38 compact:hidden" src="/images/landing/footer/permanently-preserved-stamp.png" alt="" />
         </div>
@@ -106,9 +106,9 @@ useSeoMeta({
       <section id="gallery-directory" class="[ gallery-directory ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-3 compact:py-6" aria-labelledby="gallery-directory-title">
         <div class="[ gallery-directory-heading ] grid grid-cols-[minmax(0,1fr)_minmax(20rem,0.62fr)] items-start gap-[clamp(2.5rem,6vw,6rem)] tablet:grid-cols-1 compact:gap-4">
           <div class="[ section-heading ] relative z-1 mb-4">
-            <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-[0.95rem] font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('galleries.directoryEyebrow') }}</p>
-            <h2 id="gallery-directory-title" class="m-0 max-w-232 font-display text-[clamp(2.25rem,3.65vw,3.85rem)] font-normal leading-[0.98] compact:text-3xl">{{ $t('galleries.directoryTitle') }} <span class="text-archive-red">{{ $t('galleries.directoryAccent') }}</span></h2>
-            <p class="mt-[0.85rem] mb-0 max-w-216 text-[1.04rem] text-archive-muted compact:mt-2 compact:text-sm">{{ $t('galleries.directoryIntro') }}</p>
+            <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('galleries.directoryEyebrow') }}</p>
+            <h2 id="gallery-directory-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('galleries.directoryTitle') }} <span class="text-archive-red">{{ $t('galleries.directoryAccent') }}</span></h2>
+            <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('galleries.directoryIntro') }}</p>
           </div>
           <ArchiveFactLedger class="mt-9 tablet:mt-0" :items="galleryLedgerItems" />
         </div>
@@ -122,17 +122,17 @@ useSeoMeta({
         />
 
         <ArchiveAlphabetRail class="[ gallery-state-filter ] mt-7 gap-5 border-b border-archive-rule-warm/20 pb-4 compact:mt-4 compact:gap-4 compact:pb-3" :label="$t('galleries.stateFilterAria')">
-          <button class="shrink-0 border-0 bg-transparent p-0 text-[1.02rem] text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="!selectedState" @click="selectedState = ''">{{ $t('common.all') }} <small class="ml-1 text-xs">{{ locations.length }}</small></button>
-          <button v-for="state in states" :key="state" class="shrink-0 border-0 bg-transparent p-0 text-[1.02rem] text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="selectedState === state" @click="selectedState = selectedState === state ? '' : state">{{ state }} <small class="ml-1 text-xs">{{ stateCounts.get(state) }}</small></button>
+          <button class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="!selectedState" @click="selectedState = ''">{{ $t('common.all') }} <small class="ml-1 text-xs">{{ locations.length }}</small></button>
+          <button v-for="state in states" :key="state" class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="selectedState === state" @click="selectedState = selectedState === state ? '' : state">{{ state }} <small class="ml-1 text-xs">{{ stateCounts.get(state) }}</small></button>
         </ArchiveAlphabetRail>
 
-        <div class="[ gallery-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-[0.92rem] text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
+        <div class="[ gallery-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
           <p class="m-0" role="status" aria-live="polite">{{ $t('galleries.status', { visible: filteredLocations.length, total: locations.length }) }}</p>
           <button v-if="gallerySearchQuery || selectedState" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="clearFilters">{{ $t('galleries.clearFilters') }}</button>
         </div>
 
         <div v-if="!filteredLocations.length" class="[ gallery-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-          <p class="m-0 text-[1.45rem] text-archive-ink">{{ $t('galleries.noMatches') }}</p>
+          <p class="m-0 text-title text-archive-ink">{{ $t('galleries.noMatches') }}</p>
           <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="clearFilters">{{ $t('galleries.returnAll') }}</button>
         </div>
 

@@ -19,7 +19,7 @@ const localePath = useLocalePath()
       <time class="text-xs leading-normal tracking-[0.07em] text-archive-muted uppercase" :datetime="exhibition.start_date">
         {{ exhibition.date_range }}
       </time>
-      <h3 class="mt-[0.3rem] mb-0 text-[1.55rem] font-normal leading-[1.05] compact:text-lg">{{ exhibition.title }}</h3>
+      <h3 class="mt-[0.3rem] mb-0 text-2xl font-normal leading-[1.05] compact:text-lg">{{ exhibition.title }}</h3>
       <p class="mt-1 mb-4 text-archive-red compact:mb-2 compact:text-sm">{{ exhibition.artist }}</p>
       <span class="mt-auto flex items-center gap-2 text-archive-red compact:text-sm">{{ $t('cards.openExhibition') }} <ArchiveArrow /></span>
     </div>
