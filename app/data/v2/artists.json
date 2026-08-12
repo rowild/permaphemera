@@ -1300,5 +1300,236 @@
         "biography": ""
       }
     ]
+  },
+  {
+    "id": "artist-adi-schmolzer",
+    "slug": "adi-schmolzer",
+    "first_name": "Adi",
+    "last_name": "Schmölzer",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-7th-spittaler-comicfestival",
+    "slug": "7th-spittaler-comicfestival",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "artist_name": "7th Spittaler Comicfestival",
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-austriatoon",
+    "slug": "austriatoon",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "artist_name": "Austriatoon",
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-nicoline-von-heyl",
+    "slug": "nicoline-von-heyl",
+    "first_name": "Nicoline von",
+    "last_name": "Heyl",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-lebenshilfe-spittal",
+    "slug": "lebenshilfe-spittal",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "artist_name": "Lebenshilfe Spittal",
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-herbert-meisslitzer",
+    "slug": "herbert-meisslitzer",
+    "first_name": "Herbert",
+    "last_name": "Meißlitzer",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-sylvia-campidell",
+    "slug": "sylvia-campidell",
+    "first_name": "Sylvia",
+    "last_name": "Campidell",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-judith-maria-kulle",
+    "slug": "judith-maria-kulle",
+    "first_name": "Judith Maria",
+    "last_name": "Kulle",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-birgit-mortl",
+    "slug": "birgit-mortl",
+    "first_name": "Birgit",
+    "last_name": "Mörtl",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-peter-kohlweiss",
+    "slug": "peter-kohlweiss",
+    "first_name": "Peter",
+    "last_name": "Kohlweiß",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-santino-solace",
+    "slug": "santino-solace",
+    "first_name": "Santino",
+    "last_name": "Solace",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   }
 ]

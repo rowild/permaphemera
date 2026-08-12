@@ -1,0 +1,478 @@
+[
+  {
+    "id": "parkschloessl-adi-schmoelzer-2026",
+    "slug": "all-the-magic",
+    "primary_venue_id": "venue-parkschloessl-spittal-drau",
+    "start_date": "2026-06-02",
+    "end_date": "2026-06-12",
+    "is_permanent": false,
+    "image": "/images/locations/parkschloessl/all-the-magic.webp",
+    "image_alt": "Expressive mixed-media architectural work by Adi Schmölzer",
+    "opening_hours": "Monday–Friday, 10:00–18:00",
+    "vernissage": "Monday, 1 June 2026, 19:00",
+    "medium": null,
+    "source_pdf": "/locations/parkschloessl-spittal-drau/2026-schmoelzer-adi/RZ_Schmölzer-KIP_Aussendung.pdf",
+    "featured": false,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "All the magic",
+        "summary": "A vivid encounter between drawn signs, architectural fragments and saturated fields of colour.",
+        "description": "",
+        "date_range": "2–12 June 2026",
+        "opening_hours": "Monday–Friday, 10:00–18:00",
+        "vernissage": "Monday, 1 June 2026, 19:00",
+        "image_alt": "Expressive mixed-media architectural work by Adi Schmölzer",
+        "medium": ""
+      },
+      {
+        "languages_code": "de",
+        "title": "All the magic",
+        "summary": "Eine lebendige Begegnung zwischen gezeichneten Zeichen, architektonischen Fragmenten und gesättigten Farbfeldern.",
+        "description": "",
+        "date_range": "2.–12. Juni 2026",
+        "opening_hours": "Montag–Freitag, 10:00–18:00 Uhr",
+        "vernissage": "Montag, 1. Juni 2026, 19:00 Uhr",
+        "image_alt": "Expressives architektonisches Mischtechnik-Werk von Adi Schmölzer",
+        "medium": ""
+      }
+    ]
+  },
+  {
+    "id": "parkschloessl-austriatoon-2026",
+    "slug": "auf-linien-zum-leben",
+    "primary_venue_id": "venue-parkschloessl-spittal-drau",
+    "start_date": "2026-06-15",
+    "end_date": "2026-06-20",
+    "is_permanent": false,
+    "image": "/images/locations/parkschloessl/auf-linien-zum-leben.webp",
+    "image_alt": "Hand-drawn poster for the seventh Spittaler Comicfestival",
+    "opening_hours": "Monday–Friday, 13:00–18:00 · Saturday, 10:00–15:00",
+    "vernissage": "Monday, 15 June 2026, 19:00",
+    "medium": "Comics, illustration, outsider art and workshops",
+    "source_pdf": "/locations/parkschloessl-spittal-drau/2026-comic-festival/Austriatoon Festival 2026.pdf",
+    "featured": true,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Auf Linien zum Leben",
+        "summary": "Comics, cartoons, illustration and outsider art meet an open, participatory drawing studio for all ages.",
+        "description": "Under the theme ‘Life stories – from tragedy to comedy’, visitors are invited to turn experiences, thoughts and texts into images. The festival combines an exhibition with daily workshops and a growing display of work created on site.",
+        "date_range": "15–20 June 2026",
+        "opening_hours": "Monday–Friday, 13:00–18:00 · Saturday, 10:00–15:00",
+        "vernissage": "Monday, 15 June 2026, 19:00",
+        "image_alt": "Hand-drawn poster for the seventh Spittaler Comicfestival",
+        "medium": "Comics, illustration, outsider art and workshops"
+      },
+      {
+        "languages_code": "de",
+        "title": "Auf Linien zum Leben",
+        "summary": "Comics, Cartoons, Illustration und Outsider Art treffen auf ein offenes, partizipatives Zeichenstudio für alle Altersgruppen.",
+        "description": "Unter dem Motto „Lebensgeschichten – von der Tragödie zur Komödie“ sind Besucherinnen und Besucher eingeladen, Erlebnisse, Gedanken und Texte in Bilder zu verwandeln. Das Festival verbindet eine Ausstellung mit täglichen Workshops und einer wachsenden Präsentation der vor Ort entstandenen Arbeiten.",
+        "date_range": "15.–20. Juni 2026",
+        "opening_hours": "Montag–Freitag, 13:00–18:00 Uhr · Samstag, 10:00–15:00 Uhr",
+        "vernissage": "Montag, 15. Juni 2026, 19:00 Uhr",
+        "image_alt": "Handgezeichnetes Plakat zum siebten Spittaler Comicfestival",
+        "medium": "Comics, Illustration, Outsider Art und Workshops"
+      }
+    ]
+  },
+  {
+    "id": "parkschloessl-nicoline-von-heyl-2026",
+    "slug": "verwandlung-und-zustand",
+    "primary_venue_id": "venue-parkschloessl-spittal-drau",
+    "start_date": "2026-06-23",
+    "end_date": "2026-07-03",
+    "is_permanent": false,
+    "image": "/images/locations/parkschloessl/verwandlung-und-zustand.webp",
+    "image_alt": "Abstract painting in blue, turquoise and ochre by Nicoline von Heyl",
+    "opening_hours": "Tuesday–Friday, 10:00–18:00 · Saturday–Sunday, 11:00–16:00",
+    "vernissage": "Monday, 22 June 2026, 18:00",
+    "medium": "Painting and mixed media",
+    "source_pdf": "/locations/parkschloessl-spittal-drau/2026-von-heyl-nicoline/RZ_Von-Heyl-KIP_Aussendung.pdf",
+    "featured": false,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Verwandlung und Zustand",
+        "summary": "Process-led painting searches for the essential image through expressive surfaces, reduction and concentrated colour.",
+        "description": "Nicoline von Heyl lives and works in Krumpendorf am Wörthersee. Her work moves between portrait and figure studies and non-representational, process-based painting. During the exhibition, the artist works on site in an open studio.",
+        "date_range": "23 June–3 July 2026",
+        "opening_hours": "Tuesday–Friday, 10:00–18:00 · Saturday–Sunday, 11:00–16:00",
+        "vernissage": "Monday, 22 June 2026, 18:00",
+        "image_alt": "Abstract painting in blue, turquoise and ochre by Nicoline von Heyl",
+        "medium": "Painting and mixed media"
+      },
+      {
+        "languages_code": "de",
+        "title": "Verwandlung und Zustand",
+        "summary": "Prozessgeleitete Malerei sucht durch expressive Oberflächen, Reduktion und konzentrierte Farbe nach dem wesentlichen Bild.",
+        "description": "Nicoline von Heyl lebt und arbeitet in Krumpendorf am Wörthersee. Ihr Werk bewegt sich zwischen Porträt- und Figurenstudien und gegenstandsloser, prozessbasierter Malerei. Während der Ausstellung arbeitet die Künstlerin vor Ort in einem offenen Atelier.",
+        "date_range": "23. Juni–3. Juli 2026",
+        "opening_hours": "Dienstag–Freitag, 10:00–18:00 Uhr · Samstag–Sonntag, 11:00–16:00 Uhr",
+        "vernissage": "Montag, 22. Juni 2026, 18:00 Uhr",
+        "image_alt": "Abstraktes Gemälde in Blau, Türkis und Ocker von Nicoline von Heyl",
+        "medium": "Malerei und Mischtechnik"
+      }
+    ]
+  },
+  {
+    "id": "parkschloessl-lebenshilfe-2026",
+    "slug": "begegnungen-kunst-oeffnet-tueren",
+    "primary_venue_id": "venue-parkschloessl-spittal-drau",
+    "start_date": "2026-07-07",
+    "end_date": "2026-07-10",
+    "is_permanent": false,
+    "image": "/images/locations/parkschloessl/begegnungen.webp",
+    "image_alt": "Abstract work with red and dark forms by Lebenshilfe Spittal",
+    "opening_hours": "Tuesday–Friday, 10:00–18:00",
+    "vernissage": "Monday, 6 July 2026, 18:00",
+    "medium": null,
+    "source_pdf": "/locations/parkschloessl-spittal-drau/2026-lebenshilfe-spittal/RZ_Lebenshilfe-KIP_Aussendung.pdf",
+    "featured": false,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Begegnungen – Kunst öffnet Türen",
+        "summary": "An exhibition built around encounter, creative access and the capacity of art to open doors.",
+        "description": "",
+        "date_range": "7–10 July 2026",
+        "opening_hours": "Tuesday–Friday, 10:00–18:00",
+        "vernissage": "Monday, 6 July 2026, 18:00",
+        "image_alt": "Abstract work with red and dark forms by Lebenshilfe Spittal",
+        "medium": ""
+      },
+      {
+        "languages_code": "de",
+        "title": "Begegnungen – Kunst öffnet Türen",
+        "summary": "Eine Ausstellung über Begegnung, kreativen Zugang und die Fähigkeit der Kunst, Türen zu öffnen.",
+        "description": "",
+        "date_range": "7.–10. Juli 2026",
+        "opening_hours": "Dienstag–Freitag, 10:00–18:00 Uhr",
+        "vernissage": "Montag, 6. Juli 2026, 18:00 Uhr",
+        "image_alt": "Abstrakte Arbeit mit roten und dunklen Formen von Lebenshilfe Spittal",
+        "medium": ""
+      }
+    ]
+  },
+  {
+    "id": "parkschloessl-herbert-meisslitzer-2026",
+    "slug": "farbe-trifft-struktur",
+    "primary_venue_id": "venue-parkschloessl-spittal-drau",
+    "start_date": "2026-07-14",
+    "end_date": "2026-07-24",
+    "is_permanent": false,
+    "image": "/images/locations/parkschloessl/farbe-trifft-struktur.webp",
+    "image_alt": "Layered architectural painting by Herbert Meißlitzer",
+    "opening_hours": "Monday–Saturday, 10:00–18:00",
+    "vernissage": "Monday, 13 July 2026, 19:00",
+    "medium": null,
+    "source_pdf": "/locations/parkschloessl-spittal-drau/2026-meisslitzer-herbert/RZ_Meisslitzer-KIP_Aussendung.pdf",
+    "featured": false,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Farbe trifft Struktur",
+        "summary": "Colour and architectural structure overlap in a densely worked view of place and memory.",
+        "description": "",
+        "date_range": "14–24 July 2026",
+        "opening_hours": "Monday–Saturday, 10:00–18:00",
+        "vernissage": "Monday, 13 July 2026, 19:00",
+        "image_alt": "Layered architectural painting by Herbert Meißlitzer",
+        "medium": ""
+      },
+      {
+        "languages_code": "de",
+        "title": "Farbe trifft Struktur",
+        "summary": "Farbe und architektonische Struktur überlagern sich zu einer dicht gearbeiteten Ansicht von Ort und Erinnerung.",
+        "description": "",
+        "date_range": "14.–24. Juli 2026",
+        "opening_hours": "Montag–Samstag, 10:00–18:00 Uhr",
+        "vernissage": "Montag, 13. Juli 2026, 19:00 Uhr",
+        "image_alt": "Vielschichtiges architektonisches Gemälde von Herbert Meißlitzer",
+        "medium": ""
+      }
+    ]
+  },
+  {
+    "id": "parkschloessl-campidell-kulle-2026",
+    "slug": "farben-im-park",
+    "primary_venue_id": "venue-parkschloessl-spittal-drau",
+    "start_date": "2026-07-28",
+    "end_date": "2026-08-07",
+    "is_permanent": false,
+    "image": "/images/locations/parkschloessl/farben-im-park.webp",
+    "image_alt": "Paintings of lemons and a figure by Sylvia Campidell and Judith Maria Kulle",
+    "opening_hours": "Monday–Friday, 10:00–18:00",
+    "vernissage": "Monday, 27 July 2026, 19:00",
+    "medium": null,
+    "source_pdf": "/locations/parkschloessl-spittal-drau/2026-campidell-kulle/RZ_Kulle-Campidell-KIP-Aussendung.pdf",
+    "featured": false,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Farben im Park",
+        "summary": "Two painterly positions bring figures, plants and the vivid chromatic life of the park into dialogue.",
+        "description": "",
+        "date_range": "28 July–7 August 2026",
+        "opening_hours": "Monday–Friday, 10:00–18:00",
+        "vernissage": "Monday, 27 July 2026, 19:00",
+        "image_alt": "Paintings of lemons and a figure by Sylvia Campidell and Judith Maria Kulle",
+        "medium": ""
+      },
+      {
+        "languages_code": "de",
+        "title": "Farben im Park",
+        "summary": "Zwei malerische Positionen bringen Figuren, Pflanzen und das lebendige Farbleben des Parks miteinander ins Gespräch.",
+        "description": "",
+        "date_range": "28. Juli–7. August 2026",
+        "opening_hours": "Montag–Freitag, 10:00–18:00 Uhr",
+        "vernissage": "Montag, 27. Juli 2026, 19:00 Uhr",
+        "image_alt": "Gemälde mit Zitronen und einer Figur von Sylvia Campidell und Judith Maria Kulle",
+        "medium": ""
+      }
+    ]
+  },
+  {
+    "id": "parkschloessl-birgit-moertl-2026",
+    "slug": "african-heart",
+    "primary_venue_id": "venue-parkschloessl-spittal-drau",
+    "start_date": "2026-08-11",
+    "end_date": "2026-08-21",
+    "is_permanent": false,
+    "image": "/images/locations/parkschloessl/african-heart.webp",
+    "image_alt": "Portrait of an African buffalo used for Birgit Mörtl’s exhibition African Heart",
+    "opening_hours": "Monday–Friday, 10:00–18:00",
+    "vernissage": "Monday, 10 August 2026, 19:00",
+    "medium": null,
+    "source_pdf": "/locations/parkschloessl-spittal-drau/2026-moertl-birgit/RZ_Mörtl-KIP_Aussendung.pdf",
+    "featured": false,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "African Heart",
+        "summary": "A direct, attentive look at animal presence and the visual force of the African landscape.",
+        "description": "",
+        "date_range": "11–21 August 2026",
+        "opening_hours": "Monday–Friday, 10:00–18:00",
+        "vernissage": "Monday, 10 August 2026, 19:00",
+        "image_alt": "Portrait of an African buffalo used for Birgit Mörtl’s exhibition African Heart",
+        "medium": ""
+      },
+      {
+        "languages_code": "de",
+        "title": "African Heart",
+        "summary": "Ein direkter, aufmerksamer Blick auf tierische Präsenz und die visuelle Kraft der afrikanischen Landschaft.",
+        "description": "",
+        "date_range": "11.–21. August 2026",
+        "opening_hours": "Montag–Freitag, 10:00–18:00 Uhr",
+        "vernissage": "Montag, 10. August 2026, 19:00 Uhr",
+        "image_alt": "Porträt eines afrikanischen Büffels für Birgit Mörtls Ausstellung African Heart",
+        "medium": ""
+      }
+    ]
+  },
+  {
+    "id": "parkschloessl-peter-kohlweiss-2026",
+    "slug": "gehen-und-sehen",
+    "primary_venue_id": "venue-parkschloessl-spittal-drau",
+    "start_date": "2026-08-25",
+    "end_date": "2026-09-04",
+    "is_permanent": false,
+    "image": "/images/locations/parkschloessl/gehen-und-sehen.webp",
+    "image_alt": "Watercolour of a group of elongated figures seen from behind in red, ochre and blue by Peter Kohlweiß",
+    "opening_hours": "Monday–Friday, 10:00–18:00",
+    "vernissage": "Monday, 24 August 2026, 19:00",
+    "medium": "Watercolour and drawing",
+    "source_pdf": "/locations/parkschloessl-spittal-drau/2026-kohlweiss-peter/Kunst im Park_Kohlweiss.pdf",
+    "featured": false,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Gehen & Sehen",
+        "summary": "Watercolours and drawings made from walking attentively and looking at what nature and architecture offer.",
+        "description": "Peter Kohlweiß has painted since 1982, beginning with Professor Hans Picottini at the HTL Villach and continuing through courses and seminars until he found his own style. He works in watercolour and drawing, translating what he sees on walks into pencil, brush and colour on paper and canvas.",
+        "date_range": "25 August–4 September 2026",
+        "opening_hours": "Monday–Friday, 10:00–18:00",
+        "vernissage": "Monday, 24 August 2026, 19:00",
+        "image_alt": "Watercolour of a group of elongated figures seen from behind in red, ochre and blue by Peter Kohlweiß",
+        "medium": "Watercolour and drawing"
+      },
+      {
+        "languages_code": "de",
+        "title": "Gehen & Sehen",
+        "summary": "Aquarelle und Zeichnungen, entstanden aus dem aufmerksamen Gehen und Sehen dessen, was Natur und Architektur an Schönheit bieten.",
+        "description": "Peter Kohlweiß malt seit 1982 und sammelte seine ersten Erfahrungen bei Professor Hans Picottini an der HTL Villach. In Kursen und Seminaren bildete er sich weiter, bis er seinen eigenen Stil fand. Mit offenen Augen durchs Leben zu gehen und das Gesehene mit Stift, Pinsel und Farbe auf Papier und Leinwand zu gestalten, ist für ihn ein wunderbares Gefühl.",
+        "date_range": "25. August–4. September 2026",
+        "opening_hours": "Montag–Freitag, 10:00–18:00 Uhr",
+        "vernissage": "Montag, 24. August 2026, 19:00 Uhr",
+        "image_alt": "Aquarell einer Gruppe langgestreckter Figuren von hinten in Rot, Ocker und Blau von Peter Kohlweiß",
+        "medium": "Aquarelle und Zeichnungen"
+      }
+    ]
+  },
+  {
+    "id": "parkschloessl-santino-solace-2026",
+    "slug": "das-was-entsteht",
+    "primary_venue_id": "venue-parkschloessl-spittal-drau",
+    "start_date": "2026-09-08",
+    "end_date": "2026-09-18",
+    "is_permanent": false,
+    "image": "/images/locations/parkschloessl/das-was-entsteht.webp",
+    "image_alt": "Comic illustration of three exaggerated characters in a desert setting by Santino Solace",
+    "opening_hours": "Monday–Friday, 10:00–18:00",
+    "vernissage": "Monday, 7 September 2026, 19:00",
+    "medium": "Comics, manga and webtoon",
+    "source_pdf": "/locations/parkschloessl-spittal-drau/2026-solace-santino/Kunst im Park_Santino Solace.pdf",
+    "featured": false,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Das, was entsteht",
+        "summary": "Comics, manga and webtoon work built around invented characters, stories and imagined worlds.",
+        "description": "Santino Solace lives and works in Spittal an der Drau as a comic artist, illustrator and founder of the creative platform SolaceWorks. His work combines manga, comics and modern digital illustration in a personal, humorous narrative style. The exhibition offers insight into his projects, working processes and the development of his own worlds.",
+        "date_range": "8–18 September 2026",
+        "opening_hours": "Monday–Friday, 10:00–18:00",
+        "vernissage": "Monday, 7 September 2026, 19:00",
+        "image_alt": "Comic illustration of three exaggerated characters in a desert setting by Santino Solace",
+        "medium": "Comics, manga and webtoon"
+      },
+      {
+        "languages_code": "de",
+        "title": "Das, was entsteht",
+        "summary": "Comic, Manga und Webtoon rund um eigene Charaktere, Geschichten und fantasievolle Welten.",
+        "description": "Santino Solace lebt und arbeitet in Spittal an der Drau. Als Comiczeichner, Illustrator und Gründer der kreativen Plattform SolaceWorks entwickelt er eigene Geschichten, Charaktere und fantasievolle Welten. Seine Arbeiten verbinden Manga, Comics und moderne digitale Illustration mit einem persönlichen, humorvollen Erzählstil. Die Ausstellung gibt Einblick in seine bisherigen Projekte, Arbeitsprozesse und die Entwicklung seiner eigenen Welten.",
+        "date_range": "8.–18. September 2026",
+        "opening_hours": "Montag–Freitag, 10:00–18:00 Uhr",
+        "vernissage": "Montag, 7. September 2026, 19:00 Uhr",
+        "image_alt": "Comic-Illustration mit drei überzeichneten Figuren in einer Wüstenszene von Santino Solace",
+        "medium": "Comic, Manga, Webtoon"
+      }
+    ]
+  },
+  {
+    "id": "exhibition-matter-memory",
+    "slug": "matter-and-memory",
+    "primary_venue_id": "venue-belvedere-21",
+    "start_date": "2024-02-15",
+    "end_date": "2024-05-20",
+    "is_permanent": false,
+    "image": "/images/landing/locations/location_07.png",
+    "image_alt": "",
+    "opening_hours": "",
+    "vernissage": "",
+    "medium": null,
+    "source_pdf": null,
+    "featured": true,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Matter & Memory",
+        "summary": "",
+        "description": "",
+        "date_range": "15.02.2024 - 20.05.2024",
+        "opening_hours": "",
+        "vernissage": "",
+        "image_alt": "",
+        "medium": ""
+      }
+    ]
+  },
+  {
+    "id": "exhibition-expressing-inner",
+    "slug": "expressing-the-inner",
+    "primary_venue_id": "venue-leopold-museum",
+    "start_date": "2023-10-10",
+    "end_date": "2024-01-28",
+    "is_permanent": false,
+    "image": "/images/landing/locations/location_03.png",
+    "image_alt": "",
+    "opening_hours": "",
+    "vernissage": "",
+    "medium": null,
+    "source_pdf": null,
+    "featured": false,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Expressing the Inner",
+        "summary": "",
+        "description": "",
+        "date_range": "10.10.2023 - 28.01.2024",
+        "opening_hours": "",
+        "vernissage": "",
+        "image_alt": "",
+        "medium": ""
+      }
+    ]
+  },
+  {
+    "id": "exhibition-state-of-repair",
+    "slug": "a-state-of-repair",
+    "primary_venue_id": "venue-kunsthalle-wien",
+    "start_date": "2023-06-22",
+    "end_date": "2023-09-03",
+    "is_permanent": false,
+    "image": "/images/landing/locations/location_09.png",
+    "image_alt": "",
+    "opening_hours": "",
+    "vernissage": "",
+    "medium": null,
+    "source_pdf": null,
+    "featured": false,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "A State of Repair",
+        "summary": "",
+        "description": "",
+        "date_range": "22.06.2023 - 03.09.2023",
+        "opening_hours": "",
+        "vernissage": "",
+        "image_alt": "",
+        "medium": ""
+      }
+    ]
+  },
+  {
+    "id": "exhibition-ways-of-being",
+    "slug": "ways-of-being",
+    "primary_venue_id": "venue-kunsthaus-graz",
+    "start_date": "2023-03-16",
+    "end_date": "2023-06-11",
+    "is_permanent": false,
+    "image": "/images/landing/locations/location_05.png",
+    "image_alt": "",
+    "opening_hours": "",
+    "vernissage": "",
+    "medium": null,
+    "source_pdf": null,
+    "featured": false,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "WAYS OF BEING",
+        "summary": "",
+        "description": "",
+        "date_range": "16.03.2023 - 11.06.2023",
+        "opening_hours": "",
+        "vernissage": "",
+        "image_alt": "",
+        "medium": ""
+      }
+    ]
+  }
+]
