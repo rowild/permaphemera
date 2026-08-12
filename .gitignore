@@ -43,3 +43,6 @@ test-results/
 
 # Deployment credentials (the example is tracked, see the negation above)
 .env.deploy.local
+
+# Subagent-driven-development scratch workspace
+.superpowers/
