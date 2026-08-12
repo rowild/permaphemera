@@ -1129,6 +1129,7 @@ export interface ResolvedVenue {
   archive_number: string
   featured: boolean
   city: string
+  city_name: string
   postal_code: string
   state: string
   country: string
@@ -1169,6 +1170,7 @@ export const resolveVenues = (
       archive_number: venue.archive_number,
       featured: venue.featured,
       city: location.city_name,
+      city_name: location.city_name,
       postal_code: location.postal_code,
       state: location.state,
       country: location.country,
@@ -1308,6 +1310,19 @@ git commit -m "Add resolver utilities and Directus-shaped content types"
 ## Task 7: The flip
 
 The single atomic task. Move `v2/` into place, rewire the composable and the artist directory, delete the old files.
+
+> **Four corrections found during execution.** The premise that components need no edits was *almost* right, but four things broke it. All were plan defects, not implementation errors.
+>
+> **1. `ResolvedVenue` must expose `city_name`, not only `city`.** Pages consume the composable's `locations` binding, whose old `Location` interface used `city_name` — `app/pages/index.vue:24`, `app/pages/locations/[slug].vue:24`, `app/pages/locations/index.vue:35` and `GalleryDirectoryCard.vue` all read it. The old `Venue` interface used `city`. Since both bindings now resolve to the same object, it must carry **both** names for the same value. That is a deliberate legacy alias, not redundancy to clean up: unifying it means touching components, which this migration explicitly does not do. Add `city_name` beside `city` in `ResolvedVenue` and in the `resolveVenues` return.
+>
+> **2. `buildArtistDirectory` has two call sites, not one.** Step 6 names `app/pages/artists/index.vue`. `app/pages/index.vue:12` calls it too. Both need the third `junction` argument, or the home page throws `undefined is not iterable`.
+>
+> **3. Three check scripts break here, not in Task 8.** They read files this task deletes or changes:
+> - `check-i18n-privacy.mjs` reads `app/data/translations/de/exhibitions.json` — gone. Repoint it at the inline `translations[]` arrays.
+> - `check-directory-routes.mjs` reads `app/data/location-exhibitions.json` — gone. Repoint at `app/data/exhibitions.json`.
+> - `check-mobile-density.mjs` asserts the landing page has one featured record and four secondary. Merging the four legacy exhibitions brings a second `featured: true` record. Set `featured: false` on all four legacy records: `featured` is a presentation flag, and promoting invented demo content onto the landing page is not something this migration was asked to do.
+>
+> **4. `pnpm build` is a false pass for this task.** The project sets `ssr: false`, so page logic never executes at build time — a page that throws on every render still builds cleanly. Both crashes above were invisible to the build and surfaced only by running the resolvers in Node. Verify data-layer changes by exercising the resolvers directly, never by a green build alone.
 
 **Files:**
 - Move: `app/data/v2/*.json` → `app/data/`
