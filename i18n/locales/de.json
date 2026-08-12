@@ -164,7 +164,7 @@
     "showAll": "Alle Einträge von {name} anzeigen",
     "exhibitionsAria": "Ausstellungen von {name}",
     "previewAria": "Vorschau der ausgewählten Ausstellung",
-    "openExhibition": "Ausstellung öffnen",
+    "openExhibition": "Ausstellung besuchen",
     "loadingPreview": "Bild des Eintrags wird geladen",
     "previewUnavailable": "Die Vorschau ist nicht verfügbar. Wählen Sie einen anderen Eintrag oder öffnen Sie die Ausstellungsseite.",
     "venueEyebrow": "Der Ort",
@@ -300,8 +300,8 @@
     "enter": "Betreten",
     "fullTitle": "Vollständiger Titel",
     "previewExhibition": "{title} als Vorschau anzeigen",
-    "openExhibitionFor": "Ausstellung öffnen: {title}",
-    "openExhibition": "Ausstellung öffnen"
+    "openExhibitionFor": "Ausstellung besuchen: {title}",
+    "openExhibition": "Ausstellung besuchen"
   },
   "footer": {
     "tagline": "Ein kuratiertes österreichisches Archiv von 360°-Ausstellungsdokumentationen.",

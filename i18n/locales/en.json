@@ -164,7 +164,7 @@
     "showAll": "Show every record at {name}",
     "exhibitionsAria": "{name} exhibitions",
     "previewAria": "Selected exhibition preview",
-    "openExhibition": "Open exhibition",
+    "openExhibition": "Visit exhibition",
     "loadingPreview": "Loading record image",
     "previewUnavailable": "Preview unavailable. Select another record or open the exhibition page.",
     "venueEyebrow": "The venue",
@@ -300,8 +300,8 @@
     "enter": "Enter",
     "fullTitle": "Full title",
     "previewExhibition": "Preview {title}",
-    "openExhibitionFor": "Open exhibition: {title}",
-    "openExhibition": "Open Exhibition"
+    "openExhibitionFor": "Visit exhibition: {title}",
+    "openExhibition": "Visit Exhibition"
   },
   "footer": {
     "tagline": "A curated Austrian archive of 360-degree exhibition documentation.",
