@@ -206,7 +206,9 @@ The resolver runs at module scope on static JSON, so failures are build-time, no
 1. All nine `check:*` scripts pass.
 2. A new `check:data-integrity.mjs`: every FK resolves, every junction row points at existing records, every slug is unique within its collection, every `translations[]` has an `en` entry, every `locations` row has coordinates.
 3. `pnpm build` succeeds.
-4. Record counts match the disposition table: 17 locations, 36 venues, 62 artists, 13 exhibitions.
+4. Record counts match the disposition table: 17 locations, 36 venues, 73 artists, 13 exhibitions.
+
+> **Corrected during implementation.** This originally said 62 artists, which was wrong. The 11 people and organisations credited on the Parkschlössl exhibitions have never existed in `artists.json` — the current `buildArtistDirectory` *synthesises* them at runtime from the credit string. Replacing that synthesis with a junction means they must exist as real records, so the collection grows 62 → 73. The two facts are inseparable: you cannot delete the synthesis and keep the old count.
 5. Manual pass over the venue index, a venue detail page, the exhibitions index, and the artists directory in both locales — the frontend-qa-checklist skill covers this.
 
 ## Open items for a later spec

@@ -35,7 +35,7 @@
 | `scripts/check-data-integrity.mjs` | Validates FKs, slug uniqueness, translation completeness, geo presence, record counts |
 | `app/data/v2/locations.json` | 17 cities. Staging; moved in Task 7 |
 | `app/data/v2/venues.json` | 36 buildings. Staging |
-| `app/data/v2/artists.json` | 62 artists in Directus shape. Staging |
+| `app/data/v2/artists.json` | 62 artists in Directus shape, growing to 73 in Task 4. Staging |
 | `app/data/v2/exhibitions.json` | 13 exhibitions. Staging |
 | `app/data/v2/exhibitions_artists.json` | M2M junction. Staging |
 | `app/utils/contentStatus.ts` | `VISIBLE_STATUSES` constant and `isVisible()` |
@@ -118,7 +118,7 @@ const validStatus = (records) => records.every((record) => ['draft', 'published'
 const checks = [
   ['locations count is 17', locations.length === 17],
   ['venues count is 36', venues.length === 36],
-  ['artists count is 62', artists.length === 62],
+  ['artists count is 73', artists.length === 73],
   ['exhibitions count is 13', exhibitions.length === 13],
 
   ['every location has coordinates', locations.every((location) =>
@@ -603,11 +603,15 @@ console.log(`exhibitions: ${exhibitions.length}  junction rows: ${junction.lengt
 - [ ] **Step 2: Run it**
 
 Run: `node scripts/tmp-build-exhibitions.mjs`
-Expected: `exhibitions: 13  junction rows: 14`
+Expected: `exhibitions: 13  junction rows: 15`
 
-14 rows rather than 13 because *Farben im Park* credits two artists (Sylvia Campidell and Judith Maria Kulle) and therefore produces two junction rows.
+15 rows rather than 13 because two exhibitions credit two artists each: *Farben im Park* (Sylvia Campidell and Judith Maria Kulle) and the comic festival (`7th Spittaler Comicfestival · Austriatoon`, split on the interpunct exactly as the current runtime `splitArtistCredit` already splits it).
 
 If it throws `No artist record for credit …`, the credit string does not match any artist in `v2/artists.json`. That is the migration surfacing exactly the fragility this refactor removes: add the missing artist to `app/data/v2/artists.json` with `status: "draft"` and re-run. Do not weaken `splitCredit` to make the error disappear.
+
+> **Expected, not exceptional: 11 artists must be added here.** None of the people or organisations credited on the nine Parkschlössl exhibitions exists in `artists.json` — today `buildArtistDirectory` *synthesises* them at runtime from the credit string, which is precisely the fragility Task 7 removes. Adding them is therefore part of this task, not a workaround: Adi Schmölzer, 7th Spittaler Comicfestival, Austriatoon, Nicoline von Heyl, Lebenshilfe Spittal, Herbert Meißlitzer, Sylvia Campidell, Judith Maria Kulle, Birgit Mörtl, Peter Kohlweiß, Santino Solace. The collection ends at **73**, which is what `check:data` asserts.
+>
+> Slugs for these must follow the project's German transliteration, as `guenter-brus` and `birgit-juergenssen` already do: `ö` → `oe`, `ü` → `ue`, `ä` → `ae`, `ß` → `ss`. Do not strip diacritics via NFD — that yields `schmolzer` and `mortl`, which are neither German nor consistent with the rest of the archive.
 
 - [ ] **Step 3: Verify the multi-artist join**
 
