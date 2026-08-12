@@ -105,3 +105,85 @@ export interface Sponsor {
   id: string
   name: string
 }
+
+export type ContentStatus = 'draft' | 'published'
+
+export type VenueType = 'gallery' | 'museum' | 'kunsthalle' | 'art_cafe' | 'open_air' | 'forum'
+
+export interface TranslationEntry {
+  languages_code: string
+  [field: string]: string | string[]
+}
+
+export interface CityLocation {
+  id: string
+  slug: string
+  city_name: string
+  postal_code: string
+  state: string
+  country: string
+  latitude: number
+  longitude: number
+  status: ContentStatus
+  translations: TranslationEntry[]
+}
+
+export interface VenueRecord {
+  id: string
+  slug: string
+  location_id: string
+  name: string
+  type: VenueType
+  address: string
+  website_url?: string
+  latitude?: number
+  longitude?: number
+  image: string
+  image_alt: string
+  archive_number: string
+  featured: boolean
+  status: ContentStatus
+  translations: TranslationEntry[]
+}
+
+export interface ExhibitionRecord {
+  id: string
+  slug: string
+  primary_venue_id: string
+  start_date: string
+  end_date: string
+  is_permanent: boolean
+  image: string
+  image_alt: string
+  opening_hours: string
+  vernissage: string
+  medium: string | null
+  source_pdf: string | null
+  featured: boolean
+  status: ContentStatus
+  translations: TranslationEntry[]
+}
+
+export interface ExhibitionArtistLink {
+  id: number
+  exhibition_id: string
+  artist_id: string
+  sort: number
+}
+
+export interface ArtistRecord {
+  id: string
+  slug: string
+  first_name: string
+  last_name: string
+  middle_initial: string | null
+  artist_name: string | null
+  birth_year: number | null
+  death_year: number | null
+  nationality: string | null
+  website_url: string | null
+  instagram_handle: string | null
+  profile_image: string | null
+  status: ContentStatus
+  translations: TranslationEntry[]
+}
