@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import type { Venue } from '~/types/content'
+import type { ResolvedVenue } from '~/utils/resolveVenues'
 import { createOrnamentTransform } from '~/utils/seededLayout'
 
+// Only fed from app/pages/index.vue's `directoryVenues`, a landing-page card
+// projection built from ResolvedVenue — not the full resolved record itself
+// (it also carries a `location_id` field ResolvedVenue doesn't have). Picking
+// just the fields this card reads keeps the prop type honest about what it
+// actually needs and what its one call site actually supplies.
 const props = withDefaults(defineProps<{
-  venue: Venue
+  venue: Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'image' | 'city'>
   featured?: boolean
 }>(), {
   featured: false

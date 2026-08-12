@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { Artist, ArtistRecordLink, DirectoryArtist } from '~/types/content'
-import { formatArtistName } from '~/utils/artistNames'
+import type { DirectoryArtist } from '~/types/content'
 
 const props = defineProps<{
-  artist: Artist
+  artist: DirectoryArtist
   open: boolean
 }>()
 
@@ -17,15 +16,14 @@ const infoButtonRef = ref<HTMLButtonElement | null>(null)
 const wasOpen = ref(props.open)
 const lastTrigger = ref<'name' | 'info'>('info')
 
-const isDirectoryArtist = (artist: Artist): artist is DirectoryArtist => 'displayName' in artist && 'records' in artist
+// `artist` is always a DirectoryArtist here — both call sites
+// (ArtistDirectoryGroup.vue, LandingArtistGroup.vue) only ever pass one.
+// The old `isDirectoryArtist` guard existed for a wider `Artist` union type
+// that no longer exists post-flip; its "else" branch is now unreachable
+// (typing to `never`), so it's removed rather than left as dead code.
+const displayName = computed(() => props.artist.displayName)
 
-const displayName = computed(() => isDirectoryArtist(props.artist)
-  ? props.artist.displayName
-  : formatArtistName(props.artist.name, props.artist.slug))
-
-const records = computed<ArtistRecordLink[]>(() => isDirectoryArtist(props.artist)
-  ? props.artist.records
-  : [])
+const records = computed(() => props.artist.records)
 
 const modalId = computed(() => `artist-exhibitions-${props.artist.slug}`)
 

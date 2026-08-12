@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { LocationExhibition } from '~/types/content'
+import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 
 const props = defineProps<{
-  exhibition: LocationExhibition
+  exhibition: ResolvedExhibition
   index: number
   selected: boolean
 }>()
 
 const emit = defineEmits<{
-  select: [exhibition: LocationExhibition]
+  select: [exhibition: ResolvedExhibition]
 }>()
 const localePath = useLocalePath()
 </script>

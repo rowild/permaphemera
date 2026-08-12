@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import type { Location } from '~/types/content'
+import type { ResolvedVenue } from '~/utils/resolveVenues'
 import { createDirectoryImageTransform, createOrnamentTransform } from '~/utils/seededLayout'
 
 const props = withDefaults(defineProps<{
-  location: Location
+  location: ResolvedVenue
   index: number
   recordCount?: number
   featured?: boolean

@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import type { Exhibition } from '~/types/content'
+import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { createOrnamentTransform } from '~/utils/seededLayout'
 
+// Only fed from app/pages/index.vue's `selectedExhibitions`, a landing-page
+// card projection built from ResolvedExhibition — not the full resolved
+// record. Picking just the fields this card reads keeps the prop type honest
+// about what it actually needs and what its one call site actually supplies.
 const props = withDefaults(defineProps<{
-  exhibition: Exhibition
+  exhibition: Pick<ResolvedExhibition, 'id' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image'>
   variant?: 'featured' | 'compact'
   href: string
 }>(), {

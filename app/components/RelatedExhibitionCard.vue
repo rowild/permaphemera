@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { LocationExhibition } from '~/types/content'
+import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 
 defineProps<{
-  exhibition: LocationExhibition
+  exhibition: ResolvedExhibition
 }>()
 const localePath = useLocalePath()
 </script>

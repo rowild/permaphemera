@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { CalendarDays, ExternalLink, MapPin } from '@lucide/vue'
-import type { LocationExhibition, Venue } from '~/types/content'
+import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
+import type { ResolvedVenue } from '~/utils/resolveVenues'
+
+// `venue` below merges the routed ResolvedVenue with its optional dossier
+// match into a page-local view-model — including a `location_id` field
+// ResolvedVenue doesn't carry (kept from the pre-flip shape; read only in
+// this file's own template, never passed to a child component). This local
+// type describes exactly what gets constructed.
+interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'about'> {
+  location_id: string
+}
 
 const route = useRoute()
 const router = useRouter()
@@ -9,10 +19,21 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const slug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
 const location = computed(() => locations.value.find((item) => item.slug === slug))
-const venueDossier = computed(() => venues.value.find((item) => item.location_id === location.value?.id || item.slug === slug))
-const venue = computed<Venue | undefined>(() => {
+// ResolvedVenue carries no `location_id` (it's already the resolved venue,
+// not the raw record) — `venues` and `locations` are the same resolved-venue
+// collection (see useArchiveData), so matching by slug alone already finds
+// the same record `location` does.
+const venueDossier = computed(() => venues.value.find((item) => item.slug === slug))
+// Throwing inside the computed (rather than returning undefined and guarding
+// afterward) lets TypeScript see `venue.value` as always-`Venue` from here on
+// — including in the template, which a separate post-hoc `if (!venue.value)`
+// guard does not narrow for. Evaluation is still forced eagerly below via
+// `void venue.value`, preserving the original synchronous 404-on-setup timing.
+const venue = computed<Venue>(() => {
   const record = location.value
-  if (!record) return undefined
+  if (!record) {
+    throw createError({ statusCode: 404, statusMessage: t('location.notFound') })
+  }
 
   const dossier = venueDossier.value
 
@@ -38,9 +59,7 @@ const venue = computed<Venue | undefined>(() => {
   }
 })
 
-if (!venue.value) {
-  throw createError({ statusCode: 404, statusMessage: t('location.notFound') })
-}
+void venue.value
 
 const exhibitions = computed(() => locationExhibitions.value.filter((item) => item.venue_slug === venue.value?.slug))
 const locationSearchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
@@ -57,15 +76,15 @@ const filteredExhibitions = computed(() => {
     exhibition.medium ?? ''
   ].some((value) => value.toLocaleLowerCase().includes(query)))
 })
-const selectedExhibition = ref<LocationExhibition | null>(exhibitions.value[0] ?? null)
-const previewExhibition = ref<LocationExhibition | null>(exhibitions.value[0] ?? null)
+const selectedExhibition = ref<ResolvedExhibition | null>(exhibitions.value[0] ?? null)
+const previewExhibition = ref<ResolvedExhibition | null>(exhibitions.value[0] ?? null)
 const previewLoading = ref(Boolean(exhibitions.value.length))
 const previewLoadFailed = ref(false)
 const cachedPreviewImages = new Set<string>()
 let previewRequestId = 0
 let pendingPreviewImage = ''
 
-const selectExhibition = (exhibition: LocationExhibition) => {
+const selectExhibition = (exhibition: ResolvedExhibition) => {
   selectedExhibition.value = exhibition
   previewLoadFailed.value = false
 

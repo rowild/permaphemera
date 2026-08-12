@@ -5,7 +5,20 @@ import {
 import { gsap } from 'gsap'
 import { buildArtistDirectory } from '~/utils/artistDirectory'
 import exhibitionsArtists from '~/data/exhibitions_artists.json'
-import type { Exhibition, ExhibitionArtistLink, Venue } from '~/types/content'
+import type { ExhibitionArtistLink } from '~/types/content'
+import type { ResolvedVenue } from '~/utils/resolveVenues'
+import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
+
+// `directoryVenues`/`selectedExhibitions` below don't hand out the full
+// resolved records — they rebuild a smaller landing-page card projection
+// (and, on the venue side, a `location_id` field ResolvedVenue doesn't
+// carry). These two local types describe exactly what gets constructed, so
+// VenueArchiveCard/LandingExhibitionCard's narrower prop types keep checking
+// against something real instead of the deleted `Venue`/`Exhibition` types.
+interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'website_url' | 'image' | 'featured' | 'archive_number'> {
+  location_id: string
+}
+type Exhibition = Pick<ResolvedExhibition, 'id' | 'slug' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image' | 'featured'>
 
 const { artists, locations, locationExhibitions } = useArchiveData()
 const { t } = useI18n()
@@ -71,7 +84,7 @@ const locationImagePool = Array.from(
 const heroImages = [
   '/images/landing/parkschloessl.jpg',
   ...locationImagePool.slice(0, 10),
-  locationImagePool[0]
+  locationImagePool[0]!
 ]
 const venueStackItems = [
   '/images/landing/kaleidoscope/locations/location_07.png',

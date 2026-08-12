@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Artist, ArtistRecordLink } from '~/types/content'
+import type { ArtistRecordLink, DirectoryArtist } from '~/types/content'
 
 const props = defineProps<{
-  artist: Artist
+  artist: DirectoryArtist
   displayName: string
   records: ArtistRecordLink[]
   open: boolean
