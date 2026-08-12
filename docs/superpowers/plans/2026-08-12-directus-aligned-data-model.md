@@ -16,7 +16,11 @@
 - Never add `<style scoped>` or CSS Modules. Custom CSS goes in `app/assets/css/main.css`.
 - Structural marker groups keep mandatory inner spaces: `[ site-shell ]`, never `[site-shell]`.
 - Component-facing data shapes must not change. If a component needs editing to consume the new data, the resolver is wrong.
-- All eight existing checks plus the new `check:data` must pass before every commit: `check:tailwind check:i18n check:directories check:artists check:links check:locations check:mobile check:preloader`.
+- The eight existing checks must pass before **every** commit, without exception: `check:tailwind check:i18n check:directories check:artists check:links check:locations check:mobile check:preloader`. They are never intentionally red.
+- Two verifications are red by design, and committing them red is correct:
+  - `check:data` fails from Task 1 until Task 4 completes the data. Task 1 commits it failing on purpose — that is the test-first step.
+  - `pnpm test` fails at Task 5's commit for the same reason, and is green from Task 6 onward.
+  From Task 4 (`check:data`) and Task 6 (`pnpm test`) respectively, both must pass before every subsequent commit.
 - Draft records **render**. `status` is a provenance marker, never a display filter.
 - Never infer building-level coordinates. City centroids only, as listed in Task 2.
 
@@ -348,6 +352,8 @@ Run: `node scripts/tmp-build-places.mjs`
 Expected: `locations: 17  venues: 36`
 
 If the venue count is not 36, a slug collided. Print `venues.map(v => v.slug)` and compare against the disposition table in the spec before continuing.
+
+> **Known defect in the script above, found during execution.** The exhibitions loop dedupes with `slugify(record.venue)`, which for `"Parkschlössl"` yields `parkschlossl` — never equal to the hand-authored slug `parkschloessl-spittal-drau` already in `seen`. Left uncorrected it emits **37** venues, duplicating Parkschlössl. Match that loop on venue *name* against the already-collected venues instead of on a re-derived slug. Slugs authored by hand cannot be reconstructed from a display name.
 
 - [ ] **Step 3: Run the integrity check**
 
