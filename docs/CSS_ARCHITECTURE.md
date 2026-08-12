@@ -179,7 +179,7 @@ Several Tailwind utilities set more than one declaration. `text-base` emits a `f
 The order to follow:
 
 1. **Move to another named step.** `text-base` → `text-sm` carries the correct line-height with it. This is almost always the right answer.
-2. **If no step fits, define one.** Add `--text-<name>` and `--text-<name>--line-height` to the `@theme` block in `app/assets/css/main.css`. Tailwind v4 generates the composite utility from the pair. (`theme.extend` is v3 syntax and does not exist in v4.)
+2. **If no step fits, define one.** Add `--text-<name>` and `--text-<name>--line-height` to the `@theme` block in `app/assets/css/main.css`. Tailwind generates the composite utility from the pair. `@theme` is the only mechanism for this — see §6.1b.
 3. **Derive the line-height; never copy it from a neighbouring size.** Leading is not constant across the scale — smaller text needs proportionally more of it, display type needs less:
 
    | Range | Line-height ratio | Basis |
@@ -191,6 +191,25 @@ The order to follow:
 4. **Font sizes are never bracketed.** Unlike the general §6.1 rule, `text-*` admits no one-off exception — not even for fluid `clamp()` values, which become named steps like any other. This is stricter on purpose: an unnamed font size is invisible to `check:tailwind`, because Tailwind cannot canonicalise a value that no token defines.
 
 The same "what else does it carry" question applies beyond type. Check the emitted declarations before assuming a utility does one thing.
+
+### 6.1b This project uses Tailwind v4 only
+
+This codebase has never used any earlier Tailwind version — the interface moved from hand-written semantic CSS directly to v4. **Do not apply pre-v4 idioms, and do not assume an answer found online still holds.** Much of the published material about Tailwind predates v4 and describes mechanisms that no longer exist. When unsure, read the current documentation through `context7`, or read what the build actually emits into `.output/public/_nuxt/*.css`.
+
+Two consequences that have already cost this codebase real bugs:
+
+**Transform utilities emit independent CSS properties.** `scale-*`, `translate-*` and `rotate-*` compile to the standalone `scale`, `translate` and `rotate` properties — *not* to `transform`. A hand-written `transition-[…]` list naming only `transform` therefore animates nothing. This fails silently in the worst way: the class is valid, no error is raised, and the end state still looks correct, so only the motion is missing.
+
+```html
+<!-- prohibited: the scale change is never animated -->
+<span class="scale-x-90 transition-[opacity,transform] group-hover:scale-x-100">
+<!-- required: name the longhands -->
+<span class="scale-x-90 transition-[opacity,transform,translate,scale,rotate] group-hover:scale-x-100">
+```
+
+`transition-transform` already expands to all four properties, so prefer it whenever the transition covers nothing else.
+
+**Theme values are declared in CSS, not JavaScript.** New tokens go in the `@theme` block of `app/assets/css/main.css`. This project has no `tailwind.config.js` and none should be added.
 
 ### 6.2 Spaced marker groups are not arbitrary utilities
 

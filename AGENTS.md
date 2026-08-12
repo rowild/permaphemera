@@ -6,6 +6,8 @@ This repository is the PERMAPHEMERA frontend: the first working milestone for a 
 
 The primary active plan is `../_Plans/exhibitions-plan.md`. Treat `../_Plans/original chat.md` as historical context, not as the current implementation source of truth. These files are adjacent workspace references outside this Git repository.
 
+The `fin-patch` and `frontend-qa-checklist` skills referenced below live in `../.claude/skills/`, also outside this repository, because Claude Code is run from the parent workspace directory rather than from `frontend/`. They are therefore not available to a clone of this repository alone.
+
 ## Design Source Of Truth
 
 Current website design inputs live in `../_Plans/designs/landing-page/`.
@@ -32,7 +34,7 @@ Brackets remain valid only for a genuinely exceptional exact value with no canon
 **Many utilities are composite — changing one property silently drops the others.** `text-base` sets a font-size *and* its paired line-height; `text-[1rem]` sets only the font-size and leaves whatever line-height was inherited. So when a request is phrased as one visual change — "make this text smaller" — never implement it as one property change:
 
 - Move to another **named step**, which brings its correctly paired line-height with it.
-- If no step fits, **define a new one** in the `@theme` block of `app/assets/css/main.css` as `--text-<name>` plus `--text-<name>--line-height`. (`theme.extend` is Tailwind v3 and does not exist in v4.)
+- If no step fits, **define a new one** in the `@theme` block of `app/assets/css/main.css` as `--text-<name>` plus `--text-<name>--line-height`.
 - **Derive the new line-height; never copy it from the neighbouring size.** Display type ≥2rem tightens to `0.98–1.15` (see `docs/STYLE_GUIDE.md` §6.4); body and UI text at `0.9–1.3rem` sits at `1.45–1.55`; metadata below `0.9rem` needs proportionally more leading at `1.35–1.45`.
 - **Font sizes are never bracketed**, not even once — including fluid `clamp()` values, which become named steps too.
 
