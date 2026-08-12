@@ -1,81 +1,55 @@
-import type { Artist, ArtistRecordLink, DirectoryArtist, LocationExhibition } from '~/types/content'
-import { formatArtistName, getArtistFamilyLetter, splitArtistCredit } from '~/utils/artistNames'
-
-const normalizeArtistName = (value: string) => value.trim().toLocaleLowerCase()
-
-const slugifyArtistName = (value: string) => normalizeArtistName(value)
-  .normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, '')
-  .replace(/[^a-z0-9]+/g, '-')
-  .replace(/^-|-$/g, '')
+import type { ArtistRecord, ArtistRecordLink, DirectoryArtist, ExhibitionArtistLink } from '~/types/content'
+import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
+import { displayArtistName } from '~/utils/resolveExhibitions'
+import { formatArtistName, getArtistFamilyLetter } from '~/utils/artistNames'
 
 export const buildArtistDirectory = (
-  artists: Artist[],
-  exhibitions: LocationExhibition[]
+  artists: ArtistRecord[],
+  exhibitions: ResolvedExhibition[],
+  junction: ExhibitionArtistLink[]
 ): DirectoryArtist[] => {
+  const exhibitionById = new Map(exhibitions.map((exhibition) => [exhibition.id, exhibition]))
+
   const recordsByArtist = new Map<string, ArtistRecordLink[]>()
   const yearsByArtist = new Map<string, Set<string>>()
 
-  for (const exhibition of exhibitions) {
-    for (const artistName of splitArtistCredit(exhibition.artist)) {
-      const key = normalizeArtistName(artistName)
-      const records = recordsByArtist.get(key) ?? []
+  for (const link of junction) {
+    const exhibition = exhibitionById.get(link.exhibition_id)
+    if (!exhibition) continue
 
-      if (!records.some((record) => record.id === exhibition.id)) {
-        records.push({
-          id: exhibition.id,
-          title: exhibition.title,
-          venue: exhibition.venue,
-          city: exhibition.city,
-          href: `/exhibitions/${exhibition.slug}/`
-        })
-      }
-      recordsByArtist.set(key, records)
-
-      const years = yearsByArtist.get(key) ?? new Set<string>()
-      years.add(exhibition.start_date.slice(0, 4))
-      yearsByArtist.set(key, years)
-    }
-  }
-
-  const directoryArtistMap = new Map<string, DirectoryArtist>()
-
-  for (const artist of artists) {
-    const key = normalizeArtistName(artist.name)
-    const records = recordsByArtist.get(key) ?? []
-
-    directoryArtistMap.set(key, {
-      ...artist,
-      record_count: records.length,
-      displayName: formatArtistName(artist.name, artist.slug),
-      records,
-      letter: getArtistFamilyLetter(artist.slug, artist.name)
-    })
-  }
-
-  for (const exhibition of exhibitions) {
-    for (const artistName of splitArtistCredit(exhibition.artist)) {
-      const key = normalizeArtistName(artistName)
-      if (directoryArtistMap.has(key)) continue
-
-      const records = recordsByArtist.get(key) ?? []
-      const slug = slugifyArtistName(artistName)
-
-      directoryArtistMap.set(key, {
-        id: `artist-${slug}`,
-        slug,
-        name: artistName,
-        displayName: formatArtistName(artistName, slug),
-        location: [...new Set(records.map((record) => record.city))].join(' · '),
-        years: [...(yearsByArtist.get(key) ?? [])].join(' · '),
-        record_count: records.length,
-        records,
-        letter: getArtistFamilyLetter(slug, artistName)
+    const records = recordsByArtist.get(link.artist_id) ?? []
+    if (!records.some((record) => record.id === exhibition.id)) {
+      records.push({
+        id: exhibition.id,
+        title: exhibition.title,
+        venue: exhibition.venue,
+        city: exhibition.city,
+        href: `/exhibitions/${exhibition.slug}/`
       })
     }
+    recordsByArtist.set(link.artist_id, records)
+
+    const years = yearsByArtist.get(link.artist_id) ?? new Set<string>()
+    years.add(exhibition.start_date.slice(0, 4))
+    yearsByArtist.set(link.artist_id, years)
   }
 
-  return [...directoryArtistMap.values()].sort((left, right) => {
+  return artists.map((artist) => {
+    const records = recordsByArtist.get(artist.id) ?? []
+    const name = displayArtistName(artist)
+
+    return {
+      id: artist.id,
+      slug: artist.slug,
+      name,
+      location: [...new Set(records.map((record) => record.city))].join(' · '),
+      years: [...(yearsByArtist.get(artist.id) ?? [])].sort().join(' · '),
+      record_count: records.length,
+      displayName: formatArtistName(name, artist.slug),
+      records,
+      letter: getArtistFamilyLetter(artist.slug, name)
+    }
+  }).sort((left, right) => {
     if (left.letter !== right.letter) return left.letter.localeCompare(right.letter)
     return left.displayName.localeCompare(right.displayName)
   })

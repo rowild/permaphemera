@@ -1,627 +1,290 @@
 [
   {
-    "id": "location-spittal",
-    "slug": "parkschloessl-spittal-drau",
-    "name": "Parkschlössl",
+    "id": "location-spittal-an-der-drau",
+    "slug": "spittal-an-der-drau",
     "city_name": "Spittal an der Drau",
     "postal_code": "9800",
     "state": "Carinthia",
     "country": "Austria",
-    "address": "Bahnhofstraße 1a, 9800 Spittal an der Drau, Austria",
-    "latitude": 46.7983583,
-    "longitude": 13.4928504,
-    "image": "/images/landing/locations/location_01.png",
-    "image_alt": "Archival image study for the Parkschlössl in Spittal an der Drau",
-    "archive_number": "01",
-    "featured": true,
+    "latitude": 46.7967,
+    "longitude": 13.4989,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "The project’s pilot gallery: a small exhibition house in Spittal’s city park, where the changing programme is held against a memorable striped architectural shell."
-      },
-      {
-        "languages_code": "de",
-        "description": "Die Pilotgalerie des Projekts: ein kleines Ausstellungshaus im Spittaler Stadtpark, dessen wechselndes Programm von einer einprägsamen gestreiften Architektur gerahmt wird."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-smallest-gallery-graz",
-    "slug": "the-smallest-gallery-graz",
-    "name": "the smallest gallery",
+    "id": "location-graz",
+    "slug": "graz",
     "city_name": "Graz",
     "postal_code": "8020",
     "state": "Styria",
     "country": "Austria",
-    "address": "Grieskai 2, 8020 Graz, Austria",
-    "website_url": "https://thesmallestgallery.at/",
-    "image": "/images/landing/locations/location_02.png",
-    "image_alt": "Archival image study assigned to the smallest gallery in Graz",
-    "archive_number": "02",
+    "latitude": 47.0707,
+    "longitude": 15.4395,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A 24-hour exhibition window in a Grieskai entrance, dedicated to young photography and perhaps the smallest gallery in Graz."
-      },
-      {
-        "languages_code": "de",
-        "description": "Ein rund um die Uhr zugängliches Ausstellungsfenster in einem Hauseingang am Grieskai, gewidmet der jungen Fotografie und vielleicht die kleinste Galerie von Graz."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-artelier-graz",
-    "slug": "artelier-contemporary-graz",
-    "name": "Artelier Contemporary",
-    "city_name": "Graz",
-    "postal_code": "8020",
-    "state": "Styria",
-    "country": "Austria",
-    "address": "Griesgasse 3, 8020 Graz, Austria",
-    "website_url": "https://artelier-contemporary.at/",
-    "image": "/images/landing/locations/location_03.png",
-    "image_alt": "Archival image study assigned to Artelier Contemporary in Graz",
-    "archive_number": "03",
-    "translations": [
-      {
-        "languages_code": "en",
-        "description": "A compact Graz gallery and edition house with a continuously changing programme of contemporary painting, objects, photography and limited works."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine kompakte Grazer Galerie und Edition mit einem kontinuierlich wechselnden Programm aus zeitgenössischer Malerei, Objekten, Fotografie und limitierten Arbeiten."
-      }
-    ]
-  },
-  {
-    "id": "location-citygalerie-linz",
-    "slug": "citygalerie-linz",
-    "name": "Citygalerie Linz",
+    "id": "location-linz",
+    "slug": "linz",
     "city_name": "Linz",
     "postal_code": "4020",
     "state": "Upper Austria",
     "country": "Austria",
-    "address": "Herrenstraße 18, 4020 Linz, Austria",
-    "website_url": "https://citygalerie.at/",
-    "image": "/images/landing/locations/location_04.png",
-    "image_alt": "Archival image study assigned to Citygalerie Linz",
-    "archive_number": "04",
+    "latitude": 48.3069,
+    "longitude": 14.2858,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A privately run city-centre gallery presenting contemporary Austrian art with a particular connection to Upper Austrian positions."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine privat geführte Galerie im Stadtzentrum mit zeitgenössischer österreichischer Kunst und besonderer Verbindung zu oberösterreichischen Positionen."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-sturm-drang-linz",
-    "slug": "sturm-und-drang-linz",
-    "name": "Sturm und Drang Galerie",
-    "city_name": "Linz",
-    "postal_code": "4020",
-    "state": "Upper Austria",
-    "country": "Austria",
-    "address": "Altstadt 18, 4020 Linz, Austria",
-    "website_url": "https://sturm-drang.at/",
-    "image": "/images/landing/locations/location_05.png",
-    "image_alt": "Archival image study assigned to Sturm und Drang Galerie in Linz",
-    "archive_number": "05",
-    "translations": [
-      {
-        "languages_code": "en",
-        "description": "A contemporary gallery in Linz’s old town that supports emerging practices and opens its rooms to performance, readings, media art and music."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine zeitgenössische Galerie in der Linzer Altstadt, die aufstrebende Positionen fördert und ihre Räume auch für Performance, Lesung, Medienkunst und Musik öffnet."
-      }
-    ]
-  },
-  {
-    "id": "location-seidler-linz",
-    "slug": "galerie-seidler-linz",
-    "name": "Galerie Seidler",
-    "city_name": "Linz",
-    "postal_code": "4020",
-    "state": "Upper Austria",
-    "country": "Austria",
-    "address": "Klosterstraße 14, 4020 Linz, Austria",
-    "website_url": "https://www.galerieseidler.at/",
-    "image": "/images/landing/locations/location_06.png",
-    "image_alt": "Archival image study assigned to Galerie Seidler in Linz",
-    "archive_number": "06",
-    "translations": [
-      {
-        "languages_code": "en",
-        "description": "A long-running independent gallery in central Linz, combining selected contemporary positions with Austrian art of the nineteenth and twentieth centuries."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine langjährig unabhängige Galerie im Zentrum von Linz, die ausgewählte zeitgenössische Positionen mit österreichischer Kunst des 19. und 20. Jahrhunderts verbindet."
-      }
-    ]
-  },
-  {
-    "id": "location-verve-vienna",
-    "slug": "galerie-verve-vienna",
-    "name": "Galerie Verve",
+    "id": "location-vienna",
+    "slug": "vienna",
     "city_name": "Vienna",
     "postal_code": "1080",
     "state": "Vienna",
     "country": "Austria",
-    "address": "Schönborngasse 15/1, 1080 Vienna, Austria",
-    "website_url": "https://www.galerieverve.at/",
-    "image": "/images/landing/locations/location_07.png",
-    "image_alt": "Archival image study assigned to Galerie Verve in Vienna",
-    "archive_number": "07",
+    "latitude": 48.2082,
+    "longitude": 16.3738,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A young gallery in Vienna’s eighth district with an approachable programme centred on contemporary work, conversation and discovery."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine junge Galerie im achten Wiener Bezirk mit einem zugänglichen Programm rund um zeitgenössische Kunst, Gespräch und Entdeckung."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-sehsaal-vienna",
-    "slug": "sehsaal-vienna",
-    "name": "sehsaal",
-    "city_name": "Vienna",
-    "postal_code": "1050",
-    "state": "Vienna",
-    "country": "Austria",
-    "address": "Zentagasse 38/1, 1050 Vienna, Austria",
-    "website_url": "https://sehsaal.at/",
-    "image": "/images/landing/locations/location_08.png",
-    "image_alt": "Archival image study assigned to sehsaal in Vienna",
-    "archive_number": "08",
-    "translations": [
-      {
-        "languages_code": "en",
-        "description": "An experimental project room for artistic, architectural and socio-political reflections on space, public life and perception."
-      },
-      {
-        "languages_code": "de",
-        "description": "Ein experimenteller Projektraum für künstlerische, architektonische und gesellschaftspolitische Reflexionen über Raum, Öffentlichkeit und Wahrnehmung."
-      }
-    ]
-  },
-  {
-    "id": "location-weisse-haus-vienna",
-    "slug": "das-weisse-haus-vienna",
-    "name": "das weisse haus",
-    "city_name": "Vienna",
-    "postal_code": "1010",
-    "state": "Vienna",
-    "country": "Austria",
-    "address": "Hegelgasse 14, 1010 Vienna, Austria",
-    "website_url": "https://dasweissehaus.at/",
-    "image": "/images/landing/locations/location_09.png",
-    "image_alt": "Archival image study assigned to das weisse haus in Vienna",
-    "archive_number": "09",
-    "translations": [
-      {
-        "languages_code": "en",
-        "description": "A non-profit exhibition space for young contemporary art, experimental practice and overlooked perspectives in central Vienna."
-      },
-      {
-        "languages_code": "de",
-        "description": "Ein gemeinnütziger Ausstellungsraum für junge zeitgenössische Kunst, experimentelle Praxis und übersehene Perspektiven im Zentrum von Wien."
-      }
-    ]
-  },
-  {
-    "id": "location-kunstverein-baden",
-    "slug": "kunstverein-baden",
-    "name": "Kunstverein Baden",
+    "id": "location-baden",
+    "slug": "baden",
     "city_name": "Baden",
     "postal_code": "2500",
     "state": "Lower Austria",
     "country": "Austria",
-    "address": "Beethovengasse 7, 2500 Baden, Austria",
-    "website_url": "https://www.kunstvereinbaden.at/",
-    "image": "/images/landing/locations/location_10.png",
-    "image_alt": "Archival image study assigned to Kunstverein Baden",
-    "archive_number": "10",
+    "latitude": 48.0059,
+    "longitude": 16.2318,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "An experimental association gallery that brings contemporary art into dialogue with social questions and Baden’s local cultural life."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine experimentelle Vereinsgalerie, die zeitgenössische Kunst mit gesellschaftlichen Fragen und dem lokalen Kulturleben Badens ins Gespräch bringt."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-stadtpark-krems",
-    "slug": "galerie-stadtpark-krems",
-    "name": "Galerie Stadtpark",
+    "id": "location-krems-an-der-donau",
+    "slug": "krems-an-der-donau",
     "city_name": "Krems an der Donau",
     "postal_code": "3500",
     "state": "Lower Austria",
     "country": "Austria",
-    "address": "Wichnerstraße, 3500 Krems an der Donau, Austria",
-    "website_url": "https://www.galeriestadtpark.at/",
-    "image": "/images/landing/locations/location_11.png",
-    "image_alt": "Archival image study assigned to Galerie Stadtpark in Krems",
-    "archive_number": "11",
+    "latitude": 48.4103,
+    "longitude": 15.6142,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A small non-profit exhibition house beside the Krems city park, dedicated to changing presentations of contemporary art."
-      },
-      {
-        "languages_code": "de",
-        "description": "Ein kleines gemeinnütziges Ausstellungshaus am Kremser Stadtpark, gewidmet wechselnden Präsentationen zeitgenössischer Kunst."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-kunstverein-eisenstadt",
-    "slug": "kunstverein-eisenstadt",
-    "name": "Kunstverein Eisenstadt",
+    "id": "location-eisenstadt",
+    "slug": "eisenstadt",
     "city_name": "Eisenstadt",
     "postal_code": "7000",
     "state": "Burgenland",
     "country": "Austria",
-    "address": "Joseph-Haydn-Gasse 1, 7000 Eisenstadt, Austria",
-    "website_url": "https://www.kunstvereineisenstadt.at/",
-    "image": "/images/landing/locations/location_12.png",
-    "image_alt": "Archival image study assigned to Kunstverein Eisenstadt",
-    "archive_number": "12",
+    "latitude": 47.8456,
+    "longitude": 16.5231,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A civic art association and travelling exhibition platform shaped by exchange across the nearby Hungarian and Slovak borders."
-      },
-      {
-        "languages_code": "de",
-        "description": "Ein bürgerschaftlicher Kunstverein und wandernde Ausstellungsplattform, geprägt vom Austausch über die nahen Grenzen zu Ungarn und der Slowakei."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-galerie3-klagenfurt",
-    "slug": "galerie3-klagenfurt",
-    "name": "GALERIE3 Klagenfurt",
+    "id": "location-klagenfurt-am-worthersee",
+    "slug": "klagenfurt-am-worthersee",
     "city_name": "Klagenfurt am Wörthersee",
     "postal_code": "9020",
     "state": "Carinthia",
     "country": "Austria",
-    "address": "Alter Platz 25, 9020 Klagenfurt am Wörthersee, Austria",
-    "website_url": "https://galerie3.com/",
-    "image": "/images/landing/locations/location_13.png",
-    "image_alt": "Archival image study assigned to GALERIE3 in Klagenfurt",
-    "archive_number": "13",
+    "latitude": 46.6247,
+    "longitude": 14.3053,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "An intimate second-floor gallery in Klagenfurt’s old town, connecting Carinthian practices with wider contemporary conversations."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine intime Galerie im zweiten Stock der Klagenfurter Altstadt, die Kärntner Positionen mit weiter geführten zeitgenössischen Gesprächen verbindet."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-vorspann-eisenkappel",
-    "slug": "galerie-vorspann-bad-eisenkappel",
-    "name": "Galerie Vorspann | Galerija Vprega",
+    "id": "location-bad-eisenkappel",
+    "slug": "bad-eisenkappel",
     "city_name": "Bad Eisenkappel",
     "postal_code": "9135",
     "state": "Carinthia",
     "country": "Austria",
-    "address": "Hauptplatz 8–9, 9135 Bad Eisenkappel, Austria",
-    "website_url": "https://www.galerievorspann.com/",
-    "image": "/images/landing/locations/location_14.png",
-    "image_alt": "Archival image study assigned to Galerie Vorspann in Bad Eisenkappel",
-    "archive_number": "14",
+    "latitude": 46.4833,
+    "longitude": 14.5833,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A bilingual contemporary gallery away from the urban centres, rooted in Austria’s southernmost market town and the Alps-Adriatic region."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine zweisprachige Galerie für zeitgenössische Kunst abseits urbaner Zentren, verwurzelt im südlichsten Marktort Österreichs und im Alpen-Adria-Raum."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-freihausgasse-villach",
-    "slug": "galerie-freihausgasse-villach",
-    "name": "Galerie Freihausgasse",
+    "id": "location-villach",
+    "slug": "villach",
     "city_name": "Villach",
     "postal_code": "9500",
     "state": "Carinthia",
     "country": "Austria",
-    "address": "Freihausgasse, 9500 Villach, Austria",
-    "website_url": "https://villach.at/stadt-erleben/kultur/galerie-freihausgasse",
-    "image": "/images/landing/locations/location_15.png",
-    "image_alt": "Archival image study assigned to Galerie Freihausgasse in Villach",
-    "archive_number": "15",
+    "latitude": 46.6103,
+    "longitude": 13.8558,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "Villach’s compact municipal gallery, presenting changing Austrian and international positions with an active mediation programme."
-      },
-      {
-        "languages_code": "de",
-        "description": "Villachs kompakte städtische Galerie mit wechselnden österreichischen und internationalen Positionen und einem aktiven Vermittlungsprogramm."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-nothburga-innsbruck",
-    "slug": "galerie-nothburga-innsbruck",
-    "name": "Galerie Nothburga",
+    "id": "location-innsbruck",
+    "slug": "innsbruck",
     "city_name": "Innsbruck",
     "postal_code": "6020",
     "state": "Tyrol",
     "country": "Austria",
-    "address": "Innrain 41, 6020 Innsbruck, Austria",
-    "website_url": "https://www.galerienothburga.at/",
-    "image": "/images/landing/locations/location_16.png",
-    "image_alt": "Archival image study assigned to Galerie Nothburga in Innsbruck",
-    "archive_number": "16",
+    "latitude": 47.2692,
+    "longitude": 11.4041,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A volunteer-run gallery in the historic Ansitz Albersheim, pairing regional work with invited positions and emerging practices."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine ehrenamtlich geführte Galerie im historischen Ansitz Albersheim, die regionale Arbeiten mit eingeladenen und aufstrebenden Positionen verbindet."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-kunstpavillon-innsbruck",
-    "slug": "kunstpavillon-innsbruck",
-    "name": "Kunstpavillon",
-    "city_name": "Innsbruck",
-    "postal_code": "6020",
-    "state": "Tyrol",
-    "country": "Austria",
-    "address": "Rennweg 8a, 6020 Innsbruck, Austria",
-    "website_url": "https://www.kuenstlerschaft.at/ausstellungen/kunstpavillon/",
-    "image": "/images/landing/locations/location_17.png",
-    "image_alt": "Archival image study assigned to the Kunstpavillon in Innsbruck",
-    "archive_number": "17",
-    "translations": [
-      {
-        "languages_code": "en",
-        "description": "A skylit exhibition pavilion in the small Hofgarten, operated by the Tyrolean artists’ association as a forum for contemporary exchange."
-      },
-      {
-        "languages_code": "de",
-        "description": "Ein von Oberlicht geprägter Ausstellungspavillon im Kleinen Hofgarten, betrieben von der Tiroler Künstler:innenschaft als Forum für zeitgenössischen Austausch."
-      }
-    ]
-  },
-  {
-    "id": "location-neue-galerie-innsbruck",
-    "slug": "neue-galerie-innsbruck",
-    "name": "Neue Galerie Innsbruck",
-    "city_name": "Innsbruck",
-    "postal_code": "6020",
-    "state": "Tyrol",
-    "country": "Austria",
-    "address": "Rennweg 1, 6020 Innsbruck, Austria",
-    "website_url": "https://www.kuenstlerschaft.at/ausstellungen/neue-galerie/",
-    "image": "/images/landing/locations/location_18.png",
-    "image_alt": "Archival image study assigned to Neue Galerie Innsbruck",
-    "archive_number": "18",
-    "translations": [
-      {
-        "languages_code": "en",
-        "description": "A 95-square-metre gallery run by the Tyrolean artists’ association, placing local perspectives beside international working methods."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine 95 Quadratmeter große Galerie der Tiroler Künstler:innenschaft, die lokale Perspektiven neben internationale Arbeitsweisen stellt."
-      }
-    ]
-  },
-  {
-    "id": "location-fotohof-salzburg",
-    "slug": "fotohof-salzburg",
-    "name": "FOTOHOF",
+    "id": "location-salzburg",
+    "slug": "salzburg",
     "city_name": "Salzburg",
     "postal_code": "5020",
     "state": "Salzburg",
     "country": "Austria",
-    "address": "Inge-Morath-Platz 2, 5020 Salzburg, Austria",
-    "website_url": "https://fotohof.at/",
-    "image": "/images/landing/locations/location_19.png",
-    "image_alt": "Archival image study assigned to FOTOHOF in Salzburg",
-    "archive_number": "19",
+    "latitude": 47.8095,
+    "longitude": 13.055,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A non-commercial gallery devoted to artistic photography, joined by a specialist library, publishing programme and photographic archive."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine nicht kommerzielle Galerie für künstlerische Fotografie, verbunden mit Fachbibliothek, Verlag und fotografischem Archiv."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-periscope-salzburg",
-    "slug": "periscope-salzburg",
-    "name": "periscope:project:space",
-    "city_name": "Salzburg",
-    "postal_code": "5020",
-    "state": "Salzburg",
-    "country": "Austria",
-    "address": "Sterneckstraße 10, 5020 Salzburg, Austria",
-    "website_url": "https://www.periscope.at/",
-    "image": "/images/landing/locations/location_20.png",
-    "image_alt": "Archival image study assigned to periscope project space in Salzburg",
-    "archive_number": "20",
-    "translations": [
-      {
-        "languages_code": "en",
-        "description": "A volunteer-supported non-profit project room that gives young contemporary practices a platform for experiments, cooperation and exchange."
-      },
-      {
-        "languages_code": "de",
-        "description": "Ein ehrenamtlich getragener, gemeinnütziger Projektraum, der jungen zeitgenössischen Positionen eine Plattform für Experiment, Kooperation und Austausch bietet."
-      }
-    ]
-  },
-  {
-    "id": "location-vonier-salzburg",
-    "slug": "galerie-sophia-vonier-salzburg",
-    "name": "Galerie Sophia Vonier",
-    "city_name": "Salzburg",
-    "postal_code": "5020",
-    "state": "Salzburg",
-    "country": "Austria",
-    "address": "Franz-Josef-Straße 5/3, 5020 Salzburg, Austria",
-    "website_url": "https://www.galerievonier.com/",
-    "image": "/images/landing/locations/location_21.png",
-    "image_alt": "Archival image study assigned to Galerie Sophia Vonier in Salzburg",
-    "archive_number": "21",
-    "translations": [
-      {
-        "languages_code": "en",
-        "description": "A young independent Salzburg gallery with a particular commitment to Austrian practices, emerging voices and women artists."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine junge unabhängige Salzburger Galerie mit besonderem Engagement für österreichische Positionen, aufstrebende Stimmen und Künstlerinnen."
-      }
-    ]
-  },
-  {
-    "id": "location-einblick-hallein",
-    "slug": "einblick-hallein",
-    "name": "1Blick. Kunst im Vorhaus",
+    "id": "location-hallein",
+    "slug": "hallein",
     "city_name": "Hallein",
     "postal_code": "5400",
     "state": "Salzburg",
     "country": "Austria",
-    "address": "Bayrhamerplatz 8, 5400 Hallein, Austria",
-    "website_url": "https://www.1blick.org/",
-    "image": "/images/landing/locations/location_22.png",
-    "image_alt": "Archival image study assigned to 1Blick in Hallein",
-    "archive_number": "22",
+    "latitude": 47.6819,
+    "longitude": 13.0958,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A 0.37-square-metre non-commercial gallery in a historic entrance hall: one work at a time, visible without ceremony."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine 0,37 Quadratmeter kleine, nicht kommerzielle Galerie in einem historischen Vorhaus: jeweils ein Werk, ohne Zeremonie zugänglich."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-allerart-bludenz",
-    "slug": "allerart-kunstraum-remise-bludenz",
-    "name": "allerArt · Kunstraum Remise",
+    "id": "location-bludenz",
+    "slug": "bludenz",
     "city_name": "Bludenz",
     "postal_code": "6700",
     "state": "Vorarlberg",
     "country": "Austria",
-    "address": "Am Raiffeisenplatz 1, 6700 Bludenz, Austria",
-    "website_url": "https://www.allerart-bludenz.at/",
-    "image": "/images/landing/locations/location_23.png",
-    "image_alt": "Archival image study assigned to allerArt Kunstraum Remise in Bludenz",
-    "archive_number": "23",
+    "latitude": 47.155,
+    "longitude": 9.8206,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A regional cultural initiative whose Remise art room presents six focused contemporary exhibitions each year, often centred on younger artists."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine regionale Kulturinitiative, deren Kunstraum in der Remise jährlich sechs konzentrierte Ausstellungen zeitgenössischer, oft jüngerer Positionen zeigt."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-haemmerle-bregenz",
-    "slug": "galerie-lisi-haemmerle-bregenz",
-    "name": "Galerie Lisi Hämmerle",
+    "id": "location-bregenz",
+    "slug": "bregenz",
     "city_name": "Bregenz",
     "postal_code": "6900",
     "state": "Vorarlberg",
     "country": "Austria",
-    "address": "Anton-Schneider-Straße 4a, 6900 Bregenz, Austria",
-    "website_url": "https://www.galerie-lisihaemmerle.at/",
-    "image": "/images/landing/locations/location_24.png",
-    "image_alt": "Archival image study assigned to Galerie Lisi Hämmerle in Bregenz",
-    "archive_number": "24",
+    "latitude": 47.5031,
+    "longitude": 9.7471,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "An independent Bregenz gallery known for following emerging talent across photography, new media, installation, painting and sculpture."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine unabhängige Bregenzer Galerie, bekannt für die Begleitung aufstrebender Talente in Fotografie, neuen Medien, Installation, Malerei und Skulptur."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-hollenstein-lustenau",
-    "slug": "galerie-hollenstein-lustenau",
-    "name": "Galerie Hollenstein",
+    "id": "location-lustenau",
+    "slug": "lustenau",
     "city_name": "Lustenau",
     "postal_code": "6890",
     "state": "Vorarlberg",
     "country": "Austria",
-    "address": "Pontenstraße 20, 6890 Lustenau, Austria",
-    "website_url": "https://www.lustenau.at/de/galerie-hollenstein",
-    "image": "/images/landing/locations/location_25.png",
-    "image_alt": "Archival image study assigned to Galerie Hollenstein in Lustenau",
-    "archive_number": "25",
+    "latitude": 47.4269,
+    "longitude": 9.6606,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "A municipal gallery and collection that combines Stephanie Hollenstein’s artistic legacy with changing exhibitions by younger and established artists."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine kommunale Galerie und Sammlung, die den künstlerischen Nachlass Stephanie Hollensteins mit wechselnden Ausstellungen junger und etablierter Positionen verbindet."
+        "description": ""
       }
     ]
   },
   {
-    "id": "location-kunstforum-montafon",
-    "slug": "kunstforum-montafon-schruns",
-    "name": "Kunstforum Montafon",
+    "id": "location-schruns",
+    "slug": "schruns",
     "city_name": "Schruns",
     "postal_code": "6780",
     "state": "Vorarlberg",
     "country": "Austria",
-    "address": "Kronengasse 6, 6780 Schruns, Austria",
-    "website_url": "https://kfm.at/",
-    "image": "/images/landing/locations/location_26.png",
-    "image_alt": "Archival image study assigned to Kunstforum Montafon in Schruns",
-    "archive_number": "26",
+    "latitude": 47.0794,
+    "longitude": 9.9186,
+    "status": "published",
     "translations": [
       {
         "languages_code": "en",
-        "description": "An exhibition and workshop initiative in a former loden factory, bringing contemporary practice into the everyday cultural life of the Montafon valley."
-      },
-      {
-        "languages_code": "de",
-        "description": "Eine Ausstellungs- und Workshopinitiative in einer ehemaligen Lodenfabrik, die zeitgenössische Praxis in den kulturellen Alltag des Montafons bringt."
+        "description": ""
       }
     ]
   }

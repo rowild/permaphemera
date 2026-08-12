@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { splitArtistCredit } from '~/utils/artistNames'
 import { buildArtistDirectory } from '~/utils/artistDirectory'
+import exhibitionsArtists from '~/data/exhibitions_artists.json'
+import type { ExhibitionArtistLink } from '~/types/content'
 
 const route = useRoute()
 const router = useRouter()
@@ -11,7 +13,8 @@ const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
 // Change this one value to alter the size of every all-letters preview group.
 const artistsPerLetterPreview = 5
 const normalize = (value: string) => value.trim().toLocaleLowerCase()
-const directoryArtists = computed(() => buildArtistDirectory(artists.value, locationExhibitions.value))
+const directoryArtists = computed(() =>
+  buildArtistDirectory(artists.value, locationExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[]))
 const artistLedgerItems = computed(() => [
   { label: t('artists.ledgerArtists'), value: directoryArtists.value.length },
   { label: t('artists.linkedRecords'), value: directoryArtists.value.reduce((total, artist) => total + artist.records.length, 0) },

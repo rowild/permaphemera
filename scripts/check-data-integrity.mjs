@@ -6,11 +6,11 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const readJson = async (path) => JSON.parse(await readFile(resolve(projectRoot, path), 'utf8'))
 
 const [locations, venues, artists, exhibitions, junction] = await Promise.all([
-  readJson('app/data/v2/locations.json'),
-  readJson('app/data/v2/venues.json'),
-  readJson('app/data/v2/artists.json'),
-  readJson('app/data/v2/exhibitions.json'),
-  readJson('app/data/v2/exhibitions_artists.json')
+  readJson('app/data/locations.json'),
+  readJson('app/data/venues.json'),
+  readJson('app/data/artists.json'),
+  readJson('app/data/exhibitions.json'),
+  readJson('app/data/exhibitions_artists.json')
 ])
 
 const ids = (records) => new Set(records.map((record) => record.id))

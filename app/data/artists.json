@@ -2,497 +2,1534 @@
   {
     "id": "artist-anselm-kiefer",
     "slug": "anselm-kiefer",
-    "name": "Anselm Kiefer",
-    "location": "Vienna",
-    "years": "2019-2024",
-    "record_count": 3
+    "first_name": "Anselm",
+    "last_name": "Kiefer",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-brigitte-kowanz",
     "slug": "brigitte-kowanz",
-    "name": "Brigitte Kowanz",
-    "location": "Vienna",
-    "years": "2021",
-    "record_count": 2
+    "first_name": "Brigitte",
+    "last_name": "Kowanz",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-birgit-juergenssen",
     "slug": "birgit-juergenssen",
-    "name": "Birgit Juergenssen",
-    "location": "Vienna",
-    "years": "2022",
-    "record_count": 1
+    "first_name": "Birgit",
+    "last_name": "Juergenssen",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-guenter-brus",
     "slug": "guenter-brus",
-    "name": "Guenter Brus",
-    "location": "Graz",
-    "years": "2020-2023",
-    "record_count": 2
+    "first_name": "Guenter",
+    "last_name": "Brus",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-oskar-kokoschka",
     "slug": "oskar-kokoschka",
-    "name": "Oskar Kokoschka",
-    "location": "Vienna",
-    "years": "2018-2023",
-    "record_count": 4
+    "first_name": "Oskar",
+    "last_name": "Kokoschka",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-maria-lassnig",
     "slug": "maria-lassnig",
-    "name": "Maria Lassnig",
-    "location": "Graz",
-    "years": "2017-2024",
-    "record_count": 3
+    "first_name": "Maria",
+    "last_name": "Lassnig",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-raqs-media-collective",
     "slug": "raqs-media-collective",
-    "name": "Raqs Media Collective",
-    "location": "New Delhi / Vienna",
-    "years": "2021-2024",
-    "record_count": 2
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "artist_name": "Raqs Media Collective",
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-valie-export",
     "slug": "valie-export",
-    "name": "VALIE EXPORT",
-    "location": "Vienna",
-    "years": "1968-2022",
-    "record_count": 5
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "artist_name": "VALIE EXPORT",
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-franz-west",
     "slug": "franz-west",
-    "name": "Franz West",
-    "location": "Vienna",
-    "years": "1986-2012",
-    "record_count": 3
+    "first_name": "Franz",
+    "last_name": "West",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-mira-abele",
     "slug": "mira-abele",
-    "name": "Mira Abele",
-    "location": "Salzburg",
-    "years": "2024-2026",
-    "record_count": 0
+    "first_name": "Mira",
+    "last_name": "Abele",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-jonas-arden",
     "slug": "jonas-arden",
-    "name": "Jonas Arden",
-    "location": "Linz",
-    "years": "2023-2025",
-    "record_count": 0
+    "first_name": "Jonas",
+    "last_name": "Arden",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-lena-bacher",
     "slug": "lena-bacher",
-    "name": "Lena Bacher",
-    "location": "Graz",
-    "years": "2022-2026",
-    "record_count": 0
+    "first_name": "Lena",
+    "last_name": "Bacher",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-pavel-breun",
     "slug": "pavel-breun",
-    "name": "Pavel Breun",
-    "location": "Vienna",
-    "years": "2021-2025",
-    "record_count": 0
+    "first_name": "Pavel",
+    "last_name": "Breun",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-iona-cernek",
     "slug": "iona-cernek",
-    "name": "Iona Cernek",
-    "location": "Klagenfurt",
-    "years": "2024",
-    "record_count": 0
+    "first_name": "Iona",
+    "last_name": "Cernek",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-timo-corda",
     "slug": "timo-corda",
-    "name": "Timo Corda",
-    "location": "Innsbruck",
-    "years": "2020-2026",
-    "record_count": 0
+    "first_name": "Timo",
+    "last_name": "Corda",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-mara-degen",
     "slug": "mara-degen",
-    "name": "Mara Degen",
-    "location": "Bregenz",
-    "years": "2023-2026",
-    "record_count": 0
+    "first_name": "Mara",
+    "last_name": "Degen",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-elias-dorn",
     "slug": "elias-dorn",
-    "name": "Elias Dorn",
-    "location": "Vienna",
-    "years": "2019-2024",
-    "record_count": 0
+    "first_name": "Elias",
+    "last_name": "Dorn",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-nika-eder",
     "slug": "nika-eder",
-    "name": "Nika Eder",
-    "location": "Salzburg",
-    "years": "2022-2025",
-    "record_count": 0
+    "first_name": "Nika",
+    "last_name": "Eder",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-samuel-evers",
     "slug": "samuel-evers",
-    "name": "Samuel Evers",
-    "location": "Graz",
-    "years": "2021-2026",
-    "record_count": 0
+    "first_name": "Samuel",
+    "last_name": "Evers",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-livia-falk",
     "slug": "livia-falk",
-    "name": "Livia Falk",
-    "location": "Linz",
-    "years": "2020-2024",
-    "record_count": 0
+    "first_name": "Livia",
+    "last_name": "Falk",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-anton-ferner",
     "slug": "anton-ferner",
-    "name": "Anton Ferner",
-    "location": "Spittal an der Drau",
-    "years": "2025-2026",
-    "record_count": 0
+    "first_name": "Anton",
+    "last_name": "Ferner",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-klara-gsell",
     "slug": "klara-gsell",
-    "name": "Klara Gsell",
-    "location": "Vienna",
-    "years": "2023-2026",
-    "record_count": 0
+    "first_name": "Klara",
+    "last_name": "Gsell",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-emil-gruber",
     "slug": "emil-gruber",
-    "name": "Emil Gruber",
-    "location": "Innsbruck",
-    "years": "2018-2025",
-    "record_count": 0
+    "first_name": "Emil",
+    "last_name": "Gruber",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-nora-haid",
     "slug": "nora-haid",
-    "name": "Nora Haid",
-    "location": "Graz",
-    "years": "2024-2026",
-    "record_count": 0
+    "first_name": "Nora",
+    "last_name": "Haid",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-leander-huber",
     "slug": "leander-huber",
-    "name": "Leander Huber",
-    "location": "Salzburg",
-    "years": "2021-2023",
-    "record_count": 0
+    "first_name": "Leander",
+    "last_name": "Huber",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-mina-illich",
     "slug": "mina-illich",
-    "name": "Mina Illich",
-    "location": "Linz",
-    "years": "2022-2026",
-    "record_count": 0
+    "first_name": "Mina",
+    "last_name": "Illich",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-tobias-innerhofer",
     "slug": "tobias-innerhofer",
-    "name": "Tobias Innerhofer",
-    "location": "Bregenz",
-    "years": "2019-2025",
-    "record_count": 0
+    "first_name": "Tobias",
+    "last_name": "Innerhofer",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-elsa-jarnik",
     "slug": "elsa-jarnik",
-    "name": "Elsa Jarnik",
-    "location": "Klagenfurt",
-    "years": "2023-2026",
-    "record_count": 0
+    "first_name": "Elsa",
+    "last_name": "Jarnik",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-milan-jost",
     "slug": "milan-jost",
-    "name": "Milan Jost",
-    "location": "Vienna",
-    "years": "2020-2024",
-    "record_count": 0
+    "first_name": "Milan",
+    "last_name": "Jost",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-lora-kain",
     "slug": "lora-kain",
-    "name": "Lora Kain",
-    "location": "Graz",
-    "years": "2024-2026",
-    "record_count": 0
+    "first_name": "Lora",
+    "last_name": "Kain",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-noah-kern",
     "slug": "noah-kern",
-    "name": "Noah Kern",
-    "location": "Salzburg",
-    "years": "2022-2025",
-    "record_count": 0
+    "first_name": "Noah",
+    "last_name": "Kern",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-rhea-koller",
     "slug": "rhea-koller",
-    "name": "Rhea Koller",
-    "location": "Linz",
-    "years": "2021-2026",
-    "record_count": 0
+    "first_name": "Rhea",
+    "last_name": "Koller",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-ada-lechner",
     "slug": "ada-lechner",
-    "name": "Ada Lechner",
-    "location": "Vienna",
-    "years": "2023-2026",
-    "record_count": 0
+    "first_name": "Ada",
+    "last_name": "Lechner",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-viktor-loos",
     "slug": "viktor-loos",
-    "name": "Viktor Loos",
-    "location": "Innsbruck",
-    "years": "2019-2024",
-    "record_count": 0
+    "first_name": "Viktor",
+    "last_name": "Loos",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-thea-mader",
     "slug": "thea-mader",
-    "name": "Thea Mader",
-    "location": "Bregenz",
-    "years": "2022-2026",
-    "record_count": 0
+    "first_name": "Thea",
+    "last_name": "Mader",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-ivo-moser",
     "slug": "ivo-moser",
-    "name": "Ivo Moser",
-    "location": "Graz",
-    "years": "2020-2025",
-    "record_count": 0
+    "first_name": "Ivo",
+    "last_name": "Moser",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-alma-neri",
     "slug": "alma-neri",
-    "name": "Alma Neri",
-    "location": "Salzburg",
-    "years": "2024-2026",
-    "record_count": 0
+    "first_name": "Alma",
+    "last_name": "Neri",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-dario-novak",
     "slug": "dario-novak",
-    "name": "Dario Novak",
-    "location": "Vienna",
-    "years": "2021-2025",
-    "record_count": 0
+    "first_name": "Dario",
+    "last_name": "Novak",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-pia-oberlin",
     "slug": "pia-oberlin",
-    "name": "Pia Oberlin",
-    "location": "Linz",
-    "years": "2023-2026",
-    "record_count": 0
+    "first_name": "Pia",
+    "last_name": "Oberlin",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-felix-orter",
     "slug": "felix-orter",
-    "name": "Felix Orter",
-    "location": "Klagenfurt",
-    "years": "2020-2024",
-    "record_count": 0
+    "first_name": "Felix",
+    "last_name": "Orter",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-sara-pichler",
     "slug": "sara-pichler",
-    "name": "Sara Pichler",
-    "location": "Graz",
-    "years": "2022-2026",
-    "record_count": 0
+    "first_name": "Sara",
+    "last_name": "Pichler",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-leon-prantl",
     "slug": "leon-prantl",
-    "name": "Leon Prantl",
-    "location": "Bregenz",
-    "years": "2018-2025",
-    "record_count": 0
+    "first_name": "Leon",
+    "last_name": "Prantl",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-mira-quell",
     "slug": "mira-quell",
-    "name": "Mira Quell",
-    "location": "Vienna",
-    "years": "2024-2026",
-    "record_count": 0
+    "first_name": "Mira",
+    "last_name": "Quell",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-aron-quirin",
     "slug": "aron-quirin",
-    "name": "Aron Quirin",
-    "location": "Salzburg",
-    "years": "2021-2024",
-    "record_count": 0
+    "first_name": "Aron",
+    "last_name": "Quirin",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-ina-rainer",
     "slug": "ina-rainer",
-    "name": "Ina Rainer",
-    "location": "Linz",
-    "years": "2023-2025",
-    "record_count": 0
+    "first_name": "Ina",
+    "last_name": "Rainer",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-theo-riss",
     "slug": "theo-riss",
-    "name": "Theo Riss",
-    "location": "Innsbruck",
-    "years": "2020-2026",
-    "record_count": 0
+    "first_name": "Theo",
+    "last_name": "Riss",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-zoe-sattler",
     "slug": "zoe-sattler",
-    "name": "Zoe Sattler",
-    "location": "Graz",
-    "years": "2022-2025",
-    "record_count": 0
+    "first_name": "Zoe",
+    "last_name": "Sattler",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-jan-sendl",
     "slug": "jan-sendl",
-    "name": "Jan Sendl",
-    "location": "Klagenfurt",
-    "years": "2024-2026",
-    "record_count": 0
+    "first_name": "Jan",
+    "last_name": "Sendl",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-ella-tauer",
     "slug": "ella-tauer",
-    "name": "Ella Tauer",
-    "location": "Bregenz",
-    "years": "2021-2026",
-    "record_count": 0
+    "first_name": "Ella",
+    "last_name": "Tauer",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-bruno-tesch",
     "slug": "bruno-tesch",
-    "name": "Bruno Tesch",
-    "location": "Vienna",
-    "years": "2019-2024",
-    "record_count": 0
+    "first_name": "Bruno",
+    "last_name": "Tesch",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-mia-uhl",
     "slug": "mia-uhl",
-    "name": "Mia Uhl",
-    "location": "Salzburg",
-    "years": "2023-2026",
-    "record_count": 0
+    "first_name": "Mia",
+    "last_name": "Uhl",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-niko-urban",
     "slug": "niko-urban",
-    "name": "Niko Urban",
-    "location": "Linz",
-    "years": "2020-2025",
-    "record_count": 0
+    "first_name": "Niko",
+    "last_name": "Urban",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-lea-varga",
     "slug": "lea-varga",
-    "name": "Lea Varga",
-    "location": "Graz",
-    "years": "2022-2026",
-    "record_count": 0
+    "first_name": "Lea",
+    "last_name": "Varga",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-otto-vogl",
     "slug": "otto-vogl",
-    "name": "Otto Vogl",
-    "location": "Innsbruck",
-    "years": "2018-2024",
-    "record_count": 0
+    "first_name": "Otto",
+    "last_name": "Vogl",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-anja-wenter",
     "slug": "anja-wenter",
-    "name": "Anja Wenter",
-    "location": "Bregenz",
-    "years": "2024-2026",
-    "record_count": 0
+    "first_name": "Anja",
+    "last_name": "Wenter",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-lio-wurm",
     "slug": "lio-wurm",
-    "name": "Lio Wurm",
-    "location": "Vienna",
-    "years": "2021-2025",
-    "record_count": 0
+    "first_name": "Lio",
+    "last_name": "Wurm",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-mina-xandl",
     "slug": "mina-xandl",
-    "name": "Mina Xandl",
-    "location": "Salzburg",
-    "years": "2023-2026",
-    "record_count": 0
+    "first_name": "Mina",
+    "last_name": "Xandl",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-theo-xaver",
     "slug": "theo-xaver",
-    "name": "Theo Xaver",
-    "location": "Linz",
-    "years": "2020-2024",
-    "record_count": 0
+    "first_name": "Theo",
+    "last_name": "Xaver",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-eva-yalin",
     "slug": "eva-yalin",
-    "name": "Eva Yalin",
-    "location": "Graz",
-    "years": "2022-2026",
-    "record_count": 0
+    "first_name": "Eva",
+    "last_name": "Yalin",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-noah-ypern",
     "slug": "noah-ypern",
-    "name": "Noah Ypern",
-    "location": "Klagenfurt",
-    "years": "2024-2026",
-    "record_count": 0
+    "first_name": "Noah",
+    "last_name": "Ypern",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-mara-zeller",
     "slug": "mara-zeller",
-    "name": "Mara Zeller",
-    "location": "Vienna",
-    "years": "2021-2025",
-    "record_count": 0
+    "first_name": "Mara",
+    "last_name": "Zeller",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   },
   {
     "id": "artist-ivo-zorn",
     "slug": "ivo-zorn",
-    "name": "Ivo Zorn",
-    "location": "Bregenz",
-    "years": "2019-2026",
-    "record_count": 0
+    "first_name": "Ivo",
+    "last_name": "Zorn",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-adi-schmoelzer",
+    "slug": "adi-schmoelzer",
+    "first_name": "Adi",
+    "last_name": "Schmölzer",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-7th-spittaler-comicfestival",
+    "slug": "7th-spittaler-comicfestival",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "artist_name": "7th Spittaler Comicfestival",
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-austriatoon",
+    "slug": "austriatoon",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "artist_name": "Austriatoon",
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-nicoline-von-heyl",
+    "slug": "nicoline-von-heyl",
+    "first_name": "Nicoline von",
+    "last_name": "Heyl",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-lebenshilfe-spittal",
+    "slug": "lebenshilfe-spittal",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "artist_name": "Lebenshilfe Spittal",
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-herbert-meisslitzer",
+    "slug": "herbert-meisslitzer",
+    "first_name": "Herbert",
+    "last_name": "Meißlitzer",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-sylvia-campidell",
+    "slug": "sylvia-campidell",
+    "first_name": "Sylvia",
+    "last_name": "Campidell",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-judith-maria-kulle",
+    "slug": "judith-maria-kulle",
+    "first_name": "Judith Maria",
+    "last_name": "Kulle",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-birgit-moertl",
+    "slug": "birgit-moertl",
+    "first_name": "Birgit",
+    "last_name": "Mörtl",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-peter-kohlweiss",
+    "slug": "peter-kohlweiss",
+    "first_name": "Peter",
+    "last_name": "Kohlweiß",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
+  },
+  {
+    "id": "artist-santino-solace",
+    "slug": "santino-solace",
+    "first_name": "Santino",
+    "last_name": "Solace",
+    "middle_initial": null,
+    "artist_name": null,
+    "birth_year": null,
+    "death_year": null,
+    "nationality": null,
+    "website_url": null,
+    "instagram_handle": null,
+    "profile_image": null,
+    "status": "draft",
+    "translations": [
+      {
+        "languages_code": "en",
+        "biography": ""
+      }
+    ]
   }
 ]

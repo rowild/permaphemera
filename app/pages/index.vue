@@ -4,12 +4,14 @@ import {
 } from '@lucide/vue'
 import { gsap } from 'gsap'
 import { buildArtistDirectory } from '~/utils/artistDirectory'
-import type { Exhibition, Venue } from '~/types/content'
+import exhibitionsArtists from '~/data/exhibitions_artists.json'
+import type { Exhibition, ExhibitionArtistLink, Venue } from '~/types/content'
 
 const { artists, locations, locationExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
-const directoryArtists = computed(() => buildArtistDirectory(artists.value, locationExhibitions.value))
+const directoryArtists = computed(() =>
+  buildArtistDirectory(artists.value, locationExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[]))
 
 useSeoMeta({
   title: 'PERMAPHEMERA',

@@ -16,6 +16,7 @@ export interface ResolvedVenue {
   archive_number: string
   featured: boolean
   city: string
+  city_name: string
   postal_code: string
   state: string
   country: string
@@ -56,6 +57,7 @@ export const resolveVenues = (
       archive_number: venue.archive_number,
       featured: venue.featured,
       city: location.city_name,
+      city_name: location.city_name,
       postal_code: location.postal_code,
       state: location.state,
       country: location.country,
