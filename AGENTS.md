@@ -82,9 +82,11 @@ Use local JSON source files under:
 app/data/
 ```
 
-Keep the local JSON shape compatible with the future Directus schema in `../_Plans/exhibitions-plan.md` so the data adapter can later be swapped without rewriting components.
+Local JSON mirrors the Directus collections in `../_Plans/exhibitions-plan.md` §2: `locations.json` (cities, with the coordinates radius search needs), `venues.json` (buildings, each with a `type` and a `location_id`), `artists.json`, `exhibitions.json`, and the `exhibitions_artists.json` junction. Joins happen in `useArchiveData()`, never in components.
 
-English is the canonical content source. Store German translations for record fields in ID-keyed overlay files under `app/data/translations/de/`; `locations.json` is the existing exception and keeps gallery descriptions in its Directus-style translation array. Keep IDs, slugs, dates used for sorting, media paths, URLs, and relations in the canonical records. UI and accessibility messages live in the locale files under `i18n/locales/`. Do not move these records into `public/` or fetch them over HTTP unless a future runtime content source genuinely requires it.
+`status` (`draft` | `published`) records provenance, not visibility. Draft records render; the gate is the single `VISIBLE_STATUSES` constant in `app/utils/contentStatus.ts`. Never add a status conditional to a component.
+
+Each record carries a `translations[]` array of `{ languages_code, … }` entries. In the frontend all languages are equal: the active locale is selected by `pickTranslation`, which falls back `locale → en → first available`. In the backend English is first — it is the language entered into Directus, and every other translation is derived from it. That is an authoring convention, not a privileged field in the data shape. Keep IDs, slugs, dates used for sorting, media paths, URLs, and relations in the canonical records. UI and accessibility messages live in the locale files under `i18n/locales/`. Do not move these records into `public/` or fetch them over HTTP unless a future runtime content source genuinely requires it.
 
 ## Current Scope And Deferred Work
 

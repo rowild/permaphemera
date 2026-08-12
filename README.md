@@ -50,6 +50,7 @@ The configured development URL is `http://localhost:4991`.
 Build and preview production output:
 
 ```bash
+pnpm check:data
 pnpm check:tailwind
 pnpm check:i18n
 pnpm check:artists
@@ -78,7 +79,7 @@ pnpm deploy
 
 The deploy command regenerates the SPA, requires `index.html` and `.htaccess`, validates that the remote path is an account document root under `/www/htdocs/`, uploads `.output/public/` over SFTP, publishes entry documents after hashed assets, and confirms that the remote `.htaccess` exists. It does not provision hosting, databases, SSL, or backend services.
 
-`pnpm check:tailwind` loads the project Tailwind design system and fails when bracket notation has an exact canonical utility equivalent or when a human-readable structural marker is unspaced or CSS-active. `pnpm check:i18n` verifies UI message parity, translated record coverage, stable content identifiers, localized route switching, and global privacy-notice wiring. `pnpm check:directories` protects gallery coverage, canonical index/detail routing, search contracts, and shared frame usage. The remaining focused checks protect artist modal routing and accessibility, archive text-link variants, the location exhibition browser, and compact responsive-density contracts.
+`pnpm check:data` verifies collection-level integrity across the five local JSON collections — record counts, unique slugs, cross-collection id references (venue→location, exhibition→venue, junction rows→both), valid `status` values, and English-translation coverage. `pnpm check:tailwind` loads the project Tailwind design system and fails when bracket notation has an exact canonical utility equivalent or when a human-readable structural marker is unspaced or CSS-active. `pnpm check:i18n` verifies UI message parity, translated record coverage, stable content identifiers, localized route switching, and global privacy-notice wiring. `pnpm check:directories` protects gallery coverage, canonical index/detail routing, search contracts, and shared frame usage. The remaining focused checks protect artist modal routing and accessibility, archive text-link variants, the location exhibition browser, and compact responsive-density contracts.
 
 The static SPA build succeeds. It currently emits non-fatal Vite notices for root-relative assets served from `public/` and a client chunk-size warning caused by the graphics-heavy landing experience.
 
@@ -91,8 +92,8 @@ app/data/                      JSON content source
 app/data/translations/de/      German record-field translation overlays
 i18n/locales/                  English and German UI/accessibility messages
 app/pages/index.vue            landing page composition and interactions
-app/pages/locations/index.vue  searchable Austrian gallery atlas
-app/pages/locations/[slug].vue dynamic gallery dossiers
+app/pages/venues/index.vue     searchable Austrian gallery atlas
+app/pages/venues/[slug].vue    dynamic gallery dossiers
 app/pages/exhibitions/index.vue searchable exhibition archive
 app/pages/exhibitions/[slug].vue dynamic exhibition records
 app/pages/artists/index.vue    searchable artist directory
@@ -118,9 +119,9 @@ The landing route in `app/pages/index.vue` contains the hero, locations, selecte
 
 The site-styled privacy notice explains that language-preference cookie without claiming consent for analytics or advertising that the app does not use. Dismissal is remembered locally under `permaphemera-cookie-notice-dismissed`; the footer's cookie-settings action reopens the notice.
 
-`app/pages/locations/index.vue` is the canonical gallery atlas. It reads all 26 gallery profiles from `locations.json`, searches names, towns, states, addresses, and descriptions immediately, preserves search/state filters in the URL, and exposes all nine federal states on a draggable filter rail. The landing-page gallery selection now derives from that same source and links its paper stack to the complete atlas.
+`app/pages/venues/index.vue` is the canonical gallery atlas. It reads all 26 gallery profiles from `locations.json`, searches names, towns, states, addresses, and descriptions immediately, preserves search/state filters in the URL, and exposes all nine federal states on a draggable filter rail. The landing-page gallery selection now derives from that same source and links its paper stack to the complete atlas.
 
-`app/pages/locations/[slug].vue` resolves every gallery from `locations.json`, then layers optional richer dossier fields from `venues.json`. Every gallery route therefore works even before exhibition records exist. Parkschlössl retains its seven 2026 exhibitions as compact, keyboard-accessible records. Search filters immediately across artist, title, date, medium, and record copy while preserving `q` in the route. Hover, focus, or click selects a sticky preview; images are preloaded before the active preview changes and a visible archival loader or error state covers the transition.
+`app/pages/venues/[slug].vue` resolves every gallery from `locations.json`, then layers optional richer dossier fields from `venues.json`. Every gallery route therefore works even before exhibition records exist. Parkschlössl retains its seven 2026 exhibitions as compact, keyboard-accessible records. Search filters immediately across artist, title, date, medium, and record copy while preserving `q` in the route. Hover, focus, or click selects a sticky preview; images are preloaded before the active preview changes and a visible archival loader or error state covers the transition.
 
 `app/pages/exhibitions/index.vue` searches every routed local exhibition across title, artist, gallery, city, date, medium, and record text while preserving `q` in the URL. `app/pages/exhibitions/[slug].vue` resolves the same data into individual records with dates, opening hours, vernissage, source PDF, gallery-aware breadcrumbs and return paths, related exhibitions, and a prepared—but disabled—360-degree experience section.
 
