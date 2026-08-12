@@ -360,6 +360,17 @@ If the venue count is not 36, a slug collided. Print `venues.map(v => v.slug)` a
 Run: `pnpm check:data`
 Expected: still FAILS, now on the three missing collections (`app/data/v2/artists.json`). The location and venue assertions must no longer appear in the failure list. If any of them do, fix the generator before moving on.
 
+- [ ] **Step 3a: Merge the dossier fields for venues that exist in both source files**
+
+> **Defect found during execution.** The 26-gallery loop creates `parkschloessl-spittal-drau`, so the orphan loop skips it as already seen — and never merges the richer record of the same slug in the old `app/data/venues.json`. That silently dropped all six dossier fields from the only venue with real content: `hero_image`, `hero_image_alt`, `lede`, `image_caption`, `coordinate_label` and `about`. The venue detail page renders every one of them, so the flagship page would lose its hero photo, lede, About section, caption and coordinate readout.
+
+For any slug present in **both** `app/data/locations.json` and `app/data/venues.json`, merge the second into the first:
+
+- `hero_image` and `hero_image_alt` become top-level fields on the venue, alongside `image`/`image_alt`.
+- `lede`, `image_caption`, `coordinate_label` and `about` go into the `en` entry of `translations[]`, since they are translatable prose.
+
+Only `parkschloessl-spittal-drau` overlaps today; the other six venues in the old file carry no dossier fields. Verify with a per-slug comparison rather than assuming.
+
 - [ ] **Step 4: Fill the English descriptions**
 
 The generator writes `description: ''` for promoted venues because there is no source text. Copy each promoted venue's description from `app/data/venues.json`'s `translations` where one exists; leave `''` where none does. Never invent venue descriptions.
@@ -774,6 +785,8 @@ export interface VenueRecord {
   longitude?: number
   image: string
   image_alt: string
+  hero_image?: string
+  hero_image_alt?: string
   archive_number: string
   featured: boolean
   status: ContentStatus
@@ -1111,6 +1124,8 @@ export interface ResolvedVenue {
   website_url?: string
   image: string
   image_alt: string
+  hero_image?: string
+  hero_image_alt?: string
   archive_number: string
   featured: boolean
   city: string
@@ -1149,6 +1164,8 @@ export const resolveVenues = (
       website_url: venue.website_url,
       image: venue.image,
       image_alt: venue.image_alt,
+      hero_image: venue.hero_image,
+      hero_image_alt: venue.hero_image_alt,
       archive_number: venue.archive_number,
       featured: venue.featured,
       city: location.city_name,
