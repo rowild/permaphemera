@@ -25,8 +25,8 @@ const [
   readJson('app/data/locations.json'),
   readJson('app/data/venues.json'),
   readJson('app/data/exhibitions.json'),
-  readText('app/pages/locations/index.vue'),
-  readText('app/pages/locations/[slug].vue'),
+  readText('app/pages/venues/index.vue'),
+  readText('app/pages/venues/[slug].vue'),
   readText('app/components/GalleryDirectoryCard.vue'),
   readText('app/pages/exhibitions/index.vue'),
   readText('app/pages/exhibitions/[slug].vue'),
@@ -90,7 +90,7 @@ assert.match(galleriesIndex, /<GalleryDirectoryCard[\s\S]*v-for=/, 'The gallerie
 assert.match(galleriesIndex, /route\.query\.state/, 'The gallery state filter must be URL-backed.')
 assert.match(galleryCard, /<VenueMaskedImage/, 'Gallery cards must use the shared generated media mask.')
 assert.match(galleryCard, /<VenueCardFrame/, 'Gallery cards must use the shared generated cut-corner frame.')
-assert.match(galleryDetail, /locations\.value\.find/, 'Gallery detail routes must resolve the canonical locations collection.')
+assert.match(galleryDetail, /venues\.value\.find/, 'Gallery detail routes must resolve the canonical venues collection.')
 assert.match(galleryDetail, /venueDossier/, 'Gallery detail routes must layer optional rich venue dossier data.')
 
 assert(exhibitions.length > 0, 'The exhibitions directory needs routed exhibition records.')
@@ -120,7 +120,7 @@ assert.match(exhibitionDetail, /localePath\('\/exhibitions\/'\)/, 'Exhibition de
 assert.match(exhibitionDetail, /galleryPath/, 'Exhibition detail routes must derive their owning gallery route.')
 
 for (const navigation of [header, footerMenu]) {
-  assert.match(navigation, /localePath\('\/locations\/'\)/, 'Gallery navigation must target the real gallery index.')
+  assert.match(navigation, /localePath\('\/venues\/'\)/, 'Gallery navigation must target the real gallery index.')
   assert.match(navigation, /localePath\('\/exhibitions\/'\)/, 'Exhibition navigation must target the real exhibition index.')
 }
 

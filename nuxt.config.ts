@@ -9,6 +9,10 @@ export default defineNuxtConfig({
   devServer: {
     port: 4991
   },
+  routeRules: {
+    '/locations': { redirect: { to: '/venues', statusCode: 301 } },
+    '/locations/**': { redirect: { to: '/venues/**', statusCode: 301 } }
+  },
   css: ['~/assets/css/main.css'],
   i18n: {
     locales: [

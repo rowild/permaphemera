@@ -32,7 +32,7 @@ const sequence = computed(() => props.location.archive_number || String(props.in
   <NuxtLink
     class="[ gallery-directory-card ] group/venue relative min-w-0 overflow-visible rounded-none border-0 bg-transparent p-2 text-archive-ink no-underline filter-[drop-shadow(0_0.5rem_0.55rem_rgba(75,52,29,0.1))] isolate [transition:filter_0.38s_ease,translate_0.38s_var(--ease-archive-lift)] hover:translate-y-[-0.18rem] hover:filter-[drop-shadow(0_0.75rem_0.75rem_rgba(75,52,29,0.17))] focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red compact:p-1 motion-reduce:transition-none"
     :class="props.featured ? '[ gallery-directory-card-featured ] col-span-2 min-h-124 tablet:min-h-104 compact:min-h-0' : 'min-h-116 compact:min-h-0'"
-    :to="localePath(`/locations/${props.location.slug}/`)"
+    :to="localePath(`/venues/${props.location.slug}/`)"
     :aria-label="$t('galleries.openGallery', { name: props.location.name })"
     @mouseenter="active = true"
     @mouseleave="active = false"

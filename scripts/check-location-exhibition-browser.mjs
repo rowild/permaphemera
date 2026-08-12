@@ -7,7 +7,7 @@ const readProjectFile = (path) => readFile(resolve(projectRoot, path), 'utf8')
 
 const [ledgerRow, locationPage] = await Promise.all([
   readProjectFile('app/components/LocationExhibitionLedgerRow.vue'),
-  readProjectFile('app/pages/locations/[slug].vue')
+  readProjectFile('app/pages/venues/[slug].vue')
 ])
 
 const checks = [

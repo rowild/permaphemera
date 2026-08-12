@@ -30,7 +30,6 @@ export function useArchiveData() {
 
   return {
     artists: computed(() => (artists as ArtistRecord[]).filter(isVisible)),
-    locations: venuesForLocale,
     venues: venuesForLocale,
     locationExhibitions: exhibitionsForLocale,
     sponsors: computed(() => sponsors as Sponsor[])

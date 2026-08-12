@@ -14,15 +14,14 @@ interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'a
 
 const route = useRoute()
 const router = useRouter()
-const { locations, locationExhibitions, venues } = useArchiveData()
+const { locationExhibitions, venues } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const slug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
-const location = computed(() => locations.value.find((item) => item.slug === slug))
+const location = computed(() => venues.value.find((item) => item.slug === slug))
 // ResolvedVenue carries no `location_id` (it's already the resolved venue,
-// not the raw record) — `venues` and `locations` are the same resolved-venue
-// collection (see useArchiveData), so matching by slug alone already finds
-// the same record `location` does.
+// not the raw record) — `venueDossier` re-finds the same record from the
+// same `venues` collection `location` already matched by slug.
 const venueDossier = computed(() => venues.value.find((item) => item.slug === slug))
 // Throwing inside the computed (rather than returning undefined and guarding
 // afterward) lets TypeScript see `venue.value` as always-`Venue` from here on
@@ -150,7 +149,7 @@ onMounted(() => {
   if (firstExhibition) selectExhibition(firstExhibition)
 })
 
-const venueIndex = computed(() => locations.value.findIndex((item) => item.id === location.value?.id))
+const venueIndex = computed(() => venues.value.findIndex((item) => item.id === location.value?.id))
 const archiveNumber = computed(() => venue.value?.archive_number ?? String(venueIndex.value + 1).padStart(2, '0'))
 const plateCode = computed(() => venue.value?.city.slice(0, 2).toLocaleUpperCase() ?? '')
 const locationMapUrl = computed(() => {
@@ -194,7 +193,7 @@ useSeoMeta({
       >
         <div class="[ location-hero-copy ] relative z-2 tablet:row-start-2">
           <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/locations/')">{{ $t('navigation.galleries') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ venue.name }}</span>
+            <ArchiveTextLink :to="localePath('/venues/')">{{ $t('navigation.galleries') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ venue.name }}</span>
           </ArchiveBreadcrumb>
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('location.archiveLocation', { number: archiveNumber }) }}</p>
           <h1 id="location-title" class="[ location-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">

@@ -2,7 +2,7 @@
 import { CalendarDays, Clock3, FileText, MapPin } from '@lucide/vue'
 
 const route = useRoute()
-const { locations, locationExhibitions } = useArchiveData()
+const { venues, locationExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const routeSlug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
@@ -12,7 +12,7 @@ if (!exhibition.value) {
   throw createError({ statusCode: 404, statusMessage: t('exhibition.notFound') })
 }
 
-const gallery = computed(() => locations.value.find((item) => item.slug === exhibition.value?.venue_slug))
+const gallery = computed(() => venues.value.find((item) => item.slug === exhibition.value?.venue_slug))
 const relatedExhibitions = computed(() => locationExhibitions.value
   .filter((item) => item.slug !== exhibition.value?.slug)
   .sort((left, right) => Number(right.venue_slug === exhibition.value?.venue_slug) - Number(left.venue_slug === exhibition.value?.venue_slug))
@@ -21,7 +21,7 @@ const recordNumber = computed(() => {
   const index = locationExhibitions.value.findIndex((item) => item.id === exhibition.value?.id)
   return String(Math.max(0, index) + 1).padStart(2, '0')
 })
-const galleryPath = computed(() => localePath(`/locations/${exhibition.value?.venue_slug}/`))
+const galleryPath = computed(() => localePath(`/venues/${exhibition.value?.venue_slug}/`))
 
 useSeoMeta({
   title: () => `${exhibition.value?.title} · ${exhibition.value?.artist} · PERMAPHEMERA`,

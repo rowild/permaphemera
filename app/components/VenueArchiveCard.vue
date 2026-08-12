@@ -29,7 +29,7 @@ const localePath = useLocalePath()
   <NuxtLink
     class="[ venue-card ] group/venue relative flex cursor-pointer flex-col overflow-hidden rounded-none border-0 bg-transparent p-2 shadow-none filter-[drop-shadow(0_0.5rem_0.55rem_rgba(75,52,29,0.11))] isolate [transition:filter_0.38s_ease,translate_0.38s_var(--ease-archive-lift)] hover:translate-y-[-0.18rem] hover:filter-[drop-shadow(0_0.72rem_0.72rem_rgba(75,52,29,0.18))] focus-visible:outline-1 focus-visible:outline-offset-[0.3rem] focus-visible:outline-archive-red/72 motion-reduce:transition-none compact:p-1"
     :class="props.featured ? '[ venue-card-featured ] row-span-2 tablet:col-span-full tablet:row-auto compact:col-span-1 compact:row-auto' : 'min-h-90 compact:min-h-0'"
-    :to="localePath(`/locations/${props.venue.slug}/`)"
+    :to="localePath(`/venues/${props.venue.slug}/`)"
     :aria-label="$t('cards.openVenue', { name: props.venue.name })"
     @mouseenter="active = true"
     @mouseleave="active = false"

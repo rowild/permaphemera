@@ -20,7 +20,7 @@ interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'a
 }
 type Exhibition = Pick<ResolvedExhibition, 'id' | 'slug' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image' | 'featured'>
 
-const { artists, locations, locationExhibitions } = useArchiveData()
+const { artists, venues, locationExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const directoryArtists = computed(() =>
@@ -31,7 +31,7 @@ useSeoMeta({
   description: () => t('site.seoDescription')
 })
 
-const directoryVenues = computed<Venue[]>(() => locations.value.map((location) => ({
+const directoryVenues = computed<Venue[]>(() => venues.value.map((location) => ({
   id: `venue-${location.id}`,
   slug: location.slug,
   location_id: location.id,
@@ -352,7 +352,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           :items="venueStackItems"
           :label="$t('common.more')"
           variant="venue"
-          :to="localePath('/locations/')"
+          :to="localePath('/venues/')"
         />
       </div>
 
@@ -455,7 +455,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           class="hidden tablet:grid"
           :items="[
             { label: $t('landing.sidebar.preserved'), value: preservedExhibitionCount },
-            { label: $t('landing.sidebar.locations'), value: locations.length },
+            { label: $t('landing.sidebar.locations'), value: venues.length },
             { label: $t('landing.sidebar.directory'), value: 'A–Z' }
           ]"
         />

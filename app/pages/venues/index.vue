@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const router = useRouter()
-const { locations, locationExhibitions } = useArchiveData()
+const { venues, locationExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 
@@ -9,17 +9,17 @@ const gallerySearchQuery = ref(typeof route.query.q === 'string' ? route.query.q
 const selectedState = ref(typeof route.query.state === 'string' ? route.query.state : '')
 const normalize = (value: string) => value.trim().toLocaleLowerCase()
 
-const states = computed(() => [...new Set(locations.value.map((location) => location.state))]
+const states = computed(() => [...new Set(venues.value.map((location) => location.state))]
   .sort((left, right) => left.localeCompare(right)))
 const stateCounts = computed(() => new Map(states.value.map((state) => [
   state,
-  locations.value.filter((location) => location.state === state).length
+  venues.value.filter((location) => location.state === state).length
 ])))
-const recordsByGallery = computed(() => new Map(locations.value.map((location) => [
+const recordsByGallery = computed(() => new Map(venues.value.map((location) => [
   location.slug,
   locationExhibitions.value.filter((exhibition) => exhibition.venue_slug === location.slug).length
 ])))
-const orderedLocations = computed(() => [...locations.value].sort((left, right) => {
+const orderedLocations = computed(() => [...venues.value].sort((left, right) => {
   if (Boolean(left.featured) !== Boolean(right.featured)) return left.featured ? -1 : 1
   return left.name.localeCompare(right.name)
 }))
@@ -42,7 +42,7 @@ const filteredLocations = computed(() => {
   })
 })
 const galleryLedgerItems = computed(() => [
-  { label: t('galleries.ledgerGalleries'), value: locations.value.length },
+  { label: t('galleries.ledgerGalleries'), value: venues.value.length },
   { label: t('galleries.ledgerStates'), value: states.value.length },
   { label: t('galleries.ledgerRecords'), value: locationExhibitions.value.length }
 ])
@@ -64,7 +64,7 @@ watch([gallerySearchQuery, selectedState], ([query, state]) => {
   if (nextQuery === currentQuery && state === currentState) return
 
   void router.replace({
-    path: localePath('/locations/'),
+    path: localePath('/venues/'),
     query: {
       ...(nextQuery ? { q: nextQuery } : {}),
       ...(state ? { state } : {})
@@ -95,7 +95,7 @@ useSeoMeta({
         </div>
 
         <div class="[ galleries-atlas-mark ] relative min-h-80 border-l border-archive-red/38 pl-8 tablet:min-h-64 compact:min-h-0 compact:border-t compact:border-l-0 compact:pt-4 compact:pl-0" aria-hidden="true">
-          <p class="m-0 text-hero-xl font-light leading-[0.72] text-archive-red/88">{{ String(locations.length).padStart(2, '0') }}</p>
+          <p class="m-0 text-hero-xl font-light leading-[0.72] text-archive-red/88">{{ String(venues.length).padStart(2, '0') }}</p>
           <p class="mt-4 mb-0 max-w-48 text-xs tracking-widest text-archive-muted uppercase">{{ $t('galleries.atlasCaption') }}</p>
           <img class="pointer-events-none absolute right-0 bottom-0 w-36 -rotate-8 opacity-38 compact:hidden" src="/images/landing/footer/permanently-preserved-stamp.png" alt="" />
         </div>
@@ -122,12 +122,12 @@ useSeoMeta({
         />
 
         <ArchiveAlphabetRail class="[ gallery-state-filter ] mt-7 gap-5 border-b border-archive-rule-warm/20 pb-4 compact:mt-4 compact:gap-4 compact:pb-3" :label="$t('galleries.stateFilterAria')">
-          <button class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="!selectedState" @click="selectedState = ''">{{ $t('common.all') }} <small class="ml-1 text-xs">{{ locations.length }}</small></button>
+          <button class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="!selectedState" @click="selectedState = ''">{{ $t('common.all') }} <small class="ml-1 text-xs">{{ venues.length }}</small></button>
           <button v-for="state in states" :key="state" class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="selectedState === state" @click="selectedState = selectedState === state ? '' : state">{{ state }} <small class="ml-1 text-xs">{{ stateCounts.get(state) }}</small></button>
         </ArchiveAlphabetRail>
 
         <div class="[ gallery-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-          <p class="m-0" role="status" aria-live="polite">{{ $t('galleries.status', { visible: filteredLocations.length, total: locations.length }) }}</p>
+          <p class="m-0" role="status" aria-live="polite">{{ $t('galleries.status', { visible: filteredLocations.length, total: venues.length }) }}</p>
           <button v-if="gallerySearchQuery || selectedState" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="clearFilters">{{ $t('galleries.clearFilters') }}</button>
         </div>
 

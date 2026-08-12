@@ -34,7 +34,7 @@ const [
   readProjectFile('app/components/ArchiveFactLedger.vue'),
   readProjectFile('app/pages/artists/index.vue'),
   readProjectFile('app/pages/index.vue'),
-  readProjectFile('app/pages/locations/[slug].vue'),
+  readProjectFile('app/pages/venues/[slug].vue'),
   readProjectFile('app/pages/exhibitions/[slug].vue'),
   readProjectFile('app/components/ArtistDirectoryEntry.vue'),
   readProjectFile('app/components/ArchiveMetadataRow.vue'),
