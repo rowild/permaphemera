@@ -35,4 +35,23 @@ describe('resolveVenues', () => {
     expect(() => resolveVenues(locations, [orphan], 'en'))
       .toThrow(/venue-neue-galerie-graz references unknown location location-nowhere/)
   })
+
+  it('carries the dossier fields through resolution', () => {
+    const dossierVenue = {
+      ...venue,
+      hero_image: '/images/landing/parkschloessl.jpg',
+      hero_image_alt: 'Front façade of the striped ochre and rose Parkschlössl beneath mature trees',
+      translations: [{
+        languages_code: 'en',
+        description: 'English text',
+        lede: 'A small exhibition house in the park.',
+        about: ['First paragraph.', 'Second paragraph.']
+      }]
+    }
+    const resolved = resolveVenues(locations, [dossierVenue], 'en')[0]
+    expect(resolved.hero_image).toBe('/images/landing/parkschloessl.jpg')
+    expect(resolved.hero_image_alt).toBe('Front façade of the striped ochre and rose Parkschlössl beneath mature trees')
+    expect(resolved.lede).toBe('A small exhibition house in the park.')
+    expect(resolved.about).toEqual(['First paragraph.', 'Second paragraph.'])
+  })
 })

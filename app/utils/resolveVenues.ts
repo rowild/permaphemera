@@ -11,6 +11,8 @@ export interface ResolvedVenue {
   website_url?: string
   image: string
   image_alt: string
+  hero_image?: string
+  hero_image_alt?: string
   archive_number: string
   featured: boolean
   city: string
@@ -49,6 +51,8 @@ export const resolveVenues = (
       website_url: venue.website_url,
       image: venue.image,
       image_alt: venue.image_alt,
+      hero_image: venue.hero_image,
+      hero_image_alt: venue.hero_image_alt,
       archive_number: venue.archive_number,
       featured: venue.featured,
       city: location.city_name,

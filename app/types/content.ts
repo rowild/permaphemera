@@ -140,6 +140,8 @@ export interface VenueRecord {
   longitude?: number
   image: string
   image_alt: string
+  hero_image?: string
+  hero_image_alt?: string
   archive_number: string
   featured: boolean
   status: ContentStatus
