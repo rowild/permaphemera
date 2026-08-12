@@ -12,13 +12,37 @@ Current website design inputs live in `../_Plans/designs/landing-page/`.
 
 Approved design specifications for individual features live in `docs/superpowers/specs/`, named `YYYY-MM-DD-<topic>-design.md`. Read the relevant specification before implementing or revising the feature it covers, and record deferred follow-up work there rather than dropping it.
 
-The reusable visual and implementation rules derived from the landing page live in `docs/STYLE_GUIDE.md`. Read and follow that guide when creating or materially redesigning any frontend page so typography, color, spacing, imagery, components, interactions, accessibility, naming, and responsive behavior remain consistent. Tailwind CSS v4 notation and architecture rules live in `docs/tailwindcss-v4-usage.md`; read that guide before adding or migrating Tailwind classes.
+The reusable visual and implementation rules derived from the landing page live in `docs/STYLE_GUIDE.md`. Read and follow that guide when creating or materially redesigning any frontend page so typography, color, spacing, imagery, components, interactions, accessibility, naming, and responsive behavior remain consistent. How CSS is organised in this repo — the escalation order for custom CSS, token-before-bracket policy, and static class detection in Vue — lives in `docs/CSS_ARCHITECTURE.md`; read it before adding a custom CSS rule or a bracketed utility. For Tailwind's own syntax and utility names, use the current Tailwind documentation via `context7` rather than assuming.
 
-Vue `<style scoped>` blocks and CSS Modules are prohibited. Tailwind utilities belong in templates, while every custom CSS rule belongs in the globally imported CSS architecture. Search for and reuse an existing token, utility, semantic component rule, or page namespace before adding a new rule.
+### The three CSS rules that get broken most
 
-Meaningful structural regions use inert human-readable marker groups such as `[ site-shell ]`, `[ section-band ]`, and `[ location-hero ]` at the start of the `class` attribute. **The spaces immediately inside both brackets are mandatory; `[site-shell]` is prohibited.** HTML tokenizes `[ site-shell ]` as the three classes `[`, `site-shell`, and `]`: the brackets are visual delimiters, while `site-shell` is the inert marker name. None may own CSS declarations or appear in project CSS selectors. Put ordinary styling in Tailwind utilities after the group; use a separately named unbracketed semantic class only when genuine global infrastructure such as a pseudo-element, mask, asset, coordinated descendant system, or complex interaction requires CSS. Marker groups never replace accessibility attributes.
+These are grouped here because they are violated repeatedly, not because they are the only rules. All three are machine-checkable: run `pnpm check:tailwind` after any change to a `.vue` template or to `main.css`, and fix what it reports rather than explaining it away.
 
-Every repeated content record that can grow from local data or a future CMS must be rendered by a reusable Vue component; pages may loop over those components but must not own duplicate card/row markup. Content-dependent visual variation must also belong to the component. Never encode it with `:nth-child()` or `:nth-of-type()`. For apparently random paper/card placement, derive deterministic pseudo-random values from a stable content ID and apply them at runtime through Vue styles or props. Do not call unseeded `Math.random()` during SSR: it causes hydration differences and unstable layouts.
+**1. A bracketed arbitrary value is a last resort, never a first draft.** Before writing any class containing `[...]`, check whether a canonical Tailwind utility or an existing `@theme` token already produces that declaration — and use it if so. This is the single most frequent defect in this codebase.
+
+```html
+<!-- prohibited: canonical utilities already exist -->
+<p class="text-[0.75rem] tracking-[0.1em] z-[1]">
+<!-- required -->
+<p class="text-xs tracking-widest z-1">
+```
+
+Brackets remain valid only for a genuinely exceptional exact value with no canonical equivalent. If the value repeats or carries design meaning, name it in the theme instead of bracketing it twice. The full five-step check order is in `docs/CSS_ARCHITECTURE.md` §6.1.
+
+**Many utilities are composite — changing one property silently drops the others.** `text-base` sets a font-size *and* its paired line-height; `text-[1rem]` sets only the font-size and leaves whatever line-height was inherited. So when a request is phrased as one visual change — "make this text smaller" — never implement it as one property change:
+
+- Move to another **named step**, which brings its correctly paired line-height with it.
+- If no step fits, **define a new one** in the `@theme` block of `app/assets/css/main.css` as `--text-<name>` plus `--text-<name>--line-height`. (`theme.extend` is Tailwind v3 and does not exist in v4.)
+- **Derive the new line-height; never copy it from the neighbouring size.** Display type ≥2rem tightens to `0.98–1.15` (see `docs/STYLE_GUIDE.md` §6.4); body and UI text at `0.9–1.3rem` sits at `1.45–1.55`; metadata below `0.9rem` needs proportionally more leading at `1.35–1.45`.
+- **Font sizes are never bracketed**, not even once — including fluid `clamp()` values, which become named steps too.
+
+Before changing any utility, know what else that utility carries.
+
+**2. Never add `<style scoped>` or CSS Modules to a Vue component.** There is no case in this project where a scoped block is the right answer. Tailwind utilities belong in the template; if a declaration genuinely needs custom CSS, it will be needed in more than one place, so it belongs in the globally imported CSS architecture under `app/assets/css/`. Search for an existing token, utility, semantic component rule, or page namespace before adding a new rule. `docs/CSS_ARCHITECTURE.md` §2 has the five-step escalation order.
+
+**3. Structural marker groups must keep their inner spaces.** Meaningful blocks carry an inert human-readable marker at the start of the `class` attribute — `[ site-shell ]`, `[ section-band ]`, `[ location-hero ]` — so a human reading rendered HTML can say where a problem is. **The space after `[` and the space before `]` are mandatory and non-negotiable. `[site-shell]` is prohibited — it is not a typo, do not "fix" it.** Marker tokens must never own CSS declarations, appear in project CSS selectors, or replace accessibility attributes. See `docs/STYLE_GUIDE.md` §4.1.
+
+Every repeated content record that can grow from local data or a future CMS must be rendered by a reusable Vue component; pages may loop over those components but must not own duplicate card/row markup. Content-dependent visual variation must also belong to the component — never encode it with `:nth-child()` or `:nth-of-type()`, and never with unseeded `Math.random()`. See `docs/STYLE_GUIDE.md` §21.1 for the seeded pseudo-random pattern.
 
 The first implemented page must follow these mockups:
 
@@ -40,30 +64,11 @@ Logo and wordmark lockups must never be underlined. Navigation/footer text links
 
 The frontend foundation is complete:
 
-- Nuxt 4, Vue 3, TypeScript, Vite, and Tailwind CSS v4
 - Global SPA rendering (`ssr: false`) with `pnpm build` generating the shared-host-ready `.output/public/` directory
 - Nuxt i18n with German as the unprefixed fallback locale, English under `/en/`, and root-entry browser-language detection
-- Local JSON data exposed through the locale-reactive `app/composables/useArchiveData.ts`
-- English source records in `app/data/` with German content overlays in `app/data/translations/de/`
-- A local privacy notice for the necessary language-preference cookie, with dismissal stored in the browser
-- The landing route in `app/pages/index.vue`
-- A searchable, state-filterable gallery atlas in `app/pages/locations/index.vue`, backed by 26 small Austrian galleries across all nine federal states
-- Dynamic gallery dossiers in `app/pages/locations/[slug].vue`, resolved from `locations.json` and optionally enriched from `venues.json`
-- A routed artist directory in `app/pages/artists/index.vue`
-- A searchable exhibition archive in `app/pages/exhibitions/index.vue`
-- Dynamic exhibition records in `app/pages/exhibitions/[slug].vue`
-- Reusable Vue components for shared header/footer navigation, hero kaleidoscope, venue masks/frames, exhibition cards, and archive arrows
-- Responsive hero, locations, selected exhibitions, artists, archive-method, sponsors, and dark-footer sections
-- An overflow-aware sponsor strip that uses `ResizeObserver` to keep one centered static sequence while the logos fit and activates a duplicated, seamless 72-second marquee only when they overflow, with pause and reduced-motion behavior
-- Seven 2026 Parkschlössl records with PDF-derived local metadata and optimized runtime artwork
-- A compact selectable exhibition ledger with preloaded active preview, loading/error states, and responsive mobile composition
-- GSAP interactions and a perspective-projected Three.js hero kaleidoscope with coordinated orbit arrows, replay choreography, randomized preloaded image swaps, and explicit loading/disabled states
-- An orbit-dial preloader for the hero: images download one at a time through `XMLHttpRequest` and reach Three.js as blob URLs, because `ImageLoader` and `TextureLoader` document `onProgress` as unsupported and cannot report per-file byte progress. The dial ring spans all twelve galleries, each owning a twelfth filled by its own download, while the centre shows the image in flight. Textures live in a module-scoped LRU cache in `app/utils/kaleidoscopeTextures.ts`, sized to the twelve displayed images plus the next twelve, so they survive component unmount; never call `releaseTextureCache()` from a component lifecycle hook. The wheel is gated on every image and must never render partially built. The left and right controls reshuffle what is already on screen without fetching; only the middle replay control loads new imagery.
-- A responsive archival-temple identity with browser/touch/web-app icons and a documented two-accent red/ochre color system
-- Runtime images and SVGs under `public/`
-- Static generation plus guarded SFTP publishing through `scripts/deploy.mjs`, with ignored local credentials, document-root validation, build-output inspection, entry-document-last upload ordering, and remote `.htaccess` verification
+- An orbit-dial preloader for the hero. Three constraints that the code alone will mislead you about: images download through `XMLHttpRequest` and reach Three.js as blob URLs because `ImageLoader` and `TextureLoader` document `onProgress` as unsupported — do not refactor this back onto the Three.js loaders; the texture cache in `app/utils/kaleidoscopeTextures.ts` is module-scoped so it survives component unmount, so never call `releaseTextureCache()` from a lifecycle hook (it is test/teardown only); and the wheel is gated on every image and must never render partially built. Full mechanics in the hero-kaleidoscope-preloader design spec.
 
-Run commands from this repository root with pnpm, on the pinned Node version. `.nvmrc` selects Node 24.11.1 and `package.json` declares `engines.node` as `>=24.11.1 <25` with `packageManager` pinned to `pnpm@11.20.0`. Run `nvm use` before working so build output and script behavior stay reproducible; do not silently move to a newer Node line. `pnpm check:tailwind` verifies that bracketed candidates have no canonical Tailwind equivalent and that structural markers remain spaced and CSS-inert; `pnpm check:i18n` verifies message parity, content-overlay coverage, stable content identifiers, locale switching, and privacy-notice wiring. The focused `check:directories`, `check:artists`, `check:links`, `check:locations`, and `check:mobile` scripts protect index/detail routing and shared frames, the artist modal, archive link variants, gallery browser, and compact responsive contracts. `pnpm build` and `pnpm generate` both create the static SPA in `.output/public/`; `public/.htaccess` supplies the Apache fallback for clean client-side routes. `pnpm deploy:dry-run` regenerates and inspects that output without uploading. `pnpm deploy` uses ignored `.env.deploy.local` credentials to publish to the validated shared-host document root over SFTP and must only be run when deployment is explicitly requested. The build currently succeeds; Vite reports non-fatal resolution notices for root-relative `public/` asset URLs and a client chunk-size warning.
+Run commands from this repository root with pnpm, on the Node version pinned by `.nvmrc` and `package.json`. Run `nvm use` before working so build output and script behavior stay reproducible; do not silently move to a newer Node line. `pnpm check:tailwind` verifies that bracketed candidates have no canonical Tailwind equivalent and that structural markers remain spaced and CSS-inert; `pnpm check:i18n` verifies message parity, content-overlay coverage, stable content identifiers, locale switching, and privacy-notice wiring. The focused `check:directories`, `check:artists`, `check:links`, `check:locations`, and `check:mobile` scripts protect index/detail routing and shared frames, the artist modal, archive link variants, gallery browser, and compact responsive contracts. `public/.htaccess` supplies the Apache fallback for clean client-side routes. `pnpm deploy:dry-run` regenerates and inspects that output without uploading. `pnpm deploy` uses ignored `.env.deploy.local` credentials to publish to the validated shared-host document root over SFTP and must only be run when deployment is explicitly requested.
 
 ## Data Rules
 
@@ -73,17 +78,6 @@ Use local JSON source files under:
 
 ```text
 app/data/
-```
-
-Recommended initial files:
-
-```text
-app/data/locations.json
-app/data/venues.json
-app/data/artists.json
-app/data/exhibitions.json
-app/data/location-exhibitions.json
-app/data/sponsors.json
 ```
 
 Keep the local JSON shape compatible with the future Directus schema in `../_Plans/exhibitions-plan.md` so the data adapter can later be swapped without rewriting components.
@@ -123,30 +117,10 @@ Hand-drawn archival ornaments use transparent PNGs reconstructed from the approv
 
 Match the mockups closely across desktop and mobile before expanding scope.
 
-Verify at least:
-
-- Desktop landing layout
-- Mobile hero layout
-- Header navigation and language switcher behavior
-- Search and archive section responsiveness
-- Footer sponsor strip behavior
-- Text fit inside buttons, cards, and navigation elements
-- Dynamic gallery layout, search, and compact preview interaction on desktop and mobile
-- Gallery and exhibition index search, URL-backed filters, empty states, and dense mobile card grids
-- Artist directory search, five-name alphabet previews, history-backed full-letter routes, and focus-managed exhibition modals across breakpoints
-- Landing, gallery, and exhibition scroll cues fading when their target section enters the viewport, with routed-page dividers following that target section
-- Exhibition detail layout, source links, related records, and unavailable 360 state
+The full pre-ship verification checklist lives in the `frontend-qa-checklist` skill.
 
 Do not broaden the existing static SFTP publishing workflow into backend, admin, or provider-provisioning work until that scope is explicitly requested.
 
 ## `fin-patch` Closeout Rule
 
-When the user writes exactly `fin-patch`, perform the full patch closeout:
-
-1. Increase the patch version in the active `package.json` version tag.
-2. Add a new entry to `changelog.md` using the package version and the current datetime as the heading.
-3. Summarize the important completed changes in that changelog entry.
-4. Update `AGENTS.md` and/or `README.md` if the work introduced significant new workflow, architecture, setup, or project knowledge.
-5. Review the complete worktree and include all changed and untracked files, even if they were not part of the most recent task.
-6. Run feasible verification commands before committing.
-7. Create one or more Git commits as appropriate for the content, committing all relevant files.
+When the user writes exactly `fin-patch`, run the `fin-patch` skill, which performs the full patch closeout.

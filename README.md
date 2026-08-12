@@ -101,7 +101,7 @@ public/images/landing/         raster assets used by the site
 public/images/locations/       optimized location/exhibition artwork
 public/svg/                    frames, icons, and ornaments
 docs/STYLE_GUIDE.md            reusable frontend design system and page rules
-docs/tailwindcss-v4-usage.md   Tailwind v4 notation and project architecture rules
+docs/CSS_ARCHITECTURE.md       CSS organisation and Tailwind authoring rules for this project
 AGENTS.md                      repository instructions for coding agents
 changelog.md                   version history
 ```
@@ -134,7 +134,7 @@ Custom image masks and frames are implemented as Vue/SVG components, and runtime
 
 ## Design Guidance
 
-Read `docs/STYLE_GUIDE.md` before designing or implementing a new page. Read `docs/tailwindcss-v4-usage.md` before adding or migrating Tailwind classes. Vue scoped styles and CSS Modules are prohibited: custom rules belong in the globally imported CSS architecture and must reuse existing tokens and component rules wherever possible.
+Read `docs/STYLE_GUIDE.md` before designing or implementing a new page. Read `docs/CSS_ARCHITECTURE.md` before adding a custom CSS rule or a bracketed Tailwind utility. Vue scoped styles and CSS Modules are prohibited: custom rules belong in the globally imported CSS architecture and must reuse existing tokens and component rules wherever possible.
 
 The hand-drawn archival ornaments are transparent PNGs reconstructed from the landing-page mockups. Canonical runtime files live in their normal section folders under `public/images/landing/`; matching `_recreated_anew/` folders preserve the reconstructed versions for comparison and future refinement. Photographic venue and archive-method compositions are intentionally separate and must not be regenerated as ornaments.
 

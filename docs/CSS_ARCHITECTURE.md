@@ -1,22 +1,27 @@
-# Tailwind CSS v4 Usage for PERMAPHEMERA
+# CSS Architecture for PERMAPHEMERA
 
-Version: 1.5
+Version: 2.0
 Applies to: Tailwind CSS 4.3.x, Nuxt 4, and Vue 3
 Project source of truth: `app/assets/css/main.css` and `docs/STYLE_GUIDE.md`
 
+> [!NOTE]
+> This document covers how CSS and Tailwind are organised **in this project**. It deliberately does not restate Tailwind's own syntax reference — for utility names, variant notation, and v4 directives, consult the current Tailwind documentation (the `context7` MCP server serves it on demand) rather than a snapshot that silently goes stale.
+>
+> Section numbers are intentionally non-contiguous. The framework-reference sections (4, 7–12) and the adoption/migration assessment (18–20) were removed in v2.0; the remaining numbers are stable and are referenced from `AGENTS.md`.
+
 ## 1. Purpose
 
-This document defines how Tailwind CSS v4 may be used in PERMAPHEMERA. It is both a notation reference and a project-specific architecture rulebook.
+This document defines how CSS is organised and authored in PERMAPHEMERA. It is a project rulebook, not a Tailwind tutorial.
 
-The project already has Tailwind CSS v4 installed and active:
+Tailwind CSS v4 is installed, active, and adopted: `@tailwindcss/vite` is registered in `nuxt.config.ts`, `@import "tailwindcss"` is present in `app/assets/css/main.css`, archive colors and fonts are exposed through an `@theme` block, and `@tailwindcss/typography` is registered with the CSS-first `@plugin` directive.
 
-- `@tailwindcss/vite` is registered in `nuxt.config.ts`;
-- `@import "tailwindcss"` is present in `app/assets/css/main.css`;
-- archive colors and fonts are exposed through an `@theme` block;
-- `@tailwindcss/typography` is registered with Tailwind v4's CSS-first `@plugin` directive;
-- the current interface is nevertheless authored almost entirely with semantic classes in the global stylesheet.
+Three rules in this document are broken more often than the rest, are restated in `AGENTS.md` so they are always in context, and are checked by `pnpm check:tailwind`:
 
-Tailwind is therefore available, but adopting it is an authoring decision rather than an installation task.
+1. **§6.1** — a canonical utility or `@theme` token before any bracketed arbitrary value.
+2. **§2** — no `<style scoped>` and no CSS Modules, ever.
+3. **`STYLE_GUIDE.md` §4.1** — structural marker groups keep their mandatory inner spaces.
+
+Run `pnpm check:tailwind` after any change to a `.vue` template or to `main.css`.
 
 ## 2. Non-negotiable rule: no scoped styles
 
@@ -50,35 +55,6 @@ Use a hybrid model:
 | A value repeated or carrying design meaning | promote it to `@theme` or a global reusable rule |
 
 Do not force Tailwind into code where CSS expresses the design more clearly. The cut-corner frame, dynamic masks, paper textures, multi-layer backgrounds, and coordinated pseudo-elements are shared visual infrastructure, not collections of disposable utilities.
-
-## 4. The basic grammar
-
-A Tailwind class generally has this form:
-
-```text
-[variants:]utility[-value][/modifier]
-```
-
-Examples:
-
-```html
-<div class="flex grow gap-6 p-4 md:grid md:grid-cols-2 hover:text-archive-red">
-```
-
-- `flex` is a utility with no value.
-- `grow` is the named utility for `flex-grow: 1`.
-- `gap-6` combines the `gap` utility with a theme-backed value.
-- `md:` is a responsive variant.
-- `hover:` is a state variant.
-- `text-archive-red` is generated from `--color-archive-red` in `@theme`.
-
-Variants can be stacked:
-
-```html
-<a class="md:hover:text-archive-red focus-visible:outline-2">
-```
-
-Read stacked variants from left to right: at the `md` breakpoint, while hovered, apply the text color.
 
 ## 5. Prefer Tailwind's actual vocabulary
 
@@ -196,6 +172,26 @@ Check in this order:
 
 Do not replace an exact project value with a merely close core value. If no exact class exists and the value is genuinely one-off, brackets remain valid. If it repeats or carries design meaning, name it in the theme or global architecture instead.
 
+### 6.1a Composite utilities: know what else the class carries
+
+Several Tailwind utilities set more than one declaration. `text-base` emits a `font-size` **and** its paired `line-height`; `text-[1rem]` emits only the `font-size` and silently leaves whatever line-height was inherited. A request phrased as one visual change — "make this text smaller" — must therefore never be implemented as one property change.
+
+The order to follow:
+
+1. **Move to another named step.** `text-base` → `text-sm` carries the correct line-height with it. This is almost always the right answer.
+2. **If no step fits, define one.** Add `--text-<name>` and `--text-<name>--line-height` to the `@theme` block in `app/assets/css/main.css`. Tailwind v4 generates the composite utility from the pair. (`theme.extend` is v3 syntax and does not exist in v4.)
+3. **Derive the line-height; never copy it from a neighbouring size.** Leading is not constant across the scale — smaller text needs proportionally more of it, display type needs less:
+
+   | Range | Line-height ratio | Basis |
+   |---|---|---|
+   | Display / headings ≥ `2rem` | `0.98`–`1.15` | `STYLE_GUIDE.md` §6.4 specifies `0.98` for hero and section headings |
+   | Body and UI, `0.9`–`1.3rem` | `1.45`–`1.55` | matches `text-base` at `1.5` |
+   | Metadata below `0.9rem` | `1.35`–`1.45` | matches `text-xs` at `1.333`, `text-sm` at `1.428` |
+
+4. **Font sizes are never bracketed.** Unlike the general §6.1 rule, `text-*` admits no one-off exception — not even for fluid `clamp()` values, which become named steps like any other. This is stricter on purpose: an unnamed font size is invisible to `check:tailwind`, because Tailwind cannot canonicalise a value that no token defines.
+
+The same "what else does it carry" question applies beyond type. Check the emitted declarations before assuming a utility does one thing.
+
 ### 6.2 Spaced marker groups are not arbitrary utilities
 
 PERMAPHEMERA keeps meaningful structural names visible in generated markup with spaced visual marker groups:
@@ -215,309 +211,6 @@ The spaces are mandatory. `[ site-shell ]` is tokenized by HTML as `[`, `site-sh
 - Keep complex global behavior on a separately named, unbracketed semantic class.
 - Do not remove the internal spaces in an attempt to make the group resemble a single class.
 - Do not add spaces inside valid arbitrary utilities such as `w-[14rem]`, `[mask-type:luminance]`, or `[&>svg]:size-5`; those are deliberately single tokens and the canonical-first rule still governs them.
-
-## 7. Square brackets: arbitrary values
-
-Square brackets supply a value that is not part of the theme and has no exact canonical utility:
-
-```html
-<div class="top-[7.3rem] w-[14rem] opacity-[0.62]">
-<h1 class="text-[clamp(3.35rem,5.35vw,5.85rem)]">
-<div class="grid-cols-[minmax(0,1fr)_18rem]">
-```
-
-They compile to the normal property represented by the utility:
-
-```text
-w-[14rem]                              -> width: 14rem
-opacity-[0.62]                         -> opacity: 0.62
-grid-cols-[minmax(0,1fr)_18rem]        -> grid-template-columns: minmax(0,1fr) 18rem
-```
-
-### 7.1 Spaces become underscores
-
-HTML class tokens cannot contain literal spaces. Within an arbitrary value, use `_` where CSS needs a space:
-
-```html
-<div class="grid-cols-[1fr_auto_1fr]">
-<div class="shadow-[0_0.5rem_1.5rem_rgba(25,23,20,0.16)]">
-```
-
-Tailwind converts the underscores into spaces where appropriate. If an underscore must remain an underscore, escape it with `\_`.
-
-### 7.2 Mathematical functions and punctuation
-
-CSS functions are allowed:
-
-```html
-<div class="w-[calc(100%-2rem)]">
-<div class="max-w-[min(54rem,100%)]">
-<h2 class="text-[clamp(2.25rem,3.65vw,3.85rem)]">
-```
-
-Do not insert spaces around operators inside a class token. Prefer compact valid CSS inside the brackets.
-
-### 7.3 Type hints for ambiguous values
-
-Sometimes Tailwind cannot infer which property family a CSS variable represents. Add a data type before the value:
-
-```html
-<div class="text-[color:var(--record-label)]">
-<div class="text-[length:var(--record-size)]">
-```
-
-Use type hints only when inference is genuinely ambiguous.
-
-### 7.4 Negative arbitrary values
-
-Place the minus sign before the utility:
-
-```html
-<div class="-top-[0.35rem] -rotate-[2.5deg]">
-```
-
-Use the standard negative utility when one exists, such as `-mt-2`.
-
-### 7.5 Arbitrary fractions and slash modifiers
-
-Use standard fraction utilities where available:
-
-```html
-<div class="w-1/2">
-<div class="basis-2/3">
-```
-
-A slash can also be a modifier:
-
-```html
-<p class="text-lg/7">                 <!-- font size / line height -->
-<div class="bg-archive-ink/10">       <!-- color / opacity -->
-```
-
-If a fraction or modifier is not supported, use a bracketed value rather than guessing a class name.
-
-## 8. Parentheses: CSS custom-property shorthand
-
-Tailwind v4 provides parentheses as shorthand when the entire value is a CSS custom property:
-
-```html
-<div class="fill-(--icon-color)">
-<div class="flex-(--record-flex)">
-<div class="w-(--record-width)">
-```
-
-This means the same as adding `var()` manually:
-
-```text
-fill-(--icon-color)  == fill-[var(--icon-color)]
-flex-(--record-flex) == flex-[var(--record-flex)]
-```
-
-Use parentheses only for this custom-property shorthand. Use brackets for a larger expression such as `w-[calc(var(--record-width)-2rem)]`.
-
-## 9. Arbitrary CSS properties
-
-When Tailwind has no suitable utility, brackets can contain a complete CSS declaration:
-
-```html
-<div class="[mask-type:luminance]">
-<div class="[--frame-opacity:0.72] lg:[--frame-opacity:0.9]">
-```
-
-Variants still work:
-
-```html
-<div class="[mask-type:luminance] hover:[mask-type:alpha]">
-```
-
-Project rule: use arbitrary properties sparingly. If the property is repeated, is a branded visual primitive, or requires coordinated child/pseudo-element rules, define it once in global CSS.
-
-## 10. Variants and their notation
-
-Variants are prefixes ending in `:`.
-
-### 10.1 Interaction and state
-
-```html
-<a class="text-archive-ink hover:text-archive-red focus-visible:outline-2 active:opacity-80">
-<input class="disabled:cursor-not-allowed disabled:opacity-50">
-```
-
-Prefer `focus-visible:` for keyboard focus indicators. Never remove focus indication without replacing it with a visible project-consistent treatment.
-
-### 10.2 Responsive variants are mobile-first
-
-```html
-<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-```
-
-Unprefixed utilities apply at all sizes. `md:` applies from the medium breakpoint upward; it does not mean “medium device only.”
-
-Target a range by stacking `md:` and `max-lg:`:
-
-```html
-<div class="md:max-lg:grid-cols-2">
-```
-
-For a one-off breakpoint:
-
-```html
-<div class="max-[600px]:hidden min-[80rem]:grid-cols-4">
-```
-
-Repeated breakpoints belong in `@theme` as named `--breakpoint-*` tokens or in a named `@custom-variant` instead of being copied as arbitrary variants. This project uses `tablet:` for `max-width: 1280px`, `tablet-landscape:` and `tablet-portrait:` for the orientation-sensitive 701–1280px tablet range, `medium:` for `max-width: 900px`, `compact:` for `max-width: 700px`, and `narrow:` for `max-width: 420px`.
-
-These overlapping `max-width` custom variants **must be declared from broadest to narrowest** in `main.css`:
-
-```css
-@custom-variant tablet (@media (max-width: 1280px));
-@custom-variant tablet-landscape (@media (min-width: 701px) and (max-width: 1280px) and (orientation: landscape));
-@custom-variant tablet-portrait (@media (min-width: 701px) and (max-width: 1280px) and (orientation: portrait));
-@custom-variant medium (@media (max-width: 900px));
-@custom-variant compact (@media (max-width: 700px));
-@custom-variant narrow (@media (max-width: 420px));
-```
-
-Tailwind emits the generated utilities in declaration order. The two tablet-orientation variants follow the general tablet variant so they can recompose that baseline, while `compact:` remains later and its mobile declarations win below 700px. Template class order does not resolve this cascade.
-
-### 10.3 Parent state with `group`
-
-```html
-<a class="group">
-  <span class="text-archive-ink group-hover:text-archive-red">Open archive</span>
-</a>
-```
-
-Name groups when nested groups could be ambiguous:
-
-```html
-<article class="group/card">
-  <a class="group/action group-hover/card:text-archive-red">
-```
-
-### 10.4 Sibling state with `peer`
-
-```html
-<input class="peer" type="checkbox">
-<span class="hidden peer-checked:block">Selected</span>
-```
-
-The peer must be a previous sibling because of how the CSS sibling selector works.
-
-### 10.5 Data and ARIA state
-
-```html
-<button class="aria-expanded:text-archive-red">
-<li class="data-[active=true]:underline">
-```
-
-Use native states and meaningful attributes before introducing JS-only styling flags.
-
-### 10.6 Direct children and descendants
-
-```html
-<ul class="*:border-b *:border-archive-line">
-<div class="**:focus-visible:outline-2">
-```
-
-`*:` targets direct children; `**:` targets descendants. Do not use broad descendant variants when explicit component markup or one global semantic rule is safer.
-
-## 11. Arbitrary variants: selectors in brackets
-
-An arbitrary variant is a selector or at-rule in brackets before the utility:
-
-```html
-<li class="[&.is-active]:text-archive-red">
-<div class="[&_p]:mt-4">
-<div class="[&>svg]:size-5">
-<div class="[@supports(display:grid)]:grid">
-```
-
-`&` marks the element receiving the class. Underscores represent spaces in a selector:
-
-```text
-[&_p]:mt-4     -> descendant p elements
-[&>svg]:size-5 -> direct svg children
-```
-
-If the same arbitrary selector appears more than once, replace it with an explicit global component rule or a registered `@custom-variant`. Dense bracket selectors in templates are harder to audit for accidental duplication than named shared CSS.
-
-## 12. Important v4 directives
-
-Tailwind v4 configuration is CSS-first.
-
-### 12.1 `@import`
-
-```css
-@import "tailwindcss";
-```
-
-This imports Tailwind's theme, base/preflight, and utilities. Keep this in the main global stylesheet.
-
-### 12.2 `@theme`
-
-Use `@theme` for tokens that must generate utilities:
-
-```css
-@theme {
-  --color-archive-red: #a6523c;
-  --font-display: "Cormorant Garamond", serif;
-  --breakpoint-wide: 80rem;
-}
-```
-
-Theme namespaces determine which utilities are created. A normal `:root` custom property remains available to CSS but does not automatically generate Tailwind utilities.
-
-PERMAPHEMERA convention:
-
-- use `@theme` for reusable colors, fonts, spacing, breakpoints, shadows, and animation values that should be addressable as utilities;
-- use `:root` for implementation variables such as asset URLs or geometry that do not need utility classes.
-
-The migration has also established `archive-copy`, `archive-body`, `archive-copy-warm`, `archive-rule-warm`, `archive-rule-deep`, `archive-rule-brown`, `archive-footer-copy`, `archive-light-ink`, and `archive-night-heading` color utilities. Use these named utilities before considering a raw or bracketed color.
-
-### 12.3 `@utility`
-
-Register a custom reusable utility globally:
-
-```css
-@utility content-auto {
-  content-visibility: auto;
-}
-```
-
-It can then take variants such as `lg:content-auto`. Do not create a custom utility that merely duplicates a built-in utility.
-
-### 12.4 `@custom-variant`
-
-Register a repeated project state globally:
-
-```css
-@custom-variant current (&[aria-current="page"]);
-```
-
-Then use `current:text-archive-red`. Prefer standard variants such as `aria-*` when they already express the state.
-
-### 12.5 `@variant`
-
-Within global custom CSS, apply a Tailwind variant:
-
-```css
-.archive-link {
-  color: var(--color-archive-ink);
-
-  @variant hover {
-    color: var(--color-archive-red);
-  }
-}
-```
-
-This remains global CSS and complies with the no-scoped-style rule.
-
-### 12.6 `@source`
-
-Tailwind scans source files as plain text. Explicitly register an otherwise ignored external source with `@source`, or set a base path with `source()` on the import. The current Nuxt app should normally be detected automatically.
-
-Do not add safelists as a substitute for correctly authored static classes.
 
 ## 13. Static class detection in Vue
 
@@ -688,103 +381,6 @@ Likewise, keep `border-image`, mask paths, `::before`/`::after`, and cut-corner 
 - Never add `<style scoped>` or CSS Modules.
 - Before creating custom CSS, search the global styles for an existing implementation.
 - Preserve the style guide's frame, typography, color, accessibility, and responsive constraints even when a shorter utility exists.
-
-## 18. Would Tailwind benefit this project?
-
-### 18.1 Advantages
-
-Tailwind would provide moderate benefits for future work:
-
-- **Faster ordinary component construction:** flex/grid layout, spacing, sizing, typography, breakpoints, and states can be expressed without adding a new selector for every wrapper.
-- **Visible local composition:** a developer can understand an element's ordinary layout without jumping between a Vue file and a large stylesheet.
-- **Token enforcement:** the existing archive colors and fonts already create utilities through `@theme`; a fuller spacing, breakpoint, and type token layer could reduce value drift.
-- **Responsive consistency:** mobile-first variants make normal component-level adaptations concise.
-- **Less growth of one-off global selectors:** simple wrappers need not add more names to the already large global stylesheet.
-- **Reusable component internals:** a Vue component can own a stable utility bundle while callers reuse the component rather than duplicate CSS.
-
-### 18.2 Limits and disadvantages
-
-Tailwind does not solve all of this project's styling needs:
-
-- **The current visual language is CSS-heavy:** SVG nine-slice frames, masks, generated geometry, pseudo-elements, multi-layer paper backgrounds, ornamental assets, and tightly coordinated selectors are clearer in global CSS.
-- **Existing reuse is semantic:** `ArchiveButton`, `ArchiveSearchForm`, frame components, and data-backed card/row components provide shared behavior. Callers reuse those contracts instead of duplicating their internals.
-- **The current page is large and visually tuned:** converting working rules creates regression risk without changing user-visible behavior.
-- **Bracket-heavy translation can be worse:** expressing every bespoke value and selector as an arbitrary utility would move complex CSS into markup without simplifying it.
-- **Global auditability matters here:** the no-scoped-style policy favors a visible global design-system layer for repeated branded patterns.
-- **Long templates can become noisy:** the landing page already has substantial composition and Vue logic; indiscriminate utility strings would make it harder to scan.
-
-### 18.3 Conclusion
-
-Tailwind is advantageous **as a selective authoring layer for new and refactored ordinary UI**, not as a goal of replacing all CSS.
-
-The recommended architecture is:
-
-- keep one global design-system stylesheet (it may later be split into globally imported files by tokens, base, components, and pages);
-- retain semantic global rules for branded and complex patterns;
-- use Tailwind utilities for straightforward layout and local composition;
-- expand `@theme` only with proven reusable tokens;
-- extract reusable Vue components when markup, behavior, or accessibility repeats;
-- prohibit all scoped styles.
-
-## 19. Migration difficulty and estimate
-
-The active implementation consists of the landing route, dynamic gallery dossiers, dynamic exhibition records, the artist directory, and reusable visual and ordinary-layout components. The completed migration reduced the global stylesheet from 4,044 to 883 lines without introducing scoped component styles or CSS Modules. The remaining stylesheet is reserved for theme/base rules, Typography, assets and masks, pseudo-elements, gradients, keyframes, and coordinated visual systems.
-
-### 19.1 Recommended incremental adoption: easy to moderate
-
-Estimated effort: **1–3 focused developer days** for the foundation and a representative pilot, followed by ordinary incremental adoption during feature work.
-
-Scope:
-
-1. Reconcile the global CSS architecture and document the no-scoped rule.
-2. Add only proven spacing, breakpoint, type, shadow, and motion tokens to `@theme`.
-3. Convert one low-risk, ordinary area such as a navigation group, simple metadata row, or new component.
-4. Establish class-order and static-mapping conventions.
-5. Verify desktop and mobile rendering.
-
-This produces most of Tailwind's practical benefit without destabilizing the landing page.
-
-### 19.2 Selective conversion of ordinary existing layout: moderate
-
-Estimated effort: **4–8 focused developer days**, including visual regression work.
-
-Scope:
-
-- convert simple display, grid/flex, gap, padding, margin, typography, sizing, and common responsive declarations;
-- keep semantic complex component rules global;
-- remove obsolete global declarations carefully;
-- test all four route families at the style guide's breakpoints and frame extremes.
-
-The difficulty is not typing the new classes; it is proving that cascade, source order, media-query behavior, and exact visual tuning remain unchanged.
-
-### 19.3 Near-total utility rewrite: difficult and not recommended
-
-Estimated effort: **2–4 developer weeks**, potentially more if pixel-level browser comparison and cleanup expose cascade dependencies.
-
-This would require translating or restructuring thousands of lines, designing exceptions for pseudo-elements and complex visual infrastructure, and thoroughly checking the complete landing page. The result would still need substantial global CSS. The cost and regression risk are disproportionate to the architectural gain.
-
-### 19.4 Migration rule
-
-Do not measure success by the percentage of CSS converted. Measure it by:
-
-- fewer duplicated ordinary declarations;
-- consistent token use;
-- reusable Vue component contracts;
-- no new scoped styles;
-- stable branded geometry and responsive rendering;
-- a global CSS layer that becomes easier, not harder, to audit.
-
-## 20. Safe adoption sequence
-
-1. Preserve the current rendered page as the visual baseline.
-2. Organize global CSS by responsibility if its size becomes an obstacle; every file must still be imported globally.
-3. Define a minimal Tailwind theme aligned with `STYLE_GUIDE.md`.
-4. Pilot utilities on one simple component or on new work.
-5. Keep complex brand rules untouched.
-6. Extract reusable components based on stable behavior and semantics, not merely repeated class strings.
-7. Convert existing rules only when the touched area benefits from the change.
-8. Remove an old global declaration only after confirming that no other element relies on it.
-9. Run the production build and visually verify desktop and mobile after each bounded conversion.
 
 ## 21. Official references
 

@@ -41,9 +41,15 @@ const collectVueFiles = async (directory) => {
 const markerCollisions = []
 const invalidMarkers = []
 const pointerStateConflicts = []
+const componentStyleBlocks = []
 
 for (const file of await collectVueFiles(resolve(projectRoot, 'app'))) {
   const source = await readFile(file, 'utf8')
+
+  for (const block of source.matchAll(/<style\b([^>]*)>/g)) {
+    const attributes = block[1].trim()
+    componentStyleBlocks.push({ file, attributes: attributes || '(unscoped)' })
+  }
 
   for (const match of source.matchAll(/\[ ([a-z0-9-]+) \]/g)) {
     const marker = match[1]
@@ -67,7 +73,9 @@ for (const file of await collectVueFiles(resolve(projectRoot, 'app'))) {
   }
 }
 
-if (findings.length || markerCollisions.length || invalidMarkers.length || pointerStateConflicts.length) {
+if (findings.length || markerCollisions.length || invalidMarkers.length || pointerStateConflicts.length || componentStyleBlocks.length) {
+  if (componentStyleBlocks.length) console.error('Component <style> blocks are prohibited — move these rules into app/assets/css/:')
+  for (const { file, attributes } of componentStyleBlocks) console.error(`  ${file}: <style ${attributes}>`)
   if (findings.length) console.error('Non-canonical Tailwind candidates found:')
   for (const { candidate, canonical } of findings) console.error(`  ${candidate} -> ${canonical}`)
   if (invalidMarkers.length) console.error('Structural markers missing mandatory spaces:')

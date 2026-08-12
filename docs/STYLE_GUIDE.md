@@ -91,7 +91,7 @@ public/images/landing/        raster compositions and extracted details
 public/svg/                   scalable frames, icons, rules, and ornaments
 ```
 
-New global tokens and truly reusable primitives belong in `main.css` or a future organized design-system layer. **Vue `<style scoped>` blocks and CSS Modules are prohibited.** Page-only rules belong in the globally imported CSS architecture and must use a route/domain namespace to avoid collisions. Before adding any rule, search the global styles and reuse an existing frame, arrow, heading, search field, archive-card treatment, token, utility, or component pattern wherever possible. Tailwind-specific conventions and notation are defined in `docs/tailwindcss-v4-usage.md`.
+New global tokens and truly reusable primitives belong in `main.css` or a future organized design-system layer. **Vue `<style scoped>` blocks and CSS Modules are prohibited.** Page-only rules belong in the globally imported CSS architecture and must use a route/domain namespace to avoid collisions. Before adding any rule, search the global styles and reuse an existing frame, arrow, heading, search field, archive-card treatment, token, utility, or component pattern wherever possible. CSS organisation and Tailwind authoring rules are defined in `docs/CSS_ARCHITECTURE.md`.
 
 **Tailwind bracket notation is strictly last-resort syntax.** Always check for an exact core utility and an existing project theme utility first. Canonical equivalents such as `tracking-widest`, `text-xs`, `z-1`, `flex-none`, and named project variants must be used instead of equivalent `[...]` forms. Repeated raw values, colors, breakpoints, or state selectors must become named theme tokens, variants, components, or global semantic rules. Brackets are allowed only when the exact required value, calculation, grid definition, or selector has no canonical equivalent; visual fidelity must not be weakened merely to avoid brackets. Treat VS Code/Tailwind canonicalization warnings as defects and correct them in the same patch.
 
@@ -264,7 +264,20 @@ Recommended pattern:
 
 Do not color isolated random words. The red phrase should carry the conceptual turn of the heading: ephemeral/permanent, encounter/trace, archive/presence.
 
-### 6.5 Body copy
+### 6.5 Glyph clearance and clipping
+
+Text containers must preserve the complete visible glyph, not merely the nominal CSS line box. This is especially important with Cormorant Garamond, tight display leading, transforms, and any container using `overflow: hidden`, `clip`, or a mask.
+
+- **Descender clipping** cuts off strokes below the baseline, commonly in `g`, `j`, `p`, `q`, and `y`.
+- **Ascender clipping** cuts off tall strokes above the main letter body, commonly in `b`, `d`, `f`, `h`, `k`, and `l`.
+- **Diacritic clipping** cuts off accents or marks above or below letters, such as `Ä`, `é`, or `ç`. Upper clipping may also affect capitals and the font's optical overshoot.
+- **Glyph-overhang clipping** cuts off ink extending beyond the inline box at the left or right, most often with italics, swashes, quotation marks, or animated/transformed text.
+
+Never treat a declared `line-height` as proof that all glyph ink fits. Verify tight or clipped typography with representative ascenders, descenders, capitals, diacritics, italics, every loaded weight, and the configured fallback fonts. If clipping is possible, first provide sufficient `padding-block` or increase the line-height; use inline padding as well when glyphs can overhang sideways. When a component intentionally clips horizontal overflow, reserve independent vertical glyph clearance inside that viewport. Do not conceal the defect by moving the text with a transform, because font loading, browser rasterization, zoom, and responsive size changes can expose it again.
+
+For single-line animated titles, confirm at representative breakpoints that the clipping viewport's rendered height accommodates the text's full ink bounds before and during motion. The landing exhibition-card title viewport therefore retains `0.125rem` of bottom clearance for Cormorant Garamond descenders.
+
+### 6.6 Body copy
 
 - Base size: `16px`.
 - Base line-height: `1.5`.
@@ -274,7 +287,7 @@ Do not color isolated random words. The red phrase should carry the conceptual t
 - For long-form future pages, target a reading measure of `38–45rem` or roughly `55–75` characters per line and increase line-height to `1.55–1.7`.
 - HTML-rich content supplied by the future CMS must use the prepared Tailwind Typography `.prose` wrapper so headings, paragraphs, lists, links, quotations, tables, code, and media captions share one controlled descendant style. Use `.prose.prose-invert` only on intentional night surfaces and `.not-prose` around embedded interface components. The HTML must be sanitized before it reaches Vue's `v-html`; styling does not make untrusted HTML safe.
 
-### 6.6 Eyebrows and labels
+### 6.7 Eyebrows and labels
 
 Eyebrows are red, uppercase, `0.95rem`, weight 500, with `0.06em` tracking. They frequently pair with a horizontal ornamental mark.
 
@@ -288,7 +301,7 @@ Definition labels and archival microcopy may use:
 
 Avoid setting full paragraphs in uppercase or widely tracked type.
 
-### 6.7 Brand wordmark
+### 6.8 Brand wordmark
 
 `PERMAPHEMERA` is rendered as text, not a raster logo:
 
@@ -300,7 +313,7 @@ Avoid setting full paragraphs in uppercase or widely tracked type.
 
 The footer wordmark uses `1.7rem` and `0.16em` tracking. Do not distort, italicize, outline, or place the name inside a badge. **A logo or wordmark must never be underlined, including on hover, focus, or current-page states.** Its color may change, but its lockup remains undecorated.
 
-### 6.8 Links
+### 6.9 Links
 
 - In navigation and footer contexts, hover uses archive red plus the archival line graphic from `/svg/background/header-divider.svg`; never use the browser's text underline for these links.
 - This interaction is identical in desktop and tablet/mobile navigation: keep the complete mobile row clickable, but size the animated underline to the visible label rather than stretching it across the row.
