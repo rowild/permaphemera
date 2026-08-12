@@ -1302,8 +1302,8 @@
     ]
   },
   {
-    "id": "artist-adi-schmolzer",
-    "slug": "adi-schmolzer",
+    "id": "artist-adi-schmoelzer",
+    "slug": "adi-schmoelzer",
     "first_name": "Adi",
     "last_name": "Schmölzer",
     "middle_initial": null,
@@ -1470,8 +1470,8 @@
     ]
   },
   {
-    "id": "artist-birgit-mortl",
-    "slug": "birgit-mortl",
+    "id": "artist-birgit-moertl",
+    "slug": "birgit-moertl",
     "first_name": "Birgit",
     "last_name": "Mörtl",
     "middle_initial": null,

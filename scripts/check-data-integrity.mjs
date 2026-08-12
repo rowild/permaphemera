@@ -27,7 +27,7 @@ const validStatus = (records) => records.every((record) => ['draft', 'published'
 const checks = [
   ['locations count is 17', locations.length === 17],
   ['venues count is 36', venues.length === 36],
-  ['artists count is 62', artists.length === 62],
+  ['artists count is 73', artists.length === 73],
   ['exhibitions count is 13', exhibitions.length === 13],
 
   ['every location has coordinates', locations.every((location) =>
