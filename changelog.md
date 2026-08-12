@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.0.13 - 2026-08-12 12:38:30 CEST
+
+- Replaced every bracketed font size with a named `@theme` type scale: 23 tokens now cover 172 previously arbitrary values across 31 files, so `check:tailwind` can finally detect a non-canonical text size. Static sizes were consolidated where they had drifted — `1.02`, `1.04`, `1.05`, `1.06` and `1.08rem` all collapse into one `text-button` step — while every fluid `clamp()` curve was preserved one-per-role, because their `vw` slopes are deliberate responses to viewport rather than accidental duplication.
+- Gave each type step its own paired line-height instead of leaving it inherited, tightening display type toward `0.98` and holding body and UI text near `1.5`; explicit `leading-*` utilities still win through Tailwind's `--tw-leading` fallback, so deliberate overrides are untouched.
+- Fixed a silent animation failure in ten transition declarations across nine components. Tailwind v4 compiles `scale-*`, `translate-*` and `rotate-*` to the independent `scale`, `translate` and `rotate` properties, but each declaration named only `transform`, so hover lifts, press feedback, ledger expansion and the editorial link underline all snapped to their end state with no interpolation. The class was valid and the end state correct, so nothing ever errored.
+- Replaced four hardcoded hex text colours with their existing archive tokens, closing the last bypass of the two-accent colour system.
+- Added a global component `<style>` check to `check-tailwind-canonical.mjs`, so the no-scoped-CSS rule is now mechanically enforced across every `.vue` file rather than only inside the kaleidoscope loader.
+- Restated the three most-broken CSS rules — canonical utility before any bracketed value, no scoped styles, mandatory inner spaces in `[ marker ]` groups — at the top of the agent guidance, where they are always in context, together with a new rule covering composite utilities that carry more than one declaration.
+- Reworked `docs/tailwindcss-v4-usage.md` into `docs/CSS_ARCHITECTURE.md`, roughly halving it by removing the generic Tailwind syntax reference and the adoption assessment for a migration long since completed, and added sections on composite utilities and on this project using Tailwind v4 exclusively.
+- Trimmed `AGENTS.md` by a third, cutting content a session can reconstruct from the codebase and moving the pre-ship verification checklist and the `fin-patch` closeout into skills, while keeping every gotcha, prohibition and non-guessable command description.
+- Renamed the exhibition action from "Open Exhibition" to "Visit Exhibition" with the matching German "Ausstellung besuchen", across the label, its accessible name and the location variant.
+- Added the eighth and ninth Parkschlössl 2026 exhibitions from their source PDFs: Peter Kohlweiß's *Gehen & Sehen* and Santino Solace's *Das, was entsteht*, each with its extracted 1600x1000 artwork, English record and German translation.
+- Moved the gallery-detail city subtitle down from a bracketed `0.35rem` to the canonical `mt-3`.
+- Added a design spec for aligning the local JSON layer with the documented Directus schema, covering the `locations`/`venues` split, an `exhibitions_artists` junction, inline translations, a `status` provenance marker and city-level geo data.
+
 ## 0.0.12 - 2026-08-12 00:48:27 CEST
 
 - Standardized every comparable exhibition-detail split on the hero's 60/40 column ratio, reused its contained-section gap, and made the hero, About, and spatial-record sections collapse together at the tablet breakpoint so the right field no longer narrows down the page.
