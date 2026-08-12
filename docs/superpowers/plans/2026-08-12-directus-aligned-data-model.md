@@ -1547,6 +1547,10 @@ const directoryArtists = computed(() =>
   buildArtistDirectory(artists.value, locationExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[]))
 ```
 
+> **Fifth correction found during execution.** Deleting the five old interfaces breaks every file that imports them — **10 files**, not the two this task otherwise edits: `GalleryDirectoryCard`, `ExhibitionDirectoryCard`, `LandingExhibitionCard`, `RelatedExhibitionCard`, `LocationExhibitionLedgerRow`, `ArtistDirectoryEntry`, `ArtistExhibitionModal`, `VenueArchiveCard`, `pages/index.vue`, `pages/locations/[slug].vue`. Updating a type-only import is not a shape change, so it does not violate the components-unchanged principle — but it must be done in the same step as the deletion.
+>
+> Nothing in this project catches it. There is no `typecheck` script, and both `nuxt generate` and Vitest go through esbuild, which strips types without checking them. A `TS2305 has no exported member` error therefore compiles, tests and builds perfectly green. Add a `check:types` script in this step so the class of error cannot recur silently.
+
 - [ ] **Step 7: Remove the superseded types**
 
 Delete `Location`, `Venue`, `Artist`, `Exhibition` and `LocationExhibition` from `app/types/content.ts`. Keep `LocationTranslation`, `ArtistRecordLink`, `DirectoryArtist` and `Sponsor`. Update `DirectoryArtist` to no longer extend the deleted `Artist`:
