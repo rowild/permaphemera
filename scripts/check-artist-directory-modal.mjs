@@ -33,8 +33,8 @@ const checks = [
   ['keyboard focus stays inside the open modal', /@keydown\.tab="trapFocus"/.test(modal)],
   ['modal actions use framed archive buttons', /<ArchiveButton[\s\S]{0,220}v-for="record in props\.records"[\s\S]{0,260}:to="localePath\(record\.href\)"/.test(modal)],
   ['artist records point only to routed exhibition detail pages', !artistDirectory.includes("href: '/#exhibitions'") && /href: `\/exhibitions\/\$\{exhibition\.slug\}\/`/.test(artistDirectory)],
-  ['the directory builder accepts only routed location exhibitions', /exhibitions: LocationExhibition\[\]/.test(artistDirectory) && !artistDirectory.includes("href: '/#exhibitions'")],
-  ['both artist surfaces share the routed directory builder', artistsPage.includes('buildArtistDirectory(artists.value, locationExhibitions.value)') && landingPage.includes('buildArtistDirectory(artists.value, locationExhibitions.value)')]
+  ['the directory builder accepts only routed, resolved exhibitions', /exhibitions: ResolvedExhibition\[\]/.test(artistDirectory) && !artistDirectory.includes("href: '/#exhibitions'")],
+  ['both artist surfaces share the routed directory builder', artistsPage.includes('buildArtistDirectory(artists.value, locationExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[])') && landingPage.includes('buildArtistDirectory(artists.value, locationExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[])')]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)

@@ -5,7 +5,8 @@ const readText = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf
 const readJson = async (path) => JSON.parse(await readText(path))
 
 const [
-  locations,
+  cityLocations,
+  galleries,
   exhibitions,
   galleriesIndex,
   galleryDetail,
@@ -22,7 +23,8 @@ const [
   footerMenu
 ] = await Promise.all([
   readJson('app/data/locations.json'),
-  readJson('app/data/location-exhibitions.json'),
+  readJson('app/data/venues.json'),
+  readJson('app/data/exhibitions.json'),
   readText('app/pages/locations/index.vue'),
   readText('app/pages/locations/[slug].vue'),
   readText('app/components/GalleryDirectoryCard.vue'),
@@ -38,20 +40,49 @@ const [
   readText('app/components/ArchiveFooterMenu.vue')
 ])
 
-assert.equal(locations.length, 26, 'The gallery directory must contain Parkschlössl plus 25 additional galleries.')
-assert.equal(new Set(locations.map(({ id }) => id)).size, locations.length, 'Gallery IDs must be unique.')
-assert.equal(new Set(locations.map(({ slug }) => slug)).size, locations.length, 'Gallery slugs must be unique.')
-assert.equal(new Set(locations.map(({ state }) => state)).size, 9, 'The gallery directory must represent all nine Austrian federal states.')
-assert(locations.every(({ country }) => country === 'Austria'), 'Every gallery must be in Austria.')
-assert(locations.some(({ slug, featured }) => slug === 'parkschloessl-spittal-drau' && featured), 'Parkschlössl must remain the featured pilot gallery.')
+// `locations.json` now holds the 17 cities; galleries (formerly the sole
+// `locations.json` collection) live in `venues.json` and reach their city
+// fields (state, country, postal code) through `location_id`.
+const cityById = new Map(cityLocations.map((city) => [city.id, city]))
+const cityOf = (gallery) => {
+  const city = cityById.get(gallery.location_id)
+  assert(city, `${gallery.id} references unknown location ${gallery.location_id}.`)
+  return city
+}
 
-for (const location of locations) {
-  for (const field of ['id', 'slug', 'name', 'city_name', 'postal_code', 'state', 'country', 'address', 'image', 'image_alt', 'archive_number']) {
-    assert(location[field], `${location.id} is missing required gallery field ${field}.`)
+assert.equal(galleries.length, 36, 'The gallery directory must contain Parkschlössl plus 35 additional galleries.')
+assert.equal(new Set(galleries.map(({ id }) => id)).size, galleries.length, 'Gallery IDs must be unique.')
+assert.equal(new Set(galleries.map(({ slug }) => slug)).size, galleries.length, 'Gallery slugs must be unique.')
+assert.equal(new Set(galleries.map((gallery) => cityOf(gallery).state)).size, 9, 'The gallery directory must represent all nine Austrian federal states.')
+assert(galleries.every((gallery) => cityOf(gallery).country === 'Austria'), 'Every gallery must be in Austria.')
+assert(galleries.some(({ slug, featured }) => slug === 'parkschloessl-spittal-drau' && featured), 'Parkschlössl must remain the featured pilot gallery.')
+
+for (const gallery of galleries) {
+  for (const field of ['id', 'slug', 'name', 'image']) {
+    assert(gallery[field], `${gallery.id} is missing required gallery field ${field}.`)
   }
 
-  const languages = new Set(location.translations?.map(({ languages_code }) => languages_code))
-  assert(languages.has('en') && languages.has('de'), `${location.id} must have English and German descriptions.`)
+  const city = cityOf(gallery)
+  for (const field of ['city_name', 'postal_code', 'state', 'country']) {
+    assert(city[field], `${gallery.id} is missing required city field ${field} via location ${city.id}.`)
+  }
+
+  // `address`, `image_alt` and `archive_number` are blank on the ten promoted
+  // venues merged in from the old exhibitions/orphan-gallery data: no source
+  // text existed to fill them (see task-2-report.md), so they stay empty
+  // stubs on purpose rather than invented. Only the one published gallery
+  // (Parkschlössl today; more as venues graduate from draft) must carry them.
+  if (gallery.status === 'published') {
+    for (const field of ['address', 'image_alt', 'archive_number']) {
+      assert(gallery[field], `${gallery.id} is published and must carry required gallery field ${field}.`)
+    }
+  }
+
+  // German dossier text is not required per gallery (the same ten promoted
+  // venues have none to carry over), but every gallery must at least resolve
+  // in English.
+  const languages = new Set(gallery.translations?.map(({ languages_code }) => languages_code))
+  assert(languages.has('en'), `${gallery.id} must have an English description.`)
 }
 
 assert.match(galleriesIndex, /<ArchiveSearchForm/, 'The galleries index must use the shared search form.')
@@ -93,4 +124,4 @@ for (const navigation of [header, footerMenu]) {
   assert.match(navigation, /localePath\('\/exhibitions\/'\)/, 'Exhibition navigation must target the real exhibition index.')
 }
 
-console.log(`Directory routes are valid (${locations.length} galleries across nine states; ${exhibitions.length} exhibition records).`)
+console.log(`Directory routes are valid (${galleries.length} galleries across nine states; ${exhibitions.length} exhibition records).`)

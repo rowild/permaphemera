@@ -57,6 +57,24 @@ const [
 
 const routedPages = [artistPage, landingPage, locationPage, exhibitionPage].join('\n')
 const exhibitionRecords = JSON.parse(exhibitionsData)
+
+// `exhibitions.json` is now the full 13-record canonical collection, not the
+// old hand-curated 5-record landing selection — so a raw `.length === 5`
+// check no longer means anything. The landing page instead *computes* its
+// five-item selection at runtime (`selectedExhibitions` in app/pages/index.vue):
+// visible records sorted featured-first then by start_date, first five taken.
+// Mirror that composition here (same visibility rule as contentStatus.ts's
+// VISIBLE_STATUSES, same sort, same slice) so the check still proves what it
+// always proved — one featured card plus four secondary cards reach the
+// landing page — against data the collection can keep growing into.
+const VISIBLE_STATUSES = ['published', 'draft']
+const landingSelectedExhibitions = exhibitionRecords
+  .filter(({ status }) => VISIBLE_STATUSES.includes(status))
+  .sort((left, right) => {
+    if (Boolean(left.featured) !== Boolean(right.featured)) return left.featured ? -1 : 1
+    return left.start_date.localeCompare(right.start_date)
+  })
+  .slice(0, 5)
 const primaryLinkDefinition = archiveHeader.match(/const primaryLinks = computed\(\(\) => \[[\s\S]*?\] as const\)/)?.[0] ?? ''
 const headerMenuSurfaceRule = mainCss.match(/\.archive-header-menu-surface \{([\s\S]*?)\n\}/)?.[1] ?? ''
 const headerMenuBeforeRule = [...mainCss.matchAll(/\.archive-header-menu-surface::before \{([\s\S]*?)\n\}/g)].at(-1)?.[1] ?? ''
@@ -128,7 +146,8 @@ const checks = [
   ['venue discovery action does not translate when pressed', !/venue: '[^']*active:translate-y/.test(archivePaperStack)],
   ['venue discovery action omits its arrow and uses reduced widths', archivePaperStack.includes('v-if="props.variant !== \'venue\'"') && /venue: '[^']*w-32 min-w-32[^']*compact:w-24 compact:min-w-24/.test(archivePaperStack)],
   ['locations and exhibitions reuse the same exhibition divider component', (landingPage.match(/<ArchiveExhibitionsDivider\s*\/>/g) ?? []).length === 2 && archiveExhibitionsDivider.includes('[ exhibitions-section-divider ]') && archiveExhibitionsDivider.includes('/svg/dividers/exhibitions-section-divider.svg')],
-  ['landing exhibition data contains one featured record and four secondary records', exhibitionRecords.length === 5 && exhibitionRecords.filter(({ featured }) => featured).length === 1],
+  ['the landing page still composes its selection with the mirrored featured-first sort and five-item slice', /\.sort\(\(left, right\) => \{[\s\S]*?left\.featured \? -1 : 1[\s\S]*?left\.start_date\.localeCompare\(right\.start_date\)[\s\S]*?\}\)\s*\.slice\(0, 5\)/.test(landingPage)],
+  ['landing exhibition selection contains one featured record and four secondary records', landingSelectedExhibitions.length === 5 && landingSelectedExhibitions.filter(({ featured }) => featured).length === 1],
   ['selected exhibitions keep one full-width featured card and four secondary cards in tablet and compact two-column grids', /\[ exhibition-layout \][^\"]*tablet:grid-cols-1[^\"]*compact:grid-cols-2/.test(landingPage) && /\[ featured-exhibition \][^\"]*tablet:col-span-full/.test(landingPage) && /\[ record-list \][^\"]*grid-rows-4[^\"]*tablet:grid-cols-2[^\"]*tablet:grid-rows-2[^\"]*compact:contents/.test(landingPage)],
   ['selected exhibition cards use compact proportions and intrinsic centered action', landingExhibitionCard.includes('compact:min-h-80') && landingExhibitionCard.includes('compact:min-h-64') && /<ArchiveButton class="[^"]*w-fit[^"]*justify-self-center/.test(landingExhibitionCard)],
   ['featured exhibition action uses Enter Exhibition, shortens to Enter, and hides its arrow only on compact screens', landingExhibitionCard.includes("$t('cards.enterExhibition')") && landingExhibitionCard.includes("$t('cards.enter')") && /<ArchiveArrow[^>]*compact:hidden/.test(landingExhibitionCard)],

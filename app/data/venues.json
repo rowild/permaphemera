@@ -29,7 +29,14 @@
       },
       {
         "languages_code": "de",
-        "description": "Die Pilotgalerie des Projekts: ein kleines Ausstellungshaus im Spittaler Stadtpark, dessen wechselndes Programm von einer einprägsamen gestreiften Architektur gerahmt wird."
+        "description": "Die Pilotgalerie des Projekts: ein kleines Ausstellungshaus im Spittaler Stadtpark, dessen wechselndes Programm von einer einprägsamen gestreiften Architektur gerahmt wird.",
+        "lede": "Ein kleines Ausstellungshaus im Park – temporäre Begegnungen, versammelt in einer einprägsamen architektonischen Hülle.",
+        "image_caption": "Das Parkschlössl, vom Stadtpark aus dokumentiert",
+        "hero_image_alt": "Vorderfassade des ocker-rosa gestreiften Parkschlössls unter altem Baumbestand",
+        "about": [
+          "Inmitten der Bäume des Spittaler Stadtparks verleiht das Parkschlössl jeder Ausstellung einen intimen architektonischen Rahmen. Seine gestreifte Fassade bildet einen beständigen Punkt in der Stadt; im Inneren erneuert sich die Folge von Werken, Besucherinnen und Besuchern und Gesprächen fortwährend.",
+          "Diese Ortsseite hält den Unterschied sichtbar: Der Ort ist der Anker, während jede Ausstellung ihren eigenen Eintrag erhält."
+        ]
       }
     ]
   },

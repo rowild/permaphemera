@@ -25,23 +25,42 @@ const germanKeys = collectLeafKeys(germanMessages).sort()
 
 assert.deepEqual(germanKeys, englishKeys, 'English and German UI locale files must expose identical message keys.')
 
-for (const collection of ['exhibitions', 'venues', 'location-exhibitions']) {
+// German overlay files under app/data/translations/de/ are gone: German text
+// now lives inline in each record's translations[] array, alongside entries
+// for other languages_code values. Two intents from the old overlay-file
+// check carry over onto that inline shape:
+//   1. Coverage is no longer "every record has German" (the four legacy demo
+//      exhibitions and the ten promoted venues have no German prose to copy —
+//      see task-2/task-6 reports) but it must still be internally consistent:
+//      any record that does have a `de` entry must also have an `en` entry,
+//      and every record must resolve in at least English.
+//   2. Stable, non-translatable fields must never appear inside a `de` entry.
+const germanCoverage = {}
+
+for (const collection of ['exhibitions', 'venues', 'locations']) {
   const records = await readJson(`app/data/${collection}.json`)
-  const translations = await readJson(`app/data/translations/de/${collection}.json`)
-  const recordIds = records.map(({ id }) => id).sort()
-  const translationIds = Object.keys(translations).sort()
+  let withDe = 0
 
-  assert.deepEqual(
-    translationIds,
-    recordIds,
-    `Every ${collection} record must have a German translation overlay.`
-  )
+  for (const record of records) {
+    const codes = new Set((record.translations ?? []).map(({ languages_code }) => languages_code))
+    const hasEn = codes.has('en')
+    const hasDe = codes.has('de')
+    if (hasDe) withDe += 1
 
-  for (const [id, overlay] of Object.entries(translations)) {
-    for (const immutableField of ['id', 'slug', 'location_id', 'venue_slug', 'start_date', 'end_date', 'image', 'hero_image', 'source_pdf', 'website_url']) {
-      assert(!(immutableField in overlay), `${collection}.${id} must not translate stable field ${immutableField}.`)
+    assert(hasEn, `${collection}.${record.id} must have at least an English translation entry.`)
+    if (hasDe) {
+      assert(hasEn, `${collection}.${record.id} has a German translation entry but no English fallback.`)
+    }
+
+    for (const entry of record.translations ?? []) {
+      if (entry.languages_code !== 'de') continue
+      for (const immutableField of ['id', 'slug', 'location_id', 'venue_slug', 'start_date', 'end_date', 'image', 'hero_image', 'source_pdf', 'website_url']) {
+        assert(!(immutableField in entry), `${collection}.${record.id} must not translate stable field ${immutableField}.`)
+      }
     }
   }
+
+  germanCoverage[collection] = `${withDe}/${records.length}`
 }
 
 const nuxtConfig = await readText('nuxt.config.ts')
@@ -76,4 +95,5 @@ assert.match(cookieNoticeState, /permaphemera-cookie-notice-dismissed/, 'Privacy
 assert.match(privacyNotice, /privacyNotice\.actions\.accept/, 'The privacy notice must expose its localized dismissal action.')
 assert.match(footerMenu, /showCookieNotice/, 'The footer must be able to reopen the privacy notice.')
 
-console.log(`i18n/privacy check passed (${englishKeys.length} shared UI messages; three translated content collections).`)
+const coverageSummary = Object.entries(germanCoverage).map(([name, ratio]) => `${name} ${ratio} de`).join(', ')
+console.log(`i18n/privacy check passed (${englishKeys.length} shared UI messages; German coverage — ${coverageSummary}).`)
