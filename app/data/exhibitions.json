@@ -12,7 +12,6 @@
     "vernissage": "Monday, 1 June 2026, 19:00",
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-schmoelzer-adi/RZ_Schmölzer-KIP_Aussendung.pdf",
-    "featured": false,
     "status": "published",
     "translations": [
       {
@@ -52,7 +51,6 @@
     "vernissage": "Monday, 15 June 2026, 19:00",
     "medium": "Comics, illustration, outsider art and workshops",
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-comic-festival/Austriatoon Festival 2026.pdf",
-    "featured": true,
     "status": "published",
     "translations": [
       {
@@ -92,7 +90,6 @@
     "vernissage": "Monday, 22 June 2026, 18:00",
     "medium": "Painting and mixed media",
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-von-heyl-nicoline/RZ_Von-Heyl-KIP_Aussendung.pdf",
-    "featured": false,
     "status": "published",
     "translations": [
       {
@@ -132,7 +129,6 @@
     "vernissage": "Monday, 6 July 2026, 18:00",
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-lebenshilfe-spittal/RZ_Lebenshilfe-KIP_Aussendung.pdf",
-    "featured": false,
     "status": "published",
     "translations": [
       {
@@ -172,7 +168,6 @@
     "vernissage": "Monday, 13 July 2026, 19:00",
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-meisslitzer-herbert/RZ_Meisslitzer-KIP_Aussendung.pdf",
-    "featured": false,
     "status": "published",
     "translations": [
       {
@@ -212,7 +207,6 @@
     "vernissage": "Monday, 27 July 2026, 19:00",
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-campidell-kulle/RZ_Kulle-Campidell-KIP-Aussendung.pdf",
-    "featured": false,
     "status": "published",
     "translations": [
       {
@@ -252,7 +246,6 @@
     "vernissage": "Monday, 10 August 2026, 19:00",
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-moertl-birgit/RZ_Mörtl-KIP_Aussendung.pdf",
-    "featured": false,
     "status": "published",
     "translations": [
       {
@@ -292,7 +285,6 @@
     "vernissage": "Monday, 24 August 2026, 19:00",
     "medium": "Watercolour and drawing",
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-kohlweiss-peter/Kunst im Park_Kohlweiss.pdf",
-    "featured": false,
     "status": "published",
     "translations": [
       {
@@ -332,7 +324,6 @@
     "vernissage": "Monday, 7 September 2026, 19:00",
     "medium": "Comics, manga and webtoon",
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-solace-santino/Kunst im Park_Santino Solace.pdf",
-    "featured": false,
     "status": "published",
     "translations": [
       {
@@ -372,7 +363,6 @@
     "vernissage": "",
     "medium": null,
     "source_pdf": null,
-    "featured": false,
     "status": "draft",
     "translations": [
       {
@@ -401,7 +391,6 @@
     "vernissage": "",
     "medium": null,
     "source_pdf": null,
-    "featured": false,
     "status": "draft",
     "translations": [
       {
@@ -430,7 +419,6 @@
     "vernissage": "",
     "medium": null,
     "source_pdf": null,
-    "featured": false,
     "status": "draft",
     "translations": [
       {
@@ -459,7 +447,6 @@
     "vernissage": "",
     "medium": null,
     "source_pdf": null,
-    "featured": false,
     "status": "draft",
     "translations": [
       {

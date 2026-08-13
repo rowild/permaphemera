@@ -84,9 +84,14 @@ translations[]                // { languages_code, biography }
 id, slug, primary_venue_id → venues.id,
 start_date, end_date, is_permanent,
 image, image_alt, opening_hours, vernissage, medium?,
-source_pdf?, featured?, status,
+source_pdf?, status,
 translations[]                // { languages_code, title, description, summary, date_range, opening_hours, vernissage, image_alt }
 ```
+
+The implemented exhibition schema deliberately omits `featured`. Highlighting
+is time-derived UI state: current first, then the nearest upcoming record, then
+the first record in the reverse-chronological directory. It must not be entered
+or maintained in Directus.
 
 #### `exhibitions_artists.json` — junction
 

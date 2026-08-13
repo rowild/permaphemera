@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.17 - 2026-08-13 20:02:25 CEST
+
+- Replaced the exhibition-level `featured` content flag with one shared date-derived selector used by both the landing collection and the complete exhibition directory: prefer a currently running exhibition, otherwise the nearest upcoming exhibition, otherwise the first record in the reverse-chronological list.
+- Removed the obsolete flag from all exhibition JSON records, TypeScript contracts, resolution output, fixtures, and future Directus schema guidance while preserving the independent curated featured-venue behavior.
+- Added unit and repository-level regression coverage for current, upcoming, fallback, empty-collection, data-integrity, directory-card, and landing-composition behavior; reconciled the README, agent instructions, style guide, and historical migration documentation with the automatic highlighting contract.
+
 ## 0.0.16 - 2026-08-13 18:49:35 CEST
 
 - Changed the complete exhibition directory to a deterministic reverse chronology: records now sort by newest start date first, then end date and title for ties, while search preserves that order and featured status affects presentation without overriding chronology. The season ledger is likewise ordered newest year first.

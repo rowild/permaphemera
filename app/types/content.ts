@@ -83,7 +83,6 @@ export interface ExhibitionRecord {
   vernissage: string
   medium: string | null
   source_pdf: string | null
-  featured: boolean
   status: ContentStatus
   translations: TranslationEntry[]
 }

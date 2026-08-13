@@ -25,7 +25,6 @@ export interface ResolvedExhibition {
   opening_hours: string
   vernissage: string
   source_pdf?: string
-  featured: boolean
 }
 
 export const displayArtistName = (artist: ArtistRecord): string =>
@@ -87,8 +86,7 @@ export const resolveExhibitions = (
       medium: (text.medium as string) || undefined,
       opening_hours: (text.opening_hours as string) || exhibition.opening_hours,
       vernissage: (text.vernissage as string) || exhibition.vernissage,
-      source_pdf: exhibition.source_pdf ?? undefined,
-      featured: exhibition.featured
+      source_pdf: exhibition.source_pdf ?? undefined
     }
   })
 }

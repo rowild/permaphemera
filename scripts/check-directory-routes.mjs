@@ -98,6 +98,8 @@ assert.match(exhibitionsIndex, /<ArchiveSearchForm/, 'The exhibitions index must
 assert.match(exhibitionsIndex, /<ExhibitionDirectoryCard[\s\S]*v-for=/, 'The exhibitions index must render reusable exhibition cards.')
 assert.match(exhibitionsIndex, /right\.start_date\.localeCompare\(left\.start_date\)/, 'The exhibitions index must order records by newest start date first.')
 assert.doesNotMatch(exhibitionsIndex, /left\.featured\s*\?\s*-1\s*:\s*1/, 'Featured status must not override the chronological exhibition order.')
+assert.match(exhibitionsIndex, /selectFeaturedExhibition\(orderedExhibitions\.value, archiveToday\.value\)/, 'The exhibitions index must derive its highlighted record from the current local date.')
+assert.match(exhibitionsIndex, /:featured="exhibition\.id === featuredExhibition\?\.id"/, 'Only the date-derived exhibition may receive the highlighted card treatment.')
 assert.match(exhibitionCard, /<ExhibitionFrameCard/, 'Exhibition cards must use the shared generated cut-corner frame.')
 assert.match(exhibitionCard, /\$t\('cards\.openExhibition'\)/, 'Every exhibition-directory card must use the shared Visit Exhibition label.')
 assert.doesNotMatch(exhibitionCard, /\$t\('common\.open'\)/, 'Exhibition-directory cards must not use the generic Open label.')

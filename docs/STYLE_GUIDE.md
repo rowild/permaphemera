@@ -1,6 +1,6 @@
 # PERMAPHEMERA Web Style Guide
 
-Version: 1.29
+Version: 1.30
 Reference implementation: `app/pages/index.vue` and `app/assets/css/main.css`
 Design references: `../../_Plans/designs/landing-page/`
 Purpose: define the visual, structural, interaction, content, and implementation rules required for new pages to feel native to PERMAPHEMERA.
@@ -688,8 +688,12 @@ Metadata order should remain stable:
 The complete exhibition directory is a reverse-chronological index: order
 records by ISO start date from newest to oldest, then by end date and title for
 deterministic ties. Search filters this already ordered collection and must not
-reorder its results. A `featured` flag may change a card's visual treatment,
-but it must never override the chronology.
+reorder its results. Derive the visually highlighted exhibition from the
+visitor's local calendar day: choose a running exhibition first, otherwise the
+nearest upcoming exhibition, otherwise the first record in the ordered list.
+When several exhibitions are running, use the current-programme order and
+highlight the one closing soonest. Never store a manual `featured` flag on an
+exhibition record; the highlight must move automatically as dates pass.
 
 Use semantic `<time>` elements for real dates in future routed pages.
 

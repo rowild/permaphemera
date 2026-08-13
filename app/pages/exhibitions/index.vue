@@ -4,6 +4,7 @@ const router = useRouter()
 const { venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
+const archiveToday = useArchiveToday()
 
 const exhibitionSearchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
 const normalize = (value: string) => value.trim().toLocaleLowerCase()
@@ -34,7 +35,7 @@ const exhibitionLedgerItems = computed(() => [
   { label: t('exhibitionsDirectory.ledgerVenues'), value: exhibitionVenues.value },
   { label: t('exhibitionsDirectory.ledgerSeason'), value: exhibitionYears.value.join(' · ') }
 ])
-const featuredExhibition = computed(() => orderedExhibitions.value[0])
+const featuredExhibition = computed(() => selectFeaturedExhibition(orderedExhibitions.value, archiveToday.value))
 
 watch(() => route.query.q, (query) => {
   exhibitionSearchQuery.value = typeof query === 'string' ? query : ''
@@ -117,7 +118,7 @@ useSeoMeta({
             :key="exhibition.id"
             :exhibition="exhibition"
             :index="index"
-            :featured="Boolean(exhibition.featured)"
+            :featured="exhibition.id === featuredExhibition?.id"
           />
         </div>
       </section>

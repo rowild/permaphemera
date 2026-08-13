@@ -7,7 +7,7 @@ import { buildArtistDirectory } from '~/utils/artistDirectory'
 import exhibitionsArtists from '~/data/exhibitions_artists.json'
 import type { ExhibitionArtistLink } from '~/types/content'
 import type { KaleidoscopeExhibitionItem } from '~/types/kaleidoscope'
-import { selectExhibitionSchedule } from '~/utils/exhibitionSchedule'
+import { selectExhibitionSchedule, selectFeaturedExhibition } from '~/utils/exhibitionSchedule'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 
@@ -20,7 +20,7 @@ import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'website_url' | 'image' | 'featured' | 'archive_number'> {
   location_id: string
 }
-type Exhibition = Pick<ResolvedExhibition, 'id' | 'slug' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image' | 'featured'>
+type Exhibition = Pick<ResolvedExhibition, 'id' | 'slug' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image'>
 
 const { artists, venues, venueExhibitions } = useArchiveData()
 const { t } = useI18n()
@@ -60,24 +60,30 @@ const venueStackVenue = computed(() => otherVenues.value.find((venue) => venue.s
 const regularVenues = computed(() => venueSearchQuery.value.trim()
   ? otherVenues.value
   : otherVenues.value.filter((venue) => defaultLandingVenueSlugs.has(venue.slug)))
-const selectedExhibitions = computed<Exhibition[]>(() => [...venueExhibitions.value]
-  .sort((left, right) => {
-    if (Boolean(left.featured) !== Boolean(right.featured)) return left.featured ? -1 : 1
-    return left.start_date.localeCompare(right.start_date)
-  })
-  .slice(0, 5)
-  .map((exhibition) => ({
-    id: exhibition.id,
-    slug: exhibition.slug,
-    title: exhibition.title,
-    artist: exhibition.artist,
-    venue: exhibition.venue,
-    city: exhibition.city,
-    date_range: exhibition.date_range,
-    image: exhibition.image,
-    featured: exhibition.featured
-  })))
-const featuredExhibition = computed(() => selectedExhibitions.value.find((exhibition) => exhibition.featured) ?? selectedExhibitions.value[0]!)
+const orderedExhibitions = computed(() => [...venueExhibitions.value]
+  .sort((left, right) => right.start_date.localeCompare(left.start_date)
+    || right.end_date.localeCompare(left.end_date)
+    || left.title.localeCompare(right.title)))
+const featuredExhibitionRecord = computed(() => selectFeaturedExhibition(orderedExhibitions.value, archiveToday.value))
+const selectedExhibitions = computed<Exhibition[]>(() => {
+  const featured = featuredExhibitionRecord.value
+  const records = featured
+    ? [featured, ...orderedExhibitions.value.filter((exhibition) => exhibition.id !== featured.id)]
+    : orderedExhibitions.value
+
+  return records.slice(0, 5)
+    .map((exhibition) => ({
+      id: exhibition.id,
+      slug: exhibition.slug,
+      title: exhibition.title,
+      artist: exhibition.artist,
+      venue: exhibition.venue,
+      city: exhibition.city,
+      date_range: exhibition.date_range,
+      image: exhibition.image
+    }))
+})
+const featuredExhibition = computed(() => selectedExhibitions.value.find((exhibition) => exhibition.id === featuredExhibitionRecord.value?.id) ?? selectedExhibitions.value[0]!)
 const sideExhibitions = computed(() => selectedExhibitions.value.filter((exhibition) => exhibition.id !== featuredExhibition.value.id))
 const exhibitionSchedule = computed(() => selectExhibitionSchedule(venueExhibitions.value, archiveToday.value))
 const currentExhibitions = computed(() => exhibitionSchedule.value.current)

@@ -1,5 +1,12 @@
 # Directus-Aligned Data Model Implementation Plan
 
+> **Post-implementation correction (2026-08-13):** Exhibition highlighting is
+> now derived from dates—current, otherwise nearest upcoming, otherwise the
+> first reverse-chronological record. The completed schema therefore has no
+> exhibition `featured` field. References to that field in the historical
+> migration snippets below describe the original execution state and must not
+> be copied into current code or a future Directus collection.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Restructure the local JSON layer into six collections that map 1:1 onto the Directus schema in `_Plans/exhibitions-plan.md` §2, so the later migration is an adapter swap rather than a rewrite.

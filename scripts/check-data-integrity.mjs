@@ -61,7 +61,8 @@ const checks = [
   ['artists have a valid status', validStatus(artists)],
   ['exhibitions have a valid status', validStatus(exhibitions)],
 
-  ['no artist keeps a stored record_count', artists.every((artist) => artist.record_count === undefined)]
+  ['no artist keeps a stored record_count', artists.every((artist) => artist.record_count === undefined)],
+  ['no exhibition keeps a manual featured flag', exhibitions.every((exhibition) => exhibition.featured === undefined)]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)

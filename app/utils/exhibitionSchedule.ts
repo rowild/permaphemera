@@ -43,3 +43,12 @@ export function selectExhibitionSchedule<T extends ScheduleReadyExhibition>(
 
   return { current, upcoming }
 }
+
+export function selectFeaturedExhibition<T extends ScheduleReadyExhibition>(
+  exhibitions: readonly T[],
+  today = localDateKey()
+): T | undefined {
+  const schedule = selectExhibitionSchedule(exhibitions, today, 1)
+
+  return schedule.current[0] ?? schedule.upcoming[0] ?? exhibitions[0]
+}
