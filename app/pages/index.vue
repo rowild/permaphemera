@@ -463,7 +463,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
         <div class="tablet:hidden">
           <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.preserved') }}</p>
           <strong class="[ archive-sidebar-count ] mt-[0.4rem] mb-10 block font-display text-title font-normal">{{ preservedExhibitionCount }}</strong>
-          <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.venues') }}</p>
+          <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.cities') }}</p>
           <ul class="[ archive-sidebar-locations ] m-0 mb-6 grid list-none gap-[0.45rem] p-0">
             <li>{{ $t('landing.sidebar.vienna') }}</li>
             <li>Graz</li>
