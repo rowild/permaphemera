@@ -1,6 +1,6 @@
 # PERMAPHEMERA Web Style Guide
 
-Version: 1.27
+Version: 1.28
 Reference implementation: `app/pages/index.vue` and `app/assets/css/main.css`
 Design references: `../../_Plans/designs/landing-page/`
 Purpose: define the visual, structural, interaction, content, and implementation rules required for new pages to feel native to PERMAPHEMERA.
@@ -579,6 +579,19 @@ Use direct verbs:
 - Explore a sample record
 
 Avoid generic `Click here`, vague `Learn more` when a specific destination exists, or overly promotional language.
+
+### 11.6 External application hints
+
+Direct `mailto:` and `tel:` actions may use a compact cut-corner hint to make
+the handoff to the visitor's system application explicit. Reuse
+`ArchiveActionHint`; do not invent a browser-native title tooltip or a new
+surface treatment. The hint appears above the action on pointer hover and
+keyboard focus, its pointer targets the control, and its entrance combines a
+restrained fade, scale, lift, and one-degree archival tilt. It must remain
+absolutely positioned so it never changes the surrounding layout, expose its
+relationship through `aria-describedby`, and respect reduced-motion
+preferences. Touch activation remains the direct email or telephone action;
+the hint must not introduce a first-tap confirmation step.
 
 ## 12. Icons And Directional Marks
 
@@ -1239,6 +1252,20 @@ selecting it must not itself load external resources. Planned newsletter, CMS,
 storage, or embedded services remain explicitly inactive until their real
 provider and configuration are known and the privacy/consent surfaces are
 updated before activation.
+
+### 24.2 Project information routes
+
+About the Project, How It Works, and Contact use `ArchiveEditorialSection` for
+the same asymmetrical editorial rhythm without presenting themselves as legal
+documents. How It Works should explain selection before capture, the connected
+360-degree document, contextual enrichment, and later archive access rather
+than implying automatic or comprehensive coverage. Contact should give a
+direct, accountable route to the private project owner, explain useful reasons
+to write and what to include in a first message, and avoid a form until its
+backend, retention, anti-spam, and privacy behavior are defined. A compact
+contact record may use one restrained top and bottom rule around the complete
+unit; its internal rows stay borderless and tightly spaced. Successive
+editorial chapters rely on whitespace and typography, not repeated dividers.
 
 The first viewport should establish page identity through type and one strong spatial or documentary visual. Do not repeat the landing kaleidoscope unless the new route genuinely needs it.
 

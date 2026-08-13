@@ -20,7 +20,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 - dynamic exhibition-detail pages with consistent 60/40 desktop split sections, baseline-aligned location, date, and opening-hours metadata, source invitations, and related records;
 - a routed, URL-filterable artist directory with history-aware alphabet routes, compact groups, and on-demand record details;
 - shared hero scroll cues on the landing, gallery, and exhibition routes that fade away when their destination section enters the viewport;
-- a bilingual About the Project essay plus complete imprint, privacy, terms-of-use, and accessibility routes using shared editorial layouts;
+- bilingual About the Project, How It Works, and Contact pages plus complete imprint, privacy, terms-of-use, and accessibility routes using shared editorial layouts;
 - shared routed header/footer components, an always-visible About destination, a softly animated archival menu, and a content-responsive sponsor marquee;
 - complete English/German UI and local content translations with locale-aware routes and a framed flag-based language dropdown beside the menu control;
 - granular site-styled cookie settings for necessary storage, Matomo, Google Maps, and YouTube, reopenable from the header and footer;
@@ -95,6 +95,8 @@ app/data/exhibitions_artists.json  exhibition-to-artist junction
 i18n/locales/                  English and German UI/accessibility messages
 app/pages/index.vue            landing page composition and interactions
 app/pages/about.vue            bilingual project statement
+app/pages/how-it-works.vue     bilingual documentation-method explanation
+app/pages/contact.vue          bilingual direct project contact
 app/pages/{imprint,privacy,terms,accessibility}.vue permanent information routes
 app/pages/venues/index.vue     searchable Austrian gallery atlas
 app/pages/venues/[slug].vue    dynamic gallery dossiers
@@ -123,7 +125,9 @@ The landing route in `app/pages/index.vue` contains the hero, a conditional curr
 
 The site-styled cookie settings expose four real checkboxes: necessary language/privacy storage is visible and permanently selected, while Matomo analytics, Google Maps, and YouTube are independent optional choices. “Save selection” is the direct necessary-only path when all optional boxes remain clear; “Accept all” grants all three optional categories. The versioned decision is stored locally under `permaphemera-cookie-consent` for at most one year and can be changed from the header or footer. The Matomo client at `https://matomo.rowild.at/` (site ID `9`) is not requested until analytics is explicitly allowed; revocation stops subsequent page-view tracking and asks Matomo to remove its tracking cookies. Client-side route changes are recorded as separate page views only while consent remains active. Google Maps and YouTube are future-facing consent categories only: neither service is embedded or contacted by the present application.
 
-`app/pages/about.vue` publishes the complete German project statement and its English editorial translation, including the closing Parkschlössl acknowledgement. The four permanent information routes share `ArchiveLegalPage` and `LegalEditorialSection`: each has an accountable document record enclosed by one restrained top/bottom rule, then borderless two-column chapters with no duplicate contents navigation or repeated dividers. The legal copy records the private operator, hosting and Matomo configuration, planned-but-inactive newsletter, optional external-media categories, terms for free informational use, and an honest accessibility self-assessment.
+`app/pages/about.vue` publishes the complete German project statement and its English editorial translation, including the closing Parkschlössl acknowledgement. `app/pages/how-it-works.vue` explains the curated selection, spatial capture, connected viewpoints, contextual enrichment, and lasting archive access through the established method collage and editorial stages. `app/pages/contact.vue` provides the private project owner's direct contact details, sets expectations for exhibition proposals, corrections, collaborations, and accessibility feedback, and deliberately avoids a form or backend. Its email and telephone actions carry compact framed hover/focus hints that identify the external system application without delaying the action on touch devices.
+
+The four permanent information routes share `ArchiveLegalPage` and `LegalEditorialSection`: each has an accountable document record enclosed by one restrained top/bottom rule, then borderless two-column chapters with no duplicate contents navigation or repeated dividers. The legal copy records the private operator, hosting and Matomo configuration, planned-but-inactive newsletter, optional external-media categories, terms for free informational use, and an honest accessibility self-assessment. About, How It Works, and Contact reuse `ArchiveEditorialSection` for the same quiet two-column reading rhythm without turning project information into legal records.
 
 `app/pages/venues/index.vue` is the canonical gallery atlas. It reads all 26 gallery profiles from `locations.json`, searches names, towns, states, addresses, and descriptions immediately, preserves search/state filters in the URL, and exposes all nine federal states on a draggable filter rail. The landing-page gallery selection now derives from that same source and links its paper stack to the complete atlas.
 

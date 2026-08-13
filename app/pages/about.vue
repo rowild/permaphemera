@@ -102,7 +102,8 @@ useSeoMeta({
 
       <article class="[ about-editorial ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4" :aria-label="$t('about.articleAria')">
         <template v-for="(section, index) in editorialSections" :key="section.id">
-          <AboutEditorialSection
+          <ArchiveEditorialSection
+            :id="section.id"
             :eyebrow="section.eyebrow"
             :title="section.title"
             :accent="section.accent"

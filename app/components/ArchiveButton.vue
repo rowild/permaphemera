@@ -5,6 +5,7 @@ const props = withDefaults(defineProps<{
   href?: string
   target?: string
   rel?: string
+  ariaDescribedby?: string
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   as?: 'button' | 'a' | 'span'
@@ -14,6 +15,7 @@ const props = withDefaults(defineProps<{
   href: undefined,
   target: undefined,
   rel: undefined,
+  ariaDescribedby: undefined,
   type: 'button',
   disabled: false,
   as: undefined
@@ -41,6 +43,7 @@ const variantClasses = {
     :href="props.href"
     :target="props.target"
     :rel="props.rel"
+    :aria-describedby="props.ariaDescribedby"
     :type="element === 'button' ? props.type : undefined"
     :disabled="element === 'button' ? props.disabled : undefined"
   >

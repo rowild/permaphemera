@@ -392,6 +392,113 @@
     "viewExhibitions": "Ausstellungen ansehen",
     "viewGalleries": "Galerien entdecken"
   },
+  "howItWorksPage": {
+    "seoTitle": "Wie es funktioniert · Vom Ausstellungsraum zum 360°-Dokument",
+    "seoDescription": "Wie PERMAPHEMERA ausgewählte Ausstellungen vor Ort erfasst, zu räumlichen 360°-Dokumenten verbindet und mit Kontext langfristig zugänglich macht.",
+    "breadcrumb": "Wie es funktioniert",
+    "eyebrow": "Vom Raum zum Dokument",
+    "title": "Aus Räumen werden",
+    "accent": "begehbare Dokumente.",
+    "intro": "PERMAPHEMERA dokumentiert ausgewählte Ausstellungen dort, wo sie stattfinden: im Zusammenspiel von Kunst, Architektur, Licht und Bewegung. Aus 360°-Aufnahmen, verbundenen Blickpunkten und redaktionellem Kontext entsteht ein Eintrag, der auch nach Ausstellungsende räumlich lesbar bleibt.",
+    "figureAlt": "Geschichtete Archivpapiere mit einem Museumsrundgang und miteinander verbundenen räumlichen Blickpunkten",
+    "figureLabel": "Aufnahme & Verknüpfung",
+    "figureCaption": "360°-Blickpunkte · räumlicher Verlauf · redaktioneller Kontext",
+    "articleAria": "Arbeitsweise der räumlichen Ausstellungsdokumentation von PERMAPHEMERA",
+    "processEyebrow": "Der räumliche Ablauf",
+    "processTitle": "Erfassen. Verbinden.",
+    "processAccent": "Bewahren.",
+    "processIntro": "Drei aufeinander aufbauende Schritte verwandeln eine temporäre Ausstellung in ein navigierbares räumliches Dokument.",
+    "sections": {
+      "selection": {
+        "eyebrow": "Vor der Aufnahme",
+        "title": "Eine bewusste",
+        "accent": "Auswahl.",
+        "p1": "Das 360°-Archiv ist kuratiert. Besondere Aufmerksamkeit gilt kleineren Galerien, regionalen Initiativen, Offspaces, temporären Ausstellungsorten, inklusiven Projekten und künstlerischen Positionen, die bislang nur wenige öffentlich zugängliche Spuren hinterlassen haben.",
+        "p2": "Im Gespräch mit Kunstschaffenden und Verantwortlichen werden der geeignete Aufnahmezeitpunkt, der Zugang zum Raum, die notwendigen Zustimmungen und der dokumentarische Zusammenhang geklärt. Die Aufnahme ausgewählter Ausstellungen soll kostenfrei bleiben; über eine Aufnahme entscheiden kuratorische und dokumentarische Überlegungen, nicht finanzielle Möglichkeiten."
+      },
+      "capture": {
+        "eyebrow": "Vor Ort",
+        "title": "Die Ausstellung wird als",
+        "accent": "Zusammenhang erfasst.",
+        "p1": "Während die Ausstellung eingerichtet ist, entstehen 360°-Aufnahmen an sorgfältig gewählten Standpunkten. Sie halten nicht nur einzelne Werke fest, sondern auch Blickachsen, Abstände, Übergänge, Lichtstimmungen und die Wege, die der Raum nahelegt.",
+        "p2": "Die Aufnahme versucht, die räumliche Dramaturgie nachvollziehbar zu machen. Sie erhebt keinen Anspruch auf eine neutrale oder vollständige Kopie, sondern bewahrt eine dokumentierte Perspektive auf die Ausstellung in einem konkreten Moment."
+      },
+      "context": {
+        "eyebrow": "Nach der Aufnahme",
+        "title": "Blickpunkte erhalten",
+        "accent": "redaktionellen Kontext.",
+        "p1": "Die einzelnen Panoramen werden zu einem Rundgang verbunden. So lassen sich räumliche Beziehungen später wieder erkunden: was von einem Standpunkt aus sichtbar war, welche Nachbarschaften entstanden und wie sich der Blick beim Weitergehen veränderte.",
+        "p2": "Angaben zu Kunstschaffenden, Ausstellungsort, Laufzeit und kuratorischen Zusammenhängen ergänzen das räumliche Dokument. Der wachsende Index verbindet diese Einträge über Orte, Personen, Regionen und Jahre hinweg."
+      },
+      "access": {
+        "eyebrow": "Nach dem Ende",
+        "title": "Virtuell zurückkehren.",
+        "accent": "Vor Ort neugierig werden.",
+        "p1": "Der virtuelle Rundgang ersetzt keinen persönlichen Besuch. Bei laufenden und kommenden Ausstellungen soll er zur Begegnung vor Ort einladen; nach dem Ende ermöglicht er Rückkehr, Recherche und Entdeckung für Menschen, die selbst nicht dort sein konnten.",
+        "p2": "Ein Archiv bleibt in Bewegung. Hinweise auf fehlerhafte Angaben, fehlende Zuordnungen oder sinnvolle Ergänzungen sind willkommen und können über die Kontaktseite direkt an das Projekt gesendet werden."
+      }
+    },
+    "actionsEyebrow": "Eine Ausstellung vorschlagen",
+    "actionsTitle": "Jeder Eintrag beginnt",
+    "actionsAccent": "mit einem Gespräch.",
+    "contactAction": "Kontakt aufnehmen",
+    "exhibitionsAction": "Ausstellungen ansehen"
+  },
+  "contactPage": {
+    "seoTitle": "Kontakt · PERMAPHEMERA",
+    "seoDescription": "Kontakt zu PERMAPHEMERA für Ausstellungsvorschläge, Korrekturen, Kooperationen, Recherche und Hinweise zur Barrierefreiheit.",
+    "breadcrumb": "Kontakt",
+    "eyebrow": "Kontakt & Vorschläge",
+    "title": "Ein Raum, eine Ausstellung,",
+    "accent": "eine Nachricht.",
+    "intro": "Sie möchten eine Ausstellung vorschlagen, einen Eintrag ergänzen oder über eine Zusammenarbeit sprechen? PERMAPHEMERA ist ein persönlich geführtes Projekt – Ihre Nachricht erreicht direkt Robert Wildling.",
+    "articleAria": "Kontaktmöglichkeiten und Hinweise für Nachrichten an PERMAPHEMERA",
+    "record": {
+      "label": "Direkter Kontakt",
+      "aria": "Kontaktdaten von PERMAPHEMERA",
+      "project": "Projekt",
+      "responsible": "Kontaktperson",
+      "address": "Anschrift",
+      "addressValue": "Göllnergasse 19/30, A-1030 Wien, Österreich",
+      "email": "E-Mail",
+      "phone": "Telefon"
+    },
+    "sections": {
+      "reasons": {
+        "eyebrow": "Worum es gehen kann",
+        "title": "Ausstellungen vorschlagen.",
+        "accent": "Spuren ergänzen.",
+        "p1": "Kontakt ist nicht auf formale Projektanfragen beschränkt. Besonders willkommen sind Nachrichten aus kleineren, regionalen oder temporären Ausstellungskontexten.",
+        "item1": "Vorschläge für laufende oder kommende Ausstellungen und räumliche Dokumentationen",
+        "item2": "Korrekturen, Ergänzungen und Bild- oder Urheberrechtshinweise zu bestehenden Einträgen",
+        "item3": "Anfragen zu Kooperation, Forschung, Vermittlung oder zum österreichweiten Index",
+        "item4": "Hinweise zu Barrieren, alternativen Zugängen oder Verbesserungen der Zugänglichkeit"
+      },
+      "message": {
+        "eyebrow": "Für die erste Nachricht",
+        "title": "Wenige Angaben.",
+        "accent": "Ein klarer Anfang.",
+        "p1": "Bei einem Ausstellungsvorschlag helfen Titel, beteiligte Kunstschaffende, Ausstellungsort und Adresse, Laufzeit sowie eine Kontaktperson. Ein kurzer Satz dazu, warum die Ausstellung räumlich oder dokumentarisch interessant ist, erleichtert die erste Einordnung.",
+        "p2": "Links zu einer Website, Ankündigung oder kleinen Bildauswahl sind willkommen. Für umfangreiche Dateien ist ein Download-Link meist hilfreicher als ein großer E-Mail-Anhang."
+      },
+      "selection": {
+        "eyebrow": "Auswahl & Antwort",
+        "title": "Kuratorisch entscheiden.",
+        "accent": "Persönlich antworten.",
+        "p1": "Nicht jeder Vorschlag kann in eine 360°-Dokumentation münden. Auswahl, Zeitpunkt und Umfang richten sich nach kuratorischer Relevanz, dokumentarischem Potenzial, Zugänglichkeit des Ortes und den verfügbaren Möglichkeiten. Für ausgewählte Galerien und Kunstschaffende soll die Teilnahme kostenfrei bleiben.",
+        "p2": "Alle Nachrichten werden persönlich gelesen. Da PERMAPHEMERA bewusst im Kleinen beginnt, kann eine Antwort etwas Zeit benötigen – sie kommt jedoch nicht aus einem automatisierten Ticketsystem."
+      }
+    },
+    "actionsEyebrow": "Direkt schreiben",
+    "actionsTitle": "Was möchten Sie",
+    "actionsAccent": "sichtbar halten?",
+    "privacyNote": "Ihre Kontaktdaten werden ausschließlich zur Bearbeitung Ihres Anliegens verwendet.",
+    "privacyAction": "Mehr zum Datenschutz",
+    "emailAction": "E-Mail schreiben",
+    "emailHint": "Öffnet Ihr E-Mail-Programm",
+    "phoneAction": "Anrufen",
+    "phoneHint": "Öffnet Ihr Telefon-Programm"
+  },
   "legal": {
     "common": {
       "recordLabel": "Dokumentvermerk",

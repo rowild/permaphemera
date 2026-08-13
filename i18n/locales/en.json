@@ -392,6 +392,113 @@
     "viewExhibitions": "View exhibitions",
     "viewGalleries": "Discover galleries"
   },
+  "howItWorksPage": {
+    "seoTitle": "How it works · From exhibition space to 360° record",
+    "seoDescription": "How PERMAPHEMERA captures selected exhibitions on site, connects them into spatial 360° records and preserves them with editorial context.",
+    "breadcrumb": "How it works",
+    "eyebrow": "From space to record",
+    "title": "Rooms become",
+    "accent": "navigable records.",
+    "intro": "PERMAPHEMERA documents selected exhibitions where they take place: through the interplay of art, architecture, light and movement. 360° captures, connected viewpoints and editorial context form a record that remains spatially legible after the exhibition closes.",
+    "figureAlt": "Layered archival papers showing a museum walkthrough and interconnected spatial viewpoints",
+    "figureLabel": "Capture & connection",
+    "figureCaption": "360° viewpoints · spatial sequence · editorial context",
+    "articleAria": "PERMAPHEMERA’s approach to spatial exhibition documentation",
+    "processEyebrow": "The spatial sequence",
+    "processTitle": "Capture. Connect.",
+    "processAccent": "Preserve.",
+    "processIntro": "Three consecutive stages turn a temporary exhibition into a navigable spatial record.",
+    "sections": {
+      "selection": {
+        "eyebrow": "Before the capture",
+        "title": "A deliberate",
+        "accent": "selection.",
+        "p1": "The 360° archive is curated. Particular attention is given to smaller galleries, regional initiatives, off-spaces, temporary exhibition venues, inclusive projects and artistic practices that have so far left few publicly accessible traces.",
+        "p2": "In conversation with artists and organisers, the suitable recording time, access to the space, necessary permissions and documentary context are clarified. The recording of selected exhibitions is intended to remain free of charge; curatorial and documentary considerations—not financial means—determine inclusion."
+      },
+      "capture": {
+        "eyebrow": "On site",
+        "title": "The exhibition is captured",
+        "accent": "as a relationship.",
+        "p1": "While the exhibition is installed, 360° images are made from carefully selected viewpoints. They record not only individual works but also sightlines, distances, transitions, qualities of light and the routes suggested by the room.",
+        "p2": "The capture seeks to make the exhibition’s spatial dramaturgy understandable. It does not claim to be a neutral or complete replica; it preserves one documented perspective on the exhibition at a particular moment."
+      },
+      "context": {
+        "eyebrow": "After the capture",
+        "title": "Viewpoints gain",
+        "accent": "editorial context.",
+        "p1": "The individual panoramas are connected into a walkthrough. Spatial relationships can then be explored again: what was visible from one position, which juxtapositions emerged and how the view changed while moving onward.",
+        "p2": "Information about artists, venue, dates and curatorial relationships accompanies the spatial record. The growing index connects these entries across places, people, regions and years."
+      },
+      "access": {
+        "eyebrow": "After the close",
+        "title": "Return virtually.",
+        "accent": "Become curious in person.",
+        "p1": "A virtual walkthrough does not replace an in-person visit. For current and upcoming exhibitions, it should encourage an encounter on site; after an exhibition closes, it enables return, research and discovery for people who could not be there themselves.",
+        "p2": "An archive remains in motion. Corrections, missing attributions and useful additions are welcome and can be sent directly to the project through the Contact page."
+      }
+    },
+    "actionsEyebrow": "Propose an exhibition",
+    "actionsTitle": "Every record begins",
+    "actionsAccent": "with a conversation.",
+    "contactAction": "Get in touch",
+    "exhibitionsAction": "View exhibitions"
+  },
+  "contactPage": {
+    "seoTitle": "Contact · PERMAPHEMERA",
+    "seoDescription": "Contact PERMAPHEMERA with exhibition proposals, corrections, collaborations, research enquiries and accessibility feedback.",
+    "breadcrumb": "Contact",
+    "eyebrow": "Contact & proposals",
+    "title": "A space, an exhibition,",
+    "accent": "a message.",
+    "intro": "Would you like to propose an exhibition, add to a record or discuss a collaboration? PERMAPHEMERA is personally run—your message goes directly to Robert Wildling.",
+    "articleAria": "Contact options and guidance for messages to PERMAPHEMERA",
+    "record": {
+      "label": "Direct contact",
+      "aria": "PERMAPHEMERA contact details",
+      "project": "Project",
+      "responsible": "Contact",
+      "address": "Address",
+      "addressValue": "Göllnergasse 19/30, A-1030 Vienna, Austria",
+      "email": "Email",
+      "phone": "Telephone"
+    },
+    "sections": {
+      "reasons": {
+        "eyebrow": "Reasons to write",
+        "title": "Propose exhibitions.",
+        "accent": "Complete the record.",
+        "p1": "Contact is not limited to formal project enquiries. Messages from smaller, regional or temporary exhibition contexts are especially welcome.",
+        "item1": "Proposals for current or upcoming exhibitions and spatial documentation",
+        "item2": "Corrections, additions, and image-rights or copyright notices concerning existing records",
+        "item3": "Enquiries about collaboration, research, mediation or the Austria-wide index",
+        "item4": "Feedback about barriers, alternative access or ways to improve accessibility"
+      },
+      "message": {
+        "eyebrow": "For a first message",
+        "title": "A few details.",
+        "accent": "A clear beginning.",
+        "p1": "For an exhibition proposal, it helps to include the title, participating artists, venue and address, dates, and a contact person. One brief sentence about why the exhibition is spatially or documentarily interesting makes an initial assessment easier.",
+        "p2": "Links to a website, announcement or small image selection are welcome. For larger files, a download link is usually more useful than a large email attachment."
+      },
+      "selection": {
+        "eyebrow": "Selection & response",
+        "title": "Curatorial decisions.",
+        "accent": "A personal reply.",
+        "p1": "Not every proposal can become a 360° record. Selection, timing and scope depend on curatorial relevance, documentary potential, access to the venue and the project’s available capacity. Participation is intended to remain free of charge for selected galleries and artists.",
+        "p2": "Every message is read personally. Because PERMAPHEMERA is deliberately beginning on a small scale, a reply may take a little time—but it will not come from an automated ticket system."
+      }
+    },
+    "actionsEyebrow": "Write directly",
+    "actionsTitle": "What would you like",
+    "actionsAccent": "to keep visible?",
+    "privacyNote": "Your contact details are used only to respond to your enquiry.",
+    "privacyAction": "Read the Privacy Policy",
+    "emailAction": "Write an email",
+    "emailHint": "Opens your email application",
+    "phoneAction": "Call",
+    "phoneHint": "Opens your phone application"
+  },
   "legal": {
     "common": {
       "recordLabel": "Document record",

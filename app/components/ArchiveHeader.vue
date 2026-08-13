@@ -106,8 +106,8 @@ const openCookieSettings = () => {
           <div class="[ mobile-nav-secondary ] grid grid-cols-2 gap-6 px-4 py-4 compact:gap-4 compact:px-3 compact:py-3">
         <div class="[ mobile-nav-information ] grid content-start gap-2.5">
           <p class="m-0 mb-1 font-display text-xs tracking-widest text-archive-red uppercase">{{ $t('navigation.information') }}</p>
-          <NuxtLink class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red" :to="localePath('/#method')" @click="menuOpen = false">{{ $t('navigation.howItWorks') }}</NuxtLink>
-          <a class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red" href="mailto:office@rowild.at" @click="menuOpen = false">{{ $t('navigation.contact') }}</a>
+          <NuxtLink class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red current-page:text-archive-red" :to="localePath('/how-it-works/')" @click="menuOpen = false">{{ $t('navigation.howItWorks') }}</NuxtLink>
+          <NuxtLink class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red current-page:text-archive-red" :to="localePath('/contact/')" @click="menuOpen = false">{{ $t('navigation.contact') }}</NuxtLink>
         </div>
 
         <div class="[ mobile-nav-legal ] grid content-start gap-2.5">

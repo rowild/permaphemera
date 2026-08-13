@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.15 - 2026-08-13 18:15:18 CEST
+
+- Added complete bilingual How It Works and Contact routes, connected the header and footer information links to their localized destinations, and reused the archive's quiet asymmetrical editorial layout across the project pages.
+- Explained the curatorial selection, spatial capture, linked viewpoints, contextual enrichment, and lasting archive workflow through the established documentary collage and three-stage method sequence.
+- Published the private project owner's direct contact record with guidance for exhibition proposals, corrections, collaborations, accessibility feedback, and useful first messages, deliberately avoiding an undefined form backend.
+- Added compact cut-corner hints to the email and telephone actions. They identify the external system application on hover and keyboard focus, point to their trigger, remain outside document flow, expose `aria-describedby`, and respect reduced-motion preferences without adding a touch confirmation step.
+- Generalized the About-specific editorial section into `ArchiveEditorialSection`, added a reusable borderless contact record, and reconciled the README, style guide, and route specification with the completed information architecture.
+
 ## 0.0.14 - 2026-08-13 17:18:21 CEST
 
 - Added the date-aware “Current / Upcoming exhibitions” programme as the first landing section after the hero. It appears only when relevant records exist, independently caps current and upcoming groups at three, handles inclusive and permanent date ranges, refreshes the visitor's local day after midnight, and reuses the established framed exhibition card with the “Visit Exhibition” action.

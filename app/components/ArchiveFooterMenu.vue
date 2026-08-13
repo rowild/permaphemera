@@ -27,8 +27,8 @@ const { show: showCookieNotice } = useCookieNotice()
     </ArchiveFooterNav>
     <ArchiveFooterNav :title="$t('navigation.information')" :ariaLabel="$t('footer.informationAria')">
       <NuxtLink :to="localePath('/about/')">{{ $t('navigation.about') }}</NuxtLink>
-      <NuxtLink :to="localePath('/#method')">{{ $t('navigation.howItWorks') }}</NuxtLink>
-      <a href="mailto:office@rowild.at">{{ $t('navigation.contact') }}</a>
+      <NuxtLink :to="localePath('/how-it-works/')">{{ $t('navigation.howItWorks') }}</NuxtLink>
+      <NuxtLink :to="localePath('/contact/')">{{ $t('navigation.contact') }}</NuxtLink>
     </ArchiveFooterNav>
     <ArchiveFooterNav
       :title="$t('footer.legal')"
