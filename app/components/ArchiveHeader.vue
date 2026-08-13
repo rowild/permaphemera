@@ -18,9 +18,9 @@ watch(() => route.fullPath, () => {
 })
 
 const primaryLinks = computed(() => [
-  { label: t('navigation.galleries'), to: localePath('/venues/'), key: 'galleries' },
+  { label: t('navigation.exhibitions'), to: localePath('/exhibitions/'), key: 'exhibitions' },
   { label: t('navigation.artists'), to: localePath('/artists/'), key: 'artists' },
-  { label: t('navigation.exhibitions'), to: localePath('/exhibitions/'), key: 'exhibitions' }
+  { label: t('navigation.galleries'), to: localePath('/venues/'), key: 'galleries' }
 ] as const)
 
 const openCookieSettings = () => {

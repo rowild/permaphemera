@@ -21,9 +21,9 @@ const { show: showCookieNotice } = useCookieNotice()
     </div>
 
     <ArchiveFooterNav :title="$t('footer.explore')" :aria-label="$t('footer.exploreAria')">
-      <NuxtLink :to="localePath('/venues/')">{{ $t('navigation.galleries') }}</NuxtLink>
-      <NuxtLink :to="localePath('/artists/')">{{ $t('navigation.artists') }}</NuxtLink>
       <NuxtLink :to="localePath('/exhibitions/')">{{ $t('navigation.exhibitions') }}</NuxtLink>
+      <NuxtLink :to="localePath('/artists/')">{{ $t('navigation.artists') }}</NuxtLink>
+      <NuxtLink :to="localePath('/venues/')">{{ $t('navigation.galleries') }}</NuxtLink>
     </ArchiveFooterNav>
     <ArchiveFooterNav :title="$t('navigation.information')" :aria-label="$t('footer.informationAria')">
       <NuxtLink :to="localePath('/#method')">{{ $t('navigation.about') }}</NuxtLink>
