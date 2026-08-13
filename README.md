@@ -14,7 +14,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 - an illustrated explanation of the archive method;
 - an overflow-aware sponsor strip that stays centered and static while its logos fit, then becomes a slow seamless marquee when they overflow, inside the dark editorial footer;
 - dynamic gallery dossiers with location-specific record search, currently led by Parkschlössl;
-- seven real 2026 Parkschlössl exhibition records derived from local source PDFs;
+- nine real 2026 Parkschlössl exhibition records derived from local source PDFs;
 - a compact selectable exhibition ledger with a preloaded, responsive active preview;
 - dynamic exhibition-detail pages with consistent 60/40 desktop split sections, baseline-aligned location, date, and opening-hours metadata, source invitations, and related records;
 - a routed, URL-filterable artist directory with history-aware alphabet routes, compact groups, and on-demand record details;
@@ -89,7 +89,7 @@ The static SPA build succeeds. It currently emits non-fatal Vite notices for roo
 app/components/                reusable visual components
 app/composables/               local archive data adapter
 app/data/                      JSON content source
-app/data/translations/de/      German record-field translation overlays
+app/data/exhibitions_artists.json  exhibition-to-artist junction
 i18n/locales/                  English and German UI/accessibility messages
 app/pages/index.vue            landing page composition and interactions
 app/pages/venues/index.vue     searchable Austrian gallery atlas
@@ -109,7 +109,7 @@ changelog.md                   version history
 
 ## Data Source
 
-Local JSON files live in `app/data/`. English is the canonical record language; ID-keyed German field overlays live in `app/data/translations/de/`, while `locations.json` retains its Directus-style per-record translation array for gallery descriptions. `app/composables/useArchiveData.ts` combines both forms reactively for the active locale while stable IDs, slugs, media paths, relations, and sorting dates remain in the canonical records. UI, navigation, SEO, accessibility, and privacy-notice messages live in `i18n/locales/en.json` and `i18n/locales/de.json`.
+Local JSON files live in `app/data/` as five collections that mirror the Directus schema: `locations.json` (cities, with the coordinates radius search needs), `venues.json` (buildings, each with a `type` and a `location_id`), `artists.json`, `exhibitions.json`, and the `exhibitions_artists.json` junction. Each record carries its own `translations[]` array; in the frontend all languages are equal and the active locale is selected by `pickTranslation`, falling back `locale → en → first available`, while in the backend English is first — it is the language entered into Directus and every other translation is derived from it. `status` (`draft` | `published`) records provenance, not visibility: draft records render, gated by the single `VISIBLE_STATUSES` constant in `app/utils/contentStatus.ts`. `app/composables/useArchiveData.ts` resolves the joins for the active locale. UI, navigation, SEO, accessibility, and privacy-notice messages live in `i18n/locales/en.json` and `i18n/locales/de.json`.
 
 The content stays inside the application bundle instead of `public/`: the existing data adapter uses static local imports, so locale changes require neither a remote server nor client-side HTTP requests. This keeps the current frontend-only architecture intact while leaving the adapter boundary available for a future Directus migration.
 
