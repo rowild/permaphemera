@@ -1,6 +1,6 @@
 # PERMAPHEMERA Web Style Guide
 
-Version: 1.28
+Version: 1.29
 Reference implementation: `app/pages/index.vue` and `app/assets/css/main.css`
 Design references: `../../_Plans/designs/landing-page/`
 Purpose: define the visual, structural, interaction, content, and implementation rules required for new pages to feel native to PERMAPHEMERA.
@@ -503,7 +503,7 @@ The compact landing hero uses a centered `1.875rem` primary statement composed a
 
 The compact location grid uses smaller, equal-status venue cards in two columns. A featured desktop card must return to one ordinary grid cell at this breakpoint, and its desktop-only ornamental divider is hidden. Keep the city close to the “Open archive” action, then reserve a normal `1rem` lower padding plus a small link margin so the action never enters the cut-corner frame. The paper-stack discovery action spans the complete two-column row, centers its bounded deck, and reserves enough space above the sheets for the paperclip. It is labelled simply “More” and omits the arrow so its frame can remain short; do not repeat it with a second section-level “Show more” button at any breakpoint. Press feedback may scale the inner button around its center, but must not translate it and cause a visible jump.
 
-The selected-exhibition collection also becomes one two-column compact grid. The featured record and regular records share the same grid rather than retaining a nested one-column list. Every compact copy area retains at least `1rem` horizontal padding inside the cut-corner frame. Regular card titles contain only the exhibition title because the artist remains on the following line. Keep each title on one clipped line; reserve `0.125rem` of bottom padding inside its horizontal clipping viewport so Cormorant Garamond descenders remain visible, measure real overflow with `ResizeObserver`, animate overflowing text from right to left on hover/focus, and reveal the complete title in the custom framed tooltip rather than a native `title` attribute. Use tight metadata leading so wrapped artist and location lines cannot push the date through the lower frame. Give the “Open Exhibition” label a narrow, genuinely inset frame with minimal internal padding; reduce the frame rather than the label typography. Keep every featured-record button intrinsically sized and centered.
+The selected-exhibition collection also becomes one two-column compact grid. The featured record and regular records share the same grid rather than retaining a nested one-column list. Every compact copy area retains at least `1rem` horizontal padding inside the cut-corner frame. Regular card titles contain only the exhibition title because the artist remains on the following line. Keep each title on one clipped line; reserve `0.125rem` of bottom padding inside its horizontal clipping viewport so Cormorant Garamond descenders remain visible, measure real overflow with `ResizeObserver`, animate overflowing text from right to left on hover/focus, and reveal the complete title in the custom framed tooltip rather than a native `title` attribute. Use tight metadata leading so wrapped artist and location lines cannot push the date through the lower frame. Give the “Visit Exhibition” label a narrow, genuinely inset frame with minimal internal padding; reduce the frame rather than the label typography. Keep every featured-record button intrinsically sized and centered.
 
 In the compact archive-method conclusion, leave a clear gap after the framed step table and after the quotation. Keep the three short facts in one row, shorten their vertical dividers to the height of the fact content, and place the archive stamp centered in its own following row with explicit bottom space.
 
@@ -684,6 +684,12 @@ Metadata order should remain stable:
 3. venue and city;
 4. date range;
 5. record action.
+
+The complete exhibition directory is a reverse-chronological index: order
+records by ISO start date from newest to oldest, then by end date and title for
+deterministic ties. Search filters this already ordered collection and must not
+reorder its results. A `featured` flag may change a card's visual treatment,
+but it must never override the chronology.
 
 Use semantic `<time>` elements for real dates in future routed pages.
 
@@ -1054,7 +1060,7 @@ Explain what the archive preserves and how the visitor can engage with it. Use c
 
 ### 20.3 Labels and actions
 
-Use exact nouns and verbs. `Open Exhibition` is better than `Discover more`. `Locations` is better than an abstract label like `Places` when the underlying data model is locations.
+Use exact nouns and verbs. `Visit Exhibition` is better than `Discover more`. `Locations` is better than an abstract label like `Places` when the underlying data model is locations.
 
 ### 20.4 Naming consistency
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.16 - 2026-08-13 18:49:35 CEST
+
+- Changed the complete exhibition directory to a deterministic reverse chronology: records now sort by newest start date first, then end date and title for ties, while search preserves that order and featured status affects presentation without overriding chronology. The season ledger is likewise ordered newest year first.
+- Replaced the remaining generic “Open” action on exhibition-directory cards with the shared “Visit Exhibition” / “Ausstellung besuchen” label, added regression checks for both ordering and copy, and reconciled the README and style guide with the directory contract.
+
 ## 0.0.15 - 2026-08-13 18:15:18 CEST
 
 - Added complete bilingual How It Works and Contact routes, connected the header and footer information links to their localized destinations, and reused the archive's quiet asymmetrical editorial layout across the project pages.

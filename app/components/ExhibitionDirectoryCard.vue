@@ -59,7 +59,7 @@ const sequence = computed(() => String(props.index + 1).padStart(2, '0'))
         <p class="mt-4 mb-4 line-clamp-3 text-eyebrow leading-normal text-archive-body compact:hidden">{{ props.exhibition.summary }}</p>
         <div class="mt-auto flex items-end justify-between gap-4 border-t border-archive-rule-warm/22 pt-4 compact:pt-2">
           <p class="m-0 text-sm text-archive-muted compact:text-xs">{{ props.exhibition.venue }} · {{ props.exhibition.city }}</p>
-          <span class="flex shrink-0 items-center gap-2 text-archive-red compact:gap-1 compact:text-xs"><span class="compact:hidden">{{ $t('common.open') }}</span><ArchiveArrow class="w-6 compact:w-5" /></span>
+          <span class="flex shrink-0 items-center gap-2 text-archive-red compact:gap-1 compact:text-xs"><span class="compact:hidden">{{ $t('cards.openExhibition') }}</span><ArchiveArrow class="w-6 compact:w-5" /></span>
         </div>
       </div>
     </template>

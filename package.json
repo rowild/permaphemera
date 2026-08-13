@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "type": "module",
   "private": true,
   "packageManager": "pnpm@11.20.0",

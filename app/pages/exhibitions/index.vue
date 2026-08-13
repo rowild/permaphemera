@@ -8,8 +8,9 @@ const localePath = useLocalePath()
 const exhibitionSearchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
 const normalize = (value: string) => value.trim().toLocaleLowerCase()
 const orderedExhibitions = computed(() => [...venueExhibitions.value].sort((left, right) => {
-  if (Boolean(left.featured) !== Boolean(right.featured)) return left.featured ? -1 : 1
-  return left.start_date.localeCompare(right.start_date)
+  return right.start_date.localeCompare(left.start_date)
+    || right.end_date.localeCompare(left.end_date)
+    || left.title.localeCompare(right.title)
 }))
 const filteredExhibitions = computed(() => {
   const query = normalize(exhibitionSearchQuery.value)
@@ -26,7 +27,7 @@ const filteredExhibitions = computed(() => {
     exhibition.medium ?? ''
   ].some((value) => normalize(value).includes(query)))
 })
-const exhibitionYears = computed(() => [...new Set(venueExhibitions.value.map((exhibition) => exhibition.start_date.slice(0, 4)))])
+const exhibitionYears = computed(() => [...new Set(venueExhibitions.value.map((exhibition) => exhibition.start_date.slice(0, 4)))].sort((left, right) => right.localeCompare(left)))
 const exhibitionVenues = computed(() => new Set(venueExhibitions.value.map((exhibition) => exhibition.venue_slug)).size)
 const exhibitionLedgerItems = computed(() => [
   { label: t('exhibitionsDirectory.ledgerRecords'), value: venueExhibitions.value.length },
