@@ -296,8 +296,8 @@
   "cards": {
     "openArchive": "Archiv öffnen",
     "openVenue": "Archiv von {name} öffnen",
-    "enterExhibition": "Ausstellung betreten",
-    "enter": "Betreten",
+    "enterExhibition": "Ausstellung besuchen",
+    "enter": "Besuchen",
     "fullTitle": "Vollständiger Titel",
     "previewExhibition": "{title} als Vorschau anzeigen",
     "openExhibitionFor": "Ausstellung besuchen: {title}",

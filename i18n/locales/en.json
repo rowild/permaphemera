@@ -296,8 +296,8 @@
   "cards": {
     "openArchive": "Open archive",
     "openVenue": "Open {name} archive",
-    "enterExhibition": "Enter Exhibition",
-    "enter": "Enter",
+    "enterExhibition": "Visit Exhibition",
+    "enter": "Visit",
     "fullTitle": "Full title",
     "previewExhibition": "Preview {title}",
     "openExhibitionFor": "Visit exhibition: {title}",
