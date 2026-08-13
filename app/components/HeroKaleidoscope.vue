@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import type { CSSProperties } from 'vue'
 import { gsap } from 'gsap'
 import * as THREE from 'three'
 import {
@@ -11,10 +12,11 @@ import {
   orbitStartAngle
 } from '~/utils/orbitGeometry'
 import { getFallbackTexture, isTextureCached, loadTexture } from '~/utils/kaleidoscopeTextures'
+import type { KaleidoscopeExhibitionItem } from '~/types/kaleidoscope'
 
 const props = defineProps<{
-  images: string[]
-  imagePool?: string[]
+  items: KaleidoscopeExhibitionItem[]
+  itemPool?: KaleidoscopeExhibitionItem[]
 }>()
 const { t } = useI18n()
 const emit = defineEmits<{
@@ -36,6 +38,14 @@ const canvasRef = ref<HTMLCanvasElement | null>(null)
 const readySlices = ref<boolean[]>(Array.from({ length: sliceCount }, () => false))
 const isLoaderVisible = ref(false)
 const isLoaderDismissing = ref(false)
+const isInteractionLocked = ref(true)
+const sliceItems = ref<KaleidoscopeExhibitionItem[]>([])
+const activeTooltipIndex = ref<number | null>(null)
+const touchPreviewIndex = ref<number | null>(null)
+const tooltipPositionX = ref(0)
+const tooltipPositionY = ref(0)
+const tooltipPointerOffset = ref(0)
+const tooltipPlacement = ref<'above' | 'below'>('above')
 // Which image is downloading right now, and how much of it has arrived.
 const loadingSliceIndex = ref(0)
 const loadingFraction = ref(0)
@@ -45,6 +55,9 @@ const cameraFov = THREE.MathUtils.radToDeg(
   2 * Math.atan(kaleidoscopeViewSize / (2 * cameraDistance))
 )
 const radialOffsetPixels = 10
+// Keep antialiased blade tips inside the WebGL viewport. Scaling the complete
+// wheel preserves the shared circular origin and every blade's radial spacing.
+const bladeWheelScale = 0.96
 const sliceAngle = (Math.PI * 2) / 12
 const triangleOuterRadius = 0.98
 const triangleBaseHeight = Math.tan(Math.PI / 6) * triangleOuterRadius + 0.006
@@ -82,7 +95,7 @@ const triangleAnimationConfig = {
   duration: 2.25,
   stagger: 0.12,
   staggerDirection: 'cw' as StaggerDirection,
-  fadeDuration: 0.72,
+  edgeFadeDuration: 0.4,
   foldEase: 'power1.inOut'
 }
 const rotationConfig = {
@@ -128,13 +141,27 @@ let loaderGraceTimer = 0
 const disposableGeometries: THREE.BufferGeometry[] = []
 const disposableMaterials: THREE.Material[] = []
 const sliceImageStates: SliceImageState[] = []
+const sliceBladeAxisPivots: THREE.Group[] = []
 const sliceBladePivots: THREE.Group[] = []
 const slicePivots: THREE.Group[] = []
 const sliceLoadingSprites: THREE.Sprite[] = []
 const sliceLoadingMaterials: THREE.SpriteMaterial[] = []
 const sliceTransitionTimelines: Array<gsap.core.Timeline | null> = []
+const bladeWiggleTimelines: Array<gsap.core.Timeline | null> = []
+const bladePressTweens: Array<gsap.core.Tween | null> = []
 const sliceImageUrls: string[] = []
 const sliceLoadingTokens: number[] = []
+const bladeLinkRotationValues = Array.from({ length: sliceCount }, (_, index) => -index * 30)
+const activeTooltipItem = computed(() => activeTooltipIndex.value === null
+  ? null
+  : sliceItems.value[activeTooltipIndex.value] ?? null)
+const tooltipPositionStyle = computed(() => ({
+  left: `${tooltipPositionX.value}px`,
+  top: `${tooltipPositionY.value}px`
+} as CSSProperties))
+
+let touchPreviewTimer = 0
+let lastActivationType: 'mouse' | 'touch' | 'pen' | 'keyboard' | null = null
 
 function createTriangleGeometry() {
   const innerOffset = 0
@@ -205,7 +232,12 @@ function shuffled<T>(items: T[]) {
 
   for (let index = result.length - 1; index > 0; index -= 1) {
     const swapIndex = Math.floor(Math.random() * (index + 1))
-    ;[result[index], result[swapIndex]] = [result[swapIndex], result[index]]
+    const current = result[index]
+    const swap = result[swapIndex]
+    if (current === undefined || swap === undefined) continue
+
+    result[index] = swap
+    result[swapIndex] = current
   }
 
   return result
@@ -260,7 +292,7 @@ function settleSliceImageLayers(index: number) {
 function animateTextureSwap(
   index: number,
   texture: THREE.Texture,
-  url: string,
+  item: KaleidoscopeExhibitionItem,
   token: number,
   shouldAnimate = true
 ) {
@@ -284,7 +316,8 @@ function animateTextureSwap(
   incoming.mesh.renderOrder = 40 + index * 2 + 1
   outgoing.mesh.renderOrder = 40 + index * 2
   state.activeIndex = incomingIndex
-  sliceImageUrls[index] = url
+  sliceImageUrls[index] = item.image
+  sliceItems.value[index] = item
 
   if (!shouldAnimate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     outgoing.material.opacity = 0
@@ -335,7 +368,7 @@ function animateTextureSwap(
 
 async function assignSliceTexture(
   index: number,
-  url: string,
+  item: KaleidoscopeExhibitionItem,
   options: TextureAssignmentOptions = {}
 ) {
   const state = sliceImageStates[index]
@@ -350,11 +383,11 @@ async function assignSliceTexture(
   sliceTransitionTimelines[index] = null
   settleSliceImageLayers(index)
 
-  if (isTextureCached(url)) {
-    const cachedTexture = await loadTexture(url)
+  if (isTextureCached(item.image)) {
+    const cachedTexture = await loadTexture(item.image)
     if (sliceLoadingTokens[index] !== token) return
 
-    animateTextureSwap(index, cachedTexture, url, token, shouldAnimate)
+    animateTextureSwap(index, cachedTexture, item, token, shouldAnimate)
     return
   }
 
@@ -362,12 +395,12 @@ async function assignSliceTexture(
   if (shouldShowLoader) setLoadingSpriteVisible(index, true, token)
 
   try {
-    const texture = await loadTexture(url)
+    const texture = await loadTexture(item.image)
     if (sliceLoadingTokens[index] !== token) return
 
-    animateTextureSwap(index, texture, url, token, shouldAnimate)
+    animateTextureSwap(index, texture, item, token, shouldAnimate)
   } catch (error) {
-    console.warn(`Could not load kaleidoscope image: ${url}`, error)
+    console.warn(`Could not load kaleidoscope image: ${item.image}`, error)
     if (shouldShowLoader && sliceLoadingTokens[index] === token) {
       setLoadingSpriteVisible(index, false, token)
     }
@@ -384,7 +417,7 @@ async function assignSliceTexture(
 function shuffleSliceTextures() {
   const current = sliceImageStates.map((state, index) => ({
     texture: state.layers[state.activeIndex]!.material.map,
-    url: sliceImageUrls[index]!
+    item: sliceItems.value[index]!
   }))
   const order = shuffled(current.map((_, index) => index))
 
@@ -406,14 +439,17 @@ function shuffleSliceTextures() {
     sliceTransitionTimelines[index]?.kill()
     sliceTransitionTimelines[index] = null
     settleSliceImageLayers(index)
-    animateTextureSwap(index, entry.texture, entry.url, token, true)
+    animateTextureSwap(index, entry.texture, entry.item, token, true)
   })
 }
 
 function randomizeSliceTextures(options: TextureAssignmentOptions = {}) {
-  const completePool = [...new Set((props.imagePool?.length ? props.imagePool : props.images).filter(Boolean))]
+  const sourcePool = props.itemPool?.length ? props.itemPool : props.items
+  const completePool = [...new Map(sourcePool
+    .filter((item) => item.image && item.href)
+    .map((item) => [item.id, item])).values()]
   const pool = options.cachedOnly
-    ? completePool.filter((url) => isTextureCached(url))
+    ? completePool.filter((item) => isTextureCached(item.image))
     : completePool
   if (!pool.length) return Promise.resolve()
 
@@ -422,14 +458,14 @@ function randomizeSliceTextures(options: TextureAssignmentOptions = {}) {
   const assignments: Array<Promise<void>> = []
 
   sliceImageStates.forEach((_, index) => {
-    const currentUrl = sliceImageUrls[index]
-    const nextUrl = candidates.find((url) => url !== currentUrl && !chosen.has(url))
-      ?? candidates.find((url) => url !== currentUrl)
+    const currentItem = sliceItems.value[index]
+    const nextItem = candidates.find((item) => item.id !== currentItem?.id && !chosen.has(item.id))
+      ?? candidates.find((item) => item.id !== currentItem?.id)
       ?? candidates[0]
 
-    if (!nextUrl) return
-    chosen.add(nextUrl)
-    assignments.push(assignSliceTexture(index, nextUrl, options))
+    if (!nextItem) return
+    chosen.add(nextItem.id)
+    assignments.push(assignSliceTexture(index, nextItem, options))
   })
 
   return Promise.all(assignments).then(() => undefined)
@@ -442,12 +478,12 @@ function waitForBrowserIdle() {
       return
     }
 
-    window.setTimeout(resolve, 180)
+    globalThis.setTimeout(resolve, 180)
   })
 }
 
 async function preloadTexturePool() {
-  const pool = [...new Set((props.imagePool ?? []).filter(Boolean))]
+  const pool = [...new Set((props.itemPool ?? []).map((item) => item.image).filter(Boolean))]
   let loadedCount = 0
 
   for (const url of pool) {
@@ -486,8 +522,269 @@ function scheduleBackgroundPreload() {
 function setAnimationActive(isActive: boolean) {
   if (animationActive === isActive) return
 
+  if (isActive) hideBladeTooltip()
   animationActive = isActive
+  isInteractionLocked.value = isActive
   emit('animationStateChange', isActive)
+}
+
+function clearTouchPreview() {
+  window.clearTimeout(touchPreviewTimer)
+  touchPreviewTimer = 0
+  touchPreviewIndex.value = null
+}
+
+function hideBladeTooltip(index?: number) {
+  if (index !== undefined && activeTooltipIndex.value !== index) return
+  activeTooltipIndex.value = null
+}
+
+function positionBladeTooltip(clientX: number, clientY: number, choosePlacement: boolean) {
+  const viewportWidth = document.documentElement.clientWidth || window.innerWidth
+  const viewportHeight = window.innerHeight
+  const tooltipWidth = Math.min(256, Math.max(0, viewportWidth - 16))
+  const halfWidth = tooltipWidth / 2
+  const horizontalMargin = 8
+  const centeredX = Math.min(
+    Math.max(clientX, halfWidth + horizontalMargin),
+    viewportWidth - halfWidth - horizontalMargin
+  )
+  const maximumPointerOffset = Math.max(0, halfWidth - 18)
+  const estimatedTooltipHeight = touchPreviewIndex.value === null ? 164 : 196
+  const verticalMargin = 8
+  const spaceAbove = clientY - verticalMargin
+  const spaceBelow = viewportHeight - clientY - verticalMargin
+
+  tooltipPositionX.value = centeredX
+  tooltipPositionY.value = Math.min(Math.max(clientY, verticalMargin), viewportHeight - verticalMargin)
+  tooltipPointerOffset.value = Math.min(
+    Math.max(clientX - centeredX, -maximumPointerOffset),
+    maximumPointerOffset
+  )
+
+  if (choosePlacement) {
+    tooltipPlacement.value = spaceBelow >= estimatedTooltipHeight || spaceBelow >= spaceAbove
+      ? 'below'
+      : 'above'
+    return
+  }
+
+  if (tooltipPlacement.value === 'below' && spaceBelow < estimatedTooltipHeight && spaceAbove > spaceBelow) {
+    tooltipPlacement.value = 'above'
+  } else if (tooltipPlacement.value === 'above' && spaceAbove < estimatedTooltipHeight && spaceBelow > spaceAbove) {
+    tooltipPlacement.value = 'below'
+  }
+}
+
+function showBladeTooltip(index: number, clientX: number, clientY: number) {
+  if (animationActive || !sliceItems.value[index]?.href) return
+
+  positionBladeTooltip(clientX, clientY, true)
+  activeTooltipIndex.value = index
+}
+
+function showBladeTooltipAtLink(index: number, link: SVGAElement) {
+  const bounds = link.getBoundingClientRect()
+  showBladeTooltip(index, bounds.left + bounds.width / 2, bounds.top + bounds.height / 2)
+}
+
+function handleBladePointerEnter(index: number, event: PointerEvent) {
+  if (event.pointerType === 'touch') return
+
+  clearTouchPreview()
+  wiggleBlade(index)
+  showBladeTooltip(index, event.clientX, event.clientY)
+}
+
+function handleBladePointerMove(index: number, event: PointerEvent) {
+  if (event.pointerType === 'touch' || activeTooltipIndex.value !== index) return
+  positionBladeTooltip(event.clientX, event.clientY, false)
+}
+
+function handleBladeFocus(index: number, event: FocusEvent) {
+  const link = event.currentTarget as SVGAElement | null
+  if (!link) return
+
+  wiggleBlade(index)
+  showBladeTooltipAtLink(index, link)
+}
+
+function handleBladeBlur(index: number) {
+  if (touchPreviewIndex.value === index) return
+  hideBladeTooltip(index)
+}
+
+function handleBladePointerDown(index: number, event: PointerEvent) {
+  lastActivationType = event.pointerType === 'touch'
+    ? 'touch'
+    : event.pointerType === 'pen' ? 'pen' : 'mouse'
+  pressBlade(index)
+}
+
+function handleBladePointerLeave(index: number, event: PointerEvent) {
+  releaseBlade(index)
+  if (event.pointerType !== 'touch' && touchPreviewIndex.value !== index) hideBladeTooltip(index)
+}
+
+function handleBladeKeyDown(index: number) {
+  lastActivationType = 'keyboard'
+  pressBlade(index)
+}
+
+function handleBladeClick(index: number, item: KaleidoscopeExhibitionItem, event: MouseEvent) {
+  const isTouchActivation = lastActivationType === 'touch' || lastActivationType === 'pen'
+  lastActivationType = null
+  if (!isTouchActivation || !item.href) return
+
+  if (touchPreviewIndex.value === index && activeTooltipIndex.value === index) {
+    clearTouchPreview()
+    hideBladeTooltip(index)
+    return
+  }
+
+  event.preventDefault()
+  clearTouchPreview()
+  touchPreviewIndex.value = index
+  showBladeTooltip(index, event.clientX, event.clientY)
+  touchPreviewTimer = window.setTimeout(() => {
+    hideBladeTooltip(index)
+    clearTouchPreview()
+  }, 4500)
+}
+
+function handleDocumentPointerDown(event: PointerEvent) {
+  if (touchPreviewIndex.value === null) return
+  const target = event.target as Element | null
+  if (target?.closest('.hero-kaleidoscope__blade-link')) return
+
+  hideBladeTooltip()
+  clearTouchPreview()
+}
+
+function getBladeLinkElements() {
+  if (!containerRef.value) return []
+
+  return gsap.utils.toArray<SVGAElement>(
+    containerRef.value.querySelectorAll('.hero-kaleidoscope__blade-link')
+  )
+}
+
+function setBladeLinkRotation(link: SVGAElement, index: number, rotation: number) {
+  bladeLinkRotationValues[index] = rotation
+  link.setAttribute('transform', `rotate(${rotation} 50 50)`)
+}
+
+function syncBladeLinkRotations() {
+  getBladeLinkElements().forEach((link, index) => {
+    const pivot = slicePivots[index]
+    if (!pivot) return
+
+    setBladeLinkRotation(link, index, -THREE.MathUtils.radToDeg(pivot.rotation.z))
+  })
+}
+
+function resetBladeLinkRotations() {
+  getBladeLinkElements().forEach((link, index) => {
+    setBladeLinkRotation(link, index, -index * 30)
+  })
+}
+
+function stopBladeWiggle(index: number) {
+  bladeWiggleTimelines[index]?.kill()
+  bladeWiggleTimelines[index] = null
+
+  const bladePivot = sliceBladePivots[index]
+  if (bladePivot) bladePivot.rotation.x = 0
+}
+
+function stopAllBladeWiggles() {
+  sliceBladePivots.forEach((_, index) => stopBladeWiggle(index))
+}
+
+function stopBladePress(index: number) {
+  bladePressTweens[index]?.kill()
+  bladePressTweens[index] = null
+
+  const bladePivot = sliceBladePivots[index]
+  if (bladePivot) bladePivot.scale.setScalar(1)
+}
+
+function stopAllBladePresses() {
+  sliceBladePivots.forEach((_, index) => stopBladePress(index))
+}
+
+function pressBlade(index: number) {
+  if (animationActive || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+  const bladePivot = sliceBladePivots[index]
+  if (!bladePivot) return
+
+  bladePressTweens[index]?.kill()
+  bladePressTweens[index] = gsap.to(bladePivot.scale, {
+    x: 1.002,
+    y: 1.002,
+    z: 1.002,
+    duration: 0.12,
+    ease: 'power2.out',
+    onComplete: () => {
+      bladePressTweens[index] = null
+    }
+  })
+}
+
+function releaseBlade(index: number) {
+  const bladePivot = sliceBladePivots[index]
+  if (!bladePivot || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+  bladePressTweens[index]?.kill()
+  bladePressTweens[index] = gsap.to(bladePivot.scale, {
+    x: 1,
+    y: 1,
+    z: 1,
+    duration: 0.18,
+    ease: 'power2.out',
+    onComplete: () => {
+      bladePressTweens[index] = null
+    }
+  })
+}
+
+function wiggleBlade(index: number) {
+  if (animationActive || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+  const bladePivot = sliceBladePivots[index]
+  if (!bladePivot) return
+
+  stopBladeWiggle(index)
+  const timeline = gsap.timeline({
+    onComplete: () => {
+      if (bladeWiggleTimelines[index] === timeline) bladeWiggleTimelines[index] = null
+    }
+  })
+
+  timeline
+    .to(bladePivot.rotation, {
+      x: 0.11,
+      duration: 0.16,
+      ease: 'power2.out'
+    })
+    .to(bladePivot.rotation, {
+      x: -0.075,
+      duration: 0.2,
+      ease: 'sine.inOut'
+    })
+    .to(bladePivot.rotation, {
+      x: 0.035,
+      duration: 0.17,
+      ease: 'sine.inOut'
+    })
+    .to(bladePivot.rotation, {
+      x: 0,
+      duration: 0.54,
+      ease: 'elastic.out(1, 0.42)'
+    })
+
+  bladeWiggleTimelines[index] = timeline
 }
 
 function getArrowElements() {
@@ -512,6 +809,8 @@ function resetArrowRotations() {
 function rotateBy(direction: number) {
   if (!slicePivots.length || animationActive) return
 
+  stopAllBladeWiggles()
+  stopAllBladePresses()
   shuffleSliceTextures()
   const normalizedDirection = direction < 0 ? -1 : 1
   const isClockwise = normalizedDirection < 0
@@ -534,12 +833,14 @@ function rotateBy(direction: number) {
       const delta = isClockwise ? 30 : -30
       setArrowRotation(arrow, index, arrowRotationValues[index]! + delta)
     })
+    syncBladeLinkRotations()
     return
   }
 
   const timeline = gsap.timeline({
     onComplete: () => {
       rotationTimeline = null
+      syncBladeLinkRotations()
       setAnimationActive(false)
     },
     onInterrupt: () => {
@@ -615,7 +916,7 @@ function createReplayExitTimeline() {
   const pathLength = arrowPath?.getTotalLength() ?? 24
   const exitTimeScale = replayConfig.exitBaseTimeScale * replayConfig.exitSpeedMultiplier
   const triangleDuration = triangleAnimationConfig.duration / exitTimeScale
-  const triangleFadeDuration = triangleAnimationConfig.fadeDuration / replayConfig.exitSpeedMultiplier
+  const edgeFadeDuration = triangleAnimationConfig.edgeFadeDuration / replayConfig.exitSpeedMultiplier
   const arrowDuration = introConfig.arrowDuration / exitTimeScale
   const timeline = gsap.timeline({
     onComplete: () => {
@@ -631,7 +932,7 @@ function createReplayExitTimeline() {
     }
   })
 
-  sliceImageStates.forEach((state, index) => {
+  sliceImageStates.forEach((_, index) => {
     sliceTransitionTimelines[index]?.kill()
     settleSliceImageLayers(index)
 
@@ -645,19 +946,21 @@ function createReplayExitTimeline() {
     const start = exitRank * (triangleAnimationConfig.stagger / exitTimeScale)
     const bladePivot = sliceBladePivots[index]
     if (!bladePivot) return
-    const activeMaterial = state.layers[state.activeIndex].material
-    const fadeStart = start + Math.max(0, triangleDuration - triangleFadeDuration)
+    const state = sliceImageStates[index]
+    const activeMaterial = state?.layers[state.activeIndex].material
 
     timeline.to(
       bladePivot.rotation,
       { x: Math.PI / 2, duration: triangleDuration, ease: triangleAnimationConfig.foldEase },
       start
     )
-    timeline.to(
-      activeMaterial,
-      { opacity: 0, duration: triangleFadeDuration, ease: 'power2.in' },
-      fadeStart
-    )
+    if (activeMaterial) {
+      timeline.to(
+        activeMaterial,
+        { opacity: 0, duration: edgeFadeDuration, ease: 'power1.in' },
+        start + Math.max(0, triangleDuration - edgeFadeDuration)
+      )
+    }
   })
 
   arrows.forEach((arrow, index) => {
@@ -670,8 +973,12 @@ function createReplayExitTimeline() {
     const exitRank = arrows.length - 1 - entranceRank
     const start = exitRank * (introConfig.arrowStagger / exitTimeScale)
 
-    timeline.to(arrowHeads[index], { opacity: 0, duration: arrowDuration * 0.22, ease: 'power2.in' }, start)
-    timeline.to(arrowLines[index], {
+    const arrowHead = arrowHeads[index]
+    const arrowLine = arrowLines[index]
+    if (!arrowHead || !arrowLine) return
+
+    timeline.to(arrowHead, { opacity: 0, duration: arrowDuration * 0.22, ease: 'power2.in' }, start)
+    timeline.to(arrowLine, {
       strokeDashoffset: pathLength,
       duration: arrowDuration,
       ease: 'power2.inOut'
@@ -687,6 +994,7 @@ async function restartIntroWithNewImages() {
     pivot.rotation.z = index * sliceAngle
   })
   resetArrowRotations()
+  resetBladeLinkRotations()
   sliceBladePivots.forEach((bladePivot) => {
     bladePivot.rotation.x = Math.PI / 2
   })
@@ -699,6 +1007,8 @@ async function restartIntroWithNewImages() {
 function replayIntro() {
   if (!slicePivots.length || animationActive) return
 
+  stopAllBladeWiggles()
+  stopAllBladePresses()
   rotationTimeline?.kill()
   rotationTimeline = null
   setAnimationActive(true)
@@ -722,9 +1032,9 @@ defineExpose({
 function applyRadialSliceOffset(renderedSize: number) {
   const outwardOffset = (radialOffsetPixels / Math.max(renderedSize, 1)) * kaleidoscopeViewSize
 
-  sliceBladePivots.forEach((bladePivot) => {
-    bladePivot.position.x = outwardOffset
-    bladePivot.position.y = 0
+  sliceBladeAxisPivots.forEach((bladeAxisPivot) => {
+    bladeAxisPivot.position.x = outwardOffset
+    bladeAxisPivot.position.y = 0
   })
 }
 
@@ -806,14 +1116,18 @@ function createIntroTimeline(delay = 0.15) {
       introConfig.arrowStaggerRitardando
     )
 
+    const arrowLine = arrowLines[index]
+    const arrowHead = arrowHeads[index]
+    if (!arrowLine || !arrowHead) return
+
     timeline.to(arrow, { opacity: 1, duration: introConfig.arrowDuration * 0.65, ease: 'power2.out' }, start)
     timeline.to(
-      arrowLines[index],
+      arrowLine,
       { strokeDashoffset: 0, duration: introConfig.arrowDuration, ease: 'power2.inOut' },
       start
     )
     timeline.to(
-      arrowHeads[index],
+      arrowHead,
       { opacity: 1, duration: introConfig.arrowDuration * 0.24, ease: 'power2.out' },
       start + introConfig.arrowDuration * 0.72
     )
@@ -830,6 +1144,8 @@ function createIntroTimeline(delay = 0.15) {
     const state = sliceImageStates[index]
     const activeMaterial = state?.layers[state.activeIndex].material
 
+    // The projected surface supplies the primary reveal. A short blend at the
+    // edge-on state suppresses the residual raster line before the roll opens.
     if (activeMaterial) activeMaterial.opacity = 0
 
     timeline.to(
@@ -840,7 +1156,7 @@ function createIntroTimeline(delay = 0.15) {
     if (activeMaterial) {
       timeline.to(
         activeMaterial,
-        { opacity: 1, duration: triangleAnimationConfig.fadeDuration, ease: 'power2.out' },
+        { opacity: 1, duration: triangleAnimationConfig.edgeFadeDuration, ease: 'power1.out' },
         start
       )
     }
@@ -907,6 +1223,7 @@ function dismissLoader() {
 onMounted(async () => {
   if (!containerRef.value || !canvasRef.value) return
 
+  document.addEventListener('pointerdown', handleDocumentPointerDown)
   setAnimationActive(true)
 
   loaderGraceTimer = window.setTimeout(() => {
@@ -936,7 +1253,18 @@ onMounted(async () => {
   // paints transparency, never an unfinished wheel.
   resize()
 
-  const sourceImages = props.images.length ? props.images : ['/media/images/landing/parkschloessl.jpg']
+  const fallbackItem: KaleidoscopeExhibitionItem = {
+    id: 'archive-fallback',
+    image: '/media/images/landing/parkschloessl.jpg',
+    href: '',
+    label: t('landing.hero.wheelAria'),
+    title: t('landing.hero.wheelAria'),
+    artist: '',
+    location: '',
+    dateRange: ''
+  }
+  const sourceItems = props.items.length ? props.items : [fallbackItem]
+  const sourceImages = sourceItems.map((item) => item.image)
   const textures: THREE.Texture[] = []
 
   // One image at a time. Twelve parallel requests share the connection and all
@@ -962,8 +1290,14 @@ onMounted(async () => {
     if (isActive) markSliceReady(index)
   }
 
+  sliceItems.value = Array.from(
+    { length: sliceCount },
+    (_, index) => sourceItems[index % sourceItems.length]!
+  )
+
   loadingIconTexture = createLoadingIconTexture()
   const wheel = new THREE.Group()
+  wheel.scale.setScalar(bladeWheelScale)
 
   textures.forEach((texture, index) => {
     const geometry = createTriangleGeometry()
@@ -994,22 +1328,26 @@ onMounted(async () => {
     })
     const loadingSprite = new THREE.Sprite(loadingMaterial)
     const counterPivot = new THREE.Group()
+    const bladeAxisPivot = new THREE.Group()
     const bladePivot = new THREE.Group()
     const pivot = new THREE.Group()
 
     pivot.rotation.z = index * sliceAngle
-    bladePivot.rotation.z = triangleMedianAngle
+    // Align a dedicated local X-axis with the triangle median. Folding and
+    // hover roll then happen on the child pivot around that exact axis.
+    bladeAxisPivot.rotation.z = triangleMedianAngle
     bladePivot.rotation.x = Math.PI / 2
     counterPivot.rotation.z = -triangleMedianAngle
     loadingSprite.position.set(triangleCentroidX, triangleCentroidY, 0.04)
     loadingSprite.scale.setScalar(0.16)
     loadingSprite.renderOrder = 100 + index
     loadingSprite.visible = false
-    counterPivot.add(layerGroups[0])
-    counterPivot.add(layerGroups[1])
+    counterPivot.add(layerGroups[0]!)
+    counterPivot.add(layerGroups[1]!)
     counterPivot.add(loadingSprite)
     bladePivot.add(counterPivot)
-    pivot.add(bladePivot)
+    bladeAxisPivot.add(bladePivot)
+    pivot.add(bladeAxisPivot)
 
     disposableGeometries.push(geometry)
     disposableMaterials.push(...layerMaterials)
@@ -1024,8 +1362,9 @@ onMounted(async () => {
     sliceLoadingSprites.push(loadingSprite)
     sliceLoadingMaterials.push(loadingMaterial)
     sliceTransitionTimelines.push(null)
-    sliceImageUrls.push(sourceImages[index % sourceImages.length])
+    sliceImageUrls.push(sourceImages[index % sourceImages.length]!)
     sliceLoadingTokens.push(0)
+    sliceBladeAxisPivots.push(bladeAxisPivot)
     sliceBladePivots.push(bladePivot)
     slicePivots.push(pivot)
     wheel.add(pivot)
@@ -1044,6 +1383,8 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   isActive = false
   window.clearTimeout(loaderGraceTimer)
+  window.clearTimeout(touchPreviewTimer)
+  document.removeEventListener('pointerdown', handleDocumentPointerDown)
 
   if (frameId) window.cancelAnimationFrame(frameId)
   resizeObserver?.disconnect()
@@ -1051,6 +1392,8 @@ onBeforeUnmount(() => {
   rotationTimeline?.kill()
   replayExitTimeline?.kill()
   sliceTransitionTimelines.forEach((timeline) => timeline?.kill())
+  bladeWiggleTimelines.forEach((timeline) => timeline?.kill())
+  bladePressTweens.forEach((tween) => tween?.kill())
   backgroundPreloadCancelled = true
   if (pageLoadHandler) window.removeEventListener('load', pageLoadHandler)
 
@@ -1062,8 +1405,12 @@ onBeforeUnmount(() => {
   sliceLoadingSprites.length = 0
   sliceLoadingMaterials.length = 0
   sliceTransitionTimelines.length = 0
+  bladeWiggleTimelines.length = 0
+  bladePressTweens.length = 0
   sliceImageUrls.length = 0
   sliceLoadingTokens.length = 0
+  sliceItems.value = []
+  sliceBladeAxisPivots.length = 0
   sliceBladePivots.length = 0
   slicePivots.length = 0
   renderer?.dispose()
@@ -1075,6 +1422,14 @@ onBeforeUnmount(() => {
   rotationTimeline = null
   replayExitTimeline = null
 })
+
+watch(
+  () => props.items,
+  (items) => {
+    const latestById = new Map(items.map((item) => [item.id, item]))
+    sliceItems.value = sliceItems.value.map((item) => latestById.get(item.id) ?? item)
+  }
+)
 </script>
 
 <template>
@@ -1107,6 +1462,38 @@ onBeforeUnmount(() => {
         <use class="hero-kaleidoscope__arrow-head" href="#hero-orbit-arrow-head" />
       </g>
     </svg>
+    <svg
+      class="[ kaleidoscope-blade-links ] absolute inset-0 z-4 size-full overflow-visible"
+      :class="isInteractionLocked ? 'pointer-events-none' : ''"
+      viewBox="0 0 100 100"
+      role="group"
+      :aria-label="t('landing.hero.bladeLinksAria')"
+    >
+      <g :transform.attr="`translate(50 50) scale(${bladeWheelScale}) translate(-50 -50)`">
+        <a
+          v-for="(item, index) in sliceItems"
+          :key="`${index}-${item.id}`"
+          class="hero-kaleidoscope__blade-link"
+          :href="item.href || undefined"
+          :aria-label="item.href ? t('landing.hero.openBlade', { title: item.label }) : undefined"
+          :tabindex="isInteractionLocked || !item.href ? -1 : undefined"
+          :transform.attr="`rotate(${bladeLinkRotationValues[index]} 50 50)`"
+          @pointerenter="handleBladePointerEnter(index, $event)"
+          @pointermove="handleBladePointerMove(index, $event)"
+          @focus="handleBladeFocus(index, $event)"
+          @blur="handleBladeBlur(index)"
+          @click="handleBladeClick(index, item, $event)"
+          @pointerdown="handleBladePointerDown(index, $event)"
+          @pointerup="releaseBlade(index)"
+          @pointercancel="releaseBlade(index)"
+          @pointerleave="handleBladePointerLeave(index, $event)"
+          @keydown.enter="handleBladeKeyDown(index)"
+          @keyup.enter="releaseBlade(index)"
+        >
+          <path class="hero-kaleidoscope__blade-hit" d="M 50 50 L 91.7 50 L 86.1 29.15 Z" />
+        </a>
+      </g>
+    </svg>
     <KaleidoscopeLoader
       v-if="isLoaderVisible"
       :ready-slices="readySlices"
@@ -1116,4 +1503,32 @@ onBeforeUnmount(() => {
       :dismissing="isLoaderDismissing"
     />
   </div>
+  <Teleport to="body">
+    <Transition name="kaleidoscope-tooltip">
+      <ArchiveTooltipFrame
+        v-if="activeTooltipItem"
+        as="aside"
+        class="[ kaleidoscope-tooltip ] hero-fan-tooltip pointer-events-none fixed z-50 w-64 max-w-[calc(100vw-1rem)] px-3 py-2.5 text-left font-display text-archive-ink filter-[drop-shadow(0_0.5rem_0.62rem_rgba(75,52,29,0.2))]"
+        :class="tooltipPlacement === 'above' ? '-translate-x-1/2 -translate-y-full -rotate-1' : '-translate-x-1/2 rotate-1'"
+        :pointer-side="tooltipPlacement === 'above' ? 'bottom' : 'top'"
+        :pointer-offset="tooltipPointerOffset"
+        :style="tooltipPositionStyle"
+        role="tooltip"
+      >
+        <span class="mb-1 block text-3xs leading-none tracking-widest text-archive-red uppercase">{{ $t('landing.hero.tooltipEyebrow') }}</span>
+        <strong class="block pb-0.5 text-lg leading-[1.08] font-medium">{{ activeTooltipItem.title }}</strong>
+        <span class="mb-1.5 block text-sm leading-tight text-archive-red">{{ activeTooltipItem.artist }}</span>
+        <span class="archive-record-divider mb-1.5 block h-[0.55rem] w-full opacity-54" aria-hidden="true" />
+        <span class="mb-0.5 flex items-start gap-1.5 text-xs leading-tight text-archive-record-meta">
+          <span class="archive-record-meta-icon record-meta-icon-location mt-px inline-block size-3 flex-none bg-current" aria-hidden="true" />
+          {{ activeTooltipItem.location }}
+        </span>
+        <span class="flex items-center gap-1.5 text-xs leading-tight text-archive-record-meta">
+          <span class="archive-record-meta-icon record-meta-icon-calendar inline-block size-3 flex-none bg-current" aria-hidden="true" />
+          {{ activeTooltipItem.dateRange }}
+        </span>
+        <span v-if="touchPreviewIndex === activeTooltipIndex" class="mt-2 block border-t border-archive-rule-warm/14 pt-1.5 text-3xs leading-tight tracking-wide text-archive-muted">{{ $t('landing.hero.touchHint') }}</span>
+      </ArchiveTooltipFrame>
+    </Transition>
+  </Teleport>
 </template>

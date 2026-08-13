@@ -4,6 +4,12 @@ Date: 2026-08-11
 Status: Approved for planning
 Scope owner: landing hero (`app/components/HeroKaleidoscope.vue`)
 
+Implementation note (2026-08-13): the loading/cache architecture below remains
+current, while the later landing schedule and fan-link design replaces the
+location-only source pool with indivisible exhibition image/metadata/route
+items. Consult that specification for the current blade content and interaction
+contract.
+
 ## Problem
 
 Opening the landing page shows an empty hero square for a long time before the
@@ -213,7 +219,7 @@ decorative; the accessible value comes from `aria-valuetext`.
 - Manual, with the large PNGs retained: dial appears on a cold load, ticks ink
   in as galleries land, handoff to the intro is continuous, wheel never shows
   without images.
-- Manual: navigate away to `/locations/` and back; the cache holds and the dial
+- Manual: navigate away to `/venues/` and back; the cache holds and the dial
   does not reappear.
 - Manual: `prefers-reduced-motion: reduce` — no sweep rotation, no fades.
 - Manual: DevTools offline for one image URL — wheel still appears.

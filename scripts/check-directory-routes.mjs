@@ -106,7 +106,7 @@ assert.match(landingExhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidd
 assert.match(landingExhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidden[^>]*pb-0\.5/, 'Landing exhibition title viewports must reserve two pixels for font descenders.')
 assert.match(landingExhibitionCard, /archive-record-title-marquee/, 'Overflowing landing exhibition titles must use the measured marquee treatment.')
 assert.match(landingExhibitionCard, /ResizeObserver/, 'Landing exhibition title overflow must respond to live card width.')
-assert.match(landingExhibitionCard, /\[ record-title-tooltip \][^\n]*archive-record-title-tooltip/, 'Overflowing landing exhibition titles must expose the custom archival tooltip.')
+assert.match(landingExhibitionCard, /<ArchiveTooltipFrame[\s\S]*?\[ record-title-tooltip \]/, 'Overflowing landing exhibition titles must use the shared custom archival tooltip frame.')
 assert.match(landingExhibitionCard, /\[ record-location-line \][^\n]*leading-\[1\.15\][^\n]*compact:leading-\[1\.05\]/, 'Landing exhibition locations must use compact desktop and mobile metadata line-heights.')
 assert.match(mainCss, /@keyframes archive-record-title-scroll[\s\S]*\.archive-record-title-marquee/, 'The landing exhibition title marquee animation must be globally defined.')
 assert.match(relatedExhibitionCard, /<ExhibitionFrameCard/, 'Related exhibition cards must use the shared generated cut-corner frame.')

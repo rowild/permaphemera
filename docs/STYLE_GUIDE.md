@@ -1,6 +1,6 @@
 # PERMAPHEMERA Web Style Guide
 
-Version: 1.21
+Version: 1.27
 Reference implementation: `app/pages/index.vue` and `app/assets/css/main.css`
 Design references: `../../_Plans/designs/landing-page/`
 Purpose: define the visual, structural, interaction, content, and implementation rules required for new pages to feel native to PERMAPHEMERA.
@@ -474,29 +474,28 @@ Its surface is a translucent warm vertical fade into the page, without blur. A c
 Desktop structure:
 
 ```text
-brand | primary navigation | menu
+brand | primary navigation | language | menu
 ```
 
 Mobile structure:
 
 ```text
 compact archival eyebrow
-brand | menu
-       language inside the opened menu
+brand | language | menu
 ```
 
 Rules:
 
 - Keep the brand at the left edge and on one line.
-- On compact screens, place the exact title-case tagline “A Curated Archive of Exhibitions” immediately above the brand lockup. Keep it small, tracked, and semantically subordinate to the identity. Its left edge must align with the `PERMAPHEMERA` wordmark rather than with the temple mark, and the two rows must read as one close lockup. Pack the lockup toward the top of its `4rem` header rather than vertically centering unused space above it.
+- Place the localized tagline “A Curated Archive of Exhibitions” / “Ein kuratiertes Archiv von Ausstellungen” immediately above the brand lockup at every width. Keep it small, tracked, and semantically subordinate to the identity. Its left edge must align with the `PERMAPHEMERA` wordmark rather than with the temple mark, and the two rows must read as one close lockup. At compact widths, pack the lockup toward the top of its `4rem` header rather than vertically centering unused space above it.
 - Align the header contents and its ornamental divider to the same responsive page gutter used by the content immediately below: fluid desktop/tablet gutters and `1rem` at `700px` and below.
-- Keep primary navigation concise: one-word or short labels.
-- Keep Archive, Galleries, Artists, and Exhibitions visible in desktop navigation. About and the footer-only information/legal actions belong in the always-available menu panel.
+- Keep primary navigation concise. The project name may appear in the About label when that distinction prevents vague or repetitive wording elsewhere.
+- Keep Galleries, Artists, Exhibitions, and About the Project visible in desktop navigation. At tablet and mobile widths, the complete primary group moves into the always-available menu panel.
 - Use section anchors only on single-page contexts; new routed pages should use real Nuxt links and accurate active state.
-- The language switch is `EN / DE`, with the active language in red and `aria-current`; it lives inside the menu rather than occupying separate desktop-header space.
-- The menu button is present at every width. Its panel includes the primary links on tablet/mobile, hides those already-visible links on desktop, and always exposes information, legal, cookie, and language controls.
-- Treat the opened panel as an archival sheet rather than a generic dropdown: use a warm inset parchment surface with the measurement and quarter-circle drawings grouped into one overlapping left-center drafting cluster. Keep both PNGs faint, non-interactive, and at their intrinsic aspect ratios; they must never be stretched to fill the panel. The panel is absolutely anchored immediately below the positioned header. Its paint order is always parchment surface, then the two ornaments, then the navigation content; never give an inner link group an opaque surface that covers the drawings.
-- The menu-star icon is a mask using `currentColor`, allowing semantic recoloring, and its right edge aligns with the header divider gutter.
+- The language switch is a compact dropdown immediately left of the menu button at every width. Its trigger shows the active language code and an accessible language name. The open menu reuses the shared cut-corner archival tooltip frame and its parchment gradient, points back toward the trigger, and rests at a playful two-degree paper tilt. Its opening motion rotates directly from level to that resting tilt, with the paper pointer acting as the hinge; hovering the complete sheet leans it gently through straight toward the opposite side. Reduced-motion mode keeps the resting tilt static. Keep the sheet narrow and its two language rows compact, with minimal inset and inter-column space. Its options form one uninterrupted paper field without horizontal row rules or hover backgrounds. Each option combines its self-name and code with a secondary Austrian or British flag mark from the shared flag library; hover and keyboard focus are expressed only through the red text shift and the flags briefly regaining their real colour.
+- Flags supplement text and never carry language meaning alone. The dropdown exposes expanded and selected state programmatically, closes on outside interaction and Escape, and preserves locale-aware routes and the necessary preference cookie.
+- The menu button is present at every width. Its panel includes the primary links on tablet/mobile, hides those already-visible links on desktop, and exposes the remaining information, legal, and cookie controls without duplicating About or language selection.
+- Treat the opened panel as an archival sheet rather than a generic dropdown: let the same reverse-corner frame as the language popup provide its single warm parchment surface, but keep it level. Do not add an inner panel background, border, or shadow. The measurement and quarter-circle drawings stay grouped into one overlapping left-center drafting cluster. Keep both PNGs faint, non-interactive, and at their intrinsic aspect ratios; they must never be stretched to fill the panel. The panel is absolutely anchored immediately below the positioned header. Its paint order is always framed parchment surface, then the two ornaments, then the navigation content; never give an inner link group an opaque surface that covers the drawings. Do not separate menu rows or groups with hairlines—the typography and spacing provide hierarchy. Opening uses only a relaxed opacity change and slight upward-to-rest movement, with no playful rotation; reduced-motion mode removes the transition.
 
 For the landing hero, tablet is an orientation-sensitive composition rather than one generic intermediate layout. Landscape keeps copy and kaleidoscope side by side, reduces both against viewport width and height, and retains the full desktop wording. Portrait places the kaleidoscope above the copy, uses the compact two-line title and short action labels, and centers the text/actions. Both variants occupy at least the remaining first viewport below the tablet header and keep the continuation cue unobstructed at the bottom.
 
@@ -679,6 +678,22 @@ On exhibition detail pages, order the primary facts as Location, Dates, then Ope
 
 Desktop exhibition-detail sections that pair a dominant visual or editorial field with a secondary information field use the hero's `1.2fr / 0.8fr` (60/40) column ratio consistently. Contained sections also reuse the hero's `clamp(3rem, 7vw, 7rem)` inter-column gap; full-bleed tonal sections keep the same ratio without manufacturing a gap between their surfaces. All such splits collapse to one column at the shared tablet breakpoint so the proportion does not drift at intermediate widths.
 
+The landing page’s current/upcoming module is a programme ledger rather than a
+second featured collection. It appears only while one or both time groups have
+records, sits directly after the hero, and caps each chronological group at
+three. Current records order by soonest closing date; upcoming records order by
+opening date. Reuse the compact `LandingExhibitionCard` so record geometry,
+metadata order, and the centred `Visit Exhibition` image action stay identical
+to the main landing collection. Separate the module from the next landing band
+with `ArchiveExhibitionsDivider`; do not add a tonal panel, perimeter rules, or
+decorative record counts. The current group carries the strongest red status
+treatment. Omit an empty group and omit the complete module when both are
+empty; do not render placeholder or empty-state copy in this high-priority
+landing position. Group labels align optically with the visible left edge of
+their cut-corner cards. In German, use the parallel labels “Aktuelle
+Ausstellungen” and “Kommende Ausstellungen”; do not use the isolated adjective
+“Kommend”.
+
 ### 14.4 Paper stacks
 
 Paper stacks represent additional records or expansion. The current location stack uses four slightly translated and rotated sheets plus a two-layer paperclip.
@@ -793,6 +808,26 @@ Do not treat all image files the same. Each category has a different crop, contr
 
 The hero kaleidoscope is a signature component. It is large, circular, visually dominant, and surrounded by fine directional orbit marks. On mobile it appears before the headline.
 
+Each populated blade represents one exhibition record and must keep its image,
+translated accessible label, and exhibition-detail route together as one item.
+The transparent SVG interaction sector must follow the same blade through
+rotation and image reshuffling; a visual/link mismatch is a release-blocking
+data defect. Blade links leave the tab order while the wheel is moving and
+return when it settles. Hover and keyboard focus reveal an exhibition preview
+with title, artist, venue/city, and translated date range. The preview reuses
+the shared cut-corner archival tooltip frame, places its paper pointer toward
+the triggering point, and chooses an above or below orientation according to
+available viewport space. It is teleported to `body`, uses fixed positioning,
+and follows mouse/pen movement without entering the fan's layout or paint tree.
+Scale and rotation originate at the paper pointer so that cursor attachment
+stays visually still while the frame unfolds. Its
+entrance and exit combine a short fade, scale, and restrained rotation;
+reduced motion removes those transforms.
+Touch uses first tap to reveal the preview and second tap on the same blade to
+follow its exhibition route. Tapping elsewhere dismisses it, and an explicit
+hint explains the second tap. The source may be local JSON or Directus, but
+that relationship is resolved before the component receives it.
+
 Do not reuse the kaleidoscope on ordinary pages. It belongs to high-level orientation or a similarly important collection entry point.
 
 ### 15.4 Archival compositions
@@ -875,6 +910,8 @@ Sidebar location lists remove bullets and use a compact vertical gap around `0.4
 
 Use `<dl>`, `<dt>`, and `<dd>` for labelled facts such as technology, curation, and status. Labels are small, uppercase, tracked, and muted; values are larger and darker.
 
+In every table-like definition list, each label and its corresponding value must align on their first text baseline, regardless of differences in font size, weight, or line height. Apply baseline alignment to the row itself; decorative icons belong in a separate inner cell and must not determine that baseline. If either side wraps, subsequent lines continue naturally below the shared first baseline. Compact one-column layouts are exempt once label and value intentionally stack.
+
 On desktop, facts may appear in three columns separated by ornamental vertical rules. The routed Artists introduction instead uses one stacked three-row sidebar; that text-plus-sidebar relationship remains intact through tablet while its left editorial copy scales down fluidly. Only at the mobile breakpoint does that sidebar become the compact three-column ledger. On mobile, keep other short three-item fact sets in one compact row. Use a two-column grid for longer metadata values and stack only content that demonstrably cannot fit.
 
 ### 16.5 Metadata formatting
@@ -900,6 +937,10 @@ Common assets include:
 
 Rules:
 
+- Treat every visible line as a scarce structural signal. Add a rule or divider only when it clarifies a major boundary that spacing, alignment, typography, or grouping cannot communicate more quietly.
+- Never use rules by default around lists, definition records, tables, navigation groups, cards, or successive editorial chapters. Prefer whitespace and typographic hierarchy; a dense sequence of lines makes the archival language noisy rather than precise.
+- A clearly labelled, self-contained information block may use one restrained top rule and one restrained bottom rule when those lines meaningfully encompass the complete unit. Keep its internal rows borderless; the outer pair is the structure.
+- Before adding a divider, inspect the complete page and remove any nearby rule that serves the same purpose. Adjacent components must not each draw their own version of one boundary.
 - Use plain 1px translucent borders for quiet structural separation.
 - Use ornamental dividers for important editorial transitions.
 - Keep ornamental divider opacity around `0.34–0.72`.
@@ -1161,6 +1202,43 @@ A standard new archive page should follow this composition:
   <SiteFooter />
 </main>
 ```
+
+### 24.1 Permanent legal and access records
+
+Imprint, privacy, terms of use, and accessibility pages share
+`ArchiveLegalPage`. Their signature is an accountable document record beside
+the hero—not a generic legal card or unrelated photograph. That complete
+record may be encompassed by one subtle top and bottom rule, while its internal
+rows remain borderless. The body uses
+`LegalEditorialSection` for paragraphs, lists, definition records, contacts,
+and source links. Each legal section follows the About page's editorial split:
+eyebrow and title in a narrow left column, prose and structured information in
+the wider right column. Do not repeat those chapter titles in a separate
+contents navigation. Separate successive chapters with vertical space rather
+than rules, and present definition records without row borders; labels,
+alignment, and a compact half-rem row gap provide their structure. Do not pad
+each record like a table row. On compact screens each
+editorial section collapses to one column.
+
+Use “Nutzungsbedingungen” / “Terms of Use” while the project offers only free
+informational access and concludes no online contracts. Keep accessibility as
+a distinct destination when it publishes a meaningful target, assessment
+status, known limitations, and feedback channel. Never claim audited WCAG
+conformance on the basis of implementation checks alone.
+
+Privacy text must describe the live system rather than intended architecture.
+The consent panel uses real, granular checkboxes: necessary storage is visible,
+checked, and unavailable for deselection, while every optional vendor or
+service has its own unchecked control. “Save selection” and “Accept all” are
+the two actions; saving with all optional boxes unchecked is the direct
+necessary-only choice. Optional analytics and external media must remain
+technically dormant until the corresponding affirmative consent and stop future
+processing when that consent is withdrawn. A future-facing checkbox may be
+shown before an integration exists only when it is clearly labelled inactive;
+selecting it must not itself load external resources. Planned newsletter, CMS,
+storage, or embedded services remain explicitly inactive until their real
+provider and configuration are known and the privacy/consent surfaces are
+updated before activation.
 
 The first viewport should establish page identity through type and one strong spatial or documentary visual. Do not repeat the landing kaleidoscope unless the new route genuinely needs it.
 

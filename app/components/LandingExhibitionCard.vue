@@ -3,10 +3,9 @@ import type { CSSProperties } from 'vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { createOrnamentTransform } from '~/utils/seededLayout'
 
-// Only fed from app/pages/index.vue's `selectedExhibitions`, a landing-page
-// card projection built from ResolvedExhibition — not the full resolved
-// record. Picking just the fields this card reads keeps the prop type honest
-// about what it actually needs and what its one call site actually supplies.
+// Shared by the landing page's selected and timely exhibition sections.
+// Picking just the fields this card reads keeps the prop type honest about
+// what each collection actually needs to supply.
 const props = withDefaults(defineProps<{
   exhibition: Pick<ResolvedExhibition, 'id' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image'>
   variant?: 'featured' | 'compact'
@@ -141,14 +140,17 @@ onBeforeUnmount(() => {
               :style="recordTitleStyle"
             >{{ props.exhibition.title }}</h3>
           </div>
-          <span
+          <ArchiveTooltipFrame
             v-if="recordTitleOverflow"
-            class="[ record-title-tooltip ] archive-record-title-tooltip archive-button-secondary-frame pointer-events-none absolute inset-x-0 top-[calc(100%+0.3rem)] z-10 block translate-y-1 scale-95 border-12 border-transparent px-2 py-1 font-display text-sm leading-[1.12] text-archive-ink opacity-0 filter-[drop-shadow(0_0.38rem_0.42rem_rgba(75,52,29,0.18))] transition-[opacity,transform,translate,scale,rotate] duration-200 ease-out group-hover/title:translate-y-0 group-hover/title:scale-100 group-hover/title:opacity-100 group-focus-visible/exhibition:translate-y-0 group-focus-visible/exhibition:scale-100 group-focus-visible/exhibition:opacity-100 compact:text-xs motion-reduce:transition-none"
+            as="span"
+            pointer-side="top"
+            :pointer-offset="-50"
+            class="[ record-title-tooltip ] pointer-events-none absolute inset-x-0 top-[calc(100%+0.3rem)] z-10 translate-y-1 scale-95 px-2 py-1 font-display text-sm leading-[1.12] text-archive-ink opacity-0 filter-[drop-shadow(0_0.38rem_0.42rem_rgba(75,52,29,0.18))] transition-[opacity,transform,translate,scale,rotate] duration-200 ease-out group-hover/title:translate-y-0 group-hover/title:scale-100 group-hover/title:opacity-100 group-focus-visible/exhibition:translate-y-0 group-focus-visible/exhibition:scale-100 group-focus-visible/exhibition:opacity-100 compact:text-xs motion-reduce:transition-none"
             aria-hidden="true"
           >
             <span class="mb-0.5 block text-3xs leading-none tracking-[0.09em] text-archive-red uppercase compact:text-4xs">{{ $t('cards.fullTitle') }}</span>
             <span class="block">{{ props.exhibition.title }}</span>
-          </span>
+          </ArchiveTooltipFrame>
         </div>
         <p class="[ artist-name ] my-[0.08rem] mt-[0.18rem] font-display leading-[1.1] text-archive-red compact:text-sm">{{ props.exhibition.artist }}</p>
         <p class="[ record-location-line ] [ record-meta-line ] my-[0.08rem] flex items-start gap-[0.48rem] font-display text-sm leading-[1.15] text-archive-record-meta compact:text-xs compact:leading-[1.05]">

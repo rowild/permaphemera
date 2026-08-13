@@ -15,6 +15,7 @@ export interface ResolvedExhibition {
   city: string
   start_date: string
   end_date: string
+  is_permanent: boolean
   date_range: string
   image: string
   image_alt: string
@@ -77,6 +78,7 @@ export const resolveExhibitions = (
       city: location.city_name,
       start_date: exhibition.start_date,
       end_date: exhibition.end_date,
+      is_permanent: exhibition.is_permanent,
       date_range: text.date_range as string,
       image: exhibition.image,
       image_alt: (text.image_alt as string) || exhibition.image_alt,

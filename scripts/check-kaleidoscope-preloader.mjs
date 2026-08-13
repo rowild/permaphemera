@@ -35,6 +35,9 @@ const heroKaleidoscope = await readProjectFile('app/components/HeroKaleidoscope.
 const kaleidoscopeTextures = await readProjectFile('app/utils/kaleidoscopeTextures.ts')
 const htaccess = await readProjectFile('public/.htaccess')
 const kaleidoscopeLoader = await readProjectFile('app/components/KaleidoscopeLoader.vue')
+const archiveTooltipFrame = await readProjectFile('app/components/ArchiveTooltipFrame.vue')
+const mainCss = await readProjectFile('app/assets/css/main.css')
+const landingPage = await readProjectFile('app/pages/index.vue')
 const enMessages = JSON.parse(await readProjectFile('i18n/locales/en.json'))
 const deMessages = JSON.parse(await readProjectFile('i18n/locales/de.json'))
 const preloadTexturePoolSource = extractFunctionSource(heroKaleidoscope, 'preloadTexturePool')
@@ -141,7 +144,12 @@ const checks = [
   ['the dial shows the download percentage of the image in flight', kaleidoscopeLoader.includes('Math.round(clampedFraction.value * 100)') && kaleidoscopeLoader.includes('stroke-dashoffset')],
   ['the dial uses a spaced structural marker and no scoped styles', kaleidoscopeLoader.includes('[ kaleidoscope-loader ]') && !kaleidoscopeLoader.includes('[kaleidoscope-loader]') && !kaleidoscopeLoader.includes('<style')],
   ['the dial is inert to pointer input', kaleidoscopeLoader.includes('pointer-events-none')],
-  ['loading copy is localized for the title and the counter', enMessages.landing.hero.loadingTitle === 'Loading Gallery Image' && deMessages.landing.hero.loadingTitle === 'Galeriebild wird geladen' && ['{current}', '{total}'].every((token) => enMessages.landing.hero.loadingCounter.includes(token) && deMessages.landing.hero.loadingCounter.includes(token))],
+  ['fan items carry the complete exhibition preview projection', ['title: exhibition.title', 'artist: exhibition.artist', 'location: `${exhibition.venue}, ${exhibition.city}`', 'dateRange: exhibition.date_range'].every((field) => landingPage.includes(field))],
+  ['fan previews reuse the shared archival tooltip frame', heroKaleidoscope.includes('<ArchiveTooltipFrame') && archiveTooltipFrame.includes('archive-button-secondary-frame') && archiveTooltipFrame.includes('[ archive-tooltip-pointer ]')],
+  ['fan previews support cursor tracking, focus, dismissal, and two-tap touch activation', ['@pointerenter="handleBladePointerEnter', '@pointermove="handleBladePointerMove', '@focus="handleBladeFocus', '@blur="handleBladeBlur', '@click="handleBladeClick', 'touchPreviewIndex.value === index', 'event.preventDefault()', 'handleDocumentPointerDown'].every((contract) => heroKaleidoscope.includes(contract))],
+  ['fan previews render as a body-level fixed overlay', heroKaleidoscope.includes('<Teleport to="body">') && heroKaleidoscope.includes('hero-fan-tooltip pointer-events-none fixed') && !heroKaleidoscope.includes('hero-fan-tooltip pointer-events-none absolute')],
+  ['fan preview motion pivots around the paper pointer', mainCss.includes('.archive-shared-tooltip-frame.has-pointer-top {') && mainCss.includes('transform-origin: clamp(1.1rem, calc(50% + var(--archive-tooltip-pointer-offset, 0px)), calc(100% - 1.1rem)) 0;') && mainCss.includes('transform-origin: clamp(1.1rem, calc(50% + var(--archive-tooltip-pointer-offset, 0px)), calc(100% - 1.1rem)) 100%;')],
+  ['loading copy is localized for the title and the counter', enMessages.landing.hero.loadingTitle === 'Loading Exhibition Image' && deMessages.landing.hero.loadingTitle === 'Ausstellungsbild wird geladen' && ['{current}', '{total}'].every((token) => enMessages.landing.hero.loadingCounter.includes(token) && deMessages.landing.hero.loadingCounter.includes(token))],
   ['the ring spans all twelve galleries rather than refilling per image', kaleidoscopeLoader.includes('(props.activeIndex + clampedFraction.value) / props.total') && kaleidoscopeLoader.includes('circumference * (1 - overallFraction.value)')],
   ['the rotate controls reshuffle what is on screen instead of fetching', rotateBySource.includes('shuffleSliceTextures()') && !rotateBySource.includes('randomizeSliceTextures')],
   ['the middle replay control still fetches fresh imagery', restartIntroSource.includes('randomizeSliceTextures(')],

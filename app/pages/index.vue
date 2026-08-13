@@ -6,6 +6,8 @@ import { gsap } from 'gsap'
 import { buildArtistDirectory } from '~/utils/artistDirectory'
 import exhibitionsArtists from '~/data/exhibitions_artists.json'
 import type { ExhibitionArtistLink } from '~/types/content'
+import type { KaleidoscopeExhibitionItem } from '~/types/kaleidoscope'
+import { selectExhibitionSchedule } from '~/utils/exhibitionSchedule'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 
@@ -23,6 +25,7 @@ type Exhibition = Pick<ResolvedExhibition, 'id' | 'slug' | 'title' | 'artist' | 
 const { artists, venues, venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
+const archiveToday = useArchiveToday()
 const directoryArtists = computed(() =>
   buildArtistDirectory(artists.value, venueExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[]))
 
@@ -76,17 +79,25 @@ const selectedExhibitions = computed<Exhibition[]>(() => [...venueExhibitions.va
   })))
 const featuredExhibition = computed(() => selectedExhibitions.value.find((exhibition) => exhibition.featured) ?? selectedExhibitions.value[0]!)
 const sideExhibitions = computed(() => selectedExhibitions.value.filter((exhibition) => exhibition.id !== featuredExhibition.value.id))
+const exhibitionSchedule = computed(() => selectExhibitionSchedule(venueExhibitions.value, archiveToday.value))
+const currentExhibitions = computed(() => exhibitionSchedule.value.current)
+const upcomingExhibitions = computed(() => exhibitionSchedule.value.upcoming)
+const hasTimelyExhibitions = computed(() => currentExhibitions.value.length > 0 || upcomingExhibitions.value.length > 0)
+const firstLandingSectionTarget = computed(() => hasTimelyExhibitions.value ? '#current-upcoming' : '#venues')
+const heroExhibitionItems = computed<KaleidoscopeExhibitionItem[]>(() => [...venueExhibitions.value]
+  .sort((left, right) => right.start_date.localeCompare(left.start_date))
+  .map((exhibition) => ({
+    id: exhibition.id,
+    image: exhibition.image,
+    href: localePath(`/exhibitions/${exhibition.slug}/`),
+    label: exhibition.title,
+    title: exhibition.title,
+    artist: exhibition.artist,
+    location: `${exhibition.venue}, ${exhibition.city}`,
+    dateRange: exhibition.date_range
+  })))
 const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
 const artistGroupOrder = ['B', 'E', 'J', 'K', 'L', 'R', 'W']
-const locationImagePool = Array.from(
-  { length: 40 },
-  (_, index) => `/media/images/landing/locations/location_${String(index + 1).padStart(2, '0')}.png`
-)
-const heroImages = [
-  '/media/images/landing/parkschloessl.jpg',
-  ...locationImagePool.slice(0, 10),
-  locationImagePool[0]!
-]
 const venueStackItems = [
   '/media/images/landing/kaleidoscope/locations/location_07.png',
   '/media/images/landing/kaleidoscope/locations/location_08.png',
@@ -278,8 +289,8 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       <div class="[ hero-wheel-area ] grid self-center justify-items-center gap-[clamp(0.9rem,1.8vw,1.45rem)] tablet:row-start-1 tablet-landscape:col-start-2">
         <HeroKaleidoscope
           ref="kaleidoscopeRef"
-          :images="heroImages"
-          :image-pool="locationImagePool"
+          :items="heroExhibitionItems.slice(0, 12)"
+          :item-pool="heroExhibitionItems"
           @animation-state-change="handleKaleidoscopeAnimationState"
           @controls-reveal="revealWheelControls"
         />
@@ -313,10 +324,15 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       </div>
 
       <ArchiveScrollCue
-        target="#venues"
-        :label="$t('landing.hero.continue')"
+        :target="firstLandingSectionTarget"
+        :label="hasTimelyExhibitions ? $t('landing.hero.continueSchedule') : $t('landing.hero.continue')"
       />
     </section>
+
+    <LandingExhibitionSchedule
+      :current="currentExhibitions"
+      :upcoming="upcomingExhibitions"
+    />
 
     <section id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8">
       <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">

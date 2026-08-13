@@ -6,11 +6,11 @@
     "seoDescription": "A curated Austrian archive of 360 degree exhibition documentation."
   },
   "navigation": {
-    "archive": "Archive",
+    "archive": "Home",
     "galleries": "Galleries",
     "artists": "Artists",
     "exhibitions": "Exhibitions",
-    "about": "About",
+    "about": "About the Project",
     "information": "Information",
     "howItWorks": "How it works",
     "contact": "Contact",
@@ -21,13 +21,34 @@
   },
   "language": {
     "label": "Language",
-    "switcherAria": "Language switcher"
+    "switcherAria": "Language switcher",
+    "currentAria": "Current language: {language}. Open language menu"
   },
   "privacyNotice": {
-    "title": "Cookie notice",
-    "description": "This site uses only a necessary cookie to remember your selected language. No analytics, advertising, or marketing cookies are active.",
+    "title": "Cookie settings",
+    "description": "Choose which optional services may be activated. Necessary storage is always active; Matomo, Google Maps and YouTube remain blocked until you allow them.",
+    "selectionAria": "Privacy services",
+    "necessary": {
+      "title": "Necessary",
+      "description": "Stores your language and privacy selection."
+    },
+    "analytics": {
+      "title": "Matomo analytics",
+      "description": "Measures page views and link use on our self-hosted Matomo instance."
+    },
+    "googleMaps": {
+      "title": "Google Maps",
+      "description": "Allows future embedded maps to connect to Google. No map is currently embedded."
+    },
+    "youtube": {
+      "title": "YouTube",
+      "description": "Allows future embedded videos to connect to YouTube. No video is currently embedded."
+    },
+    "alwaysActive": "Always active",
+    "details": "Privacy details",
     "actions": {
-      "accept": "Understood"
+      "save": "Save selection",
+      "acceptAll": "Accept all"
     }
   },
   "common": {
@@ -55,10 +76,15 @@
       "replay": "Replay kaleidoscope entrance animation",
       "rotateClockwise": "Rotate kaleidoscope clockwise",
       "wheelAria": "Rotating archive image wheel",
-      "loadingTitle": "Loading Gallery Image",
+      "bladeLinksAria": "Exhibitions in the image wheel",
+      "openBlade": "Open exhibition: {title}",
+      "tooltipEyebrow": "Exhibition",
+      "touchHint": "Tap again to open the exhibition.",
+      "loadingTitle": "Loading Exhibition Image",
       "loadingCounter": "{current} of {total}",
-      "loadingProgress": "{loaded} of {total} galleries loaded",
-      "continue": "Continue to venues"
+      "loadingProgress": "{loaded} of {total} exhibitions loaded",
+      "continue": "Continue to venues",
+      "continueSchedule": "Continue to current and upcoming exhibitions"
     },
     "venues": {
       "eyebrow": "Venues",
@@ -75,6 +101,16 @@
       "intro": "Selected exhibitions preserved as spatial records.",
       "searchLabel": "Search exhibitions",
       "searchPlaceholder": "Search exhibitions…"
+    },
+    "schedule": {
+      "eyebrow": "Programme",
+      "titleBefore": "Current /",
+      "titleAccent": "Upcoming",
+      "titleAfter": "exhibitions",
+      "intro": "See what is open now and the next exhibitions entering the archive.",
+      "current": "Current",
+      "upcoming": "Upcoming",
+      "viewAll": "View all exhibitions"
     },
     "artists": {
       "eyebrow": "Artists",
@@ -294,6 +330,360 @@
     "openFor": "Open exhibitions for {name}",
     "closeFor": "Close exhibitions for {name}"
   },
+  "about": {
+    "seoTitle": "About the Project · Spatial exhibition memories",
+    "seoDescription": "Why PERMAPHEMERA preserves temporary exhibitions through connected 360° captures and builds an Austria-wide index of galleries and exhibition venues.",
+    "breadcrumb": "About the Project",
+    "eyebrow": "Purpose & principles",
+    "title": "What passes",
+    "accent": "should not disappear without a trace.",
+    "intro": "PERMAPHEMERA preserves the spatial experience of temporary exhibitions in connected 360° documents—as an invitation to visit, return and discover.",
+    "figureAlt": "Layered archival papers showing a spatially connected view through a historic exhibition room",
+    "figureLabel": "Spatial document",
+    "figureCaption": "Connected viewpoints · exhibition in space",
+    "articleAria": "The purpose and principles of PERMAPHEMERA",
+    "sections": {
+      "spatialMemory": {
+        "eyebrow": "Space & memory",
+        "title": "An exhibition is a",
+        "accent": "spatial composition."
+      },
+      "invitation": {
+        "eyebrow": "Presence & distance",
+        "title": "Not a substitute.",
+        "accent": "An invitation."
+      },
+      "visibility": {
+        "eyebrow": "Many places, many voices",
+        "title": "Diversity should",
+        "accent": "remain visible."
+      },
+      "index": {
+        "eyebrow": "Archive & index",
+        "title": "Looking back and",
+        "accent": "discovering the present."
+      },
+      "beginnings": {
+        "eyebrow": "Exhibition by exhibition",
+        "title": "Beginning on a small scale.",
+        "accent": "Growing with an open view."
+      },
+      "parkschloesslOrigin": {
+        "eyebrow": "Origins & gratitude",
+        "title": "A Beginning at the",
+        "accent": "Parkschlössl"
+      }
+    },
+    "body": {
+      "p1": "An exhibition is more than the sum of the works on view. We encounter art in space: through sightlines and distances, in the light, in unexpected juxtapositions, and in the movement from one work to the next. For a few weeks, a carefully composed arrangement comes into being—and almost as soon as the exhibition ends, it dissolves again.",
+      "p2": "This is precisely where its special appeal lies. Yet it also means that an essential part of the exhibition is lost. Individual photographs, invitation cards and accompanying texts preserve important traces, but they can only rarely convey the spatial experience of an exhibition. How a room was structured, which paths it suggested, how art, architecture and atmosphere worked together—all of this often survives only in the memories of those who were actually there.",
+      "p3": "PERMAPHEMERA seeks to preserve something of this fleeting moment. Interconnected 360° captures create spatial documents in which selected exhibitions can be explored again after they have ended. Accompanied by information about artists, exhibition venues, dates and curatorial contexts, they reveal how an exhibition was conceived, designed and experienced.",
+      "p4": "The virtual tour does not replace a visit in person—and nor should it. At its best, it sparks curiosity: about a place, an artistic practice or an exhibition currently on view. Later, it also offers the possibility of returning, looking more closely, discovering connections anew, or encountering an exhibition one was unable to visit in person.",
+      "p5": "Particular attention is given to smaller galleries, regional art initiatives, off-spaces and temporary exhibition venues, as well as artistic practices that have received little documentation. Inclusive exhibitions and projects by artists with disabilities are naturally part of this field of view. While established institutions often have professional documentation and archives of their own, many remarkable exhibitions beyond the major centres leave behind very few publicly accessible traces. PERMAPHEMERA seeks to help ensure that this diversity remains visible.",
+      "p6": "Alongside the curated 360° archive, a continuously growing index of Austrian galleries and exhibition venues is intended to emerge. It will make it possible to research who exhibited where and when, how places are connected, and how Austria’s exhibition landscape develops across regions and over the years. The index aims for the greatest possible breadth; spatial documentation remains a deliberate and transparent selection.",
+      "p7": "PERMAPHEMERA therefore does not look only to the past. Current and upcoming exhibitions should also be discoverable and invite people to visit. What lies ahead can be found. What is happening now becomes visible. And what has passed remains accessible in a form that tells more than a single image can.",
+      "p8": "The project deliberately begins on a small scale: with individual places, exhibitions and encounters. From there, a living, polyphonic picture of Austria’s exhibition landscape should grow—exhibition by exhibition and region by region. Participation should remain free of charge for selected galleries and artists; admission is determined by curatorial and documentary considerations, not by financial means.",
+      "p9": "PERMAPHEMERA does not seek to establish a new canon. It seeks to open spaces: for discovery, for memory and for a more attentive view of art that may be visible only briefly, yet still deserves not to disappear without a trace.",
+      "p10": "PERMAPHEMERA began on 2 June 2026 with Adi Schmölzer’s first exhibition at the Parkschlössl. He provided the decisive impetus for the idea and put me in touch with those responsible in Spittal an der Drau—above all Monika Gaberscek. From the outset, the city welcomed the still-young initiative with remarkable openness and trust, making the process exceptionally straightforward. My very special thanks go to Ms Gaberscek, whose selfless support, personal initiative and extraordinary commitment to PERMAPHEMERA made so much of it possible in the first place. I am equally grateful to all the artists involved. They embraced the project with great openness and remarkable generosity—and in doing so gave it the encouragement from which it can now continue to grow, exhibition by exhibition."
+    },
+    "actionsEyebrow": "Explore the archive",
+    "actionsTitle": "Discover what is happening now.",
+    "actionsAccent": "Revisit what has passed.",
+    "viewExhibitions": "View exhibitions",
+    "viewGalleries": "Discover galleries"
+  },
+  "legal": {
+    "common": {
+      "recordLabel": "Document record",
+      "document": "Document",
+      "project": "Project",
+      "responsible": "Responsible",
+      "controller": "Controller",
+      "operator": "Operator",
+      "hosting": "Hosting",
+      "updated": "Updated",
+      "updatedValue": "13 August 2026",
+      "contents": "Contents",
+      "name": "Name",
+      "address": "Address",
+      "email": "Email",
+      "phone": "Telephone",
+      "contact": "Contact",
+      "target": "Target standard",
+      "method": "Assessment",
+      "sources": "Basis & sources"
+    },
+    "imprint": {
+      "seoTitle": "Imprint · PERMAPHEMERA",
+      "seoDescription": "Provider identification, media owner and editorial responsibility for PERMAPHEMERA.",
+      "breadcrumb": "Imprint",
+      "eyebrow": "Responsibility & disclosure",
+      "title": "Who stands behind",
+      "accent": "the archive.",
+      "intro": "PERMAPHEMERA is a privately operated cultural and documentation project. This page identifies the responsible person, contact details and editorial purpose.",
+      "recordType": "Provider identification",
+      "recordAria": "Document record for the imprint",
+      "articleAria": "Imprint and disclosure for PERMAPHEMERA",
+      "sections": {
+        "provider": {
+          "eyebrow": "Provider identification",
+          "title": "Media owner and service provider",
+          "p1": "The person responsible for the content, operation and editorial presentation of this website is:",
+          "roleLabel": "Role",
+          "roleValue": "Private operator, media owner and person responsible for content"
+        },
+        "direction": {
+          "eyebrow": "Disclosure",
+          "title": "Fundamental editorial direction",
+          "p1": "PERMAPHEMERA documents temporary exhibitions, artists, galleries and exhibition venues, with particular attention to spatial relationships and long-term cultural access.",
+          "p2": "The website serves independent information, documentation and cultural mediation. It currently pursues no commercial sales or brokerage interests and aims in particular to make smaller, regional, temporary and previously under-documented practices visible."
+        },
+        "status": {
+          "eyebrow": "Project form",
+          "title": "Privately and independently operated",
+          "p1": "PERMAPHEMERA is currently operated by Robert Wildling as a private, independent project. At present there is no company, association or company-register entry under the project name.",
+          "p2": "If the organisational form changes or further mandatory information becomes applicable, this imprint will be updated accordingly."
+        },
+        "copyright": {
+          "eyebrow": "Rights in content",
+          "title": "Copyright and image credits",
+          "p1": "Texts, design, 360° documentation and other original content on this website are protected by copyright. Photographs, artworks, names, trademarks and other third-party contributions remain with their respective rights holders and are published—where required—with their consent or on another lawful basis.",
+          "p2": "Any reproduction, adaptation, redistribution or public use beyond what is permitted by law requires the prior consent of the relevant rights holder. Please report incomplete or incorrect attribution using the contact email address provided on this page."
+        },
+        "sources": {
+          "title": "Legal basis for the disclosure",
+          "p1": "These details are guided in particular by Austrian provider-information and media-disclosure requirements. The links lead to Austria’s official legal information system.",
+          "ecg": "Section 5, Austrian E-Commerce Act",
+          "media": "Section 25, Austrian Media Act"
+        }
+      }
+    },
+    "privacy": {
+      "seoTitle": "Privacy Policy · PERMAPHEMERA",
+      "seoDescription": "Information about personal-data processing, hosting, consent choices, optional external media and your privacy rights.",
+      "breadcrumb": "Privacy Policy",
+      "eyebrow": "Data & transparency",
+      "title": "As little data as possible.",
+      "accent": "As clear as necessary.",
+      "intro": "When you use this website, PERMAPHEMERA processes data for secure operation, language selection and direct contact. Matomo, Google Maps and YouTube may be activated only through separate consent choices. The archive also publishes editorial information about exhibitions and participants.",
+      "recordType": "Privacy information",
+      "recordAria": "Document record for the Privacy Policy",
+      "articleAria": "PERMAPHEMERA Privacy Policy",
+      "sections": {
+        "controller": {
+          "eyebrow": "Controller",
+          "title": "Who decides how data is processed",
+          "p1": "The controller within the meaning of the General Data Protection Regulation is the private operator of PERMAPHEMERA:"
+        },
+        "hosting": {
+          "eyebrow": "Technical operation",
+          "title": "Hosting and server logs",
+          "p1": "This website is hosted in Germany by ALL-INKL.COM – Neue Medien Münnich. When the site is accessed, the web server processes technically necessary access data, particularly the IP address, time, requested file, access status, amount of data transferred, referring page, and browser and operating-system information.",
+          "p2": "This processing enables delivery, stability and protection against attacks. Its legal basis is Article 6(1)(f) GDPR; the legitimate interest is the secure and functional operation of the website. The hosting provider acts as a processor.",
+          "p3": "For the ordinary log files described in its published privacy information, the provider states a deletion period of no more than seven days. Longer storage may be required in individual cases, such as investigating an attack. The provider states that hosting data is stored on its own servers in Germany. The logging settings and retention period actually configured for this hosting package still need to be confirmed with the provider.",
+          "providerLabel": "Processor",
+          "addressLabel": "Address",
+          "retentionLabel": "Normal period",
+          "retentionValue": "Published provider statement: no more than seven days; actual hosting configuration still to be confirmed",
+          "providerPrivacy": "ALL-INKL.COM privacy information"
+        },
+        "storage": {
+          "eyebrow": "Your device",
+          "title": "Language preference and privacy choice",
+          "p1": "Functional information is stored on your device regardless of your analytics choice. It is not used for advertising and is not combined into a usage profile.",
+          "locale": "Necessary cookie storing the selected language; retained for up to one year.",
+          "consent": "Local browser storage for your individual Matomo, Google Maps and YouTube choices; requested again after no more than one year."
+        },
+        "contact": {
+          "eyebrow": "Direct communication",
+          "title": "Contact by email, telephone or post",
+          "p1": "If you contact us, the details you provide and the content of your message are processed in order to respond. Depending on the subject, this is based on Article 6(1)(f) GDPR or on pre-contractual measures under Article 6(1)(b) GDPR.",
+          "p2": "Communication data is deleted once the matter has been conclusively resolved and no statutory retention obligation or overriding legitimate reason requires continued storage."
+        },
+        "editorial": {
+          "eyebrow": "Archive & editorial",
+          "title": "Information about exhibitions and participants",
+          "p1": "PERMAPHEMERA documents exhibitions and publishes information including the names of artists and other participants, artwork and exhibition titles, dates, venues, images and editorial descriptions. This information is obtained from participants or venues, supplied materials, or publicly available announcements and publications.",
+          "p2": "This processing serves cultural documentation and public information about exhibitions. Where personal data is processed on the basis of legitimate interests, the legal basis is Article 6(1)(f) GDPR; freedom of expression and information and the rights of the people concerned are also taken into account.",
+          "p3": "Editorial archive information may be retained for as long as its documentary purpose continues and no overriding rights prevent this. Corrections and reasoned requests for rectification, objection or removal can be sent to the contact address given above."
+        },
+        "analytics": {
+          "eyebrow": "Optional audience measurement",
+          "title": "Matomo on a dedicated subdomain",
+          "p1": "After you consent, this website loads Matomo from matomo.rowild.at and uses site ID 9. Page views and link use are measured so that audience reach, navigation and technically unusual access can be understood.",
+          "p2": "The data processed may include the page address and title, referring page, time, browser and device information, screen resolution and interactions. The IP address technically reaches the Matomo server when the connection is established; whether and in what shortened form it is stored depends on the server-side Matomo configuration and still needs to be conclusively verified.",
+          "p3": "The legal basis is your consent under Article 6(1)(a) GDPR. Matomo is not loaded before you make a choice. You may withdraw consent at any time through “Cookie settings”; no further visits will then be recorded and existing Matomo cookies will be deleted.",
+          "p4": "The standard configuration of the tracking code used may set first-party cookies with these lifetimes: _pk_id for returning-visitor recognition for 13 months, _pk_ses for the session for 30 minutes and _pk_ref for the original referrer for six months. The server-side retention period for analytics data still needs to be confirmed in the Matomo installation and then specified here.",
+          "instanceLabel": "Matomo instance",
+          "siteLabel": "Site ID",
+          "consentLabel": "Activation",
+          "consentValue": "Only after voluntary consent",
+          "matomoConsent": "Matomo consent documentation",
+          "matomoCookies": "Matomo cookie documentation"
+        },
+        "externalMedia": {
+          "eyebrow": "Optional external media",
+          "title": "Google Maps and YouTube remain blocked",
+          "p1": "Google Maps and YouTube are provided as separate optional choices in the privacy settings, but neither embedded maps nor embedded videos are currently active on this website.",
+          "p2": "If either service is introduced, its content will load only after the corresponding voluntary consent. Until then, the website must show a local placeholder instead of contacting Google. You can withdraw either choice at any time through Cookie settings.",
+          "p3": "When activated, the browser connects directly to Google services. Connection data such as the IP address, browser and device information, the requested page and—if you are signed in—possibly account-related information may be processed by Google. Google’s own privacy information applies, including its information about international data transfers.",
+          "mapsLabel": "Google Maps",
+          "mapsValue": "Currently inactive; separate consent category prepared",
+          "youtubeLabel": "YouTube",
+          "youtubeValue": "Currently inactive; separate consent category prepared",
+          "activationLabel": "Activation",
+          "activationValue": "Only after separate voluntary consent",
+          "googlePrivacy": "Google Privacy Policy",
+          "mapsPolicy": "Google Maps Platform policies",
+          "youtubePrivacy": "YouTube privacy-enhanced embedding"
+        },
+        "planned": {
+          "eyebrow": "Not yet active",
+          "title": "Planned newsletter",
+          "p1": "A newsletter subscription is planned but is not active on the current website. This website does not currently collect newsletter data.",
+          "p2": "Before activation, this Privacy Policy will be expanded to identify the provider, data categories, purpose, legal basis, double-opt-in procedure, retention period, recipients, withdrawal option and any transfers outside the EEA.",
+          "newsletter": "Newsletter: planned; provider, double-opt-in procedure and retention period have not yet been determined."
+        },
+        "recipients": {
+          "eyebrow": "Recipients",
+          "title": "Disclosure and international transfers",
+          "p1": "During ordinary technical operation, the hosting provider receives access to the data required for hosting, maintenance and security. After analytics consent, usage data is also sent to the Matomo instance available at matomo.rowild.at. The integration does not use a Matomo Cloud service. No further disclosure occurs unless required by law, necessary to establish or defend legal claims, or expressly permitted.",
+          "p2": "Google Maps and YouTube are currently inactive. If either service is introduced and you consent to it, data will be sent to Google as described under Optional external media; Google’s information about international transfers then applies. Ordinary external links transmit data only when their destination is opened."
+        },
+        "rights": {
+          "eyebrow": "Your rights",
+          "title": "Access, correction and objection",
+          "p1": "Where the statutory conditions are met, you have the following rights in relation to your personal data:",
+          "p2": "To exercise your rights, send a message to the email address given above. You may also complain to the Austrian Data Protection Authority if you believe that processing infringes data-protection law.",
+          "access": "Access to personal data being processed",
+          "rectification": "Correction of inaccurate or completion of incomplete data",
+          "erasure": "Erasure where no overriding grounds or obligations prevent it",
+          "restriction": "Restriction of processing",
+          "portability": "Data portability where the statutory conditions are met",
+          "objection": "Objection to processing based on legitimate interests",
+          "withdrawal": "Withdrawal of consent with effect for the future",
+          "authority": "Austrian Data Protection Authority",
+          "gdpr": "General Data Protection Regulation"
+        }
+      }
+    },
+    "terms": {
+      "seoTitle": "Terms of Use · PERMAPHEMERA",
+      "seoDescription": "Terms governing use of the freely accessible PERMAPHEMERA exhibition archive.",
+      "breadcrumb": "Terms of Use",
+      "eyebrow": "Access & responsibility",
+      "title": "Open to explore.",
+      "accent": "Careful in use.",
+      "intro": "These Terms of Use describe free, informational access to PERMAPHEMERA and the respectful use of its documentation and the rights of everyone involved.",
+      "recordType": "Rules of use",
+      "recordAria": "Document record for the Terms of Use",
+      "articleAria": "PERMAPHEMERA Terms of Use",
+      "sections": {
+        "scope": {
+          "eyebrow": "Scope",
+          "title": "A freely accessible cultural project",
+          "p1": "These terms apply to use of the PERMAPHEMERA website and its publicly accessible documentation of exhibitions, artists and venues.",
+          "p2": "The website currently offers no user accounts, uploads, bookings, ticket sales or paid services. Merely visiting it does not create a paid contract."
+        },
+        "information": {
+          "eyebrow": "Editorial content",
+          "title": "Documentation within a moment in time",
+          "p1": "Exhibition dates, opening hours, participants, venue details and external references are compiled with due care. Information about current and upcoming exhibitions may nevertheless change at short notice.",
+          "p2": "Please also verify visit-related information with the relevant gallery, venue or organising institution. Historical documentation reflects the information known when it was recorded."
+        },
+        "use": {
+          "eyebrow": "Permitted use",
+          "title": "View, research and link",
+          "p1": "PERMAPHEMERA may be used through its intended functions for private, academic, journalistic and non-commercial information. The rights, dignity and attribution of everyone involved must be respected.",
+          "personal": "Viewing and linking to publicly accessible pages is permitted.",
+          "noReuse": "Independent reproduction, republication, adaptation, automated bulk extraction or commercial use of texts, images and 360° documentation is not permitted without authorisation.",
+          "noInterference": "Security mechanisms must not be circumvented, nor may the operation, availability or integrity of the website be impaired."
+        },
+        "rights": {
+          "eyebrow": "Copyright and personality rights",
+          "title": "Many contributions, different rights",
+          "p1": "The website combines original material with third-party photographs, artworks, names, trademarks and information. Rights remain with the respective authors, artists, photographers, institutions and other rights holders.",
+          "p2": "Publication in the archive grants no licence to visitors. Lawful quotation and other statutory copyright exceptions remain unaffected; sources and authorship must be appropriately acknowledged."
+        },
+        "links": {
+          "eyebrow": "External destinations",
+          "title": "Links lead to other areas of responsibility",
+          "p1": "PERMAPHEMERA links to websites operated by galleries, venues and map services, among others. Their operators are responsible for those services’ content, availability, privacy and accessibility.",
+          "p2": "Links are checked for relevance when added. Continuous monitoring of external content is not reasonable without a specific indication of a problem; reports of problematic or incorrect destinations will be reviewed."
+        },
+        "liability": {
+          "eyebrow": "Availability",
+          "title": "A growing archive remains in motion",
+          "p1": "There is no entitlement to uninterrupted availability, completeness or permanent provision of individual items. Maintenance, technical disruption, rights clearance or editorial correction may result in changes or temporary unavailability.",
+          "p2": "Liability is governed by applicable law. In particular, these terms do not exclude liability that cannot lawfully be limited or excluded."
+        },
+        "changes": {
+          "eyebrow": "Development",
+          "title": "Changes and applicable law",
+          "p1": "These terms may be adapted if the functions, law or project structure change. The version published on this page applies; material new functions may receive separate terms where required.",
+          "p2": "Austrian law applies, without prejudice to mandatory protections that apply to users regardless of this choice of law."
+        }
+      }
+    },
+    "accessibility": {
+      "seoTitle": "Accessibility · PERMAPHEMERA",
+      "seoDescription": "Accessibility target, measures implemented, known limitations and contact details for accessibility feedback concerning PERMAPHEMERA.",
+      "breadcrumb": "Accessibility",
+      "eyebrow": "Access & participation",
+      "title": "Spaces should be",
+      "accent": "open to many.",
+      "intro": "PERMAPHEMERA aims not only to preserve exhibition memories, but to make them accessible to as many people as possible. This page openly describes the intended standard, current status and known limitations.",
+      "recordType": "Accessibility statement",
+      "recordAria": "Document record for accessibility",
+      "articleAria": "PERMAPHEMERA accessibility statement",
+      "selfAssessment": "Internal self-assessment; no independent audit yet",
+      "sections": {
+        "commitment": {
+          "eyebrow": "Commitment",
+          "title": "Accessibility as part of the project",
+          "p1": "PERMAPHEMERA treats accessibility as an ongoing editorial and technical responsibility. The goal is to progressively align the website with the Web Content Accessibility Guidelines (WCAG) 2.2 at conformance level AA.",
+          "p2": "Although not every obligation applying to public-sector bodies applies to this privately operated project, the principles perceivable, operable, understandable and robust serve as a firm direction for its work."
+        },
+        "measures": {
+          "eyebrow": "Already considered",
+          "title": "Structure, keyboard and reduced motion",
+          "p1": "The current website includes measures such as:",
+          "structure": "Semantic headings, landmarks, breadcrumbs and a skip link to the main content.",
+          "keyboard": "Keyboard-operable navigation, menus, language selection and key interactive elements with visible focus states.",
+          "motion": "Respect for the system reduced-motion preference in non-essential animation.",
+          "images": "Text alternatives for meaningful images and decoration hidden from assistive technologies.",
+          "language": "Programmatically identified German and English versions with an understandable language selector.",
+          "responsive": "Responsive layouts, practical target sizes and readable text measures across screen sizes."
+        },
+        "status": {
+          "eyebrow": "Current status",
+          "title": "Not yet a declaration of full conformance",
+          "p1": "The website is under development and has so far been assessed internally through its existing components and interactions. A complete independent audit involving assistive technologies and users with different access needs has not yet taken place.",
+          "p2": "Full conformance with WCAG 2.2 AA is therefore not currently claimed. Identified barriers will be prioritised, and this statement will be updated after material assessments or changes."
+        },
+        "limitations": {
+          "eyebrow": "Known limitations",
+          "title": "Complex spatial content needs alternatives",
+          "p1": "The following areas in particular have not yet been fully assessed or implemented:",
+          "wheel": "The interactive image wheel on the home page supports keyboard and touch interaction, but its usability with different screen readers and magnification tools requires further practical testing.",
+          "panorama": "The planned 360° tours are not yet connected. Before publication, keyboard controls, orientation assistance and equivalent textual information must be designed and tested.",
+          "external": "Linked third-party websites and services are outside PERMAPHEMERA’s technical control and may contain their own accessibility barriers."
+        },
+        "feedback": {
+          "eyebrow": "Report a barrier",
+          "title": "Feedback helps improve access",
+          "p1": "If you encounter a barrier or need content in a more accessible form, please identify the page or feature and the device or assistive technology used. A short description is enough.",
+          "p2": "Feedback is reviewed personally. Where an immediate technical solution is not yet possible, an accessible alternative will be provided where practicable."
+        },
+        "standard": {
+          "title": "Guidance and legal context",
+          "p1": "The technical target is WCAG 2.2 at level AA. WCAG organises accessibility under four principles: perceivable, operable, understandable and robust.",
+          "p2": "Austria’s Web Accessibility Act applies to websites and mobile applications of the federal government and certain public bodies. PERMAPHEMERA cites it as guidance for public access, not as a claim that the project itself falls within its scope.",
+          "wzg": "Austrian Web Accessibility Act"
+        }
+      }
+    }
+  },
   "cards": {
     "openArchive": "Open archive",
     "openVenue": "Open {name} archive",
@@ -322,7 +712,7 @@
     "legalAria": "Footer legal navigation",
     "imprint": "Imprint",
     "privacy": "Privacy Policy",
-    "terms": "Terms & Conditions",
+    "terms": "Terms of Use",
     "accessibility": "Accessibility",
     "cookies": "Cookie settings",
     "sealAlt": "Permanently preserved, temporarily enduring",

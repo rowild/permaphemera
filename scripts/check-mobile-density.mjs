@@ -27,6 +27,8 @@ const [
   landingExhibitionCard,
   archiveMethodFact,
   archiveScrollCue,
+  archiveLegalPage,
+  legalEditorialSection,
   mainCss,
   exhibitionsData
 ] = await Promise.all([
@@ -51,6 +53,8 @@ const [
   readProjectFile('app/components/LandingExhibitionCard.vue'),
   readProjectFile('app/components/ArchiveMethodFact.vue'),
   readProjectFile('app/components/ArchiveScrollCue.vue'),
+  readProjectFile('app/components/ArchiveLegalPage.vue'),
+  readProjectFile('app/components/LegalEditorialSection.vue'),
   readProjectFile('app/assets/css/main.css'),
   readProjectFile('app/data/exhibitions.json')
 ])
@@ -76,7 +80,6 @@ const landingSelectedExhibitions = exhibitionRecords
   })
   .slice(0, 5)
 const primaryLinkDefinition = archiveHeader.match(/const primaryLinks = computed\(\(\) => \[[\s\S]*?\] as const\)/)?.[0] ?? ''
-const headerMenuSurfaceRule = mainCss.match(/\.archive-header-menu-surface \{([\s\S]*?)\n\}/)?.[1] ?? ''
 const headerMenuBeforeRule = [...mainCss.matchAll(/\.archive-header-menu-surface::before \{([\s\S]*?)\n\}/g)].at(-1)?.[1] ?? ''
 const headerMenuAfterRule = [...mainCss.matchAll(/\.archive-header-menu-surface::after \{([\s\S]*?)\n\}/g)].at(-1)?.[1] ?? ''
 const responsiveVariantOrder = ['tablet', 'medium', 'compact', 'narrow']
@@ -100,21 +103,28 @@ const checks = [
   ['artist rows use compact type and height', artistEntry.includes('compact:min-h-8') && (artistEntry.match(/compact:text-base/g) ?? []).length >= 2],
   ['metadata labels and values remain horizontal on mobile', metadataRow.includes('compact:grid-cols-[6.5rem_minmax(0,1fr)]')],
   ['exhibition metadata rows share one text-owned baseline and line-height', /exhibition: '[^']*items-baseline/.test(metadataRow) && /exhibition: '[^']*grid-cols-\[1\.125rem_minmax\(0,1fr\)\][^']*items-baseline[^']*leading-5/.test(metadataRow) && /exhibition: '[^']*leading-5[^']*text-archive-copy/.test(metadataRow) && metadataRow.includes('[ metadata-label ]') && metadataRow.includes('[ metadata-icon ]')],
+  ['legal document-record rows align each label and value by their first text baseline', /v-for="item in props\.recordItems"[^>]*class="[^"]*items-baseline/.test(archiveLegalPage)],
+  ['the complete legal document record has one restrained outer rule pair and no internal row borders', /\[ legal-record \][^"]*border-y/.test(archiveLegalPage) && !/v-for="item in props\.recordItems"[^>]*class="[^"]*border/.test(archiveLegalPage)],
+  ['legal pages rely on chapter headings without duplicating them in a contents navigation', !archiveLegalPage.includes('[ legal-page-contents ]') && !archiveLegalPage.includes('contentsLabel')],
+  ['legal chapters flow without repeated ornamental divider components', (archiveLegalPage.match(/<ArchiveInsetDivider/g) ?? []).length === 1],
+  ['legal editorial sections reuse the About-style heading-and-copy split before collapsing to one column', /\[ legal-editorial-section \][^"]*grid-cols-\[minmax\(14rem,0\.58fr\)_minmax\(0,1\.42fr\)\][^"]*compact:grid-cols-1/.test(legalEditorialSection) && legalEditorialSection.includes('[ legal-editorial-heading ]') && legalEditorialSection.includes('[ legal-editorial-copy ]')],
+  ['legal detail rows stay compact, share first-baseline alignment, and avoid table rules', /\[ legal-detail-list \][^"]*gap-2/.test(legalEditorialSection) && /\[ legal-detail-row \][^"]*items-baseline[^"]*compact:items-stretch/.test(legalEditorialSection) && !/\[ legal-detail-list \][^"]*border/.test(legalEditorialSection) && !/\[ legal-detail-row \][^"]*border/.test(legalEditorialSection)],
   ['exhibition metadata follows location, dates, opening-hours order', /\$t\('exhibition\.location'\)[\s\S]*\$t\('exhibition\.dates'\)[\s\S]*\$t\('exhibition\.openingHours'\)/.test(exhibitionPage)],
   ['exhibition detail split sections share the hero 60/40 column ratio', /\[ exhibition-detail-hero \][^\"]*grid-cols-\[minmax\(30rem,1\.2fr\)_minmax\(23rem,0\.8fr\)\]/.test(exhibitionPage) && /\[ exhibition-detail-body \][^\"]*grid-cols-\[minmax\(30rem,1\.2fr\)_minmax\(23rem,0\.8fr\)\][^\"]*gap-\[clamp\(3rem,7vw,7rem\)\]/.test(exhibitionPage) && /\[ exhibition-experience \][^\"]*grid-cols-\[minmax\(0,1\.2fr\)_minmax\(24rem,0\.8fr\)\]/.test(exhibitionPage)],
   ['exhibition detail split sections collapse together at the tablet breakpoint', [/\[ exhibition-detail-hero \][^\"]*tablet:grid-cols-1/, /\[ exhibition-detail-body \][^\"]*tablet:grid-cols-1/, /\[ exhibition-experience \][^\"]*tablet:grid-cols-1/].every((pattern) => pattern.test(exhibitionPage))],
   ['exhibition secondary ledger uses a compact two-column grid', exhibitionPage.includes('compact:grid-cols-2 compact:gap-x-4')],
   ['shared mobile buttons remain compact, touchable, and center-grouped', archiveButton.includes('compact:min-h-12') && archiveButton.includes('compact:text-sm') && archiveButton.includes('compact:justify-center') && !archiveButton.includes('compact:justify-between')],
   ['the mobile header uses compact top-packed chrome', archiveHeader.includes('compact:min-h-16') && archiveHeader.includes('compact:content-start') && archiveHeader.includes('compact:pt-2') && archiveHeader.includes('compact:pb-0') && archiveHeader.includes('compact:px-4')],
-  ['compact header carries the exhibition tagline tightly aligned with the wordmark', archiveHeader.includes('[ header-eyebrow ]') && archiveHeader.includes("$t('site.headerTagline')") && archiveHeader.includes('compact:pl-8') && archiveHeader.includes('compact:translate-y-2') && archiveHeader.includes('compact:gap-y-0')],
-  ['the always-available header menu owns the single language switch', (archiveHeader.match(/<ArchiveLanguageSwitch/g) ?? []).length === 1 && archiveHeader.includes('[ mobile-nav-language ]') && /\[ mobile-menu \][^\"]*inline-flex/.test(archiveHeader) && !/\[ mobile-menu \][^\"]*hidden/.test(archiveHeader)],
+  ['the header always carries the exhibition tagline and keeps it tightly aligned with the compact wordmark', archiveHeader.includes('[ header-eyebrow ]') && archiveHeader.includes("$t('site.headerTagline')") && !/\[ header-eyebrow \][^\"]*hidden/.test(archiveHeader) && archiveHeader.includes('compact:pl-8') && archiveHeader.includes('compact:translate-y-2') && archiveHeader.includes('compact:gap-y-0')],
+  ['the header keeps one language dropdown immediately left of the always-available menu', (archiveHeader.match(/<ArchiveLanguageSwitch/g) ?? []).length === 1 && /<ArchiveLanguageSwitch[^>]*>[\s\S]*?<button[\s\S]*?\[ mobile-menu \]/.test(archiveHeader) && !archiveHeader.includes('[ mobile-nav-language ]') && /\[ mobile-menu \][^\"]*inline-flex/.test(archiveHeader) && !/\[ mobile-menu \][^\"]*hidden/.test(archiveHeader)],
   ['desktop brand, temple mark, and primary menu share one baseline with compact separators', /\[ site-header \][^\"]*items-baseline/.test(archiveHeader) && /\[ brand \][^\"]*items-baseline/.test(archiveHeader) && /\[ brand-mark \][^\"]*self-baseline/.test(archiveHeader) && /\[ desktop-nav \][^\"]*self-baseline/.test(archiveHeader) && archiveHeader.includes('[ desktop-nav-divider ]') && archiveHeader.includes('/media/svg/frames/sponsor-strip-frame.svg')],
   ['tablet hamburger aligns its right edge with the shared header gutter', /\[ header-actions \][^\"]*justify-self-end/.test(archiveHeader) && /\[ mobile-menu \][^\"]*w-11[^\"]*justify-end/.test(archiveHeader)],
-  ['desktop popup hides visible primary links while retaining footer-only actions', /\[ mobile-nav-primary \][^\"]*hidden tablet:grid/.test(archiveHeader) && !primaryLinkDefinition.includes('navigation.about') && ['navigation.about', 'navigation.howItWorks', 'navigation.contact', 'footer.imprint', 'footer.privacy', 'footer.terms', 'footer.accessibility', 'footer.cookies'].every((key) => archiveHeader.includes(key))],
-  ['header popup is absolutely anchored below the header instead of enlarging its grid', headerMenuSurfaceRule.includes('position: absolute;') && /\[ mobile-nav \][^\"]*top-\[calc\(100%-0\.2rem\)\]/.test(archiveHeader)],
-  ['header menu paint order stays parchment then ornaments then links', headerMenuSurfaceRule.includes('background:') && /\.archive-header-menu-surface::before,[\s\S]*?z-index: 0;/.test(mainCss) && /\.archive-header-menu-surface > \* \{[\s\S]*?z-index: 1;/.test(mainCss) && !/\[ mobile-nav-(?:primary|secondary|language) \][^\"]*bg-/.test(archiveHeader)],
+  ['About belongs to the primary group while the desktop popup retains only secondary information and legal actions', /\[ mobile-nav-primary \][^\"]*hidden tablet:grid/.test(archiveHeader) && primaryLinkDefinition.includes('navigation.about') && ['navigation.howItWorks', 'navigation.contact', 'footer.imprint', 'footer.privacy', 'footer.terms', 'footer.accessibility', 'footer.cookies'].every((key) => archiveHeader.includes(key))],
+  ['header popup is absolutely anchored below the header instead of enlarging its grid', /\[ mobile-nav \][^\"]*archive-header-menu-frame[^\"]*absolute[^\"]*top-\[calc\(100%-0\.2rem\)\]/.test(archiveHeader)],
+  ['header menu paint order stays framed parchment then ornaments then links', archiveHeader.includes('<ArchiveTooltipFrame') && /\.archive-header-menu-surface::before,[\s\S]*?z-index: 0;/.test(mainCss) && /\.archive-header-menu-surface > \* \{[\s\S]*?z-index: 1;/.test(mainCss) && !/\[ mobile-nav-(?:primary|secondary) \][^\"]*bg-/.test(archiveHeader)],
   ['header menu ornaments form one left-center drafting cluster', headerMenuBeforeRule.includes('top: 50%;') && headerMenuBeforeRule.includes('left: -1.5rem;') && headerMenuBeforeRule.includes('transform: translateY(-50%);') && headerMenuAfterRule.includes('top: 50%;') && headerMenuAfterRule.includes('left: 5.5rem;') && headerMenuAfterRule.includes('transform: translateY(-50%);')],
   ['header popup uses undistorted archival measurement ornaments', archiveHeader.includes('archive-header-menu-surface') && mainCss.includes('measurement-top-right.png') && mainCss.includes('aspect-ratio: 452 / 290') && mainCss.includes('quarter-circle-measurement.png') && mainCss.includes('aspect-ratio: 242 / 295') && mainCss.includes('background: url("/media/images/landing/footer/_recreated_anew/measurement-top-right.png") right top / 100% auto no-repeat')],
+  ['header popup uses the shared reverse-corner frame without internal divider rules', archiveHeader.includes('<ArchiveTooltipFrame') && archiveHeader.includes('archive-header-menu-frame') && !/\[ mobile-nav-primary \][^\"]*border/.test(archiveHeader) && !/\[ mobile-nav-secondary \][^\"]*border/.test(archiveHeader)],
   ['desktop decorative menu star is removed', !archiveHeader.includes('[ desktop-compass ]')],
   ['footer navigation becomes a lower-z tablet and mobile bottom drawer', archiveFooter.includes('footerMenuOpen') && archiveFooter.includes('<Teleport to="body">') && /\[ mobile-footer-drawer \][^\"]*tablet:grid/.test(archiveFooter) && archiveFooter.includes('z-20') && archiveHeader.includes('z-30')],
   ['static footer navigation is hidden behind a tablet drawer trigger', archiveFooterMenu.includes('tablet:hidden') && /\[ mobile-footer-menu-trigger \][^\"]*tablet:flex/.test(archiveFooter)],

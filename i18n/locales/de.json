@@ -6,11 +6,11 @@
     "seoDescription": "Ein kuratiertes österreichisches Archiv von 360°-Ausstellungsdokumentationen."
   },
   "navigation": {
-    "archive": "Archiv",
+    "archive": "Startseite",
     "galleries": "Galerien",
     "artists": "Künstler:innen",
     "exhibitions": "Ausstellungen",
-    "about": "Über uns",
+    "about": "Über das Projekt",
     "information": "Information",
     "howItWorks": "Wie es funktioniert",
     "contact": "Kontakt",
@@ -21,13 +21,34 @@
   },
   "language": {
     "label": "Sprache",
-    "switcherAria": "Sprachauswahl"
+    "switcherAria": "Sprachauswahl",
+    "currentAria": "Aktuelle Sprache: {language}. Sprachauswahl öffnen"
   },
   "privacyNotice": {
-    "title": "Cookie-Hinweis",
-    "description": "Diese Website verwendet ausschließlich ein notwendiges Cookie, um Ihre gewählte Sprache zu speichern. Analyse-, Werbe- oder Marketing-Cookies sind nicht aktiv.",
+    "title": "Cookie-Einstellungen",
+    "description": "Wählen Sie, welche optionalen Dienste aktiviert werden dürfen. Notwendige Speicherungen sind immer aktiv; Matomo, Google Maps und YouTube bleiben bis zu Ihrer Einwilligung blockiert.",
+    "selectionAria": "Datenschutzdienste",
+    "necessary": {
+      "title": "Notwendig",
+      "description": "Speichert Ihre Sprach- und Datenschutzauswahl."
+    },
+    "analytics": {
+      "title": "Analyse mit Matomo",
+      "description": "Misst Seitenaufrufe und Linknutzung in der selbst gehosteten Matomo-Instanz."
+    },
+    "googleMaps": {
+      "title": "Google Maps",
+      "description": "Erlaubt künftigen eingebetteten Karten, eine Verbindung zu Google herzustellen. Derzeit ist keine Karte eingebettet."
+    },
+    "youtube": {
+      "title": "YouTube",
+      "description": "Erlaubt künftigen eingebetteten Videos, eine Verbindung zu YouTube herzustellen. Derzeit ist kein Video eingebettet."
+    },
+    "alwaysActive": "Immer aktiv",
+    "details": "Mehr zum Datenschutz",
     "actions": {
-      "accept": "Verstanden"
+      "save": "Auswahl speichern",
+      "acceptAll": "Alle akzeptieren"
     }
   },
   "common": {
@@ -55,10 +76,15 @@
       "replay": "Eingangsanimation des Kaleidoskops wiederholen",
       "rotateClockwise": "Kaleidoskop im Uhrzeigersinn drehen",
       "wheelAria": "Rotierendes Rad aus Archivbildern",
-      "loadingTitle": "Galeriebild wird geladen",
+      "bladeLinksAria": "Ausstellungen im Bilderrad",
+      "openBlade": "Ausstellung öffnen: {title}",
+      "tooltipEyebrow": "Ausstellung",
+      "touchHint": "Nochmals tippen, um die Ausstellung zu öffnen.",
+      "loadingTitle": "Ausstellungsbild wird geladen",
       "loadingCounter": "{current} von {total}",
-      "loadingProgress": "{loaded} von {total} Galerien geladen",
-      "continue": "Weiter zu den Orten"
+      "loadingProgress": "{loaded} von {total} Ausstellungen geladen",
+      "continue": "Weiter zu den Orten",
+      "continueSchedule": "Weiter zu aktuellen und kommenden Ausstellungen"
     },
     "venues": {
       "eyebrow": "Orte",
@@ -75,6 +101,16 @@
       "intro": "Ausgewählte Ausstellungen, bewahrt als räumliche Dokumente.",
       "searchLabel": "Ausstellungen durchsuchen",
       "searchPlaceholder": "Ausstellungen suchen…"
+    },
+    "schedule": {
+      "eyebrow": "Programm",
+      "titleBefore": "Aktuelle /",
+      "titleAccent": "kommende",
+      "titleAfter": "Ausstellungen",
+      "intro": "Entdecken Sie, was jetzt zu sehen ist und welche Ausstellungen als Nächstes ins Archiv kommen.",
+      "current": "Aktuelle Ausstellungen",
+      "upcoming": "Kommende Ausstellungen",
+      "viewAll": "Alle Ausstellungen ansehen"
     },
     "artists": {
       "eyebrow": "Künstler:innen",
@@ -294,6 +330,360 @@
     "openFor": "Ausstellungen von {name} öffnen",
     "closeFor": "Ausstellungen von {name} schließen"
   },
+  "about": {
+    "seoTitle": "Über das Projekt · Räumliche Ausstellungserinnerungen",
+    "seoDescription": "Warum PERMAPHEMERA temporäre Ausstellungen mit verbundenen 360°-Aufnahmen bewahrt und einen österreichweiten Index von Galerien und Ausstellungsorten aufbaut.",
+    "breadcrumb": "Über das Projekt",
+    "eyebrow": "Auftrag & Haltung",
+    "title": "Was vergeht,",
+    "accent": "soll nicht spurlos verschwinden.",
+    "intro": "PERMAPHEMERA bewahrt die räumliche Erfahrung temporärer Ausstellungen in verbundenen 360°-Dokumenten – als Einladung zum Besuch, zur Rückkehr und zur Entdeckung.",
+    "figureAlt": "Geschichtete Archivpapiere mit einer räumlich verknüpften Ansicht eines historischen Ausstellungsraums",
+    "figureLabel": "Räumliches Dokument",
+    "figureCaption": "Verbundene Blickpunkte · Ausstellung im Raum",
+    "articleAria": "Über die Aufgabe und Haltung von PERMAPHEMERA",
+    "sections": {
+      "spatialMemory": {
+        "eyebrow": "Raum & Erinnerung",
+        "title": "Eine Ausstellung ist ein",
+        "accent": "räumliches Gefüge."
+      },
+      "invitation": {
+        "eyebrow": "Nähe & Distanz",
+        "title": "Kein Ersatz.",
+        "accent": "Eine Einladung."
+      },
+      "visibility": {
+        "eyebrow": "Viele Orte, viele Stimmen",
+        "title": "Vielfalt soll",
+        "accent": "sichtbar bleiben."
+      },
+      "index": {
+        "eyebrow": "Archiv & Index",
+        "title": "Zurückblicken und",
+        "accent": "Gegenwart entdecken."
+      },
+      "beginnings": {
+        "eyebrow": "Ausstellung für Ausstellung",
+        "title": "Im Kleinen beginnen.",
+        "accent": "Offen weiterwachsen."
+      },
+      "parkschloesslOrigin": {
+        "eyebrow": "Ursprung & Dank",
+        "title": "Ein Anfang im",
+        "accent": "Parkschlössl"
+      }
+    },
+    "body": {
+      "p1": "Eine Ausstellung ist mehr als die Summe der gezeigten Werke. Kunst begegnet uns im Raum: in Blickachsen und Abständen, im Licht, in unerwarteten Nachbarschaften, in der Bewegung von einem Werk zum nächsten. Für einige Wochen entsteht ein sorgsam gestaltetes Gefüge – und kaum ist die Ausstellung beendet, löst es sich wieder auf.",
+      "p2": "Gerade darin liegt ihr besonderer Reiz. Doch es bedeutet auch, dass ein wesentlicher Teil des Ausstellungsgeschehens verloren geht. Einzelne Fotografien, Einladungskarten und Begleittexte bewahren wichtige Spuren; die räumliche Erfahrung einer Ausstellung können sie jedoch nur selten vermitteln. Wie ein Raum gegliedert war, welche Wege er nahelegte, wie Kunst, Architektur und Atmosphäre zusammenwirkten – all das bleibt später oft nur noch in der Erinnerung jener Menschen erhalten, die tatsächlich dort waren.",
+      "p3": "PERMAPHEMERA möchte diesen flüchtigen Moment ein Stück weit bewahren. Durch miteinander verbundene 360°-Aufnahmen entstehen räumliche Dokumente, in denen ausgewählte Ausstellungen auch nach ihrem Ende wieder erkundet werden können. Ergänzt um Informationen zu Kunstschaffenden, Ausstellungsorten, Laufzeiten und kuratorischen Zusammenhängen machen sie sichtbar, wie eine Ausstellung gedacht, gestaltet und erlebt werden konnte.",
+      "p4": "Der virtuelle Rundgang ersetzt dabei nicht den persönlichen Besuch – und soll es auch nicht. Im besten Fall weckt er Neugier: auf einen Ort, eine künstlerische Position oder eine Ausstellung, die gerade stattfindet. Zugleich eröffnet er später die Möglichkeit, zurückzukehren, genauer hinzusehen, Zusammenhänge neu zu entdecken oder eine Ausstellung kennenzulernen, die man selbst nicht besuchen konnte.",
+      "p5": "Besondere Aufmerksamkeit gilt kleineren Galerien, regionalen Kunstinitiativen, Offspaces und temporären Ausstellungsorten sowie noch wenig dokumentierten künstlerischen Positionen. Auch inklusive Ausstellungen und Projekte von Kunstschaffenden mit Behinderungen gehören selbstverständlich zu diesem Blickfeld. Denn während etablierte Institutionen häufig über professionelle Dokumentation und eigene Archive verfügen, hinterlassen viele bemerkenswerte Ausstellungen abseits der großen Zentren nur wenige öffentlich zugängliche Spuren. PERMAPHEMERA möchte dazu beitragen, dass diese Vielfalt sichtbar bleibt.",
+      "p6": "Neben dem kuratierten 360°-Archiv soll ein kontinuierlich wachsender Index österreichischer Galerien und Ausstellungsorte entstehen. Er macht recherchierbar, wer wann wo ausgestellt hat, welche Orte miteinander verbunden sind und wie sich das österreichische Ausstellungsgeschehen über Regionen und Jahre hinweg entwickelt. Der Index strebt dabei größtmögliche Breite an; die räumliche Dokumentation bleibt eine bewusste, nachvollziehbare Auswahl.",
+      "p7": "PERMAPHEMERA richtet den Blick deshalb nicht nur zurück. Auch laufende und kommende Ausstellungen sollen auffindbar werden und zum Besuch einladen. Was bevorsteht, kann entdeckt werden. Was gerade geschieht, wird sichtbar. Und was vorüber ist, bleibt in einer Form zugänglich, die mehr erzählt als ein einzelnes Bild.",
+      "p8": "Das Projekt beginnt bewusst im Kleinen: mit einzelnen Orten, Ausstellungen und Begegnungen. Von dort aus soll ein lebendiges, vielstimmiges Bild der österreichischen Ausstellungslandschaft wachsen – Ausstellung für Ausstellung und Region für Region. Die Teilnahme soll für ausgewählte Galerien und Kunstschaffende kostenfrei bleiben; nicht finanzielle Möglichkeiten, sondern kuratorische und dokumentarische Überlegungen entscheiden über die Aufnahme.",
+      "p9": "PERMAPHEMERA möchte keinen neuen Kanon festschreiben. Es möchte Räume öffnen: für Entdeckungen, für Erinnerung und für einen aufmerksameren Blick auf jene Kunst, die vielleicht nur kurze Zeit zu sehen ist – aber dennoch verdient, nicht spurlos zu verschwinden.",
+      "p10": "PERMAPHEMERA nahm am 2. Juni 2026 mit der ersten Ausstellung von Adi Schmölzer im Parkschlössl seinen Anfang. Er gab den entscheidenden Anstoß zur Idee und stellte den Kontakt zu den Verantwortlichen in Spittal an der Drau her – allen voran zu Monika Gaberscek. Die Stadt begegnete dem noch jungen Vorhaben von Beginn an mit bemerkenswerter Offenheit, Vertrauen und großer Unkompliziertheit. Ein ganz besonderer Dank gilt dabei Frau Gaberscek, die PERMAPHEMERA uneigennützig, eigeninitiativ und mit außergewöhnlichem persönlichem Einsatz begleitet und dadurch vieles überhaupt erst möglich gemacht hat. Ebenso danke ich allen beteiligten Künstlerinnen und Künstlern. Sie sind dem Projekt mit großer Offenheit und bemerkenswertem Entgegenkommen begegnet – und haben ihm damit jene Ermutigung mitgegeben, aus der es nun Ausstellung für Ausstellung weiterwachsen kann."
+    },
+    "actionsEyebrow": "Das Archiv erkunden",
+    "actionsTitle": "Was jetzt geschieht, entdecken.",
+    "actionsAccent": "Was vergangen ist, wiedersehen.",
+    "viewExhibitions": "Ausstellungen ansehen",
+    "viewGalleries": "Galerien entdecken"
+  },
+  "legal": {
+    "common": {
+      "recordLabel": "Dokumentvermerk",
+      "document": "Dokument",
+      "project": "Projekt",
+      "responsible": "Verantwortlich",
+      "controller": "Verantwortlicher",
+      "operator": "Betreiber",
+      "hosting": "Hosting",
+      "updated": "Stand",
+      "updatedValue": "13. August 2026",
+      "contents": "Inhalt",
+      "name": "Name",
+      "address": "Anschrift",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "contact": "Kontakt",
+      "target": "Zielstandard",
+      "method": "Prüfmethode",
+      "sources": "Grundlagen & Quellen"
+    },
+    "imprint": {
+      "seoTitle": "Impressum · PERMAPHEMERA",
+      "seoDescription": "Anbieterkennzeichnung, Medieninhaber und redaktionelle Verantwortung für PERMAPHEMERA.",
+      "breadcrumb": "Impressum",
+      "eyebrow": "Verantwortung & Offenlegung",
+      "title": "Wer hinter dem Archiv",
+      "accent": "steht.",
+      "intro": "PERMAPHEMERA ist ein privat betriebenes Kultur- und Dokumentationsprojekt. Hier finden Sie die verantwortliche Person, Kontaktmöglichkeiten und die publizistische Ausrichtung.",
+      "recordType": "Anbieterkennzeichnung",
+      "recordAria": "Dokumentvermerk zum Impressum",
+      "articleAria": "Impressum und Offenlegung von PERMAPHEMERA",
+      "sections": {
+        "provider": {
+          "eyebrow": "Anbieterkennzeichnung",
+          "title": "Medieninhaber und Diensteanbieter",
+          "p1": "Für Inhalt, Betrieb und redaktionelle Gestaltung dieser Website verantwortlich ist:",
+          "roleLabel": "Funktion",
+          "roleValue": "Privater Betreiber, Medieninhaber und für den Inhalt verantwortlich"
+        },
+        "direction": {
+          "eyebrow": "Offenlegung",
+          "title": "Grundlegende Richtung des Mediums",
+          "p1": "PERMAPHEMERA dokumentiert temporäre Ausstellungen, Kunstschaffende, Galerien und Ausstellungsorte mit besonderem Blick auf räumliche Zusammenhänge und langfristige kulturelle Zugänglichkeit.",
+          "p2": "Die Website dient der unabhängigen Information, Dokumentation und Vermittlung. Sie verfolgt derzeit keine kommerziellen Verkaufs- oder Vermittlungsinteressen und möchte insbesondere kleinere, regionale, temporäre und bislang wenig dokumentierte Positionen sichtbar machen."
+        },
+        "status": {
+          "eyebrow": "Projektform",
+          "title": "Privat und unabhängig betrieben",
+          "p1": "PERMAPHEMERA wird derzeit von Robert Wildling als privates, unabhängiges Projekt betrieben. Es besteht gegenwärtig keine Gesellschaft, kein Verein und kein im Firmenbuch eingetragenes Unternehmen unter diesem Projektnamen.",
+          "p2": "Sollte sich die Organisationsform ändern oder sollten weitere gesetzlich erforderliche Angaben hinzukommen, wird dieses Impressum entsprechend aktualisiert."
+        },
+        "copyright": {
+          "eyebrow": "Rechte an Inhalten",
+          "title": "Urheberrecht und Bildnachweise",
+          "p1": "Texte, Gestaltung, 360°-Dokumentationen und sonstige eigens erstellte Inhalte dieser Website sind urheberrechtlich geschützt. Fotografien, Kunstwerke, Namen, Marken und weitere Beiträge Dritter verbleiben bei den jeweils Berechtigten und werden – soweit erforderlich – mit deren Zustimmung oder auf einer anderen zulässigen Grundlage veröffentlicht.",
+          "p2": "Eine über die gesetzlich erlaubte Nutzung hinausgehende Vervielfältigung, Bearbeitung, Weitergabe oder öffentliche Verwendung bedarf der vorherigen Zustimmung der jeweiligen Rechteinhaber:innen. Hinweise zu unvollständigen oder fehlerhaften Zuordnungen bitte an die im Kontakt angeführte E-Mail-Adresse senden."
+        },
+        "sources": {
+          "title": "Rechtliche Grundlagen der Offenlegung",
+          "p1": "Diese Angaben orientieren sich insbesondere an den österreichischen Informations- und Offenlegungspflichten. Die verlinkten Rechtsquellen führen zum Rechtsinformationssystem des Bundes.",
+          "ecg": "§ 5 E-Commerce-Gesetz",
+          "media": "§ 25 Mediengesetz"
+        }
+      }
+    },
+    "privacy": {
+      "seoTitle": "Datenschutzerklärung · PERMAPHEMERA",
+      "seoDescription": "Informationen zur Verarbeitung personenbezogener Daten, zum Hosting, zu Einwilligungen, optionalen externen Medien und zu Ihren Datenschutzrechten.",
+      "breadcrumb": "Datenschutzerklärung",
+      "eyebrow": "Daten & Transparenz",
+      "title": "So wenig Daten wie möglich.",
+      "accent": "So klar wie nötig.",
+      "intro": "Bei der Nutzung dieser Website verarbeitet PERMAPHEMERA Daten für den sicheren Betrieb, die gewählte Sprache und eine direkte Kontaktaufnahme. Matomo, Google Maps und YouTube dürfen nur über getrennte Einwilligungen aktiviert werden. Das Archiv veröffentlicht darüber hinaus redaktionelle Informationen zu Ausstellungen und Beteiligten.",
+      "recordType": "Datenschutzinformation",
+      "recordAria": "Dokumentvermerk zur Datenschutzerklärung",
+      "articleAria": "Datenschutzerklärung von PERMAPHEMERA",
+      "sections": {
+        "controller": {
+          "eyebrow": "Verantwortlicher",
+          "title": "Wer über die Verarbeitung entscheidet",
+          "p1": "Verantwortlicher im Sinne der Datenschutz-Grundverordnung ist der private Betreiber von PERMAPHEMERA:"
+        },
+        "hosting": {
+          "eyebrow": "Technischer Betrieb",
+          "title": "Hosting und Server-Protokolle",
+          "p1": "Diese Website wird bei ALL-INKL.COM – Neue Medien Münnich in Deutschland gehostet. Beim Aufruf der Website verarbeitet der Webserver technisch erforderliche Zugriffsdaten, insbesondere IP-Adresse, Zeitpunkt, angeforderte Datei, Zugriffsstatus, übertragene Datenmenge, Herkunftsseite sowie Angaben zu Browser und Betriebssystem.",
+          "p2": "Die Verarbeitung dient der Auslieferung der Website, der Stabilität und der Abwehr von Angriffen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; das berechtigte Interesse liegt im sicheren und funktionsfähigen Betrieb des Angebots. Der Hostinganbieter wird im Rahmen der Auftragsverarbeitung eingesetzt.",
+          "p3": "Für die in seinen Datenschutzinformationen beschriebenen gewöhnlichen Logdateien nennt der Anbieter eine Löschung nach spätestens sieben Tagen. Eine längere Speicherung kann im Einzelfall erforderlich sein, etwa zur Aufklärung eines Angriffs. Nach Anbieterangaben werden Hostingdaten auf eigenen Servern in Deutschland gespeichert. Die für dieses Hostingpaket tatsächlich eingestellte Protokollierung und Aufbewahrungsdauer wird noch mit dem Anbieter geprüft.",
+          "providerLabel": "Auftragsverarbeiter",
+          "addressLabel": "Anschrift",
+          "retentionLabel": "Regelfrist",
+          "retentionValue": "Veröffentlichte Anbieterangabe: spätestens sieben Tage; konkrete Hosting-Einstellung noch zu prüfen",
+          "providerPrivacy": "Datenschutzinformationen von ALL-INKL.COM"
+        },
+        "storage": {
+          "eyebrow": "Endgerät",
+          "title": "Spracheinstellung und Datenschutzwahl",
+          "p1": "Unabhängig von Ihrer Analyseentscheidung werden funktionale Informationen auf Ihrem Endgerät gespeichert. Sie dienen nicht der Werbung und werden nicht zu einem Nutzungsprofil zusammengeführt.",
+          "locale": "Notwendiges Cookie zur Speicherung der gewählten Sprache; Speicherdauer bis zu einem Jahr.",
+          "consent": "Lokaler Browser-Speicher für Ihre einzelnen Entscheidungen zu Matomo, Google Maps und YouTube; wird nach spätestens einem Jahr erneut abgefragt."
+        },
+        "contact": {
+          "eyebrow": "Direkte Kommunikation",
+          "title": "Kontakt per E-Mail, Telefon oder Post",
+          "p1": "Wenn Sie Kontakt aufnehmen, werden die von Ihnen mitgeteilten Daten und der Inhalt der Nachricht verarbeitet, um Ihr Anliegen zu beantworten. Je nach Inhalt beruht dies auf Art. 6 Abs. 1 lit. f DSGVO oder auf vorvertraglichen Maßnahmen nach Art. 6 Abs. 1 lit. b DSGVO.",
+          "p2": "Kommunikationsdaten werden gelöscht, sobald das Anliegen abschließend geklärt ist und keine gesetzlichen Aufbewahrungspflichten oder berechtigten Gründe für eine weitere Speicherung bestehen."
+        },
+        "editorial": {
+          "eyebrow": "Archiv & Redaktion",
+          "title": "Informationen zu Ausstellungen und Beteiligten",
+          "p1": "PERMAPHEMERA dokumentiert Ausstellungen und veröffentlicht dazu insbesondere Namen von Kunstschaffenden und weiteren Beteiligten, Werk- und Ausstellungstitel, Laufzeiten, Orte, Bildmaterial und redaktionelle Beschreibungen. Diese Angaben stammen von den Beteiligten oder Ausstellungsorten, aus bereitgestellten Unterlagen oder aus öffentlich zugänglichen Ankündigungen und Publikationen.",
+          "p2": "Die Verarbeitung dient der kulturellen Dokumentation und der Information über das Ausstellungsgeschehen. Soweit dafür personenbezogene Daten auf Grundlage berechtigter Interessen verarbeitet werden, beruht dies auf Art. 6 Abs. 1 lit. f DSGVO; berücksichtigt werden dabei auch die Freiheit der Meinungsäußerung und Informationsfreiheit sowie die Rechte der betroffenen Personen.",
+          "p3": "Redaktionelle Archivangaben können dauerhaft aufbewahrt werden, solange ihr dokumentarischer Zweck besteht und keine vorrangigen Rechte entgegenstehen. Hinweise auf unrichtige Angaben sowie begründete Anliegen zu Berichtigung, Widerspruch oder Entfernung können an die oben genannte Kontaktadresse gerichtet werden."
+        },
+        "analytics": {
+          "eyebrow": "Optionale Reichweitenmessung",
+          "title": "Matomo auf eigener Subdomain",
+          "p1": "Nach Ihrer Einwilligung lädt diese Website Matomo von matomo.rowild.at und verwendet die Website-ID 9. Erfasst werden Seitenaufrufe und die Nutzung von Links, damit Reichweite, Navigation und technisch auffällige Zugriffe verstanden werden können.",
+          "p2": "Dabei können insbesondere aufgerufene Adresse und Seitentitel, Herkunftsseite, Zeitpunkt, Browser- und Geräteinformationen, Bildschirmauflösung sowie Interaktionen verarbeitet werden. Die IP-Adresse erreicht den Matomo-Server technisch beim Verbindungsaufbau; ob und in welcher gekürzten Form sie gespeichert wird, hängt von der serverseitigen Matomo-Konfiguration ab und muss noch abschließend geprüft werden.",
+          "p3": "Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Matomo wird vor Ihrer Auswahl nicht geladen. Sie können eine erteilte Einwilligung jederzeit über „Cookie-Einstellungen“ widerrufen; danach werden keine weiteren Aufrufe erfasst und vorhandene Matomo-Cookies werden gelöscht.",
+          "p4": "Die Standardkonfiguration des eingesetzten Trackingcodes kann Erstanbieter-Cookies mit folgenden Laufzeiten setzen: _pk_id zur Wiedererkennung für 13 Monate, _pk_ses für die Sitzung für 30 Minuten und _pk_ref für die ursprüngliche Herkunft für sechs Monate. Die serverseitige Aufbewahrungsdauer der Analysedaten muss noch in der Matomo-Installation bestätigt und anschließend hier konkretisiert werden.",
+          "instanceLabel": "Matomo-Instanz",
+          "siteLabel": "Website-ID",
+          "consentLabel": "Aktivierung",
+          "consentValue": "Erst nach freiwilliger Einwilligung",
+          "matomoConsent": "Matomo-Dokumentation zur Einwilligung",
+          "matomoCookies": "Matomo-Dokumentation zu Cookies"
+        },
+        "externalMedia": {
+          "eyebrow": "Optionale externe Medien",
+          "title": "Google Maps und YouTube bleiben blockiert",
+          "p1": "Google Maps und YouTube sind als getrennte optionale Dienste in den Cookie-Einstellungen vorgesehen; auf dieser Website sind derzeit jedoch weder Karten noch Videos eingebettet.",
+          "p2": "Wird einer der Dienste später eingebunden, lädt sein Inhalt erst nach der entsprechenden freiwilligen Einwilligung. Bis dahin muss die Website einen lokalen Platzhalter anzeigen, ohne Google zu kontaktieren. Beide Entscheidungen können jederzeit über „Cookie-Einstellungen“ widerrufen werden.",
+          "p3": "Nach der Aktivierung verbindet sich der Browser unmittelbar mit Google-Diensten. Dabei können Verbindungsdaten wie IP-Adresse, Browser- und Geräteinformationen, die aufgerufene Seite sowie—bei bestehender Anmeldung—gegebenenfalls kontobezogene Informationen durch Google verarbeitet werden. Es gelten die Datenschutzinformationen von Google einschließlich der dort beschriebenen internationalen Datenübermittlungen.",
+          "mapsLabel": "Google Maps",
+          "mapsValue": "Derzeit inaktiv; eigene Einwilligungskategorie vorbereitet",
+          "youtubeLabel": "YouTube",
+          "youtubeValue": "Derzeit inaktiv; eigene Einwilligungskategorie vorbereitet",
+          "activationLabel": "Aktivierung",
+          "activationValue": "Erst nach gesonderter freiwilliger Einwilligung",
+          "googlePrivacy": "Datenschutzerklärung von Google",
+          "mapsPolicy": "Richtlinien der Google Maps Platform",
+          "youtubePrivacy": "Datenschutzfreundliche YouTube-Einbettung"
+        },
+        "planned": {
+          "eyebrow": "Noch nicht aktiv",
+          "title": "Geplanter Newsletter",
+          "p1": "Eine Newsletter-Anmeldung ist vorgesehen, aber in der gegenwärtigen Website noch nicht aktiv. Über diese Website werden derzeit keine Newsletter-Daten erhoben.",
+          "p2": "Vor einer Aktivierung wird diese Datenschutzerklärung um Anbieter, Datenarten, Zwecke, Rechtsgrundlage, Double-Opt-in-Verfahren, Speicherdauer, Empfänger, Widerrufsmöglichkeit und gegebenenfalls Drittlandübermittlungen ergänzt.",
+          "newsletter": "Newsletter: geplant; Anbieter, Double-Opt-in-Verfahren und Speicherdauer noch nicht festgelegt."
+        },
+        "recipients": {
+          "eyebrow": "Empfänger",
+          "title": "Weitergabe und Drittstaaten",
+          "p1": "Im laufenden technischen Betrieb erhält der Hostinganbieter Zugriff auf jene Daten, die für Hosting, Wartung und Sicherheit erforderlich sind. Nach einer Analyse-Einwilligung werden Nutzungsdaten außerdem an die unter matomo.rowild.at bereitgestellte Matomo-Instanz übermittelt. Der eingesetzte Code bindet keinen Matomo-Cloud-Dienst ein. Eine weitere Weitergabe erfolgt nur, wenn sie gesetzlich vorgeschrieben, zur Rechtsdurchsetzung erforderlich oder ausdrücklich erlaubt ist.",
+          "p2": "Google Maps und YouTube sind derzeit inaktiv. Wird einer der Dienste später eingeführt und von Ihnen erlaubt, werden Daten wie unter „Optionale externe Medien“ beschrieben an Google übermittelt; dann gelten auch Googles Informationen zu internationalen Übermittlungen. Gewöhnliche externe Links übertragen Daten erst beim Öffnen ihres Ziels."
+        },
+        "rights": {
+          "eyebrow": "Ihre Rechte",
+          "title": "Auskunft, Berichtigung und Widerspruch",
+          "p1": "Soweit die gesetzlichen Voraussetzungen vorliegen, stehen Ihnen folgende Rechte in Bezug auf Ihre personenbezogenen Daten zu:",
+          "p2": "Zur Ausübung Ihrer Rechte genügt eine Nachricht an die oben angeführte E-Mail-Adresse. Zudem können Sie sich bei der Österreichischen Datenschutzbehörde beschweren, wenn Sie der Ansicht sind, dass eine Verarbeitung gegen Datenschutzrecht verstößt.",
+          "access": "Auskunft über verarbeitete personenbezogene Daten",
+          "rectification": "Berichtigung unrichtiger oder Vervollständigung unvollständiger Daten",
+          "erasure": "Löschung, sofern keine vorrangigen Gründe oder Pflichten entgegenstehen",
+          "restriction": "Einschränkung der Verarbeitung",
+          "portability": "Datenübertragbarkeit bei Vorliegen der gesetzlichen Voraussetzungen",
+          "objection": "Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen",
+          "withdrawal": "Widerruf einer Einwilligung mit Wirkung für die Zukunft",
+          "authority": "Österreichische Datenschutzbehörde",
+          "gdpr": "Datenschutz-Grundverordnung"
+        }
+      }
+    },
+    "terms": {
+      "seoTitle": "Nutzungsbedingungen · PERMAPHEMERA",
+      "seoDescription": "Bedingungen für die Nutzung des frei zugänglichen Ausstellungsarchivs PERMAPHEMERA.",
+      "breadcrumb": "Nutzungsbedingungen",
+      "eyebrow": "Zugang & Verantwortung",
+      "title": "Offen zum Erkunden.",
+      "accent": "Sorgsam zu verwenden.",
+      "intro": "Diese Nutzungsbedingungen beschreiben den kostenfreien, informativen Zugang zu PERMAPHEMERA sowie den respektvollen Umgang mit seinen Dokumentationen und den Rechten der Beteiligten.",
+      "recordType": "Nutzungsregeln",
+      "recordAria": "Dokumentvermerk zu den Nutzungsbedingungen",
+      "articleAria": "Nutzungsbedingungen von PERMAPHEMERA",
+      "sections": {
+        "scope": {
+          "eyebrow": "Geltungsbereich",
+          "title": "Ein frei zugängliches Kulturprojekt",
+          "p1": "Diese Bedingungen gelten für die Nutzung der Website PERMAPHEMERA und ihrer frei zugänglichen Ausstellungs-, Künstler:innen- und Ortsdokumentationen.",
+          "p2": "Die Website bietet derzeit keine Nutzerkonten, Uploads, Buchungen, Ticketverkäufe oder kostenpflichtigen Leistungen an. Durch den bloßen Besuch wird kein entgeltlicher Vertrag geschlossen."
+        },
+        "information": {
+          "eyebrow": "Redaktionelle Inhalte",
+          "title": "Dokumentation mit zeitlichem Kontext",
+          "p1": "Ausstellungsdaten, Öffnungszeiten, Beteiligte, Ortsangaben und externe Verweise werden nach bestem Wissen zusammengestellt. Gerade bei laufenden und kommenden Ausstellungen können sich Angaben kurzfristig ändern.",
+          "p2": "Bitte prüfen Sie besuchsrelevante Informationen zusätzlich bei der jeweiligen Galerie, dem Ausstellungsort oder der veranstaltenden Institution. Historische Dokumentationen geben den zum Zeitpunkt der Erfassung bekannten Stand wieder."
+        },
+        "use": {
+          "eyebrow": "Erlaubte Nutzung",
+          "title": "Betrachten, recherchieren und verlinken",
+          "p1": "PERMAPHEMERA darf im vorgesehenen Funktionsumfang zu privaten, wissenschaftlichen, journalistischen und nichtkommerziellen Informationszwecken genutzt werden. Dabei sind Rechte, Würde und Namensnennung aller Beteiligten zu respektieren.",
+          "personal": "Das Ansehen und Verlinken öffentlich zugänglicher Seiten ist gestattet.",
+          "noReuse": "Eine eigenständige Vervielfältigung, Weiterveröffentlichung, Bearbeitung, automatisierte Massenauslese oder kommerzielle Nutzung von Texten, Bildern und 360°-Dokumentationen ist ohne Erlaubnis nicht gestattet.",
+          "noInterference": "Sicherheitsmechanismen dürfen nicht umgangen und Betrieb, Verfügbarkeit oder Integrität der Website nicht beeinträchtigt werden."
+        },
+        "rights": {
+          "eyebrow": "Urheber- und Persönlichkeitsrechte",
+          "title": "Viele Beiträge, unterschiedliche Rechte",
+          "p1": "Die Website vereint eigene Inhalte mit Fotografien, Kunstwerken, Namen, Marken und Informationen Dritter. Rechte verbleiben bei den jeweiligen Urheber:innen, Kunstschaffenden, Fotograf:innen, Institutionen und sonstigen Berechtigten.",
+          "p2": "Die Veröffentlichung im Archiv überträgt keine Nutzungsrechte an Besucher:innen. Gesetzlich zulässige Zitate und sonstige Schranken des Urheberrechts bleiben unberührt; Quelle und Urheberschaft sind angemessen anzugeben."
+        },
+        "links": {
+          "eyebrow": "Externe Ziele",
+          "title": "Links führen in fremde Verantwortungsbereiche",
+          "p1": "PERMAPHEMERA verlinkt unter anderem auf Websites von Galerien, Ausstellungsorten und Kartendiensten. Für Inhalte, Verfügbarkeit, Datenschutz oder Barrierefreiheit dieser externen Angebote sind deren Betreiber verantwortlich.",
+          "p2": "Zum Zeitpunkt der Aufnahme werden Links auf ihre sachliche Relevanz geprüft. Eine dauernde inhaltliche Kontrolle externer Seiten ist ohne konkreten Anlass nicht zumutbar; Hinweise auf problematische oder fehlerhafte Ziele werden geprüft."
+        },
+        "liability": {
+          "eyebrow": "Verfügbarkeit",
+          "title": "Ein wachsendes Archiv bleibt in Bewegung",
+          "p1": "Es besteht kein Anspruch auf ununterbrochene Verfügbarkeit, Vollständigkeit oder dauerhafte Bereitstellung einzelner Inhalte. Wartung, technische Störungen, Rechteklärungen oder redaktionelle Korrekturen können zu Änderungen oder vorübergehender Nichterreichbarkeit führen.",
+          "p2": "Die Haftung richtet sich nach den gesetzlichen Vorschriften. Diese Bedingungen schließen insbesondere keine Haftung aus, die gesetzlich nicht beschränkt oder ausgeschlossen werden darf."
+        },
+        "changes": {
+          "eyebrow": "Fortentwicklung",
+          "title": "Änderungen und anwendbares Recht",
+          "p1": "Diese Bedingungen können angepasst werden, wenn sich Funktionen, Rechtslage oder Projektstruktur ändern. Maßgeblich ist die jeweils auf dieser Seite veröffentlichte Fassung; wesentliche neue Funktionen erhalten erforderlichenfalls eigene Bedingungen.",
+          "p2": "Es gilt österreichisches Recht unter Wahrung zwingender Schutzvorschriften, die für Nutzer:innen unabhängig von dieser Rechtswahl gelten."
+        }
+      }
+    },
+    "accessibility": {
+      "seoTitle": "Barrierefreiheit · PERMAPHEMERA",
+      "seoDescription": "Barrierefreiheitsziel, umgesetzte Maßnahmen, bekannte Einschränkungen und Kontakt für Rückmeldungen zu PERMAPHEMERA.",
+      "breadcrumb": "Barrierefreiheit",
+      "eyebrow": "Zugang & Teilhabe",
+      "title": "Räume sollen",
+      "accent": "für viele offen sein.",
+      "intro": "PERMAPHEMERA möchte Ausstellungserinnerungen nicht nur bewahren, sondern möglichst vielen Menschen zugänglich machen. Diese Seite beschreibt den angestrebten Standard, den aktuellen Stand und bekannte Grenzen offen.",
+      "recordType": "Erklärung zur Barrierefreiheit",
+      "recordAria": "Dokumentvermerk zur Barrierefreiheit",
+      "articleAria": "Erklärung zur Barrierefreiheit von PERMAPHEMERA",
+      "selfAssessment": "Interne Selbstbewertung; noch kein unabhängiges Audit",
+      "sections": {
+        "commitment": {
+          "eyebrow": "Selbstverpflichtung",
+          "title": "Zugänglichkeit als Teil des Projekts",
+          "p1": "Barrierefreiheit wird bei PERMAPHEMERA als fortlaufende redaktionelle und technische Aufgabe verstanden. Ziel ist, die Website schrittweise an den Web Content Accessibility Guidelines (WCAG) 2.2 auf Konformitätsstufe AA auszurichten.",
+          "p2": "Auch wenn für das derzeit privat betriebene Projekt nicht sämtliche Verpflichtungen öffentlicher Stellen gelten, dienen die Prinzipien wahrnehmbar, bedienbar, verständlich und robust als verbindliche Arbeitsrichtung."
+        },
+        "measures": {
+          "eyebrow": "Bereits berücksichtigt",
+          "title": "Struktur, Tastatur und reduzierte Bewegung",
+          "p1": "Die derzeitige Website berücksichtigt unter anderem folgende Maßnahmen:",
+          "structure": "Semantische Überschriften, Landmarken, Breadcrumbs und ein Sprunglink zum Hauptinhalt.",
+          "keyboard": "Tastaturbedienbare Navigation, Menüs, Sprachwahl und wesentliche interaktive Elemente mit sichtbaren Fokuszuständen.",
+          "motion": "Berücksichtigung der Systemeinstellung für reduzierte Bewegung bei nicht notwendigen Animationen.",
+          "images": "Textalternativen für inhaltlich relevante Bilder und ausgeblendete Dekoration für assistive Technologien.",
+          "language": "Programmatisch ausgezeichnete deutsche und englische Sprachversionen mit verständlicher Sprachwahl.",
+          "responsive": "Responsive Layouts, ausreichende Zielgrößen und lesbare Textmaße für unterschiedliche Bildschirmgrößen."
+        },
+        "status": {
+          "eyebrow": "Aktueller Stand",
+          "title": "Noch keine vollständige Konformitätserklärung",
+          "p1": "Die Website befindet sich im Aufbau und wurde bislang intern anhand der vorhandenen Komponenten und Interaktionen geprüft. Ein vollständiges unabhängiges Audit mit assistiven Technologien und unterschiedlichen Nutzer:innen hat noch nicht stattgefunden.",
+          "p2": "Daher wird derzeit keine vollständige Konformität mit WCAG 2.2 AA behauptet. Festgestellte Hindernisse werden priorisiert behoben und diese Erklärung wird nach wesentlichen Prüfungen oder Änderungen aktualisiert."
+        },
+        "limitations": {
+          "eyebrow": "Bekannte Grenzen",
+          "title": "Komplexe räumliche Inhalte brauchen Alternativen",
+          "p1": "Derzeit sind insbesondere folgende Bereiche noch nicht abschließend bewertet oder umgesetzt:",
+          "wheel": "Das interaktive Bilderrad auf der Startseite besitzt Tastatur- und Touch-Interaktionen, seine Bedienbarkeit mit verschiedenen Screenreadern und Vergrößerungshilfen benötigt jedoch weitere Praxistests.",
+          "panorama": "Die geplanten 360°-Rundgänge sind noch nicht angebunden. Vor ihrer Veröffentlichung müssen Tastatursteuerung, Orientierungshilfen und gleichwertige textliche Informationen konzipiert und geprüft werden.",
+          "external": "Verlinkte externe Websites und Dienste liegen außerhalb des technischen Einflussbereichs von PERMAPHEMERA und können eigene Barrieren enthalten."
+        },
+        "feedback": {
+          "eyebrow": "Barriere melden",
+          "title": "Rückmeldungen helfen beim Verbessern",
+          "p1": "Wenn Sie auf eine Barriere stoßen oder Inhalte in einer besser zugänglichen Form benötigen, teilen Sie bitte Seite, Funktion und das verwendete Gerät oder Hilfsmittel mit. Eine kurze Beschreibung genügt.",
+          "p2": "Rückmeldungen werden persönlich geprüft. Wo eine unmittelbare technische Lösung noch nicht möglich ist, wird nach Möglichkeit eine zugängliche Alternative bereitgestellt."
+        },
+        "standard": {
+          "title": "Orientierung und rechtlicher Kontext",
+          "p1": "Technische Zielgröße sind die WCAG 2.2 auf Stufe AA. Die WCAG ordnen Barrierefreiheit den vier Prinzipien wahrnehmbar, bedienbar, verständlich und robust zu.",
+          "p2": "Das österreichische Web-Zugänglichkeits-Gesetz betrifft Websites und mobile Anwendungen des Bundes und bestimmter öffentlicher Einrichtungen. PERMAPHEMERA nennt es als Orientierung für den öffentlichen Zugang, nicht als Behauptung, selbst in seinen Anwendungsbereich zu fallen.",
+          "wzg": "Österreichisches Web-Zugänglichkeits-Gesetz"
+        }
+      }
+    }
+  },
   "cards": {
     "openArchive": "Archiv öffnen",
     "openVenue": "Archiv von {name} öffnen",
@@ -322,7 +712,7 @@
     "legalAria": "Rechtliche Navigation in der Fußzeile",
     "imprint": "Impressum",
     "privacy": "Datenschutzerklärung",
-    "terms": "Allgemeine Geschäftsbedingungen",
+    "terms": "Nutzungsbedingungen",
     "accessibility": "Barrierefreiheit",
     "cookies": "Cookie-Einstellungen",
     "sealAlt": "Dauerhaft bewahrt, vorübergehend beständig",

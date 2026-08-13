@@ -20,26 +20,26 @@ const { show: showCookieNotice } = useCookieNotice()
       <ArchiveLanguageSwitch inverted />
     </div>
 
-    <ArchiveFooterNav :title="$t('footer.explore')" :aria-label="$t('footer.exploreAria')">
+    <ArchiveFooterNav :title="$t('footer.explore')" :ariaLabel="$t('footer.exploreAria')">
       <NuxtLink :to="localePath('/exhibitions/')">{{ $t('navigation.exhibitions') }}</NuxtLink>
       <NuxtLink :to="localePath('/artists/')">{{ $t('navigation.artists') }}</NuxtLink>
       <NuxtLink :to="localePath('/venues/')">{{ $t('navigation.galleries') }}</NuxtLink>
     </ArchiveFooterNav>
-    <ArchiveFooterNav :title="$t('navigation.information')" :aria-label="$t('footer.informationAria')">
-      <NuxtLink :to="localePath('/#method')">{{ $t('navigation.about') }}</NuxtLink>
+    <ArchiveFooterNav :title="$t('navigation.information')" :ariaLabel="$t('footer.informationAria')">
+      <NuxtLink :to="localePath('/about/')">{{ $t('navigation.about') }}</NuxtLink>
       <NuxtLink :to="localePath('/#method')">{{ $t('navigation.howItWorks') }}</NuxtLink>
-      <a href="mailto:archive@example.test">{{ $t('navigation.contact') }}</a>
+      <a href="mailto:office@rowild.at">{{ $t('navigation.contact') }}</a>
     </ArchiveFooterNav>
     <ArchiveFooterNav
       :title="$t('footer.legal')"
-      :aria-label="$t('footer.legalAria')"
+      :ariaLabel="$t('footer.legalAria')"
       :compact-columns="props.variant === 'drawer'"
       :class="props.variant === 'drawer' ? 'col-span-2 border-t border-archive-ochre/20 pt-4' : ''"
     >
-      <NuxtLink :to="localePath('/')">{{ $t('footer.imprint') }}</NuxtLink>
-      <NuxtLink :to="localePath('/')">{{ $t('footer.privacy') }}</NuxtLink>
-      <NuxtLink :to="localePath('/')">{{ $t('footer.terms') }}</NuxtLink>
-      <NuxtLink :to="localePath('/')">{{ $t('footer.accessibility') }}</NuxtLink>
+      <NuxtLink :to="localePath('/imprint/')">{{ $t('footer.imprint') }}</NuxtLink>
+      <NuxtLink :to="localePath('/privacy/')">{{ $t('footer.privacy') }}</NuxtLink>
+      <NuxtLink :to="localePath('/terms/')">{{ $t('footer.terms') }}</NuxtLink>
+      <NuxtLink :to="localePath('/accessibility/')">{{ $t('footer.accessibility') }}</NuxtLink>
       <button class="cursor-pointer border-0 bg-transparent p-0 text-left" type="button" @click="showCookieNotice">{{ $t('footer.cookies') }}</button>
     </ArchiveFooterNav>
     <img v-if="props.variant === 'desktop'" class="[ footer-seal ] w-62 max-w-full self-center opacity-90 mix-blend-screen" src="/media/images/landing/footer/permanently-preserved-stamp.png" :alt="$t('footer.sealAlt')" />

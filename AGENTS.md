@@ -90,7 +90,7 @@ Each record carries a `translations[]` array of `{ languages_code, … }` entrie
 
 ## Current Scope And Deferred Work
 
-The current site is a visual prototype: landing search filters local data, English/German language controls switch locale-aware routes and content, and the 360-degree exhibition experience is not yet connected. Venue and exhibition actions use real Nuxt routes backed by local JSON. The privacy notice documents the necessary language-preference cookie and can be reopened from the footer. Directus remains part of the future production architecture, but it is not part of the current frontend milestone.
+The current site is a visual prototype: landing search filters local data, the first post-hero section conditionally lists current/upcoming exhibitions from local dates, and each hero blade keeps one resolved exhibition's image, metadata, and route together. English/German language controls switch locale-aware routes and content, and the 360-degree exhibition experience is not yet connected. Venue and exhibition actions use real Nuxt routes backed by local JSON. Cookie settings expose necessary storage plus separate optional choices for Matomo, Google Maps, and YouTube; only Matomo is currently integrated, and it must remain unloaded until its own affirmative consent. Maps and YouTube choices are stored for future integrations but must not contact those services. Directus remains part of the future production architecture, but it is not part of the current frontend milestone.
 
 Defer these until after the Nuxt frontend basis and landing page are working:
 
