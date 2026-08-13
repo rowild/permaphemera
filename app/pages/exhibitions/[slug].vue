@@ -6,11 +6,11 @@ const { venues, venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const routeSlug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
-const exhibition = computed(() => venueExhibitions.value.find((item) => item.slug === routeSlug))
-
-if (!exhibition.value) {
-  throw createError({ statusCode: 404, statusMessage: t('exhibition.notFound') })
-}
+const exhibition = computed(() => {
+  const record = venueExhibitions.value.find((item) => item.slug === routeSlug)
+  if (!record) throw createError({ statusCode: 404, statusMessage: t('exhibition.notFound') })
+  return record
+})
 
 const gallery = computed(() => venues.value.find((item) => item.slug === exhibition.value?.venue_slug))
 const relatedExhibitions = computed(() => venueExhibitions.value
