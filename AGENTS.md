@@ -6,7 +6,7 @@ This repository is the PERMAPHEMERA frontend: the first working milestone for a 
 
 The primary active plan is `../_Plans/exhibitions-plan.md`. Treat `../_Plans/original chat.md` as historical context, not as the current implementation source of truth. These files are adjacent workspace references outside this Git repository.
 
-The `fin-patch` and `frontend-qa-checklist` skills referenced below live in `../.claude/skills/`, also outside this repository, because Claude Code is run from the parent workspace directory rather than from `frontend/`. They are therefore not available to a clone of this repository alone.
+The `frontend-qa-checklist` skill referenced below lives in `../.claude/skills/`, also outside this repository, because Claude Code is run from the parent workspace directory rather than from `frontend/`. It is therefore not available to a clone of this repository alone. The `fin-patch` skill is installed globally in `~/.claude/skills/fin-patch/` and works in any repository from any directory.
 
 ## Design Source Of Truth
 
@@ -131,4 +131,4 @@ Do not broaden the existing static SFTP publishing workflow into backend, admin,
 
 ## `fin-patch` Closeout Rule
 
-When the user writes exactly `fin-patch`, run the `fin-patch` skill, which performs the full patch closeout.
+When the user writes `fin-patch`, or asks to wrap up or close out finished work, run the global `fin-patch` skill, which performs the full closeout. It discovers this repository's conventions on its own — the lowercase `changelog.md`, its datetime headings, and the prose entry style — so nothing needs to be declared here. It stops at the commit; it never pushes or deploys.
