@@ -79,18 +79,18 @@ const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
 const artistGroupOrder = ['B', 'E', 'J', 'K', 'L', 'R', 'W']
 const locationImagePool = Array.from(
   { length: 40 },
-  (_, index) => `/images/landing/locations/location_${String(index + 1).padStart(2, '0')}.png`
+  (_, index) => `/media/images/landing/locations/location_${String(index + 1).padStart(2, '0')}.png`
 )
 const heroImages = [
-  '/images/landing/parkschloessl.jpg',
+  '/media/images/landing/parkschloessl.jpg',
   ...locationImagePool.slice(0, 10),
   locationImagePool[0]!
 ]
 const venueStackItems = [
-  '/images/landing/kaleidoscope/locations/location_07.png',
-  '/images/landing/kaleidoscope/locations/location_08.png',
-  '/images/landing/kaleidoscope/locations/location_09.png',
-  '/images/landing/kaleidoscope/locations/location_10.png'
+  '/media/images/landing/kaleidoscope/locations/location_07.png',
+  '/media/images/landing/kaleidoscope/locations/location_08.png',
+  '/media/images/landing/kaleidoscope/locations/location_09.png',
+  '/media/images/landing/kaleidoscope/locations/location_10.png'
 ].map((image, index) => ({ id: `venue-stack-${index + 1}`, image, alt: '' }))
 const artistStackItems = Array.from({ length: 5 }, (_, index) => ({ id: `artist-stack-${index + 1}` }))
 const kaleidoscopeRef = ref<{
@@ -157,19 +157,19 @@ function revealWheelControls() {
 
 const methodSteps = computed(() => [
   {
-    icon: '/images/landing/method/steps/captured.png',
+    icon: '/media/images/landing/method/steps/captured.png',
     number: '01',
     title: t('landing.method.steps.captured.title'),
     text: t('landing.method.steps.captured.text')
   },
   {
-    icon: '/images/landing/method/steps/connected.png',
+    icon: '/media/images/landing/method/steps/connected.png',
     number: '02',
     title: t('landing.method.steps.connected.title'),
     text: t('landing.method.steps.connected.text')
   },
   {
-    icon: '/images/landing/method/steps/preserved.png',
+    icon: '/media/images/landing/method/steps/preserved.png',
     number: '03',
     title: t('landing.method.steps.preserved.title'),
     text: t('landing.method.steps.preserved.text')
@@ -483,7 +483,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
 
       <img
         class="[ artists-section-divider ] col-span-full mx-auto mt-2 -mb-8 w-[min(30rem,70vw)] opacity-68"
-        src="/svg/dividers/artists-section-divider.svg"
+        src="/media/svg/dividers/artists-section-divider.svg"
         alt=""
         aria-hidden="true"
       />
@@ -503,7 +503,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       <div class="[ method-image-stack ] relative z-3 isolate compact:mx-[-0.7rem]">
         <img
           class="block h-auto w-full compact:transform-none"
-          src="/images/landing/method/archive-method-composition.png"
+          src="/media/images/landing/method/archive-method-composition.png"
           :alt="$t('landing.method.imageAlt')"
         />
       </div>
@@ -519,7 +519,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
 
       <div class="[ method-details ] col-span-full grid grid-cols-[minmax(18rem,1.15fr)_minmax(38rem,2.25fr)_8rem] items-center gap-[clamp(2rem,4vw,4.5rem)] px-11 pt-5 tablet:grid-cols-[minmax(16rem,0.8fr)_minmax(32rem,2fr)_6.5rem] tablet:gap-6 tablet:px-6 compact:mt-8 compact:grid-cols-1 compact:gap-4 compact:px-2 compact:pt-4">
         <blockquote class="[ method-quote ] m-0 grid grid-cols-[3rem_1fr] items-start gap-4 compact:mb-4">
-          <img class="h-auto w-[2.6rem]" src="/images/landing/method/details/quote-mark.png" alt="" aria-hidden="true" />
+          <img class="h-auto w-[2.6rem]" src="/media/images/landing/method/details/quote-mark.png" alt="" aria-hidden="true" />
           <p class="m-0 font-display text-h4 leading-[1.18] text-archive-copy italic">{{ $t('landing.method.quoteBefore') }}<br />{{ $t('landing.method.quoteMiddle') }} <em class="font-normal text-archive-red">{{ $t('landing.method.quoteAccent') }}</em></p>
         </blockquote>
 
@@ -534,7 +534,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
 
         <img
           class="[ method-archive-stamp ] h-auto w-30 opacity-72 tablet:w-24 compact:mx-auto compact:mt-5 compact:mb-8 compact:justify-self-center"
-          src="/images/landing/method/details/archive-stamp.png"
+          src="/media/images/landing/method/details/archive-stamp.png"
           :alt="$t('landing.sealAlt')"
         />
       </div>

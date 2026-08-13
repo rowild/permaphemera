@@ -98,9 +98,9 @@ app/pages/exhibitions/index.vue searchable exhibition archive
 app/pages/exhibitions/[slug].vue dynamic exhibition records
 app/pages/artists/index.vue    searchable artist directory
 app/assets/css/main.css        theme, base rules, and branded visual infrastructure
-public/images/landing/         raster assets used by the site
-public/images/locations/       optimized location/exhibition artwork
-public/svg/                    frames, icons, and ornaments
+public/media/images/landing/   raster assets used by the site
+public/media/images/locations/ optimized location/exhibition artwork
+public/media/svg/              frames, icons, and ornaments
 docs/STYLE_GUIDE.md            reusable frontend design system and page rules
 docs/CSS_ARCHITECTURE.md       CSS organisation and Tailwind authoring rules for this project
 AGENTS.md                      repository instructions for coding agents
@@ -131,12 +131,12 @@ The hero kaleidoscope uses perspective-projected Three.js triangles with GSAP-dr
 
 Header and footer wordmarks share the uncircled archival temple mark; favicon, Apple touch, and web-app variants place it on a parchment field for reliable contrast. Navigation links use a fading archival-rule underline, logo lockups never underline, and the visual system resolves semantic interaction states to archive red `#a6523c` while static ornaments on dark surfaces use archive ochre `#ca9e51`.
 
-Custom image masks and frames are implemented as Vue/SVG components, and runtime artwork is served from `public/images/landing/`, `public/images/locations/`, and `public/svg/`.
+Custom image masks and frames are implemented as Vue/SVG components, and runtime artwork is served from `public/media/images/landing/`, `public/media/images/locations/`, and `public/media/svg/`.
 
 ## Design Guidance
 
 Read `docs/STYLE_GUIDE.md` before designing or implementing a new page. Read `docs/CSS_ARCHITECTURE.md` before adding a custom CSS rule or a bracketed Tailwind utility. Vue scoped styles and CSS Modules are prohibited: custom rules belong in the globally imported CSS architecture and must reuse existing tokens and component rules wherever possible.
 
-The hand-drawn archival ornaments are transparent PNGs reconstructed from the landing-page mockups. Canonical runtime files live in their normal section folders under `public/images/landing/`; matching `_recreated_anew/` folders preserve the reconstructed versions for comparison and future refinement. Photographic venue and archive-method compositions are intentionally separate and must not be regenerated as ornaments.
+The hand-drawn archival ornaments are transparent PNGs reconstructed from the landing-page mockups. Canonical runtime files live in their normal section folders under `public/media/images/landing/`; matching `_recreated_anew/` folders preserve the reconstructed versions for comparison and future refinement. Photographic venue and archive-method compositions are intentionally separate and must not be regenerated as ornaments.
 
 Local design-source and backup folders named `_Material/` and `_BU/` are intentionally ignored. Runtime assets required by the application must live under `public/` or `app/assets/`.

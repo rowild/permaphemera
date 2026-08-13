@@ -97,7 +97,7 @@ useSeoMeta({
         <div class="[ galleries-atlas-mark ] relative min-h-80 border-l border-archive-red/38 pl-8 tablet:min-h-64 compact:min-h-0 compact:border-t compact:border-l-0 compact:pt-4 compact:pl-0" aria-hidden="true">
           <p class="m-0 text-hero-xl font-light leading-[0.72] text-archive-red/88">{{ String(venues.length).padStart(2, '0') }}</p>
           <p class="mt-4 mb-0 max-w-48 text-xs tracking-widest text-archive-muted uppercase">{{ $t('galleries.atlasCaption') }}</p>
-          <img class="pointer-events-none absolute right-0 bottom-0 w-36 -rotate-8 opacity-38 compact:hidden" src="/images/landing/footer/permanently-preserved-stamp.png" alt="" />
+          <img class="pointer-events-none absolute right-0 bottom-0 w-36 -rotate-8 opacity-38 compact:hidden" src="/media/images/landing/footer/permanently-preserved-stamp.png" alt="" />
         </div>
       </section>
 

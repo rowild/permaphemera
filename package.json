@@ -18,6 +18,7 @@
     "check:locations": "node scripts/check-location-exhibition-browser.mjs",
     "check:mobile": "node scripts/check-mobile-density.mjs",
     "check:preloader": "node scripts/check-kaleidoscope-preloader.mjs",
+    "check:public": "node scripts/check-public-namespace.mjs",
     "check:tailwind": "node scripts/check-tailwind-canonical.mjs",
     "check:types": "nuxt typecheck",
     "deploy": "node scripts/deploy.mjs",

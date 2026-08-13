@@ -9,8 +9,9 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Serve real files unchanged. Directories still pass through the SPA router,
-  # because archive source files and application routes share /locations/.
+  # Serve real files unchanged. Directory requests fall through to the SPA
+  # router below; the single public/media/ namespace keeps asset directories
+  # from ever shadowing an application route.
   RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
 

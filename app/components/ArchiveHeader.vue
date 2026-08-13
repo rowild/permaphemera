@@ -39,7 +39,7 @@ const openCookieSettings = () => {
     <NuxtLink class="[ brand ] inline-flex items-baseline gap-[0.65rem] justify-self-start font-display text-brand leading-none font-medium tracking-[0.24em] compact:gap-2 compact:text-xl compact:tracking-widest compact:whitespace-nowrap narrow:text-base narrow:tracking-[0.08em]" :to="localePath('/')" :aria-label="$t('site.homeAria')">
       <img
         class="[ brand-mark ] size-8 flex-none translate-y-0.5 self-baseline object-contain opacity-82 compact:size-6 narrow:size-5"
-        src="/svg/brand/archive-temple.svg"
+        src="/media/svg/brand/archive-temple.svg"
         alt=""
         width="64"
         height="64"
@@ -58,7 +58,7 @@ const openCookieSettings = () => {
         <img
           v-if="index < primaryLinks.length - 1"
           class="[ desktop-nav-divider ] size-1.5 self-center object-contain opacity-55"
-          src="/svg/frames/sponsor-strip-frame.svg"
+          src="/media/svg/frames/sponsor-strip-frame.svg"
           alt=""
           aria-hidden="true"
         >

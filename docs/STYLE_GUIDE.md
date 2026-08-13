@@ -87,8 +87,8 @@ app/assets/css/main.css       global tokens and page styling
 app/pages/index.vue           composition and interaction patterns
 app/components/               reusable frames, masks, arrows, kaleidoscope
 app/data/                     local content contracts
-public/images/landing/        raster compositions and extracted details
-public/svg/                   scalable frames, icons, rules, and ornaments
+public/media/images/landing/  raster compositions and extracted details
+public/media/svg/             scalable frames, icons, rules, and ornaments
 ```
 
 New global tokens and truly reusable primitives belong in `main.css` or a future organized design-system layer. **Vue `<style scoped>` blocks and CSS Modules are prohibited.** Page-only rules belong in the globally imported CSS architecture and must use a route/domain namespace to avoid collisions. Before adding any rule, search the global styles and reuse an existing frame, arrow, heading, search field, archive-card treatment, token, utility, or component pattern wherever possible. CSS organisation and Tailwind authoring rules are defined in `docs/CSS_ARCHITECTURE.md`.
@@ -315,7 +315,7 @@ The footer wordmark uses `1.7rem` and `0.16em` tracking. Do not distort, italici
 
 ### 6.9 Links
 
-- In navigation and footer contexts, hover uses archive red plus the archival line graphic from `/svg/background/header-divider.svg`; never use the browser's text underline for these links.
+- In navigation and footer contexts, hover uses archive red plus the archival line graphic from `/media/svg/background/header-divider.svg`; never use the browser's text underline for these links.
 - This interaction is identical in desktop and tablet/mobile navigation: keep the complete mobile row clickable, but size the animated underline to the visible label rather than stretching it across the row.
 - A current-page navigation item is archive red without an underline. The archival underline is a transient hover/focus signal only and must not persist merely because `aria-current="page"` is present.
 - Implement the graphic underline as a `currentColor` mask in a pseudo-element. Fade opacity from `0` to roughly `0.82` in `160ms`, while gently expanding it from about `scaleX(0.76)` to `scaleX(1)` in about `210ms`.
@@ -536,8 +536,8 @@ The eyebrow ornament is decorative and should be implemented through a pseudo-el
 
 Buttons use custom SVG `border-image` frames rather than ordinary rounded rectangles:
 
-- primary frame: `/svg/frames/button-primary-frame.svg`;
-- secondary frame: `/svg/frames/button-secondary-frame.svg`;
+- primary frame: `/media/svg/frames/button-primary-frame.svg`;
+- secondary frame: `/media/svg/frames/button-secondary-frame.svg`;
 - border-image slice: `20 fill stretch` with a `12px` transparent border;
 - no conventional shadow;
 - visually square/engraved edges rather than pills.
@@ -698,7 +698,7 @@ Use CSS `border-image` when a rectangular control or panel needs fixed decorativ
 ```css
 .framed-surface {
   border: 12px solid transparent;
-  border-image: url("/svg/frames/example-frame.svg") 20 fill stretch;
+  border-image: url("/media/svg/frames/example-frame.svg") 20 fill stretch;
 }
 ```
 
@@ -826,8 +826,8 @@ copyright-center.png
 Avoid spaces, uppercase letters, diacritics, version suffixes like `final-v2-new`, and generic names such as `image1.png`. Organize by semantic area:
 
 ```text
-public/images/<page>/<section>/<asset-name>.<ext>
-public/svg/<category>/<asset-name>.svg
+public/media/images/<page>/<section>/<asset-name>.<ext>
+public/media/svg/<category>/<asset-name>.svg
 ```
 
 ### 15.7 Performance

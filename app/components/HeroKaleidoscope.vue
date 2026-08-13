@@ -936,7 +936,7 @@ onMounted(async () => {
   // paints transparency, never an unfinished wheel.
   resize()
 
-  const sourceImages = props.images.length ? props.images : ['/images/landing/parkschloessl.jpg']
+  const sourceImages = props.images.length ? props.images : ['/media/images/landing/parkschloessl.jpg']
   const textures: THREE.Texture[] = []
 
   // One image at a time. Twelve parallel requests share the connection and all

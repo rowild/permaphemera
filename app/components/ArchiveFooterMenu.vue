@@ -43,6 +43,6 @@ const { show: showCookieNotice } = useCookieNotice()
       <NuxtLink :to="localePath('/')">{{ $t('footer.accessibility') }}</NuxtLink>
       <button class="cursor-pointer border-0 bg-transparent p-0 text-left" type="button" @click="showCookieNotice">{{ $t('footer.cookies') }}</button>
     </ArchiveFooterNav>
-    <img v-if="props.variant === 'desktop'" class="[ footer-seal ] w-62 max-w-full self-center opacity-90 mix-blend-screen" src="/images/landing/footer/permanently-preserved-stamp.png" :alt="$t('footer.sealAlt')" />
+    <img v-if="props.variant === 'desktop'" class="[ footer-seal ] w-62 max-w-full self-center opacity-90 mix-blend-screen" src="/media/images/landing/footer/permanently-preserved-stamp.png" :alt="$t('footer.sealAlt')" />
   </component>
 </template>
