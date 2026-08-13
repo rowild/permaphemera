@@ -888,7 +888,7 @@ a:hover .archive-arrow-right {
   }
 }
 
-/* Parkschlössl location dossier */
+/* Parkschlössl venue dossier */
 
 .archive-routed-page-surface {
   background:
@@ -907,7 +907,7 @@ a:hover .archive-arrow-right {
   opacity: 0.78;
 }
 
-.archive-location-hero-artwork::before {
+.archive-venue-hero-artwork::before {
   position: absolute;
   inset: 7% -5% 4% 10%;
   z-index: -1;
@@ -917,7 +917,7 @@ a:hover .archive-arrow-right {
   transform: rotate(9deg);
 }
 
-.archive-location-plate::before {
+.archive-venue-plate::before {
   position: absolute;
   inset: 0.38rem;
   border: 1px dashed rgb(var(--color-archive-red-rgb) / 0.38);
@@ -925,26 +925,26 @@ a:hover .archive-arrow-right {
   content: "";
 }
 
-.archive-location-active-preview .archive-location-preview-image-enter-active,
-.archive-location-active-preview .archive-location-preview-image-leave-active {
+.archive-venue-active-preview .archive-venue-preview-image-enter-active,
+.archive-venue-active-preview .archive-venue-preview-image-leave-active {
   transition: opacity 0.36s ease-in-out;
 }
 
-.archive-location-preview-image-enter-from,
-.archive-location-preview-image-leave-to {
+.archive-venue-preview-image-enter-from,
+.archive-venue-preview-image-leave-to {
   opacity: 0;
 }
 
-.archive-location-preview-shade {
+.archive-venue-preview-shade {
   background: linear-gradient(transparent, rgba(19, 16, 12, 0.94) 46%);
 }
 
-.archive-location-loader-symbol {
-  animation: location-preview-spin 0.9s linear infinite;
+.archive-venue-loader-symbol {
+  animation: venue-preview-spin 0.9s linear infinite;
 }
 
-.archive-location-loader-symbol::before,
-.archive-location-loader-symbol::after {
+.archive-venue-loader-symbol::before,
+.archive-venue-loader-symbol::after {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -953,17 +953,17 @@ a:hover .archive-arrow-right {
   transform: translate(-50%, -50%);
 }
 
-.archive-location-loader-symbol::before {
+.archive-venue-loader-symbol::before {
   width: 1.5rem;
   height: 1px;
 }
 
-.archive-location-loader-symbol::after {
+.archive-venue-loader-symbol::after {
   width: 1px;
   height: 1.5rem;
 }
 
-@keyframes location-preview-spin {
+@keyframes venue-preview-spin {
   to { transform: rotate(360deg); }
 }
 
@@ -996,8 +996,8 @@ a:hover .archive-arrow-right {
     transition: none;
   }
 
-  .archive-location-active-preview .archive-location-preview-image-enter-active,
-  .archive-location-active-preview .archive-location-preview-image-leave-active {
+  .archive-venue-active-preview .archive-venue-preview-image-enter-active,
+  .archive-venue-active-preview .archive-venue-preview-image-leave-active {
     transition: none;
   }
 
@@ -1005,7 +1005,7 @@ a:hover .archive-arrow-right {
     animation: none;
   }
 
-  .archive-location-loader-symbol {
+  .archive-venue-loader-symbol {
     animation: none;
   }
 }

@@ -20,29 +20,30 @@ interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'a
 }
 type Exhibition = Pick<ResolvedExhibition, 'id' | 'slug' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image' | 'featured'>
 
-const { artists, venues, locationExhibitions } = useArchiveData()
+const { artists, venues, venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const directoryArtists = computed(() =>
-  buildArtistDirectory(artists.value, locationExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[]))
+  buildArtistDirectory(artists.value, venueExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[]))
 
 useSeoMeta({
   title: 'PERMAPHEMERA',
   description: () => t('site.seoDescription')
 })
 
-const directoryVenues = computed<Venue[]>(() => venues.value.map((location) => ({
-  id: `venue-${location.id}`,
-  slug: location.slug,
-  location_id: location.id,
-  name: location.name,
-  city: location.city_name,
-  address: location.address,
-  website_url: location.website_url,
-  image: location.image,
-  featured: location.featured,
-  archive_number: location.archive_number
+const directoryVenues = computed<Venue[]>(() => venues.value.map((venueRecord) => ({
+  id: `venue-${venueRecord.id}`,
+  slug: venueRecord.slug,
+  location_id: venueRecord.id,
+  name: venueRecord.name,
+  city: venueRecord.city_name,
+  address: venueRecord.address,
+  website_url: venueRecord.website_url,
+  image: venueRecord.image,
+  featured: venueRecord.featured,
+  archive_number: venueRecord.archive_number
 })))
+
 const featuredVenue = computed(() => directoryVenues.value.find((venue) => venue.featured) ?? directoryVenues.value[0]!)
 const otherVenues = computed(() => directoryVenues.value.filter((venue) => venue.id !== featuredVenue.value.id))
 const defaultLandingVenueSlugs = new Set([
@@ -53,10 +54,10 @@ const defaultLandingVenueSlugs = new Set([
   'kunstverein-baden'
 ])
 const venueStackVenue = computed(() => otherVenues.value.find((venue) => venue.slug === 'kunstforum-montafon-schruns'))
-const regularVenues = computed(() => locationSearchQuery.value.trim()
+const regularVenues = computed(() => venueSearchQuery.value.trim()
   ? otherVenues.value
   : otherVenues.value.filter((venue) => defaultLandingVenueSlugs.has(venue.slug)))
-const selectedExhibitions = computed<Exhibition[]>(() => [...locationExhibitions.value]
+const selectedExhibitions = computed<Exhibition[]>(() => [...venueExhibitions.value]
   .sort((left, right) => {
     if (Boolean(left.featured) !== Boolean(right.featured)) return left.featured ? -1 : 1
     return left.start_date.localeCompare(right.start_date)
@@ -100,11 +101,11 @@ const kaleidoscopeRef = ref<{
 const kaleidoscopeAnimating = ref(true)
 const wheelControlsRevealed = ref(false)
 const wheelControlsRef = ref<HTMLElement | null>(null)
-const locationSearchQuery = ref('')
+const venueSearchQuery = ref('')
 const exhibitionSearchQuery = ref('')
 const artistSearchQuery = ref('')
 const openLandingArtistSlug = ref('')
-const preservedExhibitionCount = computed(() => locationExhibitions.value.length)
+const preservedExhibitionCount = computed(() => venueExhibitions.value.length)
 const availableArtistLetters = computed(() => new Set(directoryArtists.value.map((artist) => artist.letter)))
 const artistLetterRoute = (letter: string) => ({
   path: localePath('/artists/'),
@@ -217,7 +218,7 @@ watch(artistSearchQuery, () => {
 })
 
 const venueMatchesSearch = (venue: Venue) => {
-  const query = locationSearchQuery.value.trim().toLocaleLowerCase()
+  const query = venueSearchQuery.value.trim().toLocaleLowerCase()
 
   return !query || [venue.name, venue.city, venue.address]
     .some((value) => value.toLocaleLowerCase().includes(query))
@@ -261,7 +262,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
         </h1>
         <p class="mx-0 mt-[1.55rem] mb-[2.2rem] max-w-116 font-display text-lede leading-tight font-normal text-archive-muted tablet-landscape:mt-4 tablet-landscape:mb-6 tablet-landscape:text-base tablet-portrait:mx-auto tablet-portrait:mt-3 tablet-portrait:mb-4 tablet-portrait:max-w-lg tablet-portrait:text-center tablet-portrait:text-base tablet-portrait:leading-snug compact:mx-auto compact:mt-3 compact:mb-4 compact:max-w-64 compact:text-center compact:text-sm">{{ $t('landing.hero.lede') }}</p>
         <div class="flex flex-wrap items-center gap-[1.3rem] tablet-landscape:gap-3 tablet-portrait:w-full tablet-portrait:flex-nowrap tablet-portrait:justify-center tablet-portrait:gap-2 compact:w-full compact:flex-nowrap compact:justify-center compact:gap-2">
-          <ArchiveButton class="tablet-landscape:px-3 tablet-portrait:w-fit tablet-portrait:flex-none tablet-portrait:min-w-0 tablet-portrait:px-2 compact:w-fit compact:flex-none compact:min-w-0 compact:px-2" href="#locations">
+          <ArchiveButton class="tablet-landscape:px-3 tablet-portrait:w-fit tablet-portrait:flex-none tablet-portrait:min-w-0 tablet-portrait:px-2 compact:w-fit compact:flex-none compact:min-w-0 compact:px-2" href="#venues">
             <span class="[ button-icon ] svg-icon svg-icon-archive inline-block size-[1.45rem] flex-none bg-current" aria-hidden="true" />
             <span class="tablet-portrait:hidden compact:hidden">{{ $t('landing.hero.explore') }}</span>
             <span class="hidden tablet-portrait:inline compact:inline">{{ $t('landing.hero.exploreCompact') }}</span>
@@ -312,24 +313,24 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       </div>
 
       <ArchiveScrollCue
-        target="#locations"
+        target="#venues"
         :label="$t('landing.hero.continue')"
       />
     </section>
 
-    <section id="locations" class="[ locations-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8">
+    <section id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8">
       <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
-        <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.locations.eyebrow') }}</p>
-        <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.locations.title') }} <span class="text-archive-red">{{ $t('landing.locations.accent') }}</span></h2>
-        <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.locations.intro') }}</p>
+        <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.venues.eyebrow') }}</p>
+        <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.venues.title') }} <span class="text-archive-red">{{ $t('landing.venues.accent') }}</span></h2>
+        <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.venues.intro') }}</p>
       </div>
 
       <ArchiveSearchForm
-        v-model="locationSearchQuery"
-        class="[ location-search ]"
-        id="location-search"
-        :label="$t('landing.locations.searchLabel')"
-        :placeholder="$t('landing.locations.searchPlaceholder')"
+        v-model="venueSearchQuery"
+        class="[ venue-search ]"
+        id="venue-search"
+        :label="$t('landing.venues.searchLabel')"
+        :placeholder="$t('landing.venues.searchPlaceholder')"
       />
 
       <div class="[ venue-grid ] relative grid grid-cols-[minmax(24rem,1.55fr)_repeat(3,minmax(12rem,1fr))] items-stretch gap-[1.4rem] pb-[3.4rem] tablet:grid-cols-2 tablet:pb-0 compact:grid-cols-2 compact:gap-3">
@@ -347,7 +348,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
         />
 
         <ArchivePaperStack
-          v-if="venueStackVenue && !locationSearchQuery"
+          v-if="venueStackVenue && !venueSearchQuery"
           stack-id="venue-discovery"
           :items="venueStackItems"
           :label="$t('common.more')"
@@ -455,14 +456,14 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           class="hidden tablet:grid"
           :items="[
             { label: $t('landing.sidebar.preserved'), value: preservedExhibitionCount },
-            { label: $t('landing.sidebar.locations'), value: venues.length },
+            { label: $t('landing.sidebar.venues'), value: venues.length },
             { label: $t('landing.sidebar.directory'), value: 'A–Z' }
           ]"
         />
         <div class="tablet:hidden">
           <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.preserved') }}</p>
           <strong class="[ archive-sidebar-count ] mt-[0.4rem] mb-10 block font-display text-title font-normal">{{ preservedExhibitionCount }}</strong>
-          <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.locations') }}</p>
+          <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.venues') }}</p>
           <ul class="[ archive-sidebar-locations ] m-0 mb-6 grid list-none gap-[0.45rem] p-0">
             <li>{{ $t('landing.sidebar.vienna') }}</li>
             <li>Graz</li>
@@ -470,7 +471,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
             <li>Salzburg</li>
             <li>Innsbruck</li>
           </ul>
-          <a class="[ archive-sidebar-link ] flex items-center gap-2 font-display text-button text-archive-red" href="#locations">{{ $t('landing.sidebar.viewAll') }} <ArchiveArrow class="w-[1.65rem]" /></a>
+          <a class="[ archive-sidebar-link ] flex items-center gap-2 font-display text-button text-archive-red" href="#venues">{{ $t('landing.sidebar.viewAll') }} <ArchiveArrow class="w-[1.65rem]" /></a>
           <ArchivePaperStack
             stack-id="artist-directory"
             :items="artistStackItems"

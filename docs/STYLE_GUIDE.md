@@ -104,7 +104,7 @@ Major structural regions retain human-readable names as spaced marker groups:
 
 ```html
 <main class="[ site-shell ] relative min-h-screen overflow-hidden">
-<section class="[ location-hero ] [ section-band ] grid ...">
+<section class="[ venue-hero ] [ section-band ] grid ...">
 ```
 
 The brackets are visual delimiters, not part of the marker name. Because HTML separates classes at whitespace, `[ site-shell ]` produces three class tokens:

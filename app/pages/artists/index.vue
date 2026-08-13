@@ -6,7 +6,7 @@ import type { ExhibitionArtistLink } from '~/types/content'
 
 const route = useRoute()
 const router = useRouter()
-const { artists, locationExhibitions } = useArchiveData()
+const { artists, venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
@@ -14,7 +14,7 @@ const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
 const artistsPerLetterPreview = 5
 const normalize = (value: string) => value.trim().toLocaleLowerCase()
 const directoryArtists = computed(() =>
-  buildArtistDirectory(artists.value, locationExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[]))
+  buildArtistDirectory(artists.value, venueExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[]))
 const artistLedgerItems = computed(() => [
   { label: t('artists.ledgerArtists'), value: directoryArtists.value.length },
   { label: t('artists.linkedRecords'), value: directoryArtists.value.reduce((total, artist) => total + artist.records.length, 0) },

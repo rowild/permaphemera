@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const router = useRouter()
-const { venues, locationExhibitions } = useArchiveData()
+const { venues, venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 
@@ -9,42 +9,42 @@ const gallerySearchQuery = ref(typeof route.query.q === 'string' ? route.query.q
 const selectedState = ref(typeof route.query.state === 'string' ? route.query.state : '')
 const normalize = (value: string) => value.trim().toLocaleLowerCase()
 
-const states = computed(() => [...new Set(venues.value.map((location) => location.state))]
+const states = computed(() => [...new Set(venues.value.map((venue) => venue.state))]
   .sort((left, right) => left.localeCompare(right)))
 const stateCounts = computed(() => new Map(states.value.map((state) => [
   state,
-  venues.value.filter((location) => location.state === state).length
+  venues.value.filter((venue) => venue.state === state).length
 ])))
-const recordsByGallery = computed(() => new Map(venues.value.map((location) => [
-  location.slug,
-  locationExhibitions.value.filter((exhibition) => exhibition.venue_slug === location.slug).length
+const recordsByGallery = computed(() => new Map(venues.value.map((venue) => [
+  venue.slug,
+  venueExhibitions.value.filter((exhibition) => exhibition.venue_slug === venue.slug).length
 ])))
-const orderedLocations = computed(() => [...venues.value].sort((left, right) => {
+const orderedVenues = computed(() => [...venues.value].sort((left, right) => {
   if (Boolean(left.featured) !== Boolean(right.featured)) return left.featured ? -1 : 1
   return left.name.localeCompare(right.name)
 }))
-const filteredLocations = computed(() => {
+const filteredVenues = computed(() => {
   const query = normalize(gallerySearchQuery.value)
 
-  return orderedLocations.value.filter((location) => {
-    if (selectedState.value && location.state !== selectedState.value) return false
+  return orderedVenues.value.filter((venue) => {
+    if (selectedState.value && venue.state !== selectedState.value) return false
     if (!query) return true
 
     return [
-      location.name,
-      location.city_name,
-      location.postal_code,
-      location.state,
-      location.country,
-      location.address,
-      location.description ?? ''
+      venue.name,
+      venue.city_name,
+      venue.postal_code,
+      venue.state,
+      venue.country,
+      venue.address,
+      venue.description ?? ''
     ].some((value) => normalize(value).includes(query))
   })
 })
 const galleryLedgerItems = computed(() => [
   { label: t('galleries.ledgerGalleries'), value: venues.value.length },
   { label: t('galleries.ledgerStates'), value: states.value.length },
-  { label: t('galleries.ledgerRecords'), value: locationExhibitions.value.length }
+  { label: t('galleries.ledgerRecords'), value: venueExhibitions.value.length }
 ])
 
 const clearFilters = () => {
@@ -127,23 +127,23 @@ useSeoMeta({
         </ArchiveAlphabetRail>
 
         <div class="[ gallery-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-          <p class="m-0" role="status" aria-live="polite">{{ $t('galleries.status', { visible: filteredLocations.length, total: venues.length }) }}</p>
+          <p class="m-0" role="status" aria-live="polite">{{ $t('galleries.status', { visible: filteredVenues.length, total: venues.length }) }}</p>
           <button v-if="gallerySearchQuery || selectedState" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="clearFilters">{{ $t('galleries.clearFilters') }}</button>
         </div>
 
-        <div v-if="!filteredLocations.length" class="[ gallery-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
+        <div v-if="!filteredVenues.length" class="[ gallery-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
           <p class="m-0 text-title text-archive-ink">{{ $t('galleries.noMatches') }}</p>
           <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="clearFilters">{{ $t('galleries.returnAll') }}</button>
         </div>
 
         <div v-else class="[ gallery-directory-grid ] grid grid-cols-3 items-stretch gap-5 tablet:grid-cols-2 compact:grid-cols-2 compact:gap-2.5">
           <GalleryDirectoryCard
-            v-for="(location, index) in filteredLocations"
-            :key="location.id"
-            :location="location"
+            v-for="(venue, index) in filteredVenues"
+            :key="venue.id"
+            :venue="venue"
             :index="index"
-            :record-count="recordsByGallery.get(location.slug) ?? 0"
-            :featured="Boolean(location.featured)"
+            :record-count="recordsByGallery.get(venue.slug) ?? 0"
+            :featured="Boolean(venue.featured)"
           />
         </div>
       </section>

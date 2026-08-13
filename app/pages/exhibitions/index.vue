@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const route = useRoute()
 const router = useRouter()
-const { locationExhibitions } = useArchiveData()
+const { venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 
 const exhibitionSearchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
 const normalize = (value: string) => value.trim().toLocaleLowerCase()
-const orderedExhibitions = computed(() => [...locationExhibitions.value].sort((left, right) => {
+const orderedExhibitions = computed(() => [...venueExhibitions.value].sort((left, right) => {
   if (Boolean(left.featured) !== Boolean(right.featured)) return left.featured ? -1 : 1
   return left.start_date.localeCompare(right.start_date)
 }))
@@ -26,10 +26,10 @@ const filteredExhibitions = computed(() => {
     exhibition.medium ?? ''
   ].some((value) => normalize(value).includes(query)))
 })
-const exhibitionYears = computed(() => [...new Set(locationExhibitions.value.map((exhibition) => exhibition.start_date.slice(0, 4)))])
-const exhibitionVenues = computed(() => new Set(locationExhibitions.value.map((exhibition) => exhibition.venue_slug)).size)
+const exhibitionYears = computed(() => [...new Set(venueExhibitions.value.map((exhibition) => exhibition.start_date.slice(0, 4)))])
+const exhibitionVenues = computed(() => new Set(venueExhibitions.value.map((exhibition) => exhibition.venue_slug)).size)
 const exhibitionLedgerItems = computed(() => [
-  { label: t('exhibitionsDirectory.ledgerRecords'), value: locationExhibitions.value.length },
+  { label: t('exhibitionsDirectory.ledgerRecords'), value: venueExhibitions.value.length },
   { label: t('exhibitionsDirectory.ledgerVenues'), value: exhibitionVenues.value },
   { label: t('exhibitionsDirectory.ledgerSeason'), value: exhibitionYears.value.join(' · ') }
 ])
@@ -78,7 +78,7 @@ useSeoMeta({
           <figcaption class="mt-3 ml-5 flex items-center gap-3 text-sm text-archive-muted compact:mt-2 compact:ml-2 compact:text-xs"><span class="tracking-widest text-archive-red uppercase">{{ $t('exhibitionsDirectory.figure') }}</span>{{ featuredExhibition.title }} · {{ featuredExhibition.artist }}</figcaption>
           <div class="absolute -right-5 -bottom-5 z-6 grid size-28 -rotate-6 place-content-center rounded-full border border-archive-red/42 bg-archive-paper/92 text-center text-archive-red compact:-right-1 compact:-bottom-3 compact:size-20" aria-hidden="true">
             <span class="text-xs tracking-widest uppercase">REC</span>
-            <strong class="text-4xl leading-none font-light compact:text-3xl">{{ String(locationExhibitions.length).padStart(2, '0') }}</strong>
+            <strong class="text-4xl leading-none font-light compact:text-3xl">{{ String(venueExhibitions.length).padStart(2, '0') }}</strong>
           </div>
         </figure>
       </section>
@@ -101,7 +101,7 @@ useSeoMeta({
         />
 
         <div class="[ exhibitions-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-          <p class="m-0" role="status" aria-live="polite">{{ $t('exhibitionsDirectory.status', { visible: filteredExhibitions.length, total: locationExhibitions.length }) }}</p>
+          <p class="m-0" role="status" aria-live="polite">{{ $t('exhibitionsDirectory.status', { visible: filteredExhibitions.length, total: venueExhibitions.length }) }}</p>
           <button v-if="exhibitionSearchQuery" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.clearSearch') }}</button>
         </div>
 

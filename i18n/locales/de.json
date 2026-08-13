@@ -60,7 +60,7 @@
       "loadingProgress": "{loaded} von {total} Galerien geladen",
       "continue": "Weiter zu den Orten"
     },
-    "locations": {
+    "venues": {
       "eyebrow": "Orte",
       "title": "Galerien in ganz",
       "accent": "Österreich.",
@@ -93,7 +93,7 @@
     },
     "sidebar": {
       "preserved": "Bewahrte Ausstellungen",
-      "locations": "Orte",
+      "venues": "Orte",
       "viewAll": "Alle Orte anzeigen",
       "records": "Einträge",
       "directory": "Verzeichnis",
@@ -137,9 +137,9 @@
     },
     "sealAlt": "PERMAPHEMERA Archiv"
   },
-  "location": {
+  "venue": {
     "notFound": "Galerie nicht gefunden",
-    "archiveLocation": "Archivort · Nr. {number}",
+    "archiveVenue": "Archivort · Nr. {number}",
     "fallbackLede": "Ein Ausstellungsraum in {city} – temporäre Begegnungen, versammelt in einer erinnerten architektonischen Hülle.",
     "address": "Adresse",
     "website": "Website",

@@ -2,23 +2,23 @@
 import { CalendarDays, Clock3, FileText, MapPin } from '@lucide/vue'
 
 const route = useRoute()
-const { venues, locationExhibitions } = useArchiveData()
+const { venues, venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const routeSlug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
-const exhibition = computed(() => locationExhibitions.value.find((item) => item.slug === routeSlug))
+const exhibition = computed(() => venueExhibitions.value.find((item) => item.slug === routeSlug))
 
 if (!exhibition.value) {
   throw createError({ statusCode: 404, statusMessage: t('exhibition.notFound') })
 }
 
 const gallery = computed(() => venues.value.find((item) => item.slug === exhibition.value?.venue_slug))
-const relatedExhibitions = computed(() => locationExhibitions.value
+const relatedExhibitions = computed(() => venueExhibitions.value
   .filter((item) => item.slug !== exhibition.value?.slug)
   .sort((left, right) => Number(right.venue_slug === exhibition.value?.venue_slug) - Number(left.venue_slug === exhibition.value?.venue_slug))
   .slice(0, 3))
 const recordNumber = computed(() => {
-  const index = locationExhibitions.value.findIndex((item) => item.id === exhibition.value?.id)
+  const index = venueExhibitions.value.findIndex((item) => item.id === exhibition.value?.id)
   return String(Math.max(0, index) + 1).padStart(2, '0')
 })
 const galleryPath = computed(() => localePath(`/venues/${exhibition.value?.venue_slug}/`))

@@ -13,7 +13,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 - a searchable exhibition index with reusable framed record cards and direct detail routes;
 - an illustrated explanation of the archive method;
 - an overflow-aware sponsor strip that stays centered and static while its logos fit, then becomes a slow seamless marquee when they overflow, inside the dark editorial footer;
-- dynamic gallery dossiers with location-specific record search, currently led by Parkschlössl;
+- dynamic gallery dossiers with venue-specific record search, currently led by Parkschlössl;
 - nine real 2026 Parkschlössl exhibition records derived from local source PDFs;
 - a compact selectable exhibition ledger with a preloaded, responsive active preview;
 - dynamic exhibition-detail pages with consistent 60/40 desktop split sections, baseline-aligned location, date, and opening-hours metadata, source invitations, and related records;
@@ -56,7 +56,7 @@ pnpm check:i18n
 pnpm check:artists
 pnpm check:directories
 pnpm check:links
-pnpm check:locations
+pnpm check:venues
 pnpm check:mobile
 pnpm build
 pnpm generate
@@ -79,7 +79,7 @@ pnpm deploy
 
 The deploy command regenerates the SPA, requires `index.html` and `.htaccess`, validates that the remote path is an account document root under `/www/htdocs/`, uploads `.output/public/` over SFTP, publishes entry documents after hashed assets, and confirms that the remote `.htaccess` exists. It does not provision hosting, databases, SSL, or backend services.
 
-`pnpm check:data` verifies collection-level integrity across the five local JSON collections — record counts, unique slugs, cross-collection id references (venue→location, exhibition→venue, junction rows→both), valid `status` values, and English-translation coverage. `pnpm check:tailwind` loads the project Tailwind design system and fails when bracket notation has an exact canonical utility equivalent or when a human-readable structural marker is unspaced or CSS-active. `pnpm check:i18n` verifies UI message parity, translated record coverage, stable content identifiers, localized route switching, and global privacy-notice wiring. `pnpm check:directories` protects gallery coverage, canonical index/detail routing, search contracts, and shared frame usage. The remaining focused checks protect artist modal routing and accessibility, archive text-link variants, the location exhibition browser, and compact responsive-density contracts.
+`pnpm check:data` verifies collection-level integrity across the five local JSON collections — record counts, unique slugs, cross-collection id references (venue→location, exhibition→venue, junction rows→both), valid `status` values, and English-translation coverage. `pnpm check:tailwind` loads the project Tailwind design system and fails when bracket notation has an exact canonical utility equivalent or when a human-readable structural marker is unspaced or CSS-active. `pnpm check:i18n` verifies UI message parity, translated record coverage, stable content identifiers, localized route switching, and global privacy-notice wiring. `pnpm check:directories` protects gallery coverage, canonical index/detail routing, search contracts, and shared frame usage. The remaining focused checks protect artist modal routing and accessibility, archive text-link variants, the venue exhibition browser, and compact responsive-density contracts.
 
 The static SPA build succeeds. It currently emits non-fatal Vite notices for root-relative assets served from `public/` and a client chunk-size warning caused by the graphics-heavy landing experience.
 
@@ -115,7 +115,7 @@ The content stays inside the application bundle instead of `public/`: the existi
 
 ## Implemented Routes And Sections
 
-The landing route in `app/pages/index.vue` contains the hero, locations, selected exhibitions, artists, archive method, sponsors, and footer. Search fields filter the locale-reactive local JSON collections. Its shared header and footer provide localized navigation, active states, an always-available header menu, a tablet/mobile footer drawer, and an English/German switch that preserves the equivalent route (`/` for German and `/en/` for English). The sponsor strip measures its natural sequence with `ResizeObserver`: logos remain as one centered static row while they fit, and only real overflow enables the duplicated 72-second right-to-left marquee. German remains the configured fallback locale, while first entry at the root detects the browser language and may redirect English-language browsers to `/en/`; the necessary `permaphemera-locale` cookie remembers detection and explicit choices. Landing-page alphabet links open the full artist directory at the selected letter and preserve an active artist-search term; the alphabet rail also supports dragging, keyboard scrolling, and explicit left/right controls.
+The landing route in `app/pages/index.vue` contains the hero, venues, selected exhibitions, artists, archive method, sponsors, and footer. Search fields filter the locale-reactive local JSON collections. Its shared header and footer provide localized navigation, active states, an always-available header menu, a tablet/mobile footer drawer, and an English/German switch that preserves the equivalent route (`/` for German and `/en/` for English). The sponsor strip measures its natural sequence with `ResizeObserver`: logos remain as one centered static row while they fit, and only real overflow enables the duplicated 72-second right-to-left marquee. German remains the configured fallback locale, while first entry at the root detects the browser language and may redirect English-language browsers to `/en/`; the necessary `permaphemera-locale` cookie remembers detection and explicit choices. Landing-page alphabet links open the full artist directory at the selected letter and preserve an active artist-search term; the alphabet rail also supports dragging, keyboard scrolling, and explicit left/right controls.
 
 The site-styled privacy notice explains that language-preference cookie without claiming consent for analytics or advertising that the app does not use. Dismissal is remembered locally under `permaphemera-cookie-notice-dismissed`; the footer's cookie-settings action reopens the notice.
 

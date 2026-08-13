@@ -58,14 +58,14 @@
       "loadingTitle": "Loading Gallery Image",
       "loadingCounter": "{current} of {total}",
       "loadingProgress": "{loaded} of {total} galleries loaded",
-      "continue": "Continue to locations"
+      "continue": "Continue to venues"
     },
-    "locations": {
-      "eyebrow": "Locations",
+    "venues": {
+      "eyebrow": "Venues",
       "title": "Galleries across",
       "accent": "Austria.",
       "intro": "Explore exhibition spaces and archives across the country.",
-      "searchLabel": "Search locations",
+      "searchLabel": "Search venues",
       "searchPlaceholder": "Search galleries…"
     },
     "exhibitions": {
@@ -93,8 +93,8 @@
     },
     "sidebar": {
       "preserved": "Exhibitions preserved",
-      "locations": "Locations",
-      "viewAll": "View all locations",
+      "venues": "Venues",
+      "viewAll": "View all venues",
       "records": "Records",
       "directory": "Directory",
       "vienna": "Vienna"
@@ -137,9 +137,9 @@
     },
     "sealAlt": "PERMAPHEMERA Archive"
   },
-  "location": {
+  "venue": {
     "notFound": "Gallery not found",
-    "archiveLocation": "Archive location · No. {number}",
+    "archiveVenue": "Archive venue · No. {number}",
     "fallbackLede": "An exhibition space in {city}—temporary encounters gathered within a remembered architectural shell.",
     "address": "Address",
     "website": "Website",
@@ -171,8 +171,8 @@
     "venueTitle": "The building remains.",
     "venueAccent": "The exhibitions pass through.",
     "fallbackAbout1": "{name} provides an architectural frame for temporary exhibitions in {city}.",
-    "fallbackAbout2": "This location page keeps the place as its anchor while every exhibition receives its own record.",
-    "quote": "A location is more than an address. It is the constant against which temporary worlds become legible.",
+    "fallbackAbout2": "This venue page keeps the place as its anchor while every exhibition receives its own record.",
+    "quote": "A venue is more than an address. It is the constant against which temporary worlds become legible.",
     "fieldNote": "— PERMAPHEMERA field note",
     "ledgerLabels": {
       "records": "Records",
@@ -266,7 +266,7 @@
   },
   "artists": {
     "seoTitle": "Artists in the archive · PERMAPHEMERA",
-    "seoDescription": "Browse artists, exhibition records, locations and years represented in the PERMAPHEMERA archive.",
+    "seoDescription": "Browse artists, exhibition records, venues and years represented in the PERMAPHEMERA archive.",
     "ledgerArtists": "Artists",
     "linkedRecords": "Linked records",
     "index": "Index",
@@ -275,7 +275,7 @@
     "eyebrow": "People index · A–Z",
     "title": "Artists, names",
     "accent": "& traces.",
-    "intro": "A deliberately direct directory: many names, many links, and short paths into the exhibitions, locations and years held by the archive.",
+    "intro": "A deliberately direct directory: many names, many links, and short paths into the exhibitions, venues and years held by the archive.",
     "directory": "Directory",
     "directoryTitle": "Find a name.",
     "directoryAccent": "Follow every lead.",

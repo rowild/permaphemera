@@ -10,7 +10,7 @@ const [
   factLedger,
   artistPage,
   landingPage,
-  locationPage,
+  venuePage,
   exhibitionPage,
   artistEntry,
   metadataRow,
@@ -55,7 +55,7 @@ const [
   readProjectFile('app/data/exhibitions.json')
 ])
 
-const routedPages = [artistPage, landingPage, locationPage, exhibitionPage].join('\n')
+const routedPages = [artistPage, landingPage, venuePage, exhibitionPage].join('\n')
 const exhibitionRecords = JSON.parse(exhibitionsData)
 
 // `exhibitions.json` is now the full 13-record canonical collection, not the
@@ -94,7 +94,7 @@ const checks = [
   ['secondary three-fact ledgers stay in one multiline row below desktop', factLedger.includes("'grid-cols-3'") && factLedger.includes("'tablet:text-balance tablet:whitespace-normal'") && !factLedger.includes('tablet:truncate') && factLedger.includes('compact:px-1') && factLedger.includes('compact:py-2')],
   ['artist ledger stays stacked through tablet and becomes a row only on mobile', factLedger.includes("desktopLayout?: 'row' | 'stacked'") && factLedger.includes("'grid-cols-1 compact:grid-cols-3'") && factLedger.includes('compact:border-t-0 compact:border-l') && artistPage.includes('desktop-layout="stacked"')],
   ['artist introduction retains its text and sidebar composition through tablet', /\[ artists-page-intro \][^\"]*tablet:grid-cols-\[minmax\(0,1fr\)_16rem\][^\"]*compact:grid-cols-1/.test(artistPage) && /id="artists-page-title" class="[^"]*tablet:text-h1-steep/.test(artistPage) && /class="[^"]*tablet:text-base[^"]*">\{\{ \$t\('artists\.intro'\)/.test(artistPage)],
-  ['artist and location introductions share the compact ledger', artistPage.includes('<ArchiveFactLedger') && locationPage.includes('<ArchiveFactLedger')],
+  ['artist and venue introductions share the compact ledger', artistPage.includes('<ArchiveFactLedger') && venuePage.includes('<ArchiveFactLedger')],
   ['artist intro divider is hidden only on compact screens', /<ArchiveFactLedger[^>]*desktop-layout="stacked"[\s\S]*?<ArchiveInsetDivider class="compact:hidden"/.test(artistPage)],
   ['artist lists remain two columns on compact screens', artistPage.includes('compact:columns-2') && landingPage.includes('compact:columns-2')],
   ['artist rows use compact type and height', artistEntry.includes('compact:min-h-8') && (artistEntry.match(/compact:text-base/g) ?? []).length >= 2],
@@ -142,10 +142,10 @@ const checks = [
   ['featured venue card rejoins the compact card grid', venueArchiveCard.includes('compact:col-span-1') && venueArchiveCard.includes('compact:row-auto') && (venueArchiveCard.match(/compact:h-32/g) ?? []).length >= 2],
   ['featured venue divider is hidden only on compact screens', /v-if="props\.featured"[^>]*class="[^\"]*\[ venue-card-divider \][^\"]*compact:hidden/.test(venueArchiveCard)],
   ['compact venue links clear the frame while staying close to their city', venueArchiveCard.includes('compact:pb-4') && venueArchiveCard.includes('compact:mb-1 compact:text-xs') && /\[ venue-card-link \][^\"]*compact:mb-1/.test(venueArchiveCard)],
-  ['venue discovery uses one centered More paper stack with clip clearance', landingPage.includes(":label=\"$t('common.more')\"") && !landingPage.includes('[ section-cta ]') && !mainCss.includes('.archive-location-cta') && archivePaperStack.includes('compact:col-span-2') && archivePaperStack.includes('compact:justify-self-center') && archivePaperStack.includes('compact:mt-10') && archivePaperStack.includes('compact:w-24')],
+  ['venue discovery uses one centered More paper stack with clip clearance', landingPage.includes(":label=\"$t('common.more')\"") && !landingPage.includes('[ section-cta ]') && !mainCss.includes('.archive-venue-cta') && archivePaperStack.includes('compact:col-span-2') && archivePaperStack.includes('compact:justify-self-center') && archivePaperStack.includes('compact:mt-10') && archivePaperStack.includes('compact:w-24')],
   ['venue discovery action does not translate when pressed', !/venue: '[^']*active:translate-y/.test(archivePaperStack)],
   ['venue discovery action omits its arrow and uses reduced widths', archivePaperStack.includes('v-if="props.variant !== \'venue\'"') && /venue: '[^']*w-32 min-w-32[^']*compact:w-24 compact:min-w-24/.test(archivePaperStack)],
-  ['locations and exhibitions reuse the same exhibition divider component', (landingPage.match(/<ArchiveExhibitionsDivider\s*\/>/g) ?? []).length === 2 && archiveExhibitionsDivider.includes('[ exhibitions-section-divider ]') && archiveExhibitionsDivider.includes('/media/svg/dividers/exhibitions-section-divider.svg')],
+  ['venues and exhibitions reuse the same exhibition divider component', (landingPage.match(/<ArchiveExhibitionsDivider\s*\/>/g) ?? []).length === 2 && archiveExhibitionsDivider.includes('[ exhibitions-section-divider ]') && archiveExhibitionsDivider.includes('/media/svg/dividers/exhibitions-section-divider.svg')],
   ['the landing page still composes its selection with the mirrored featured-first sort and five-item slice', /\.sort\(\(left, right\) => \{[\s\S]*?left\.featured \? -1 : 1[\s\S]*?left\.start_date\.localeCompare\(right\.start_date\)[\s\S]*?\}\)\s*\.slice\(0, 5\)/.test(landingPage)],
   ['landing exhibition selection contains one featured record and four secondary records', landingSelectedExhibitions.length === 5 && landingSelectedExhibitions.filter(({ featured }) => featured).length === 1],
   ['selected exhibitions keep one full-width featured card and four secondary cards in tablet and compact two-column grids', /\[ exhibition-layout \][^\"]*tablet:grid-cols-1[^\"]*compact:grid-cols-2/.test(landingPage) && /\[ featured-exhibition \][^\"]*tablet:col-span-full/.test(landingPage) && /\[ record-list \][^\"]*grid-rows-4[^\"]*tablet:grid-cols-2[^\"]*tablet:grid-rows-2[^\"]*compact:contents/.test(landingPage)],
@@ -162,7 +162,7 @@ const checks = [
   ['compact method facts use shortened dividers', archiveMethodFact.includes('compact:after:hidden') && archiveMethodFact.includes('[ method-fact-divider-compact ]') && archiveMethodFact.includes('h-12 w-px')],
   ['compact method stamp occupies a centered row with bottom space', /\[ method-archive-stamp \][^\"]*compact:mx-auto[^\"]*compact:mb-8/.test(landingPage)],
   ['routed pages no longer use oversized compact section padding', !routedPages.includes('compact:py-12') && !routedPages.includes('compact:px-5')],
-  ['search placeholders are deliberately short and localized', ['artists.searchPlaceholder', 'landing.locations.searchPlaceholder', 'landing.exhibitions.searchPlaceholder', 'landing.artists.searchPlaceholder', 'location.searchPlaceholder'].every((key) => routedPages.includes(key))]
+  ['search placeholders are deliberately short and localized', ['artists.searchPlaceholder', 'landing.venues.searchPlaceholder', 'landing.exhibitions.searchPlaceholder', 'landing.artists.searchPlaceholder', 'venue.searchPlaceholder'].every((key) => routedPages.includes(key))]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)

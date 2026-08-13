@@ -276,7 +276,7 @@ Tailwind reuse comes from components and tokens, not from repeating long class l
 
 A reusable button should be a component when it owns shared semantics, accessibility, frame geometry, icon placement, or variants. It may contain Tailwind utilities internally, and callers should not need to reproduce them.
 
-This is mandatory for repeated data-backed content. Pages may `v-for` over `VenueArchiveCard`, `LandingExhibitionCard`, `LocationExhibitionLedgerRow`, or equivalent semantic components; they must not reproduce the card/row template inline. The same rule applies before Directus is connected—the local JSON already represents the future collection boundary.
+This is mandatory for repeated data-backed content. Pages may `v-for` over `VenueArchiveCard`, `LandingExhibitionCard`, `VenueExhibitionLedgerRow`, or equivalent semantic components; they must not reproduce the card/row template inline. The same rule applies before Directus is connected—the local JSON already represents the future collection boundary.
 
 ### 14.2 Runtime visual variation belongs to the component
 
