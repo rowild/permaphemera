@@ -18,7 +18,6 @@ watch(() => route.fullPath, () => {
 })
 
 const primaryLinks = computed(() => [
-  { label: t('navigation.archive'), to: localePath('/#venues'), key: 'archive' },
   { label: t('navigation.galleries'), to: localePath('/venues/'), key: 'galleries' },
   { label: t('navigation.artists'), to: localePath('/artists/'), key: 'artists' },
   { label: t('navigation.exhibitions'), to: localePath('/exhibitions/'), key: 'exhibitions' }
