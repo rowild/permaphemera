@@ -27,7 +27,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 - a responsive temple-mark identity with browser, Apple touch, and installable web-app icons;
 - a two-accent design system using one semantic archive red and one decorative archive ochre across light and dark surfaces.
 
-The prototype does not connect to Directus or another live backend. It uses local English source records, local German translation overlays, and bundled UI locale files. Production is configured as a client-rendered SPA for static shared hosting; provider-specific infrastructure remains future work. Exhibition pages open their exported 360-degree tour in the embedded viewer from `public/media/tour-viewer/`; a record whose `tour` is `null` shows the entry point as unavailable.
+The prototype does not connect to Directus or another live backend. It uses local English source records, local German translation overlays, and bundled UI locale files. Production is configured as a client-rendered SPA for static shared hosting; provider-specific infrastructure remains future work. Exhibition pages open their exported 360-degree tour in the embedded viewer from `public/media/tour-viewer/`; a record whose `tour` is `null` shows the entry point as unavailable. `pnpm tour:publish <tour id>` copies one exported tour into `public/media/tours/`, links it to its exhibition record and runs the public-namespace check; deploying stays a separate, explicit step.
 
 The active architecture plan is `../_Plans/exhibitions-plan.md`; the design references are under `../_Plans/designs/landing-page/`. These planning files are adjacent workspace material and are not part of this frontend Git repository.
 

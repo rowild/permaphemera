@@ -28,6 +28,7 @@
     "preview": "serve --single .output/public",
     "postinstall": "nuxt prepare",
     "test": "vitest run",
+    "tour:publish": "node scripts/publish-tour.mjs",
     "test:watch": "vitest"
   },
   "dependencies": {
