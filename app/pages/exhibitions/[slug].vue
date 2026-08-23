@@ -109,10 +109,7 @@ useSeoMeta({
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.spatialEyebrow') }}</p>
           <h2 id="spatial-record-title" class="m-0 mb-6 text-h2-lg font-light leading-[1.06] text-archive-night-heading compact:mb-4 compact:text-4xl">{{ $t('exhibition.spatialTitle') }} <span class="text-archive-red">{{ $t('exhibition.spatialAccent') }}</span></h2>
           <p class="max-w-136 text-button text-archive-footer-copy/86 compact:text-sm">{{ $t('exhibition.spatialIntro') }}</p>
-          <ArchiveButton class="mt-[1.4rem] self-start compact:w-full" type="button" disabled>
-            {{ $t('exhibition.startExperience') }} <ArchiveArrow />
-          </ArchiveButton>
-          <small class="mt-[0.65rem] text-xs tracking-[0.08em] text-archive-footer-copy/72 uppercase">{{ $t('exhibition.inPreparation') }}</small>
+          <ExhibitionExperience :tour-url="exhibition.tour ?? null" />
         </div>
       </section>
 

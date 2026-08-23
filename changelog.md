@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.18 - 2026-08-23 12:24:05 CEST
+
+- Connected the 360-degree exhibition experience. The "Start experience" button on an exhibition page now opens the exhibition's exported tour in a full-viewport modal, asks the browser for fullscreen where it is supported, and returns to the page when the tour's close control is used or fullscreen ends. Records without a published tour keep the disabled button and the "Spatial record in preparation" line.
+- Published tours for the seven Parkschlössl 2026 exhibitions from Adi Schmölzer through Birgit Mörtl; the Peter Kohlweiss and Santino Solace records remain in preparation.
+- Replaced the English and German intro copy of the spatial-record section, which no longer announces the viewer as unconnected.
+- Added the `tour` field to exhibition records and extended `pnpm check:public` so every tour path must be a slash-wrapped folder holding a real `tour.json`.
+
 ## 0.0.17 - 2026-08-13 20:02:25 CEST
 
 - Replaced the exhibition-level `featured` content flag with one shared date-derived selector used by both the landing collection and the complete exhibition directory: prefer a currently running exhibition, otherwise the nearest upcoming exhibition, otherwise the first record in the reverse-chronological list.

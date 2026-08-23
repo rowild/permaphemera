@@ -30,7 +30,7 @@ const exhibitions = [{
   id: 'parkschloessl-campidell-kulle-2026', slug: 'farben-im-park',
   primary_venue_id: 'venue-parkschloessl', start_date: '2026-07-28', end_date: '2026-08-07',
   is_permanent: false, image: '/e.webp', image_alt: 'alt', opening_hours: 'Mon-Fri',
-  vernissage: 'Mon 27 July', medium: null, source_pdf: null,
+  vernissage: 'Mon 27 July', medium: null, source_pdf: null, tour: null,
   status: 'published' as const,
   translations: [{ languages_code: 'en', title: 'Farben im Park', summary: 's',
     description: '', date_range: '28 July–7 August 2026', opening_hours: '', vernissage: '',
@@ -58,6 +58,13 @@ describe('resolveExhibitions', () => {
     expect(record.venue_slug).toBe('parkschloessl-spittal-drau')
     expect(record.venue).toBe('Parkschlössl')
     expect(record.city).toBe('Spittal an der Drau')
+  })
+
+  it('passes a published tour folder through and drops a null one', () => {
+    expect(resolve()[0].tour).toBeUndefined()
+    const withTour = [{ ...exhibitions[0], tour: '/media/tours/2026-07-30-farben-im-park/' }]
+    expect(resolveExhibitions(withTour, venues, locations, junction, artists, 'en')[0].tour)
+      .toBe('/media/tours/2026-07-30-farben-im-park/')
   })
 
   it('throws when primary_venue_id does not resolve', () => {

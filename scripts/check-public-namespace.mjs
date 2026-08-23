@@ -48,6 +48,10 @@ const dataFiles = (await readdir(dataDir, { withFileTypes: true }))
 
 const ASSET_FIELDS = ['image', 'hero_image', 'source_pdf']
 
+// A tour path names a folder, not a file: the viewer fetches `<tour>tour.json`
+// from it, so that file is what proves the folder is a real exported tour.
+const FOLDER_FIELDS = { tour: 'tour.json' }
+
 const assetReferences = []
 for (const fileName of dataFiles) {
   const records = await readJson(`app/data/${fileName}`)
@@ -57,20 +61,28 @@ for (const fileName of dataFiles) {
     for (const field of ASSET_FIELDS) {
       const value = record[field]
       if (typeof value === 'string' && value.length > 0) {
-        assetReferences.push({ fileName, id: record.id, field, value })
+        assetReferences.push({ fileName, id: record.id, field, value, target: value })
+      }
+    }
+    for (const [field, markerFile] of Object.entries(FOLDER_FIELDS)) {
+      const value = record[field]
+      if (typeof value === 'string' && value.length > 0) {
+        assetReferences.push({ fileName, id: record.id, field, value, target: `${value}${markerFile}` })
       }
     }
   }
 }
 
-const brokenReferences = assetReferences.filter(({ value }) =>
-  !value.startsWith('/') || !existsSync(resolve(publicDir, `.${value}`)))
+const brokenReferences = assetReferences.filter(({ field, value, target }) =>
+  !value.startsWith('/')
+  || (field in FOLDER_FIELDS && !value.endsWith('/'))
+  || !existsSync(resolve(publicDir, `.${target}`)))
 
 const checks = [
   ['public/ contains exactly one directory, named media', rootDirectories.length === 1 && rootDirectories[0]?.name === 'media'],
   ['public/ root has no stray directories', strayDirectories.length === 0],
   ['every public/ root file is on the allowlist', strayFiles.length === 0],
-  [`every image/hero_image/source_pdf path in app/data/*.json resolves under public/ (${assetReferences.length} checked)`, brokenReferences.length === 0]
+  [`every image/hero_image/source_pdf/tour path in app/data/*.json resolves under public/ (${assetReferences.length} checked)`, brokenReferences.length === 0]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)
@@ -92,6 +104,9 @@ if (failures.length) {
   if (brokenReferences.length) {
     for (const { fileName, id, field, value } of brokenReferences) {
       console.error(`    ${fileName} record ${id ?? '?'} field ${field} references a missing asset: ${value}`)
+    }
+    if (brokenReferences.some(({ field }) => field in FOLDER_FIELDS)) {
+      console.error('    A tour path must start and end with a slash and name a folder under public/media/tours/ that holds a tour.json.')
     }
   }
 

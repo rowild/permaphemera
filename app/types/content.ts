@@ -83,6 +83,8 @@ export interface ExhibitionRecord {
   vernissage: string
   medium: string | null
   source_pdf: string | null
+  /** Root-relative folder of the exported 360° tour (`/media/tours/<id>/`), or null while none is published. */
+  tour: string | null
   status: ContentStatus
   translations: TranslationEntry[]
 }

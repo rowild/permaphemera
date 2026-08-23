@@ -2,7 +2,7 @@
 
 ## Project State
 
-This repository is the PERMAPHEMERA frontend: the first working milestone for a curated archive of temporary exhibitions and spatial memories. It implements the complete landing page, routed gallery and exhibition indexes, and local-data detail routes as a client-rendered static SPA. Publishing to the existing shared host is supported through the guarded SFTP workflow; backend services, the 360 viewer, and broader provider provisioning remain deferred.
+This repository is the PERMAPHEMERA frontend: the first working milestone for a curated archive of temporary exhibitions and spatial memories. It implements the complete landing page, routed gallery and exhibition indexes, and local-data detail routes as a client-rendered static SPA. Publishing to the existing shared host is supported through the guarded SFTP workflow, and exhibition pages open their exported 360° tours in the embedded viewer; backend services and broader provider provisioning remain deferred.
 
 The primary active plan is `../_Plans/exhibitions-plan.md`. Treat `../_Plans/original chat.md` as historical context, not as the current implementation source of truth. These files are adjacent workspace references outside this Git repository.
 
@@ -92,7 +92,7 @@ Exhibitions do not carry a manual `featured` field. Their highlighted presentati
 
 ## Current Scope And Deferred Work
 
-The current site is a visual prototype: landing search filters local data, the first post-hero section conditionally lists current/upcoming exhibitions from local dates, and each hero blade keeps one resolved exhibition's image, metadata, and route together. English/German language controls switch locale-aware routes and content, and the 360-degree exhibition experience is not yet connected. Venue and exhibition actions use real Nuxt routes backed by local JSON. Cookie settings expose necessary storage plus separate optional choices for Matomo, Google Maps, and YouTube; only Matomo is currently integrated, and it must remain unloaded until its own affirmative consent. Maps and YouTube choices are stored for future integrations but must not contact those services. Directus remains part of the future production architecture, but it is not part of the current frontend milestone.
+The current site is a visual prototype: landing search filters local data, the first post-hero section conditionally lists current/upcoming exhibitions from local dates, and each hero blade keeps one resolved exhibition's image, metadata, and route together. English/German language controls switch locale-aware routes and content. The 360-degree exhibition experience is connected: see "360° tours" below. Venue and exhibition actions use real Nuxt routes backed by local JSON. Cookie settings expose necessary storage plus separate optional choices for Matomo, Google Maps, and YouTube; only Matomo is currently integrated, and it must remain unloaded until its own affirmative consent. Maps and YouTube choices are stored for future integrations but must not contact those services. Directus remains part of the future production architecture, but it is not part of the current frontend milestone.
 
 Defer these until after the Nuxt frontend basis and landing page are working:
 
@@ -103,6 +103,16 @@ Defer these until after the Nuxt frontend basis and landing page are working:
 - Cloudflare asset bridge wiring
 - Hetzner deployment configuration
 - PostgreSQL/Docker infrastructure
+
+## 360° tours
+
+The exhibition page's `#spatial-record` band opens a 360° tour produced by the separate editor project (`_MacAPP TOUR-VIEWER`). Its user-facing routine — export, copy, link, check, deploy — is that project's Handbook Tutorial No. 3; the viewer's integration contract is its `docs/embedding.md`. What this repository holds:
+
+- `public/media/tour-viewer/tour-viewer.js` + `tour-viewer.css` — the embeddable viewer, copied from the editor's `pnpm build:all` output and deployed with the site. Updating the viewer means copying the two files again; tours are data and need no change.
+- `public/media/tours/<tour id>/` — one exported tour folder per exhibition (`tour.json` plus its panoramas). The folder name is the tour id and becomes part of the public URL, so it is decided before the first upload and never renamed. The folder is ignored by Git (`.gitignore`, `public/media/tours/`) because the panoramas weigh hundreds of megabytes; it exists only in the local working copy and on the server, so a fresh clone fails `pnpm check:public` until the tours are copied in again.
+- `exhibitions.json` → `"tour": "/media/tours/<tour id>/" | null` (leading and trailing slash), typed in `app/types/content.ts`, passed through `resolveExhibitions.ts` as `tour?: string`. `null` keeps the button disabled with the "in preparation" line.
+- `app/components/ExhibitionExperience.vue` owns the button and the modal. The order inside its click handler is load-bearing: append the modal, call `requestFullscreen()` synchronously (any `await` first spends the click's user activation and the browser refuses), then dynamically `import()` the viewer and the stylesheet, then `mountTour`. Fullscreen is an enhancement — the modal covers the page by CSS alone, iPhone Safari has no element fullscreen. `close()` is guarded to run once because `tour:close` and `fullscreenchange` both fire, and it must always call `destroy()` or every open leaks a WebGL context until the tour goes black. The stylesheet `<link>` promise is cached: a link fires `load` once, so a second listener would wait forever.
+- Every deploy uploads the tours (`scripts/deploy.mjs` sends all of `.output/public`). Panorama images fall under `.htaccess`'s 30-day image cache; `tour.json` does not.
 
 ## Asset Handling
 
@@ -119,7 +129,7 @@ Local source ornaments may be available under `../_Material/`, but `_Material/` 
 
 Hand-drawn archival ornaments use transparent PNGs reconstructed from the approved landing-page mockups. Their canonical runtime files remain in the normal section folders below `public/media/images/landing/`; matching `_recreated_anew/` folders preserve the reconstructed source set for comparison and refinement. Use the mockups—not older extracted PNGs—as the visual source when recreating an ornament. Do not regenerate photographic location images or photographic archive-method compositions as line-art assets.
 
-**`public/` holds only root-mandated files plus one reserved namespace.** Everything in `public/` is served from the URL root, so any top-level directory there shadows a route of the same name (this is exactly how `public/locations/` once collided with the `/locations/** → /venues/**` redirect). To make that impossible going forward, `public/` may contain only files that browsers or hosting require at the root (favicons, `site.webmanifest`, `robots.txt`, `.htaccess`) plus exactly one directory, `public/media/`, which holds every asset (`media/images/`, `media/svg/`, `media/documents/`). Never add a new top-level directory under `public/`; put new asset categories under `public/media/` instead. `pnpm check:public` enforces this — it fails on any stray root file or directory and on any `image`/`hero_image`/`source_pdf` path in `app/data/*.json` that does not resolve to a real file.
+**`public/` holds only root-mandated files plus one reserved namespace.** Everything in `public/` is served from the URL root, so any top-level directory there shadows a route of the same name (this is exactly how `public/locations/` once collided with the `/locations/** → /venues/**` redirect). To make that impossible going forward, `public/` may contain only files that browsers or hosting require at the root (favicons, `site.webmanifest`, `robots.txt`, `.htaccess`) plus exactly one directory, `public/media/`, which holds every asset (`media/images/`, `media/svg/`, `media/documents/`, `media/tour-viewer/`, `media/tours/`). Never add a new top-level directory under `public/`; put new asset categories under `public/media/` instead. `pnpm check:public` enforces this — it fails on any stray root file or directory, on any `image`/`hero_image`/`source_pdf` path in `app/data/*.json` that does not resolve to a real file, and on any `tour` path that is not a slash-wrapped folder holding a `tour.json`.
 
 ## Frontend Quality Bar
 
