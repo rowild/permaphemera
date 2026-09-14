@@ -57,8 +57,8 @@ const [
   readProjectFile('app/assets/css/main.css')
 ])
 
+const navigationItems = JSON.parse(await readProjectFile('app/data/pp_navigation_items.json'))
 const routedPages = [artistPage, landingPage, venuePage, exhibitionPage].join('\n')
-const primaryLinkDefinition = archiveHeader.match(/const primaryLinks = computed\(\(\) => \[[\s\S]*?\] as const\)/)?.[0] ?? ''
 const headerMenuBeforeRule = [...mainCss.matchAll(/\.archive-header-menu-surface::before \{([\s\S]*?)\n\}/g)].at(-1)?.[1] ?? ''
 const headerMenuAfterRule = [...mainCss.matchAll(/\.archive-header-menu-surface::after \{([\s\S]*?)\n\}/g)].at(-1)?.[1] ?? ''
 const responsiveVariantOrder = ['tablet', 'medium', 'compact', 'narrow']
@@ -98,7 +98,7 @@ const checks = [
   ['the header keeps one language dropdown immediately left of the always-available menu', (archiveHeader.match(/<ArchiveLanguageSwitch/g) ?? []).length === 1 && /<ArchiveLanguageSwitch[^>]*>[\s\S]*?<button[\s\S]*?\[ mobile-menu \]/.test(archiveHeader) && !archiveHeader.includes('[ mobile-nav-language ]') && /\[ mobile-menu \][^\"]*inline-flex/.test(archiveHeader) && !/\[ mobile-menu \][^\"]*hidden/.test(archiveHeader)],
   ['desktop brand, temple mark, and primary menu share one baseline with compact separators', /\[ site-header \][^\"]*items-baseline/.test(archiveHeader) && /\[ brand \][^\"]*items-baseline/.test(archiveHeader) && /\[ brand-mark \][^\"]*self-baseline/.test(archiveHeader) && /\[ desktop-nav \][^\"]*self-baseline/.test(archiveHeader) && archiveHeader.includes('[ desktop-nav-divider ]') && archiveHeader.includes('/media/svg/frames/sponsor-strip-frame.svg')],
   ['tablet hamburger aligns its right edge with the shared header gutter', /\[ header-actions \][^\"]*justify-self-end/.test(archiveHeader) && /\[ mobile-menu \][^\"]*w-11[^\"]*justify-end/.test(archiveHeader)],
-  ['About belongs to the primary group while the desktop popup retains only secondary information and legal actions', /\[ mobile-nav-primary \][^\"]*hidden tablet:grid/.test(archiveHeader) && primaryLinkDefinition.includes('navigation.about') && ['navigation.howItWorks', 'navigation.contact', 'footer.imprint', 'footer.privacy', 'footer.terms', 'footer.accessibility', 'footer.cookies'].every((key) => archiveHeader.includes(key))],
+  ['the header renders its links from the navigation data: About in the primary group, only the information and legal groups in the popup', archiveHeader.includes('useSiteNavigation()') && /\[ mobile-nav-primary \][^\"]*hidden tablet:grid/.test(archiveHeader) && archiveHeader.includes("['information', 'legal']") && !/localePath\('\/(?:about|how-it-works|contact|imprint|privacy|terms|accessibility)\/'\)/.test(archiveHeader) && navigationItems.some((item) => item.key === 'about' && item.navigation === 'nav-main' && item.parent === null)],
   ['header popup is absolutely anchored below the header instead of enlarging its grid', /\[ mobile-nav \][^\"]*archive-header-menu-frame[^\"]*absolute[^\"]*top-\[calc\(100%-0\.2rem\)\]/.test(archiveHeader)],
   ['header menu paint order stays framed parchment then ornaments then links', archiveHeader.includes('<ArchiveTooltipFrame') && /\.archive-header-menu-surface::before,[\s\S]*?z-index: 0;/.test(mainCss) && /\.archive-header-menu-surface > \* \{[\s\S]*?z-index: 1;/.test(mainCss) && !/\[ mobile-nav-(?:primary|secondary) \][^\"]*bg-/.test(archiveHeader)],
   ['header menu ornaments form one left-center drafting cluster', headerMenuBeforeRule.includes('top: 50%;') && headerMenuBeforeRule.includes('left: -1.5rem;') && headerMenuBeforeRule.includes('transform: translateY(-50%);') && headerMenuAfterRule.includes('top: 50%;') && headerMenuAfterRule.includes('left: 5.5rem;') && headerMenuAfterRule.includes('transform: translateY(-50%);')],

@@ -9,8 +9,14 @@ const rootElement = computed(() => props.variant === 'desktop' ? 'section' : 'di
 const rootClasses = computed(() => props.variant === 'desktop'
   ? 'archive-footer-link-grid relative z-1 mx-auto grid max-w-384 grid-cols-[1.35fr_repeat(3,minmax(9rem,0.72fr))_16rem] gap-0 border-y border-archive-ochre/20 py-[3.2rem] *:relative *:min-w-0 *:px-[2.4rem] *:first:pl-0 *:last:pr-0 tablet:hidden'
   : 'relative z-1 grid grid-cols-2 gap-x-4 gap-y-5')
-const localePath = useLocalePath()
 const { show: showCookieNotice } = useCookieNotice()
+const navigation = useSiteNavigation()
+const footerGroups = computed(() => navigation.value.footer)
+const isLegal = (key: string) => key === 'legal'
+
+const runAction = (action?: string) => {
+  if (action === 'cookie-settings') showCookieNotice()
+}
 </script>
 
 <template>
@@ -20,27 +26,19 @@ const { show: showCookieNotice } = useCookieNotice()
       <ArchiveLanguageSwitch inverted />
     </div>
 
-    <ArchiveFooterNav :title="$t('footer.explore')" :ariaLabel="$t('footer.exploreAria')">
-      <NuxtLink :to="localePath('/exhibitions/')">{{ $t('navigation.exhibitions') }}</NuxtLink>
-      <NuxtLink :to="localePath('/artists/')">{{ $t('navigation.artists') }}</NuxtLink>
-      <NuxtLink :to="localePath('/venues/')">{{ $t('navigation.galleries') }}</NuxtLink>
-    </ArchiveFooterNav>
-    <ArchiveFooterNav :title="$t('navigation.information')" :ariaLabel="$t('footer.informationAria')">
-      <NuxtLink :to="localePath('/about/')">{{ $t('navigation.about') }}</NuxtLink>
-      <NuxtLink :to="localePath('/how-it-works/')">{{ $t('navigation.howItWorks') }}</NuxtLink>
-      <NuxtLink :to="localePath('/contact/')">{{ $t('navigation.contact') }}</NuxtLink>
-    </ArchiveFooterNav>
     <ArchiveFooterNav
-      :title="$t('footer.legal')"
-      :ariaLabel="$t('footer.legalAria')"
-      :compact-columns="props.variant === 'drawer'"
-      :class="props.variant === 'drawer' ? 'col-span-2 border-t border-archive-ochre/20 pt-4' : ''"
+      v-for="group in footerGroups"
+      :key="group.key"
+      :title="group.label"
+      :ariaLabel="$t(`footer.${group.key}Aria`)"
+      :compact-columns="props.variant === 'drawer' && isLegal(group.key)"
+      :class="props.variant === 'drawer' && isLegal(group.key) ? 'col-span-2 border-t border-archive-ochre/20 pt-4' : ''"
     >
-      <NuxtLink :to="localePath('/imprint/')">{{ $t('footer.imprint') }}</NuxtLink>
-      <NuxtLink :to="localePath('/privacy/')">{{ $t('footer.privacy') }}</NuxtLink>
-      <NuxtLink :to="localePath('/terms/')">{{ $t('footer.terms') }}</NuxtLink>
-      <NuxtLink :to="localePath('/accessibility/')">{{ $t('footer.accessibility') }}</NuxtLink>
-      <button class="cursor-pointer border-0 bg-transparent p-0 text-left" type="button" @click="showCookieNotice">{{ $t('footer.cookies') }}</button>
+      <template v-for="link in group.links" :key="link.key">
+        <NuxtLink v-if="link.kind === 'route'" :to="link.to">{{ link.label }}</NuxtLink>
+        <a v-else-if="link.kind === 'url'" :href="link.href" :target="link.target" rel="noopener">{{ link.label }}</a>
+        <button v-else class="cursor-pointer border-0 bg-transparent p-0 text-left" type="button" @click="runAction(link.action)">{{ link.label }}</button>
+      </template>
     </ArchiveFooterNav>
     <img v-if="props.variant === 'desktop'" class="[ footer-seal ] w-62 max-w-full self-center opacity-90 mix-blend-screen" src="/media/images/landing/footer/permanently-preserved-stamp.png" :alt="$t('footer.sealAlt')" />
   </component>

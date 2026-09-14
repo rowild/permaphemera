@@ -9,24 +9,22 @@ const props = withDefaults(defineProps<{
 
 const menuOpen = ref(false)
 const route = useRoute()
-const { t } = useI18n()
 const localePath = useLocalePath()
 const { show: showCookieNotice } = useCookieNotice()
+const navigation = useSiteNavigation()
 
 watch(() => route.fullPath, () => {
   menuOpen.value = false
 })
 
-const primaryLinks = computed(() => [
-  { label: t('navigation.exhibitions'), to: localePath('/exhibitions/'), key: 'exhibitions' },
-  { label: t('navigation.artists'), to: localePath('/artists/'), key: 'artists' },
-  { label: t('navigation.galleries'), to: localePath('/venues/'), key: 'galleries' },
-  { label: t('navigation.about'), to: localePath('/about/'), key: 'about' }
-] as const)
+// Main menu from pp_navigations `main`; the popup shows the footer's
+// information and legal groups, exactly the two secondary blocks it had before.
+const primaryLinks = computed(() => navigation.value.main)
+const secondaryGroups = computed(() => navigation.value.footer.filter((group) => ['information', 'legal'].includes(group.key)))
 
-const openCookieSettings = () => {
+const runAction = (action?: string) => {
   menuOpen.value = false
-  showCookieNotice()
+  if (action === 'cookie-settings') showCookieNotice()
 }
 </script>
 
@@ -104,19 +102,13 @@ const openCookieSettings = () => {
           </div>
 
           <div class="[ mobile-nav-secondary ] grid grid-cols-2 gap-6 px-4 py-4 compact:gap-4 compact:px-3 compact:py-3">
-        <div class="[ mobile-nav-information ] grid content-start gap-2.5">
-          <p class="m-0 mb-1 font-display text-xs tracking-widest text-archive-red uppercase">{{ $t('navigation.information') }}</p>
-          <NuxtLink class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red current-page:text-archive-red" :to="localePath('/how-it-works/')" @click="menuOpen = false">{{ $t('navigation.howItWorks') }}</NuxtLink>
-          <NuxtLink class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red current-page:text-archive-red" :to="localePath('/contact/')" @click="menuOpen = false">{{ $t('navigation.contact') }}</NuxtLink>
-        </div>
-
-        <div class="[ mobile-nav-legal ] grid content-start gap-2.5">
-          <p class="m-0 mb-1 font-display text-xs tracking-widest text-archive-red uppercase">{{ $t('footer.legal') }}</p>
-          <NuxtLink class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red" :to="localePath('/imprint/')" @click="menuOpen = false">{{ $t('footer.imprint') }}</NuxtLink>
-          <NuxtLink class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red" :to="localePath('/privacy/')" @click="menuOpen = false">{{ $t('footer.privacy') }}</NuxtLink>
-          <NuxtLink class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red" :to="localePath('/terms/')" @click="menuOpen = false">{{ $t('footer.terms') }}</NuxtLink>
-          <NuxtLink class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red" :to="localePath('/accessibility/')" @click="menuOpen = false">{{ $t('footer.accessibility') }}</NuxtLink>
-          <button class="archive-navigation-link relative w-fit cursor-pointer border-0 bg-transparent p-0 font-display text-base text-archive-ink transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red" type="button" @click="openCookieSettings">{{ $t('footer.cookies') }}</button>
+        <div v-for="group in secondaryGroups" :key="group.key" class="[ mobile-nav-group ] grid content-start gap-2.5" :data-group="group.key">
+          <p class="m-0 mb-1 font-display text-xs tracking-widest text-archive-red uppercase">{{ group.label }}</p>
+          <template v-for="link in group.links" :key="link.key">
+            <NuxtLink v-if="link.kind === 'route'" class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red current-page:text-archive-red" :to="link.to" @click="menuOpen = false">{{ link.label }}</NuxtLink>
+            <a v-else-if="link.kind === 'url'" class="archive-navigation-link relative w-fit font-display text-base text-archive-ink no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red" :href="link.href" :target="link.target" rel="noopener">{{ link.label }}</a>
+            <button v-else class="archive-navigation-link relative w-fit cursor-pointer border-0 bg-transparent p-0 font-display text-base text-archive-ink transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red" type="button" @click="runAction(link.action)">{{ link.label }}</button>
+          </template>
         </div>
           </div>
         </div>

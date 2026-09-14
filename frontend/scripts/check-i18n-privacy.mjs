@@ -119,12 +119,18 @@ assert.match(matomoTracking, /deleteCookies/, 'Withdrawing analytics consent mus
 assert.match(footerMenu, /showCookieNotice/, 'The footer must be able to reopen the privacy notice.')
 assert.match(legalPages[1], /id:\s*'external-media'/, 'The Privacy Policy must disclose the prepared Google Maps and YouTube consent categories.')
 
+// Header and footer no longer hard-code these routes: they render from
+// app/data/pp_navigation_items.json via useSiteNavigation(). So instead of
+// matching a literal localePath(...) call in the component source, confirm
+// each legal page is still registered in the navigation data and that both
+// menus consume that data.
+const navigationItems = await readJson('app/data/pp_navigation_items.json')
 for (const [index, route] of ['imprint', 'privacy', 'terms', 'accessibility'].entries()) {
   assert.match(legalPages[index], /<ArchiveLegalPage/, `${route} must remain a complete routed legal page using the shared legal layout.`)
-  const localizedRoute = new RegExp(`localePath\\('/${route}/'\\)`)
-  assert.match(header, localizedRoute, `${route} must remain available from the locale-aware header menu.`)
-  assert.match(footerMenu, localizedRoute, `${route} must remain available from the locale-aware footer menu.`)
+  assert(navigationItems.some((item) => item.navigation === 'nav-footer' && item.path === `/${route}/`), `${route} must remain available from the navigation data.`)
 }
+assert.match(header, /useSiteNavigation\(\)/, 'The header must render its legal links from the navigation data.')
+assert.match(footerMenu, /useSiteNavigation\(\)/, 'The footer must render its legal links from the navigation data.')
 
 const coverageSummary = Object.entries(germanCoverage).map(([name, ratio]) => `${name} ${ratio} de`).join(', ')
 console.log(`i18n/privacy check passed (${englishKeys.length} shared UI messages; German coverage — ${coverageSummary}).`)
