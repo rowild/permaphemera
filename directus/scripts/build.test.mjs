@@ -3,6 +3,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { buildAll } from './build.mjs'
 import { isValidName } from './naming.mjs'
+import { content, section } from './schema.mjs'
 
 const { collections, relations } = buildAll()
 const byName = Object.fromEntries(collections.map((c) => [c.collection, c]))
@@ -58,9 +59,23 @@ test('every data field of a main collection sits in a section of the main accord
   }
 })
 
-test('description is the last field of the content group', () => {
-  const content = fieldsOf('pp_exhibitions').filter((f) => f.meta.group === 'ui_group_content').sort((a, b) => a.meta.sort - b.meta.sort)
-  assert.equal(content.at(-1).field, 'description')
+test('description is the last field of every content group', () => {
+  for (const c of collections) {
+    const contentFields = c.fields.filter((f) => f.meta.group === 'ui_group_content').sort((a, b) => a.meta.sort - b.meta.sort)
+    if (contentFields.length === 0) continue
+    assert.equal(contentFields.at(-1).field, 'description', c.collection)
+  }
+})
+
+test('the builder refuses a content group that does not end with description', () => {
+  const layout = [
+    section('title', 'Title', ['status', 'title', 'slug', 'type', 'location', 'featured', 'archive_number']),
+    section('address', 'Address', ['address', 'website_url', 'latitude', 'longitude', 'coordinate_label']),
+    section('images', 'Images', ['image', 'image_alt', 'hero_image', 'hero_image_alt', 'image_caption']),
+    section('relations', 'Relations', ['exhibitions', 'further_exhibitions', 'persons', 'sponsors']),
+    content(['lede', 'description', 'about']),
+  ]
+  assert.throws(() => buildAll({ venues: { layout } }), /must end with description/)
 })
 
 test('translated fields exist on the host and in the translation table with the note', () => {

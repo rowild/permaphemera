@@ -88,6 +88,7 @@ export function buildAll(overrides = {}) {
           used.add(fname)
           fields.push(placed(name, [f], group.field, j + 1)[0])
         })
+        if (s.key === 'content' && s.fields.at(-1) !== 'description') throw new Error(`${name}: ui_group_content must end with description, got ${s.fields.at(-1)}`)
       })
       for (const f of [...data, status]) {
         if (f.field === 'translations') { fields.push(placed(name, [f], 'ui_accordion_translations', 1)[0]); continue }
