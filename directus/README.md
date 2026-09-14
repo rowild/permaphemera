@@ -24,23 +24,27 @@ docker compose pull         # fetch a newer image after changing the tag
 
 ## Schema scripts
 
-The collections come from `_Plans/exhibitions-plan.md` section 2 and are created
-by script, not by hand in the admin app.
+The schema is data: `scripts/schema.mjs` describes entities, junctions and form
+layouts; `scripts/naming.mjs` derives every junction, translation-table and FK
+name from the conventions in `../_Plans/directus-schema-conventions.md`
+(prefix `pp_`). Never create or rename a collection in the admin app.
 
 ```bash
-node scripts/create-schema.mjs   # create missing collections, fields, relations, languages
-node scripts/snapshot.mjs        # export the live schema to schema/snapshot.yaml
+node --test scripts/*.test.mjs     # unit tests for naming and the builder
+node scripts/create-schema.mjs     # create what is missing (idempotent)
+node scripts/seed.mjs              # languages, roles, navigations (idempotent)
+node scripts/apply-settings.mjs    # project name, colour, default language
+node scripts/check-conventions.mjs # assert the live schema follows the rules
+node scripts/snapshot.mjs          # export schema/snapshot.yaml
+bash scripts/reset.sh --yes        # wipe database/data.db and run all of the above
 ```
 
-To rebuild a fresh instance from the snapshot instead:
+A fresh database starts without any browser interaction: `PROJECT_NAME`,
+`PROJECT_OWNER` and `ADMIN_TOKEN` in `.env` are read at bootstrap.
 
-```bash
-docker compose exec directus npx directus schema apply --yes /directus/schema/snapshot.yaml
-```
-
-When a field changes: edit the JSON in `../frontend/app/data/`, the types in
-`../frontend/app/types/content.ts`, section 2 of the plan, and the script, then
-re-export the snapshot. All in one commit.
+To change a field: edit `scripts/schema.mjs`, run `bash scripts/reset.sh --yes`,
+then update `../frontend/app/data/`, `../frontend/app/types/content.ts` and
+`../_Plans/exhibitions-plan.md` §2 in the same commit.
 
 ## Folders
 
