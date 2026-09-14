@@ -1,7 +1,7 @@
 # Directus-Aligned Data Model — Design
 
 Date: 2026-08-12
-Status: approved, not yet implemented
+Status: implemented 2026-08-13. The living schema is now maintained in `_Plans/exhibitions-plan.md` §2 (repository root); this document records the design decisions and is not updated for later field additions such as the 360° tour fields or `exhibition_statements`.
 
 ## Problem
 

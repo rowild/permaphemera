@@ -56,130 +56,168 @@ The following infrastructure components are **omitted from the first implementat
 
 ---
 
-## 2. Future Production-Ready Database Schema (Directus v11+)
+## 2. Production Database Schema (Directus v11)
 
-To manage multi-artist exhibitions and traveling shows without data duplication, the future database will leverage explicit normalization and junction collections. All metadata handles structural fallback properties and custom slugs.
+This section is the **single living schema** for the project. The local JSON files in `frontend/app/data/` mirror it 1:1, and the Directus collections are built from it. When a field changes in one place, change it in all three (JSON, `frontend/app/types/content.ts`, this section) in the same commit.
 
-During the first frontend phase, these same entities must be represented by local JSON files inside the `frontend` project so page and component work can proceed without a live Directus backend. The JSON data shape should stay close to this schema to keep the later Directus migration predictable.
+The design that produced the current shape is `frontend/docs/superpowers/specs/2026-08-12-directus-aligned-data-model-design.md`. That document is a dated record of the decisions and stays as written; this section is where the schema is maintained.
 
-### Cross-Cutting Fields
+Last reconciled against the JSON files: 2026-09-14.
 
-**`status`** (`draft` | `published`) belongs on `locations`, `venues`, `artists` and `exhibitions`. It records provenance, not visibility: while the project is work in progress much of the content is deliberately invented or refers to institutions that are not yet partners, and that data must still render or most pages would be empty. `status` marks which records are real so they can be filtered later without archaeology. The frontend gates this through a single constant, not through conditionals in components.
+### Cross-Cutting Rules
+
+**`status`** (`draft` | `published`) belongs on `locations`, `venues`, `artists`, `exhibitions` and `exhibition_statements`. It records provenance, not visibility: while the project is work in progress much of the content is deliberately invented or refers to institutions that are not yet partners, and that data must still render or most pages would be empty. `status` marks which records are real so they can be filtered later without archaeology. The frontend gates this through a single constant, not through conditionals in components.
 
 **Language priority.** All languages are equal *in the frontend*: a record carries a `translations[]` array and the active locale is selected from it, with a `locale → en → first available` fallback. The backend is English-first: English is the language entered in Directus, and every other translation is derived from it. So English is an editorial starting point and an authoring convention, not a privileged field in the data shape.
 
+**Translations.** In the JSON, translations are inline as `translations[]` on the record. In Directus each becomes a child table `<collection>_translations` with `id`, `<collection>_id` (M2O) and `languages_code` (M2O → `languages.code`), plus the translated fields listed per collection below. The child tables are not repeated for every collection; the "Translated fields" line is the definition.
+
+**IDs.** The JSON uses readable string ids (`venue-parkschloessl-spittal-drau`). Directus uses `UUID` primary keys on the core collections and auto-increment integers on the junction and child tables. Slugs, not ids, are the stable public identifier.
+
+**Files.** `image`, `hero_image`, `profile_image` and `source_pdf` are root-relative paths in the JSON (`/media/images/…`). In Directus they are `File` relations.
+
+**Highlighting is not data.** The exhibition schema has no `featured` field. The frontend derives the highlighted exhibition from dates (current, else nearest upcoming, else the first reverse-chronological record). Do not add it. Venues *do* carry `featured`; that is a curated, editorial choice.
+
 ### Core Collections
 
-#### `locations`
+#### `locations` — the geographic place (city or town)
 
-* `id`: `UUID` (Primary Key)
-* `slug`: `String` (Unique Index, e.g., `spittal-an-der-drau`)
-* `postal_code`: `String`
-* `state`: `String` (e.g., `Kärnten`)
-* `country`: `String` (e.g., `Austria`)
-* `geo_data`: `Geometry (Point)`
-* `image`: `File` (Directus File / Cloudflare asset link)
+| Field | Type | Notes |
+|---|---|---|
+| `id` | UUID | primary key |
+| `slug` | String | unique, e.g. `spittal-an-der-drau` |
+| `city_name` | String | |
+| `postal_code` | String | |
+| `state` | String | e.g. `Kärnten` |
+| `country` | String | e.g. `Austria` |
+| `latitude`, `longitude` | Float | required, town-centre approximation. Becomes one `geo_data` Point in Directus. Powers radius search only; not door-level mapping |
+| `status` | Dropdown | `draft` \| `published` |
 
-#### `locations_translations` (Child Table)
+Translated fields: `description` (Text / Markdown).
 
-* `id`: `Integer`
-* `locations_id`: `Many-to-One` $\rightarrow$ `locations.id`
-* `languages_code`: `Many-to-One` $\rightarrow$ `languages.code`
-* `description`: `Text / Markdown`
+#### `venues` — the building
 
-#### `venues`
+| Field | Type | Notes |
+|---|---|---|
+| `id` | UUID | primary key |
+| `slug` | String | unique, e.g. `parkschloessl-spittal-drau` |
+| `location_id` | M2O → `locations` | required |
+| `name` | String | |
+| `type` | Dropdown | `gallery`, `museum`, `kunsthalle`, `art_cafe`, `open_air`, `forum` — see note below |
+| `address` | String | |
+| `website_url` | String | optional |
+| `latitude`, `longitude` | Float | optional, exact building pin. Distinct from the city centroid on `locations` |
+| `image` | File | card image |
+| `image_alt` | String | |
+| `hero_image` | File | optional, venue detail hero |
+| `hero_image_alt` | String | optional |
+| `archive_number` | String | two-digit display number, e.g. `01` |
+| `featured` | Boolean | curated landing-page highlight |
+| `status` | Dropdown | `draft` \| `published` |
 
-* `id`: `UUID` (Primary Key)
-* `slug`: `String` (Unique Index, e.g., `schloss-porcia`)
-* `location_id`: `Many-to-One` $\rightarrow$ `locations.id`
-* `name`: `String`
-* `type`: `Dropdown` (`gallery`, `museum`, `kunsthalle`, `art_cafe`, `open_air`, `forum`)
-* `address`: `String`
-* `website_url`: `String` (Optional)
-* `image`: `File`
+Translated fields: `description` (Text), `lede` (String, optional), `about` (repeater / JSON array of paragraphs, optional), `image_caption` (String, optional), `coordinate_label` (String, optional, human-readable DMS readout).
 
-A gallery is the most common exhibition venue in this archive, but not the only one. `type` keeps the frontend label flexible: the collective noun stays "Galleries"/"Galerien" while each venue renders its own type label from an i18n key (`venueType.gallery`, `venueType.art_cafe`, …). Add new values here rather than overloading `gallery`. The list is deliberately open — an unknown value must fall back to the generic collective label rather than render a raw enum.
+A gallery is the most common exhibition venue in this archive, but not the only one. `type` keeps the frontend label flexible: the collective noun stays "Galleries"/"Galerien" while each venue renders its own type label from an i18n key (`venueType.gallery`, `venueType.art_cafe`, …). Add new values here rather than overloading `gallery`. The list is deliberately open — an unknown value must fall back to the generic collective label rather than render a raw enum. Values in use today: `gallery`, `museum`, `kunsthalle`, `forum`.
 
-#### `venues_translations` (Child Table)
+#### `artists` — people and collectives
 
-* `id`: `Integer`
-* `venues_id`: `Many-to-One` $\rightarrow$ `venues.id`
-* `languages_code`: `Many-to-One` $\rightarrow$ `languages.code`
-* `description`: `Text / Markdown`
+| Field | Type | Notes |
+|---|---|---|
+| `id` | UUID | primary key |
+| `slug` | String | unique, e.g. `max-mustermann` |
+| `first_name` | String | |
+| `last_name` | String | |
+| `middle_initial` | String | optional |
+| `artist_name` | String | optional; pseudonym or collective brand identity |
+| `birth_year` | Integer | optional |
+| `death_year` | Integer | optional |
+| `nationality` | String | optional |
+| `website_url` | String | optional |
+| `instagram_handle` | String | optional |
+| `profile_image` | File | optional |
+| `status` | Dropdown | `draft` \| `published` |
 
-#### `artists`
+Translated fields: `biography` (Text / Markdown).
 
-* `id`: `UUID` (Primary Key)
-* `slug`: `String` (Unique Index, e.g., `max-mustermann`)
-* `first_name`: `String`
-* `last_name`: `String`
-* `middle_initial`: `String` (Optional)
-* `artist_name`: `String` (Pseudonym or collective brand identity)
-* `birth_year`: `Integer`
-* `death_year`: `Integer` (Optional)
-* `nationality`: `String`
-* `website_url`: `String`
-* `instagram_handle`: `String`
-* `profile_image`: `File`
+Placeholder artists keep every optional field `null`; nothing biographical is invented.
 
-#### `artists_translations` (Child Table)
+#### `exhibitions` — the show
 
-* `id`: `Integer`
-* `artists_id`: `Many-to-One` $\rightarrow$ `artists.id`
-* `languages_code`: `Many-to-One` $\rightarrow$ `languages.code`
-* `biography`: `Text / Markdown`
+| Field | Type | Notes |
+|---|---|---|
+| `id` | UUID | primary key |
+| `slug` | String | unique, e.g. `all-the-magic` |
+| `primary_venue_id` | M2O → `venues` | required |
+| `start_date` | Date | |
+| `end_date` | Date | |
+| `is_permanent` | Boolean | default `false` |
+| `image` | File | |
+| `image_alt` | String | English fallback; also translated |
+| `opening_hours` | String | English fallback; also translated |
+| `vernissage` | String | English fallback; also translated |
+| `medium` | String | optional; English fallback; also translated |
+| `source_pdf` | File | optional; the invitation or press sheet the record was derived from |
+| `tour` | String | optional; root-relative folder of the exported 360° tour, `/media/tours/<id>/`, or `null` while none is published |
+| `tour_status` | Dropdown | `available` \| `restricted` \| `unavailable` — see `frontend/app/utils/tourAccess.ts` |
+| `tour_available_from` | Date | optional; the day the 360° record may be shown, usually the day after the analog show closes; `null` means at once |
+| `status` | Dropdown | `draft` \| `published` |
 
-#### `exhibitions`
+Translated fields: `title` (String), `summary` (String, one-line teaser), `description` (Text / Markdown, curatorial statement), `date_range` (String, display form of the dates), `opening_hours` (String), `vernissage` (String), `image_alt` (String), `medium` (String).
 
-* `id`: `UUID` (Primary Key)
-* `slug`: `String` (Unique Index, e.g., `summer-exhibition-2026`)
-* `primary_venue_id`: `Many-to-One` $\rightarrow$ `venues.id`
-* `front_door_panorama_id`: `Many-to-One` $\rightarrow$ `panoramas.id`
-* `start_date`: `Date`
-* `end_date`: `Date`
-* `is_permanent`: `Boolean` (Default: `false`)
+> **Open item.** `image_alt`, `opening_hours`, `vernissage` and `medium` exist both on the record (as English fallbacks) and in `translations[]`. Directus needs them in one place only. Decide before creating the collection whether they live in `exhibitions_translations` alone (recommended) or stay on the record as untranslated strings.
 
-#### `exhibitions_translations` (Child Table)
+#### `exhibition_statements` — an artist's words about one show
 
-* `id`: `Integer`
-* `exhibitions_id`: `Many-to-One` $\rightarrow$ `exhibitions.id`
-* `languages_code`: `Many-to-One` $\rightarrow$ `languages.code`
-* `title`: `String`
-* `description`: `Text / Markdown` (Curatorial Statement)
+| Field | Type | Notes |
+|---|---|---|
+| `id` | UUID | primary key |
+| `exhibition_id` | M2O → `exhibitions` | required |
+| `artist_id` | M2O → `artists` | required |
+| `sort` | Integer | |
+| `status` | Dropdown | `draft` \| `published` |
 
-#### `panoramas`
+Translated fields: `prompt` (String, the question asked, e.g. "How did you approach the room?"), `statement` (Text, the answer).
 
-* `id`: `UUID` (Primary Key)
-* `exhibition_id`: `Many-to-One` $\rightarrow$ `exhibitions.id`
-* `image_file`: `File` (Points directly to the 12K optimized target file)
-* `altitude`: `Dropdown` (`bird`, `human`, `dog`)
-* `sort`: `Integer` (For custom fallback sequencing)
-* `photographer_credit`: `String`
-* `capture_date`: `Date`
+The JSON file exists and the resolver reads it, but it holds no rows yet.
 
-#### `hotspots`
+#### `sponsors`
 
-* `id`: `UUID` (Primary Key)
-* `source_panorama_id`: `Many-to-One` $\rightarrow$ `panoramas.id`
-* `target_panorama_id`: `Many-to-One` $\rightarrow$ `panoramas.id`
-* `yaw`: `Float` (Horizontal spatial target coordinate on source)
-* `pitch`: `Float` (Vertical spatial target coordinate on source)
-* `target_arrival_yaw`: `Float` (Camera rotation tracking parameter upon warp arrival)
-* `icon_type`: `Dropdown` (`arrow_up`, `arrow_down`, `info`)
+| Field | Type | Notes |
+|---|---|---|
+| `id` | UUID | primary key |
+| `name` | String | |
+
+Rendered in the footer strip. No relations, no translations, no `status`. A `logo` File will be needed once real sponsors exist.
 
 ### Junction Collections (Many-to-Many Bridge)
 
 #### `exhibitions_artists`
 
-* `id`: `Integer`
-* `exhibition_id`: `Many-to-One` $\rightarrow$ `exhibitions.id`
-* `artist_id`: `Many-to-One` $\rightarrow$ `artists.id`
+| Field | Type | Notes |
+|---|---|---|
+| `id` | Integer | |
+| `exhibition_id` | M2O → `exhibitions` | |
+| `artist_id` | M2O → `artists` | |
+| `sort` | Integer | credit order |
 
-#### `exhibitions_locations`
+Multi-artist credits are multiple rows. Artists are never joined by name string.
 
-* `id`: `Integer`
-* `exhibition_id`: `Many-to-One` $\rightarrow$ `exhibitions.id`
-* `location_id`: `Many-to-One` $\rightarrow$ `locations.id`
+### Deferred Collections
+
+Designed, not yet built in JSON or Directus. Each waits for its first consumer.
+
+#### `exhibitions_locations` — travelling shows
+
+`id` Integer, `exhibition_id` M2O → `exhibitions`, `location_id` M2O → `locations`. Needed the first time one exhibition is shown in more than one place.
+
+#### `panoramas` — for a native 360° viewer
+
+`id` UUID, `exhibition_id` M2O → `exhibitions`, `image_file` File (the 12K optimised target), `altitude` Dropdown (`bird`, `human`, `dog`), `sort` Integer, `photographer_credit` String, `capture_date` Date. Would add `front_door_panorama_id` M2O → `panoramas` on `exhibitions`. Today tours are exported folders referenced by `exhibitions.tour`, so this collection has no consumer.
+
+#### `hotspots` — links between panoramas
+
+`id` UUID, `source_panorama_id` and `target_panorama_id` M2O → `panoramas`, `yaw` Float, `pitch` Float, `target_arrival_yaw` Float, `icon_type` Dropdown (`arrow_up`, `arrow_down`, `info`). Depends on `panoramas`.
+
 
 ---
 
@@ -478,7 +516,8 @@ export function preloadPanoramasToCache(urls: string[]): void {
     └── [ ] Wire up GSAP timelines coordinating synchronized FOV manipulation and material alpha animations
 
 [ ] PHASE 4: FUTURE DATABASE ARCHITECTURE CONFIGURATION
-    ├── [ ] Construct localized Directus tables: locations, venues, artists, exhibitions, panoramas, hotspots
+    ├── [x] Install Directus 11.17.4 locally (Docker, `directus/`, port 8077) — 2026-09-14
+    ├── [ ] Construct localized Directus collections from §2: locations, venues, artists, exhibitions, exhibition_statements, sponsors, exhibitions_artists
     ├── [ ] Spin up standard system language codes and establish structural _translations links
     ├── [ ] Configure relational M2M junction keys (exhibitions_artists, exhibitions_locations)
     ├── [ ] Introduce Directus SDK data adapter behind the existing JSON-compatible content model

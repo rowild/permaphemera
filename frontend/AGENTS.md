@@ -82,7 +82,7 @@ Use local JSON source files under:
 app/data/
 ```
 
-Local JSON mirrors the Directus collections in `../_Plans/exhibitions-plan.md` §2: `locations.json` (cities, with the coordinates radius search needs), `venues.json` (buildings, each with a `type` and a `location_id`), `artists.json`, `exhibitions.json`, and the `exhibitions_artists.json` junction. Joins happen in `useArchiveData()`, never in components.
+Local JSON mirrors the Directus collections in `../_Plans/exhibitions-plan.md` §2, which is the single living schema: `locations.json` (cities, with the coordinates radius search needs), `venues.json` (buildings, each with a `type` and a `location_id`), `artists.json`, `exhibitions.json`, `exhibition_statements.json` (artist statements per show, currently empty), `sponsors.json`, and the `exhibitions_artists.json` junction. Joins happen in `useArchiveData()`, never in components. When a field is added or removed in a JSON file, update `app/types/content.ts` and §2 in the same commit.
 
 `status` (`draft` | `published`) records provenance, not visibility. Draft records render; the gate is the single `VISIBLE_STATUSES` constant in `app/utils/contentStatus.ts`. Never add a status conditional to a component.
 
