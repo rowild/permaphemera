@@ -34,3 +34,6 @@ frontend/dist
 
 # Affinity design source files (binary, large)
 *.af
+
+# Subagent-driven-development scratch workspace
+.superpowers/
