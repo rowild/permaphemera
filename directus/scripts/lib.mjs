@@ -17,14 +17,18 @@ export function loadEnv() {
 
 export async function login(env) {
   const base = env.PUBLIC_URL || 'http://localhost:8077'
-  const res = await fetch(`${base}/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: env.ADMIN_EMAIL, password: env.ADMIN_PASSWORD }),
-  })
-  const json = await res.json()
-  if (!res.ok) throw new Error(`login failed: ${JSON.stringify(json)}`)
-  const token = json.data.access_token
+  let token = env.ADMIN_TOKEN
+
+  if (!token) {
+    const res = await fetch(`${base}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: env.ADMIN_EMAIL, password: env.ADMIN_PASSWORD }),
+    })
+    const json = await res.json()
+    if (!res.ok) throw new Error(`login failed: ${JSON.stringify(json)}`)
+    token = json.data.access_token
+  }
 
   async function api(method, path, body) {
     const res = await fetch(`${base}${path}`, {
@@ -43,5 +47,7 @@ export async function login(env) {
     return data?.data ?? data
   }
 
-  return { base, token, api }
+  // Fail early with a clear message if the token is not accepted.
+  const me = await api('GET', '/users/me?fields=email')
+  return { base, token, api, me }
 }
