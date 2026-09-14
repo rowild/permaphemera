@@ -51,7 +51,7 @@ Three tables replace the old `artists` + `exhibitions_artists` pair.
 
 Rule enforced by the integrity check and, later, a Directus flow: a participation's `role` must be one of the person's roles.
 
-The frontend derives from participations: `exhibition.artists` = participations with role `artist`, ordered by `sort`; `exhibition.curators` likewise. The artist directory lists persons who have at least one `artist` participation. Component-facing shapes do not change.
+The frontend derives from participations: `exhibition.artists` = participations with role `artist`, ordered by `sort`; `exhibition.curators` likewise. The artist directory lists persons who hold the `artist` role (via `pp_mm__persons_roles`); their records are their artist-role participations, so filler artists without shows still appear on the alphabet rail. Component-facing shapes do not change.
 
 ## Blocks: later
 

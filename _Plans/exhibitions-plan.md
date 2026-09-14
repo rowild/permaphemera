@@ -517,7 +517,7 @@ export function preloadPanoramasToCache(urls: string[]): void {
     ├── [x] Install Directus 11.17.4 locally (Docker, `directus/`, port 8077) — 2026-09-14
     ├── [x] Rebuild all collections by the pp_ conventions from `directus/scripts/schema.mjs`, incl. persons/roles/participations, sponsors, navigations — 2026-09-14
     ├── [x] Seed languages (en, de), roles and the two navigations — 2026-09-14
-    ├── [ ] Rename the frontend JSON, types and resolvers to the pp_ shape; header and footer read the navigations (plan part 2)
+    ├── [x] Rename the frontend JSON, types and resolvers to the pp_ shape; header and footer read the navigations (plan part 2) — 2026-09-14
     ├── [ ] Import the JSON records from frontend/app/data into Directus
     ├── [ ] Introduce Directus SDK data adapter behind the existing JSON-compatible content model
     └── [ ] Test data query payload outputs using Directus SDK deep filtering for locale switching

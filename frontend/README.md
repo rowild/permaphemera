@@ -22,12 +22,13 @@ The first Nuxt frontend milestone is implemented. It includes:
 - shared hero scroll cues on the landing, gallery, and exhibition routes that fade away when their destination section enters the viewport;
 - bilingual About the Project, How It Works, and Contact pages plus complete imprint, privacy, terms-of-use, and accessibility routes using shared editorial layouts;
 - shared routed header/footer components, an always-visible About destination, a softly animated archival menu, and a content-responsive sponsor marquee;
+- header and footer menus driven by navigation data (`pp_navigations.json`), not by hard-coded links;
 - complete English/German UI and local content translations with locale-aware routes and a framed flag-based language dropdown beside the menu control;
 - granular site-styled cookie settings for necessary storage, Matomo, Google Maps, and YouTube, reopenable from the header and footer;
 - a responsive temple-mark identity with browser, Apple touch, and installable web-app icons;
 - a two-accent design system using one semantic archive red and one decorative archive ochre across light and dark surfaces.
 
-The prototype does not connect to Directus or another live backend. It uses local English source records, local German translation overlays, and bundled UI locale files. Production is configured as a client-rendered SPA for static shared hosting; provider-specific infrastructure remains future work. Exhibition pages open their exported 360-degree tour in the embedded viewer from `public/media/tour-viewer/`; a record whose `tour` is `null` shows the entry point as unavailable. `pnpm tour:publish <tour id>` copies one exported tour into `public/media/tours/`, links it to its exhibition record and runs the public-namespace check; deploying stays a separate, explicit step.
+The prototype does not connect to Directus or another live backend. It uses local records in the Directus shape (`app/data/pp_*.json`) carrying inline English and German translations, and bundled UI locale files. Production is configured as a client-rendered SPA for static shared hosting; provider-specific infrastructure remains future work. Exhibition pages open their exported 360-degree tour in the embedded viewer from `public/media/tour-viewer/`; a record whose `tour` is `null` shows the entry point as unavailable. `pnpm tour:publish <tour id>` copies one exported tour into `public/media/tours/`, links it to its exhibition record and runs the public-namespace check; deploying stays a separate, explicit step.
 
 The active architecture plan is `../_Plans/exhibitions-plan.md`; the design references are under `../_Plans/designs/landing-page/`. The Directus backend lives in `../directus/`. All of these are part of the same repository; see the root `README.md`.
 
