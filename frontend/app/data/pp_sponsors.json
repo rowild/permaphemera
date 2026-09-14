@@ -1,0 +1,130 @@
+[
+  {
+    "id": "aurelia-kulturstiftung",
+    "slug": "aurelia-kulturstiftung",
+    "title": "Aurelia Kulturstiftung",
+    "website_url": null,
+    "logo": null,
+    "description": null,
+    "status": "published",
+    "sort": 1,
+    "translations": [
+      {
+        "languages_code": "en",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "id": "oesterreichisches-kulturforum",
+    "slug": "oesterreichisches-kulturforum",
+    "title": "Oesterreichisches Kulturforum",
+    "website_url": null,
+    "logo": null,
+    "description": null,
+    "status": "published",
+    "sort": 2,
+    "translations": [
+      {
+        "languages_code": "en",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "id": "fundamentum-archivum",
+    "slug": "fundamentum-archivum",
+    "title": "Fundamentum Archivum",
+    "website_url": null,
+    "logo": null,
+    "description": null,
+    "status": "published",
+    "sort": 3,
+    "translations": [
+      {
+        "languages_code": "en",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "id": "institut-fuer-zeitkultur",
+    "slug": "institut-fuer-zeitkultur",
+    "title": "Institut fuer Zeitkultur",
+    "website_url": null,
+    "logo": null,
+    "description": null,
+    "status": "published",
+    "sort": 4,
+    "translations": [
+      {
+        "languages_code": "en",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "id": "memoria-foundation",
+    "slug": "memoria-foundation",
+    "title": "Memoria Foundation",
+    "website_url": null,
+    "logo": null,
+    "description": null,
+    "status": "published",
+    "sort": 5,
+    "translations": [
+      {
+        "languages_code": "en",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "id": "canon-heritage-trust",
+    "slug": "canon-heritage-trust",
+    "title": "Canon Heritage Trust",
+    "website_url": null,
+    "logo": null,
+    "description": null,
+    "status": "published",
+    "sort": 6,
+    "translations": [
+      {
+        "languages_code": "en",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "id": "art-design-austria",
+    "slug": "art-design-austria",
+    "title": "Art + Design Austria",
+    "website_url": null,
+    "logo": null,
+    "description": null,
+    "status": "published",
+    "sort": 7,
+    "translations": [
+      {
+        "languages_code": "en",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "id": "european-heritage-alliance",
+    "slug": "european-heritage-alliance",
+    "title": "European Heritage Alliance",
+    "website_url": null,
+    "logo": null,
+    "description": null,
+    "status": "published",
+    "sort": 8,
+    "translations": [
+      {
+        "languages_code": "en",
+        "description": ""
+      }
+    ]
+  }
+]

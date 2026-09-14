@@ -1,0 +1,440 @@
+[
+  {
+    "id": 1,
+    "persons_id": "artist-anselm-kiefer",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 2,
+    "persons_id": "artist-brigitte-kowanz",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 3,
+    "persons_id": "artist-birgit-juergenssen",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 4,
+    "persons_id": "artist-guenter-brus",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 5,
+    "persons_id": "artist-oskar-kokoschka",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 6,
+    "persons_id": "artist-maria-lassnig",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 7,
+    "persons_id": "artist-raqs-media-collective",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 8,
+    "persons_id": "artist-valie-export",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 9,
+    "persons_id": "artist-franz-west",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 10,
+    "persons_id": "artist-mira-abele",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 11,
+    "persons_id": "artist-jonas-arden",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 12,
+    "persons_id": "artist-lena-bacher",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 13,
+    "persons_id": "artist-pavel-breun",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 14,
+    "persons_id": "artist-iona-cernek",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 15,
+    "persons_id": "artist-timo-corda",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 16,
+    "persons_id": "artist-mara-degen",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 17,
+    "persons_id": "artist-elias-dorn",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 18,
+    "persons_id": "artist-nika-eder",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 19,
+    "persons_id": "artist-samuel-evers",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 20,
+    "persons_id": "artist-livia-falk",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 21,
+    "persons_id": "artist-anton-ferner",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 22,
+    "persons_id": "artist-klara-gsell",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 23,
+    "persons_id": "artist-emil-gruber",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 24,
+    "persons_id": "artist-nora-haid",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 25,
+    "persons_id": "artist-leander-huber",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 26,
+    "persons_id": "artist-mina-illich",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 27,
+    "persons_id": "artist-tobias-innerhofer",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 28,
+    "persons_id": "artist-elsa-jarnik",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 29,
+    "persons_id": "artist-milan-jost",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 30,
+    "persons_id": "artist-lora-kain",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 31,
+    "persons_id": "artist-noah-kern",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 32,
+    "persons_id": "artist-rhea-koller",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 33,
+    "persons_id": "artist-ada-lechner",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 34,
+    "persons_id": "artist-viktor-loos",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 35,
+    "persons_id": "artist-thea-mader",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 36,
+    "persons_id": "artist-ivo-moser",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 37,
+    "persons_id": "artist-alma-neri",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 38,
+    "persons_id": "artist-dario-novak",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 39,
+    "persons_id": "artist-pia-oberlin",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 40,
+    "persons_id": "artist-felix-orter",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 41,
+    "persons_id": "artist-sara-pichler",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 42,
+    "persons_id": "artist-leon-prantl",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 43,
+    "persons_id": "artist-mira-quell",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 44,
+    "persons_id": "artist-aron-quirin",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 45,
+    "persons_id": "artist-ina-rainer",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 46,
+    "persons_id": "artist-theo-riss",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 47,
+    "persons_id": "artist-zoe-sattler",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 48,
+    "persons_id": "artist-jan-sendl",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 49,
+    "persons_id": "artist-ella-tauer",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 50,
+    "persons_id": "artist-bruno-tesch",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 51,
+    "persons_id": "artist-mia-uhl",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 52,
+    "persons_id": "artist-niko-urban",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 53,
+    "persons_id": "artist-lea-varga",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 54,
+    "persons_id": "artist-otto-vogl",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 55,
+    "persons_id": "artist-anja-wenter",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 56,
+    "persons_id": "artist-lio-wurm",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 57,
+    "persons_id": "artist-mina-xandl",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 58,
+    "persons_id": "artist-theo-xaver",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 59,
+    "persons_id": "artist-eva-yalin",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 60,
+    "persons_id": "artist-noah-ypern",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 61,
+    "persons_id": "artist-mara-zeller",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 62,
+    "persons_id": "artist-ivo-zorn",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 63,
+    "persons_id": "artist-adi-schmoelzer",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 64,
+    "persons_id": "artist-7th-spittaler-comicfestival",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 65,
+    "persons_id": "artist-austriatoon",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 66,
+    "persons_id": "artist-nicoline-von-heyl",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 67,
+    "persons_id": "artist-lebenshilfe-spittal",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 68,
+    "persons_id": "artist-herbert-meisslitzer",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 69,
+    "persons_id": "artist-sylvia-campidell",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 70,
+    "persons_id": "artist-judith-maria-kulle",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 71,
+    "persons_id": "artist-birgit-moertl",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 72,
+    "persons_id": "artist-peter-kohlweiss",
+    "roles_id": "role-artist",
+    "sort": 0
+  },
+  {
+    "id": 73,
+    "persons_id": "artist-santino-solace",
+    "roles_id": "role-artist",
+    "sort": 0
+  }
+]

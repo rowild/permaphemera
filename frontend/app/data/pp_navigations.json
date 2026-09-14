@@ -1,0 +1,16 @@
+[
+  {
+    "id": "nav-main",
+    "key": "main",
+    "title": "Main navigation",
+    "status": "published",
+    "sort": 1
+  },
+  {
+    "id": "nav-footer",
+    "key": "footer",
+    "title": "Footer navigation",
+    "status": "published",
+    "sort": 2
+  }
+]

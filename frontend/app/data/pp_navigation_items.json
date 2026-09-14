@@ -1,0 +1,416 @@
+[
+  {
+    "id": "nav-main-exhibitions",
+    "navigation": "nav-main",
+    "parent": null,
+    "key": "exhibitions",
+    "title": "Exhibitions",
+    "kind": "route",
+    "path": "/exhibitions/",
+    "url": null,
+    "target": "_self",
+    "sort": 1,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Exhibitions"
+      },
+      {
+        "languages_code": "de",
+        "title": "Ausstellungen"
+      }
+    ]
+  },
+  {
+    "id": "nav-main-artists",
+    "navigation": "nav-main",
+    "parent": null,
+    "key": "artists",
+    "title": "Artists",
+    "kind": "route",
+    "path": "/artists/",
+    "url": null,
+    "target": "_self",
+    "sort": 2,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Artists"
+      },
+      {
+        "languages_code": "de",
+        "title": "Künstler:innen"
+      }
+    ]
+  },
+  {
+    "id": "nav-main-galleries",
+    "navigation": "nav-main",
+    "parent": null,
+    "key": "galleries",
+    "title": "Galleries",
+    "kind": "route",
+    "path": "/venues/",
+    "url": null,
+    "target": "_self",
+    "sort": 3,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Galleries"
+      },
+      {
+        "languages_code": "de",
+        "title": "Galerien"
+      }
+    ]
+  },
+  {
+    "id": "nav-main-about",
+    "navigation": "nav-main",
+    "parent": null,
+    "key": "about",
+    "title": "About the Project",
+    "kind": "route",
+    "path": "/about/",
+    "url": null,
+    "target": "_self",
+    "sort": 4,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "About the Project"
+      },
+      {
+        "languages_code": "de",
+        "title": "Über das Projekt"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-explore",
+    "navigation": "nav-footer",
+    "parent": null,
+    "key": "explore",
+    "title": "Explore",
+    "kind": "route",
+    "path": null,
+    "url": null,
+    "target": "_self",
+    "sort": 1,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Explore"
+      },
+      {
+        "languages_code": "de",
+        "title": "Entdecken"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-information",
+    "navigation": "nav-footer",
+    "parent": null,
+    "key": "information",
+    "title": "Information",
+    "kind": "route",
+    "path": null,
+    "url": null,
+    "target": "_self",
+    "sort": 2,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Information"
+      },
+      {
+        "languages_code": "de",
+        "title": "Information"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-legal",
+    "navigation": "nav-footer",
+    "parent": null,
+    "key": "legal",
+    "title": "Legal",
+    "kind": "route",
+    "path": null,
+    "url": null,
+    "target": "_self",
+    "sort": 3,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Legal"
+      },
+      {
+        "languages_code": "de",
+        "title": "Rechtliches"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-exhibitions",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-explore",
+    "key": "exhibitions",
+    "title": "Exhibitions",
+    "kind": "route",
+    "path": "/exhibitions/",
+    "url": null,
+    "target": "_self",
+    "sort": 1,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Exhibitions"
+      },
+      {
+        "languages_code": "de",
+        "title": "Ausstellungen"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-artists",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-explore",
+    "key": "artists",
+    "title": "Artists",
+    "kind": "route",
+    "path": "/artists/",
+    "url": null,
+    "target": "_self",
+    "sort": 2,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Artists"
+      },
+      {
+        "languages_code": "de",
+        "title": "Künstler:innen"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-galleries",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-explore",
+    "key": "galleries",
+    "title": "Galleries",
+    "kind": "route",
+    "path": "/venues/",
+    "url": null,
+    "target": "_self",
+    "sort": 3,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Galleries"
+      },
+      {
+        "languages_code": "de",
+        "title": "Galerien"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-about",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-information",
+    "key": "about",
+    "title": "About the Project",
+    "kind": "route",
+    "path": "/about/",
+    "url": null,
+    "target": "_self",
+    "sort": 1,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "About the Project"
+      },
+      {
+        "languages_code": "de",
+        "title": "Über das Projekt"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-how-it-works",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-information",
+    "key": "how-it-works",
+    "title": "How it works",
+    "kind": "route",
+    "path": "/how-it-works/",
+    "url": null,
+    "target": "_self",
+    "sort": 2,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "How it works"
+      },
+      {
+        "languages_code": "de",
+        "title": "Wie es funktioniert"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-contact",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-information",
+    "key": "contact",
+    "title": "Contact",
+    "kind": "route",
+    "path": "/contact/",
+    "url": null,
+    "target": "_self",
+    "sort": 3,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Contact"
+      },
+      {
+        "languages_code": "de",
+        "title": "Kontakt"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-imprint",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-legal",
+    "key": "imprint",
+    "title": "Imprint",
+    "kind": "route",
+    "path": "/imprint/",
+    "url": null,
+    "target": "_self",
+    "sort": 1,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Imprint"
+      },
+      {
+        "languages_code": "de",
+        "title": "Impressum"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-privacy",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-legal",
+    "key": "privacy",
+    "title": "Privacy Policy",
+    "kind": "route",
+    "path": "/privacy/",
+    "url": null,
+    "target": "_self",
+    "sort": 2,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Privacy Policy"
+      },
+      {
+        "languages_code": "de",
+        "title": "Datenschutzerklärung"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-terms",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-legal",
+    "key": "terms",
+    "title": "Terms of Use",
+    "kind": "route",
+    "path": "/terms/",
+    "url": null,
+    "target": "_self",
+    "sort": 3,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Terms of Use"
+      },
+      {
+        "languages_code": "de",
+        "title": "Nutzungsbedingungen"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-accessibility",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-legal",
+    "key": "accessibility",
+    "title": "Accessibility",
+    "kind": "route",
+    "path": "/accessibility/",
+    "url": null,
+    "target": "_self",
+    "sort": 4,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Accessibility"
+      },
+      {
+        "languages_code": "de",
+        "title": "Barrierefreiheit"
+      }
+    ]
+  },
+  {
+    "id": "nav-footer-cookies",
+    "navigation": "nav-footer",
+    "parent": "nav-footer-legal",
+    "key": "cookies",
+    "title": "Cookie settings",
+    "kind": "action",
+    "path": "cookie-settings",
+    "url": null,
+    "target": "_self",
+    "sort": 5,
+    "status": "published",
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Cookie settings"
+      },
+      {
+        "languages_code": "de",
+        "title": "Cookie-Einstellungen"
+      }
+    ]
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "participation-1",
+    "exhibition": "parkschloessl-adi-schmoelzer-2026",
+    "person": "artist-adi-schmoelzer",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-2",
+    "exhibition": "parkschloessl-austriatoon-2026",
+    "person": "artist-7th-spittaler-comicfestival",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-3",
+    "exhibition": "parkschloessl-austriatoon-2026",
+    "person": "artist-austriatoon",
+    "role": "role-artist",
+    "sort": 1,
+    "status": "published"
+  },
+  {
+    "id": "participation-4",
+    "exhibition": "parkschloessl-nicoline-von-heyl-2026",
+    "person": "artist-nicoline-von-heyl",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-5",
+    "exhibition": "parkschloessl-lebenshilfe-2026",
+    "person": "artist-lebenshilfe-spittal",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-6",
+    "exhibition": "parkschloessl-herbert-meisslitzer-2026",
+    "person": "artist-herbert-meisslitzer",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-7",
+    "exhibition": "parkschloessl-campidell-kulle-2026",
+    "person": "artist-sylvia-campidell",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-8",
+    "exhibition": "parkschloessl-campidell-kulle-2026",
+    "person": "artist-judith-maria-kulle",
+    "role": "role-artist",
+    "sort": 1,
+    "status": "published"
+  },
+  {
+    "id": "participation-9",
+    "exhibition": "parkschloessl-birgit-moertl-2026",
+    "person": "artist-birgit-moertl",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-10",
+    "exhibition": "parkschloessl-peter-kohlweiss-2026",
+    "person": "artist-peter-kohlweiss",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-11",
+    "exhibition": "parkschloessl-santino-solace-2026",
+    "person": "artist-santino-solace",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-12",
+    "exhibition": "exhibition-matter-memory",
+    "person": "artist-anselm-kiefer",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-13",
+    "exhibition": "exhibition-expressing-inner",
+    "person": "artist-oskar-kokoschka",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-14",
+    "exhibition": "exhibition-state-of-repair",
+    "person": "artist-raqs-media-collective",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  },
+  {
+    "id": "participation-15",
+    "exhibition": "exhibition-ways-of-being",
+    "person": "artist-maria-lassnig",
+    "role": "role-artist",
+    "sort": 0,
+    "status": "published"
+  }
+]

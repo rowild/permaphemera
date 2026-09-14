@@ -1,0 +1,732 @@
+[
+  {
+    "id": "artist-anselm-kiefer",
+    "slug": "anselm-kiefer",
+    "first_name": "Anselm",
+    "last_name": "Kiefer",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "published"
+  },
+  {
+    "id": "artist-brigitte-kowanz",
+    "slug": "brigitte-kowanz",
+    "first_name": "Brigitte",
+    "last_name": "Kowanz",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "published"
+  },
+  {
+    "id": "artist-birgit-juergenssen",
+    "slug": "birgit-juergenssen",
+    "first_name": "Birgit",
+    "last_name": "Juergenssen",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "published"
+  },
+  {
+    "id": "artist-guenter-brus",
+    "slug": "guenter-brus",
+    "first_name": "Guenter",
+    "last_name": "Brus",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "published"
+  },
+  {
+    "id": "artist-oskar-kokoschka",
+    "slug": "oskar-kokoschka",
+    "first_name": "Oskar",
+    "last_name": "Kokoschka",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "published"
+  },
+  {
+    "id": "artist-maria-lassnig",
+    "slug": "maria-lassnig",
+    "first_name": "Maria",
+    "last_name": "Lassnig",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "published"
+  },
+  {
+    "id": "artist-raqs-media-collective",
+    "slug": "raqs-media-collective",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "display_name": "Raqs Media Collective",
+    "website_url": null,
+    "status": "published"
+  },
+  {
+    "id": "artist-valie-export",
+    "slug": "valie-export",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "display_name": "VALIE EXPORT",
+    "website_url": null,
+    "status": "published"
+  },
+  {
+    "id": "artist-franz-west",
+    "slug": "franz-west",
+    "first_name": "Franz",
+    "last_name": "West",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "published"
+  },
+  {
+    "id": "artist-mira-abele",
+    "slug": "mira-abele",
+    "first_name": "Mira",
+    "last_name": "Abele",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-jonas-arden",
+    "slug": "jonas-arden",
+    "first_name": "Jonas",
+    "last_name": "Arden",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-lena-bacher",
+    "slug": "lena-bacher",
+    "first_name": "Lena",
+    "last_name": "Bacher",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-pavel-breun",
+    "slug": "pavel-breun",
+    "first_name": "Pavel",
+    "last_name": "Breun",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-iona-cernek",
+    "slug": "iona-cernek",
+    "first_name": "Iona",
+    "last_name": "Cernek",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-timo-corda",
+    "slug": "timo-corda",
+    "first_name": "Timo",
+    "last_name": "Corda",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-mara-degen",
+    "slug": "mara-degen",
+    "first_name": "Mara",
+    "last_name": "Degen",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-elias-dorn",
+    "slug": "elias-dorn",
+    "first_name": "Elias",
+    "last_name": "Dorn",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-nika-eder",
+    "slug": "nika-eder",
+    "first_name": "Nika",
+    "last_name": "Eder",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-samuel-evers",
+    "slug": "samuel-evers",
+    "first_name": "Samuel",
+    "last_name": "Evers",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-livia-falk",
+    "slug": "livia-falk",
+    "first_name": "Livia",
+    "last_name": "Falk",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-anton-ferner",
+    "slug": "anton-ferner",
+    "first_name": "Anton",
+    "last_name": "Ferner",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-klara-gsell",
+    "slug": "klara-gsell",
+    "first_name": "Klara",
+    "last_name": "Gsell",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-emil-gruber",
+    "slug": "emil-gruber",
+    "first_name": "Emil",
+    "last_name": "Gruber",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-nora-haid",
+    "slug": "nora-haid",
+    "first_name": "Nora",
+    "last_name": "Haid",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-leander-huber",
+    "slug": "leander-huber",
+    "first_name": "Leander",
+    "last_name": "Huber",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-mina-illich",
+    "slug": "mina-illich",
+    "first_name": "Mina",
+    "last_name": "Illich",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-tobias-innerhofer",
+    "slug": "tobias-innerhofer",
+    "first_name": "Tobias",
+    "last_name": "Innerhofer",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-elsa-jarnik",
+    "slug": "elsa-jarnik",
+    "first_name": "Elsa",
+    "last_name": "Jarnik",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-milan-jost",
+    "slug": "milan-jost",
+    "first_name": "Milan",
+    "last_name": "Jost",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-lora-kain",
+    "slug": "lora-kain",
+    "first_name": "Lora",
+    "last_name": "Kain",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-noah-kern",
+    "slug": "noah-kern",
+    "first_name": "Noah",
+    "last_name": "Kern",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-rhea-koller",
+    "slug": "rhea-koller",
+    "first_name": "Rhea",
+    "last_name": "Koller",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-ada-lechner",
+    "slug": "ada-lechner",
+    "first_name": "Ada",
+    "last_name": "Lechner",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-viktor-loos",
+    "slug": "viktor-loos",
+    "first_name": "Viktor",
+    "last_name": "Loos",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-thea-mader",
+    "slug": "thea-mader",
+    "first_name": "Thea",
+    "last_name": "Mader",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-ivo-moser",
+    "slug": "ivo-moser",
+    "first_name": "Ivo",
+    "last_name": "Moser",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-alma-neri",
+    "slug": "alma-neri",
+    "first_name": "Alma",
+    "last_name": "Neri",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-dario-novak",
+    "slug": "dario-novak",
+    "first_name": "Dario",
+    "last_name": "Novak",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-pia-oberlin",
+    "slug": "pia-oberlin",
+    "first_name": "Pia",
+    "last_name": "Oberlin",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-felix-orter",
+    "slug": "felix-orter",
+    "first_name": "Felix",
+    "last_name": "Orter",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-sara-pichler",
+    "slug": "sara-pichler",
+    "first_name": "Sara",
+    "last_name": "Pichler",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-leon-prantl",
+    "slug": "leon-prantl",
+    "first_name": "Leon",
+    "last_name": "Prantl",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-mira-quell",
+    "slug": "mira-quell",
+    "first_name": "Mira",
+    "last_name": "Quell",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-aron-quirin",
+    "slug": "aron-quirin",
+    "first_name": "Aron",
+    "last_name": "Quirin",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-ina-rainer",
+    "slug": "ina-rainer",
+    "first_name": "Ina",
+    "last_name": "Rainer",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-theo-riss",
+    "slug": "theo-riss",
+    "first_name": "Theo",
+    "last_name": "Riss",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-zoe-sattler",
+    "slug": "zoe-sattler",
+    "first_name": "Zoe",
+    "last_name": "Sattler",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-jan-sendl",
+    "slug": "jan-sendl",
+    "first_name": "Jan",
+    "last_name": "Sendl",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-ella-tauer",
+    "slug": "ella-tauer",
+    "first_name": "Ella",
+    "last_name": "Tauer",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-bruno-tesch",
+    "slug": "bruno-tesch",
+    "first_name": "Bruno",
+    "last_name": "Tesch",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-mia-uhl",
+    "slug": "mia-uhl",
+    "first_name": "Mia",
+    "last_name": "Uhl",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-niko-urban",
+    "slug": "niko-urban",
+    "first_name": "Niko",
+    "last_name": "Urban",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-lea-varga",
+    "slug": "lea-varga",
+    "first_name": "Lea",
+    "last_name": "Varga",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-otto-vogl",
+    "slug": "otto-vogl",
+    "first_name": "Otto",
+    "last_name": "Vogl",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-anja-wenter",
+    "slug": "anja-wenter",
+    "first_name": "Anja",
+    "last_name": "Wenter",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-lio-wurm",
+    "slug": "lio-wurm",
+    "first_name": "Lio",
+    "last_name": "Wurm",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-mina-xandl",
+    "slug": "mina-xandl",
+    "first_name": "Mina",
+    "last_name": "Xandl",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-theo-xaver",
+    "slug": "theo-xaver",
+    "first_name": "Theo",
+    "last_name": "Xaver",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-eva-yalin",
+    "slug": "eva-yalin",
+    "first_name": "Eva",
+    "last_name": "Yalin",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-noah-ypern",
+    "slug": "noah-ypern",
+    "first_name": "Noah",
+    "last_name": "Ypern",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-mara-zeller",
+    "slug": "mara-zeller",
+    "first_name": "Mara",
+    "last_name": "Zeller",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-ivo-zorn",
+    "slug": "ivo-zorn",
+    "first_name": "Ivo",
+    "last_name": "Zorn",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-adi-schmoelzer",
+    "slug": "adi-schmoelzer",
+    "first_name": "Adi",
+    "last_name": "Schmölzer",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-7th-spittaler-comicfestival",
+    "slug": "7th-spittaler-comicfestival",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "display_name": "7th Spittaler Comicfestival",
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-austriatoon",
+    "slug": "austriatoon",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "display_name": "Austriatoon",
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-nicoline-von-heyl",
+    "slug": "nicoline-von-heyl",
+    "first_name": "Nicoline von",
+    "last_name": "Heyl",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-lebenshilfe-spittal",
+    "slug": "lebenshilfe-spittal",
+    "first_name": "",
+    "last_name": "",
+    "middle_initial": null,
+    "display_name": "Lebenshilfe Spittal",
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-herbert-meisslitzer",
+    "slug": "herbert-meisslitzer",
+    "first_name": "Herbert",
+    "last_name": "Meißlitzer",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-sylvia-campidell",
+    "slug": "sylvia-campidell",
+    "first_name": "Sylvia",
+    "last_name": "Campidell",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-judith-maria-kulle",
+    "slug": "judith-maria-kulle",
+    "first_name": "Judith Maria",
+    "last_name": "Kulle",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-birgit-moertl",
+    "slug": "birgit-moertl",
+    "first_name": "Birgit",
+    "last_name": "Mörtl",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-peter-kohlweiss",
+    "slug": "peter-kohlweiss",
+    "first_name": "Peter",
+    "last_name": "Kohlweiß",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  },
+  {
+    "id": "artist-santino-solace",
+    "slug": "santino-solace",
+    "first_name": "Santino",
+    "last_name": "Solace",
+    "middle_initial": null,
+    "display_name": null,
+    "website_url": null,
+    "status": "draft"
+  }
+]

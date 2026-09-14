@@ -21,7 +21,7 @@ import { fileURLToPath } from 'node:url'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const toursDirectory = join(projectRoot, 'public', 'media', 'tours')
-const exhibitionsFile = join(projectRoot, 'app', 'data', 'exhibitions.json')
+const exhibitionsFile = join(projectRoot, 'app', 'data', 'pp_exhibitions.json')
 const defaultExportDirectory = resolve(projectRoot, '..', '..', '_MacAPP TOUR-VIEWER', '_tours', 'exported')
 
 const SAFE_ID = /^[a-z0-9][a-z0-9._-]*$/iu
@@ -238,7 +238,7 @@ async function main() {
 
   if (linked) {
     if (options.exhibition && options.exhibition !== linked.slug) {
-      fail(`${options.tourId} is already linked to "${linked.slug}", not "${options.exhibition}". Set that record's "tour" to null in app/data/exhibitions.json first if it should move.`)
+      fail(`${options.tourId} is already linked to "${linked.slug}", not "${options.exhibition}". Set that record's "tour" to null in app/data/pp_exhibitions.json first if it should move.`)
     }
     log(`${options.tourId} is already linked to "${linked.slug}". Replacing the copy only.`)
   }
@@ -247,7 +247,7 @@ async function main() {
     if (options.exhibition) {
       record = exhibitions.find((item) => item.slug === options.exhibition)
       if (!record) fail(`No exhibition has the slug "${options.exhibition}".`)
-      if (record.tour) fail(`"${record.slug}" already has the tour ${record.tour}. Unlink it in app/data/exhibitions.json first if that is intended.`)
+      if (record.tour) fail(`"${record.slug}" already has the tour ${record.tour}. Unlink it in app/data/pp_exhibitions.json first if that is intended.`)
     }
     else {
       if (!candidates.length) fail('Every exhibition already has a tour. Pass --exhibition <slug> to replace one deliberately.')
@@ -264,7 +264,7 @@ async function main() {
   log(`${replacing ? 'over the existing copy at' : 'to'} ${relative(projectRoot, target)}/`)
 
   if (options.dryRun) {
-    if (!linked) log(`Would set "tour": "${tourPath}" on "${record.slug}" in app/data/exhibitions.json.`)
+    if (!linked) log(`Would set "tour": "${tourPath}" on "${record.slug}" in app/data/pp_exhibitions.json.`)
     log('Would run pnpm check:public.')
     log('Dry run complete. Nothing was written.')
     return
@@ -289,7 +289,7 @@ async function main() {
   log('Published locally. Next:')
   log(`  1. pnpm dev  →  open /exhibitions/${record.slug}/ (German) or /en/exhibitions/${record.slug}/ and click Start experience.`)
   log('  2. pnpm deploy:dry-run, then pnpm deploy.')
-  if (!linked) log('  3. Commit app/data/exhibitions.json (the tour folder itself is not tracked).')
+  if (!linked) log('  3. Commit app/data/pp_exhibitions.json (the tour folder itself is not tracked).')
 }
 
 await main()

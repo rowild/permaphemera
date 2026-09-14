@@ -37,7 +37,7 @@ assert.deepEqual(germanKeys, englishKeys, 'English and German UI locale files mu
 //   2. Stable, non-translatable fields must never appear inside a `de` entry.
 const germanCoverage = {}
 
-for (const collection of ['exhibitions', 'venues', 'locations']) {
+for (const collection of ['pp_exhibitions', 'pp_venues', 'pp_locations']) {
   const records = await readJson(`app/data/${collection}.json`)
   let withDe = 0
 
@@ -54,7 +54,7 @@ for (const collection of ['exhibitions', 'venues', 'locations']) {
 
     for (const entry of record.translations ?? []) {
       if (entry.languages_code !== 'de') continue
-      for (const immutableField of ['id', 'slug', 'location_id', 'venue_slug', 'start_date', 'end_date', 'image', 'hero_image', 'source_pdf', 'website_url']) {
+      for (const immutableField of ['id', 'slug', 'location', 'venue_slug', 'start_date', 'end_date', 'image', 'hero_image', 'source_pdf', 'website_url']) {
         assert(!(immutableField in entry), `${collection}.${record.id} must not translate stable field ${immutableField}.`)
       }
     }

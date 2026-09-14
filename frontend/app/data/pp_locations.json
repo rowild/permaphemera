@@ -2,12 +2,13 @@
   {
     "id": "location-spittal-an-der-drau",
     "slug": "spittal-an-der-drau",
-    "city_name": "Spittal an der Drau",
+    "title": "Spittal an der Drau",
     "postal_code": "9800",
     "state": "Carinthia",
     "country": "Austria",
     "latitude": 46.7967,
     "longitude": 13.4989,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -19,12 +20,13 @@
   {
     "id": "location-graz",
     "slug": "graz",
-    "city_name": "Graz",
+    "title": "Graz",
     "postal_code": "8020",
     "state": "Styria",
     "country": "Austria",
     "latitude": 47.0707,
     "longitude": 15.4395,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -36,12 +38,13 @@
   {
     "id": "location-linz",
     "slug": "linz",
-    "city_name": "Linz",
+    "title": "Linz",
     "postal_code": "4020",
     "state": "Upper Austria",
     "country": "Austria",
     "latitude": 48.3069,
     "longitude": 14.2858,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -53,12 +56,13 @@
   {
     "id": "location-vienna",
     "slug": "vienna",
-    "city_name": "Vienna",
+    "title": "Vienna",
     "postal_code": "1080",
     "state": "Vienna",
     "country": "Austria",
     "latitude": 48.2082,
     "longitude": 16.3738,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -70,12 +74,13 @@
   {
     "id": "location-baden",
     "slug": "baden",
-    "city_name": "Baden",
+    "title": "Baden",
     "postal_code": "2500",
     "state": "Lower Austria",
     "country": "Austria",
     "latitude": 48.0059,
     "longitude": 16.2318,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -87,12 +92,13 @@
   {
     "id": "location-krems-an-der-donau",
     "slug": "krems-an-der-donau",
-    "city_name": "Krems an der Donau",
+    "title": "Krems an der Donau",
     "postal_code": "3500",
     "state": "Lower Austria",
     "country": "Austria",
     "latitude": 48.4103,
     "longitude": 15.6142,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -104,12 +110,13 @@
   {
     "id": "location-eisenstadt",
     "slug": "eisenstadt",
-    "city_name": "Eisenstadt",
+    "title": "Eisenstadt",
     "postal_code": "7000",
     "state": "Burgenland",
     "country": "Austria",
     "latitude": 47.8456,
     "longitude": 16.5231,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -121,12 +128,13 @@
   {
     "id": "location-klagenfurt-am-worthersee",
     "slug": "klagenfurt-am-worthersee",
-    "city_name": "Klagenfurt am Wörthersee",
+    "title": "Klagenfurt am Wörthersee",
     "postal_code": "9020",
     "state": "Carinthia",
     "country": "Austria",
     "latitude": 46.6247,
     "longitude": 14.3053,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -138,12 +146,13 @@
   {
     "id": "location-bad-eisenkappel",
     "slug": "bad-eisenkappel",
-    "city_name": "Bad Eisenkappel",
+    "title": "Bad Eisenkappel",
     "postal_code": "9135",
     "state": "Carinthia",
     "country": "Austria",
     "latitude": 46.4833,
     "longitude": 14.5833,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -155,12 +164,13 @@
   {
     "id": "location-villach",
     "slug": "villach",
-    "city_name": "Villach",
+    "title": "Villach",
     "postal_code": "9500",
     "state": "Carinthia",
     "country": "Austria",
     "latitude": 46.6103,
     "longitude": 13.8558,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -172,12 +182,13 @@
   {
     "id": "location-innsbruck",
     "slug": "innsbruck",
-    "city_name": "Innsbruck",
+    "title": "Innsbruck",
     "postal_code": "6020",
     "state": "Tyrol",
     "country": "Austria",
     "latitude": 47.2692,
     "longitude": 11.4041,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -189,12 +200,13 @@
   {
     "id": "location-salzburg",
     "slug": "salzburg",
-    "city_name": "Salzburg",
+    "title": "Salzburg",
     "postal_code": "5020",
     "state": "Salzburg",
     "country": "Austria",
     "latitude": 47.8095,
     "longitude": 13.055,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -206,12 +218,13 @@
   {
     "id": "location-hallein",
     "slug": "hallein",
-    "city_name": "Hallein",
+    "title": "Hallein",
     "postal_code": "5400",
     "state": "Salzburg",
     "country": "Austria",
     "latitude": 47.6819,
     "longitude": 13.0958,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -223,12 +236,13 @@
   {
     "id": "location-bludenz",
     "slug": "bludenz",
-    "city_name": "Bludenz",
+    "title": "Bludenz",
     "postal_code": "6700",
     "state": "Vorarlberg",
     "country": "Austria",
     "latitude": 47.155,
     "longitude": 9.8206,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -240,12 +254,13 @@
   {
     "id": "location-bregenz",
     "slug": "bregenz",
-    "city_name": "Bregenz",
+    "title": "Bregenz",
     "postal_code": "6900",
     "state": "Vorarlberg",
     "country": "Austria",
     "latitude": 47.5031,
     "longitude": 9.7471,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -257,12 +272,13 @@
   {
     "id": "location-lustenau",
     "slug": "lustenau",
-    "city_name": "Lustenau",
+    "title": "Lustenau",
     "postal_code": "6890",
     "state": "Vorarlberg",
     "country": "Austria",
     "latitude": 47.4269,
     "longitude": 9.6606,
+    "description": null,
     "status": "published",
     "translations": [
       {
@@ -274,12 +290,13 @@
   {
     "id": "location-schruns",
     "slug": "schruns",
-    "city_name": "Schruns",
+    "title": "Schruns",
     "postal_code": "6780",
     "state": "Vorarlberg",
     "country": "Austria",
     "latitude": 47.0794,
     "longitude": 9.9186,
+    "description": null,
     "status": "published",
     "translations": [
       {

@@ -22,9 +22,9 @@ const [
   header,
   footerMenu
 ] = await Promise.all([
-  readJson('app/data/locations.json'),
-  readJson('app/data/venues.json'),
-  readJson('app/data/exhibitions.json'),
+  readJson('app/data/pp_locations.json'),
+  readJson('app/data/pp_venues.json'),
+  readJson('app/data/pp_exhibitions.json'),
   readText('app/pages/venues/index.vue'),
   readText('app/pages/venues/[slug].vue'),
   readText('app/components/GalleryDirectoryCard.vue'),
@@ -45,8 +45,8 @@ const [
 // fields (state, country, postal code) through `location_id`.
 const cityById = new Map(cityLocations.map((city) => [city.id, city]))
 const cityOf = (gallery) => {
-  const city = cityById.get(gallery.location_id)
-  assert(city, `${gallery.id} references unknown location ${gallery.location_id}.`)
+  const city = cityById.get(gallery.location)
+  assert(city, `${gallery.id} references unknown location ${gallery.location}.`)
   return city
 }
 
@@ -58,12 +58,12 @@ assert(galleries.every((gallery) => cityOf(gallery).country === 'Austria'), 'Eve
 assert(galleries.some(({ slug, featured }) => slug === 'parkschloessl-spittal-drau' && featured), 'Parkschlössl must remain the featured pilot gallery.')
 
 for (const gallery of galleries) {
-  for (const field of ['id', 'slug', 'name', 'image']) {
+  for (const field of ['id', 'slug', 'title', 'image']) {
     assert(gallery[field], `${gallery.id} is missing required gallery field ${field}.`)
   }
 
   const city = cityOf(gallery)
-  for (const field of ['city_name', 'postal_code', 'state', 'country']) {
+  for (const field of ['title', 'postal_code', 'state', 'country']) {
     assert(city[field], `${gallery.id} is missing required city field ${field} via location ${city.id}.`)
   }
 

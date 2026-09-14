@@ -1,0 +1,36 @@
+[
+  {
+    "id": "role-artist",
+    "slug": "artist",
+    "title": "Artist",
+    "status": "published",
+    "sort": 1,
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Artist"
+      },
+      {
+        "languages_code": "de",
+        "title": "Künstler:in"
+      }
+    ]
+  },
+  {
+    "id": "role-curator",
+    "slug": "curator",
+    "title": "Curator",
+    "status": "published",
+    "sort": 2,
+    "translations": [
+      {
+        "languages_code": "en",
+        "title": "Curator"
+      },
+      {
+        "languages_code": "de",
+        "title": "Kurator:in"
+      }
+    ]
+  }
+]
