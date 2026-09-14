@@ -131,6 +131,8 @@ for (const [index, route] of ['imprint', 'privacy', 'terms', 'accessibility'].en
 }
 assert.match(header, /useSiteNavigation\(\)/, 'The header must render its legal links from the navigation data.')
 assert.match(footerMenu, /useSiteNavigation\(\)/, 'The footer must render its legal links from the navigation data.')
+assert.match(header, /\['information', 'legal'\]/, 'The header popup must render the information and legal footer groups, which is where imprint/privacy/terms/accessibility actually surface.')
+assert.match(footerMenu, /v-for="group in footerGroups"/, 'The footer must render every navigation-data group unfiltered, so imprint/privacy/terms/accessibility are not silently dropped.')
 
 const coverageSummary = Object.entries(germanCoverage).map(([name, ratio]) => `${name} ${ratio} de`).join(', ')
 console.log(`i18n/privacy check passed (${englishKeys.length} shared UI messages; German coverage — ${coverageSummary}).`)
