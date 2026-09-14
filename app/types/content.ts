@@ -1,3 +1,5 @@
+import type { TourStatus } from '~/utils/tourAccess'
+
 export interface LocationTranslation {
   languages_code: string
   description: string
@@ -85,6 +87,24 @@ export interface ExhibitionRecord {
   source_pdf: string | null
   /** Root-relative folder of the exported 360° tour (`/media/tours/<id>/`), or null while none is published. */
   tour: string | null
+  /** Editorial availability of the 360° record; see `TourStatus` in utils/tourAccess. */
+  tour_status: TourStatus
+  /** ISO date from which the record may be shown, or null for immediately. */
+  tour_available_from: string | null
+  status: ContentStatus
+  translations: TranslationEntry[]
+}
+
+/**
+ * One artist's words about one exhibition room (Directus: `exhibition_statements`,
+ * M2O to exhibitions and to artists). `prompt` is the question the artist
+ * answered ("How did you approach the room?"); `statement` is the answer.
+ */
+export interface ExhibitionStatement {
+  id: string
+  exhibition_id: string
+  artist_id: string
+  sort: number
   status: ContentStatus
   translations: TranslationEntry[]
 }

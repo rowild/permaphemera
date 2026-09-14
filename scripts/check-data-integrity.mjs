@@ -5,12 +5,13 @@ import { fileURLToPath } from 'node:url'
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const readJson = async (path) => JSON.parse(await readFile(resolve(projectRoot, path), 'utf8'))
 
-const [locations, venues, artists, exhibitions, junction] = await Promise.all([
+const [locations, venues, artists, exhibitions, junction, statements] = await Promise.all([
   readJson('app/data/locations.json'),
   readJson('app/data/venues.json'),
   readJson('app/data/artists.json'),
   readJson('app/data/exhibitions.json'),
-  readJson('app/data/exhibitions_artists.json')
+  readJson('app/data/exhibitions_artists.json'),
+  readJson('app/data/exhibition_statements.json')
 ])
 
 const ids = (records) => new Set(records.map((record) => record.id))
@@ -42,6 +43,15 @@ const checks = [
   ['junction artist_id all resolve', junction.every((row) => artistIds.has(row.artist_id))],
   ['every exhibition has at least one artist', exhibitions.every((exhibition) =>
     junction.some((row) => row.exhibition_id === exhibition.id))],
+  ['statement exhibition_id all resolve', statements.every((row) => exhibitionIds.has(row.exhibition_id))],
+  ['statement artist_id all resolve', statements.every((row) => artistIds.has(row.artist_id))],
+  ['every statement is by an artist linked to that exhibition', statements.every((row) =>
+    junction.some((link) => link.exhibition_id === row.exhibition_id && link.artist_id === row.artist_id))],
+  ['every statement has an en translation with a statement text', statements.every((row) =>
+    Array.isArray(row.translations) && row.translations.some((entry) =>
+      entry.languages_code === 'en' && typeof entry.statement === 'string'))],
+  ['statements have a valid status', validStatus(statements)],
+  ['statement ids unique', new Set(statements.map((row) => row.id)).size === statements.length],
 
   ['every venue has a type', venues.every((venue) => typeof venue.type === 'string' && venue.type.length > 0)],
   ['venue types are from the known set', venues.every((venue) =>
@@ -72,5 +82,5 @@ if (failures.length) {
   for (const [label] of failures) console.error(`  - ${label}`)
   process.exitCode = 1
 } else {
-  console.log(`Data integrity OK: ${checks.length} assertions across 5 collections.`)
+  console.log(`Data integrity OK: ${checks.length} assertions across 6 collections.`)
 }

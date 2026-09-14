@@ -1,11 +1,12 @@
 import artists from '~/data/artists.json'
+import exhibitionStatements from '~/data/exhibition_statements.json'
 import exhibitions from '~/data/exhibitions.json'
 import exhibitionsArtists from '~/data/exhibitions_artists.json'
 import locations from '~/data/locations.json'
 import sponsors from '~/data/sponsors.json'
 import venues from '~/data/venues.json'
 import type {
-  ArtistRecord, CityLocation, ExhibitionArtistLink, ExhibitionRecord, Sponsor, VenueRecord
+  ArtistRecord, CityLocation, ExhibitionArtistLink, ExhibitionRecord, ExhibitionStatement, Sponsor, VenueRecord
 } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { resolveExhibitions } from '~/utils/resolveExhibitions'
@@ -25,7 +26,8 @@ export function useArchiveData() {
     locations as CityLocation[],
     exhibitionsArtists as ExhibitionArtistLink[],
     artists as ArtistRecord[],
-    locale.value
+    locale.value,
+    exhibitionStatements as ExhibitionStatement[]
   ))
 
   return {

@@ -13,6 +13,8 @@
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-schmoelzer-adi/RZ_Schmölzer-KIP_Aussendung.pdf",
     "tour": "/media/tours/2026-06-01-parkschloessl-spittal-adi-schmoelzer/",
+    "tour_status": "available",
+    "tour_available_from": "2026-06-13",
     "status": "published",
     "translations": [
       {
@@ -53,6 +55,8 @@
     "medium": "Comics, illustration, outsider art and workshops",
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-comic-festival/Austriatoon Festival 2026.pdf",
     "tour": "/media/tours/2026-06-15-parkschloessl-spittal-comic-festival/",
+    "tour_status": "available",
+    "tour_available_from": "2026-06-21",
     "status": "published",
     "translations": [
       {
@@ -93,6 +97,8 @@
     "medium": "Painting and mixed media",
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-von-heyl-nicoline/RZ_Von-Heyl-KIP_Aussendung.pdf",
     "tour": "/media/tours/2026-06-22-parkschloessl-spittal-nicoline-von-heyl/",
+    "tour_status": "available",
+    "tour_available_from": "2026-07-04",
     "status": "published",
     "translations": [
       {
@@ -133,6 +139,8 @@
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-lebenshilfe-spittal/RZ_Lebenshilfe-KIP_Aussendung.pdf",
     "tour": "/media/tours/2026-07-06-parkschloessl-spittal-lebenshilfe-spittal-drau/",
+    "tour_status": "available",
+    "tour_available_from": "2026-07-11",
     "status": "published",
     "translations": [
       {
@@ -173,6 +181,8 @@
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-meisslitzer-herbert/RZ_Meisslitzer-KIP_Aussendung.pdf",
     "tour": "/media/tours/2026-07-13-parkschloessl-spittal-herbert-meisslitzer/",
+    "tour_status": "available",
+    "tour_available_from": "2026-07-25",
     "status": "published",
     "translations": [
       {
@@ -213,6 +223,8 @@
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-campidell-kulle/RZ_Kulle-Campidell-KIP-Aussendung.pdf",
     "tour": "/media/tours/2026-07-30-parkschloessl-spittal-sylvia-campidell-und-judith-maria-kulle/",
+    "tour_status": "available",
+    "tour_available_from": "2026-08-08",
     "status": "published",
     "translations": [
       {
@@ -253,6 +265,8 @@
     "medium": null,
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-moertl-birgit/RZ_Mörtl-KIP_Aussendung.pdf",
     "tour": "/media/tours/2026-08-10-parkschloessl-spittal-moertl-birgit/",
+    "tour_status": "available",
+    "tour_available_from": "2026-08-22",
     "status": "published",
     "translations": [
       {
@@ -293,6 +307,8 @@
     "medium": "Watercolour and drawing",
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-kohlweiss-peter/Kunst im Park_Kohlweiss.pdf",
     "tour": null,
+    "tour_status": "available",
+    "tour_available_from": "2026-09-05",
     "status": "published",
     "translations": [
       {
@@ -333,6 +349,8 @@
     "medium": "Comics, manga and webtoon",
     "source_pdf": "/media/documents/parkschloessl-spittal-drau/2026-solace-santino/Kunst im Park_Santino Solace.pdf",
     "tour": null,
+    "tour_status": "available",
+    "tour_available_from": "2026-09-19",
     "status": "published",
     "translations": [
       {
@@ -373,6 +391,8 @@
     "medium": null,
     "source_pdf": null,
     "tour": null,
+    "tour_status": "available",
+    "tour_available_from": "2024-05-21",
     "status": "draft",
     "translations": [
       {
@@ -402,6 +422,8 @@
     "medium": null,
     "source_pdf": null,
     "tour": null,
+    "tour_status": "available",
+    "tour_available_from": "2024-01-29",
     "status": "draft",
     "translations": [
       {
@@ -431,6 +453,8 @@
     "medium": null,
     "source_pdf": null,
     "tour": null,
+    "tour_status": "available",
+    "tour_available_from": "2023-09-04",
     "status": "draft",
     "translations": [
       {
@@ -460,6 +484,8 @@
     "medium": null,
     "source_pdf": null,
     "tour": null,
+    "tour_status": "available",
+    "tour_available_from": "2023-06-12",
     "status": "draft",
     "translations": [
       {

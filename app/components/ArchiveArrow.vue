@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    direction?: 'left' | 'right' | 'up'
+    direction?: 'left' | 'right' | 'up' | 'down'
   }>(),
   {
     direction: 'right'
@@ -15,7 +15,8 @@ const props = withDefaults(
     :class="[
       `archive-arrow-${props.direction}`,
       props.direction === 'left' ? 'rotate-180' : '',
-      props.direction === 'up' ? 'w-10 -rotate-90' : ''
+      props.direction === 'up' ? 'w-10 -rotate-90' : '',
+      props.direction === 'down' ? 'w-10 rotate-90' : ''
     ]"
     viewBox="0 0 44 12"
     fill="none"

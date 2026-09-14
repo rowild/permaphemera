@@ -22,8 +22,8 @@ const checks = [
   ['paper underlines strengthen on hover and focus', /paper: '[^']*after:opacity-50[^']*group-hover\/archive-text-link:after:opacity-100[^']*group-focus-visible\/archive-text-link:after:opacity-100'/.test(component)],
   ['night underlines become archive red on hover and focus', component.includes('group-hover/archive-text-link:after:bg-archive-red') && component.includes('group-focus-visible/archive-text-link:after:bg-archive-red')],
   ['external-link icons move diagonally', /external: '[^']*translate-x-0\.5[^']*-translate-y-0\.5'/.test(component)],
-  ['breadcrumbs delegate link styling to the shared component', !breadcrumb.includes('[&_a]') && artistsPage.includes('<ArchiveTextLink :to="localePath(\'/\')">') && venueIndex.includes('<ArchiveTextLink :to="localePath(\'/\')">') && exhibitionIndex.includes('<ArchiveTextLink :to="localePath(\'/\')">') && exhibitionPage.includes('<ArchiveTextLink :to="localePath(\'/exhibitions/\')">') && venuePage.includes('<ArchiveTextLink :to="localePath(\'/venues/\')">')],
-  ['paper action links use the shared component', venuePage.includes('icon-motion="external"') && exhibitionPage.includes('icon-motion="left"')],
+  ['breadcrumbs delegate link styling to the shared component', !breadcrumb.includes('[&_a]') && artistsPage.includes('<ArchiveTextLink :to="localePath(\'/\')">') && venueIndex.includes('<ArchiveTextLink :to="localePath(\'/\')">') && exhibitionIndex.includes('<ArchiveTextLink :to="localePath(\'/\')">') && /<ArchiveTextLink :to="localePath\('\/exhibitions\/'\)"( surface="night")?>/.test(exhibitionPage) && venuePage.includes('<ArchiveTextLink :to="localePath(\'/venues/\')">')],
+  ['paper action links use the shared component', venuePage.includes('icon-motion="external"') && exhibitionPage.includes('icon-motion="external"')],
   ['the image-overlay action uses the night variant', /<ArchiveTextLink[^>]*surface="night"/.test(venuePage)],
   ['directory continuation links use the shared component', /<ArchiveTextLink[\s\S]*artists\.showMoreUnder/.test(artistGroup)]
 ]

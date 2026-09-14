@@ -3,8 +3,11 @@
 // editor project's embeddable widget, copied to public/media/tour-viewer/,
 // and its contract (order of calls, destroy on close, fullscreen as an
 // enhancement only) is the editor repository's docs/embedding.md.
+// The page renders this button only while the record is open (see
+// utils/tourAccess); every other state is a status line, never a
+// disabled button.
 const props = defineProps<{
-  tourUrl: string | null
+  tourUrl: string
 }>()
 
 const VIEWER_SCRIPT = '/media/tour-viewer/tour-viewer.js'
@@ -19,6 +22,7 @@ interface TourViewerModule {
 }
 
 const opening = ref(false)
+const trigger = ref<{ $el?: HTMLElement } | null>(null)
 let closeCurrent: (() => void) | null = null
 
 // The stylesheet is added once and the promise is cached: a <link> fires
@@ -39,7 +43,7 @@ const loadStyles = () => {
 }
 
 const openTour = async () => {
-  if (!props.tourUrl || opening.value || closeCurrent) return
+  if (opening.value || closeCurrent) return
   opening.value = true
 
   const modal = document.createElement('div')
@@ -67,6 +71,7 @@ const openTour = async () => {
     document.body.style.overflow = previousBodyOverflow
     document.removeEventListener('fullscreenchange', onFullscreenChange)
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {})
+    trigger.value?.$el?.focus?.()
   }
   const onFullscreenChange = () => {
     if (!document.fullscreenElement) close()
@@ -98,13 +103,11 @@ onBeforeUnmount(() => closeCurrent?.())
 
 <template>
   <ArchiveButton
-    class="mt-[1.4rem] self-start compact:w-full"
+    ref="trigger"
     type="button"
-    :disabled="!props.tourUrl || opening"
-    :aria-describedby="props.tourUrl ? undefined : 'spatial-record-status'"
+    :aria-busy="opening || undefined"
     @click="openTour"
   >
-    {{ $t('exhibition.startExperience') }} <ArchiveArrow />
+    {{ opening ? $t('exhibition.openingExperience') : $t('exhibition.startExperience') }} <ArchiveArrow />
   </ArchiveButton>
-  <small v-if="!props.tourUrl" id="spatial-record-status" class="mt-[0.65rem] text-xs tracking-[0.08em] text-archive-footer-copy/72 uppercase">{{ $t('exhibition.inPreparation') }}</small>
 </template>
