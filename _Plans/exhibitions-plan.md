@@ -58,168 +58,164 @@ The following infrastructure components are **omitted from the first implementat
 
 ## 2. Production Database Schema (Directus v11)
 
-This section is the **single living schema** for the project. The local JSON files in `frontend/app/data/` mirror it 1:1, and the Directus collections are built from it. When a field changes in one place, change it in all three (JSON, `frontend/app/types/content.ts`, this section) in the same commit.
+This section is the **single living schema**. It is built by `directus/scripts/schema.mjs` (the source of truth for Directus), mirrored 1:1 by the JSON files in `frontend/app/data/` and the types in `frontend/app/types/content.ts`. Naming and layout follow `_Plans/directus-schema-conventions.md` with prefix `pp_`. The design that produced it is `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md`.
 
-The design that produced the current shape is `frontend/docs/superpowers/specs/2026-08-12-directus-aligned-data-model-design.md`. That document is a dated record of the decisions and stays as written; this section is where the schema is maintained.
+Last reconciled: 2026-09-14. Schema version `2026-09-14.1` (see `pp_meta`).
 
-Last reconciled against the JSON files: 2026-09-14. Built in the local Directus on the same day by `directus/scripts/create-schema.mjs`; the resulting schema is exported to `directus/schema/snapshot.yaml`. Change the script, not the admin app, when a field changes, then re-export the snapshot.
+### Status and system fields
 
-**System fields.** Every core collection (`locations`, `venues`, `artists`, `exhibitions`, `exhibition_statements`, `sponsors`) also carries the six optional fields the Directus app offers on creation: `status`, `sort`, `user_created`, `date_created`, `user_updated`, `date_updated`. The last four are filled by Directus automatically (field `special` flags `user-created`, `date-created`, `user-updated`, `date-updated`). They are not part of the JSON files and the frontend never reads them. Junction and translation tables do not carry them.
+**`status`** is three-valued on every entity: `published`, `draft`, `archived`. It is wired to Directus' native archive feature: `archive_field` `status`, `archive_value` `archived`, `unarchive_value` `draft`.
 
-### Cross-Cutting Rules
+**System fields.** Every entity carries `id` (UUID) plus six system fields: `status`, `sort`, `user_created`, `date_created`, `user_updated`, `date_updated`. The last four are filled by Directus automatically. Structural tables (`mm__…`, `translations__…`) carry none of them — only `id`, the two foreign keys and `sort`.
 
-**`status`** (`draft` | `published`) belongs on `locations`, `venues`, `artists`, `exhibitions` and `exhibition_statements`. It records provenance, not visibility: while the project is work in progress much of the content is deliberately invented or refers to institutions that are not yet partners, and that data must still render or most pages would be empty. `status` marks which records are real so they can be filtered later without archaeology. The frontend gates this through a single constant, not through conditionals in components.
+### Collections
 
-**Language priority.** All languages are equal *in the frontend*: a record carries a `translations[]` array and the active locale is selected from it, with a `locale → en → first available` fallback. The backend is English-first: English is the language entered in Directus, and every other translation is derived from it. So English is an editorial starting point and an authoring convention, not a privileged field in the data shape.
+Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a6523c`) holds the main collections. `pp_meta` is a hidden singleton. `languages` is Directus' own and stays unprefixed.
 
-**Translations.** In the JSON, translations are inline as `translations[]` on the record. In Directus each becomes a child table `<collection>_translations` with `id`, `<collection>_id` (M2O) and `languages_code` (M2O → `languages.code`), plus the translated fields listed per collection below. The child tables are not repeated for every collection; the "Translated fields" line is the definition.
+| Collection | Kind | Group | Hidden |
+|---|---|---|---|
+| `pp_exhibitions` | main | `pp_archive` | no |
+| `pp_venues` | main | `pp_archive` | no |
+| `pp_persons` | main | `pp_archive` | no |
+| `pp_locations` | main | `pp_archive` | no |
+| `pp_sponsors` | main | `pp_archive` | no |
+| `pp_roles` | main (vocabulary) | `pp_archive` | no |
+| `pp_navigations` | main | `pp_archive` | no |
+| `pp_exhibition_participations` | child of exhibitions | `pp_exhibitions` | yes |
+| `pp_exhibition_statements` | child of exhibitions | `pp_exhibitions` | yes |
+| `pp_navigation_items` | child of navigations | `pp_navigations` | yes |
+| `pp_mm__exhibitions_venues` | structural | `pp_exhibitions` | yes |
+| `pp_mm__exhibitions_sponsors` | structural | `pp_sponsors` | yes |
+| `pp_mm__persons_roles` | structural | `pp_persons` | yes |
+| `pp_mm__persons_venues` | structural | `pp_persons` | yes |
+| `pp_mm__persons_sponsors` | structural | `pp_sponsors` | yes |
+| `pp_mm__locations_sponsors` | structural | `pp_sponsors` | yes |
+| `pp_mm__sponsors_venues` | structural | `pp_sponsors` | yes |
+| `pp_translations__exhibitions` | structural | `pp_exhibitions` | yes |
+| `pp_translations__venues` | structural | `pp_venues` | yes |
+| `pp_translations__locations` | structural | `pp_locations` | yes |
+| `pp_translations__sponsors` | structural | `pp_sponsors` | yes |
+| `pp_translations__roles` | structural | `pp_roles` | yes |
+| `pp_translations__exhibition_statements` | structural | `pp_exhibition_statements` | yes |
+| `pp_translations__navigation_items` | structural | `pp_navigation_items` | yes |
+| `pp_meta` | installer state, singleton | root | yes |
 
-**IDs.** The JSON uses readable string ids (`venue-parkschloessl-spittal-drau`). Directus uses `UUID` primary keys on the core collections and auto-increment integers on the junction and child tables. Slugs, not ids, are the stable public identifier.
+25 prefixed collections. `pp_persons` and `pp_navigations` have no translation table.
 
-**Files.** `image`, `hero_image`, `profile_image` and `source_pdf` are root-relative paths in the JSON (`/media/images/…`). In Directus they are `File` relations.
+### Relation map
 
-**Highlighting is not data.** The exhibition schema has no `featured` field. The frontend derives the highlighted exhibition from dates (current, else nearest upcoming, else the first reverse-chronological record). Do not add it. Venues *do* carry `featured`; that is a curated, editorial choice.
+Every line is one relation. The naming rule (conventions §2 rule 12) makes an M2O look like a plain field: `primary_venue` is a relation, not a string.
 
-### Core Collections
+| From | To | Shape | Field / table | Meaning |
+|---|---|---|---|---|
+| exhibition | venue | M2O | `pp_exhibitions.primary_venue` | where the show happens; the venue lists its `exhibitions` |
+| exhibition | venue | M2M | `pp_mm__exhibitions_venues` | further venues of a travelling show; aliases `further_venues` / `further_exhibitions` |
+| venue | location | M2O | `pp_venues.location` | the town the building stands in; the town lists its `venues` |
+| participation | exhibition | M2O, child | `pp_exhibition_participations.exhibition` | dies with the show; the show lists `participations` |
+| participation | person | M2O | `pp_exhibition_participations.person` | who; the person lists `participations` |
+| participation | role | M2O | `pp_exhibition_participations.role` | in which function |
+| person | role | M2M | `pp_mm__persons_roles` | what the person can be; aliases `roles` / `persons` |
+| statement | exhibition | M2O, child | `pp_exhibition_statements.exhibition` | dies with the show |
+| statement | person | M2O | `pp_exhibition_statements.person` | who said it |
+| person | venue | M2M | `pp_mm__persons_venues` | the venue represents or works with the person; aliases `venues` / `persons` |
+| sponsor | venue | M2M | `pp_mm__sponsors_venues` | aliases `venues` / `sponsors` |
+| sponsor | exhibition | M2M | `pp_mm__exhibitions_sponsors` | aliases `exhibitions` / `sponsors` |
+| sponsor | person | M2M | `pp_mm__persons_sponsors` | aliases `persons` / `sponsors` |
+| sponsor | location | M2M | `pp_mm__locations_sponsors` | aliases `locations` / `sponsors` |
+| navigation item | navigation | M2O, child | `pp_navigation_items.navigation` | which menu |
+| navigation item | navigation item | M2O, self | `pp_navigation_items.parent` | group nesting |
 
-#### `locations` — the geographic place (city or town)
+**Exhibition → location is deliberately absent.** Exhibition → venue → location is one chain.
 
-| Field | Type | Notes |
+Junction ownership in the sidebar (conventions §3 rule 1): under the parent whose form lists it, alphabetical as tie-break.
+
+### Fields
+
+Rules applied everywhere (conventions §2, §8):
+
+- Headline column is `title`. Persons keep `first_name` + `last_name`.
+- M2O on an entity is named by meaning, singular: `location`, `primary_venue`, `exhibition`, `person`, `role`, `navigation`, `parent`.
+- Junction and translation FKs are `<parent>_id` after the collection without prefix: `exhibitions_id`, `persons_id`, `roles_id`, `languages_code`.
+- Translated columns carry the note `Translated field for <host>.<column>`.
+
+#### `pp_locations`
+
+`id`, `status`, `sort`, `title`, `slug` (unique), `postal_code`, `state`, `country`, `latitude`, `longitude`, `description` (English), `translations`, `venues` (o2m), `sponsors` (m2m), audit.
+Translated: `description`.
+
+#### `pp_venues`
+
+`id`, `status`, `sort`, `title`, `slug`, `location` (M2O → locations, SET NULL), `type` (dropdown, allow other), `address`, `website_url`, `latitude`, `longitude`, `image`, `image_alt`, `hero_image`, `hero_image_alt`, `archive_number`, `featured`, `description`, `lede`, `about` (json array of paragraphs), `image_caption`, `coordinate_label`, `translations`, `exhibitions` (o2m), `further_exhibitions`, `persons`, `sponsors` (m2m), audit.
+Translated: `description`, `lede`, `about`, `image_caption`, `coordinate_label`.
+
+#### `pp_persons`
+
+`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (pseudonym or collective name, shown instead of first + last when set), `slug` (unique), `website_url`, `roles`, `venues`, `sponsors` (m2m), `participations` (o2m), audit.
+No translations.
+
+#### `pp_roles`
+
+`id`, `status`, `sort`, `title` (English), `slug` (unique: `artist`, `curator`), `translations`, `persons` (m2m), audit.
+Translated: `title`. Seeded: artist ("Artist" / "Künstler:in"), curator ("Curator" / "Kurator:in").
+
+#### `pp_exhibitions`
+
+`id`, `status`, `sort`, `title`, `slug`, `primary_venue` (M2O → venues, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (markdown, English), `date_range`, `opening_hours`, `vernissage`, `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `participations`, `statements` (o2m), `further_venues`, `sponsors` (m2m), audit.
+Translated: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `image_alt`, `medium`.
+
+#### `pp_exhibition_participations` (child)
+
+`id`, `status`, `sort`, `exhibition` (M2O → exhibitions, CASCADE, NOT NULL), `person` (M2O → persons, SET NULL), `role` (M2O → roles, SET NULL), audit. `display_template` `{{person.first_name}} {{person.last_name}} · {{role.title}}`.
+
+#### `pp_exhibition_statements` (child)
+
+`id`, `status`, `sort`, `exhibition` (M2O → exhibitions, CASCADE, NOT NULL), `person` (M2O → persons, SET NULL), `prompt`, `statement`, `translations`, audit.
+Translated: `prompt`, `statement`.
+
+#### `pp_sponsors`
+
+`id`, `status`, `sort`, `title`, `slug` (unique), `website_url`, `logo` (file), `description` (English), `translations`, `venues`, `exhibitions`, `persons`, `locations` (m2m), audit.
+Translated: `description`.
+
+#### `pp_navigations`
+
+`id`, `status`, `sort`, `title` (admin label), `key` (unique: `main`, `footer`), `items` (o2m, by `sort`), audit.
+
+#### `pp_navigation_items` (child)
+
+`id`, `status`, `sort`, `navigation` (M2O → navigations, CASCADE, NOT NULL), `parent` (self M2O, SET NULL), `key` (stable identifier), `title` (English), `kind` (dropdown `route` | `url` | `action`), `path`, `url`, `target` (`_self` | `_blank`), `children` (o2m), `translations`, audit.
+Translated: `title`. Route paths are locale-neutral; the frontend passes them through `localePath()`.
+
+#### Structural junctions
+
+`pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`.
+
+#### `pp_meta` (singleton, hidden)
+
+`id`, `schema_version`, `applied_at`. Written by the schema script.
+
+### Relations (conventions §5)
+
+| Where | `on_delete` | `one_deselect_action` |
 |---|---|---|
-| `id` | UUID | primary key |
-| `slug` | String | unique, e.g. `spittal-an-der-drau` |
-| `city_name` | String | |
-| `postal_code` | String | |
-| `state` | String | e.g. `Kärnten` |
-| `country` | String | e.g. `Austria` |
-| `latitude`, `longitude` | Float | required, town-centre approximation. Two plain floats, not a `geo_data` Point: SQLite has no spatial functions (verified 2026-09-14, `st_geomfromtext` missing). Powers radius search only; not door-level mapping |
-| `status` | Dropdown | `draft` \| `published` |
+| structural FKs (`mm__`, `translations__`) | CASCADE | delete |
+| child → host (`participations.exhibition`, `statements.exhibition`, `navigation_items.navigation`) | CASCADE | delete |
+| entity M2O (`venues.location`, `exhibitions.primary_venue`, `participations.person`, `participations.role`, `statements.person`, `navigation_items.parent`) | SET NULL | nullify |
+| file fields → `directus_files` | SET NULL | nullify |
+| audit → `directus_users` | SET NULL | nullify |
 
-Translated fields: `description` (Text / Markdown).
+Never `NO ACTION`. Every FK indexed. No unique index on a FK.
 
-#### `venues` — the building
+### Deferred
 
-| Field | Type | Notes |
-|---|---|---|
-| `id` | UUID | primary key |
-| `slug` | String | unique, e.g. `parkschloessl-spittal-drau` |
-| `location_id` | M2O → `locations` | required |
-| `name` | String | |
-| `type` | Dropdown | `gallery`, `museum`, `kunsthalle`, `art_cafe`, `open_air`, `forum` — see note below |
-| `address` | String | |
-| `website_url` | String | optional |
-| `latitude`, `longitude` | Float | optional, exact building pin. Distinct from the city centroid on `locations` |
-| `image` | File | card image |
-| `image_alt` | String | |
-| `hero_image` | File | optional, venue detail hero |
-| `hero_image_alt` | String | optional |
-| `archive_number` | String | two-digit display number, e.g. `01` |
-| `featured` | Boolean | curated landing-page highlight |
-| `status` | Dropdown | `draft` \| `published` |
+Designed, not yet built. Each waits for its own spec or its first consumer.
 
-Translated fields: `description` (Text), `lede` (String, optional), `about` (JSON array of paragraph strings, optional; edited as raw JSON in Directus for now, a friendlier interface is a later choice), `image_caption` (String, optional), `coordinate_label` (String, optional, human-readable DMS readout).
+#### Content blocks and `pp_mm__exhibitions_files__documents`
 
-A gallery is the most common exhibition venue in this archive, but not the only one. `type` keeps the frontend label flexible: the collective noun stays "Galleries"/"Galerien" while each venue renders its own type label from an i18n key (`venueType.gallery`, `venueType.art_cafe`, …). Add new values here rather than overloading `gallery`. The list is deliberately open — an unknown value must fall back to the generic collective label rather than render a raw enum. Values in use today: `gallery`, `museum`, `kunsthalle`, `forum`.
+Own spec (2026-09-14 design's "Blocks: later"). Reserved names: `pp_block_richtext`, `pp_block_header`, `pp_block_images` + `pp_block_image_items`, one `pp_m2a__<host>__blocks` junction per host (exhibitions, venues, persons, locations) with a shared allowed list, and `pp_mm__exhibitions_files__documents` for attaching source documents to a show.
 
-#### `artists` — people and collectives
-
-| Field | Type | Notes |
-|---|---|---|
-| `id` | UUID | primary key |
-| `slug` | String | unique, e.g. `max-mustermann` |
-| `first_name` | String | |
-| `last_name` | String | |
-| `middle_initial` | String | optional |
-| `artist_name` | String | optional; pseudonym or collective brand identity |
-| `birth_year` | Integer | optional |
-| `death_year` | Integer | optional |
-| `nationality` | String | optional |
-| `website_url` | String | optional |
-| `instagram_handle` | String | optional |
-| `profile_image` | File | optional |
-| `status` | Dropdown | `draft` \| `published` |
-
-Translated fields: `biography` (Text / Markdown).
-
-Placeholder artists keep every optional field `null`; nothing biographical is invented.
-
-#### `exhibitions` — the show
-
-| Field | Type | Notes |
-|---|---|---|
-| `id` | UUID | primary key |
-| `slug` | String | unique, e.g. `all-the-magic` |
-| `primary_venue_id` | M2O → `venues` | required |
-| `start_date` | Date | |
-| `end_date` | Date | |
-| `is_permanent` | Boolean | default `false` |
-| `image` | File | |
-| `image_alt` | String | English fallback; also translated |
-| `opening_hours` | String | English fallback; also translated |
-| `vernissage` | String | English fallback; also translated |
-| `medium` | String | optional; English fallback; also translated |
-| `source_pdf` | File | optional; the invitation or press sheet the record was derived from |
-| `tour` | String | optional; root-relative folder of the exported 360° tour, `/media/tours/<id>/`, or `null` while none is published |
-| `tour_status` | Dropdown | `available` \| `restricted` \| `unavailable` — see `frontend/app/utils/tourAccess.ts` |
-| `tour_available_from` | Date | optional; the day the 360° record may be shown, usually the day after the analog show closes; `null` means at once |
-| `status` | Dropdown | `draft` \| `published` |
-
-Translated fields: `title` (String), `summary` (String, one-line teaser), `description` (Text / Markdown, curatorial statement), `date_range` (String, display form of the dates), `opening_hours` (String), `vernissage` (String), `image_alt` (String), `medium` (String).
-
-> **Decided 2026-09-14.** `image_alt`, `opening_hours`, `vernissage` and `medium` live in both places on purpose. The record field holds the English original as entered by the editor. `exhibitions_translations` holds the same field for every language, English included, so a translator sees the full set in one place. The frontend reads the translation and never the record copy.
-
-#### `exhibition_statements` — an artist's words about one show
-
-| Field | Type | Notes |
-|---|---|---|
-| `id` | UUID | primary key |
-| `exhibition_id` | M2O → `exhibitions` | required |
-| `artist_id` | M2O → `artists` | required |
-| `sort` | Integer | |
-| `status` | Dropdown | `draft` \| `published` |
-
-Translated fields: `prompt` (String, the question asked, e.g. "How did you approach the room?"), `statement` (Text, the answer).
-
-The JSON file exists and the resolver reads it, but it holds no rows yet.
-
-#### `sponsors`
-
-| Field | Type | Notes |
-|---|---|---|
-| `id` | UUID | primary key |
-| `name` | String | |
-
-Rendered in the footer strip. No relations, no translations, no `status`. A `logo` File will be needed once real sponsors exist.
-
-### Junction Collections (Many-to-Many Bridge)
-
-#### `exhibitions_artists`
-
-| Field | Type | Notes |
-|---|---|---|
-| `id` | Integer | |
-| `exhibition_id` | M2O → `exhibitions` | |
-| `artist_id` | M2O → `artists` | |
-| `sort` | Integer | credit order |
-
-Multi-artist credits are multiple rows. Artists are never joined by name string.
-
-### Deferred Collections
-
-Designed, not yet built in JSON or Directus. Each waits for its first consumer.
-
-#### `exhibitions_locations` — travelling shows
-
-`id` Integer, `exhibition_id` M2O → `exhibitions`, `location_id` M2O → `locations`. Needed the first time one exhibition is shown in more than one place.
-
-#### `panoramas` — for a native 360° viewer
-
-`id` UUID, `exhibition_id` M2O → `exhibitions`, `image_file` File (the 12K optimised target), `altitude` Dropdown (`bird`, `human`, `dog`), `sort` Integer, `photographer_credit` String, `capture_date` Date. Would add `front_door_panorama_id` M2O → `panoramas` on `exhibitions`. Today tours are exported folders referenced by `exhibitions.tour`, so this collection has no consumer.
-
-#### `hotspots` — links between panoramas
-
-`id` UUID, `source_panorama_id` and `target_panorama_id` M2O → `panoramas`, `yaw` Float, `pitch` Float, `target_arrival_yaw` Float, `icon_type` Dropdown (`arrow_up`, `arrow_down`, `info`). Depends on `panoramas`.
-
+- **`panoramas`** — for a native 360° viewer. `id` UUID, `exhibition` M2O → `pp_exhibitions`, `image_file` File (the 12K optimised target), `altitude` Dropdown (`bird`, `human`, `dog`), `sort`, `photographer_credit`, `capture_date`. No consumer yet: tours today are exported folders referenced by `pp_exhibitions.tour`.
+- **`hotspots`** — links between panoramas. `id` UUID, `source_panorama` / `target_panorama` M2O → `panoramas`, `yaw`, `pitch`, `target_arrival_yaw`, `icon_type` Dropdown (`arrow_up`, `arrow_down`, `info`). Depends on `panoramas`.
 
 ---
 
@@ -519,9 +515,9 @@ export function preloadPanoramasToCache(urls: string[]): void {
 
 [ ] PHASE 4: FUTURE DATABASE ARCHITECTURE CONFIGURATION
     ├── [x] Install Directus 11.17.4 locally (Docker, `directus/`, port 8077) — 2026-09-14
-    ├── [x] Construct localized Directus collections from §2 via `directus/scripts/create-schema.mjs` — 2026-09-14
-    ├── [x] Spin up standard system language codes (en, de) and establish structural _translations links — 2026-09-14
-    ├── [x] Configure relational M2M junction keys (exhibitions_artists) — 2026-09-14; exhibitions_locations stays deferred
+    ├── [x] Rebuild all collections by the pp_ conventions from `directus/scripts/schema.mjs`, incl. persons/roles/participations, sponsors, navigations — 2026-09-14
+    ├── [x] Seed languages (en, de), roles and the two navigations — 2026-09-14
+    ├── [ ] Rename the frontend JSON, types and resolvers to the pp_ shape; header and footer read the navigations (plan part 2)
     ├── [ ] Import the JSON records from frontend/app/data into Directus
     ├── [ ] Introduce Directus SDK data adapter behind the existing JSON-compatible content model
     └── [ ] Test data query payload outputs using Directus SDK deep filtering for locale switching
