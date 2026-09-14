@@ -3,9 +3,6 @@ import {
   Landmark
 } from '@lucide/vue'
 import { gsap } from 'gsap'
-import { buildArtistDirectory } from '~/utils/artistDirectory'
-import exhibitionsArtists from '~/data/exhibitions_artists.json'
-import type { ExhibitionArtistLink } from '~/types/content'
 import type { KaleidoscopeExhibitionItem } from '~/types/kaleidoscope'
 import { selectExhibitionSchedule, selectFeaturedExhibition } from '~/utils/exhibitionSchedule'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
@@ -22,12 +19,10 @@ interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'a
 }
 type Exhibition = Pick<ResolvedExhibition, 'id' | 'slug' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image'>
 
-const { artists, venues, venueExhibitions } = useArchiveData()
+const { venues, venueExhibitions, artistDirectory: directoryArtists } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const archiveToday = useArchiveToday()
-const directoryArtists = computed(() =>
-  buildArtistDirectory(artists.value, venueExhibitions.value, exhibitionsArtists as ExhibitionArtistLink[]))
 
 useSeoMeta({
   title: 'PERMAPHEMERA',

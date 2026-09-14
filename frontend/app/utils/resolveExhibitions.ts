@@ -1,5 +1,5 @@
 import type {
-  ArtistRecord, CityLocation, ExhibitionArtistLink, ExhibitionRecord, ExhibitionStatement, VenueRecord
+  ExhibitionRecord, ExhibitionStatement, LocationRecord, ParticipationRecord, PersonRecord, RoleRecord, VenueRecord
 } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
@@ -25,6 +25,7 @@ export interface ResolvedExhibition {
   artist: string
   artist_ids: string[]
   artists: ResolvedExhibitionArtist[]
+  curators: ResolvedExhibitionArtist[]
   statements: ResolvedStatement[]
   venue_slug: string
   venue: string
@@ -47,61 +48,73 @@ export interface ResolvedExhibition {
   tour_available_from: string | null
 }
 
-export const displayArtistName = (artist: ArtistRecord): string =>
-  artist.artist_name ?? `${artist.first_name} ${artist.last_name}`.trim()
+export const displayPersonName = (person: PersonRecord): string =>
+  person.display_name ?? `${person.first_name} ${person.last_name}`.trim()
+
+const toCredit = (person: PersonRecord): ResolvedExhibitionArtist => ({
+  id: person.id,
+  name: displayPersonName(person),
+  website_url: person.website_url ?? undefined
+})
 
 export const resolveExhibitions = (
   exhibitions: ExhibitionRecord[],
   venues: VenueRecord[],
-  locations: CityLocation[],
-  junction: ExhibitionArtistLink[],
-  artists: ArtistRecord[],
+  locations: LocationRecord[],
+  participations: ParticipationRecord[],
+  persons: PersonRecord[],
+  roles: RoleRecord[],
   locale: string,
   statements: ExhibitionStatement[] = []
 ): ResolvedExhibition[] => {
   const venueById = new Map(venues.map((venue) => [venue.id, venue]))
   const locationById = new Map(locations.map((location) => [location.id, location]))
-  const artistById = new Map(artists.map((artist) => [artist.id, artist]))
+  const personById = new Map(persons.map((person) => [person.id, person]))
+  const roleSlugById = new Map(roles.map((role) => [role.id, role.slug]))
 
-  const linksByExhibition = new Map<string, ExhibitionArtistLink[]>()
-  for (const link of junction) {
-    const rows = linksByExhibition.get(link.exhibition_id) ?? []
-    rows.push(link)
-    linksByExhibition.set(link.exhibition_id, rows)
+  const participationsByExhibition = new Map<string, ParticipationRecord[]>()
+  for (const row of participations.filter(isVisible)) {
+    const rows = participationsByExhibition.get(row.exhibition) ?? []
+    rows.push(row)
+    participationsByExhibition.set(row.exhibition, rows)
   }
 
   const statementsByExhibition = new Map<string, ExhibitionStatement[]>()
   for (const statement of statements.filter(isVisible)) {
-    const rows = statementsByExhibition.get(statement.exhibition_id) ?? []
+    const rows = statementsByExhibition.get(statement.exhibition) ?? []
     rows.push(statement)
-    statementsByExhibition.set(statement.exhibition_id, rows)
+    statementsByExhibition.set(statement.exhibition, rows)
   }
 
   return exhibitions.filter(isVisible).map((exhibition) => {
-    const venue = venueById.get(exhibition.primary_venue_id)
+    const venue = venueById.get(exhibition.primary_venue)
     if (!venue) {
-      throw new Error(`exhibitions.json: ${exhibition.id} references unknown venue ${exhibition.primary_venue_id}`)
+      throw new Error(`pp_exhibitions.json: ${exhibition.id} references unknown venue ${exhibition.primary_venue}`)
     }
-    const location = locationById.get(venue.location_id)
-    if (!location) throw new Error(`venues.json: ${venue.id} references unknown location ${venue.location_id}`)
+    const location = locationById.get(venue.location)
+    if (!location) throw new Error(`pp_venues.json: ${venue.id} references unknown location ${venue.location}`)
 
-    const links = (linksByExhibition.get(exhibition.id) ?? []).sort((a, b) => a.sort - b.sort)
-    const linkedArtists = links.map((link) => {
-      const artist = artistById.get(link.artist_id)
-      if (!artist) throw new Error(`exhibitions_artists.json: unknown artist ${link.artist_id}`)
-      return artist
+    const rows = (participationsByExhibition.get(exhibition.id) ?? []).sort((a, b) => a.sort - b.sort)
+    const credited = rows.map((row) => {
+      const person = personById.get(row.person)
+      if (!person) throw new Error(`pp_exhibition_participations.json: unknown person ${row.person}`)
+      const role = roleSlugById.get(row.role)
+      if (!role) throw new Error(`pp_exhibition_participations.json: unknown role ${row.role}`)
+      return { person, role }
     })
+    const artists = credited.filter(({ role }) => role === 'artist').map(({ person }) => person)
+    const curators = credited.filter(({ role }) => role === 'curator').map(({ person }) => person)
 
     const text = pickTranslation(exhibition, locale)
     const resolvedStatements = (statementsByExhibition.get(exhibition.id) ?? [])
       .sort((a, b) => a.sort - b.sort)
       .map((statement) => {
-        const artist = artistById.get(statement.artist_id)
-        if (!artist) throw new Error(`exhibition_statements.json: unknown artist ${statement.artist_id}`)
+        const person = personById.get(statement.person)
+        if (!person) throw new Error(`pp_exhibition_statements.json: unknown person ${statement.person}`)
         const words = pickTranslation(statement, locale)
         return {
           id: statement.id,
-          artist: displayArtistName(artist),
+          artist: displayPersonName(person),
           prompt: (words.prompt as string) || undefined,
           text: (words.statement as string) ?? ''
         }
@@ -111,26 +124,23 @@ export const resolveExhibitions = (
     return {
       id: exhibition.id,
       slug: exhibition.slug,
-      title: text.title as string,
-      artist: linkedArtists.map(displayArtistName).join(' & '),
-      artist_ids: linkedArtists.map((artist) => artist.id),
-      artists: linkedArtists.map((artist) => ({
-        id: artist.id,
-        name: displayArtistName(artist),
-        website_url: artist.website_url ?? undefined
-      })),
+      title: (text.title as string) || exhibition.title,
+      artist: artists.map(displayPersonName).join(' & '),
+      artist_ids: artists.map((person) => person.id),
+      artists: artists.map(toCredit),
+      curators: curators.map(toCredit),
       statements: resolvedStatements,
       venue_slug: venue.slug,
-      venue: venue.name,
+      venue: venue.title,
       venue_website: venue.website_url || undefined,
-      city: location.city_name,
+      city: location.title,
       start_date: exhibition.start_date,
       end_date: exhibition.end_date,
       is_permanent: exhibition.is_permanent,
-      date_range: text.date_range as string,
+      date_range: (text.date_range as string) || exhibition.date_range || '',
       image: exhibition.image,
       image_alt: (text.image_alt as string) || exhibition.image_alt,
-      summary: (text.summary as string) ?? '',
+      summary: (text.summary as string) || exhibition.summary || '',
       description: (text.description as string) || undefined,
       medium: (text.medium as string) || undefined,
       opening_hours: (text.opening_hours as string) || exhibition.opening_hours,

@@ -80,24 +80,27 @@ const comparable = (value) => String(value ?? '')
   .replace(/\s+/gu, ' ')
   .trim()
 
-const displayArtistName = (artist) =>
-  artist.artist_name ?? `${artist.first_name} ${artist.last_name}`.trim()
+const displayPersonName = (person) =>
+  person.display_name ?? `${person.first_name} ${person.last_name}`.trim()
 
 async function loadCatalogue() {
-  const [exhibitions, junction, artists] = await Promise.all([
+  const [exhibitions, participations, persons, roles] = await Promise.all([
     readJson(exhibitionsFile),
-    readJson(join(projectRoot, 'app', 'data', 'exhibitions_artists.json')),
-    readJson(join(projectRoot, 'app', 'data', 'artists.json'))
+    readJson(join(projectRoot, 'app', 'data', 'pp_exhibition_participations.json')),
+    readJson(join(projectRoot, 'app', 'data', 'pp_persons.json')),
+    readJson(join(projectRoot, 'app', 'data', 'pp_roles.json'))
   ])
-  const artistById = new Map(artists.map((artist) => [artist.id, artist]))
+  const personById = new Map(persons.map((person) => [person.id, person]))
+  const artistRoleId = roles.find((role) => role.slug === 'artist')?.id
   const artistNames = new Map()
 
-  for (const link of [...junction].sort((a, b) => a.sort - b.sort)) {
-    const artist = artistById.get(link.artist_id)
-    if (!artist) continue
-    const names = artistNames.get(link.exhibition_id) ?? []
-    names.push(displayArtistName(artist))
-    artistNames.set(link.exhibition_id, names)
+  for (const participation of [...participations].sort((a, b) => a.sort - b.sort)) {
+    if (participation.role !== artistRoleId) continue
+    const person = personById.get(participation.person)
+    if (!person) continue
+    const names = artistNames.get(participation.exhibition) ?? []
+    names.push(displayPersonName(person))
+    artistNames.set(participation.exhibition, names)
   }
 
   return { exhibitions, artistNames }

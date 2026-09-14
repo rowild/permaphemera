@@ -21,7 +21,7 @@ export const pickTranslation = <T extends { translations: TranslationEntry[] }>(
     for (const [field, value] of Object.entries(entry)) {
       if (field === 'languages_code') continue
       const missing = merged[field] === undefined || merged[field] === ''
-      if (missing && value !== '' && value !== undefined) merged[field] = value
+      if (missing && value !== '' && value !== null && value !== undefined) merged[field] = value
     }
   }
   return merged

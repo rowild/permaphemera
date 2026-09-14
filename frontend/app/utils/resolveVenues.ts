@@ -1,4 +1,4 @@
-import type { CityLocation, VenueRecord } from '~/types/content'
+import type { LocationRecord, VenueRecord } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
 
@@ -32,44 +32,44 @@ export interface ResolvedVenue {
 }
 
 export const resolveVenues = (
-  locations: CityLocation[],
+  locations: LocationRecord[],
   venues: VenueRecord[],
   locale: string
 ): ResolvedVenue[] => {
   const locationById = new Map(locations.map((location) => [location.id, location]))
 
   return venues.filter(isVisible).map((venue) => {
-    const location = locationById.get(venue.location_id)
-    if (!location) throw new Error(`venues.json: ${venue.id} references unknown location ${venue.location_id}`)
+    const location = locationById.get(venue.location)
+    if (!location) throw new Error(`pp_venues.json: ${venue.id} references unknown location ${venue.location}`)
     const text = pickTranslation(venue, locale)
 
     return {
       id: venue.id,
       slug: venue.slug,
-      name: venue.name,
+      name: venue.title,
       type: venue.type,
       address: venue.address,
-      website_url: venue.website_url,
+      website_url: venue.website_url ?? undefined,
       image: venue.image,
       image_alt: venue.image_alt,
-      hero_image: venue.hero_image,
-      hero_image_alt: venue.hero_image_alt,
+      hero_image: venue.hero_image ?? undefined,
+      hero_image_alt: venue.hero_image_alt ?? undefined,
       archive_number: venue.archive_number,
       featured: venue.featured,
-      city: location.city_name,
-      city_name: location.city_name,
+      city: location.title,
+      city_name: location.title,
       postal_code: location.postal_code,
       state: location.state,
       country: location.country,
-      latitude: venue.latitude,
-      longitude: venue.longitude,
+      latitude: venue.latitude ?? undefined,
+      longitude: venue.longitude ?? undefined,
       city_latitude: location.latitude,
       city_longitude: location.longitude,
-      description: text.description as string | undefined,
-      lede: text.lede as string | undefined,
-      about: text.about as string[] | undefined,
-      image_caption: text.image_caption as string | undefined,
-      coordinate_label: text.coordinate_label as string | undefined
+      description: (text.description as string) || undefined,
+      lede: (text.lede as string) || undefined,
+      about: (text.about as string[]) || undefined,
+      image_caption: (text.image_caption as string) || undefined,
+      coordinate_label: (text.coordinate_label as string) || undefined
     }
   })
 }
