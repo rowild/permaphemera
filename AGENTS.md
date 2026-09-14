@@ -9,6 +9,8 @@ these folders. Each has its own rules. Read them before you change anything ther
 | `directus/` | `directus/README.md`                         |
 | `_Plans/`   | `_Plans/exhibitions-plan.md` is the active architecture plan. `_Plans/original chat.md` is history, not a source of truth. |
 
+Cross-cutting design specs (Directus + frontend together) live in `docs/superpowers/specs/` at the root, named `YYYY-MM-DD-<topic>-design.md`. Frontend-only specs stay in `frontend/docs/superpowers/specs/`.
+
 ## Rules that apply everywhere
 
 - Run frontend commands from `frontend/` on the Node version in `frontend/.nvmrc` (`nvm use` first).
