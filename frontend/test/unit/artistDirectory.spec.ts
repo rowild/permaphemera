@@ -53,4 +53,9 @@ describe('buildArtistDirectory', () => {
     const ghost = [{ id: 'p-9', exhibition: 'e-1', person: 'a-missing', role: 'role-artist', sort: 0, status: 'published' as const }]
     expect(build([...participations, ...ghost]).some((entry) => entry.id === 'a-missing')).toBe(false)
   })
+
+  it('does not count an archived participation toward record_count', () => {
+    const rows = participations.map((row) => (row.id === 'p-2' ? { ...row, status: 'archived' as const } : row))
+    expect(build(rows).find((entry) => entry.id === 'a-1')?.record_count).toBe(1)
+  })
 })

@@ -76,6 +76,9 @@ const checks = [
     return item.kind === 'route' && item.url === null && (item.path === null || item.path.startsWith('/'))
   })],
   ['navigation item ids unique', itemIds.size === navigationItems.length],
+  ['footer navigation has exactly the groups explore, information, legal', navigationItems
+    .filter((item) => item.navigation === navigations.find((nav) => nav.key === 'footer')?.id && item.parent === null)
+    .map((item) => item.key).sort().join(',') === ['explore', 'information', 'legal'].sort().join(',')],
 
   ['every venue has a known type', venues.every((venue) =>
     ['gallery', 'museum', 'kunsthalle', 'art_cafe', 'open_air', 'forum'].includes(venue.type))],

@@ -2,6 +2,7 @@ import type { ArtistRecordLink, DirectoryArtist, ParticipationRecord, PersonReco
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { displayPersonName } from '~/utils/resolveExhibitions'
 import { formatArtistName, getArtistFamilyLetter } from '~/utils/artistNames'
+import { isVisible } from '~/utils/contentStatus'
 
 /** Persons who hold the `artist` role, with their artist-role participations as records. */
 export const buildArtistDirectory = (
@@ -19,7 +20,7 @@ export const buildArtistDirectory = (
   const recordsByPerson = new Map<string, ArtistRecordLink[]>()
   const yearsByPerson = new Map<string, Set<string>>()
 
-  for (const row of participations) {
+  for (const row of participations.filter(isVisible)) {
     if (row.role !== artistRole) continue
     const exhibition = exhibitionById.get(row.exhibition)
     if (!exhibition) continue

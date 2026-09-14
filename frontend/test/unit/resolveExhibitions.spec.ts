@@ -131,4 +131,12 @@ describe('resolveExhibitions', () => {
     expect(() => resolveExhibitions(exhibitions, venues, locations, broken, persons, roles, 'en'))
       .toThrow(/unknown role role-ghost/)
   })
+
+  it('credits a person by their display_name unchanged, e.g. VALIE EXPORT', () => {
+    const valieExport = { ...persons[0], id: 'person-valie-export', slug: 'valie-export', display_name: 'VALIE EXPORT' }
+    const rows = [{ id: 'p-valie', exhibition: exhibitions[0].id, person: 'person-valie-export', role: 'role-artist', sort: 0, status: 'published' as const }]
+    const [record] = resolveExhibitions(exhibitions, venues, locations, rows, [valieExport], roles, 'en')
+    expect(record.artist).toBe('VALIE EXPORT')
+    expect(record.artists[0]).toMatchObject({ id: 'person-valie-export', name: 'VALIE EXPORT' })
+  })
 })

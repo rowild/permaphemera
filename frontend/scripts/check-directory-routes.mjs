@@ -40,9 +40,9 @@ const [
   readText('app/components/ArchiveFooterMenu.vue')
 ])
 
-// `locations.json` now holds the 17 cities; galleries (formerly the sole
-// `locations.json` collection) live in `venues.json` and reach their city
-// fields (state, country, postal code) through `location_id`.
+// `pp_locations.json` holds the 17 cities; galleries live in `pp_venues.json`
+// and reach their city fields (state, country, postal code) through
+// `location`.
 const cityById = new Map(cityLocations.map((city) => [city.id, city]))
 const cityOf = (gallery) => {
   const city = cityById.get(gallery.location)

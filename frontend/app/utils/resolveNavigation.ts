@@ -42,7 +42,12 @@ export const resolveNavigation = (
   locale: string
 ): ResolvedNavigation => {
   const navByKey = new Map(navigations.map((nav) => [nav.key, nav]))
+  const navIds = new Set(navigations.map((nav) => nav.id))
   const itemById = new Map(items.map((item) => [item.id, item]))
+
+  for (const item of items) {
+    if (!navIds.has(item.navigation)) throw new Error(`${FILE}: ${item.id} references unknown navigation ${item.navigation}`)
+  }
 
   const itemsOf = (key: string): NavigationItemRecord[] => {
     const nav = navByKey.get(key)

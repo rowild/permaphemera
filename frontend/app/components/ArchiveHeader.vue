@@ -19,8 +19,15 @@ watch(() => route.fullPath, () => {
 
 // Main menu from pp_navigations `main`; the popup shows the footer's
 // information and legal groups, exactly the two secondary blocks it had before.
+// Some of those footer children (e.g. "about") also appear in the primary
+// list, so exclude anything already shown there to avoid listing it twice.
 const primaryLinks = computed(() => navigation.value.main)
-const secondaryGroups = computed(() => navigation.value.footer.filter((group) => ['information', 'legal'].includes(group.key)))
+const secondaryGroups = computed(() => {
+  const mainKeys = new Set(navigation.value.main.map((l) => l.key))
+  return navigation.value.footer
+    .filter((group) => ['information', 'legal'].includes(group.key))
+    .map((group) => ({ ...group, links: group.links.filter((l) => !mainKeys.has(l.key)) }))
+})
 
 const runAction = (action?: string) => {
   menuOpen.value = false

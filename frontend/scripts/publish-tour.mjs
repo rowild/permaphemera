@@ -92,6 +92,7 @@ async function loadCatalogue() {
   ])
   const personById = new Map(persons.map((person) => [person.id, person]))
   const artistRoleId = roles.find((role) => role.slug === 'artist')?.id
+  if (!artistRoleId) fail('pp_roles.json has no role with slug "artist"')
   const artistNames = new Map()
 
   for (const participation of [...participations].sort((a, b) => a.sort - b.sort)) {

@@ -46,6 +46,20 @@ describe('resolveNavigation', () => {
   })
 
   it('throws on a missing navigation', () => {
-    expect(() => resolveNavigation([navigations[0]], items, 'en')).toThrow(/no navigation with key footer/)
+    // Only main-navigation items here: a footer item referencing nav-footer
+    // would now trip the earlier, more general dangling-FK check below
+    // before reaching this itemsOf('footer') lookup.
+    const mainOnly = items.filter((row) => row.navigation === 'nav-main')
+    expect(() => resolveNavigation([navigations[0]], mainOnly, 'en')).toThrow(/no navigation with key footer/)
+  })
+
+  it('throws on an item referencing an unknown navigation', () => {
+    const ghost = [...items, { ...item('main', 'ghost', { path: '/ghost/' }), navigation: 'nav-ghost' }]
+    expect(() => resolveNavigation(navigations, ghost, 'en')).toThrow(/unknown navigation nav-ghost/)
+  })
+
+  it('throws on an item with an unknown kind', () => {
+    const bogus = [...items, { ...item('main', 'bogus', { path: '/bogus/' }), kind: 'bogus' as never }]
+    expect(() => resolveNavigation(navigations, bogus, 'en')).toThrow(/unknown kind/)
   })
 })
