@@ -6,6 +6,7 @@ const props = withDefaults(defineProps<{
 })
 
 const rootElement = computed(() => props.variant === 'desktop' ? 'section' : 'div')
+// Five desktop columns: identity, the three footer groups, seal. check:data guarantees exactly explore/information/legal; a fourth group is a design change here, not a data change.
 const rootClasses = computed(() => props.variant === 'desktop'
   ? 'archive-footer-link-grid relative z-1 mx-auto grid max-w-384 grid-cols-[1.35fr_repeat(3,minmax(9rem,0.72fr))_16rem] gap-0 border-y border-archive-ochre/20 py-[3.2rem] *:relative *:min-w-0 *:px-[2.4rem] *:first:pl-0 *:last:pr-0 tablet:hidden'
   : 'relative z-1 grid grid-cols-2 gap-x-4 gap-y-5')

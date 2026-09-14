@@ -30,7 +30,10 @@ const bySort = (a: { sort: number }, b: { sort: number }) => a.sort - b.sort
 const toLink = (item: NavigationItemRecord, locale: string): NavLink => {
   const label = (pickTranslation(item, locale).title as string) || item.title
   const base = { key: item.key, label, kind: item.kind, target: item.target }
-  if (item.kind === 'route') return { ...base, to: item.path ?? undefined }
+  if (item.kind === 'route') {
+    if (item.path === null) throw new Error(`${FILE}: ${item.id} is a route without a path`)
+    return { ...base, to: item.path }
+  }
   if (item.kind === 'url') return { ...base, href: item.url ?? undefined }
   if (item.kind === 'action') return { ...base, action: item.path ?? undefined }
   throw new Error(`${FILE}: ${item.id} has unknown kind ${String(item.kind)}`)

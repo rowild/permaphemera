@@ -62,4 +62,9 @@ describe('resolveNavigation', () => {
     const bogus = [...items, { ...item('main', 'bogus', { path: '/bogus/' }), kind: 'bogus' as never }]
     expect(() => resolveNavigation(navigations, bogus, 'en')).toThrow(/unknown kind/)
   })
+
+  it('throws on a route item without a path', () => {
+    const pathless = [...items, item('main', 'nopath')]
+    expect(() => resolveNavigation(navigations, pathless, 'en')).toThrow(/route without a path/)
+  })
 })

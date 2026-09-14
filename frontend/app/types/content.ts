@@ -46,6 +46,7 @@ export interface LocationRecord {
   longitude: number
   description: string | null
   status: ContentStatus
+  sort: number
   translations: TranslationEntry[]
 }
 
@@ -72,6 +73,7 @@ export interface VenueRecord {
   image_caption: string | null
   coordinate_label: string | null
   status: ContentStatus
+  sort: number
   translations: TranslationEntry[]
 }
 
@@ -86,6 +88,7 @@ export interface PersonRecord {
   display_name: string | null
   website_url: string | null
   status: ContentStatus
+  sort: number
 }
 
 /** pp_roles — what a person can be: artist, curator, … */
@@ -139,6 +142,7 @@ export interface ExhibitionRecord {
   tour_status: TourStatus
   tour_available_from: string | null
   status: ContentStatus
+  sort: number
   translations: TranslationEntry[]
 }
 

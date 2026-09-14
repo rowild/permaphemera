@@ -2,7 +2,7 @@
   {
     "id": "participation-1",
     "exhibition": "parkschloessl-adi-schmoelzer-2026",
-    "person": "artist-adi-schmoelzer",
+    "person": "person-adi-schmoelzer",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -10,7 +10,7 @@
   {
     "id": "participation-2",
     "exhibition": "parkschloessl-austriatoon-2026",
-    "person": "artist-7th-spittaler-comicfestival",
+    "person": "person-7th-spittaler-comicfestival",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -18,7 +18,7 @@
   {
     "id": "participation-3",
     "exhibition": "parkschloessl-austriatoon-2026",
-    "person": "artist-austriatoon",
+    "person": "person-austriatoon",
     "role": "role-artist",
     "sort": 1,
     "status": "published"
@@ -26,7 +26,7 @@
   {
     "id": "participation-4",
     "exhibition": "parkschloessl-nicoline-von-heyl-2026",
-    "person": "artist-nicoline-von-heyl",
+    "person": "person-nicoline-von-heyl",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -34,7 +34,7 @@
   {
     "id": "participation-5",
     "exhibition": "parkschloessl-lebenshilfe-2026",
-    "person": "artist-lebenshilfe-spittal",
+    "person": "person-lebenshilfe-spittal",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -42,7 +42,7 @@
   {
     "id": "participation-6",
     "exhibition": "parkschloessl-herbert-meisslitzer-2026",
-    "person": "artist-herbert-meisslitzer",
+    "person": "person-herbert-meisslitzer",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -50,7 +50,7 @@
   {
     "id": "participation-7",
     "exhibition": "parkschloessl-campidell-kulle-2026",
-    "person": "artist-sylvia-campidell",
+    "person": "person-sylvia-campidell",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -58,7 +58,7 @@
   {
     "id": "participation-8",
     "exhibition": "parkschloessl-campidell-kulle-2026",
-    "person": "artist-judith-maria-kulle",
+    "person": "person-judith-maria-kulle",
     "role": "role-artist",
     "sort": 1,
     "status": "published"
@@ -66,7 +66,7 @@
   {
     "id": "participation-9",
     "exhibition": "parkschloessl-birgit-moertl-2026",
-    "person": "artist-birgit-moertl",
+    "person": "person-birgit-moertl",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -74,7 +74,7 @@
   {
     "id": "participation-10",
     "exhibition": "parkschloessl-peter-kohlweiss-2026",
-    "person": "artist-peter-kohlweiss",
+    "person": "person-peter-kohlweiss",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -82,7 +82,7 @@
   {
     "id": "participation-11",
     "exhibition": "parkschloessl-santino-solace-2026",
-    "person": "artist-santino-solace",
+    "person": "person-santino-solace",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -90,7 +90,7 @@
   {
     "id": "participation-12",
     "exhibition": "exhibition-matter-memory",
-    "person": "artist-anselm-kiefer",
+    "person": "person-anselm-kiefer",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -98,7 +98,7 @@
   {
     "id": "participation-13",
     "exhibition": "exhibition-expressing-inner",
-    "person": "artist-oskar-kokoschka",
+    "person": "person-oskar-kokoschka",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -106,7 +106,7 @@
   {
     "id": "participation-14",
     "exhibition": "exhibition-state-of-repair",
-    "person": "artist-raqs-media-collective",
+    "person": "person-raqs-media-collective",
     "role": "role-artist",
     "sort": 0,
     "status": "published"
@@ -114,7 +114,7 @@
   {
     "id": "participation-15",
     "exhibition": "exhibition-ways-of-being",
-    "person": "artist-maria-lassnig",
+    "person": "person-maria-lassnig",
     "role": "role-artist",
     "sort": 0,
     "status": "published"

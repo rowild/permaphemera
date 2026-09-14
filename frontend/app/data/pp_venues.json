@@ -24,6 +24,7 @@
     "image_caption": "The Parkschlössl, recorded from the city park",
     "coordinate_label": "46° 47′ 54″ N · 13° 29′ 34″ E",
     "status": "published",
+    "sort": 1,
     "translations": [
       {
         "languages_code": "en",
@@ -71,6 +72,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 2,
     "translations": [
       {
         "languages_code": "en",
@@ -104,6 +106,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 3,
     "translations": [
       {
         "languages_code": "en",
@@ -137,6 +140,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 4,
     "translations": [
       {
         "languages_code": "en",
@@ -170,6 +174,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 5,
     "translations": [
       {
         "languages_code": "en",
@@ -203,6 +208,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 6,
     "translations": [
       {
         "languages_code": "en",
@@ -236,6 +242,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 7,
     "translations": [
       {
         "languages_code": "en",
@@ -269,6 +276,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 8,
     "translations": [
       {
         "languages_code": "en",
@@ -302,6 +310,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 9,
     "translations": [
       {
         "languages_code": "en",
@@ -335,6 +344,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 10,
     "translations": [
       {
         "languages_code": "en",
@@ -368,6 +378,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 11,
     "translations": [
       {
         "languages_code": "en",
@@ -401,6 +412,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 12,
     "translations": [
       {
         "languages_code": "en",
@@ -434,6 +446,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 13,
     "translations": [
       {
         "languages_code": "en",
@@ -467,6 +480,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 14,
     "translations": [
       {
         "languages_code": "en",
@@ -500,6 +514,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 15,
     "translations": [
       {
         "languages_code": "en",
@@ -533,6 +548,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 16,
     "translations": [
       {
         "languages_code": "en",
@@ -566,6 +582,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 17,
     "translations": [
       {
         "languages_code": "en",
@@ -599,6 +616,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 18,
     "translations": [
       {
         "languages_code": "en",
@@ -632,6 +650,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 19,
     "translations": [
       {
         "languages_code": "en",
@@ -665,6 +684,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 20,
     "translations": [
       {
         "languages_code": "en",
@@ -698,6 +718,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 21,
     "translations": [
       {
         "languages_code": "en",
@@ -731,6 +752,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 22,
     "translations": [
       {
         "languages_code": "en",
@@ -764,6 +786,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 23,
     "translations": [
       {
         "languages_code": "en",
@@ -797,6 +820,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 24,
     "translations": [
       {
         "languages_code": "en",
@@ -830,6 +854,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 25,
     "translations": [
       {
         "languages_code": "en",
@@ -863,6 +888,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 26,
     "translations": [
       {
         "languages_code": "en",
@@ -892,16 +918,17 @@
     "featured": false,
     "description": null,
     "lede": null,
-    "about": [],
+    "about": null,
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 27,
     "translations": [
       {
         "languages_code": "en",
         "description": "",
         "lede": "",
-        "about": []
+        "about": null
       }
     ]
   },
@@ -923,16 +950,17 @@
     "featured": false,
     "description": null,
     "lede": null,
-    "about": [],
+    "about": null,
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 28,
     "translations": [
       {
         "languages_code": "en",
         "description": "",
         "lede": "",
-        "about": []
+        "about": null
       }
     ]
   },
@@ -954,16 +982,17 @@
     "featured": false,
     "description": null,
     "lede": null,
-    "about": [],
+    "about": null,
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 29,
     "translations": [
       {
         "languages_code": "en",
         "description": "",
         "lede": "",
-        "about": []
+        "about": null
       }
     ]
   },
@@ -985,16 +1014,17 @@
     "featured": false,
     "description": null,
     "lede": null,
-    "about": [],
+    "about": null,
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 30,
     "translations": [
       {
         "languages_code": "en",
         "description": "",
         "lede": "",
-        "about": []
+        "about": null
       }
     ]
   },
@@ -1016,16 +1046,17 @@
     "featured": false,
     "description": null,
     "lede": null,
-    "about": [],
+    "about": null,
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 31,
     "translations": [
       {
         "languages_code": "en",
         "description": "",
         "lede": "",
-        "about": []
+        "about": null
       }
     ]
   },
@@ -1047,16 +1078,17 @@
     "featured": false,
     "description": null,
     "lede": null,
-    "about": [],
+    "about": null,
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 32,
     "translations": [
       {
         "languages_code": "en",
         "description": "",
         "lede": "",
-        "about": []
+        "about": null
       }
     ]
   },
@@ -1082,6 +1114,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 33,
     "translations": [
       {
         "languages_code": "en",
@@ -1111,6 +1144,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 34,
     "translations": [
       {
         "languages_code": "en",
@@ -1140,6 +1174,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 35,
     "translations": [
       {
         "languages_code": "en",
@@ -1169,6 +1204,7 @@
     "image_caption": null,
     "coordinate_label": null,
     "status": "draft",
+    "sort": 36,
     "translations": [
       {
         "languages_code": "en",

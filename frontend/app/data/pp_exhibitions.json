@@ -20,6 +20,7 @@
     "tour_status": "available",
     "tour_available_from": "2026-06-13",
     "status": "published",
+    "sort": 1,
     "translations": [
       {
         "languages_code": "en",
@@ -66,6 +67,7 @@
     "tour_status": "available",
     "tour_available_from": "2026-06-21",
     "status": "published",
+    "sort": 2,
     "translations": [
       {
         "languages_code": "en",
@@ -112,6 +114,7 @@
     "tour_status": "available",
     "tour_available_from": "2026-07-04",
     "status": "published",
+    "sort": 3,
     "translations": [
       {
         "languages_code": "en",
@@ -158,6 +161,7 @@
     "tour_status": "available",
     "tour_available_from": "2026-07-11",
     "status": "published",
+    "sort": 4,
     "translations": [
       {
         "languages_code": "en",
@@ -204,6 +208,7 @@
     "tour_status": "available",
     "tour_available_from": "2026-07-25",
     "status": "published",
+    "sort": 5,
     "translations": [
       {
         "languages_code": "en",
@@ -250,6 +255,7 @@
     "tour_status": "available",
     "tour_available_from": "2026-08-08",
     "status": "published",
+    "sort": 6,
     "translations": [
       {
         "languages_code": "en",
@@ -296,6 +302,7 @@
     "tour_status": "available",
     "tour_available_from": "2026-08-22",
     "status": "published",
+    "sort": 7,
     "translations": [
       {
         "languages_code": "en",
@@ -342,6 +349,7 @@
     "tour_status": "available",
     "tour_available_from": "2026-09-05",
     "status": "published",
+    "sort": 8,
     "translations": [
       {
         "languages_code": "en",
@@ -388,6 +396,7 @@
     "tour_status": "available",
     "tour_available_from": "2026-09-19",
     "status": "published",
+    "sort": 9,
     "translations": [
       {
         "languages_code": "en",
@@ -434,6 +443,7 @@
     "tour_status": "available",
     "tour_available_from": "2024-05-21",
     "status": "draft",
+    "sort": 10,
     "translations": [
       {
         "languages_code": "en",
@@ -469,6 +479,7 @@
     "tour_status": "available",
     "tour_available_from": "2024-01-29",
     "status": "draft",
+    "sort": 11,
     "translations": [
       {
         "languages_code": "en",
@@ -504,6 +515,7 @@
     "tour_status": "available",
     "tour_available_from": "2023-09-04",
     "status": "draft",
+    "sort": 12,
     "translations": [
       {
         "languages_code": "en",
@@ -539,6 +551,7 @@
     "tour_status": "available",
     "tour_available_from": "2023-06-12",
     "status": "draft",
+    "sort": 13,
     "translations": [
       {
         "languages_code": "en",

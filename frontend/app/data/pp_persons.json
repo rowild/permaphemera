@@ -1,732 +1,805 @@
 [
   {
-    "id": "artist-anselm-kiefer",
+    "id": "person-anselm-kiefer",
     "slug": "anselm-kiefer",
     "first_name": "Anselm",
     "last_name": "Kiefer",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "published"
+    "status": "published",
+    "sort": 1
   },
   {
-    "id": "artist-brigitte-kowanz",
+    "id": "person-brigitte-kowanz",
     "slug": "brigitte-kowanz",
     "first_name": "Brigitte",
     "last_name": "Kowanz",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "published"
+    "status": "published",
+    "sort": 2
   },
   {
-    "id": "artist-birgit-juergenssen",
+    "id": "person-birgit-juergenssen",
     "slug": "birgit-juergenssen",
     "first_name": "Birgit",
     "last_name": "Juergenssen",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "published"
+    "status": "published",
+    "sort": 3
   },
   {
-    "id": "artist-guenter-brus",
+    "id": "person-guenter-brus",
     "slug": "guenter-brus",
     "first_name": "Guenter",
     "last_name": "Brus",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "published"
+    "status": "published",
+    "sort": 4
   },
   {
-    "id": "artist-oskar-kokoschka",
+    "id": "person-oskar-kokoschka",
     "slug": "oskar-kokoschka",
     "first_name": "Oskar",
     "last_name": "Kokoschka",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "published"
+    "status": "published",
+    "sort": 5
   },
   {
-    "id": "artist-maria-lassnig",
+    "id": "person-maria-lassnig",
     "slug": "maria-lassnig",
     "first_name": "Maria",
     "last_name": "Lassnig",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "published"
+    "status": "published",
+    "sort": 6
   },
   {
-    "id": "artist-raqs-media-collective",
+    "id": "person-raqs-media-collective",
     "slug": "raqs-media-collective",
     "first_name": "",
     "last_name": "",
     "middle_initial": null,
     "display_name": "Raqs Media Collective",
     "website_url": null,
-    "status": "published"
+    "status": "published",
+    "sort": 7
   },
   {
-    "id": "artist-valie-export",
+    "id": "person-valie-export",
     "slug": "valie-export",
     "first_name": "",
     "last_name": "",
     "middle_initial": null,
     "display_name": "VALIE EXPORT",
     "website_url": null,
-    "status": "published"
+    "status": "published",
+    "sort": 8
   },
   {
-    "id": "artist-franz-west",
+    "id": "person-franz-west",
     "slug": "franz-west",
     "first_name": "Franz",
     "last_name": "West",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "published"
+    "status": "published",
+    "sort": 9
   },
   {
-    "id": "artist-mira-abele",
+    "id": "person-mira-abele",
     "slug": "mira-abele",
     "first_name": "Mira",
     "last_name": "Abele",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 10
   },
   {
-    "id": "artist-jonas-arden",
+    "id": "person-jonas-arden",
     "slug": "jonas-arden",
     "first_name": "Jonas",
     "last_name": "Arden",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 11
   },
   {
-    "id": "artist-lena-bacher",
+    "id": "person-lena-bacher",
     "slug": "lena-bacher",
     "first_name": "Lena",
     "last_name": "Bacher",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 12
   },
   {
-    "id": "artist-pavel-breun",
+    "id": "person-pavel-breun",
     "slug": "pavel-breun",
     "first_name": "Pavel",
     "last_name": "Breun",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 13
   },
   {
-    "id": "artist-iona-cernek",
+    "id": "person-iona-cernek",
     "slug": "iona-cernek",
     "first_name": "Iona",
     "last_name": "Cernek",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 14
   },
   {
-    "id": "artist-timo-corda",
+    "id": "person-timo-corda",
     "slug": "timo-corda",
     "first_name": "Timo",
     "last_name": "Corda",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 15
   },
   {
-    "id": "artist-mara-degen",
+    "id": "person-mara-degen",
     "slug": "mara-degen",
     "first_name": "Mara",
     "last_name": "Degen",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 16
   },
   {
-    "id": "artist-elias-dorn",
+    "id": "person-elias-dorn",
     "slug": "elias-dorn",
     "first_name": "Elias",
     "last_name": "Dorn",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 17
   },
   {
-    "id": "artist-nika-eder",
+    "id": "person-nika-eder",
     "slug": "nika-eder",
     "first_name": "Nika",
     "last_name": "Eder",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 18
   },
   {
-    "id": "artist-samuel-evers",
+    "id": "person-samuel-evers",
     "slug": "samuel-evers",
     "first_name": "Samuel",
     "last_name": "Evers",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 19
   },
   {
-    "id": "artist-livia-falk",
+    "id": "person-livia-falk",
     "slug": "livia-falk",
     "first_name": "Livia",
     "last_name": "Falk",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 20
   },
   {
-    "id": "artist-anton-ferner",
+    "id": "person-anton-ferner",
     "slug": "anton-ferner",
     "first_name": "Anton",
     "last_name": "Ferner",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 21
   },
   {
-    "id": "artist-klara-gsell",
+    "id": "person-klara-gsell",
     "slug": "klara-gsell",
     "first_name": "Klara",
     "last_name": "Gsell",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 22
   },
   {
-    "id": "artist-emil-gruber",
+    "id": "person-emil-gruber",
     "slug": "emil-gruber",
     "first_name": "Emil",
     "last_name": "Gruber",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 23
   },
   {
-    "id": "artist-nora-haid",
+    "id": "person-nora-haid",
     "slug": "nora-haid",
     "first_name": "Nora",
     "last_name": "Haid",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 24
   },
   {
-    "id": "artist-leander-huber",
+    "id": "person-leander-huber",
     "slug": "leander-huber",
     "first_name": "Leander",
     "last_name": "Huber",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 25
   },
   {
-    "id": "artist-mina-illich",
+    "id": "person-mina-illich",
     "slug": "mina-illich",
     "first_name": "Mina",
     "last_name": "Illich",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 26
   },
   {
-    "id": "artist-tobias-innerhofer",
+    "id": "person-tobias-innerhofer",
     "slug": "tobias-innerhofer",
     "first_name": "Tobias",
     "last_name": "Innerhofer",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 27
   },
   {
-    "id": "artist-elsa-jarnik",
+    "id": "person-elsa-jarnik",
     "slug": "elsa-jarnik",
     "first_name": "Elsa",
     "last_name": "Jarnik",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 28
   },
   {
-    "id": "artist-milan-jost",
+    "id": "person-milan-jost",
     "slug": "milan-jost",
     "first_name": "Milan",
     "last_name": "Jost",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 29
   },
   {
-    "id": "artist-lora-kain",
+    "id": "person-lora-kain",
     "slug": "lora-kain",
     "first_name": "Lora",
     "last_name": "Kain",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 30
   },
   {
-    "id": "artist-noah-kern",
+    "id": "person-noah-kern",
     "slug": "noah-kern",
     "first_name": "Noah",
     "last_name": "Kern",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 31
   },
   {
-    "id": "artist-rhea-koller",
+    "id": "person-rhea-koller",
     "slug": "rhea-koller",
     "first_name": "Rhea",
     "last_name": "Koller",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 32
   },
   {
-    "id": "artist-ada-lechner",
+    "id": "person-ada-lechner",
     "slug": "ada-lechner",
     "first_name": "Ada",
     "last_name": "Lechner",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 33
   },
   {
-    "id": "artist-viktor-loos",
+    "id": "person-viktor-loos",
     "slug": "viktor-loos",
     "first_name": "Viktor",
     "last_name": "Loos",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 34
   },
   {
-    "id": "artist-thea-mader",
+    "id": "person-thea-mader",
     "slug": "thea-mader",
     "first_name": "Thea",
     "last_name": "Mader",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 35
   },
   {
-    "id": "artist-ivo-moser",
+    "id": "person-ivo-moser",
     "slug": "ivo-moser",
     "first_name": "Ivo",
     "last_name": "Moser",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 36
   },
   {
-    "id": "artist-alma-neri",
+    "id": "person-alma-neri",
     "slug": "alma-neri",
     "first_name": "Alma",
     "last_name": "Neri",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 37
   },
   {
-    "id": "artist-dario-novak",
+    "id": "person-dario-novak",
     "slug": "dario-novak",
     "first_name": "Dario",
     "last_name": "Novak",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 38
   },
   {
-    "id": "artist-pia-oberlin",
+    "id": "person-pia-oberlin",
     "slug": "pia-oberlin",
     "first_name": "Pia",
     "last_name": "Oberlin",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 39
   },
   {
-    "id": "artist-felix-orter",
+    "id": "person-felix-orter",
     "slug": "felix-orter",
     "first_name": "Felix",
     "last_name": "Orter",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 40
   },
   {
-    "id": "artist-sara-pichler",
+    "id": "person-sara-pichler",
     "slug": "sara-pichler",
     "first_name": "Sara",
     "last_name": "Pichler",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 41
   },
   {
-    "id": "artist-leon-prantl",
+    "id": "person-leon-prantl",
     "slug": "leon-prantl",
     "first_name": "Leon",
     "last_name": "Prantl",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 42
   },
   {
-    "id": "artist-mira-quell",
+    "id": "person-mira-quell",
     "slug": "mira-quell",
     "first_name": "Mira",
     "last_name": "Quell",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 43
   },
   {
-    "id": "artist-aron-quirin",
+    "id": "person-aron-quirin",
     "slug": "aron-quirin",
     "first_name": "Aron",
     "last_name": "Quirin",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 44
   },
   {
-    "id": "artist-ina-rainer",
+    "id": "person-ina-rainer",
     "slug": "ina-rainer",
     "first_name": "Ina",
     "last_name": "Rainer",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 45
   },
   {
-    "id": "artist-theo-riss",
+    "id": "person-theo-riss",
     "slug": "theo-riss",
     "first_name": "Theo",
     "last_name": "Riss",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 46
   },
   {
-    "id": "artist-zoe-sattler",
+    "id": "person-zoe-sattler",
     "slug": "zoe-sattler",
     "first_name": "Zoe",
     "last_name": "Sattler",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 47
   },
   {
-    "id": "artist-jan-sendl",
+    "id": "person-jan-sendl",
     "slug": "jan-sendl",
     "first_name": "Jan",
     "last_name": "Sendl",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 48
   },
   {
-    "id": "artist-ella-tauer",
+    "id": "person-ella-tauer",
     "slug": "ella-tauer",
     "first_name": "Ella",
     "last_name": "Tauer",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 49
   },
   {
-    "id": "artist-bruno-tesch",
+    "id": "person-bruno-tesch",
     "slug": "bruno-tesch",
     "first_name": "Bruno",
     "last_name": "Tesch",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 50
   },
   {
-    "id": "artist-mia-uhl",
+    "id": "person-mia-uhl",
     "slug": "mia-uhl",
     "first_name": "Mia",
     "last_name": "Uhl",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 51
   },
   {
-    "id": "artist-niko-urban",
+    "id": "person-niko-urban",
     "slug": "niko-urban",
     "first_name": "Niko",
     "last_name": "Urban",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 52
   },
   {
-    "id": "artist-lea-varga",
+    "id": "person-lea-varga",
     "slug": "lea-varga",
     "first_name": "Lea",
     "last_name": "Varga",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 53
   },
   {
-    "id": "artist-otto-vogl",
+    "id": "person-otto-vogl",
     "slug": "otto-vogl",
     "first_name": "Otto",
     "last_name": "Vogl",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 54
   },
   {
-    "id": "artist-anja-wenter",
+    "id": "person-anja-wenter",
     "slug": "anja-wenter",
     "first_name": "Anja",
     "last_name": "Wenter",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 55
   },
   {
-    "id": "artist-lio-wurm",
+    "id": "person-lio-wurm",
     "slug": "lio-wurm",
     "first_name": "Lio",
     "last_name": "Wurm",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 56
   },
   {
-    "id": "artist-mina-xandl",
+    "id": "person-mina-xandl",
     "slug": "mina-xandl",
     "first_name": "Mina",
     "last_name": "Xandl",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 57
   },
   {
-    "id": "artist-theo-xaver",
+    "id": "person-theo-xaver",
     "slug": "theo-xaver",
     "first_name": "Theo",
     "last_name": "Xaver",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 58
   },
   {
-    "id": "artist-eva-yalin",
+    "id": "person-eva-yalin",
     "slug": "eva-yalin",
     "first_name": "Eva",
     "last_name": "Yalin",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 59
   },
   {
-    "id": "artist-noah-ypern",
+    "id": "person-noah-ypern",
     "slug": "noah-ypern",
     "first_name": "Noah",
     "last_name": "Ypern",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 60
   },
   {
-    "id": "artist-mara-zeller",
+    "id": "person-mara-zeller",
     "slug": "mara-zeller",
     "first_name": "Mara",
     "last_name": "Zeller",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 61
   },
   {
-    "id": "artist-ivo-zorn",
+    "id": "person-ivo-zorn",
     "slug": "ivo-zorn",
     "first_name": "Ivo",
     "last_name": "Zorn",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 62
   },
   {
-    "id": "artist-adi-schmoelzer",
+    "id": "person-adi-schmoelzer",
     "slug": "adi-schmoelzer",
     "first_name": "Adi",
     "last_name": "Schmölzer",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 63
   },
   {
-    "id": "artist-7th-spittaler-comicfestival",
+    "id": "person-7th-spittaler-comicfestival",
     "slug": "7th-spittaler-comicfestival",
     "first_name": "",
     "last_name": "",
     "middle_initial": null,
     "display_name": "7th Spittaler Comicfestival",
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 64
   },
   {
-    "id": "artist-austriatoon",
+    "id": "person-austriatoon",
     "slug": "austriatoon",
     "first_name": "",
     "last_name": "",
     "middle_initial": null,
     "display_name": "Austriatoon",
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 65
   },
   {
-    "id": "artist-nicoline-von-heyl",
+    "id": "person-nicoline-von-heyl",
     "slug": "nicoline-von-heyl",
     "first_name": "Nicoline von",
     "last_name": "Heyl",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 66
   },
   {
-    "id": "artist-lebenshilfe-spittal",
+    "id": "person-lebenshilfe-spittal",
     "slug": "lebenshilfe-spittal",
     "first_name": "",
     "last_name": "",
     "middle_initial": null,
     "display_name": "Lebenshilfe Spittal",
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 67
   },
   {
-    "id": "artist-herbert-meisslitzer",
+    "id": "person-herbert-meisslitzer",
     "slug": "herbert-meisslitzer",
     "first_name": "Herbert",
     "last_name": "Meißlitzer",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 68
   },
   {
-    "id": "artist-sylvia-campidell",
+    "id": "person-sylvia-campidell",
     "slug": "sylvia-campidell",
     "first_name": "Sylvia",
     "last_name": "Campidell",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 69
   },
   {
-    "id": "artist-judith-maria-kulle",
+    "id": "person-judith-maria-kulle",
     "slug": "judith-maria-kulle",
     "first_name": "Judith Maria",
     "last_name": "Kulle",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 70
   },
   {
-    "id": "artist-birgit-moertl",
+    "id": "person-birgit-moertl",
     "slug": "birgit-moertl",
     "first_name": "Birgit",
     "last_name": "Mörtl",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 71
   },
   {
-    "id": "artist-peter-kohlweiss",
+    "id": "person-peter-kohlweiss",
     "slug": "peter-kohlweiss",
     "first_name": "Peter",
     "last_name": "Kohlweiß",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 72
   },
   {
-    "id": "artist-santino-solace",
+    "id": "person-santino-solace",
     "slug": "santino-solace",
     "first_name": "Santino",
     "last_name": "Solace",
     "middle_initial": null,
     "display_name": null,
     "website_url": null,
-    "status": "draft"
+    "status": "draft",
+    "sort": 73
   }
 ]

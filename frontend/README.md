@@ -10,7 +10,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 - a conditional current/upcoming programme immediately after the hero, with date-aware sorting and at most three records per group;
 - searchable locations, exhibitions, and artist archive sections;
 - framed venue and exhibition cards backed by local JSON, with single-line overflow-aware titles and custom full-title tooltips;
-- a searchable, URL-filterable gallery atlas with 26 small Austrian galleries across all nine federal states;
+- a searchable, URL-filterable gallery atlas with 36 small Austrian galleries across all nine federal states;
 - a searchable exhibition index with reusable framed record cards and direct detail routes;
 - an illustrated explanation of the archive method;
 - an overflow-aware sponsor strip that stays centered and static while its logos fit, then becomes a slow seamless marquee when they overflow, inside the dark editorial footer;
@@ -130,7 +130,7 @@ The site-styled cookie settings expose four real checkboxes: necessary language/
 
 The four permanent information routes share `ArchiveLegalPage` and `LegalEditorialSection`: each has an accountable document record enclosed by one restrained top/bottom rule, then borderless two-column chapters with no duplicate contents navigation or repeated dividers. The legal copy records the private operator, hosting and Matomo configuration, planned-but-inactive newsletter, optional external-media categories, terms for free informational use, and an honest accessibility self-assessment. About, How It Works, and Contact reuse `ArchiveEditorialSection` for the same quiet two-column reading rhythm without turning project information into legal records.
 
-`app/pages/venues/index.vue` is the canonical gallery atlas. It reads all 26 gallery profiles from `pp_venues.json`, searches names, towns, states, addresses, and descriptions immediately, preserves search/state filters in the URL, and exposes all nine federal states on a draggable filter rail. The landing-page gallery selection now derives from that same source and links its paper stack to the complete atlas.
+`app/pages/venues/index.vue` is the canonical gallery atlas. It reads all 36 gallery profiles from `pp_venues.json`, searches names, towns, states, addresses, and descriptions immediately, preserves search/state filters in the URL, and exposes all nine federal states on a draggable filter rail. The landing-page gallery selection now derives from that same source and links its paper stack to the complete atlas.
 
 `app/pages/venues/[slug].vue` resolves every gallery from `pp_venues.json`, joined with its city fields from `pp_locations.json`. Every gallery route therefore works even before exhibition records exist. Parkschlössl retains its seven 2026 exhibitions as compact, keyboard-accessible records. Search filters immediately across artist, title, date, medium, and record copy while preserving `q` in the route. Hover, focus, or click selects a sticky preview; images are preloaded before the active preview changes and a visible archival loader or error state covers the transition.
 

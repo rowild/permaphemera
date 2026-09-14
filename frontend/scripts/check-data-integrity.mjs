@@ -73,12 +73,18 @@ const checks = [
   ['navigation item kind matches its path/url', navigationItems.every((item) => {
     if (item.kind === 'url') return typeof item.url === 'string' && item.url.length > 0 && item.path === null
     if (item.kind === 'action') return typeof item.path === 'string' && item.path.length > 0 && item.url === null
-    return item.kind === 'route' && item.url === null && (item.path === null || item.path.startsWith('/'))
+    if (item.kind !== 'route' || item.url !== null) return false
+    // A route with no path is a group heading: only valid if some item names it as parent.
+    if (item.path === null) return navigationItems.some((other) => other.parent === item.id)
+    return item.path.startsWith('/')
   })],
   ['navigation item ids unique', itemIds.size === navigationItems.length],
   ['footer navigation has exactly the groups explore, information, legal', navigationItems
     .filter((item) => item.navigation === navigations.find((nav) => nav.key === 'footer')?.id && item.parent === null)
     .map((item) => item.key).sort().join(',') === ['explore', 'information', 'legal'].sort().join(',')],
+  ['main navigation keys match the header active-state union', navigationItems
+    .filter((item) => item.navigation === navigations.find((nav) => nav.key === 'main')?.id && item.parent === null)
+    .map((item) => item.key).sort().join(',') === ['about', 'artists', 'exhibitions', 'galleries'].sort().join(',')],
 
   ['every venue has a known type', venues.every((venue) =>
     ['gallery', 'museum', 'kunsthalle', 'art_cafe', 'open_air', 'forum'].includes(venue.type))],
