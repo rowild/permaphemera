@@ -93,7 +93,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_translations__navigation_items` | structural | `pp_navigation_items` | yes |
 | `pp_meta` | installer state, singleton | root | yes |
 
-25 prefixed collections. `pp_persons` and `pp_navigations` have no translation table.
+25 prefixed collections, 26 with the `pp_archive` folder. `pp_persons` and `pp_navigations` have no translation table.
 
 ### Relation map
 
@@ -210,14 +210,14 @@ Main collections, top level in this order: `ui_accordion_main` (group-accordion,
 | Collection | Sections in `ui_accordion_main` |
 |---|---|
 | exhibitions | `ui_group_title` (status, title, slug, primary_venue) · `ui_group_dates` (start_date, end_date, is_permanent, date_range, opening_hours, vernissage) · `ui_group_media` (image, image_alt, source_pdf, medium) · `ui_group_tour` (tour, tour_status, tour_available_from) · `ui_group_relations` (participations, statements, further_venues, sponsors) · `ui_group_content` (summary, description) |
-| venues | `ui_group_title` (status, title, slug, type, location, featured, archive_number) · `ui_group_address` (address, website_url, latitude, longitude, coordinate_label) · `ui_group_images` (image, image_alt, hero_image, hero_image_alt, image_caption) · `ui_group_relations` (exhibitions, further_exhibitions, persons, sponsors) · `ui_group_content` (lede, description, about) |
+| venues | `ui_group_title` (status, title, slug, type, location, featured, archive_number) · `ui_group_address` (address, website_url, latitude, longitude, coordinate_label) · `ui_group_images` (image, image_alt, hero_image, hero_image_alt, image_caption) · `ui_group_relations` (exhibitions, further_exhibitions, persons, sponsors) · `ui_group_content` (lede, about, description) |
 | persons | `ui_group_title` (status, first_name, last_name, middle_initial, display_name, slug, roles) · `ui_group_links` (website_url) · `ui_group_relations` (participations, venues, sponsors) |
 | roles | `ui_group_title` (status, title, slug) · `ui_group_relations` (persons) |
 | locations | `ui_group_title` (status, title, slug) · `ui_group_address` (postal_code, state, country, latitude, longitude) · `ui_group_relations` (venues, sponsors) · `ui_group_content` (description) |
 | sponsors | `ui_group_title` (status, title, slug, website_url, logo) · `ui_group_relations` (venues, exhibitions, persons, locations) · `ui_group_content` (description) |
 | navigations | `ui_group_title` (status, title, key) · `ui_group_relations` (items) |
 
-`ui_group_content` is a `group-detail`, start open. `description` is its last field so `blocks` can follow later. Child entities (participations, statements, navigation items) are flat: status first, host FK hidden, content, then `ui_accordion_translations` if translated, then `ui_group_system`. Structural tables have no `ui_*` fields and all columns hidden.
+`ui_group_content` is a `group-detail`, start open. `description` is its last field so `blocks` can follow later. Child entities (participations, statements, navigation items) are flat: status first, host FK hidden, content, then `ui_accordion_translations` if translated, then `ui_group_system`. Structural tables have no `ui_*` fields and all columns hidden. Exception: the translated columns of `pp_translations__*` tables stay visible, otherwise the Directus translations interface renders an empty form.
 
 `ui_group_system` holds `id` (hidden), `sort` (hidden), the four audit fields visible and read-only, all half width.
 
@@ -309,7 +309,7 @@ Record-level English values are copied from the `en` translation entry by a one-
 ## Verification
 
 1. `bash directus/scripts/reset.sh --yes` on a deleted database completes with no browser interaction; `GET /server/info` shows project name PERMAPHEMERA; the admin app opens to the login screen.
-2. `check-conventions.mjs` passes on the live schema; `schema/snapshot.yaml` lists the 25 prefixed collections and no `NO ACTION`.
+2. `check-conventions.mjs` passes on the live schema; `schema/snapshot.yaml` lists the 25 prefixed collections and no `on_delete: NO ACTION` (`on_update: NO ACTION` is SQLite's default and is not covered by the rule).
 3. `node scripts/create-schema.mjs` a second time changes nothing.
 4. Frontend: all nine `pnpm check:*` and `pnpm test` green; `pnpm build` succeeds.
 5. Manual pass with the frontend-qa-checklist skill: header desktop and mobile, footer, both locales, cookie settings link, artist directory, one exhibition detail.

@@ -100,7 +100,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_translations__navigation_items` | structural | `pp_navigation_items` | yes |
 | `pp_meta` | installer state, singleton | root | yes |
 
-25 prefixed collections. `pp_persons` and `pp_navigations` have no translation table.
+25 prefixed collections, 26 with the `pp_archive` folder. `pp_persons` and `pp_navigations` have no translation table.
 
 ### Relation map
 
