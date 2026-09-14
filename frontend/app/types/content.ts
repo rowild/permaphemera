@@ -1,9 +1,7 @@
+// app/types/content.ts
 import type { TourStatus } from '~/utils/tourAccess'
 
-export interface LocationTranslation {
-  languages_code: string
-  description: string
-}
+// ---- component-facing shapes (unchanged) -----------------------------------
 
 export interface ArtistRecordLink {
   id: string
@@ -25,110 +23,173 @@ export interface DirectoryArtist {
   letter: string
 }
 
-export interface Sponsor {
-  id: string
-  name: string
-}
+// ---- raw records: mirror the Directus pp_ collections 1:1 ------------------
 
-export type ContentStatus = 'draft' | 'published'
+export type ContentStatus = 'draft' | 'published' | 'archived'
 
 export type VenueType = 'gallery' | 'museum' | 'kunsthalle' | 'art_cafe' | 'open_air' | 'forum'
 
 export interface TranslationEntry {
   languages_code: string
-  [field: string]: string | string[]
+  [field: string]: string | string[] | null
 }
 
-export interface CityLocation {
+/** pp_locations — the town. */
+export interface LocationRecord {
   id: string
   slug: string
-  city_name: string
+  title: string
   postal_code: string
   state: string
   country: string
   latitude: number
   longitude: number
+  description: string | null
   status: ContentStatus
   translations: TranslationEntry[]
 }
 
+/** pp_venues — the building. `location` → pp_locations.id */
 export interface VenueRecord {
   id: string
   slug: string
-  location_id: string
-  name: string
+  location: string
+  title: string
   type: VenueType
   address: string
-  website_url?: string
-  latitude?: number
-  longitude?: number
+  website_url: string | null
+  latitude: number | null
+  longitude: number | null
   image: string
   image_alt: string
-  hero_image?: string
-  hero_image_alt?: string
+  hero_image: string | null
+  hero_image_alt: string | null
   archive_number: string
   featured: boolean
+  description: string | null
+  lede: string | null
+  about: string[] | null
+  image_caption: string | null
+  coordinate_label: string | null
   status: ContentStatus
   translations: TranslationEntry[]
 }
 
+/** pp_persons — people and collectives. No translations, no biography (owner decision 2026-09-14). */
+export interface PersonRecord {
+  id: string
+  slug: string
+  first_name: string
+  last_name: string
+  middle_initial: string | null
+  /** Pseudonym or collective name; shown instead of first + last when set. */
+  display_name: string | null
+  website_url: string | null
+  status: ContentStatus
+}
+
+/** pp_roles — what a person can be: artist, curator, … */
+export interface RoleRecord {
+  id: string
+  slug: string
+  title: string
+  status: ContentStatus
+  sort: number
+  translations: TranslationEntry[]
+}
+
+/** pp_mm__persons_roles */
+export interface PersonRoleLink {
+  id: number
+  persons_id: string
+  roles_id: string
+  sort: number
+}
+
+/** pp_exhibition_participations — one person in one function on one show. */
+export interface ParticipationRecord {
+  id: string
+  exhibition: string
+  person: string
+  role: string
+  sort: number
+  status: ContentStatus
+}
+
+/** pp_exhibitions. `primary_venue` → pp_venues.id */
 export interface ExhibitionRecord {
   id: string
   slug: string
-  primary_venue_id: string
+  primary_venue: string
   start_date: string
   end_date: string
   is_permanent: boolean
   image: string
   image_alt: string
+  title: string
+  summary: string | null
+  description: string | null
+  date_range: string | null
   opening_hours: string
   vernissage: string
   medium: string | null
   source_pdf: string | null
   /** Root-relative folder of the exported 360° tour (`/media/tours/<id>/`), or null while none is published. */
   tour: string | null
-  /** Editorial availability of the 360° record; see `TourStatus` in utils/tourAccess. */
   tour_status: TourStatus
-  /** ISO date from which the record may be shown, or null for immediately. */
   tour_available_from: string | null
   status: ContentStatus
   translations: TranslationEntry[]
 }
 
-/**
- * One artist's words about one exhibition room (Directus: `exhibition_statements`,
- * M2O to exhibitions and to artists). `prompt` is the question the artist
- * answered ("How did you approach the room?"); `statement` is the answer.
- */
+/** pp_exhibition_statements — one person's words about one show. */
 export interface ExhibitionStatement {
   id: string
-  exhibition_id: string
-  artist_id: string
+  exhibition: string
+  person: string
   sort: number
+  prompt: string | null
+  statement: string | null
   status: ContentStatus
   translations: TranslationEntry[]
 }
 
-export interface ExhibitionArtistLink {
-  id: number
-  exhibition_id: string
-  artist_id: string
+/** pp_sponsors */
+export interface SponsorRecord {
+  id: string
+  slug: string
+  title: string
+  website_url: string | null
+  logo: string | null
+  description: string | null
+  status: ContentStatus
+  sort: number
+  translations: TranslationEntry[]
+}
+
+/** pp_navigations — one row per menu. */
+export interface NavigationRecord {
+  id: string
+  key: string
+  title: string
+  status: ContentStatus
   sort: number
 }
 
-export interface ArtistRecord {
+export type NavigationItemKind = 'route' | 'url' | 'action'
+
+/** pp_navigation_items. `navigation` → pp_navigations.id, `parent` → pp_navigation_items.id */
+export interface NavigationItemRecord {
   id: string
-  slug: string
-  first_name: string
-  last_name: string
-  middle_initial: string | null
-  artist_name: string | null
-  birth_year: number | null
-  death_year: number | null
-  nationality: string | null
-  website_url: string | null
-  instagram_handle: string | null
-  profile_image: string | null
+  navigation: string
+  parent: string | null
+  key: string
+  title: string
+  kind: NavigationItemKind
+  path: string | null
+  url: string | null
+  target: '_self' | '_blank'
+  sort: number
   status: ContentStatus
   translations: TranslationEntry[]
 }
