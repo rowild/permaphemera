@@ -68,7 +68,41 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_translations__navigation_items` | structural | `pp_navigation_items` | yes |
 | `pp_meta` | installer state, singleton | root | yes |
 
-`pp_sponsors` and `pp_navigations` have no translation table. Sponsor names and menu names are not translated. Menu **item** titles are.
+Added on owner review (2026-09-14, second round):
+
+| Collection | Kind | Group | Hidden |
+|---|---|---|---|
+| `pp_translations__sponsors` | structural | `pp_sponsors` | yes |
+| `pp_mm__artists_venues` | structural | `pp_artists` | yes |
+| `pp_mm__artists_sponsors` | structural | `pp_sponsors` | yes |
+| `pp_mm__exhibitions_sponsors` | structural | `pp_sponsors` | yes |
+| `pp_mm__locations_sponsors` | structural | `pp_sponsors` | yes |
+| `pp_mm__sponsors_venues` | structural | `pp_sponsors` | yes |
+
+`pp_navigations` has no translation table. Menu names are admin labels. Menu **item** titles are translated.
+
+### Relation map
+
+Every line is one relation. The naming rule (conventions §2 rule 12) makes an M2O look like a plain field: `primary_venue` is a relation, not a string.
+
+| From | To | Shape | Field / table | Meaning |
+|---|---|---|---|---|
+| exhibition | venue | M2O | `pp_exhibitions.primary_venue` | where the show happens; the venue lists its `exhibitions` |
+| venue | location | M2O | `pp_venues.location` | the town the building stands in; the town lists its `venues` |
+| statement | exhibition | M2O, child | `pp_exhibition_statements.exhibition` | dies with the show |
+| statement | artist | M2O | `pp_exhibition_statements.artist` | who said it |
+| navigation item | navigation | M2O, child | `pp_navigation_items.navigation` | which menu |
+| navigation item | navigation item | M2O, self | `pp_navigation_items.parent` | group nesting |
+| artist | exhibition | M2M | `pp_mm__artists_exhibitions` | credited on the show; aliases `artists` / `exhibitions` |
+| artist | venue | M2M | `pp_mm__artists_venues` | the venue represents or works with the artist; not derived from exhibitions; aliases `venues` / `artists` |
+| sponsor | venue | M2M | `pp_mm__sponsors_venues` | supports the house; aliases `venues` / `sponsors` |
+| sponsor | exhibition | M2M | `pp_mm__exhibitions_sponsors` | supports the show; aliases `exhibitions` / `sponsors` |
+| sponsor | artist | M2M | `pp_mm__artists_sponsors` | supports the artist; aliases `artists` / `sponsors` |
+| sponsor | location | M2M | `pp_mm__locations_sponsors` | a town as supporter; aliases `locations` / `sponsors` |
+
+**Exhibition → location is deliberately absent.** Exhibition → venue → location is one chain; a direct link would repeat it and could contradict it.
+
+Junction ownership in the sidebar (conventions §3 rule 1): under the parent whose form lists it, alphabetical as tie-break. Sponsor junctions live under `pp_sponsors`; `pp_mm__artists_venues` under `pp_artists`; `pp_mm__artists_exhibitions` under `pp_exhibitions` (its `sort` serves the exhibition's credit order).
 
 ### Fields
 
@@ -83,22 +117,22 @@ Rules applied everywhere (conventions §2, §8):
 
 #### `pp_locations`
 
-`id`, `status`, `sort`, `title` (city name), `slug` (unique), `postal_code`, `state`, `country`, `latitude`, `longitude`, `description` (text, English), `translations`, `venues` (o2m alias), audit.
+`id`, `status`, `sort`, `title` (city name), `slug` (unique), `postal_code`, `state`, `country`, `latitude`, `longitude`, `description` (text, English), `translations`, `venues` (o2m alias), `sponsors` (m2m alias), audit.
 Translated: `description`.
 
 #### `pp_venues`
 
-`id`, `status`, `sort`, `title`, `slug`, `location` (M2O → `pp_locations`, SET NULL), `type` (dropdown, allow other), `address`, `website_url`, `latitude`, `longitude`, `image`, `image_alt`, `hero_image`, `hero_image_alt`, `archive_number`, `featured`, `description`, `lede`, `about` (json array of paragraphs), `image_caption`, `coordinate_label`, `translations`, `exhibitions` (o2m alias), audit.
+`id`, `status`, `sort`, `title`, `slug`, `location` (M2O → `pp_locations`, SET NULL), `type` (dropdown, allow other), `address`, `website_url`, `latitude`, `longitude`, `image`, `image_alt`, `hero_image`, `hero_image_alt`, `archive_number`, `featured`, `description`, `lede`, `about` (json array of paragraphs), `image_caption`, `coordinate_label`, `translations`, `exhibitions` (o2m alias), `artists`, `sponsors` (m2m aliases), audit.
 Translated: `description`, `lede`, `about`, `image_caption`, `coordinate_label`.
 
 #### `pp_artists`
 
-`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `artist_name`, `slug`, `birth_year`, `death_year`, `nationality`, `website_url`, `instagram_handle`, `profile_image`, `biography` (text, English), `translations`, `exhibitions` (m2m alias), audit.
+`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `artist_name`, `slug`, `birth_year`, `death_year`, `nationality`, `website_url`, `instagram_handle`, `profile_image`, `biography` (text, English), `translations`, `exhibitions`, `venues`, `sponsors` (m2m aliases), audit.
 Translated: `biography`.
 
 #### `pp_exhibitions`
 
-`id`, `status`, `sort`, `title`, `slug`, `primary_venue` (M2O → `pp_venues`, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (rich text markdown, English), `date_range`, `opening_hours`, `vernissage`, `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `artists` (m2m alias), `statements` (o2m alias), audit.
+`id`, `status`, `sort`, `title`, `slug`, `primary_venue` (M2O → `pp_venues`, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (rich text markdown, English), `date_range`, `opening_hours`, `vernissage`, `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `artists`, `sponsors` (m2m aliases), `statements` (o2m alias), audit.
 Translated: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `image_alt`, `medium`.
 
 #### `pp_exhibition_statements` (child)
@@ -111,9 +145,14 @@ Translated: `prompt`, `statement`.
 `id`, `artists_id` (CASCADE, NOT NULL), `exhibitions_id` (CASCADE, NOT NULL), `sort`.
 Sorted from the exhibitions side only, so the column is `sort` (conventions §2 rule 4). `one_field` = `artists` on `pp_exhibitions` and `exhibitions` on `pp_artists`.
 
+#### Sponsor and artist–venue junctions (structural)
+
+`pp_mm__artists_venues`, `pp_mm__artists_sponsors`, `pp_mm__exhibitions_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`: each `id`, `<a>_id`, `<b>_id` (both CASCADE, NOT NULL, indexed), `sort`. Sorted from the host side that lists them (`sort` only). Aliases on both ends, plural, `list-m2m`.
+
 #### `pp_sponsors`
 
-`id`, `status`, `sort`, `title`, audit. A `logo` file comes when real sponsors exist.
+`id`, `status`, `sort`, `title`, `slug` (unique), `website_url`, `logo` (file), `description` (text, English), `translations`, `venues`, `exhibitions`, `artists`, `locations` (m2m aliases), audit.
+Translated: `description`.
 
 #### `pp_navigations`
 
@@ -150,11 +189,11 @@ Inside `ui_accordion_main`, per collection:
 
 | Collection | Sections in `ui_accordion_main` |
 |---|---|
-| exhibitions | `ui_group_title` (status, title, slug, primary_venue) · `ui_group_dates` (start_date, end_date, is_permanent, date_range, opening_hours, vernissage) · `ui_group_media` (image, image_alt, source_pdf, medium) · `ui_group_tour` (tour, tour_status, tour_available_from) · `ui_group_relations` (artists, statements) · `ui_group_content` (summary, description) |
-| venues | `ui_group_title` (status, title, slug, type, location, featured, archive_number) · `ui_group_address` (address, website_url, latitude, longitude, coordinate_label) · `ui_group_images` (image, image_alt, hero_image, hero_image_alt, image_caption) · `ui_group_relations` (exhibitions) · `ui_group_content` (lede, description, about) |
-| artists | `ui_group_title` (status, first_name, last_name, middle_initial, artist_name, slug) · `ui_group_details` (birth_year, death_year, nationality, website_url, instagram_handle, profile_image) · `ui_group_relations` (exhibitions) · `ui_group_content` (biography) |
-| locations | `ui_group_title` (status, title, slug) · `ui_group_address` (postal_code, state, country, latitude, longitude) · `ui_group_relations` (venues) · `ui_group_content` (description) |
-| sponsors | `ui_group_title` (status, title) |
+| exhibitions | `ui_group_title` (status, title, slug, primary_venue) · `ui_group_dates` (start_date, end_date, is_permanent, date_range, opening_hours, vernissage) · `ui_group_media` (image, image_alt, source_pdf, medium) · `ui_group_tour` (tour, tour_status, tour_available_from) · `ui_group_relations` (artists, sponsors, statements) · `ui_group_content` (summary, description) |
+| venues | `ui_group_title` (status, title, slug, type, location, featured, archive_number) · `ui_group_address` (address, website_url, latitude, longitude, coordinate_label) · `ui_group_images` (image, image_alt, hero_image, hero_image_alt, image_caption) · `ui_group_relations` (exhibitions, artists, sponsors) · `ui_group_content` (lede, description, about) |
+| artists | `ui_group_title` (status, first_name, last_name, middle_initial, artist_name, slug) · `ui_group_details` (birth_year, death_year, nationality, website_url, instagram_handle, profile_image) · `ui_group_relations` (exhibitions, venues, sponsors) · `ui_group_content` (biography) |
+| locations | `ui_group_title` (status, title, slug) · `ui_group_address` (postal_code, state, country, latitude, longitude) · `ui_group_relations` (venues, sponsors) · `ui_group_content` (description) |
+| sponsors | `ui_group_title` (status, title, slug, website_url, logo) · `ui_group_relations` (venues, exhibitions, artists, locations) · `ui_group_content` (description) |
 | navigations | `ui_group_title` (status, title, key) · `ui_group_relations` (items) |
 
 `ui_group_content` is a `group-detail` with start open. `description` is the last field in it, so `blocks` can follow later. Child entities (statements, navigation items) are flat: status first, host FK hidden, content, then `ui_accordion_translations` and `ui_group_system`. Structural tables have no `ui_*` fields and all columns hidden.
@@ -223,7 +262,8 @@ Settings that are not env variables go into `scripts/apply-settings.mjs` (PATCH 
 | `exhibitions.json` | `pp_exhibitions.json` — `primary_venue_id` → `primary_venue`; `title`, `summary`, `description`, `date_range` added on the record |
 | `exhibition_statements.json` | `pp_exhibition_statements.json` — `exhibition_id` → `exhibition`, `artist_id` → `artist`; `prompt`, `statement` on the record |
 | `exhibitions_artists.json` | `pp_mm__artists_exhibitions.json` — `exhibition_id` → `exhibitions_id`, `artist_id` → `artists_id` |
-| `sponsors.json` | `pp_sponsors.json` — `name` → `title` |
+| `sponsors.json` | `pp_sponsors.json` — `name` → `title`; `slug`, `website_url`, `logo`, `description` added (null / empty until real sponsors exist) |
+| — | `pp_mm__artists_venues.json`, `pp_mm__artists_sponsors.json`, `pp_mm__exhibitions_sponsors.json`, `pp_mm__locations_sponsors.json`, `pp_mm__sponsors_venues.json` (new, empty arrays; the resolvers expose them, no page renders them yet) |
 | — | `pp_navigations.json`, `pp_navigation_items.json` (new) |
 
 Record-level English values are copied from the `en` translation entry by a one-off migration script, then deleted from the repo.
@@ -246,7 +286,7 @@ Record-level English values are copied from the `en` translation entry by a one-
 ## Verification
 
 1. `bash directus/scripts/reset.sh --yes` on a deleted database completes with no browser interaction; `GET /server/info` shows project name PERMAPHEMERA; the admin app opens to the login screen, not the owner screen.
-2. `schema/snapshot.yaml` lists exactly the 16 collections above and no `NO ACTION` in any `on_delete`.
+2. `schema/snapshot.yaml` lists exactly the 22 prefixed collections above and no `NO ACTION` in any `on_delete`.
 3. A validating regex pass over every collection name against conventions §1 rule 7 with prefix `pp_`.
 4. `node scripts/create-schema.mjs` a second time changes nothing (all lines `(exists)`).
 5. Frontend: `pnpm check:*` (all nine) and `pnpm test` green; `pnpm build` succeeds.
@@ -259,5 +299,5 @@ Record-level English values are copied from the `en` translation entry by a one-
 - Import of the JSON records into Directus, then the SDK adapter.
 - A Directus flow that copies a saved English translation back onto the record field (or the reverse), so the two cannot drift.
 - `seo` field once the extension is chosen.
-- `sponsors.logo`.
+- Proposed on 2026-09-14, awaiting the owner's yes/no: (A) `pp_mm__exhibitions_venues` for travelling shows, replacing the old `exhibitions_locations` idea; (B) `pp_artists.based_in` M2O → `pp_locations`; (C) `pp_mm__artists_artists__members` for collectives and their members; (D) `pp_mm__exhibitions_files__documents`; (E) curators, which first needs `pp_artists` → `pp_persons` renamed.
 - A friendlier interface for `venues.about` than raw JSON.
