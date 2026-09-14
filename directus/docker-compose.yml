@@ -11,6 +11,7 @@ services:
       - ./uploads:/directus/uploads
       - ./database:/directus/database
       - ./extensions:/directus/extensions
+      - ./schema:/directus/schema
     env_file:
       - .env
     environment:

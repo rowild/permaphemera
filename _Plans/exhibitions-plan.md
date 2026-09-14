@@ -62,7 +62,9 @@ This section is the **single living schema** for the project. The local JSON fil
 
 The design that produced the current shape is `frontend/docs/superpowers/specs/2026-08-12-directus-aligned-data-model-design.md`. That document is a dated record of the decisions and stays as written; this section is where the schema is maintained.
 
-Last reconciled against the JSON files: 2026-09-14.
+Last reconciled against the JSON files: 2026-09-14. Built in the local Directus on the same day by `directus/scripts/create-schema.mjs`; the resulting schema is exported to `directus/schema/snapshot.yaml`. Change the script, not the admin app, when a field changes, then re-export the snapshot.
+
+**System fields.** Every core collection (`locations`, `venues`, `artists`, `exhibitions`, `exhibition_statements`, `sponsors`) also carries the six optional fields the Directus app offers on creation: `status`, `sort`, `user_created`, `date_created`, `user_updated`, `date_updated`. The last four are filled by Directus automatically (field `special` flags `user-created`, `date-created`, `user-updated`, `date-updated`). They are not part of the JSON files and the frontend never reads them. Junction and translation tables do not carry them.
 
 ### Cross-Cutting Rules
 
@@ -90,7 +92,7 @@ Last reconciled against the JSON files: 2026-09-14.
 | `postal_code` | String | |
 | `state` | String | e.g. `Kärnten` |
 | `country` | String | e.g. `Austria` |
-| `latitude`, `longitude` | Float | required, town-centre approximation. Becomes one `geo_data` Point in Directus. Powers radius search only; not door-level mapping |
+| `latitude`, `longitude` | Float | required, town-centre approximation. Two plain floats, not a `geo_data` Point: SQLite has no spatial functions (verified 2026-09-14, `st_geomfromtext` missing). Powers radius search only; not door-level mapping |
 | `status` | Dropdown | `draft` \| `published` |
 
 Translated fields: `description` (Text / Markdown).
@@ -115,7 +117,7 @@ Translated fields: `description` (Text / Markdown).
 | `featured` | Boolean | curated landing-page highlight |
 | `status` | Dropdown | `draft` \| `published` |
 
-Translated fields: `description` (Text), `lede` (String, optional), `about` (repeater / JSON array of paragraphs, optional), `image_caption` (String, optional), `coordinate_label` (String, optional, human-readable DMS readout).
+Translated fields: `description` (Text), `lede` (String, optional), `about` (JSON array of paragraph strings, optional; edited as raw JSON in Directus for now, a friendlier interface is a later choice), `image_caption` (String, optional), `coordinate_label` (String, optional, human-readable DMS readout).
 
 A gallery is the most common exhibition venue in this archive, but not the only one. `type` keeps the frontend label flexible: the collective noun stays "Galleries"/"Galerien" while each venue renders its own type label from an i18n key (`venueType.gallery`, `venueType.art_cafe`, …). Add new values here rather than overloading `gallery`. The list is deliberately open — an unknown value must fall back to the generic collective label rather than render a raw enum. Values in use today: `gallery`, `museum`, `kunsthalle`, `forum`.
 
@@ -164,7 +166,7 @@ Placeholder artists keep every optional field `null`; nothing biographical is in
 
 Translated fields: `title` (String), `summary` (String, one-line teaser), `description` (Text / Markdown, curatorial statement), `date_range` (String, display form of the dates), `opening_hours` (String), `vernissage` (String), `image_alt` (String), `medium` (String).
 
-> **Open item.** `image_alt`, `opening_hours`, `vernissage` and `medium` exist both on the record (as English fallbacks) and in `translations[]`. Directus needs them in one place only. Decide before creating the collection whether they live in `exhibitions_translations` alone (recommended) or stay on the record as untranslated strings.
+> **Decided 2026-09-14.** `image_alt`, `opening_hours`, `vernissage` and `medium` live in both places on purpose. The record field holds the English original as entered by the editor. `exhibitions_translations` holds the same field for every language, English included, so a translator sees the full set in one place. The frontend reads the translation and never the record copy.
 
 #### `exhibition_statements` — an artist's words about one show
 
@@ -517,9 +519,10 @@ export function preloadPanoramasToCache(urls: string[]): void {
 
 [ ] PHASE 4: FUTURE DATABASE ARCHITECTURE CONFIGURATION
     ├── [x] Install Directus 11.17.4 locally (Docker, `directus/`, port 8077) — 2026-09-14
-    ├── [ ] Construct localized Directus collections from §2: locations, venues, artists, exhibitions, exhibition_statements, sponsors, exhibitions_artists
-    ├── [ ] Spin up standard system language codes and establish structural _translations links
-    ├── [ ] Configure relational M2M junction keys (exhibitions_artists, exhibitions_locations)
+    ├── [x] Construct localized Directus collections from §2 via `directus/scripts/create-schema.mjs` — 2026-09-14
+    ├── [x] Spin up standard system language codes (en, de) and establish structural _translations links — 2026-09-14
+    ├── [x] Configure relational M2M junction keys (exhibitions_artists) — 2026-09-14; exhibitions_locations stays deferred
+    ├── [ ] Import the JSON records from frontend/app/data into Directus
     ├── [ ] Introduce Directus SDK data adapter behind the existing JSON-compatible content model
     └── [ ] Test data query payload outputs using Directus SDK deep filtering for locale switching
 
