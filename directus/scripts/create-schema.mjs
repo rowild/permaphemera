@@ -6,6 +6,7 @@
 //   node scripts/create-schema.mjs
 import { buildAll } from './build.mjs'
 import { loadEnv, login } from './lib.mjs'
+import { col } from './naming.mjs'
 import { SCHEMA_VERSION } from './schema.mjs'
 
 const { api } = await login(loadEnv())
@@ -45,6 +46,6 @@ for (const r of relations) {
   console.log(`+ ${r.collection}.${r.field} -> ${r.related_collection}`)
 }
 
-await api('PATCH', '/items/pp_meta', { schema_version: SCHEMA_VERSION, applied_at: new Date().toISOString() })
-console.log(`pp_meta: schema_version ${SCHEMA_VERSION}`)
+await api('PATCH', `/items/${col('meta')}`, { schema_version: SCHEMA_VERSION, applied_at: new Date().toISOString() })
+console.log(`${col('meta')}: schema_version ${SCHEMA_VERSION}`)
 console.log('done')

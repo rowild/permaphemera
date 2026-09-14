@@ -6,7 +6,7 @@ Headless CMS backend. Runs Directus 11.17.4 in Docker with SQLite.
 
 ```bash
 cd directus
-cp .env.example .env      # then fill in KEY, SECRET, ADMIN_PASSWORD
+cp .env.example .env      # then fill in KEY, SECRET, ADMIN_PASSWORD, ADMIN_TOKEN, PROJECT_OWNER
 docker compose up -d
 ```
 

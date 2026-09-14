@@ -6,7 +6,13 @@ import { dirname, join } from 'node:path'
 const here = dirname(fileURLToPath(import.meta.url))
 
 export function loadEnv() {
-  const text = readFileSync(join(here, '..', '.env'), 'utf8')
+  let text
+  try {
+    text = readFileSync(join(here, '..', '.env'), 'utf8')
+  } catch (e) {
+    if (e.code === 'ENOENT') throw new Error('directus/.env is missing; run: cp .env.example .env and fill in the values')
+    throw e
+  }
   const env = {}
   for (const line of text.split('\n')) {
     const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/)
@@ -18,6 +24,8 @@ export function loadEnv() {
 export async function login(env) {
   const base = env.PUBLIC_URL || 'http://localhost:8077'
   let token = env.ADMIN_TOKEN
+
+  if (token === 'replace-with-64-hex-chars') throw new Error('ADMIN_TOKEN in .env is still the placeholder; generate one with: openssl rand -hex 32')
 
   if (!token) {
     const res = await fetch(`${base}/auth/login`, {

@@ -12,7 +12,7 @@ if [[ "${1:-}" != "--yes" ]]; then
 fi
 
 docker compose down
-rm -f database/data.db
+rm -f database/data.db database/data.db-wal database/data.db-shm
 docker compose up -d
 
 echo -n "waiting for Directus"

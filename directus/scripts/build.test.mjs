@@ -44,7 +44,7 @@ test('entities carry the six system fields; structural tables carry none', () =>
 test('a main collection has exactly three top-level fields, in order', () => {
   const top = fieldsOf('pp_exhibitions').filter((f) => f.meta.group == null).sort((a, b) => a.meta.sort - b.meta.sort).map((f) => f.field)
   assert.deepEqual(top, ['ui_accordion_main', 'ui_accordion_translations', 'ui_group_system'])
-  const topSponsors = fieldsOf('pp_navigations').filter((f) => f.meta.group == null).map((f) => f.field)
+  const topSponsors = fieldsOf('pp_navigations').filter((f) => f.meta.group == null).sort((a, b) => a.meta.sort - b.meta.sort).map((f) => f.field)
   assert.deepEqual(topSponsors, ['ui_accordion_main', 'ui_group_system'])
 })
 

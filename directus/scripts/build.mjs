@@ -5,7 +5,6 @@ import { col, fk, mmTable, squash, translationsTable } from './naming.mjs'
 import { COLOR, ROOT_FOLDER, ROOT_LABEL, entities as baseEntities, junctions } from './schema.mjs'
 
 const clone = (v) => JSON.parse(JSON.stringify(v))
-const titleCase = (s) => s.split('_').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
 
 const systemCollection = (name) => name.startsWith('directus_') || name === 'languages'
 const target = (name) => (systemCollection(name) ? name : col(name))
@@ -27,7 +26,7 @@ export function buildAll(overrides = {}) {
     meta: { icon: 'inventory_2', color: COLOR, collapse: 'open', sort: 1, translations: label(ROOT_LABEL) } })
 
   // ---- languages (Directus' own shape, unprefixed) -----------------------
-  collections.push({ collection: 'languages', schema: {}, meta: { icon: 'translate', sort: 3, translations: label('Languages') }, fields: [
+  collections.push({ collection: 'languages', schema: {}, meta: { icon: 'translate', sort: 2, translations: label('Languages') }, fields: [
     { field: 'code', type: 'string', meta: { interface: 'input', width: 'half', readonly: true }, schema: { is_primary_key: true, length: 255 } },
     { field: 'name', type: 'string', meta: { interface: 'input', width: 'half', required: true }, schema: { is_nullable: false } },
     { field: 'direction', type: 'string', meta: { interface: 'select-dropdown', width: 'half', options: { choices: [{ text: 'ltr', value: 'ltr' }, { text: 'rtl', value: 'rtl' }] } }, schema: { default_value: 'ltr' } },
@@ -59,7 +58,7 @@ export function buildAll(overrides = {}) {
   }
 
   // ---- entities -----------------------------------------------------------
-  const placed = (name, fields, group, startSort) => fields.map((f, i) => { f.meta.group = group; f.meta.sort = startSort + i; return f })
+  const placed = (fields, group, startSort) => fields.map((f, i) => { f.meta.group = group; f.meta.sort = startSort + i; return f })
 
   for (const e of Object.values(entities)) {
     const name = col(e.key)
@@ -74,34 +73,34 @@ export function buildAll(overrides = {}) {
     const fields = []
     let sort = 1
     if (e.kind === 'main') {
-      fields.push(placed(name, [uiAccordion('main', 'Main', { start: 'first' })], null, sort++)[0])
-      if (hasTranslations) fields.push(placed(name, [uiAccordion('translations', 'Translations')], null, sort++)[0])
-      fields.push(placed(name, [uiGroup('system', 'System', { detail: true, start: 'closed' })], null, sort++)[0])
+      fields.push(placed([uiAccordion('main', 'Main', { start: 'first' })], null, sort++)[0])
+      if (hasTranslations) fields.push(placed([uiAccordion('translations', 'Translations')], null, sort++)[0])
+      fields.push(placed([uiGroup('system', 'System', { detail: true, start: 'closed' })], null, sort++)[0])
       const used = new Set()
       e.layout.forEach((s, i) => {
         const group = uiGroup(s.key, s.label, { detail: s.detail, start: s.start })
-        fields.push(placed(name, [group], 'ui_accordion_main', i + 1)[0])
+        fields.push(placed([group], 'ui_accordion_main', i + 1)[0])
         s.fields.forEach((fname, j) => {
           const f = byField[fname]
           if (!f) throw new Error(`${name}: layout names unknown field ${fname}`)
           if (used.has(fname)) throw new Error(`${name}: field ${fname} placed twice`)
           used.add(fname)
-          fields.push(placed(name, [f], group.field, j + 1)[0])
+          fields.push(placed([f], group.field, j + 1)[0])
         })
         if (s.key === 'content' && s.fields.at(-1) !== 'description') throw new Error(`${name}: ui_group_content must end with description, got ${s.fields.at(-1)}`)
       })
       for (const f of [...data, status]) {
-        if (f.field === 'translations') { fields.push(placed(name, [f], 'ui_accordion_translations', 1)[0]); continue }
+        if (f.field === 'translations') { fields.push(placed([f], 'ui_accordion_translations', 1)[0]); continue }
         if (!used.has(f.field)) throw new Error(`${name}: data field ${f.field} not placed in any layout section`)
       }
-      fields.push(...placed(name, system, 'ui_group_system', 1))
+      fields.push(...placed(system, 'ui_group_system', 1))
     } else if (e.kind === 'child') {
       const used = new Set()
       e.layout.flat.forEach((fname, i) => {
         const f = byField[fname]
         if (!f) throw new Error(`${name}: layout names unknown field ${fname}`)
         used.add(fname)
-        fields.push(placed(name, [f], null, i + 1)[0])
+        fields.push(placed([f], null, i + 1)[0])
       })
       for (const f of [...data, status]) {
         if (f.field === 'translations') continue
@@ -109,11 +108,11 @@ export function buildAll(overrides = {}) {
       }
       let top = e.layout.flat.length + 1
       if (hasTranslations) {
-        fields.push(placed(name, [uiAccordion('translations', 'Translations')], null, top++)[0])
-        fields.push(placed(name, [byField.translations], 'ui_accordion_translations', 1)[0])
+        fields.push(placed([uiAccordion('translations', 'Translations')], null, top++)[0])
+        fields.push(placed([byField.translations], 'ui_accordion_translations', 1)[0])
       }
-      fields.push(placed(name, [uiGroup('system', 'System', { detail: true, start: 'closed' })], null, top++)[0])
-      fields.push(...placed(name, system, 'ui_group_system', 1))
+      fields.push(placed([uiGroup('system', 'System', { detail: true, start: 'closed' })], null, top++)[0])
+      fields.push(...placed(system, 'ui_group_system', 1))
     }
 
     // Relations from m2o fields.
@@ -130,7 +129,7 @@ export function buildAll(overrides = {}) {
     collections.push({ collection: name, schema: {}, fields: fields.map(strip),
       meta: { icon: e.icon, color: COLOR, note: e.note ?? null, display_template: e.displayTemplate,
         group: e.kind === 'child' ? col(e.host) : col(ROOT_FOLDER), hidden: e.kind === 'child',
-        collapse: e.kind === 'child' ? 'open' : 'closed', sort_field: 'sort', accountability: 'all',
+        collapse: e.kind === 'child' ? 'open' : 'closed', sort_field: e.kind === 'child' ? 'sort' : null, accountability: 'all',
         archive_field: 'status', archive_value: 'archived', unarchive_value: 'draft', archive_app_filter: true,
         translations: [{ language: 'en-US', translation: e.labels[0], singular: e.labels[1], plural: e.labels[2] }] } })
 
@@ -180,7 +179,7 @@ export function buildAll(overrides = {}) {
     uuidPk(),
     { field: 'schema_version', type: 'string', meta: { interface: 'input', readonly: true, width: 'half' }, schema: {} },
     { field: 'applied_at', type: 'timestamp', meta: { interface: 'datetime', readonly: true, width: 'half' }, schema: {} },
-  ], meta: { icon: 'settings', color: COLOR, hidden: true, singleton: true, accountability: 'all', translations: label('Schema Meta') } })
+  ], meta: { icon: 'settings', color: COLOR, hidden: true, singleton: true, sort: 3, collapse: 'open', accountability: 'all', translations: label('Schema Meta') } })
 
   // ---- sidebar sort: contiguous within each parent -----------------------------
   const byGroup = new Map()

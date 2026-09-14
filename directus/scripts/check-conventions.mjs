@@ -18,6 +18,7 @@ const isFolder = (c) => c.schema === null
 const fieldsOf = (n) => fields.filter((f) => f.collection === n)
 const has = (n, f) => fieldsOf(n).some((x) => x.field === f)
 const SIX = ['status', 'sort', 'user_created', 'date_created', 'user_updated', 'date_updated']
+const fieldByKey = new Map(fields.map((f) => [`${f.collection}.${f.field}`, f]))
 
 for (const c of collections) {
   const n = c.collection
@@ -38,8 +39,10 @@ for (const c of collections) {
     if (c.meta.group === 'pp_archive') {
       const expected = has(n, 'translations') ? ['ui_accordion_main', 'ui_accordion_translations', 'ui_group_system'] : ['ui_accordion_main', 'ui_group_system']
       check(JSON.stringify(top) === JSON.stringify(expected), `main layout skeleton wrong: ${n} -> ${top.join(', ')}`)
+      check(c.meta.sort_field === null, `sort_field must be null on main: ${n}`)
     } else {
       check(top.at(-1) === 'ui_group_system', `child layout must end with ui_group_system: ${n}`)
+      check(c.meta.sort_field === 'sort', `sort_field must be sort on child: ${n}`)
     }
     const status = fieldsOf(n).find((f) => f.field === 'status')
     const values = status?.meta?.options?.choices?.map((x) => x.value).sort()
@@ -51,6 +54,9 @@ for (const r of relations) {
   check(r.schema?.on_delete !== 'NO ACTION', `NO ACTION on ${r.collection}.${r.field}`)
   if (isStructural(r.collection)) check(r.schema?.on_delete === 'CASCADE', `structural FK not CASCADE: ${r.collection}.${r.field}`)
   if (['directus_users', 'directus_files'].includes(r.related_collection)) check(r.schema?.on_delete === 'SET NULL', `system FK not SET NULL: ${r.collection}.${r.field}`)
+  const f = fieldByKey.get(`${r.collection}.${r.field}`)
+  check(f?.schema?.is_indexed === true, `FK not indexed: ${r.collection}.${r.field}`)
+  check(f?.schema?.is_unique !== true, `unique index on FK: ${r.collection}.${r.field}`)
 }
 
 // Sidebar sort contiguous per parent.

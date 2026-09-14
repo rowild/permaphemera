@@ -33,10 +33,10 @@ export const sortField = () => base('sort', 'integer', { interface: 'input', hid
 
 // The four automatic fields. `special` drives the automatism.
 export const auditFields = () => [
-  base('user_created', 'uuid', { special: ['user-created'], interface: 'select-dropdown-m2o', options: { template: '{{avatar}} {{first_name}} {{last_name}}' }, display: 'user', readonly: true, width: 'half' }),
-  base('date_created', 'timestamp', { special: ['date-created'], interface: 'datetime', readonly: true, width: 'half', display: 'datetime', display_options: { relative: true } }),
-  base('user_updated', 'uuid', { special: ['user-updated'], interface: 'select-dropdown-m2o', options: { template: '{{avatar}} {{first_name}} {{last_name}}' }, display: 'user', readonly: true, width: 'half' }),
-  base('date_updated', 'timestamp', { special: ['date-updated'], interface: 'datetime', readonly: true, width: 'half', display: 'datetime', display_options: { relative: true } }),
+  base('user_created', 'uuid', { special: ['user-created'], interface: 'select-dropdown-m2o', options: { template: '{{avatar}} {{first_name}} {{last_name}}' }, display: 'user', readonly: true, width: 'half' }, { is_indexed: true }),
+  base('date_created', 'timestamp', { special: ['date-created'], interface: 'datetime', readonly: true, width: 'half', display: 'datetime', display_options: { relative: true } }, { is_indexed: true }),
+  base('user_updated', 'uuid', { special: ['user-updated'], interface: 'select-dropdown-m2o', options: { template: '{{avatar}} {{first_name}} {{last_name}}' }, display: 'user', readonly: true, width: 'half' }, { is_indexed: true }),
+  base('date_updated', 'timestamp', { special: ['date-updated'], interface: 'datetime', readonly: true, width: 'half', display: 'datetime', display_options: { relative: true } }, { is_indexed: true }),
 ]
 
 const withOpts = (payload, opts) => {
@@ -77,7 +77,7 @@ export const dropdown = (field, choices, opts = {}) => withOpts(base(field, 'str
 export const file = (field, opts = {}) => {
   const payload = base(field, 'uuid',
     { special: ['file'], interface: opts.image ? 'file-image' : 'file', display: opts.image ? 'image' : 'file', width: 'half' },
-    { is_nullable: true })
+    { is_nullable: true, is_indexed: true })
   payload.relation = { related: 'directus_files', onDelete: 'SET NULL', oneField: null, oneTemplate: null, oneDeselect: 'nullify', sortField: null }
   return withOpts(payload, opts)
 }
