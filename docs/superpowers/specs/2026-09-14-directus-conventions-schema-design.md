@@ -251,7 +251,7 @@ Record-level English values are copied from the `en` translation entry by a one-
 4. `node scripts/create-schema.mjs` a second time changes nothing (all lines `(exists)`).
 5. Frontend: `pnpm check:*` (all nine) and `pnpm test` green; `pnpm build` succeeds.
 6. Manual pass with the frontend-qa-checklist skill: header desktop and mobile, footer, both locales, cookie settings link.
-7. Record counts unchanged: 17 locations, 36 venues, 73 artists, 13 exhibitions, 15 junction rows, 8 sponsors; new: 2 navigations, 20 navigation items.
+7. Record counts unchanged: 17 locations, 36 venues, 73 artists, 13 exhibitions, 15 junction rows, 8 sponsors; new: 2 navigations, 18 navigation items (4 main + 3 groups + 11 group children).
 
 ## Open items for a later spec
 
