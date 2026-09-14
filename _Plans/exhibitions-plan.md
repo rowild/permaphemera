@@ -133,7 +133,7 @@ Junction ownership in the sidebar (conventions §3 rule 1): under the parent who
 
 Rules applied everywhere (conventions §2, §8):
 
-- Headline column is `title`. Persons keep `first_name` + `last_name`.
+- Headline column is `title`. `venues.name`, `locations.city_name` and `sponsors.name` became `title` on 2026-09-14. Persons keep `first_name` + `last_name`.
 - M2O on an entity is named by meaning, singular: `location`, `primary_venue`, `exhibition`, `person`, `role`, `navigation`, `parent`.
 - Junction and translation FKs are `<parent>_id` after the collection without prefix: `exhibitions_id`, `persons_id`, `roles_id`, `languages_code`.
 - Translated columns carry the note `Translated field for <host>.<column>`.
@@ -150,7 +150,7 @@ Translated: `description`, `lede`, `about`, `image_caption`, `coordinate_label`.
 
 #### `pp_persons`
 
-`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (pseudonym or collective name, shown instead of first + last when set), `slug` (unique), `website_url`, `roles`, `venues`, `sponsors` (m2m), `participations` (o2m), audit.
+`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `slug` (unique), `website_url`, `roles`, `venues`, `sponsors` (m2m), `participations` (o2m), audit.
 No translations.
 
 #### `pp_roles`

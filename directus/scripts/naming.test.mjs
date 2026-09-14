@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { col, fk, isValidName, mmTable, squash, translationsTable } from './naming.mjs'
+import { col, fk, isValidName, mmParts, mmTable, squash, translationsTable } from './naming.mjs'
 
 test('col adds the prefix', () => {
   assert.equal(col('exhibitions'), 'pp_exhibitions')
@@ -15,6 +15,11 @@ test('mmTable squashes, sorts alphabetically and joins with one underscore', () 
   assert.equal(mmTable('persons', 'roles'), 'pp_mm__persons_roles')
   assert.equal(mmTable('sponsors', 'venues'), 'pp_mm__sponsors_venues')
   assert.equal(mmTable('exhibition_statements', 'persons'), 'pp_mm__exhibitionstatements_persons')
+})
+
+test('mmParts orders the two parent names the way mmTable orders them', () => {
+  assert.deepEqual(mmParts('exhibitions', 'artists'), ['artists', 'exhibitions'])
+  assert.deepEqual(mmParts('exhibition_statements', 'persons'), ['exhibition_statements', 'persons'])
 })
 
 test('mmTable refuses a self-reference without a role', () => {

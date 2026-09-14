@@ -1,3 +1,4 @@
+// directus/scripts/naming.mjs
 // The three derived-name rules from _Plans/directus-schema-conventions.md §1.
 // Nothing else in the scripts spells a derived name by hand.
 
@@ -9,8 +10,15 @@ export const squash = (name) => name.replace(/_/g, '')
 
 export const translationsTable = (host) => `${PREFIX}translations__${host}`
 
+// The two parent names, in the order mmTable orders them (sorted by squash()).
+export const mmParts = (a, b) => [a, b].sort((x, y) => {
+  const sx = squash(x); const sy = squash(y)
+  return sx < sy ? -1 : sx > sy ? 1 : 0
+})
+
 export const mmTable = (a, b, role) => {
-  const [x, y] = [squash(a), squash(b)].sort()
+  const [pa, pb] = mmParts(a, b)
+  const x = squash(pa); const y = squash(pb)
   if (x === y && !role) throw new Error(`mmTable(${a}, ${b}): a self-reference needs a role`)
   return `${PREFIX}mm__${x}_${y}${role ? `__${role}` : ''}`
 }

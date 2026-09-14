@@ -1,3 +1,4 @@
+// directus/scripts/schema.mjs
 // The PERMAPHEMERA schema as data. Names of junction tables, translation tables
 // and FK columns are never written here; naming.mjs derives them.
 import { bool, date, dropdown, file, float, jsonArray, m2o, markdown, str, text } from './fields.mjs'

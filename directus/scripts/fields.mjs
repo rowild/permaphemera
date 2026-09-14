@@ -1,3 +1,4 @@
+// directus/scripts/fields.mjs
 // Field payload builders. They mirror what the Directus app sends when you
 // create a field by hand, so the result looks native in the admin app.
 

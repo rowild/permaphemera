@@ -1,3 +1,4 @@
+// directus/scripts/lib.mjs
 // Shared helpers for the Directus admin scripts. Node 24, no dependencies.
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'

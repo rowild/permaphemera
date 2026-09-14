@@ -1,3 +1,4 @@
+// directus/scripts/snapshot.mjs
 // Exports the current Directus schema to schema/snapshot.yaml.
 // Re-apply on a fresh instance with:
 //   docker compose exec directus npx directus schema apply --yes /directus/schema/snapshot.yaml

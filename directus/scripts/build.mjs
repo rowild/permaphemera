@@ -1,7 +1,7 @@
 // directus/scripts/build.mjs
 // Turns schema.mjs into Directus API payloads. Pure: no network.
 import { auditFields, intPk, label, m2o, m2mAlias, o2mAlias, sortField, statusField, translationsAlias, uiAccordion, uiGroup, uuidPk } from './fields.mjs'
-import { col, fk, mmTable, squash, translationsTable } from './naming.mjs'
+import { col, fk, mmParts, mmTable, translationsTable } from './naming.mjs'
 import { COLOR, ROOT_FOLDER, ROOT_LABEL, entities as baseEntities, junctions } from './schema.mjs'
 
 const clone = (v) => JSON.parse(JSON.stringify(v))
@@ -87,6 +87,7 @@ export function buildAll(overrides = {}) {
           used.add(fname)
           fields.push(placed([f], group.field, j + 1)[0])
         })
+        // Child entities have a flat layout with no content group (conventions §6.3), so this guard only applies to mains.
         if (s.key === 'content' && s.fields.at(-1) !== 'description') throw new Error(`${name}: ui_group_content must end with description, got ${s.fields.at(-1)}`)
       })
       for (const f of [...data, status]) {
@@ -158,7 +159,7 @@ export function buildAll(overrides = {}) {
   // ---- junctions ------------------------------------------------------------
   for (const j of junctions) {
     const name = mmTable(j.a, j.b)
-    const [first, second] = [j.a, j.b].sort((x, y) => squash(x).localeCompare(squash(y))) // FK order follows the name
+    const [first, second] = mmParts(j.a, j.b) // FK order follows the name
     const fkA = m2o(fk(first), first, { hidden: true, required: true, onDelete: 'CASCADE', template: entities[first].displayTemplate })
     const fkB = m2o(fk(second), second, { hidden: true, required: true, onDelete: 'CASCADE', template: entities[second].displayTemplate })
     const s = sortField()
