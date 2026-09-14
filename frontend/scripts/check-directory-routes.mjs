@@ -125,8 +125,10 @@ assert(![exhibitionCard, landingExhibitionCard, relatedExhibitionCard].some((sou
 assert.match(exhibitionDetail, /localePath\('\/exhibitions\/'\)/, 'Exhibition detail breadcrumbs must return to the exhibition index.')
 assert.match(exhibitionDetail, /galleryPath/, 'Exhibition detail routes must derive their owning gallery route.')
 
+const navigations = await readJson('app/data/pp_navigations.json')
 const navigationItems = await readJson('app/data/pp_navigation_items.json')
-const mainPaths = navigationItems.filter((item) => item.navigation === 'nav-main').map((item) => item.path)
+const mainNavigationId = navigations.find((nav) => nav.key === 'main')?.id
+const mainPaths = navigationItems.filter((item) => item.navigation === mainNavigationId).map((item) => item.path)
 assert(mainPaths.includes('/venues/'), 'Gallery navigation must target the real gallery index.')
 assert(mainPaths.includes('/exhibitions/'), 'Exhibition navigation must target the real exhibition index.')
 for (const navigation of [header, footerMenu]) {

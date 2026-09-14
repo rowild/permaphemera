@@ -1,8 +1,8 @@
 [
   {
-    "id": "parkschloessl-adi-schmoelzer-2026",
+    "id": "df840053-091d-43a1-9bba-616897e612dc",
     "slug": "all-the-magic",
-    "primary_venue": "venue-parkschloessl-spittal-drau",
+    "primary_venue": "dcc5bd98-2876-42fd-8ff7-d5e6e040c14f",
     "start_date": "2026-06-02",
     "end_date": "2026-06-12",
     "is_permanent": false,
@@ -47,9 +47,9 @@
     ]
   },
   {
-    "id": "parkschloessl-austriatoon-2026",
+    "id": "c54f0485-f7c2-4a91-8926-5dd15bd4c468",
     "slug": "auf-linien-zum-leben",
-    "primary_venue": "venue-parkschloessl-spittal-drau",
+    "primary_venue": "dcc5bd98-2876-42fd-8ff7-d5e6e040c14f",
     "start_date": "2026-06-15",
     "end_date": "2026-06-20",
     "is_permanent": false,
@@ -94,9 +94,9 @@
     ]
   },
   {
-    "id": "parkschloessl-nicoline-von-heyl-2026",
+    "id": "1ed1be5e-62e5-4b41-9047-ccdcbb319a40",
     "slug": "verwandlung-und-zustand",
-    "primary_venue": "venue-parkschloessl-spittal-drau",
+    "primary_venue": "dcc5bd98-2876-42fd-8ff7-d5e6e040c14f",
     "start_date": "2026-06-23",
     "end_date": "2026-07-03",
     "is_permanent": false,
@@ -141,9 +141,9 @@
     ]
   },
   {
-    "id": "parkschloessl-lebenshilfe-2026",
+    "id": "d93b80a3-c88c-45b7-8c57-fdc39b33627e",
     "slug": "begegnungen-kunst-oeffnet-tueren",
-    "primary_venue": "venue-parkschloessl-spittal-drau",
+    "primary_venue": "dcc5bd98-2876-42fd-8ff7-d5e6e040c14f",
     "start_date": "2026-07-07",
     "end_date": "2026-07-10",
     "is_permanent": false,
@@ -188,9 +188,9 @@
     ]
   },
   {
-    "id": "parkschloessl-herbert-meisslitzer-2026",
+    "id": "9e8499ac-37a1-4ed6-af32-94940b866ad7",
     "slug": "farbe-trifft-struktur",
-    "primary_venue": "venue-parkschloessl-spittal-drau",
+    "primary_venue": "dcc5bd98-2876-42fd-8ff7-d5e6e040c14f",
     "start_date": "2026-07-14",
     "end_date": "2026-07-24",
     "is_permanent": false,
@@ -235,9 +235,9 @@
     ]
   },
   {
-    "id": "parkschloessl-campidell-kulle-2026",
+    "id": "93609614-95ba-4dde-8ec9-b6b3e47166ca",
     "slug": "farben-im-park",
-    "primary_venue": "venue-parkschloessl-spittal-drau",
+    "primary_venue": "dcc5bd98-2876-42fd-8ff7-d5e6e040c14f",
     "start_date": "2026-07-28",
     "end_date": "2026-08-07",
     "is_permanent": false,
@@ -282,9 +282,9 @@
     ]
   },
   {
-    "id": "parkschloessl-birgit-moertl-2026",
+    "id": "257a46d3-f212-4f5c-99a1-c0f4a03ed091",
     "slug": "african-heart",
-    "primary_venue": "venue-parkschloessl-spittal-drau",
+    "primary_venue": "dcc5bd98-2876-42fd-8ff7-d5e6e040c14f",
     "start_date": "2026-08-11",
     "end_date": "2026-08-21",
     "is_permanent": false,
@@ -329,9 +329,9 @@
     ]
   },
   {
-    "id": "parkschloessl-peter-kohlweiss-2026",
+    "id": "b9f39828-2559-40fa-8b76-d0d17dad4db9",
     "slug": "gehen-und-sehen",
-    "primary_venue": "venue-parkschloessl-spittal-drau",
+    "primary_venue": "dcc5bd98-2876-42fd-8ff7-d5e6e040c14f",
     "start_date": "2026-08-25",
     "end_date": "2026-09-04",
     "is_permanent": false,
@@ -376,9 +376,9 @@
     ]
   },
   {
-    "id": "parkschloessl-santino-solace-2026",
+    "id": "6a00a540-0e9c-43ca-8d5c-1ddc7d57db06",
     "slug": "das-was-entsteht",
-    "primary_venue": "venue-parkschloessl-spittal-drau",
+    "primary_venue": "dcc5bd98-2876-42fd-8ff7-d5e6e040c14f",
     "start_date": "2026-09-08",
     "end_date": "2026-09-18",
     "is_permanent": false,
@@ -423,9 +423,9 @@
     ]
   },
   {
-    "id": "exhibition-matter-memory",
+    "id": "de438c8c-3963-4fed-b37c-eb1f4286577e",
     "slug": "matter-and-memory",
-    "primary_venue": "venue-belvedere-21",
+    "primary_venue": "4362f44a-da15-427a-921c-275554c576f2",
     "start_date": "2024-02-15",
     "end_date": "2024-05-20",
     "is_permanent": false,
@@ -459,9 +459,9 @@
     ]
   },
   {
-    "id": "exhibition-expressing-inner",
+    "id": "2b65c212-be2c-4068-be56-533a0e0cf6a6",
     "slug": "expressing-the-inner",
-    "primary_venue": "venue-leopold-museum",
+    "primary_venue": "533a714f-d6a0-4ada-8a45-e708f1391f2b",
     "start_date": "2023-10-10",
     "end_date": "2024-01-28",
     "is_permanent": false,
@@ -495,9 +495,9 @@
     ]
   },
   {
-    "id": "exhibition-state-of-repair",
+    "id": "21c6e86f-be24-472e-8c79-fdadcf5b9f6c",
     "slug": "a-state-of-repair",
-    "primary_venue": "venue-kunsthalle-wien",
+    "primary_venue": "7a31ecc0-66a5-454e-b715-2e0663cee81e",
     "start_date": "2023-06-22",
     "end_date": "2023-09-03",
     "is_permanent": false,
@@ -531,9 +531,9 @@
     ]
   },
   {
-    "id": "exhibition-ways-of-being",
+    "id": "7995f56c-156a-4bdf-8522-678ff9d4dbcf",
     "slug": "ways-of-being",
-    "primary_venue": "venue-kunsthaus-graz",
+    "primary_venue": "76d13ec1-5dba-45ff-b499-abba4501f777",
     "start_date": "2023-03-16",
     "end_date": "2023-06-11",
     "is_permanent": false,

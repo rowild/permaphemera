@@ -124,10 +124,12 @@ assert.match(legalPages[1], /id:\s*'external-media'/, 'The Privacy Policy must d
 // matching a literal localePath(...) call in the component source, confirm
 // each legal page is still registered in the navigation data and that both
 // menus consume that data.
+const navigations = await readJson('app/data/pp_navigations.json')
 const navigationItems = await readJson('app/data/pp_navigation_items.json')
+const footerNavigationId = navigations.find((nav) => nav.key === 'footer')?.id
 for (const [index, route] of ['imprint', 'privacy', 'terms', 'accessibility'].entries()) {
   assert.match(legalPages[index], /<ArchiveLegalPage/, `${route} must remain a complete routed legal page using the shared legal layout.`)
-  assert(navigationItems.some((item) => item.navigation === 'nav-footer' && item.path === `/${route}/`), `${route} must remain available from the navigation data.`)
+  assert(navigationItems.some((item) => item.navigation === footerNavigationId && item.path === `/${route}/`), `${route} must remain available from the navigation data.`)
 }
 assert.match(header, /useSiteNavigation\(\)/, 'The header must render its legal links from the navigation data.')
 assert.match(footerMenu, /useSiteNavigation\(\)/, 'The footer must render its legal links from the navigation data.')

@@ -1,6 +1,6 @@
 [
   {
-    "id": "location-spittal-an-der-drau",
+    "id": "25d62040-9525-4923-9efe-7a48a09d447c",
     "slug": "spittal-an-der-drau",
     "title": "Spittal an der Drau",
     "postal_code": "9800",
@@ -19,7 +19,7 @@
     ]
   },
   {
-    "id": "location-graz",
+    "id": "ef6441cb-f914-4e85-b128-e86da0d631d5",
     "slug": "graz",
     "title": "Graz",
     "postal_code": "8020",
@@ -38,7 +38,7 @@
     ]
   },
   {
-    "id": "location-linz",
+    "id": "302b4c59-1a5f-4203-adcb-1e6b62dd3b82",
     "slug": "linz",
     "title": "Linz",
     "postal_code": "4020",
@@ -57,7 +57,7 @@
     ]
   },
   {
-    "id": "location-vienna",
+    "id": "f25c7a36-192f-444e-983a-1bb441cd4e45",
     "slug": "vienna",
     "title": "Vienna",
     "postal_code": "1080",
@@ -76,7 +76,7 @@
     ]
   },
   {
-    "id": "location-baden",
+    "id": "66546165-de94-4b78-b525-c294e0764728",
     "slug": "baden",
     "title": "Baden",
     "postal_code": "2500",
@@ -95,7 +95,7 @@
     ]
   },
   {
-    "id": "location-krems-an-der-donau",
+    "id": "eeb2c2ad-e734-4e34-88fa-dcf23b89e438",
     "slug": "krems-an-der-donau",
     "title": "Krems an der Donau",
     "postal_code": "3500",
@@ -114,7 +114,7 @@
     ]
   },
   {
-    "id": "location-eisenstadt",
+    "id": "15efb060-ce58-4ed4-b2b5-45adbb1d540f",
     "slug": "eisenstadt",
     "title": "Eisenstadt",
     "postal_code": "7000",
@@ -133,7 +133,7 @@
     ]
   },
   {
-    "id": "location-klagenfurt-am-worthersee",
+    "id": "2e1e264b-ab44-48ff-9f0f-03f613f7865c",
     "slug": "klagenfurt-am-worthersee",
     "title": "Klagenfurt am Wörthersee",
     "postal_code": "9020",
@@ -152,7 +152,7 @@
     ]
   },
   {
-    "id": "location-bad-eisenkappel",
+    "id": "2fd32172-d5de-49d2-b652-6b1e1957f5ee",
     "slug": "bad-eisenkappel",
     "title": "Bad Eisenkappel",
     "postal_code": "9135",
@@ -171,7 +171,7 @@
     ]
   },
   {
-    "id": "location-villach",
+    "id": "075119d3-fcac-4da8-a036-6c4f3b490450",
     "slug": "villach",
     "title": "Villach",
     "postal_code": "9500",
@@ -190,7 +190,7 @@
     ]
   },
   {
-    "id": "location-innsbruck",
+    "id": "ed14f355-6ca0-4a2b-b819-3c58a5d2d4b1",
     "slug": "innsbruck",
     "title": "Innsbruck",
     "postal_code": "6020",
@@ -209,7 +209,7 @@
     ]
   },
   {
-    "id": "location-salzburg",
+    "id": "97ae1c0c-bb04-443b-9fe9-13a739fabe7d",
     "slug": "salzburg",
     "title": "Salzburg",
     "postal_code": "5020",
@@ -228,7 +228,7 @@
     ]
   },
   {
-    "id": "location-hallein",
+    "id": "147a2652-114a-46e6-a712-4804487ada74",
     "slug": "hallein",
     "title": "Hallein",
     "postal_code": "5400",
@@ -247,7 +247,7 @@
     ]
   },
   {
-    "id": "location-bludenz",
+    "id": "d1a06822-1641-445f-8400-e08140e07439",
     "slug": "bludenz",
     "title": "Bludenz",
     "postal_code": "6700",
@@ -266,7 +266,7 @@
     ]
   },
   {
-    "id": "location-bregenz",
+    "id": "32067130-73cb-4d9b-b14e-800286607a84",
     "slug": "bregenz",
     "title": "Bregenz",
     "postal_code": "6900",
@@ -285,7 +285,7 @@
     ]
   },
   {
-    "id": "location-lustenau",
+    "id": "d5580b3f-c7f1-4c9a-9bc9-9aeca553a9e8",
     "slug": "lustenau",
     "title": "Lustenau",
     "postal_code": "6890",
@@ -304,7 +304,7 @@
     ]
   },
   {
-    "id": "location-schruns",
+    "id": "ec53bb27-ee63-470f-848c-9b99bd3ee84a",
     "slug": "schruns",
     "title": "Schruns",
     "postal_code": "6780",

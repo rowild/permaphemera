@@ -1,6 +1,6 @@
 [
   {
-    "id": "role-artist",
+    "id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "slug": "artist",
     "title": "Artist",
     "status": "published",
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "id": "role-curator",
+    "id": "68b75859-8a9b-4bc8-aa98-8c6577c18fb3",
     "slug": "curator",
     "title": "Curator",
     "status": "published",

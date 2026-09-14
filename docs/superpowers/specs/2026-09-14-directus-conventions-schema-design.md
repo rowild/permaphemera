@@ -274,7 +274,7 @@ Verified in the container: `cli/commands/bootstrap/index.js` reads `PROJECT_NAME
 
 **Boundary.** The resolvers are the adapter. Raw record types and JSON change; the shapes components receive (`ResolvedVenue`, `ResolvedExhibition`, `DirectoryArtist`) do not. `ResolvedVenue.name` stays and is filled from `title`. `ResolvedExhibition.artists` stays and is filled from participations with role `artist`; a new `curators` array sits beside it, unrendered for now. Two pages import the junction JSON directly today (`pages/index.vue`, `pages/artists/index.vue`); they switch to the composable.
 
-**JSON files** (`frontend/app/data/`), named after the collections. The JSON mirrors the API **item shape**: translations inline as `translations[]`; junctions and child tables as their own files.
+**JSON files** (`frontend/app/data/`), named after the collections. The JSON mirrors the API **item shape**: translations inline as `translations[]`; junctions and child tables as their own files. Record ids are UUIDs, the same shape Directus assigns, so an import keeps them. Junction rows keep integer ids. Slugs stay readable and are the public identifier.
 
 | Old | New |
 |---|---|

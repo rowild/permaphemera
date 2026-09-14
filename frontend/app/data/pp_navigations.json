@@ -1,13 +1,13 @@
 [
   {
-    "id": "nav-main",
+    "id": "4516f483-7ad7-436e-bbea-2f76913a45f0",
     "key": "main",
     "title": "Main navigation",
     "status": "published",
     "sort": 1
   },
   {
-    "id": "nav-footer",
+    "id": "0ec67a3a-dc43-4b38-b06a-e1cd029dd847",
     "key": "footer",
     "title": "Footer navigation",
     "status": "published",

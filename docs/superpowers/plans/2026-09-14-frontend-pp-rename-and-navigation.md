@@ -51,7 +51,7 @@
 - Modify: `scripts/check-i18n-privacy.mjs` (collection names, `location_id` → `location`), `scripts/check-directory-routes.mjs` (file names, `name` → `title`, `location_id` → `location`, `city_name` → `title`), `scripts/publish-tour.mjs` (file name)
 
 **Interfaces:**
-- Produces: JSON files in the shape below. Readable ids stay (`venue-parkschloessl-spittal-drau`); new ids: `role-artist`, `role-curator`, `participation-<n>`, `nav-main`, `nav-footer`, `nav-<navkey>-<itemkey>`.
+- Produces: JSON files in the shape below. Record ids are UUIDs, the same shape Directus assigns, so an import keeps them. Junction rows keep integer ids. Slugs stay readable and are the public identifier.
 
 - [ ] **Step 1: Rewrite `check-data-integrity.mjs` (the failing test)**
 

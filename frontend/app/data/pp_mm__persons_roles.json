@@ -1,440 +1,440 @@
 [
   {
     "id": 1,
-    "persons_id": "person-anselm-kiefer",
-    "roles_id": "role-artist",
+    "persons_id": "34c1b2cf-855f-462f-98c2-a699ba856300",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 2,
-    "persons_id": "person-brigitte-kowanz",
-    "roles_id": "role-artist",
+    "persons_id": "d5ddaba9-4176-45b4-92c4-3628005a0513",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 3,
-    "persons_id": "person-birgit-juergenssen",
-    "roles_id": "role-artist",
+    "persons_id": "6ad7fdcf-756d-44e6-9b2c-2b94fdee6e30",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 4,
-    "persons_id": "person-guenter-brus",
-    "roles_id": "role-artist",
+    "persons_id": "ad177752-1ff7-45e7-9861-6afb1505c06b",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 5,
-    "persons_id": "person-oskar-kokoschka",
-    "roles_id": "role-artist",
+    "persons_id": "85c18bde-cb45-4de3-b07d-c789a3e36543",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 6,
-    "persons_id": "person-maria-lassnig",
-    "roles_id": "role-artist",
+    "persons_id": "cf06dcc0-f1b1-471b-93cb-32613cc1b91b",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 7,
-    "persons_id": "person-raqs-media-collective",
-    "roles_id": "role-artist",
+    "persons_id": "e9f9be79-4569-4481-b686-c6f6e3402e98",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 8,
-    "persons_id": "person-valie-export",
-    "roles_id": "role-artist",
+    "persons_id": "8b7b54fc-3987-4bf3-a972-0dd492410121",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 9,
-    "persons_id": "person-franz-west",
-    "roles_id": "role-artist",
+    "persons_id": "076170f4-ce05-46d2-8bb4-4057c2c2d600",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 10,
-    "persons_id": "person-mira-abele",
-    "roles_id": "role-artist",
+    "persons_id": "c2985add-896d-493a-a940-92c943a8e1ae",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 11,
-    "persons_id": "person-jonas-arden",
-    "roles_id": "role-artist",
+    "persons_id": "d1908e94-f797-469a-9e97-7a50d8ea691c",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 12,
-    "persons_id": "person-lena-bacher",
-    "roles_id": "role-artist",
+    "persons_id": "c5d13785-a0ec-4ac7-9229-3842c78b39b9",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 13,
-    "persons_id": "person-pavel-breun",
-    "roles_id": "role-artist",
+    "persons_id": "9a260f32-607d-46e4-91bd-112e4364c89c",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 14,
-    "persons_id": "person-iona-cernek",
-    "roles_id": "role-artist",
+    "persons_id": "2c5a8f83-7229-4618-b391-9874d8b6eebe",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 15,
-    "persons_id": "person-timo-corda",
-    "roles_id": "role-artist",
+    "persons_id": "31bef565-cd37-4009-a18d-a798fa2875be",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 16,
-    "persons_id": "person-mara-degen",
-    "roles_id": "role-artist",
+    "persons_id": "e99bddc3-fccd-47c2-9f81-abf86a74a145",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 17,
-    "persons_id": "person-elias-dorn",
-    "roles_id": "role-artist",
+    "persons_id": "3ae3e1b6-c714-4446-a8a5-50add570f1ed",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 18,
-    "persons_id": "person-nika-eder",
-    "roles_id": "role-artist",
+    "persons_id": "506025d3-d2ff-4862-9776-2ded5553db51",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 19,
-    "persons_id": "person-samuel-evers",
-    "roles_id": "role-artist",
+    "persons_id": "7747484d-d4d6-49bf-b8fb-a4d6274a4235",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 20,
-    "persons_id": "person-livia-falk",
-    "roles_id": "role-artist",
+    "persons_id": "2caaf34c-3843-4508-87a3-5547c4265e93",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 21,
-    "persons_id": "person-anton-ferner",
-    "roles_id": "role-artist",
+    "persons_id": "9c7517d7-3817-49b1-82b4-7140b994d9b8",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 22,
-    "persons_id": "person-klara-gsell",
-    "roles_id": "role-artist",
+    "persons_id": "8e42167b-2d03-466c-8fad-93fb048bb155",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 23,
-    "persons_id": "person-emil-gruber",
-    "roles_id": "role-artist",
+    "persons_id": "689c7d63-0995-418c-a323-3504824a93ba",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 24,
-    "persons_id": "person-nora-haid",
-    "roles_id": "role-artist",
+    "persons_id": "d98df204-8d2b-4609-9bb9-5fd75a713d83",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 25,
-    "persons_id": "person-leander-huber",
-    "roles_id": "role-artist",
+    "persons_id": "2fdde6a9-4138-4dbf-a4e7-9efaa5bd07f2",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 26,
-    "persons_id": "person-mina-illich",
-    "roles_id": "role-artist",
+    "persons_id": "f58d9144-726a-49b7-ad29-c999031687fd",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 27,
-    "persons_id": "person-tobias-innerhofer",
-    "roles_id": "role-artist",
+    "persons_id": "ef758ffb-3e17-41b4-a5b0-29cc319bd36a",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 28,
-    "persons_id": "person-elsa-jarnik",
-    "roles_id": "role-artist",
+    "persons_id": "c6c1d944-c598-4e39-b6a5-ba91045452e9",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 29,
-    "persons_id": "person-milan-jost",
-    "roles_id": "role-artist",
+    "persons_id": "233196c8-752a-4abf-a4e9-4a6a0b6b5a9d",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 30,
-    "persons_id": "person-lora-kain",
-    "roles_id": "role-artist",
+    "persons_id": "47a010ec-3cd7-4a98-ba7a-5875197cd2a9",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 31,
-    "persons_id": "person-noah-kern",
-    "roles_id": "role-artist",
+    "persons_id": "bdf7bb40-f8c9-442f-8d07-092eab3b072a",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 32,
-    "persons_id": "person-rhea-koller",
-    "roles_id": "role-artist",
+    "persons_id": "17ec9817-1d9f-4439-82d6-b73d463e3f16",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 33,
-    "persons_id": "person-ada-lechner",
-    "roles_id": "role-artist",
+    "persons_id": "1102479b-a869-4ddd-8d8d-7c1102a0462e",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 34,
-    "persons_id": "person-viktor-loos",
-    "roles_id": "role-artist",
+    "persons_id": "7a40a4fa-45b9-470a-9a9f-256bf140b989",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 35,
-    "persons_id": "person-thea-mader",
-    "roles_id": "role-artist",
+    "persons_id": "3c9f46c3-74c1-4f75-acea-af65da7e2df6",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 36,
-    "persons_id": "person-ivo-moser",
-    "roles_id": "role-artist",
+    "persons_id": "b0cee525-2f5c-402d-9aa5-600d05bafbb6",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 37,
-    "persons_id": "person-alma-neri",
-    "roles_id": "role-artist",
+    "persons_id": "b9107668-dcd7-4bc6-a797-ad3bbba37ded",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 38,
-    "persons_id": "person-dario-novak",
-    "roles_id": "role-artist",
+    "persons_id": "04b1c00c-0700-4566-a4ad-1d90d2a04996",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 39,
-    "persons_id": "person-pia-oberlin",
-    "roles_id": "role-artist",
+    "persons_id": "25f5c2e8-a49d-46cd-891c-57ee97510478",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 40,
-    "persons_id": "person-felix-orter",
-    "roles_id": "role-artist",
+    "persons_id": "27ec4ad1-0a33-4790-8a25-30b8db62b635",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 41,
-    "persons_id": "person-sara-pichler",
-    "roles_id": "role-artist",
+    "persons_id": "9ad1cbd3-5023-424a-aac2-3c5fbbf746a9",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 42,
-    "persons_id": "person-leon-prantl",
-    "roles_id": "role-artist",
+    "persons_id": "1acc735a-025c-4caf-8a99-08e10e903d7c",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 43,
-    "persons_id": "person-mira-quell",
-    "roles_id": "role-artist",
+    "persons_id": "95b523f4-ab1d-43c6-87c1-307cbaf6c6f4",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 44,
-    "persons_id": "person-aron-quirin",
-    "roles_id": "role-artist",
+    "persons_id": "0d7945d5-146a-41c8-a58d-d02d70140c96",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 45,
-    "persons_id": "person-ina-rainer",
-    "roles_id": "role-artist",
+    "persons_id": "cedb7ce1-8739-435b-90ee-f30fc0fa20bb",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 46,
-    "persons_id": "person-theo-riss",
-    "roles_id": "role-artist",
+    "persons_id": "aba89c23-11c5-465c-b1a4-9aa65c127262",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 47,
-    "persons_id": "person-zoe-sattler",
-    "roles_id": "role-artist",
+    "persons_id": "45eece24-4fa8-4182-8ab5-9df43f632e65",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 48,
-    "persons_id": "person-jan-sendl",
-    "roles_id": "role-artist",
+    "persons_id": "93841366-0307-47fa-b02b-ea2e1c2b0334",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 49,
-    "persons_id": "person-ella-tauer",
-    "roles_id": "role-artist",
+    "persons_id": "1fb335c9-d232-4e08-aa4d-5b6e8cf80c92",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 50,
-    "persons_id": "person-bruno-tesch",
-    "roles_id": "role-artist",
+    "persons_id": "377c611a-bab1-41ba-847e-5cff290feef9",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 51,
-    "persons_id": "person-mia-uhl",
-    "roles_id": "role-artist",
+    "persons_id": "9497cc96-85a9-4b89-86cc-392c054f4796",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 52,
-    "persons_id": "person-niko-urban",
-    "roles_id": "role-artist",
+    "persons_id": "edb5b4db-a217-48db-9d2d-fe4dda4504c9",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 53,
-    "persons_id": "person-lea-varga",
-    "roles_id": "role-artist",
+    "persons_id": "5240a036-c7f1-4400-ba34-5effb221ddc0",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 54,
-    "persons_id": "person-otto-vogl",
-    "roles_id": "role-artist",
+    "persons_id": "55677a86-f223-4d3d-a30e-fbb74e2fb15f",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 55,
-    "persons_id": "person-anja-wenter",
-    "roles_id": "role-artist",
+    "persons_id": "0b2d2e70-4d91-4f5e-ba06-b63388bdcc6d",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 56,
-    "persons_id": "person-lio-wurm",
-    "roles_id": "role-artist",
+    "persons_id": "b4d6213c-9172-4a07-bdc0-d4ad9d841a9f",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 57,
-    "persons_id": "person-mina-xandl",
-    "roles_id": "role-artist",
+    "persons_id": "91e9ea13-33f3-4672-9dd7-38b04c2170d2",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 58,
-    "persons_id": "person-theo-xaver",
-    "roles_id": "role-artist",
+    "persons_id": "0d5307ad-3750-4d76-bfff-4bb64ab4af76",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 59,
-    "persons_id": "person-eva-yalin",
-    "roles_id": "role-artist",
+    "persons_id": "990961f2-2120-4913-a264-5a2dbf86d879",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 60,
-    "persons_id": "person-noah-ypern",
-    "roles_id": "role-artist",
+    "persons_id": "cb172204-10c6-4a91-9028-26b67960b7a1",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 61,
-    "persons_id": "person-mara-zeller",
-    "roles_id": "role-artist",
+    "persons_id": "935f0faa-3ca0-440f-b047-1325616ebf46",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 62,
-    "persons_id": "person-ivo-zorn",
-    "roles_id": "role-artist",
+    "persons_id": "63f536d6-a3a7-4165-852a-4cdee0f2e4ba",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 63,
-    "persons_id": "person-adi-schmoelzer",
-    "roles_id": "role-artist",
+    "persons_id": "cd845373-c1eb-4400-b2a8-e0efcc4aea7c",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 64,
-    "persons_id": "person-7th-spittaler-comicfestival",
-    "roles_id": "role-artist",
+    "persons_id": "3f9a8b64-73f3-41da-bd4d-bffbc7da216a",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 65,
-    "persons_id": "person-austriatoon",
-    "roles_id": "role-artist",
+    "persons_id": "c5e448bf-b4c4-4268-9c2a-6622a7c20fe5",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 66,
-    "persons_id": "person-nicoline-von-heyl",
-    "roles_id": "role-artist",
+    "persons_id": "11e9491d-1709-4aa2-aae0-7d4cfcaf84e9",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 67,
-    "persons_id": "person-lebenshilfe-spittal",
-    "roles_id": "role-artist",
+    "persons_id": "36d54244-a8fd-4b19-a0c9-dc7de35f06c0",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 68,
-    "persons_id": "person-herbert-meisslitzer",
-    "roles_id": "role-artist",
+    "persons_id": "cd325a20-678b-4bcb-8df2-638a071b3738",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 69,
-    "persons_id": "person-sylvia-campidell",
-    "roles_id": "role-artist",
+    "persons_id": "7afcf44f-b564-4a7c-be73-28589087cea7",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 70,
-    "persons_id": "person-judith-maria-kulle",
-    "roles_id": "role-artist",
+    "persons_id": "c875f42b-9e81-491d-a43c-82b5a6d77ffd",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 71,
-    "persons_id": "person-birgit-moertl",
-    "roles_id": "role-artist",
+    "persons_id": "d1e6a4f8-12b8-436d-8659-9defae5a5ff0",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 72,
-    "persons_id": "person-peter-kohlweiss",
-    "roles_id": "role-artist",
+    "persons_id": "de1c95ba-7885-4cdc-a3f1-a1a52c53cd63",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   },
   {
     "id": 73,
-    "persons_id": "person-santino-solace",
-    "roles_id": "role-artist",
+    "persons_id": "18050820-ad48-46d9-ace4-df324a9a3e9e",
+    "roles_id": "37b28cb2-e0ba-4081-b51b-836149de0a06",
     "sort": 0
   }
 ]

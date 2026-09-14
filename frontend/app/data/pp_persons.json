@@ -1,6 +1,6 @@
 [
   {
-    "id": "person-anselm-kiefer",
+    "id": "34c1b2cf-855f-462f-98c2-a699ba856300",
     "slug": "anselm-kiefer",
     "first_name": "Anselm",
     "last_name": "Kiefer",
@@ -11,7 +11,7 @@
     "sort": 1
   },
   {
-    "id": "person-brigitte-kowanz",
+    "id": "d5ddaba9-4176-45b4-92c4-3628005a0513",
     "slug": "brigitte-kowanz",
     "first_name": "Brigitte",
     "last_name": "Kowanz",
@@ -22,7 +22,7 @@
     "sort": 2
   },
   {
-    "id": "person-birgit-juergenssen",
+    "id": "6ad7fdcf-756d-44e6-9b2c-2b94fdee6e30",
     "slug": "birgit-juergenssen",
     "first_name": "Birgit",
     "last_name": "Juergenssen",
@@ -33,7 +33,7 @@
     "sort": 3
   },
   {
-    "id": "person-guenter-brus",
+    "id": "ad177752-1ff7-45e7-9861-6afb1505c06b",
     "slug": "guenter-brus",
     "first_name": "Guenter",
     "last_name": "Brus",
@@ -44,7 +44,7 @@
     "sort": 4
   },
   {
-    "id": "person-oskar-kokoschka",
+    "id": "85c18bde-cb45-4de3-b07d-c789a3e36543",
     "slug": "oskar-kokoschka",
     "first_name": "Oskar",
     "last_name": "Kokoschka",
@@ -55,7 +55,7 @@
     "sort": 5
   },
   {
-    "id": "person-maria-lassnig",
+    "id": "cf06dcc0-f1b1-471b-93cb-32613cc1b91b",
     "slug": "maria-lassnig",
     "first_name": "Maria",
     "last_name": "Lassnig",
@@ -66,7 +66,7 @@
     "sort": 6
   },
   {
-    "id": "person-raqs-media-collective",
+    "id": "e9f9be79-4569-4481-b686-c6f6e3402e98",
     "slug": "raqs-media-collective",
     "first_name": "",
     "last_name": "",
@@ -77,7 +77,7 @@
     "sort": 7
   },
   {
-    "id": "person-valie-export",
+    "id": "8b7b54fc-3987-4bf3-a972-0dd492410121",
     "slug": "valie-export",
     "first_name": "",
     "last_name": "",
@@ -88,7 +88,7 @@
     "sort": 8
   },
   {
-    "id": "person-franz-west",
+    "id": "076170f4-ce05-46d2-8bb4-4057c2c2d600",
     "slug": "franz-west",
     "first_name": "Franz",
     "last_name": "West",
@@ -99,7 +99,7 @@
     "sort": 9
   },
   {
-    "id": "person-mira-abele",
+    "id": "c2985add-896d-493a-a940-92c943a8e1ae",
     "slug": "mira-abele",
     "first_name": "Mira",
     "last_name": "Abele",
@@ -110,7 +110,7 @@
     "sort": 10
   },
   {
-    "id": "person-jonas-arden",
+    "id": "d1908e94-f797-469a-9e97-7a50d8ea691c",
     "slug": "jonas-arden",
     "first_name": "Jonas",
     "last_name": "Arden",
@@ -121,7 +121,7 @@
     "sort": 11
   },
   {
-    "id": "person-lena-bacher",
+    "id": "c5d13785-a0ec-4ac7-9229-3842c78b39b9",
     "slug": "lena-bacher",
     "first_name": "Lena",
     "last_name": "Bacher",
@@ -132,7 +132,7 @@
     "sort": 12
   },
   {
-    "id": "person-pavel-breun",
+    "id": "9a260f32-607d-46e4-91bd-112e4364c89c",
     "slug": "pavel-breun",
     "first_name": "Pavel",
     "last_name": "Breun",
@@ -143,7 +143,7 @@
     "sort": 13
   },
   {
-    "id": "person-iona-cernek",
+    "id": "2c5a8f83-7229-4618-b391-9874d8b6eebe",
     "slug": "iona-cernek",
     "first_name": "Iona",
     "last_name": "Cernek",
@@ -154,7 +154,7 @@
     "sort": 14
   },
   {
-    "id": "person-timo-corda",
+    "id": "31bef565-cd37-4009-a18d-a798fa2875be",
     "slug": "timo-corda",
     "first_name": "Timo",
     "last_name": "Corda",
@@ -165,7 +165,7 @@
     "sort": 15
   },
   {
-    "id": "person-mara-degen",
+    "id": "e99bddc3-fccd-47c2-9f81-abf86a74a145",
     "slug": "mara-degen",
     "first_name": "Mara",
     "last_name": "Degen",
@@ -176,7 +176,7 @@
     "sort": 16
   },
   {
-    "id": "person-elias-dorn",
+    "id": "3ae3e1b6-c714-4446-a8a5-50add570f1ed",
     "slug": "elias-dorn",
     "first_name": "Elias",
     "last_name": "Dorn",
@@ -187,7 +187,7 @@
     "sort": 17
   },
   {
-    "id": "person-nika-eder",
+    "id": "506025d3-d2ff-4862-9776-2ded5553db51",
     "slug": "nika-eder",
     "first_name": "Nika",
     "last_name": "Eder",
@@ -198,7 +198,7 @@
     "sort": 18
   },
   {
-    "id": "person-samuel-evers",
+    "id": "7747484d-d4d6-49bf-b8fb-a4d6274a4235",
     "slug": "samuel-evers",
     "first_name": "Samuel",
     "last_name": "Evers",
@@ -209,7 +209,7 @@
     "sort": 19
   },
   {
-    "id": "person-livia-falk",
+    "id": "2caaf34c-3843-4508-87a3-5547c4265e93",
     "slug": "livia-falk",
     "first_name": "Livia",
     "last_name": "Falk",
@@ -220,7 +220,7 @@
     "sort": 20
   },
   {
-    "id": "person-anton-ferner",
+    "id": "9c7517d7-3817-49b1-82b4-7140b994d9b8",
     "slug": "anton-ferner",
     "first_name": "Anton",
     "last_name": "Ferner",
@@ -231,7 +231,7 @@
     "sort": 21
   },
   {
-    "id": "person-klara-gsell",
+    "id": "8e42167b-2d03-466c-8fad-93fb048bb155",
     "slug": "klara-gsell",
     "first_name": "Klara",
     "last_name": "Gsell",
@@ -242,7 +242,7 @@
     "sort": 22
   },
   {
-    "id": "person-emil-gruber",
+    "id": "689c7d63-0995-418c-a323-3504824a93ba",
     "slug": "emil-gruber",
     "first_name": "Emil",
     "last_name": "Gruber",
@@ -253,7 +253,7 @@
     "sort": 23
   },
   {
-    "id": "person-nora-haid",
+    "id": "d98df204-8d2b-4609-9bb9-5fd75a713d83",
     "slug": "nora-haid",
     "first_name": "Nora",
     "last_name": "Haid",
@@ -264,7 +264,7 @@
     "sort": 24
   },
   {
-    "id": "person-leander-huber",
+    "id": "2fdde6a9-4138-4dbf-a4e7-9efaa5bd07f2",
     "slug": "leander-huber",
     "first_name": "Leander",
     "last_name": "Huber",
@@ -275,7 +275,7 @@
     "sort": 25
   },
   {
-    "id": "person-mina-illich",
+    "id": "f58d9144-726a-49b7-ad29-c999031687fd",
     "slug": "mina-illich",
     "first_name": "Mina",
     "last_name": "Illich",
@@ -286,7 +286,7 @@
     "sort": 26
   },
   {
-    "id": "person-tobias-innerhofer",
+    "id": "ef758ffb-3e17-41b4-a5b0-29cc319bd36a",
     "slug": "tobias-innerhofer",
     "first_name": "Tobias",
     "last_name": "Innerhofer",
@@ -297,7 +297,7 @@
     "sort": 27
   },
   {
-    "id": "person-elsa-jarnik",
+    "id": "c6c1d944-c598-4e39-b6a5-ba91045452e9",
     "slug": "elsa-jarnik",
     "first_name": "Elsa",
     "last_name": "Jarnik",
@@ -308,7 +308,7 @@
     "sort": 28
   },
   {
-    "id": "person-milan-jost",
+    "id": "233196c8-752a-4abf-a4e9-4a6a0b6b5a9d",
     "slug": "milan-jost",
     "first_name": "Milan",
     "last_name": "Jost",
@@ -319,7 +319,7 @@
     "sort": 29
   },
   {
-    "id": "person-lora-kain",
+    "id": "47a010ec-3cd7-4a98-ba7a-5875197cd2a9",
     "slug": "lora-kain",
     "first_name": "Lora",
     "last_name": "Kain",
@@ -330,7 +330,7 @@
     "sort": 30
   },
   {
-    "id": "person-noah-kern",
+    "id": "bdf7bb40-f8c9-442f-8d07-092eab3b072a",
     "slug": "noah-kern",
     "first_name": "Noah",
     "last_name": "Kern",
@@ -341,7 +341,7 @@
     "sort": 31
   },
   {
-    "id": "person-rhea-koller",
+    "id": "17ec9817-1d9f-4439-82d6-b73d463e3f16",
     "slug": "rhea-koller",
     "first_name": "Rhea",
     "last_name": "Koller",
@@ -352,7 +352,7 @@
     "sort": 32
   },
   {
-    "id": "person-ada-lechner",
+    "id": "1102479b-a869-4ddd-8d8d-7c1102a0462e",
     "slug": "ada-lechner",
     "first_name": "Ada",
     "last_name": "Lechner",
@@ -363,7 +363,7 @@
     "sort": 33
   },
   {
-    "id": "person-viktor-loos",
+    "id": "7a40a4fa-45b9-470a-9a9f-256bf140b989",
     "slug": "viktor-loos",
     "first_name": "Viktor",
     "last_name": "Loos",
@@ -374,7 +374,7 @@
     "sort": 34
   },
   {
-    "id": "person-thea-mader",
+    "id": "3c9f46c3-74c1-4f75-acea-af65da7e2df6",
     "slug": "thea-mader",
     "first_name": "Thea",
     "last_name": "Mader",
@@ -385,7 +385,7 @@
     "sort": 35
   },
   {
-    "id": "person-ivo-moser",
+    "id": "b0cee525-2f5c-402d-9aa5-600d05bafbb6",
     "slug": "ivo-moser",
     "first_name": "Ivo",
     "last_name": "Moser",
@@ -396,7 +396,7 @@
     "sort": 36
   },
   {
-    "id": "person-alma-neri",
+    "id": "b9107668-dcd7-4bc6-a797-ad3bbba37ded",
     "slug": "alma-neri",
     "first_name": "Alma",
     "last_name": "Neri",
@@ -407,7 +407,7 @@
     "sort": 37
   },
   {
-    "id": "person-dario-novak",
+    "id": "04b1c00c-0700-4566-a4ad-1d90d2a04996",
     "slug": "dario-novak",
     "first_name": "Dario",
     "last_name": "Novak",
@@ -418,7 +418,7 @@
     "sort": 38
   },
   {
-    "id": "person-pia-oberlin",
+    "id": "25f5c2e8-a49d-46cd-891c-57ee97510478",
     "slug": "pia-oberlin",
     "first_name": "Pia",
     "last_name": "Oberlin",
@@ -429,7 +429,7 @@
     "sort": 39
   },
   {
-    "id": "person-felix-orter",
+    "id": "27ec4ad1-0a33-4790-8a25-30b8db62b635",
     "slug": "felix-orter",
     "first_name": "Felix",
     "last_name": "Orter",
@@ -440,7 +440,7 @@
     "sort": 40
   },
   {
-    "id": "person-sara-pichler",
+    "id": "9ad1cbd3-5023-424a-aac2-3c5fbbf746a9",
     "slug": "sara-pichler",
     "first_name": "Sara",
     "last_name": "Pichler",
@@ -451,7 +451,7 @@
     "sort": 41
   },
   {
-    "id": "person-leon-prantl",
+    "id": "1acc735a-025c-4caf-8a99-08e10e903d7c",
     "slug": "leon-prantl",
     "first_name": "Leon",
     "last_name": "Prantl",
@@ -462,7 +462,7 @@
     "sort": 42
   },
   {
-    "id": "person-mira-quell",
+    "id": "95b523f4-ab1d-43c6-87c1-307cbaf6c6f4",
     "slug": "mira-quell",
     "first_name": "Mira",
     "last_name": "Quell",
@@ -473,7 +473,7 @@
     "sort": 43
   },
   {
-    "id": "person-aron-quirin",
+    "id": "0d7945d5-146a-41c8-a58d-d02d70140c96",
     "slug": "aron-quirin",
     "first_name": "Aron",
     "last_name": "Quirin",
@@ -484,7 +484,7 @@
     "sort": 44
   },
   {
-    "id": "person-ina-rainer",
+    "id": "cedb7ce1-8739-435b-90ee-f30fc0fa20bb",
     "slug": "ina-rainer",
     "first_name": "Ina",
     "last_name": "Rainer",
@@ -495,7 +495,7 @@
     "sort": 45
   },
   {
-    "id": "person-theo-riss",
+    "id": "aba89c23-11c5-465c-b1a4-9aa65c127262",
     "slug": "theo-riss",
     "first_name": "Theo",
     "last_name": "Riss",
@@ -506,7 +506,7 @@
     "sort": 46
   },
   {
-    "id": "person-zoe-sattler",
+    "id": "45eece24-4fa8-4182-8ab5-9df43f632e65",
     "slug": "zoe-sattler",
     "first_name": "Zoe",
     "last_name": "Sattler",
@@ -517,7 +517,7 @@
     "sort": 47
   },
   {
-    "id": "person-jan-sendl",
+    "id": "93841366-0307-47fa-b02b-ea2e1c2b0334",
     "slug": "jan-sendl",
     "first_name": "Jan",
     "last_name": "Sendl",
@@ -528,7 +528,7 @@
     "sort": 48
   },
   {
-    "id": "person-ella-tauer",
+    "id": "1fb335c9-d232-4e08-aa4d-5b6e8cf80c92",
     "slug": "ella-tauer",
     "first_name": "Ella",
     "last_name": "Tauer",
@@ -539,7 +539,7 @@
     "sort": 49
   },
   {
-    "id": "person-bruno-tesch",
+    "id": "377c611a-bab1-41ba-847e-5cff290feef9",
     "slug": "bruno-tesch",
     "first_name": "Bruno",
     "last_name": "Tesch",
@@ -550,7 +550,7 @@
     "sort": 50
   },
   {
-    "id": "person-mia-uhl",
+    "id": "9497cc96-85a9-4b89-86cc-392c054f4796",
     "slug": "mia-uhl",
     "first_name": "Mia",
     "last_name": "Uhl",
@@ -561,7 +561,7 @@
     "sort": 51
   },
   {
-    "id": "person-niko-urban",
+    "id": "edb5b4db-a217-48db-9d2d-fe4dda4504c9",
     "slug": "niko-urban",
     "first_name": "Niko",
     "last_name": "Urban",
@@ -572,7 +572,7 @@
     "sort": 52
   },
   {
-    "id": "person-lea-varga",
+    "id": "5240a036-c7f1-4400-ba34-5effb221ddc0",
     "slug": "lea-varga",
     "first_name": "Lea",
     "last_name": "Varga",
@@ -583,7 +583,7 @@
     "sort": 53
   },
   {
-    "id": "person-otto-vogl",
+    "id": "55677a86-f223-4d3d-a30e-fbb74e2fb15f",
     "slug": "otto-vogl",
     "first_name": "Otto",
     "last_name": "Vogl",
@@ -594,7 +594,7 @@
     "sort": 54
   },
   {
-    "id": "person-anja-wenter",
+    "id": "0b2d2e70-4d91-4f5e-ba06-b63388bdcc6d",
     "slug": "anja-wenter",
     "first_name": "Anja",
     "last_name": "Wenter",
@@ -605,7 +605,7 @@
     "sort": 55
   },
   {
-    "id": "person-lio-wurm",
+    "id": "b4d6213c-9172-4a07-bdc0-d4ad9d841a9f",
     "slug": "lio-wurm",
     "first_name": "Lio",
     "last_name": "Wurm",
@@ -616,7 +616,7 @@
     "sort": 56
   },
   {
-    "id": "person-mina-xandl",
+    "id": "91e9ea13-33f3-4672-9dd7-38b04c2170d2",
     "slug": "mina-xandl",
     "first_name": "Mina",
     "last_name": "Xandl",
@@ -627,7 +627,7 @@
     "sort": 57
   },
   {
-    "id": "person-theo-xaver",
+    "id": "0d5307ad-3750-4d76-bfff-4bb64ab4af76",
     "slug": "theo-xaver",
     "first_name": "Theo",
     "last_name": "Xaver",
@@ -638,7 +638,7 @@
     "sort": 58
   },
   {
-    "id": "person-eva-yalin",
+    "id": "990961f2-2120-4913-a264-5a2dbf86d879",
     "slug": "eva-yalin",
     "first_name": "Eva",
     "last_name": "Yalin",
@@ -649,7 +649,7 @@
     "sort": 59
   },
   {
-    "id": "person-noah-ypern",
+    "id": "cb172204-10c6-4a91-9028-26b67960b7a1",
     "slug": "noah-ypern",
     "first_name": "Noah",
     "last_name": "Ypern",
@@ -660,7 +660,7 @@
     "sort": 60
   },
   {
-    "id": "person-mara-zeller",
+    "id": "935f0faa-3ca0-440f-b047-1325616ebf46",
     "slug": "mara-zeller",
     "first_name": "Mara",
     "last_name": "Zeller",
@@ -671,7 +671,7 @@
     "sort": 61
   },
   {
-    "id": "person-ivo-zorn",
+    "id": "63f536d6-a3a7-4165-852a-4cdee0f2e4ba",
     "slug": "ivo-zorn",
     "first_name": "Ivo",
     "last_name": "Zorn",
@@ -682,7 +682,7 @@
     "sort": 62
   },
   {
-    "id": "person-adi-schmoelzer",
+    "id": "cd845373-c1eb-4400-b2a8-e0efcc4aea7c",
     "slug": "adi-schmoelzer",
     "first_name": "Adi",
     "last_name": "Schmölzer",
@@ -693,7 +693,7 @@
     "sort": 63
   },
   {
-    "id": "person-7th-spittaler-comicfestival",
+    "id": "3f9a8b64-73f3-41da-bd4d-bffbc7da216a",
     "slug": "7th-spittaler-comicfestival",
     "first_name": "",
     "last_name": "",
@@ -704,7 +704,7 @@
     "sort": 64
   },
   {
-    "id": "person-austriatoon",
+    "id": "c5e448bf-b4c4-4268-9c2a-6622a7c20fe5",
     "slug": "austriatoon",
     "first_name": "",
     "last_name": "",
@@ -715,7 +715,7 @@
     "sort": 65
   },
   {
-    "id": "person-nicoline-von-heyl",
+    "id": "11e9491d-1709-4aa2-aae0-7d4cfcaf84e9",
     "slug": "nicoline-von-heyl",
     "first_name": "Nicoline von",
     "last_name": "Heyl",
@@ -726,7 +726,7 @@
     "sort": 66
   },
   {
-    "id": "person-lebenshilfe-spittal",
+    "id": "36d54244-a8fd-4b19-a0c9-dc7de35f06c0",
     "slug": "lebenshilfe-spittal",
     "first_name": "",
     "last_name": "",
@@ -737,7 +737,7 @@
     "sort": 67
   },
   {
-    "id": "person-herbert-meisslitzer",
+    "id": "cd325a20-678b-4bcb-8df2-638a071b3738",
     "slug": "herbert-meisslitzer",
     "first_name": "Herbert",
     "last_name": "Meißlitzer",
@@ -748,7 +748,7 @@
     "sort": 68
   },
   {
-    "id": "person-sylvia-campidell",
+    "id": "7afcf44f-b564-4a7c-be73-28589087cea7",
     "slug": "sylvia-campidell",
     "first_name": "Sylvia",
     "last_name": "Campidell",
@@ -759,7 +759,7 @@
     "sort": 69
   },
   {
-    "id": "person-judith-maria-kulle",
+    "id": "c875f42b-9e81-491d-a43c-82b5a6d77ffd",
     "slug": "judith-maria-kulle",
     "first_name": "Judith Maria",
     "last_name": "Kulle",
@@ -770,7 +770,7 @@
     "sort": 70
   },
   {
-    "id": "person-birgit-moertl",
+    "id": "d1e6a4f8-12b8-436d-8659-9defae5a5ff0",
     "slug": "birgit-moertl",
     "first_name": "Birgit",
     "last_name": "Mörtl",
@@ -781,7 +781,7 @@
     "sort": 71
   },
   {
-    "id": "person-peter-kohlweiss",
+    "id": "de1c95ba-7885-4cdc-a3f1-a1a52c53cd63",
     "slug": "peter-kohlweiss",
     "first_name": "Peter",
     "last_name": "Kohlweiß",
@@ -792,7 +792,7 @@
     "sort": 72
   },
   {
-    "id": "person-santino-solace",
+    "id": "18050820-ad48-46d9-ace4-df324a9a3e9e",
     "slug": "santino-solace",
     "first_name": "Santino",
     "last_name": "Solace",
