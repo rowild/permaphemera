@@ -1,49 +1,33 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-dist
+# Local design source and backup material (large binaries)
+_BU/
+_Material/
 
-# Node dependencies
-node_modules
-
-# Logs
-logs
-*.log
-
-# Misc
+# OS and editor noise
 .DS_Store
 Thumbs.db
-.fleet
-.idea
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
 *.swp
 *.swo
 *~
 *.af~lock~
+.idea
+.fleet
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 
-# Local env files
-.env
-.env.*
-!.env.deploy.example
-!.env.example
+# Claude Code local settings (skills and critiques stay tracked)
+.claude/settings.local.json
+.claude/.mcp.json
 
-# Test and coverage output
-coverage/
-playwright-report/
-test-results/
+# Directus runtime data and secrets (see directus/.gitignore too)
+directus/.env
+directus/database/*
+!directus/database/.gitkeep
+directus/uploads/*
+!directus/uploads/.gitkeep
 
-# Local design source and backup material
-/_Material/
-/_BU/
-
-# Deployment credentials (the example is tracked, see the negation above)
-.env.deploy.local
-
-# Subagent-driven-development scratch workspace
-.superpowers/
-public/media/tours/
+# Frontend build and dependency output (frontend/.gitignore covers the rest)
+frontend/node_modules
+frontend/.nuxt
+frontend/.output
+frontend/dist

@@ -1,0 +1,152 @@
+# PERMAPHEMERA
+
+PERMAPHEMERA is a curated digital archive for temporary exhibitions and spatial memories. This repository contains a frontend-only archive prototype based on the supplied editorial mockups and locally sourced exhibition material.
+
+## Status
+
+The first Nuxt frontend milestone is implemented. It includes:
+
+- responsive header and hero with an interactive, replayable exhibition-linked kaleidoscope, cursor-following record previews, and touch-safe two-tap navigation;
+- a conditional current/upcoming programme immediately after the hero, with date-aware sorting and at most three records per group;
+- searchable locations, exhibitions, and artist archive sections;
+- framed venue and exhibition cards backed by local JSON, with single-line overflow-aware titles and custom full-title tooltips;
+- a searchable, URL-filterable gallery atlas with 26 small Austrian galleries across all nine federal states;
+- a searchable exhibition index with reusable framed record cards and direct detail routes;
+- an illustrated explanation of the archive method;
+- an overflow-aware sponsor strip that stays centered and static while its logos fit, then becomes a slow seamless marquee when they overflow, inside the dark editorial footer;
+- dynamic gallery dossiers with venue-specific record search, currently led by Parkschlössl;
+- nine real 2026 Parkschlössl exhibition records derived from local source PDFs;
+- a compact selectable exhibition ledger with a preloaded, responsive active preview;
+- dynamic exhibition-detail pages with consistent 60/40 desktop split sections, baseline-aligned location, date, and opening-hours metadata, source invitations, and related records;
+- a routed, URL-filterable artist directory with history-aware alphabet routes, compact groups, and on-demand record details;
+- shared hero scroll cues on the landing, gallery, and exhibition routes that fade away when their destination section enters the viewport;
+- bilingual About the Project, How It Works, and Contact pages plus complete imprint, privacy, terms-of-use, and accessibility routes using shared editorial layouts;
+- shared routed header/footer components, an always-visible About destination, a softly animated archival menu, and a content-responsive sponsor marquee;
+- complete English/German UI and local content translations with locale-aware routes and a framed flag-based language dropdown beside the menu control;
+- granular site-styled cookie settings for necessary storage, Matomo, Google Maps, and YouTube, reopenable from the header and footer;
+- a responsive temple-mark identity with browser, Apple touch, and installable web-app icons;
+- a two-accent design system using one semantic archive red and one decorative archive ochre across light and dark surfaces.
+
+The prototype does not connect to Directus or another live backend. It uses local English source records, local German translation overlays, and bundled UI locale files. Production is configured as a client-rendered SPA for static shared hosting; provider-specific infrastructure remains future work. Exhibition pages open their exported 360-degree tour in the embedded viewer from `public/media/tour-viewer/`; a record whose `tour` is `null` shows the entry point as unavailable. `pnpm tour:publish <tour id>` copies one exported tour into `public/media/tours/`, links it to its exhibition record and runs the public-namespace check; deploying stays a separate, explicit step.
+
+The active architecture plan is `../_Plans/exhibitions-plan.md`; the design references are under `../_Plans/designs/landing-page/`. The Directus backend lives in `../directus/`. All of these are part of the same repository; see the root `README.md`.
+
+## Requirements
+
+- Node.js 24.11.1, selected through `.nvmrc`
+- pnpm 11 or newer
+
+## Commands
+
+Run all commands from this directory:
+
+```bash
+source "$NVM_DIR/nvm.sh"
+nvm use
+pnpm install
+pnpm dev
+```
+
+The configured development URL is `http://localhost:4991`.
+
+Build and preview production output:
+
+```bash
+pnpm check:data
+pnpm check:tailwind
+pnpm check:i18n
+pnpm check:artists
+pnpm check:directories
+pnpm check:links
+pnpm check:venues
+pnpm check:mobile
+pnpm build
+pnpm generate
+pnpm preview
+```
+
+`pnpm build` and `pnpm generate` both generate the client-rendered SPA and write the complete deployable website to `.output/public/`; neither produces or requires a Node server bundle. `pnpm preview` serves that directory locally for production-output checks. The bundled `public/.htaccess` preserves clean client-side routes on Apache-compatible hosting by sending unmatched requests to `index.html`. Hosting under a subdirectory instead of the domain root requires a matching Nuxt `app.baseURL` and asset-path audit.
+
+The guarded SFTP publisher uses local credentials from the ignored `.env.deploy.local` file. Copy `.env.deploy.example`, fill in the existing shared-host target and OpenSSH private-key path, then verify the full generation/output inspection without uploading:
+
+```bash
+pnpm deploy:dry-run
+```
+
+Publish only when that succeeds:
+
+```bash
+pnpm deploy
+```
+
+The deploy command regenerates the SPA, requires `index.html` and `.htaccess`, validates that the remote path is an account document root under `/www/htdocs/`, uploads `.output/public/` over SFTP, publishes entry documents after hashed assets, and confirms that the remote `.htaccess` exists. It does not provision hosting, databases, SSL, or backend services.
+
+`pnpm check:data` verifies collection-level integrity across the five local JSON collections — record counts, unique slugs, cross-collection id references (venue→location, exhibition→venue, junction rows→both), valid `status` values, and English-translation coverage. `pnpm check:tailwind` loads the project Tailwind design system and fails when bracket notation has an exact canonical utility equivalent or when a human-readable structural marker is unspaced or CSS-active. `pnpm check:i18n` verifies UI message parity, translated record coverage, stable content identifiers, localized route switching, and global privacy-notice wiring. `pnpm check:directories` protects gallery coverage, canonical index/detail routing, search contracts, and shared frame usage. The remaining focused checks protect artist modal routing and accessibility, archive text-link variants, the venue exhibition browser, and compact responsive-density contracts.
+
+The static SPA build succeeds. It currently emits non-fatal Vite notices for root-relative assets served from `public/` and a client chunk-size warning caused by the graphics-heavy landing experience.
+
+## Repository Map
+
+```text
+app/components/                reusable visual components
+app/composables/               local archive data adapter
+app/data/                      JSON content source
+app/data/exhibitions_artists.json  exhibition-to-artist junction
+i18n/locales/                  English and German UI/accessibility messages
+app/pages/index.vue            landing page composition and interactions
+app/pages/about.vue            bilingual project statement
+app/pages/how-it-works.vue     bilingual documentation-method explanation
+app/pages/contact.vue          bilingual direct project contact
+app/pages/{imprint,privacy,terms,accessibility}.vue permanent information routes
+app/pages/venues/index.vue     searchable Austrian gallery atlas
+app/pages/venues/[slug].vue    dynamic gallery dossiers
+app/pages/exhibitions/index.vue searchable exhibition archive
+app/pages/exhibitions/[slug].vue dynamic exhibition records
+app/pages/artists/index.vue    searchable artist directory
+app/assets/css/main.css        theme, base rules, and branded visual infrastructure
+public/media/images/landing/   raster assets used by the site
+public/media/images/locations/ optimized location/exhibition artwork
+public/media/svg/              frames, icons, and ornaments
+docs/STYLE_GUIDE.md            reusable frontend design system and page rules
+docs/CSS_ARCHITECTURE.md       CSS organisation and Tailwind authoring rules for this project
+AGENTS.md                      repository instructions for coding agents
+changelog.md                   version history
+```
+
+## Data Source
+
+Local JSON files live in `app/data/` as five collections that mirror the Directus schema: `locations.json` (cities, with the coordinates radius search needs), `venues.json` (buildings, each with a `type` and a `location_id`), `artists.json`, `exhibitions.json`, and the `exhibitions_artists.json` junction. Each record carries its own `translations[]` array; in the frontend all languages are equal and the active locale is selected by `pickTranslation`, falling back `locale → en → first available`, while in the backend English is first — it is the language entered into Directus and every other translation is derived from it. `status` (`draft` | `published`) records provenance, not visibility: draft records render, gated by the single `VISIBLE_STATUSES` constant in `app/utils/contentStatus.ts`. `app/composables/useArchiveData.ts` resolves the joins for the active locale. UI, navigation, SEO, accessibility, and privacy-notice messages live in `i18n/locales/en.json` and `i18n/locales/de.json`.
+
+The content stays inside the application bundle instead of `public/`: the existing data adapter uses static local imports, so locale changes require neither a remote server nor client-side HTTP requests. This keeps the current frontend-only architecture intact while leaving the adapter boundary available for a future Directus migration.
+
+## Implemented Routes And Sections
+
+The landing route in `app/pages/index.vue` contains the hero, a conditional current/upcoming programme, venues, selected exhibitions, artists, archive method, sponsors, and footer. The programme uses the visitor's local calendar day, includes running exhibitions at both date boundaries, orders current records by closing date and upcoming records by opening date, and caps each group at three. Search fields filter the locale-reactive local JSON collections. Its shared header and footer provide localized navigation and active states; About the Project remains visible in the desktop primary navigation, while the language dropdown and animated archival menu stay available at every width. The language switch preserves the equivalent route (`/` for German and `/en/` for English) and uses desaturated Austrian/British flags that regain their colour during interaction. The sponsor strip measures its natural sequence with `ResizeObserver`: logos remain as one centered static row while they fit, and only real overflow enables the duplicated 72-second right-to-left marquee. German remains the configured fallback locale, while first entry at the root detects the browser language and may redirect English-language browsers to `/en/`; the necessary `permaphemera-locale` cookie remembers detection and explicit choices. Landing-page alphabet links open the full artist directory at the selected letter and preserve an active artist-search term; the alphabet rail also supports dragging, keyboard scrolling, and explicit left/right controls.
+
+The site-styled cookie settings expose four real checkboxes: necessary language/privacy storage is visible and permanently selected, while Matomo analytics, Google Maps, and YouTube are independent optional choices. “Save selection” is the direct necessary-only path when all optional boxes remain clear; “Accept all” grants all three optional categories. The versioned decision is stored locally under `permaphemera-cookie-consent` for at most one year and can be changed from the header or footer. The Matomo client at `https://matomo.rowild.at/` (site ID `9`) is not requested until analytics is explicitly allowed; revocation stops subsequent page-view tracking and asks Matomo to remove its tracking cookies. Client-side route changes are recorded as separate page views only while consent remains active. Google Maps and YouTube are future-facing consent categories only: neither service is embedded or contacted by the present application.
+
+`app/pages/about.vue` publishes the complete German project statement and its English editorial translation, including the closing Parkschlössl acknowledgement. `app/pages/how-it-works.vue` explains the curated selection, spatial capture, connected viewpoints, contextual enrichment, and lasting archive access through the established method collage and editorial stages. `app/pages/contact.vue` provides the private project owner's direct contact details, sets expectations for exhibition proposals, corrections, collaborations, and accessibility feedback, and deliberately avoids a form or backend. Its email and telephone actions carry compact framed hover/focus hints that identify the external system application without delaying the action on touch devices.
+
+The four permanent information routes share `ArchiveLegalPage` and `LegalEditorialSection`: each has an accountable document record enclosed by one restrained top/bottom rule, then borderless two-column chapters with no duplicate contents navigation or repeated dividers. The legal copy records the private operator, hosting and Matomo configuration, planned-but-inactive newsletter, optional external-media categories, terms for free informational use, and an honest accessibility self-assessment. About, How It Works, and Contact reuse `ArchiveEditorialSection` for the same quiet two-column reading rhythm without turning project information into legal records.
+
+`app/pages/venues/index.vue` is the canonical gallery atlas. It reads all 26 gallery profiles from `locations.json`, searches names, towns, states, addresses, and descriptions immediately, preserves search/state filters in the URL, and exposes all nine federal states on a draggable filter rail. The landing-page gallery selection now derives from that same source and links its paper stack to the complete atlas.
+
+`app/pages/venues/[slug].vue` resolves every gallery from `locations.json`, then layers optional richer dossier fields from `venues.json`. Every gallery route therefore works even before exhibition records exist. Parkschlössl retains its seven 2026 exhibitions as compact, keyboard-accessible records. Search filters immediately across artist, title, date, medium, and record copy while preserving `q` in the route. Hover, focus, or click selects a sticky preview; images are preloaded before the active preview changes and a visible archival loader or error state covers the transition.
+
+`app/pages/exhibitions/index.vue` lists every routed local exhibition by start date, newest first, and preserves that chronology while searching across title, artist, gallery, city, date, medium, and record text with `q` in the URL. Its highlighted record is derived from the visitor's local day: a running exhibition first, otherwise the nearest upcoming exhibition, otherwise the first record in the reverse-chronological list. Exhibitions carry no manual `featured` content flag. `app/pages/exhibitions/[slug].vue` resolves the same data into individual records with dates, opening hours, vernissage, source PDF, gallery-aware breadcrumbs and return paths, related exhibitions, and a 360-degree experience section whose `ExhibitionExperience` button opens the exhibition's exported tour (`public/media/tours/<tour id>/`) in a full-viewport modal, or stays disabled while the record's `tour` is `null`.
+
+`app/pages/artists/index.vue` expands the landing-page artist preview into a text-led directory. It combines the artist and exhibition datasets, splits multi-artist credits into individual entries, presents personal names in `Family, Given` form, and exposes URL-backed name/location/year search and alphabet filters. Each available alphabet item and each longer-group action is a real Nuxt link to `/artists/?letter=<letter>`, preserves an active search query, and creates an ordinary browser-history entry. Organization names retain their natural order. The all-letters view shows at most five names per letter through the single `artistsPerLetterPreview` setting; longer groups link into their complete letter view. Artists with routed records open a focus-trapped exhibition modal from either the name or information control; artists without records remain visibly muted non-interactive text.
+
+The hero kaleidoscope uses perspective-projected Three.js triangles with GSAP-driven unfolding around each blade's own median axis, directional ritardando, elastic settling, coordinated orbit-arrow rotation, and damped per-slice rolls. Each image and route now come from one resolved exhibition record, and that relationship remains intact through shuffling, replay, and preloading. Pointer hover rolls only the selected blade and opens a body-teleported fixed tooltip that follows the cursor without changing layout; keyboard focus anchors the same preview to its blade, while touch uses first tap to preview and second tap to navigate. Initial construction and replay use the same median-axis roll with an edge opacity blend, and the complete wheel scales around its shared centre to preserve tip clearance. A shared archival scroll cue reveals the current/upcoming programme when it exists and otherwise the venue section, then fades when that destination enters the viewport.
+
+Header and footer wordmarks share the uncircled archival temple mark; favicon, Apple touch, and web-app variants place it on a parchment field for reliable contrast. Navigation links use a fading archival-rule underline, logo lockups never underline, and the visual system resolves semantic interaction states to archive red `#a6523c` while static ornaments on dark surfaces use archive ochre `#ca9e51`.
+
+Custom image masks and frames are implemented as Vue/SVG components, and runtime artwork is served from `public/media/images/landing/`, `public/media/images/locations/`, and `public/media/svg/`.
+
+## Design Guidance
+
+Read `docs/STYLE_GUIDE.md` before designing or implementing a new page. Read `docs/CSS_ARCHITECTURE.md` before adding a custom CSS rule or a bracketed Tailwind utility. Vue scoped styles and CSS Modules are prohibited: custom rules belong in the globally imported CSS architecture and must reuse existing tokens and component rules wherever possible.
+
+The hand-drawn archival ornaments are transparent PNGs reconstructed from the landing-page mockups. Canonical runtime files live in their normal section folders under `public/media/images/landing/`; matching `_recreated_anew/` folders preserve the reconstructed versions for comparison and future refinement. Photographic venue and archive-method compositions are intentionally separate and must not be regenerated as ornaments.
+
+Local design-source and backup folders named `_Material/` and `_BU/` are intentionally ignored. Runtime assets required by the application must live under `public/` or `app/assets/`.

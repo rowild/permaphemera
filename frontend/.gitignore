@@ -1,0 +1,45 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+Thumbs.db
+.fleet
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+*~
+*.af~lock~
+
+# Local env files
+.env
+.env.*
+!.env.deploy.example
+!.env.example
+
+# Test and coverage output
+coverage/
+playwright-report/
+test-results/
+
+# Deployment credentials (the example is tracked, see the negation above)
+.env.deploy.local
+
+# Subagent-driven-development scratch workspace
+.superpowers/
+public/media/tours/

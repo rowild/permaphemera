@@ -1,0 +1,20 @@
+name: "permaphemera"
+
+services:
+  directus:
+    image: directus/directus:11.17.4
+    ports:
+      # Host port 8077 -> container port 8055.
+      # 8055 is taken by another local Directus project.
+      - "8077:8055"
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./database:/directus/database
+      - ./extensions:/directus/extensions
+    env_file:
+      - .env
+    environment:
+      LOG_LEVEL: info
+      LOG_STYLE: pretty
+      EXTENSIONS_AUTO_RELOAD: "true"
+    restart: unless-stopped
