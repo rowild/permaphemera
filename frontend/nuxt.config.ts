@@ -1,13 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from '@tailwindcss/vite'
 
+// This file's own typecheck pass (tsconfig.node.json) sets "types": [] and does not
+// pull in @types/node, so the ambient `process` global needs a minimal local declaration
+// rather than a new project dependency just for this one read.
+declare const process: { env: Record<string, string | undefined> }
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   ssr: false,
   devtools: { enabled: false },
   runtimeConfig: {
     public: {
-      directusUrl: 'http://localhost:8077'
+      directusUrl: process.env.NUXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8077'
     }
   },
   modules: ['@nuxtjs/i18n'],

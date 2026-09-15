@@ -5,7 +5,9 @@
     "headerTagline": "Ein kuratiertes Archiv von Ausstellungen",
     "seoDescription": "Ein kuratiertes österreichisches Archiv von 360°-Ausstellungsdokumentationen.",
     "archiveLoading": "Das Archiv wird geladen …",
-    "archiveUnavailable": "Das Archiv konnte nicht von {url} geladen werden."
+    "archiveUnavailable": "Das Archiv konnte nicht von {url} geladen werden.",
+    "errorExplanation": "Die gesuchte Seite ist nicht verfügbar. Von hier aus können Sie zum Archiv zurückkehren.",
+    "errorHome": "Zurück zum Archiv"
   },
   "navigation": {
     "archive": "Startseite",

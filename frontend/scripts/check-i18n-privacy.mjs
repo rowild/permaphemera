@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
-import { loadArchiveFromDirectus } from './lib/archive-source.mjs'
+import { loadArchiveFromDirectus, runCheck } from './lib/archive-source.mjs'
 
 const readText = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8')
 const readJson = async (path) => JSON.parse(await readText(path))
+
+async function run() {
 const archive = await loadArchiveFromDirectus()
 const archiveByCollection = { pp_exhibitions: archive.exhibitions, pp_venues: archive.venues, pp_locations: archive.locations }
 
@@ -146,3 +148,6 @@ assert.match(footerMenu, /v-for="group in footerGroups"/, 'The footer must rende
 
 const coverageSummary = Object.entries(germanCoverage).map(([name, ratio]) => `${name} ${ratio} de`).join(', ')
 console.log(`i18n/privacy check passed (${englishKeys.length} shared UI messages; German coverage — ${coverageSummary}).`)
+}
+
+await runCheck(run)

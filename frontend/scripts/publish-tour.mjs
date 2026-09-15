@@ -253,6 +253,10 @@ async function main() {
     return
   }
 
+  // Check credentials before spending any time copying a multi-hundred-megabyte tour: a
+  // missing token would otherwise only surface from directusPatch() after the copy below.
+  if (!linked && !directusToken) fail('DIRECTUS_TOKEN is not set in frontend/.env; the tour link needs write access')
+
   // Mirror, not merge: a panorama the editor dropped must not survive here.
   if (replacing) await rm(target, { recursive: true, force: true })
   await cp(source, target, {

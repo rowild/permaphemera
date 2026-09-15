@@ -4,21 +4,21 @@ import { loadArchive } from '~/utils/loadArchive'
 
 /**
  * Loads the whole archive from Directus once per page load and shares it through
- * useState('archive'). Called (awaited) in app.vue before any page renders, so
- * every page and composable can read the data synchronously, as it did with JSON.
+ * useState('archive'), the single store both this composable and useArchive() read.
+ * Called (awaited) in app.vue before any page renders, so every page and composable
+ * can read the data synchronously, as it did with JSON.
  */
 export async function useArchiveSource() {
   const config = useRuntimeConfig()
   const archive = useState<ArchiveSnapshot | null>('archive', () => null)
   const client = createArchiveClient(config.public.directusUrl)
 
-  const { error, refresh } = await useAsyncData('archive', async () => {
-    const snapshot = await loadArchive(client)
-    archive.value = snapshot
-    return snapshot
+  const { error } = await useAsyncData('archive', async () => {
+    archive.value = await loadArchive(client)
+    return true
   })
 
-  return { archive, error, refresh, directusUrl: client.baseUrl }
+  return { archive, error, directusUrl: client.baseUrl }
 }
 
 export const useArchive = (): ArchiveSnapshot => {

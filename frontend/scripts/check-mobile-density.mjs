@@ -1,11 +1,12 @@
 import { readFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { loadArchiveFromDirectus } from './lib/archive-source.mjs'
+import { loadArchiveFromDirectus, runCheck } from './lib/archive-source.mjs'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const readProjectFile = (path) => readFile(resolve(projectRoot, path), 'utf8')
 
+async function run() {
 const [
   searchForm,
   factLedger,
@@ -178,3 +179,6 @@ if (failures.length) {
 } else {
   console.log('Mobile search, ledgers, artist columns, metadata, controls, and route spacing are compact.')
 }
+}
+
+await runCheck(run)

@@ -113,6 +113,30 @@ async function readPrivateKey(keyPath) {
   }
 }
 
+/**
+ * The Directus URL is baked into the static build at generate time (there is no
+ * server to read it from at request time), so a build made with the local dev
+ * instance would ship broken to production. Check it before spending time on a
+ * build, in both the dry run and the real deploy.
+ */
+function requireDeployableDirectusUrl() {
+  const value = process.env.NUXT_PUBLIC_DIRECTUS_URL?.trim()
+
+  if (!value) {
+    throw new Error(
+      'NUXT_PUBLIC_DIRECTUS_URL is not set. Set it to the production Directus URL before '
+      + 'building — it gets baked into the static output.',
+    )
+  }
+
+  if (/localhost|127\.0\.0\.1/u.test(value)) {
+    throw new Error(
+      `NUXT_PUBLIC_DIRECTUS_URL is set to ${value}, a local address. Set it to the production `
+      + 'Directus URL before building — a build made against localhost cannot reach Directus once deployed.',
+    )
+  }
+}
+
 async function runStaticGeneration() {
   const pnpmCommand = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm'
 
@@ -258,6 +282,8 @@ async function main() {
 
   validateRemoteDirectory(remoteDirectory)
   const privateKey = await readPrivateKey(keyPath.replace(/^~/u, process.env.HOME ?? '~'))
+
+  requireDeployableDirectusUrl()
 
   await runStaticGeneration()
   const output = await inspectOutput(outputDirectory)

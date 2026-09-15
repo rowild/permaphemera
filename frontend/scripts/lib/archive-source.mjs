@@ -2,6 +2,7 @@
 // The check scripts' view of the archive: fetched from Directus, same shape as the site's loader.
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { COLLECTIONS, FILE_FIELDS, TRANSLATED } from '../../shared/archive-schema.mjs'
 
 const projectRoot = resolve(import.meta.dirname, '..', '..')
 
@@ -19,15 +20,7 @@ const env = readEnv()
 export const directusUrl = (env.DIRECTUS_URL || env.NUXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8077').replace(/\/$/, '')
 export const directusToken = env.DIRECTUS_TOKEN || ''
 
-const TRANSLATED = new Set(['pp_locations', 'pp_venues', 'pp_roles', 'pp_exhibitions', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigation_items'])
-const FILE_FIELDS = { pp_venues: ['image', 'hero_image'], pp_exhibitions: ['image', 'source_pdf'], pp_sponsors: ['logo'] }
-export const COLLECTIONS = {
-  locations: 'pp_locations', venues: 'pp_venues', persons: 'pp_persons', roles: 'pp_roles', personRoles: 'pp_mm__persons_roles',
-  exhibitions: 'pp_exhibitions', participations: 'pp_exhibition_participations', statements: 'pp_exhibition_statements',
-  sponsors: 'pp_sponsors', navigations: 'pp_navigations', navigationItems: 'pp_navigation_items',
-  exhibitionsVenues: 'pp_mm__exhibitions_venues', exhibitionsSponsors: 'pp_mm__exhibitions_sponsors', personsVenues: 'pp_mm__persons_venues',
-  personsSponsors: 'pp_mm__persons_sponsors', locationsSponsors: 'pp_mm__locations_sponsors', sponsorsVenues: 'pp_mm__sponsors_venues'
-}
+export { COLLECTIONS }
 
 export async function directusGet(path, { token = '' } = {}) {
   let response
@@ -45,6 +38,23 @@ export async function directusPatch(path, body, token) {
   const response = await fetch(`${directusUrl}${path}`, { method: 'PATCH', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
   if (!response.ok) throw new Error(`${path}: ${response.status} ${response.statusText}`)
   return (await response.json()).data
+}
+
+/**
+ * Runs a check script's body and, when Directus itself is the problem, prints one clean
+ * line and exits 1 instead of the full stack trace loadArchiveFromDirectus()'s error would
+ * otherwise produce. Any other failure (an assertion, a bug) still surfaces in full.
+ */
+export async function runCheck(fn) {
+  try {
+    await fn()
+  } catch (error) {
+    if (error instanceof Error && error.message.startsWith('Directus not reachable')) {
+      console.error(error.message)
+      process.exit(1)
+    }
+    throw error
+  }
 }
 
 export async function loadArchiveFromDirectus() {

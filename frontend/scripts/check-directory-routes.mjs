@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
-import { loadArchiveFromDirectus } from './lib/archive-source.mjs'
+import { loadArchiveFromDirectus, runCheck } from './lib/archive-source.mjs'
 
 const readText = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8')
 const readJson = async (path) => JSON.parse(await readText(path))
 
+async function run() {
 const archive = await loadArchiveFromDirectus()
 const cityLocations = archive.locations
 const galleries = archive.venues
@@ -136,3 +137,6 @@ for (const navigation of [header, footerMenu]) {
 }
 
 console.log(`Directory routes are valid (${galleries.length} galleries across nine states; ${exhibitions.length} exhibition records).`)
+}
+
+await runCheck(run)

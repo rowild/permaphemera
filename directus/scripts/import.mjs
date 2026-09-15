@@ -6,6 +6,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { loadEnv, login } from './lib.mjs'
 import { uploadFile } from './files.mjs'
+import { FILE_FIELDS } from '../../frontend/shared/archive-schema.mjs'
 
 const args = process.argv.slice(2)
 const fromIndex = args.indexOf('--from')
@@ -34,8 +35,6 @@ for (const lang of languageRows) {
   await api('POST', '/items/languages', lang)
   console.log(`+ language ${lang.code}`)
 }
-
-const FILE_FIELDS = { pp_venues: ['image', 'hero_image'], pp_exhibitions: ['image', 'source_pdf'], pp_sponsors: ['logo'] }
 
 // Dependency order. Entities first, then junctions.
 const ORDER = ['pp_locations', 'pp_venues', 'pp_persons', 'pp_roles', 'pp_mm__persons_roles', 'pp_exhibitions',

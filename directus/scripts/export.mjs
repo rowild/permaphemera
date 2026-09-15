@@ -5,6 +5,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { extname, join, resolve } from 'node:path'
 import { loadEnv, login } from './lib.mjs'
 import { col, translationsTable } from './naming.mjs'
+import { FILE_FIELDS } from '../../frontend/shared/archive-schema.mjs'
 
 const TRANSLATIONS_PREFIX = translationsTable('')
 
@@ -17,7 +18,6 @@ const { api, base, token } = await login(loadEnv())
 const collections = (await api('GET', '/collections')).map((c) => c.collection)
   .filter((n) => n.startsWith('pp_') && n !== col('meta') && n !== col('archive') && !n.startsWith(TRANSLATIONS_PREFIX))
 
-const FILE_FIELDS = { pp_venues: ['image', 'hero_image'], pp_exhibitions: ['image', 'source_pdf'], pp_sponsors: ['logo'] }
 const fileIds = new Set()
 const counts = {}
 for (const c of collections) {
