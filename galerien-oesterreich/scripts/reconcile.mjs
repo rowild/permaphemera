@@ -51,7 +51,7 @@ const txtPath = join(args.sources, TXT_NAME);
 // Normalisation helpers (shared for names and cities)
 // ---------------------------------------------------------------------------
 
-const STOPWORDS = /\b(galerie|galerija|kunstverein|verein)\b/g;
+const STOPWORDS = /\b(galerie|galerija|kunstverein|verein|im|in|der|des|stadt|showrooms|showroom|gallery|atelier|kunstraum)\b/g;
 
 function stripDiacritics(s) {
   return s.normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -60,6 +60,8 @@ function stripDiacritics(s) {
 function normName(raw) {
   if (!raw) return "";
   let s = stripDiacritics(String(raw).toLowerCase());
+  s = s.replace(/\([^)]*\)/g, " "); // drop parentheticals entirely, e.g. "(Galerie im Dinzlschloss)"
+  s = s.replace(/\bgalerie(\d+)\b/g, "$1"); // "galerie3" -> "3" (digit-attached, no word boundary between letters and digits)
   s = s.replace(STOPWORDS, " ");
   s = s.replace(/[^a-z0-9\s]/g, " ");
   s = s.replace(/\s+/g, " ").trim();
@@ -77,6 +79,57 @@ function matchKey(city, name) {
 }
 
 // ---------------------------------------------------------------------------
+// Secondary identity signals: when the normalised city+name key doesn't
+// match, two records can still be the same real-world venue if they share an
+// address, a website domain, an e-mail, or a phone number. Any one hit
+// counts as a match (checked in this order — address first, since a couple
+// of operators run several venues under the same brand e-mail/website but
+// at different addresses, e.g. "August" in Gmünd vs. Millstatt).
+// ---------------------------------------------------------------------------
+
+function normAddress(raw) {
+  if (!raw) return "";
+  let s = stripDiacritics(String(raw).toLowerCase());
+  s = s.replace(/[^a-z0-9\s]/g, " ");
+  s = s.replace(/\s+/g, " ").trim();
+  return s;
+}
+
+function addressKey(raw) {
+  if (!raw) return "";
+  const [streetPart, ...rest] = String(raw).split(",");
+  const restStr = rest.join(",");
+  const postalMatch = restStr.match(/\b(\d{4})\b/) || String(raw).match(/\b(\d{4})\b/);
+  const postal = postalMatch ? postalMatch[1] : "";
+  const street = normAddress(streetPart);
+  if (!street || !postal) return "";
+  return `${street}|${postal}`;
+}
+
+function websiteHost(raw) {
+  if (!raw) return "";
+  let s = raw.trim();
+  if (!/^https?:\/\//i.test(s)) s = `https://${s}`;
+  try {
+    return new URL(s).hostname.replace(/^www\./i, "").toLowerCase();
+  } catch {
+    return "";
+  }
+}
+
+function normEmailValue(raw) {
+  return raw ? raw.trim().toLowerCase() : "";
+}
+
+function phoneDigitsList(raw) {
+  if (!raw) return [];
+  return raw
+    .split(";")
+    .map((p) => p.replace(/\D/g, ""))
+    .filter((digits) => digits.length >= 6);
+}
+
+// ---------------------------------------------------------------------------
 // Value-type helpers
 // ---------------------------------------------------------------------------
 
@@ -90,6 +143,53 @@ function isEmailLike(value) {
 
 function isUrlLike(value) {
   return !!value && URL_RE.test(value.trim());
+}
+
+// ---------------------------------------------------------------------------
+// Salutation gating: only keep a source's salutation if the surname it names
+// (the last word of each "Herr X" / "Frau X" part) actually occurs among the
+// site's contacts — otherwise the source is talking about someone else's
+// gallery/contact combination and the salutation would address the wrong
+// person.
+// ---------------------------------------------------------------------------
+
+function dedupeSalutationParts(raw) {
+  if (!raw) return raw;
+  const parts = raw.split(/,\s*/).map((p) => p.trim()).filter(Boolean);
+  const seen = new Set();
+  const kept = [];
+  for (const part of parts) {
+    const key = stripDiacritics(part.toLowerCase());
+    if (!seen.has(key)) {
+      seen.add(key);
+      kept.push(part);
+    }
+  }
+  return kept.join(", ");
+}
+
+function tokenizeNames(raw) {
+  return stripDiacritics(String(raw ?? "").toLowerCase())
+    .replace(/[^a-z\s-]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+}
+
+function filterSalutation(salutationRaw, contacts) {
+  const deduped = dedupeSalutationParts(salutationRaw);
+  if (!deduped) return { value: null, rejected: [] };
+  const contactWords = new Set(tokenizeNames(contacts));
+  const parts = deduped.split(/,\s*/).filter(Boolean);
+  const kept = [];
+  const rejected = [];
+  for (const part of parts) {
+    const words = part.trim().split(/\s+/);
+    const surnameRaw = words[words.length - 1] || "";
+    const surname = stripDiacritics(surnameRaw.toLowerCase()).replace(/[^a-z-]/g, "");
+    if (surname && contactWords.has(surname)) kept.push(part);
+    else rejected.push(surnameRaw);
+  }
+  return { value: kept.length ? kept.join(", ") : null, rejected };
 }
 
 function normalizeWebsite(raw) {
@@ -299,7 +399,59 @@ function main() {
   const txtLines = parseTxt(txtPath);
 
   const byKey = new Map();
-  for (const gallery of galleries) byKey.set(matchKey(gallery.city, gallery.name), gallery);
+  const byAddress = new Map();
+  const byWebsite = new Map();
+  const byEmail = new Map();
+  const byPhone = new Map();
+
+  // Register a gallery under its primary (city+name) key and every
+  // secondary identity signal it has. First registrant wins on a shared
+  // secondary key (e.g. two venues run by the same person under the same
+  // brand e-mail/website but at different addresses) — address is checked
+  // before the weaker website/e-mail/phone signals at match time, so that
+  // ambiguity is resolved by the more specific signal whenever possible.
+  function registerGallery(gallery) {
+    byKey.set(matchKey(gallery.city, gallery.name), gallery);
+    const aKey = addressKey(gallery.address);
+    if (aKey && !byAddress.has(aKey)) byAddress.set(aKey, gallery);
+    const host = websiteHost(gallery.website);
+    if (host && !byWebsite.has(host)) byWebsite.set(host, gallery);
+    const email = normEmailValue(gallery.email);
+    if (email && !byEmail.has(email)) byEmail.set(email, gallery);
+    for (const digits of phoneDigitsList(gallery.phone)) {
+      if (!byPhone.has(digits)) byPhone.set(digits, gallery);
+    }
+  }
+
+  for (const gallery of galleries) registerGallery(gallery);
+
+  // Find an existing gallery for a source row: first by the normalised
+  // city+name key, then — if that fails — by address (street + postal
+  // code), website host, e-mail, or phone digits, in that order. Any one
+  // secondary hit counts as a match.
+  function findExistingMatch({ city, name, address, website, email, phone }) {
+    const key = matchKey(city, name);
+    const primary = byKey.get(key);
+    if (primary) return { gallery: primary, key, via: "primary" };
+    const aKey = addressKey(address);
+    if (aKey && byAddress.has(aKey)) return { gallery: byAddress.get(aKey), key, via: "secondary" };
+    const host = websiteHost(website);
+    if (host && byWebsite.has(host)) return { gallery: byWebsite.get(host), key, via: "secondary" };
+    const em = normEmailValue(email);
+    if (em && byEmail.has(em)) return { gallery: byEmail.get(em), key, via: "secondary" };
+    for (const digits of phoneDigitsList(phone)) {
+      if (byPhone.has(digits)) return { gallery: byPhone.get(digits), key, via: "secondary" };
+    }
+    return { gallery: null, key, via: null };
+  }
+
+  function noteDuplicateName(gallery, sourceType, sourceName) {
+    if (!sourceName) return;
+    if (String(gallery.name).trim().toLowerCase() === String(sourceName).trim().toLowerCase()) return;
+    const text = `Auch in Quelle ${sourceType} als '${sourceName}'`;
+    if (gallery.note && gallery.note.includes(text)) return;
+    gallery.note = gallery.note ? `${gallery.note} ${text}` : text;
+  }
 
   // The explorer file spells bilingual cities "X (Y)" while the site (and
   // the Excel sheet) use "X / Y". Canonicalise any new entry's city to the
@@ -333,6 +485,7 @@ function main() {
     conflicts: [],
     added: [],
     salutationsSet: [],
+    salutationSkipped: [],
     unplaceable: [],
     missingCoordinates: [],
     unmatchedSiteEntries: new Set(galleries.map((g) => matchKey(g.city, g.name))),
@@ -355,17 +508,22 @@ function main() {
   function processExcelRow(row, sheetLabel) {
     const city = row["Stadt / Ort"] || "";
     const name = row["Galerie / Kunstort"] || "";
-    const key = matchKey(city, name);
-    const gallery = byKey.get(key);
-    const sourceLabel = `Excel 25.08.2026 (${sheetLabel}, Zeile ${row._row})`;
+    const address = row["Adresse"] || "";
+    const website = row["Website"] || "";
+    const email = row["E-Mail"] || "";
+    const phone = row["Telefon"] || "";
+    const sourceType = "Excel 25.08.2026";
+    const sourceLabel = `${sourceType} (${sheetLabel}, Zeile ${row._row})`;
+    const { gallery, key, via } = findExistingMatch({ city, name, address, website, email, phone });
 
     if (gallery) {
-      report.unmatchedSiteEntries.delete(key);
+      report.unmatchedSiteEntries.delete(matchKey(gallery.city, gallery.name));
       report.matched.push({ source: sourceLabel, city, name, siteId: gallery.id });
-      fillField(gallery, "email", row["E-Mail"] || null, sourceLabel);
+      noteDuplicateName(gallery, sourceType, name);
+      fillField(gallery, "email", email || null, sourceLabel);
       fillField(gallery, "moreEmail", row["Weitere E-Mail"] || null, sourceLabel);
-      fillField(gallery, "phone", row["Telefon"] || null, sourceLabel);
-      fillField(gallery, "website", row["Website"] ? normalizeWebsite(row["Website"]) : null, sourceLabel);
+      fillField(gallery, "phone", phone || null, sourceLabel);
+      fillField(gallery, "website", website ? normalizeWebsite(website) : null, sourceLabel);
       fillField(gallery, "contacts", row["Ansprechperson(en)"] || null, sourceLabel);
       fillField(gallery, "role", row["Funktion"] || null, sourceLabel);
     } else {
@@ -378,21 +536,21 @@ function main() {
         city: displayCity,
         name,
         category: row["Kategorie"] || "Weitere",
-        address: row["Adresse"] || displayCity,
-        email: row["E-Mail"] || null,
+        address: address || displayCity,
+        email: email || null,
         moreEmail: row["Weitere E-Mail"] || null,
         contacts: row["Ansprechperson(en)"] || null,
         role: row["Funktion"] || null,
-        phone: row["Telefon"] || null,
+        phone: phone || null,
         status: row["Status 2026"] || "ungeklärt",
         confidence: "mittel",
-        website: row["Website"] ? normalizeWebsite(row["Website"]) : null,
+        website: website ? normalizeWebsite(website) : null,
         source: row["Quelle 1"] || row["Quelle 2"] || null,
         note: row["Hinweise"] || null,
-        sourceType: "Excel 25.08.2026",
+        sourceType,
       };
       galleries.push(newGallery);
-      byKey.set(key, newGallery);
+      registerGallery(newGallery);
       report.added.push({ id: newGallery.id, city: displayCity, name, source: sourceLabel });
     }
   }
@@ -401,23 +559,32 @@ function main() {
   for (const row of excelOther) processExcelRow(row, "Weitere & Prüffälle");
 
   // --- Explorer rows (also carries `salutation`) ---------------------------
+  function applySalutation(gallery, salutationRaw, sourceLabel) {
+    if (!salutationRaw) return;
+    const { value, rejected } = filterSalutation(salutationRaw, gallery.contacts);
+    if (value) {
+      if (gallery.salutation !== value) {
+        gallery.salutation = value;
+        report.salutationsSet.push({ id: gallery.id, name: gallery.name, salutation: value });
+      }
+    } else {
+      report.salutationSkipped.push({ id: gallery.id, name: gallery.name, source: salutationRaw, contacts: gallery.contacts, rejected, sourceLabel });
+    }
+  }
+
+  const explorerSourceType = "Explorer";
   for (const row of explorerRows) {
-    const key = matchKey(row.city, row.name);
-    const gallery = byKey.get(key);
-    const sourceLabel = `Explorer (${row.city} · ${row.name})`;
+    const sourceLabel = `${explorerSourceType} (${row.city} · ${row.name})`;
+    const { gallery, via } = findExistingMatch({ city: row.city, name: row.name, address: row.address, website: row.website, email: row.email, phone: null });
 
     if (gallery) {
-      report.unmatchedSiteEntries.delete(key);
+      report.unmatchedSiteEntries.delete(matchKey(gallery.city, gallery.name));
       report.matched.push({ source: sourceLabel, city: row.city, name: row.name, siteId: gallery.id });
+      noteDuplicateName(gallery, explorerSourceType, row.name);
       fillField(gallery, "email", row.email || null, sourceLabel);
       fillField(gallery, "website", row.website ? normalizeWebsite(row.website) : null, sourceLabel);
       fillField(gallery, "contacts", row.contact || null, sourceLabel);
-      if (row.salutation) {
-        if (gallery.salutation !== row.salutation) {
-          gallery.salutation = row.salutation;
-          report.salutationsSet.push({ id: gallery.id, name: gallery.name, salutation: row.salutation });
-        }
-      }
+      applySalutation(gallery, row.salutation, sourceLabel);
     } else {
       report.unmatchedSource.push({ source: sourceLabel, city: row.city, name: row.name });
       const displayCity = canonicalCity(row.city);
@@ -439,12 +606,13 @@ function main() {
         website: row.website ? normalizeWebsite(row.website) : null,
         source: null,
         note: null,
-        salutation: row.salutation || null,
-        sourceType: "Explorer",
+        salutation: null,
+        sourceType: explorerSourceType,
       };
       galleries.push(newGallery);
-      byKey.set(key, newGallery);
+      registerGallery(newGallery);
       report.added.push({ id: newGallery.id, city: displayCity, name: row.name, source: sourceLabel });
+      applySalutation(newGallery, row.salutation, sourceLabel);
     }
   }
 
@@ -505,6 +673,25 @@ function main() {
   } else if (!velden.note.includes(veldenNote)) {
     velden.note = `${velden.note} ${veldenNote}`;
   }
+
+  // --- Known lookalikes that should stay separate, flagged for a human ----
+  // (different addresses/websites/e-mails, so the secondary-match pass
+  // correctly leaves them as two entries — but the shared surname/brand is
+  // worth a manual look, so cross-reference them by note instead.)
+  function flagPossibleDuplicate(idA, matcher) {
+    const galleryA = galleries.find((g) => g.id === idA);
+    const galleryB = galleries.find((g) => g.id !== idA && matcher(g));
+    if (!galleryA || !galleryB) return;
+    const noteFor = (target, otherId) => {
+      const text = `Möglicherweise identisch mit id ${otherId} – bitte prüfen`;
+      if (target.note && target.note.includes(text)) return;
+      target.note = target.note ? `${target.note} ${text}` : text;
+    };
+    noteFor(galleryA, galleryB.id);
+    noteFor(galleryB, galleryA.id);
+  }
+  flagPossibleDuplicate(6, (g) => /kraut/i.test(g.name) && /bleiburg/i.test(g.city));
+  flagPossibleDuplicate(63, (g) => /rathausgalerie/i.test(g.name) && /veit/i.test(g.city));
 
   // --- Assign ids/coordinates check for anything added -------------------
   report.unmatchedSiteEntriesList = [...report.unmatchedSiteEntries].map((key) => {
@@ -577,6 +764,14 @@ function writeReport(report, addedCount) {
   lines.push("");
   if (!report.salutationsSet.length) lines.push("_None (already set, or run after apply)._");
   for (const s of report.salutationsSet) lines.push(`- id ${s.id} (${s.name}): "${s.salutation}"`);
+  lines.push("");
+
+  lines.push("## Salutation skipped: source names another person");
+  lines.push("");
+  lines.push("The salutation's surname doesn't occur in the site's `contacts` field, so it was left null (the source is talking about a different contact than the one on file).");
+  lines.push("");
+  if (!report.salutationSkipped.length) lines.push("_None._");
+  for (const s of report.salutationSkipped) lines.push(`- id ${s.id} (${s.name}): source salutation "${s.source}" (rejected surname(s): ${s.rejected.join(", ") || "–"}) vs. contacts="${s.contacts ?? ""}" — ${s.sourceLabel}`);
   lines.push("");
 
   lines.push("## New entries added");

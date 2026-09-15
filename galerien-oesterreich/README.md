@@ -1,7 +1,7 @@
 # Galerien in Österreich
 
-A static directory of 672 researched galleries and art venues across all
-nine Austrian states — 445 currently active, 227 historical or unclear. It
+A static directory of 657 researched galleries and art venues across all
+nine Austrian states — 430 currently active, 227 historical or unclear. It
 ships as a single-page dashboard (filters, statistics, and an interactive
 map) with no backend: all data is bundled at build time from `src/data.ts`
 and `src/austriaData.json`.
@@ -47,9 +47,13 @@ pnpm dev            # local dev server
 pnpm build           # production build into dist/
 pnpm check           # tsc --noEmit
 pnpm preview         # serve the production build locally
-pnpm deploy:dry-run  # build + show the all-inkl upload/delete plan, no upload
-pnpm deploy          # build + upload to the live all-inkl host
+pnpm run deploy:dry-run  # build + show the all-inkl upload/delete plan, no upload
+pnpm run deploy          # build + upload to the live all-inkl host
 ```
+
+Note: use `pnpm run deploy` (and `pnpm run deploy:dry-run`), not the bare
+`pnpm deploy` — pnpm reserves that exact word for its own workspace-deploy
+command and refuses to run a project script of the same name.
 
 ## Deploy
 
@@ -63,5 +67,5 @@ Deploys go to `gvoe.rowild.at` via SFTP (all-inkl), using
 
 Override any of these with `GVOE_DEPLOY_USER`, `GVOE_DEPLOY_HOST`,
 `GVOE_DEPLOY_REMOTE_DIR`, `GVOE_DEPLOY_KEY`, `GVOE_DEPLOY_LOCAL_DIR`. Run
-`pnpm deploy:dry-run` first — it prints the planned upload/delete list
+`pnpm run deploy:dry-run` first — it prints the planned upload/delete list
 without touching the remote host.

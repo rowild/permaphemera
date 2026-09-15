@@ -76,8 +76,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "mittel",
     "website": "https://www.emo-arte.at/",
     "source": "https://www.bleiburg.gv.at/museen/",
-    "note": "Keine öffentliche Galerie-E-Mail gefunden; Website bietet Kontaktformular.",
-    "salutation": "Sehr geehrter Herr Morianz"
+    "note": "Keine öffentliche Galerie-E-Mail gefunden; Website bietet Kontaktformular."
   },
   {
     "id": 4,
@@ -128,7 +127,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.kunsthandel-kraut.at/",
     "source": "https://www.kunsthandel-kraut.at/kontakt.php",
-    "note": null
+    "note": "Möglicherweise identisch mit id 118 – bitte prüfen"
   },
   {
     "id": 7,
@@ -179,7 +178,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.galerie-walker.at/",
     "source": "https://www.galerie-walker.at/galerie-walker/%C3%B6ffnungszeiten-kontakt/",
-    "note": "Einzelne regionale Quellen führen 9181; die Galerie selbst verwendet 9162."
+    "note": "Einzelne regionale Quellen führen 9181; die Galerie selbst verwendet 9162. Auch in Quelle Explorer als 'Galerie Judith Walker (Schloss Ebenau)'",
+    "salutation": "Sehr geehrte Frau Walker"
   },
   {
     "id": 10,
@@ -247,8 +247,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.kuenstlerstadt-gmuend.at/kulturorte/galerie-gmuend",
     "source": "https://www.kuenstlerstadt-gmuend.at/kulturorte/galerie-gmuend",
-    "note": null,
-    "salutation": "Sehr geehrte Frau Meske"
+    "note": null
   },
   {
     "id": 14,
@@ -469,7 +468,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.stadtgalerie.net/alpen-adria-galerie/",
     "source": "https://www.stadtgalerie.net/alpen-adria-galerie/alpen-adria-galerie-informationen",
-    "note": null,
+    "note": "Auch in Quelle Excel 25.08.2026 als 'Gewölbegalerie im Stadthaus'",
     "salutation": "Sehr geehrte Frau Mag.a Obernosterer"
   },
   {
@@ -504,7 +503,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "mittel",
     "website": "https://www.tomas-artist.at/",
     "source": "https://www.instagram.com/p/DBZJcmwMwsF/",
-    "note": "2026-Programm nicht auf einer stabilen offiziellen Unterseite auffindbar; Kontakt ist konsistent."
+    "note": "2026-Programm nicht auf einer stabilen offiziellen Unterseite auffindbar; Kontakt ist konsistent. Auch in Quelle Explorer als 'Galerie Tomas (ARTIST)'"
   },
   {
     "id": 29,
@@ -538,8 +537,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.bv-kaernten.at/",
     "source": "https://www.bv-kaernten.at/_ber_uns.html",
-    "note": "Die Stadt beschloss 2026 einen künftigen Umzug; bis zu einer offiziell vollzogenen Übersiedlung bleibt die veröffentlichte Adresse maßgeblich.",
-    "salutation": "Sehr geehrter Herr Maitz"
+    "note": "Die Stadt beschloss 2026 einen künftigen Umzug; bis zu einer offiziell vollzogenen Übersiedlung bleibt die veröffentlichte Adresse maßgeblich."
   },
   {
     "id": 31,
@@ -643,7 +641,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.galerie-magnet.at/",
     "source": "https://www.galerie-magnet.at/kontakt/",
-    "note": null
+    "note": "Auch in Quelle Explorer als 'Galerie Magnet Klagenfurt'",
+    "salutation": "Sehr geehrter Herr Magnet"
   },
   {
     "id": 37,
@@ -850,8 +849,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.galerie-august.com/",
     "source": "https://www.galerie-august.com/",
-    "note": "Aktuelle Startseite nennt Stiftgasse 1; ältere Kontaktseite Stiftgasse 2. Gmünd-Standort 2026 geschlossen.",
-    "salutation": "Sehr geehrter Herr Juri"
+    "note": "Aktuelle Startseite nennt Stiftgasse 1; ältere Kontaktseite Stiftgasse 2. Gmünd-Standort 2026 geschlossen."
   },
   {
     "id": 49,
@@ -919,8 +917,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.galerie-walker.at/pfarrhof-saak/",
     "source": "https://www.galerie-walker.at/galerie-walker/%C3%B6ffnungszeiten-kontakt/",
-    "note": null,
-    "salutation": "Sehr geehrte Frau Walker, sehr geehrte Frau Walker"
+    "note": "Auch in Quelle Explorer als 'Galerie Walker (Alter Pfarrhof Saak)'",
+    "salutation": "Sehr geehrte Frau Walker"
   },
   {
     "id": 53,
@@ -954,7 +952,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://kultur-impuls.com/",
     "source": "https://kultur-impuls.com/ausstellungen/",
-    "note": "Postanschrift des Vereins teils z. H. Caro Meinl, Tiroler Straße 8/4, 9800 Spittal."
+    "note": "Postanschrift des Vereins teils z. H. Caro Meinl, Tiroler Straße 8/4, 9800 Spittal. Auch in Quelle Explorer als 'Galerie im Impuls Center (kultur.im.puls)'",
+    "salutation": "Sehr geehrte Frau Meinl"
   },
   {
     "id": 55,
@@ -1056,8 +1055,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://stveit.com/freizeit/kultur-veranstaltungen/st-veiter-galerien",
     "source": "https://stveit.com/freizeit/kultur-veranstaltungen/st-veiter-galerien",
-    "note": null,
-    "salutation": "Sehr geehrter Herr Fanta"
+    "note": "Auch in Quelle Explorer als 'Galerie Atelier 43'"
   },
   {
     "id": 61,
@@ -1108,7 +1106,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://stveit.com/freizeit/kultur-veranstaltungen/st-veiter-galerien",
     "source": "https://stveit.com/freizeit/kultur-veranstaltungen/st-veiter-galerien",
-    "note": null
+    "note": "Möglicherweise identisch mit id 119 – bitte prüfen"
   },
   {
     "id": 64,
@@ -1210,8 +1208,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.kunstbahnhofwoerthersee.at/",
     "source": "https://www.kunstbahnhofwoerthersee.at/curated-by_station/",
-    "note": null,
-    "salutation": "Sehr geehrte Frau Dr.in Madl-Kren, sehr geehrte Frau Mag.a Taurer-Geher"
+    "note": null
   },
   {
     "id": 70,
@@ -1245,7 +1242,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://villach.at/stadt-erleben/kultur/dinzlschloss",
     "source": "https://villach.at/stadt-service/abteilungen-und-kontaktpersonen/magistrat/magistratsdirektion/geschaeftsgruppe-3-finanzen-und-wirtschaft/kultur",
-    "note": "Kein eigenständiger Galeriebetrieb, aber regelmäßig kuratierte Ausstellungen."
+    "note": "Kein eigenständiger Galeriebetrieb, aber regelmäßig kuratierte Ausstellungen. Auch in Quelle Explorer als 'Dinzlschloss (Galerie im Dinzlschloss)'"
   },
   {
     "id": 72,
@@ -1262,7 +1259,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://villach.at/stadt-erleben/kultur/galerie-freihausgasse",
     "source": "https://villach.at/stadt-erleben/kultur/galerie-freihausgasse/aktuelle-ausstellung",
-    "note": "Die Stadt nennt je nach Seite Freihausgasse bzw. Leiningengasse 12; beide Bezeichnungen dokumentiert."
+    "note": "Die Stadt nennt je nach Seite Freihausgasse bzw. Leiningengasse 12; beide Bezeichnungen dokumentiert. Auch in Quelle Explorer als 'Galerie Freihausgasse (Stadt Villach)'",
+    "salutation": "Sehr geehrte Frau Mag.a Schauß"
   },
   {
     "id": 73,
@@ -1279,7 +1277,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.kk-galerie.at/",
     "source": "https://www.kk-galerie.at/",
-    "note": null
+    "note": "Auch in Quelle Explorer als 'KK-Galerie / Atelier Karin Küstner-Pohl'",
+    "salutation": "Sehr geehrte Frau Küstner-Pohl"
   },
   {
     "id": 74,
@@ -1296,8 +1295,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "mittel",
     "website": "https://www.kunst-raum-villach.org/",
     "source": "https://www.kunst-raum-villach.org/kontakt.html",
-    "note": "Kontakt aktuell erreichbar; auf der Website war kein eindeutig datiertes 2026-Hauptprogramm sichtbar.",
-    "salutation": "Sehr geehrte Damen und Herren des Vorstands"
+    "note": "Kontakt aktuell erreichbar; auf der Website war kein eindeutig datiertes 2026-Hauptprogramm sichtbar."
   },
   {
     "id": 75,
@@ -1365,7 +1363,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.galerie-magnet.at/",
     "source": "https://www.galerie-magnet.at/kontakt/",
-    "note": "Einzelne 2026-Veranstaltungen nennen Hauptplatz 3; offizielle Kontaktseite führt Hauptplatz 6."
+    "note": "Einzelne 2026-Veranstaltungen nennen Hauptplatz 3; offizielle Kontaktseite führt Hauptplatz 6. Auch in Quelle Explorer als 'Galerie Magnet Völkermarkt'",
+    "salutation": "Sehr geehrter Herr Magnet"
   },
   {
     "id": 79,
@@ -1519,7 +1518,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://postwerk.at/",
     "source": "https://postwerk.at/kontakt/",
-    "note": "Kein dauerhaftes Galerielokal: Die angegebene Adresse ist das Vereinsbüro; Ausstellungen finden an wechselnden externen Orten statt."
+    "note": "Kein dauerhaftes Galerielokal: Die angegebene Adresse ist das Vereinsbüro; Ausstellungen finden an wechselnden externen Orten statt. Auch in Quelle Excel 25.08.2026 als 'postWERK'"
   },
   {
     "id": 88,
@@ -1536,7 +1535,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "mittel",
     "website": "http://www.white8.at/",
     "source": "https://www.art-navi.at/",
-    "note": "Der Eintrag ist in aktuellen Verzeichnissen auffindbar; ein eigenständiges, eindeutig datiertes 2026-Ausstellungsprogramm ließ sich nicht verifizieren. Der Google-Treffer zu Dagmar Aichholzer wurde als dieselbe Galerie dedupliziert."
+    "note": "Der Eintrag ist in aktuellen Verzeichnissen auffindbar; ein eigenständiges, eindeutig datiertes 2026-Ausstellungsprogramm ließ sich nicht verifizieren. Der Google-Treffer zu Dagmar Aichholzer wurde als dieselbe Galerie dedupliziert. Auch in Quelle Excel 25.08.2026 als 'white8 SHOWROOMS Villach' Auch in Quelle Explorer als 'white8 GALLERY / SHOWROOMS'"
   },
   {
     "id": 89,
@@ -1716,7 +1715,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.galerie-august.com/",
     "source": "https://www.galerie-august.com/",
-    "note": "Die offizielle Website verabschiedet die Villa in Gmünd ausdrücklich und nennt nur noch den gebündelten Betrieb in Millstatt. Der Standort bleibt als historischer Datensatz sichtbar und wird nicht aktiv gezählt.",
+    "note": "Die offizielle Website verabschiedet die Villa in Gmünd ausdrücklich und nennt nur noch den gebündelten Betrieb in Millstatt. Der Standort bleibt als historischer Datensatz sichtbar und wird nicht aktiv gezählt. Auch in Quelle Excel 25.08.2026 als 'Galerie August – Villa Juri' Auch in Quelle Explorer als 'Galerie August (Galerie Villa Juri)'",
     "active": false
   },
   {
@@ -1734,8 +1733,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.galerie-walker.at/kunstraum-klagenfurt/",
     "source": "https://www.galerie-walker.at/galerie-walker/%C3%B6ffnungszeiten-kontakt/",
-    "note": "Die offizielle Website führt den Klagenfurter Kunstraum weiterhin mit Adresse und Schaufensterinstallation, kennzeichnet ihn aber zugleich als derzeit geschlossen beziehungsweise ohne Programm. Deshalb nicht in aktiven Statistiken gezählt.",
-    "salutation": "Sehr geehrte Frau Walker, sehr geehrte Frau Walker",
+    "note": "Die offizielle Website führt den Klagenfurter Kunstraum weiterhin mit Adresse und Schaufensterinstallation, kennzeichnet ihn aber zugleich als derzeit geschlossen beziehungsweise ohne Programm. Deshalb nicht in aktiven Statistiken gezählt. Auch in Quelle Explorer als 'Kunstraum Walker (Klagenfurt)'",
+    "salutation": "Sehr geehrte Frau Walker",
     "active": false
   },
   {
@@ -1753,7 +1752,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "mittel",
     "website": "https://www.ernst-gradischnig.at/",
     "source": "https://www.ernst-gradischnig.at/",
-    "note": "Grenzfall Atelier statt klassischer Galerie: Die aktuelle Künstlerwebsite lädt zum Atelierbesuch ein; Art-Navi führt den Ort als Atelier Ernst Gradischnig. Ein regelmäßiges eigenes Ausstellungsprogramm ist nicht ausgewiesen.",
+    "note": "Grenzfall Atelier statt klassischer Galerie: Die aktuelle Künstlerwebsite lädt zum Atelierbesuch ein; Art-Navi führt den Ort als Atelier Ernst Gradischnig. Ein regelmäßiges eigenes Ausstellungsprogramm ist nicht ausgewiesen. Auch in Quelle Explorer als 'Atelier-Galerie Gradischnig'",
+    "salutation": "Sehr geehrter Herr Gradischnig",
     "active": true
   },
   {
@@ -1771,7 +1771,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://www.zugaenglichekunst.at/",
     "source": "https://yoga.woerthersee.com/en/dc-new/detail/Event/ausstellung-kaerntner-cowboys-bianka-mitka-1",
-    "note": "Die Vereinswebsite bestätigt Galerie und Kontakt am Bahnhof; ein offizieller Wörthersee-Veranstaltungseintrag belegt ein konkretes Ausstellungsprogramm im August und September 2026.",
+    "note": "Die Vereinswebsite bestätigt Galerie und Kontakt am Bahnhof; ein offizieller Wörthersee-Veranstaltungseintrag belegt ein konkretes Ausstellungsprogramm im August und September 2026. Auch in Quelle Explorer als 'Galerie ZUGängliche Kunst'",
     "active": true
   },
   {
@@ -1789,7 +1789,7 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "mittel",
     "website": "https://www.galerie-sikoronja.at/",
     "source": "https://rosegg.gv.at/de_de/kultur/",
-    "note": "Die Gemeinde und aktuelle Kulturverzeichnisse führen die Galerie weiterhin. Die offizielle Website dokumentiert jedoch zuletzt die Gedächtnisausstellung 2023; ein aktuelles 2026-Programm fehlt. Daher transparent aufgenommen, aber nicht aktiv gezählt.",
+    "note": "Die Gemeinde und aktuelle Kulturverzeichnisse führen die Galerie weiterhin. Die offizielle Website dokumentiert jedoch zuletzt die Gedächtnisausstellung 2023; ein aktuelles 2026-Programm fehlt. Daher transparent aufgenommen, aber nicht aktiv gezählt. Auch in Quelle Excel 25.08.2026 als 'Galerie Šikoronja' Auch in Quelle Explorer als 'Galerie Šikoronja'",
     "salutation": "Sehr geehrte Frau Šikoronja-Martines",
     "active": false
   },
@@ -1827,7 +1827,8 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "hoch",
     "website": "https://archiv.galerie3.com/contact/",
     "source": "https://galerie3.com/contact/",
-    "note": "Das offizielle Galeriearchiv belegt den früheren saisonalen Standort in Velden. Die aktuelle Kontaktseite führt nur Klagenfurt und Wien; Velden wird deshalb als historischer Standort aufgenommen und nicht aktiv gezählt.",
+    "note": "Das offizielle Galeriearchiv belegt den früheren saisonalen Standort in Velden. Die aktuelle Kontaktseite führt nur Klagenfurt und Wien; Velden wird deshalb als historischer Standort aufgenommen und nicht aktiv gezählt. Auch in Quelle Explorer als 'Galerie 3 Velden'",
+    "salutation": "Sehr geehrte Frau Mag. Freimüller",
     "active": false
   },
   {
@@ -1886,43 +1887,6 @@ const carinthiaGalleries: Gallery[] = [
   },
   {
     "id": 108,
-    "city": "Gmünd in Kärnten",
-    "name": "Galerie August – Villa Juri",
-    "category": "Ehemaliger Galeriestandort",
-    "address": "Waschanger 8, 9853 Gmünd",
-    "email": "mail@galerie-august.com",
-    "moreEmail": null,
-    "contacts": "Jens August",
-    "role": "Galerist",
-    "phone": "+43 676 4750288",
-    "status": "Standort 2026 geschlossen",
-    "confidence": "mittel",
-    "website": "https://www.galerie-august.com/",
-    "source": "https://www.galerie-august.com/",
-    "note": "Offiziell 2026 mit „Adieu Juri Villa“ beendet; nur Millstatt bleibt aktiv.",
-    "salutation": "Sehr geehrter Herr Juri",
-    "sourceType": "Excel 25.08.2026"
-  },
-  {
-    "id": 109,
-    "city": "Klagenfurt am Wörthersee",
-    "name": "Gewölbegalerie im Stadthaus",
-    "category": "Temporärer kommunaler Ausstellungsraum",
-    "address": "Theaterplatz 3, 9020 Klagenfurt",
-    "email": "stadtgalerie@klagenfurt.at",
-    "moreEmail": null,
-    "contacts": "Stadt Klagenfurt / wechselnde Veranstalter:innen",
-    "role": "öffentliche Kontaktstelle",
-    "phone": "+43 463 537-5224",
-    "status": "temporär / keine feste Galerieleitung",
-    "confidence": "mittel",
-    "website": "https://www.klagenfurt.at/",
-    "source": "https://cdnlangenacht.orf.at/fileadmin/museen/2025/booklets/LNDM25_Kaernten.pdf",
-    "note": null,
-    "sourceType": "Excel 25.08.2026"
-  },
-  {
-    "id": 110,
     "city": "Klagenfurt am Wörthersee",
     "name": "Kunstraum Starmann",
     "category": "Private Sammlung / Schaulager",
@@ -1940,7 +1904,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 111,
+    "id": 109,
     "city": "Klagenfurt am Wörthersee",
     "name": "MMKK – Museum Moderner Kunst Kärnten",
     "category": "Kunstmuseum",
@@ -1958,7 +1922,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 112,
+    "id": 110,
     "city": "Klagenfurt am Wörthersee",
     "name": "Sammlung Wilfan",
     "category": "Private Sammlung / Dauerpräsentation",
@@ -1976,7 +1940,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 113,
+    "id": 111,
     "city": "Millstatt am See",
     "name": "KlostergARTen / Altes Theaterhaus",
     "category": "Kulturverein / temporäre Ausstellungen",
@@ -1994,7 +1958,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 114,
+    "id": 112,
     "city": "Neuhaus",
     "name": "Museum Liaunig",
     "category": "Privates Kunstmuseum",
@@ -2012,7 +1976,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 115,
+    "id": 113,
     "city": "Nötsch im Gailtal",
     "name": "Museum des Nötscher Kreises",
     "category": "Kunstmuseum",
@@ -2030,7 +1994,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 116,
+    "id": 114,
     "city": "St. Paul im Lavanttal",
     "name": "Stift St. Paul – Ausstellungen",
     "category": "Stiftsmuseum / Ausstellungsort",
@@ -2048,25 +2012,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 117,
-    "city": "Villach",
-    "name": "white8 SHOWROOMS Villach",
-    "category": "Ehemaliger / unklarer Standort",
-    "address": "Widmanngasse 8 bzw. Lenaugasse 4, 9500 Villach",
-    "email": "dagmar@white8.at",
-    "moreEmail": null,
-    "contacts": "Dagmar Aichholzer",
-    "role": "Galeristin",
-    "phone": "+43 664 2026754",
-    "status": "aktueller Villach-Standort unklar",
-    "confidence": "mittel",
-    "website": null,
-    "source": "https://www.kunstmarkt.com/pagesprz/white8_galerie_dagmar_aichholzer_villach/_i74511-/show_praesenz.html",
-    "note": "Aktuelle offizielle Präsenz verweist auf Wien; Villach-Adressen in älteren/sekundären Quellen widersprüchlich.",
-    "sourceType": "Excel 25.08.2026"
-  },
-  {
-    "id": 118,
+    "id": 115,
     "city": "Völkermarkt",
     "name": "Galerie in der Bezirkshauptmannschaft",
     "category": "Temporärer Behörden-Ausstellungsort",
@@ -2084,7 +2030,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 119,
+    "id": 116,
     "city": "Vorderberg",
     "name": "Das Paradies – Cornelius Kolig",
     "category": "Gesamtkunstwerk / Schaulager",
@@ -2102,7 +2048,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 120,
+    "id": 117,
     "city": "Wolfsberg",
     "name": "Schloss Wolfsberg",
     "category": "Kultur- und Ausstellungsort",
@@ -2120,7 +2066,7 @@ const carinthiaGalleries: Gallery[] = [
     "sourceType": "Excel 25.08.2026"
   },
   {
-    "id": 121,
+    "id": 118,
     "city": "Bleiburg / Pliberk",
     "name": "Kunsthandel & Galerie Kraut",
     "category": "Privatgalerie",
@@ -2134,107 +2080,12 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "mittel",
     "website": "https://www.kraut-kunst.at/",
     "source": null,
-    "note": null,
+    "note": "Möglicherweise identisch mit id 6 – bitte prüfen",
     "salutation": "Sehr geehrter Herr Kraut",
     "sourceType": "Explorer"
   },
   {
-    "id": 122,
-    "city": "Klagenfurt am Wörthersee",
-    "name": "Galerie Magnet Klagenfurt",
-    "category": "Privatgalerie",
-    "address": "Theaterplatz 5 (Palais Fugger), 9020 Klagenfurt",
-    "email": "magnet@galeriemagnet.com",
-    "moreEmail": null,
-    "contacts": "Wolfgang Magnet (Inhaber / Geschäftsführung)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://www.galerie-magnet.at/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrter Herr Magnet",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 123,
-    "city": "Klagenfurt am Wörthersee",
-    "name": "Galerie Tomas (ARTIST)",
-    "category": "Privatgalerie",
-    "address": "Neuer Platz 7, 9020 Klagenfurt",
-    "email": "galerie@tomas-artist.at",
-    "moreEmail": null,
-    "contacts": "Geschäftsführung Tomas Sales GmbH",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://tomas-artist.at/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrte Damen und Herren der Geschäftsführung",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 124,
-    "city": "Moosburg",
-    "name": "Atelier-Galerie Gradischnig",
-    "category": "Atelier-Galerie",
-    "address": "Witsch 26, 9062 Moosburg",
-    "email": "atelier@gradischnig.at",
-    "moreEmail": null,
-    "contacts": "Ernst Gradischnig (Künstler / Inhaber)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://www.gradischnig.at/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrter Herr Gradischnig",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 125,
-    "city": "Pörtschach am Wörthersee",
-    "name": "Galerie ZUGängliche Kunst",
-    "category": "Kulturinitiative / Verein",
-    "address": "Bahnhofsplatz 1, 9210 Pörtschach am Wörthersee",
-    "email": "office@zugaenglichekunst.at",
-    "moreEmail": null,
-    "contacts": "Vorstand Kulturinitiative ZUGängliche Kunst",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://www.zugaenglichekunst.at/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrte Damen und Herren des Vorstands",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 126,
-    "city": "Seeboden am Millstätter See",
-    "name": "Galerie im Impuls Center (kultur.im.puls)",
-    "category": "Kulturzentrum",
-    "address": "Thomas-Morgenstern-Platz 1, 9871 Seeboden",
-    "email": "info@kultur-impuls.com",
-    "moreEmail": null,
-    "contacts": "Carolin Meinl (Obfrau / Organisation)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://kultur-impuls.com/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrte Frau Meinl",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 127,
+    "id": 119,
     "city": "St. Veit an der Glan",
     "name": "Rathausgalerie St. Veit",
     "category": "Städtische Galerie",
@@ -2248,145 +2099,12 @@ const carinthiaGalleries: Gallery[] = [
     "confidence": "mittel",
     "website": "https://www.sv.or.at/",
     "source": null,
-    "note": null,
+    "note": "Möglicherweise identisch mit id 63 – bitte prüfen",
     "salutation": "Sehr geehrte Damen und Herren der Kulturabteilung",
     "sourceType": "Explorer"
   },
   {
-    "id": 128,
-    "city": "Velden am Wörthersee",
-    "name": "Galerie 3 Velden",
-    "category": "Privatgalerie",
-    "address": "Klagenfurter Straße 14, 9220 Velden am Wörthersee",
-    "email": "galerie@galerie3.com",
-    "moreEmail": null,
-    "contacts": "Mag. Lena Freimüller (Galerieleitung)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://galerie3.com/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrte Frau Mag. Freimüller",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 129,
-    "city": "Villach",
-    "name": "Dinzlschloss (Galerie im Dinzlschloss)",
-    "category": "Städtische Galerie",
-    "address": "Schlossgasse 11, 9500 Villach",
-    "email": "kultur@villach.at",
-    "moreEmail": null,
-    "contacts": "Mag. Gert Christian Sturm (Kulturabteilung)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://villach.at/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrter Herr Mag. Sturm",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 130,
-    "city": "Villach",
-    "name": "Galerie Freihausgasse (Stadt Villach)",
-    "category": "Städtische Galerie",
-    "address": "Freihausgasse / Leiningengasse 12, 9500 Villach",
-    "email": "galeriefreihausgasse@villach.at",
-    "moreEmail": null,
-    "contacts": "Mag.a Claudia Schauß (Galerieleitung)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://villach.at/stadt-erleben/kultur/galerie-freihausgasse",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrte Frau Mag.a Schauß",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 131,
-    "city": "Villach",
-    "name": "KK-Galerie / Atelier Karin Küstner-Pohl",
-    "category": "Atelier-Galerie",
-    "address": "Widmanngasse 24, 9500 Villach",
-    "email": "office@kk-galerie.at",
-    "moreEmail": null,
-    "contacts": "Karin Küstner-Pohl (Inhaberin / Künstlerin)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://www.kk-galerie.at/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrte Frau Küstner-Pohl",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 132,
-    "city": "Villach",
-    "name": "white8 GALLERY / SHOWROOMS",
-    "category": "Privatgalerie",
-    "address": "Widmanngasse 8, 9500 Villach",
-    "email": "dagmar@white8.at",
-    "moreEmail": null,
-    "contacts": "Dagmar Chobot-Weiß (Inhaberin / Galeristin)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://www.white8.at/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrte Frau Chobot-Weiß",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 133,
-    "city": "Völkermarkt",
-    "name": "Galerie Magnet Völkermarkt",
-    "category": "Privatgalerie",
-    "address": "Hauptplatz 6, 9100 Völkermarkt",
-    "email": "magnet@galeriemagnet.com",
-    "moreEmail": null,
-    "contacts": "Wolfgang Magnet (Inhaber / Geschäftsführung)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://www.galerie-magnet.at/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrter Herr Magnet",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 134,
-    "city": "Weizelsdorf / Feistritz im Rosental",
-    "name": "Galerie Judith Walker (Schloss Ebenau)",
-    "category": "Privatgalerie",
-    "address": "Schloss Ebenau 1, 9162 Weizelsdorf",
-    "email": "office@galerie-walker.at",
-    "moreEmail": null,
-    "contacts": "Judith Walker (Galeristin) & Carolin Walker (Management)",
-    "role": null,
-    "phone": null,
-    "status": "ungeklärt (Explorer)",
-    "confidence": "mittel",
-    "website": "https://www.galerie-walker.at/",
-    "source": null,
-    "note": null,
-    "salutation": "Sehr geehrte Frau Walker, sehr geehrte Frau Walker",
-    "sourceType": "Explorer"
-  },
-  {
-    "id": 135,
+    "id": 120,
     "city": "Velden am Wörthersee",
     "name": "Kunstverein Velden",
     "category": "Kunstverein",
