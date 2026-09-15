@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CalendarDays, ExternalLink, MapPin } from '@lucide/vue'
+import { Building2, CalendarDays, ExternalLink, LayoutGrid, MapPin } from '@lucide/vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 
@@ -8,7 +8,7 @@ import type { ResolvedVenue } from '~/utils/resolveVenues'
 // ResolvedVenue doesn't carry (kept from the pre-flip shape; read only in
 // this file's own template, never passed to a child component). This local
 // type describes exactly what gets constructed.
-interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'about'> {
+interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'about' | 'part_of' | 'spaces'> {
   location_id: string
 }
 
@@ -54,7 +54,9 @@ const venue = computed<Venue>(() => {
     lede: dossier?.lede ?? record.description,
     image_caption: dossier?.image_caption,
     coordinate_label: dossier?.coordinate_label,
-    about: dossier?.about
+    about: dossier?.about,
+    part_of: record.part_of,
+    spaces: record.spaces
   }
 })
 
@@ -206,6 +208,16 @@ useSeoMeta({
             <ArchiveMetadataRow :label="$t('venue.address')" variant="venue">
               <template #icon><MapPin :size="19" aria-hidden="true" /></template>
               {{ venue.address }}
+            </ArchiveMetadataRow>
+            <ArchiveMetadataRow v-if="venue.part_of" :label="$t('venue.partOf')" variant="venue">
+              <template #icon><Building2 :size="18" aria-hidden="true" /></template>
+              <ArchiveTextLink :to="localePath(`/venues/${venue.part_of.slug}/`)">{{ venue.part_of.name }}</ArchiveTextLink>
+            </ArchiveMetadataRow>
+            <ArchiveMetadataRow v-if="venue.spaces.length" :label="$t('venue.spaces', venue.spaces.length)" variant="venue">
+              <template #icon><LayoutGrid :size="18" aria-hidden="true" /></template>
+              <template v-for="(space, index) in venue.spaces" :key="space.slug">
+                <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/venues/${space.slug}/`)">{{ space.name }}</ArchiveTextLink>
+              </template>
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="venue.latitude !== undefined && venue.longitude !== undefined" :label="$t('venue.coordinates')" variant="venue">
               <template #icon><span class="record-meta-icon record-meta-icon-location" aria-hidden="true" /></template>

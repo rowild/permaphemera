@@ -115,6 +115,7 @@ Every line is one relation. The naming rule (conventions §2 rule 12) makes an M
 | exhibition | venue | M2O | `pp_exhibitions.primary_venue` | where the show happens; the venue lists its `exhibitions` |
 | exhibition | venue | M2M | `pp_mm__exhibitions_venues` | further venues of a travelling show; aliases `further_venues` / `further_exhibitions` |
 | venue | location | M2O | `pp_venues.location` | the town the building stands in; the town lists its `venues` |
+| venue | venue | M2O, self | `pp_venues.part_of` | the venue this space belongs to organisationally; the parent lists its `spaces` |
 | participation | exhibition | M2O, child | `pp_exhibition_participations.exhibition` | dies with the show; the show lists `participations` |
 | participation | person | M2O | `pp_exhibition_participations.person` | who; the person lists `participations` |
 | participation | role | M2O | `pp_exhibition_participations.role` | in which function |
@@ -151,7 +152,7 @@ Translated: `description`.
 
 #### `pp_venues`
 
-`id`, `status`, `sort`, `title`, `slug`, `location` (M2O → locations, SET NULL), `type` (dropdown, allow other), `address`, `website_url`, `latitude`, `longitude`, `image`, `image_alt`, `hero_image`, `hero_image_alt`, `archive_number`, `featured`, `description`, `lede`, `about` (json array of paragraphs), `image_caption`, `coordinate_label`, `translations`, `exhibitions` (o2m), `further_exhibitions`, `persons`, `sponsors` (m2m), audit.
+`id`, `status`, `sort`, `title`, `slug`, `location` (M2O → locations, SET NULL), `part_of` (self M2O → venues, SET NULL; the venue this space belongs to organisationally, e.g. Alpen-Adria-Galerie → Stadtgalerie Klagenfurt; added 2026-09-15), `type` (dropdown, allow other), `address`, `website_url`, `latitude`, `longitude`, `image`, `image_alt`, `hero_image`, `hero_image_alt`, `archive_number`, `featured`, `description`, `lede`, `about` (json array of paragraphs), `image_caption`, `coordinate_label`, `translations`, `spaces`, `exhibitions` (o2m), `further_exhibitions`, `persons`, `sponsors` (m2m), audit.
 Translated: `description`, `lede`, `about`, `image_caption`, `coordinate_label`.
 
 #### `pp_persons`

@@ -63,6 +63,7 @@ async function main() {
       location.latitude > 46 && location.latitude < 49 && location.longitude > 9 && location.longitude < 17)],
 
     ['venue.location all resolve', venues.every((venue) => locationIds.has(venue.location))],
+    ['venue.part_of points at another venue or is empty', venues.every((venue) => venue.part_of === null || (venue.part_of !== venue.id && venueIds.has(venue.part_of)))],
     ['exhibition.primary_venue all resolve', exhibitions.every((exhibition) => venueIds.has(exhibition.primary_venue))],
     ['participation.exhibition all resolve', participations.every((row) => exhibitionIds.has(row.exhibition))],
     ['participation.person all resolve', participations.every((row) => personIds.has(row.person))],

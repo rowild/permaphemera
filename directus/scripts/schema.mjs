@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, jsonArray, m2o, markdown, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-09-15.1'
+export const SCHEMA_VERSION = '2026-09-15.2'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -44,6 +44,7 @@ export const entities = {
       str('title', { required: true }),
       str('slug', { required: true, unique: true, slug: true, width: 'half' }),
       m2o('location', 'locations', { oneField: 'venues', oneTemplate: '{{title}}' }),
+      m2o('part_of', 'venues', { template: '{{title}}', oneField: 'spaces', oneTemplate: '{{title}}', note: 'The venue this space belongs to organisationally, e.g. Alpen-Adria-Galerie → Stadtgalerie Klagenfurt. Empty for independent venues.' }),
       dropdown('type', ['gallery', 'museum', 'kunsthalle', 'art_cafe', 'open_air', 'forum'], { default: 'gallery', allowOther: true }),
       str('address'),
       str('website_url', { width: 'half' }),
@@ -62,10 +63,10 @@ export const entities = {
       str('coordinate_label', { translated: true, note: 'Human-readable DMS readout.' }),
     ],
     layout: [
-      section('title', 'Title', ['status', 'title', 'slug', 'type', 'location', 'featured', 'archive_number']),
+      section('title', 'Title', ['status', 'title', 'slug', 'type', 'location', 'part_of', 'featured', 'archive_number']),
       section('address', 'Address', ['address', 'website_url', 'latitude', 'longitude', 'coordinate_label']),
       section('images', 'Images', ['image', 'image_alt', 'hero_image', 'hero_image_alt', 'image_caption']),
-      section('relations', 'Relations', ['exhibitions', 'further_exhibitions', 'persons', 'sponsors']),
+      section('relations', 'Relations', ['spaces', 'exhibitions', 'further_exhibitions', 'persons', 'sponsors']),
       content(['lede', 'about', 'description']),
     ],
   },

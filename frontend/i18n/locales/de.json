@@ -175,6 +175,8 @@
     "sealAlt": "PERMAPHEMERA Archiv"
   },
   "venue": {
+    "partOf": "Teil von",
+    "spaces": "Standort | Standorte",
     "notFound": "Galerie nicht gefunden",
     "archiveVenue": "Archivort · Nr. {number}",
     "fallbackLede": "Ein Ausstellungsraum in {city} – temporäre Begegnungen, versammelt in einer erinnerten architektonischen Hülle.",
@@ -219,6 +221,7 @@
     "seoDescription": "Entdecken Sie Ausstellungseinträge von {name} in {city}."
   },
   "galleries": {
+    "partOf": "Im Verbund von {name}",
     "seoTitle": "Galerien in Österreich · PERMAPHEMERA",
     "seoDescription": "Entdecken Sie 26 kleine österreichische Galerien, Projekträume und unabhängige Ausstellungsorte im PERMAPHEMERA-Verzeichnis.",
     "breadcrumb": "Galerien",

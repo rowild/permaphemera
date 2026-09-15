@@ -8,7 +8,7 @@ const locations = [{
 }]
 
 const venue = {
-  id: 'venue-neue-galerie-graz', slug: 'neue-galerie-graz', location: 'location-graz',
+  id: 'venue-neue-galerie-graz', slug: 'neue-galerie-graz', location: 'location-graz', part_of: null,
   title: 'Neue Galerie Graz', type: 'museum' as const, address: 'Joanneumsviertel',
   website_url: null, latitude: null, longitude: null,
   image: '/i.webp', image_alt: 'alt', hero_image: null, hero_image_alt: null,
@@ -21,6 +21,15 @@ const venue = {
 describe('resolveVenues', () => {
   it('inlines the city from the linked location', () => {
     expect(resolveVenues(locations, [venue], 'en')[0].city).toBe('Graz')
+  })
+
+  it('links a space to its parent venue and lists the spaces on the parent', () => {
+    const space = { ...venue, id: 'venue-space', slug: 'space', title: 'Space', part_of: 'venue-neue-galerie-graz' }
+    const [parent, child] = resolveVenues(locations, [venue, space], 'en')
+    expect(child.part_of).toEqual({ slug: 'neue-galerie-graz', name: 'Neue Galerie Graz' })
+    expect(parent.spaces).toEqual([{ slug: 'space', name: 'Space' }])
+    expect(parent.part_of).toBeUndefined()
+    expect(child.spaces).toEqual([])
   })
 
   it('exposes the city centroid separately from the venue pin', () => {

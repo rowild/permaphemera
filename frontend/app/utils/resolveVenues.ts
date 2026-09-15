@@ -2,10 +2,20 @@ import type { LocationRecord, VenueRecord } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
 
+/** A venue named by slug and title, for "part of" and "spaces" links. */
+export interface VenueRef {
+  slug: string
+  name: string
+}
+
 export interface ResolvedVenue {
   id: string
   slug: string
   name: string
+  /** The venue this one belongs to organisationally, when that venue is visible. */
+  part_of?: VenueRef
+  /** Visible venues that name this one as their parent. */
+  spaces: VenueRef[]
   type: string
   address: string
   website_url?: string
@@ -37,8 +47,10 @@ export const resolveVenues = (
   locale: string
 ): ResolvedVenue[] => {
   const locationById = new Map(locations.map((location) => [location.id, location]))
+  const visible = venues.filter(isVisible)
+  const refById = new Map(visible.map((venue) => [venue.id, { slug: venue.slug, name: venue.title }]))
 
-  return venues.filter(isVisible).map((venue) => {
+  return visible.map((venue) => {
     const location = locationById.get(venue.location)
     if (!location) throw new Error(`pp_venues.json: ${venue.id} references unknown location ${venue.location}`)
     const text = pickTranslation(venue, locale)
@@ -47,6 +59,8 @@ export const resolveVenues = (
       id: venue.id,
       slug: venue.slug,
       name: venue.title,
+      part_of: venue.part_of ? refById.get(venue.part_of) : undefined,
+      spaces: visible.filter((candidate) => candidate.part_of === venue.id).map((candidate) => refById.get(candidate.id)!),
       type: venue.type,
       address: venue.address,
       website_url: venue.website_url ?? undefined,

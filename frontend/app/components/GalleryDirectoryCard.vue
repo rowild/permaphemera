@@ -62,6 +62,7 @@ const sequence = computed(() => props.venue.archive_number || String(props.index
         </p>
         <h3 class="mt-2 mb-0 font-display font-normal leading-none" :class="props.featured ? 'text-h2 compact:text-3xl' : 'text-h3-sm compact:text-base'">{{ props.venue.name }}</h3>
         <p class="mt-1 mb-0 text-button text-archive-muted compact:text-xs">{{ props.venue.city_name }}</p>
+        <p v-if="props.venue.part_of" class="mt-1 mb-0 text-xs tracking-wider text-archive-red compact:text-3xs">{{ $t('galleries.partOf', { name: props.venue.part_of.name }) }}</p>
         <p class="mt-5 mb-5 max-w-152 flex-auto text-button leading-[1.55] text-archive-body compact:hidden">{{ props.venue.description }}</p>
         <div class="mt-auto flex items-end justify-between gap-4 border-t border-archive-rule-warm/22 pt-4 compact:pt-2">
           <p class="m-0 text-xs tracking-wider text-archive-muted uppercase compact:text-3xs">

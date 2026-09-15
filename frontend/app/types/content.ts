@@ -55,6 +55,8 @@ export interface VenueRecord {
   id: string
   slug: string
   location: string
+  /** Self M2O: the venue this space belongs to organisationally (Alpen-Adria-Galerie → Stadtgalerie Klagenfurt), or null. */
+  part_of: string | null
   title: string
   type: VenueType
   address: string

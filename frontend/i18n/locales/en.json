@@ -175,6 +175,8 @@
     "sealAlt": "PERMAPHEMERA Archive"
   },
   "venue": {
+    "partOf": "Part of",
+    "spaces": "Exhibition space | Exhibition spaces",
     "notFound": "Gallery not found",
     "archiveVenue": "Archive venue · No. {number}",
     "fallbackLede": "An exhibition space in {city}—temporary encounters gathered within a remembered architectural shell.",
@@ -219,6 +221,7 @@
     "seoDescription": "Explore exhibition records from {name} in {city}."
   },
   "galleries": {
+    "partOf": "Part of {name}",
     "seoTitle": "Galleries across Austria · PERMAPHEMERA",
     "seoDescription": "Browse 26 small Austrian galleries, project rooms and independent exhibition spaces in the PERMAPHEMERA directory.",
     "breadcrumb": "Galleries",

@@ -64,7 +64,7 @@ for (const collection of ['pp_exhibitions', 'pp_venues', 'pp_locations']) {
 
     for (const entry of record.translations ?? []) {
       if (entry.languages_code !== 'de') continue
-      for (const immutableField of ['slug', 'location', 'venue_slug', 'start_date', 'end_date', 'image', 'hero_image', 'source_pdf', 'website_url']) {
+      for (const immutableField of ['slug', 'location', 'part_of', 'venue_slug', 'start_date', 'end_date', 'image', 'hero_image', 'source_pdf', 'website_url']) {
         assert(!(immutableField in entry), `${collection}.${record.id} must not translate stable field ${immutableField}.`)
       }
     }
