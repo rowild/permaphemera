@@ -109,6 +109,7 @@ const checks = [
   ['statements: English on the record equals the en entry', englishMirrors(statements, ['prompt', 'statement'])],
   ['roles: English on the record equals the en entry', englishMirrors(roles, ['title'])],
   ['sponsors: English on the record equals the en entry', englishMirrors(sponsors, ['description'])],
+  ['every published sponsor has a logo', sponsors.filter((s) => s.status === 'published').every((s) => typeof s.logo === 'string' && s.logo.length > 0)],
   ['navigation items: English on the record equals the en entry', englishMirrors(navigationItems, ['title'])],
 
   ['all collections have a valid status', [locations, venues, persons, roles, exhibitions, participations, statements, sponsors, navigations, navigationItems].every(validStatus)],
