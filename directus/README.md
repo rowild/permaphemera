@@ -43,13 +43,15 @@ node scripts/permissions.mjs          # public read rules (--reset recreates the
 node scripts/apply-settings.mjs       # name, colour, logo, login seal
 node scripts/check-conventions.mjs    # assert the live schema follows the rules
 node scripts/export.mjs               # backup records + files to ../_BU/directus-data
-node scripts/import.mjs --from <dir>  # restore, or first load from ../frontend/app/data
+node scripts/import.mjs --from <dir>  # restore from ../_BU/directus-data by default
 node scripts/snapshot.mjs             # export schema/snapshot.yaml
 ```
 
 **Schema changes are additive.** Edit `scripts/schema.mjs`, run `create-schema.mjs`; it adds what is missing and touches nothing else. Removing or renaming a field: do it in the admin app, then `snapshot.mjs`. There is no reset; content is never wiped by a script.
 
 **Backup before anything risky:** `node scripts/export.mjs`. The `_BU/` folder is not in git.
+
+**Content history:** the first load came from the frontend JSON (`../frontend/app/data`, now retired to `../_BU/frontend-app-data-2026-09-15/`) on 2026-09-15. Every later load restores from an `export.mjs` backup under `../_BU/directus-data/`.
 
 **CORS:** `.env` allows `http://localhost:4991`. On a remote host add the site's domain to `CORS_ORIGIN`.
 

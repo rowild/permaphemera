@@ -9,7 +9,7 @@ import { uploadFile } from './files.mjs'
 
 const args = process.argv.slice(2)
 const fromIndex = args.indexOf('--from')
-const source = resolve(fromIndex >= 0 ? args[fromIndex + 1] : join(import.meta.dirname, '..', '..', 'frontend', 'app', 'data'))
+const source = resolve(fromIndex >= 0 ? args[fromIndex + 1] : join(import.meta.dirname, '..', '..', '_BU', 'directus-data'))
 const publicDir = existsSync(join(source, 'public')) ? join(source, 'public') : resolve(source, '..', '..', 'public')
 const filesDir = join(source, 'files')
 

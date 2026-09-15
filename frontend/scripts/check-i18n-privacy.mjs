@@ -28,10 +28,10 @@ const germanKeys = collectLeafKeys(germanMessages).sort()
 
 assert.deepEqual(germanKeys, englishKeys, 'English and German UI locale files must expose identical message keys.')
 
-// German overlay files under app/data/translations/de/ are gone: German text
-// now lives inline in each record's translations[] array, alongside entries
-// for other languages_code values. Two intents from the old overlay-file
-// check carry over onto that inline shape:
+// German text lives inline in each record's translations[] array, alongside
+// entries for other languages_code values (the old per-language overlay
+// files are gone). Two intents from the old overlay-file check carry over
+// onto that inline shape:
 //   1. Coverage is no longer "every record has German" (the four legacy demo
 //      exhibitions and the ten promoted venues have no German prose to copy —
 //      see task-2/task-6 reports) but it must still be internally consistent:
