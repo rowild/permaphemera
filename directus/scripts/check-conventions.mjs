@@ -59,6 +59,14 @@ for (const r of relations) {
   check(f?.schema?.is_unique !== true, `unique index on FK: ${r.collection}.${r.field}`)
 }
 
+// Public read rule on every pp_ table except the folder and pp_meta.
+const publicPolicy = (await api('GET', '/policies?filter[name][_eq]=$t:public_label&fields=id'))[0]?.id
+const publicReads = new Set((await api('GET', `/permissions?filter[policy][_eq]=${publicPolicy}&filter[action][_eq]=read&limit=-1&fields=collection`)).map((p) => p.collection))
+for (const c of collections) {
+  if (isFolder(c) || c.collection === 'pp_meta') continue
+  check(publicReads.has(c.collection), `no public read rule: ${c.collection}`)
+}
+
 // Sidebar sort contiguous per parent.
 const byGroup = new Map()
 for (const c of collections) byGroup.set(c.meta?.group ?? '(root)', [...(byGroup.get(c.meta?.group ?? '(root)') ?? []), c])
