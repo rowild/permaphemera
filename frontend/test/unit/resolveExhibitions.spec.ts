@@ -18,11 +18,11 @@ const venues = [{
 
 const persons = [
   { id: 'person-sylvia-campidell', slug: 'sylvia-campidell', first_name: 'Sylvia', last_name: 'Campidell',
-    middle_initial: null, display_name: null, website_url: null, status: 'published' as const },
+    middle_initial: null, display_name: null, status: 'published' as const },
   { id: 'person-judith-maria-kulle', slug: 'judith-maria-kulle', first_name: 'Judith Maria', last_name: 'Kulle',
-    middle_initial: null, display_name: null, website_url: null, status: 'published' as const },
+    middle_initial: null, display_name: null, status: 'published' as const },
   { id: 'person-curator', slug: 'cura-tor', first_name: 'Cura', last_name: 'Tor',
-    middle_initial: null, display_name: null, website_url: null, status: 'published' as const }
+    middle_initial: null, display_name: null, status: 'published' as const }
 ]
 
 const roles = [
@@ -85,16 +85,27 @@ describe('resolveExhibitions', () => {
       .toThrow(/unknown person person-ghost/)
   })
 
-  it('exposes each linked artist with an optional website and the venue website', () => {
-    const linkedPersons = persons.map((person) => ({ ...person, website_url: 'https://example.org/' }))
+  it('exposes each linked artist with its links, the exhibition links and the venue website', () => {
+    const websites = [
+      { id: 'w-1', title: 'Website', url: 'https://example.org/', kind: 'website', status: 'published' as const, sort: 1, translations: [{ languages_code: 'en', title: 'Website' }] },
+      { id: 'w-2', title: 'Exhibition page', url: 'https://venue.example/show', kind: 'exhibition_page', status: 'published' as const, sort: 2, translations: [{ languages_code: 'en', title: 'Exhibition page' }] },
+      { id: 'w-3', title: 'Hidden', url: 'https://hidden.example/', kind: 'website', status: 'archived' as const, sort: 3, translations: [] }
+    ]
+    const personsWebsites = [
+      { id: 1, sort: 0, persons_id: 'person-sylvia-campidell', websites_id: 'w-1' },
+      { id: 2, sort: 0, persons_id: 'person-judith-maria-kulle', websites_id: 'w-3' }
+    ]
+    const exhibitionsWebsites = [{ id: 3, sort: 0, exhibitions_id: 'parkschloessl-campidell-kulle-2026', websites_id: 'w-2' }]
     const linkedVenues = venues.map((venue) => ({ ...venue, website_url: 'https://venue.example/' }))
-    const [record] = resolveExhibitions(exhibitions, linkedVenues, locations, participations, linkedPersons, roles, 'en')
+    const [record] = resolveExhibitions(exhibitions, linkedVenues, locations, participations, persons, roles, 'en', [], websites, exhibitionsWebsites, personsWebsites)
     expect(record.artists).toEqual([
-      { id: 'person-sylvia-campidell', name: 'Sylvia Campidell', website_url: 'https://example.org/' },
-      { id: 'person-judith-maria-kulle', name: 'Judith Maria Kulle', website_url: 'https://example.org/' }
+      { id: 'person-sylvia-campidell', name: 'Sylvia Campidell', website_url: 'https://example.org/', websites: [{ id: 'w-1', title: 'Website', url: 'https://example.org/', kind: 'website' }] },
+      { id: 'person-judith-maria-kulle', name: 'Judith Maria Kulle', website_url: undefined, websites: [] }
     ])
+    expect(record.websites).toEqual([{ id: 'w-2', title: 'Exhibition page', url: 'https://venue.example/show', kind: 'exhibition_page' }])
     expect(record.venue_website).toBe('https://venue.example/')
     expect(resolve()[0].artists[0].website_url).toBeUndefined()
+    expect(resolve()[0].websites).toEqual([])
     expect(resolve()[0].venue_website).toBeUndefined()
   })
 

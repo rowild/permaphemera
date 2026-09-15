@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, jsonArray, m2o, markdown, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-09-14.1'
+export const SCHEMA_VERSION = '2026-09-15.1'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -73,18 +73,17 @@ export const entities = {
   persons: {
     kind: 'main', icon: 'person', sort: 3, labels: ['Persons', 'Person', 'Persons'],
     display: ['first_name', 'last_name'], displayTemplate: PERSON,
-    note: 'People and collectives: artists, curators. The site shows a name, a website link and their statements. Nothing else, by decision of 2026-09-14.',
+    note: 'People and collectives: artists, curators. The site shows a name, their links (see websites) and their statements. Nothing else, by decision of 2026-09-14.',
     fields: [
       str('first_name', { width: 'half' }),
       str('last_name', { width: 'half' }),
       str('middle_initial', { width: 'half' }),
       str('display_name', { width: 'half', note: 'Pseudonym or collective name. Shown instead of first + last when set.' }),
       str('slug', { required: true, unique: true, slug: true, width: 'half' }),
-      str('website_url', { width: 'half' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'first_name', 'last_name', 'middle_initial', 'display_name', 'slug', 'roles']),
-      section('links', 'Links', ['website_url']),
+      section('links', 'Links', ['websites']),
       section('relations', 'Relations', ['participations', 'venues', 'sponsors']),
     ],
   },
@@ -132,7 +131,7 @@ export const entities = {
       section('dates', 'Dates', ['start_date', 'end_date', 'is_permanent', 'date_range', 'opening_hours', 'vernissage']),
       section('media', 'Media', ['image', 'image_alt', 'source_pdf', 'medium']),
       section('tour', 'Tour', ['tour', 'tour_status', 'tour_available_from']),
-      section('relations', 'Relations', ['participations', 'statements', 'further_venues', 'sponsors']),
+      section('relations', 'Relations', ['participations', 'statements', 'websites', 'further_venues', 'sponsors']),
       content(['summary', 'description']),
     ],
   },
@@ -182,6 +181,21 @@ export const entities = {
     ],
   },
 
+  websites: {
+    kind: 'main', icon: 'link', sort: 8, labels: ['Websites', 'Website', 'Websites'],
+    display: ['title'], displayTemplate: '{{title}}',
+    note: 'One external link: an artist site, an exhibition page, a press sheet, a social profile. Persons and exhibitions link to as many as they need.',
+    fields: [
+      str('title', { required: true, translated: true, note: 'Link text the site shows, e.g. "Exhibition page at stadtgalerie.net".' }),
+      str('url', { required: true, note: 'Absolute URL including https://.' }),
+      dropdown('kind', ['website', 'exhibition_page', 'press', 'document', 'social'], { default: 'website', allowOther: true }),
+    ],
+    layout: [
+      section('title', 'Title', ['status', 'title', 'url', 'kind']),
+      section('relations', 'Relations', ['exhibitions', 'persons']),
+    ],
+  },
+
   navigations: {
     kind: 'main', icon: 'menu', sort: 7, labels: ['Navigations', 'Navigation', 'Navigations'],
     display: ['title'], displayTemplate: '{{title}}',
@@ -225,4 +239,6 @@ export const junctions = [
   { a: 'persons', b: 'sponsors', aliasA: 'sponsors', aliasB: 'persons', owner: 'sponsors', sortedFrom: 'persons' },
   { a: 'locations', b: 'sponsors', aliasA: 'sponsors', aliasB: 'locations', owner: 'sponsors', sortedFrom: 'locations' },
   { a: 'sponsors', b: 'venues', aliasA: 'venues', aliasB: 'sponsors', owner: 'sponsors', sortedFrom: 'venues' },
+  { a: 'exhibitions', b: 'websites', aliasA: 'websites', aliasB: 'exhibitions', owner: 'websites', sortedFrom: 'exhibitions', note: 'External links of a show: its page on the venue site, press sheets, documents.' },
+  { a: 'persons', b: 'websites', aliasA: 'websites', aliasB: 'persons', owner: 'websites', sortedFrom: 'persons', note: 'The links of a person. Replaced the single website_url column on 2026-09-15.' },
 ]

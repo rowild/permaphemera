@@ -16,14 +16,15 @@ const minimal = {
   pp_persons: [], pp_roles: [], pp_mm__persons_roles: [], pp_exhibitions: [{ id: 'e1', image: 'f2', source_pdf: 'f3', tour: '/media/tours/x/', translations: [] }],
   pp_exhibition_participations: [], pp_exhibition_statements: [], pp_sponsors: [{ id: 's1', logo: null }],
   pp_navigations: [], pp_navigation_items: [], pp_mm__exhibitions_venues: [], pp_mm__exhibitions_sponsors: [],
-  pp_mm__persons_venues: [], pp_mm__persons_sponsors: [], pp_mm__locations_sponsors: [], pp_mm__sponsors_venues: []
+  pp_mm__persons_venues: [], pp_mm__persons_sponsors: [], pp_mm__locations_sponsors: [], pp_mm__sponsors_venues: [],
+  pp_websites: [], pp_mm__exhibitions_websites: [], pp_mm__persons_websites: []
 }
 
 describe('loadArchive', () => {
-  it('fetches all 17 collections with translations where they exist and no limit', async () => {
+  it('fetches all 20 collections with translations where they exist and no limit', async () => {
     const calls: string[] = []
     await loadArchive(fake(minimal, calls))
-    expect(calls).toHaveLength(17)
+    expect(calls).toHaveLength(20)
     expect(calls).toContain('pp_venues?fields=*%2Ctranslations.*&limit=-1&sort=sort')
     expect(calls).toContain('pp_mm__persons_roles?fields=*&limit=-1&sort=sort')
     expect(calls).toContain('pp_persons?fields=*&limit=-1&sort=sort')

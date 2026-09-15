@@ -37,10 +37,10 @@ for (const lang of languageRows) {
 }
 
 // Dependency order. Entities first, then junctions.
-const ORDER = ['pp_locations', 'pp_venues', 'pp_persons', 'pp_roles', 'pp_mm__persons_roles', 'pp_exhibitions',
+const ORDER = ['pp_locations', 'pp_venues', 'pp_persons', 'pp_roles', 'pp_websites', 'pp_mm__persons_roles', 'pp_exhibitions',
   'pp_exhibition_participations', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigations', 'pp_navigation_items',
   'pp_mm__exhibitions_venues', 'pp_mm__exhibitions_sponsors', 'pp_mm__persons_venues', 'pp_mm__persons_sponsors',
-  'pp_mm__locations_sponsors', 'pp_mm__sponsors_venues']
+  'pp_mm__locations_sponsors', 'pp_mm__sponsors_venues', 'pp_mm__exhibitions_websites', 'pp_mm__persons_websites']
 
 const uploaded = new Map() // path or id → file id
 async function fileIdFor(value) {

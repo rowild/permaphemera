@@ -81,6 +81,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_sponsors` | main | `pp_archive` | no |
 | `pp_roles` | main (vocabulary) | `pp_archive` | no |
 | `pp_navigations` | main | `pp_archive` | no |
+| `pp_websites` | main | `pp_archive` | no |
 | `pp_exhibition_participations` | child of exhibitions | `pp_exhibitions` | yes |
 | `pp_exhibition_statements` | child of exhibitions | `pp_exhibitions` | yes |
 | `pp_navigation_items` | child of navigations | `pp_navigations` | yes |
@@ -91,6 +92,8 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_mm__persons_sponsors` | structural | `pp_sponsors` | yes |
 | `pp_mm__locations_sponsors` | structural | `pp_sponsors` | yes |
 | `pp_mm__sponsors_venues` | structural | `pp_sponsors` | yes |
+| `pp_mm__exhibitions_websites` | structural | `pp_websites` | yes |
+| `pp_mm__persons_websites` | structural | `pp_websites` | yes |
 | `pp_translations__exhibitions` | structural | `pp_exhibitions` | yes |
 | `pp_translations__venues` | structural | `pp_venues` | yes |
 | `pp_translations__locations` | structural | `pp_locations` | yes |
@@ -98,6 +101,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_translations__roles` | structural | `pp_roles` | yes |
 | `pp_translations__exhibition_statements` | structural | `pp_exhibition_statements` | yes |
 | `pp_translations__navigation_items` | structural | `pp_navigation_items` | yes |
+| `pp_translations__websites` | structural | `pp_websites` | yes |
 | `pp_meta` | installer state, singleton | root | yes |
 
 25 prefixed collections, 26 with the `pp_archive` folder. `pp_persons` and `pp_navigations` have no translation table.
@@ -122,6 +126,8 @@ Every line is one relation. The naming rule (conventions §2 rule 12) makes an M
 | sponsor | exhibition | M2M | `pp_mm__exhibitions_sponsors` | aliases `exhibitions` / `sponsors` |
 | sponsor | person | M2M | `pp_mm__persons_sponsors` | aliases `persons` / `sponsors` |
 | sponsor | location | M2M | `pp_mm__locations_sponsors` | aliases `locations` / `sponsors` |
+| exhibition | website | M2M | `pp_mm__exhibitions_websites` | the show's external links: its page on the venue site, press sheets, documents; aliases `websites` / `exhibitions` |
+| person | website | M2M | `pp_mm__persons_websites` | the person's links, as many as needed; aliases `websites` / `persons` |
 | navigation item | navigation | M2O, child | `pp_navigation_items.navigation` | which menu |
 | navigation item | navigation item | M2O, self | `pp_navigation_items.parent` | group nesting |
 
@@ -150,8 +156,8 @@ Translated: `description`, `lede`, `about`, `image_caption`, `coordinate_label`.
 
 #### `pp_persons`
 
-`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `slug` (unique), `website_url`, `roles`, `venues`, `sponsors` (m2m), `participations` (o2m), audit.
-No translations.
+`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `slug` (unique), `roles`, `venues`, `sponsors`, `websites` (m2m), `participations` (o2m), audit.
+No translations. Links live in `pp_websites` (2026-09-15); the former single `website_url` column was migrated into link rows and dropped.
 
 #### `pp_roles`
 
@@ -160,7 +166,7 @@ Translated: `title`. Seeded: artist ("Artist" / "Künstler:in"), curator ("Curat
 
 #### `pp_exhibitions`
 
-`id`, `status`, `sort`, `title`, `slug`, `primary_venue` (M2O → venues, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (markdown, English), `date_range`, `opening_hours`, `vernissage`, `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `participations`, `statements` (o2m), `further_venues`, `sponsors` (m2m), audit.
+`id`, `status`, `sort`, `title`, `slug`, `primary_venue` (M2O → venues, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (markdown, English), `date_range`, `opening_hours`, `vernissage`, `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `participations`, `statements` (o2m), `websites`, `further_venues`, `sponsors` (m2m), audit.
 Translated: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `image_alt`, `medium`.
 
 #### `pp_exhibition_participations` (child)
@@ -186,9 +192,14 @@ Translated: `description`.
 `id`, `status`, `sort`, `navigation` (M2O → navigations, CASCADE, NOT NULL), `parent` (self M2O, SET NULL), `key` (stable identifier), `title` (English), `kind` (dropdown `route` | `url` | `action`), `path`, `url`, `target` (`_self` | `_blank`), `children` (o2m), `translations`, audit.
 Translated: `title`. Route paths are locale-neutral; the frontend passes them through `localePath()`.
 
+#### `pp_websites`
+
+`id`, `status`, `sort`, `title` (English link text, e.g. "Exhibition page at stadtgalerie.net"), `url` (absolute), `kind` (dropdown `website` | `exhibition_page` | `press` | `document` | `social`, allow other), `translations`, `exhibitions`, `persons` (m2m), audit.
+Translated: `title`. One row per link; a row can hang on several records (one venue page shared by two shows). Added 2026-09-15.
+
 #### Structural junctions
 
-`pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`.
+`pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`, `pp_mm__exhibitions_websites`, `pp_mm__persons_websites`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`.
 
 #### `pp_meta` (singleton, hidden)
 

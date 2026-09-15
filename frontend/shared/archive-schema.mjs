@@ -10,7 +10,7 @@
 // in archive-schema.d.ts for the frontend's TypeScript code.
 
 /** Collections with a translations table get `translations.*`; the rest only `*`. */
-export const TRANSLATED = new Set(['pp_locations', 'pp_venues', 'pp_roles', 'pp_exhibitions', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigation_items'])
+export const TRANSLATED = new Set(['pp_locations', 'pp_venues', 'pp_roles', 'pp_exhibitions', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigation_items', 'pp_websites'])
 
 /** File fields per collection: Directus returns file ids; the site needs URLs. */
 export const FILE_FIELDS = {
@@ -30,6 +30,7 @@ export const COLLECTIONS = {
   participations: 'pp_exhibition_participations',
   statements: 'pp_exhibition_statements',
   sponsors: 'pp_sponsors',
+  websites: 'pp_websites',
   navigations: 'pp_navigations',
   navigationItems: 'pp_navigation_items',
   exhibitionsVenues: 'pp_mm__exhibitions_venues',
@@ -37,7 +38,9 @@ export const COLLECTIONS = {
   personsVenues: 'pp_mm__persons_venues',
   personsSponsors: 'pp_mm__persons_sponsors',
   locationsSponsors: 'pp_mm__locations_sponsors',
-  sponsorsVenues: 'pp_mm__sponsors_venues'
+  sponsorsVenues: 'pp_mm__sponsors_venues',
+  exhibitionsWebsites: 'pp_mm__exhibitions_websites',
+  personsWebsites: 'pp_mm__persons_websites'
 }
 
 /** Directus returns a file id; the site and the admin scripts both need a fetchable URL. */

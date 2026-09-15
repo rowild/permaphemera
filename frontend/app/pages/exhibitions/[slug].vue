@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  CalendarCheck, CalendarDays, Clock3, FileText, Globe, Hourglass, Info, MapPin, Palette, Ticket, Users
+  CalendarCheck, CalendarDays, Clock3, FileText, Globe, Hourglass, Info, Link2, MapPin, Palette, Ticket, Users
 } from '@lucide/vue'
 import { resolveTourAccess } from '~/utils/tourAccess'
 
@@ -134,6 +134,12 @@ useSeoMeta({
             <template #icon><Globe :size="18" aria-hidden="true" /></template>
             <template v-for="(artist, index) in artistsWithWebsite" :key="artist.id">
               <template v-if="index">, </template><ArchiveTextLink :href="artist.website_url" target="_blank" rel="noreferrer" icon-motion="external">{{ exhibition.artists.length > 1 ? artist.name : hostnameOf(artist.website_url!) }}</ArchiveTextLink>
+            </template>
+          </ArchiveMetadataRow>
+          <ArchiveMetadataRow v-if="exhibition.websites.length" :label="$t('exhibition.links', exhibition.websites.length)" variant="exhibition">
+            <template #icon><Link2 :size="18" aria-hidden="true" /></template>
+            <template v-for="(link, index) in exhibition.websites" :key="link.id">
+              <template v-if="index">, </template><ArchiveTextLink :href="link.url" target="_blank" rel="noreferrer" icon-motion="external">{{ link.title }}</ArchiveTextLink>
             </template>
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.medium" :label="$t('exhibition.form')" variant="exhibition">

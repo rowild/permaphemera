@@ -3,7 +3,7 @@ import { buildArtistDirectory } from '~/utils/artistDirectory'
 
 const person = (id: string, first: string, last: string) => ({
   id, slug: `${first}-${last}`.toLowerCase(), first_name: first, last_name: last,
-  middle_initial: null, display_name: null, website_url: null, status: 'published' as const
+  middle_initial: null, display_name: null, status: 'published' as const
 })
 
 const persons = [person('a-1', 'Sylvia', 'Campidell'), person('a-2', 'Nobody', 'Unshown'), person('c-1', 'Only', 'Curator')]

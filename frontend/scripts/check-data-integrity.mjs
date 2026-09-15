@@ -4,12 +4,12 @@ async function main() {
 
   const locations = a.locations, venues = a.venues, persons = a.persons, roles = a.roles, personRoles = a.personRoles
   const exhibitions = a.exhibitions, participations = a.participations, statements = a.statements, sponsors = a.sponsors
-  const navigations = a.navigations, navigationItems = a.navigationItems
-  const junctions = [a.exhibitionsVenues, a.exhibitionsSponsors, a.personsVenues, a.personsSponsors, a.locationsSponsors, a.sponsorsVenues]
+  const navigations = a.navigations, navigationItems = a.navigationItems, websites = a.websites
+  const junctions = [a.exhibitionsVenues, a.exhibitionsSponsors, a.personsVenues, a.personsSponsors, a.locationsSponsors, a.sponsorsVenues, a.exhibitionsWebsites, a.personsWebsites]
 
   const ids = (records) => new Set(records.map((record) => record.id))
   const locationIds = ids(locations), venueIds = ids(venues), personIds = ids(persons), roleIds = ids(roles)
-  const exhibitionIds = ids(exhibitions), navigationIds = ids(navigations), itemIds = ids(navigationItems)
+  const exhibitionIds = ids(exhibitions), navigationIds = ids(navigations), itemIds = ids(navigationItems), websiteIds = ids(websites)
   const roleArtist = roles.find((role) => role.slug === 'artist')?.id
 
   const uniqueBy = (records, key) => new Set(records.map((record) => record[key])).size === records.length
@@ -50,11 +50,12 @@ async function main() {
   const checks = [
     ['locations count is 17', locations.length === 17],
     ['venues count is 37', venues.length === 37],
-    ['persons count is 77', persons.length === 77],
+    ['persons count is 81', persons.length === 81],
     ['roles are artist and curator', roles.map((role) => role.slug).sort().join(',') === 'artist,curator'],
-    ['exhibitions count is 17', exhibitions.length === 17],
-    ['participations count is 19', participations.length === 19],
+    ['exhibitions count is 19', exhibitions.length === 19],
+    ['participations count is 23', participations.length === 23],
     ['sponsors count is 8', sponsors.length === 8],
+    ['websites count is 12', websites.length === 12],
     ['navigations are main and footer', navigations.map((nav) => nav.key).sort().join(',') === 'footer,main'],
     ['navigation items count is 18', navigationItems.length === 18],
 
@@ -78,6 +79,9 @@ async function main() {
     ['statement ids unique', uniqueBy(statements, 'id')],
     ['participation ids unique', uniqueBy(participations, 'id')],
     ['empty junctions are arrays', junctions.every(Array.isArray)],
+    ['website urls are absolute', websites.every((site) => /^https?:\/\//.test(site.url))],
+    ['exhibition-website rows resolve both ends', a.exhibitionsWebsites.every((row) => exhibitionIds.has(row.exhibitions_id) && websiteIds.has(row.websites_id))],
+    ['person-website rows resolve both ends', a.personsWebsites.every((row) => personIds.has(row.persons_id) && websiteIds.has(row.websites_id))],
 
     ['navigation item.navigation all resolve', navigationItems.every((item) => navigationIds.has(item.navigation))],
     ['navigation item.parent resolves and stays in the same navigation', navigationItems.every((item) => {
@@ -118,6 +122,7 @@ async function main() {
     ['every role has an en translation', everyHasEnglish(roles)],
     ['every sponsor has an en translation', everyHasEnglish(sponsors)],
     ['every navigation item has an en translation', everyHasEnglish(navigationItems)],
+    ['every website has an en translation', everyHasEnglish(websites)],
     ['persons carry no translations', persons.every((person) => person.translations === undefined)],
 
     ['locations: English on the record equals the en entry', englishMirrors(locations, ['description'])],
@@ -126,11 +131,12 @@ async function main() {
     ['statements: English on the record equals the en entry', englishMirrors(statements, ['prompt', 'statement'])],
     ['roles: English on the record equals the en entry', englishMirrors(roles, ['title'])],
     ['sponsors: English on the record equals the en entry', englishMirrors(sponsors, ['description'])],
+    ['websites: English on the record equals the en entry', englishMirrors(websites, ['title'])],
     ['every published sponsor has a logo', sponsors.filter((s) => s.status === 'published').every((s) => typeof s.logo === 'string' && s.logo.length > 0)],
     ['navigation items: English on the record equals the en entry', englishMirrors(navigationItems, ['title'])],
 
     ['all collections have a valid status', [locations, venues, persons, roles, exhibitions, participations, statements, sponsors, navigations, navigationItems].every(validStatus)],
-    ['no person keeps dropped fields', persons.every((person) => ['biography', 'birth_year', 'death_year', 'nationality', 'instagram_handle', 'profile_image', 'artist_name', 'record_count'].every((field) => person[field] === undefined))],
+    ['no person keeps dropped fields', persons.every((person) => ['website_url', 'biography', 'birth_year', 'death_year', 'nationality', 'instagram_handle', 'profile_image', 'artist_name', 'record_count'].every((field) => person[field] === undefined))],
     ['no exhibition keeps a manual featured flag', exhibitions.every((exhibition) => exhibition.featured === undefined)],
     ['no old key survives', [...venues, ...exhibitions, ...participations, ...statements].every((record) =>
       ['location_id', 'primary_venue_id', 'exhibition_id', 'artist_id', 'name', 'city_name'].every((key) => record[key] === undefined))],

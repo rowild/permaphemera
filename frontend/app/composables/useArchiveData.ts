@@ -18,7 +18,10 @@ export function useArchiveData() {
     archive.persons,
     archive.roles,
     locale.value,
-    archive.statements
+    archive.statements,
+    archive.websites,
+    archive.exhibitionsWebsites,
+    archive.personsWebsites
   ))
 
   const artistDirectory = computed(() => buildArtistDirectory(

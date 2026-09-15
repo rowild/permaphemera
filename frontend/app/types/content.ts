@@ -77,7 +77,7 @@ export interface VenueRecord {
   translations: TranslationEntry[]
 }
 
-/** pp_persons — people and collectives. No translations, no biography (owner decision 2026-09-14). */
+/** pp_persons — people and collectives. No translations, no biography (owner decision 2026-09-14). Links live in pp_websites. */
 export interface PersonRecord {
   id: string
   slug: string
@@ -86,7 +86,6 @@ export interface PersonRecord {
   middle_initial: string | null
   /** Pseudonym or collective name; shown instead of first + last when set. */
   display_name: string | null
-  website_url: string | null
   status: ContentStatus
   sort: number
 }
@@ -205,6 +204,18 @@ export interface JunctionRow {
   [column: string]: string | number
 }
 
+/** pp_websites — one external link. Persons and exhibitions reach it through junction rows. */
+export type WebsiteKind = 'website' | 'exhibition_page' | 'press' | 'document' | 'social' | (string & {})
+export interface WebsiteRecord {
+  id: string
+  title: string
+  url: string
+  kind: WebsiteKind
+  status: ContentStatus
+  sort: number
+  translations: TranslationEntry[]
+}
+
 /** Everything the site reads, fetched once from Directus in the JSON item shape. */
 export interface ArchiveSnapshot {
   locations: LocationRecord[]
@@ -218,10 +229,13 @@ export interface ArchiveSnapshot {
   sponsors: SponsorRecord[]
   navigations: NavigationRecord[]
   navigationItems: NavigationItemRecord[]
+  websites: WebsiteRecord[]
   exhibitionsVenues: JunctionRow[]
   exhibitionsSponsors: JunctionRow[]
   personsVenues: JunctionRow[]
   personsSponsors: JunctionRow[]
   locationsSponsors: JunctionRow[]
   sponsorsVenues: JunctionRow[]
+  exhibitionsWebsites: JunctionRow[]
+  personsWebsites: JunctionRow[]
 }

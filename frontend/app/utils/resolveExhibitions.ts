@@ -1,14 +1,24 @@
 import type {
-  ExhibitionRecord, ExhibitionStatement, LocationRecord, ParticipationRecord, PersonRecord, RoleRecord, VenueRecord
+  ExhibitionRecord, ExhibitionStatement, JunctionRow, LocationRecord, ParticipationRecord, PersonRecord, RoleRecord, VenueRecord, WebsiteRecord
 } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
 import type { TourStatus } from '~/utils/tourAccess'
 
+/** One pp_websites row, title already picked for the locale. */
+export interface ResolvedLink {
+  id: string
+  title: string
+  url: string
+  kind: string
+}
+
 export interface ResolvedExhibitionArtist {
   id: string
   name: string
+  /** The first link of kind "website", or the first link at all. */
   website_url?: string
+  websites: ResolvedLink[]
 }
 
 export interface ResolvedStatement {
@@ -27,6 +37,7 @@ export interface ResolvedExhibition {
   artists: ResolvedExhibitionArtist[]
   curators: ResolvedExhibitionArtist[]
   statements: ResolvedStatement[]
+  websites: ResolvedLink[]
   venue_slug: string
   venue: string
   venue_website?: string
@@ -51,11 +62,6 @@ export interface ResolvedExhibition {
 export const displayPersonName = (person: PersonRecord): string =>
   person.display_name ?? `${person.first_name} ${person.last_name}`.trim()
 
-const toCredit = (person: PersonRecord): ResolvedExhibitionArtist => ({
-  id: person.id,
-  name: displayPersonName(person),
-  website_url: person.website_url ?? undefined
-})
 
 export const resolveExhibitions = (
   exhibitions: ExhibitionRecord[],
@@ -65,12 +71,34 @@ export const resolveExhibitions = (
   persons: PersonRecord[],
   roles: RoleRecord[],
   locale: string,
-  statements: ExhibitionStatement[] = []
+  statements: ExhibitionStatement[] = [],
+  websites: WebsiteRecord[] = [],
+  exhibitionsWebsites: JunctionRow[] = [],
+  personsWebsites: JunctionRow[] = []
 ): ResolvedExhibition[] => {
   const venueById = new Map(venues.map((venue) => [venue.id, venue]))
   const locationById = new Map(locations.map((location) => [location.id, location]))
   const personById = new Map(persons.map((person) => [person.id, person]))
   const roleSlugById = new Map(roles.map((role) => [role.id, role.slug]))
+  const websiteById = new Map(websites.filter(isVisible).map((site) => [site.id, site]))
+
+  // Links reach a record through a junction table; unpublished links and rows
+  // whose link is gone simply drop out.
+  const linksThrough = (rows: JunctionRow[], ownerColumn: string, ownerId: string): ResolvedLink[] => rows
+    .filter((row) => row[ownerColumn] === ownerId)
+    .sort((a, b) => a.sort - b.sort)
+    .flatMap((row) => {
+      const site = websiteById.get(String(row.websites_id))
+      if (!site) return []
+      const words = pickTranslation(site, locale)
+      return [{ id: site.id, title: (words.title as string) || site.title, url: site.url, kind: site.kind }]
+    })
+
+  const toCredit = (person: PersonRecord): ResolvedExhibitionArtist => {
+    const links = linksThrough(personsWebsites, 'persons_id', person.id)
+    const primary = links.find((link) => link.kind === 'website') ?? links[0]
+    return { id: person.id, name: displayPersonName(person), website_url: primary?.url, websites: links }
+  }
 
   const participationsByExhibition = new Map<string, ParticipationRecord[]>()
   for (const row of participations.filter(isVisible)) {
@@ -130,6 +158,7 @@ export const resolveExhibitions = (
       artists: artists.map(toCredit),
       curators: curators.map(toCredit),
       statements: resolvedStatements,
+      websites: linksThrough(exhibitionsWebsites, 'exhibitions_id', exhibition.id),
       venue_slug: venue.slug,
       venue: venue.title,
       venue_website: venue.website_url || undefined,
