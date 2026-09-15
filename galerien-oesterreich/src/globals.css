@@ -105,7 +105,7 @@ h1 { font-size:clamp(34px,4vw,54px); }
 .directory { padding:27px clamp(14px,3.2vw,50px) 0; }
 .directory-heading { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end; }
 .directory-heading > p { max-width:650px; margin-bottom:2px; }
-.directory-tools { position:sticky; top:42px; z-index:40; margin:22px calc(clamp(14px,3.2vw,50px) * -1) 0; padding:8px clamp(14px,3.2vw,50px); display:grid; grid-template-columns:minmax(170px,1.3fr) minmax(135px,.8fr) minmax(135px,.9fr) auto auto auto; gap:7px; align-items:end; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:rgba(255,255,255,.97); box-shadow:0 4px 10px rgba(0,0,0,.04); }
+.directory-tools { position:sticky; top:42px; z-index:40; margin:22px calc(clamp(14px,3.2vw,50px) * -1) 0; padding:8px clamp(14px,3.2vw,50px); display:grid; grid-template-columns:minmax(170px,1.3fr) minmax(135px,.8fr) minmax(135px,.9fr) auto auto auto auto; gap:7px; align-items:end; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:rgba(255,255,255,.97); box-shadow:0 4px 10px rgba(0,0,0,.04); }
 .directory-tools label,.status-filters,.type-filters { display:flex; flex-direction:column; gap:3px; }
 .directory-tools label > span,.status-filters > span,.type-filters > span { color:var(--muted); font-size:5px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
 .search-field { position:relative; }
@@ -117,6 +117,8 @@ h1 { font-size:clamp(34px,4vw,54px); }
 .status-filters button:last-child,.type-filters button:last-child { border-right:1px solid var(--line); }
 .status-filters button:hover,.status-filters button.active,.type-filters button:hover,.type-filters button.active { background:var(--ink); color:white; }
 .type-filters button i { width:7px; height:7px; border-radius:50%; }
+.csv-export button { height:26px; padding:0 9px; display:flex; align-items:center; justify-content:center; border:1px solid var(--line); background:white; color:#555; font-size:6px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; cursor:pointer; white-space:nowrap; }
+.csv-export button:hover { background:var(--ink); color:white; }
 .result-count { height:26px; display:flex; gap:6px; align-items:center; }
 .result-count strong { font-family:Georgia,serif; font-size:24px; font-weight:400; line-height:.8; }
 .result-count span { color:var(--muted); font-size:5px; font-weight:800; letter-spacing:.06em; line-height:1.25; text-transform:uppercase; }
