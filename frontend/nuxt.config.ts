@@ -5,6 +5,11 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   ssr: false,
   devtools: { enabled: false },
+  runtimeConfig: {
+    public: {
+      directusUrl: 'http://localhost:8077'
+    }
+  },
   modules: ['@nuxtjs/i18n'],
   devServer: {
     port: 4991

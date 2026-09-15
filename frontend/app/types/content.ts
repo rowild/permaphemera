@@ -197,3 +197,31 @@ export interface NavigationItemRecord {
   status: ContentStatus
   translations: TranslationEntry[]
 }
+
+/** One junction row: integer id plus the two FK columns named <parent>_id and a sort. */
+export interface JunctionRow {
+  id: number
+  sort: number
+  [column: string]: string | number
+}
+
+/** Everything the site reads, fetched once from Directus in the JSON item shape. */
+export interface ArchiveSnapshot {
+  locations: LocationRecord[]
+  venues: VenueRecord[]
+  persons: PersonRecord[]
+  roles: RoleRecord[]
+  personRoles: PersonRoleLink[]
+  exhibitions: ExhibitionRecord[]
+  participations: ParticipationRecord[]
+  statements: ExhibitionStatement[]
+  sponsors: SponsorRecord[]
+  navigations: NavigationRecord[]
+  navigationItems: NavigationItemRecord[]
+  exhibitionsVenues: JunctionRow[]
+  exhibitionsSponsors: JunctionRow[]
+  personsVenues: JunctionRow[]
+  personsSponsors: JunctionRow[]
+  locationsSponsors: JunctionRow[]
+  sponsorsVenues: JunctionRow[]
+}
