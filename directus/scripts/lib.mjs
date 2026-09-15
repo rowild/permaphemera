@@ -6,12 +6,15 @@ import { dirname, join } from 'node:path'
 
 const here = dirname(fileURLToPath(import.meta.url))
 
+// DIRECTUS_ENV_FILE=.env.remote points the scripts at another instance (e.g. the
+// Hetzner stack): that file carries its PUBLIC_URL, ADMIN_TOKEN and ADMIN_EMAIL.
 export function loadEnv() {
+  const file = process.env.DIRECTUS_ENV_FILE || '.env'
   let text
   try {
-    text = readFileSync(join(here, '..', '.env'), 'utf8')
+    text = readFileSync(join(here, '..', file), 'utf8')
   } catch (e) {
-    if (e.code === 'ENOENT') throw new Error('directus/.env is missing; run: cp .env.example .env and fill in the values')
+    if (e.code === 'ENOENT') throw new Error(`directus/${file} is missing; run: cp .env.example ${file} and fill in the values`)
     throw e
   }
   const env = {}

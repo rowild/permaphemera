@@ -1,0 +1,42 @@
+# PERMAPHEMERA Directus on the project-backends server (Hetzner).
+# Lives at /srv/stacks/permaphemera.project-backends.info/app/ and follows the
+# pattern of the other stacks there: Redis + Directus, published on a localhost
+# port that the host nginx maps to https://permaphemera.project-backends.info.
+name: 'permaphemera'
+
+services:
+  redis:
+    image: redis:7.2.4-alpine
+    restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    command: sh -c 'exec redis-server --appendonly yes --requirepass "$$REDIS_PASSWORD"'
+    volumes:
+      - ../data/redis:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$${REDIS_PASSWORD}\" ping | grep -q PONG"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    security_opt: ["no-new-privileges:true"]
+
+  directus:
+    image: directus/directus:11.17.4
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - 127.0.0.1:${DIRECTUS_PORT}:8055
+    volumes:
+      - ../data/uploads:/directus/uploads
+      - ../data/database:/directus/database
+      - ../extensions:/directus/extensions
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8055/server/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    security_opt: ["no-new-privileges:true"]

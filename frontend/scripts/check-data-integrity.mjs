@@ -30,11 +30,22 @@ async function main() {
   for (const venue of venues) for (const field of ['image', 'hero_image']) if (venue[field]) fileUrls.push(venue[field])
   for (const exhibition of exhibitions) for (const field of ['image', 'source_pdf']) if (exhibition[field]) fileUrls.push(exhibition[field])
   for (const sponsor of sponsors) if (sponsor.logo) fileUrls.push(sponsor.logo)
-  const fileChecks = await Promise.all(fileUrls.map(async (url) => {
-    const id = url.split('/assets/')[1]
-    const response = await fetch(`${directusUrl}/assets/${id}`, { method: 'HEAD' })
-    return response.ok
-  }))
+  // Directus rate-limits to ~50 requests per second, so ask in small batches and
+  // retry a 429 once after the limiter's window has passed.
+  const headOk = async (id) => {
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const response = await fetch(`${directusUrl}/assets/${id}`, { method: 'HEAD' })
+      if (response.status !== 429) return response.ok
+      await new Promise((resolve) => setTimeout(resolve, 1200))
+    }
+    return false
+  }
+  const fileChecks = []
+  for (let i = 0; i < fileUrls.length; i += 10) {
+    const batch = fileUrls.slice(i, i + 10).map((url) => headOk(url.split('/assets/')[1]))
+    fileChecks.push(...(await Promise.all(batch)))
+    if (i + 10 < fileUrls.length) await new Promise((resolve) => setTimeout(resolve, 250))
+  }
 
   const checks = [
     ['locations count is 17', locations.length === 17],

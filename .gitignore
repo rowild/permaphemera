@@ -37,3 +37,4 @@ frontend/dist
 
 # Subagent-driven-development scratch workspace
 .superpowers/
+directus/.env.remote
