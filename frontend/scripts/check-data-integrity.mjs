@@ -50,10 +50,10 @@ async function main() {
   const checks = [
     ['locations count is 17', locations.length === 17],
     ['venues count is 41', venues.length === 41],
-    ['persons count is 82', persons.length === 82],
+    ['persons count is 114', persons.length === 114],
     ['roles are artist and curator', roles.map((role) => role.slug).sort().join(',') === 'artist,curator'],
     ['exhibitions count is 20', exhibitions.length === 20],
-    ['participations count is 24', participations.length === 24],
+    ['participations count is 58', participations.length === 58],
     ['sponsors count is 8', sponsors.length === 8],
     ['websites count is 15', websites.length === 15],
     ['navigations are main and footer', navigations.map((nav) => nav.key).sort().join(',') === 'footer,main'],
