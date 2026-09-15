@@ -68,6 +68,7 @@ export function buildAll(overrides = {}) {
     if (hasTranslations) data.push(translationsAlias())
     const system = [uuidPk(), sortField(), ...auditFields()]
     const status = statusField()
+    if (e.statusWidth) status.meta.width = e.statusWidth
     const byField = Object.fromEntries([...data, status].map((f) => [f.field, f]))
 
     const fields = []

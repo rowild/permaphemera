@@ -72,13 +72,13 @@ export const entities = {
 
   persons: {
     kind: 'main', icon: 'person', sort: 3, labels: ['Persons', 'Person', 'Persons'],
-    display: ['first_name', 'last_name'], displayTemplate: PERSON,
+    display: ['first_name', 'last_name'], displayTemplate: PERSON, statusWidth: 'full',
     note: 'People and collectives: artists, curators. The site shows a name, their links (see websites) and their statements. Nothing else, by decision of 2026-09-14.',
     fields: [
       str('first_name', { width: 'half' }),
       str('last_name', { width: 'half' }),
       str('middle_initial', { width: 'half' }),
-      str('display_name', { width: 'half', note: 'Pseudonym or collective name. Shown instead of first + last when set.' }),
+      str('display_name', { width: 'full', note: 'Pseudonym or collective name. Shown instead of first + last when set.' }),
       str('slug', { required: true, unique: true, slug: true, width: 'half' }),
     ],
     layout: [
