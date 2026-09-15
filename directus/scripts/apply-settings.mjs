@@ -14,7 +14,8 @@ const svgRoot = resolve(import.meta.dirname, '..', '..', 'frontend', 'public', '
 const brand = (file) => resolve(svgRoot, 'brand', file)
 const svg = (file) => resolve(svgRoot, file)
 
-const logo = await uploadFile(session, { localPath: brand('archive-temple.svg'), folderPath: 'branding', title: 'PERMAPHEMERA temple mark' })
+// The admin paints the logo box in the project colour (archive red), so the logo is the same temple mark in the site's paper colour.
+const logo = await uploadFile(session, { localPath: brand('archive-temple-light.svg'), folderPath: 'branding', title: 'PERMAPHEMERA temple mark, light' })
 const seal = await uploadFile(session, { localPath: svg('permaphemera_seal.svg'), folderPath: 'branding', title: 'PERMAPHEMERA seal' })
 console.log(`${logo.created ? '+' : '='} logo ${logo.id}`)
 console.log(`${seal.created ? '+' : '='} seal ${seal.id}`)
