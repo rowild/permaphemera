@@ -92,7 +92,7 @@ export const entities = {
   roles: {
     kind: 'main', icon: 'badge', sort: 6, labels: ['Roles', 'Role', 'Roles'],
     display: ['title'], displayTemplate: '{{title}}',
-    note: 'What a person can be on a show: artist, curator, … Vocabulary table; add rows, not columns.',
+    note: 'What a person can be in an exhibition: artist, curator, … Vocabulary table; add rows, not columns.',
     fields: [
       str('title', { required: true, translated: true }),
       str('slug', { required: true, unique: true, slug: true, width: 'half' }),
@@ -106,7 +106,7 @@ export const entities = {
   exhibitions: {
     kind: 'main', icon: 'auto_awesome', sort: 1, labels: ['Exhibitions', 'Exhibition', 'Exhibitions'],
     display: ['title'], displayTemplate: '{{title}}',
-    note: 'The show. Highlighting on the site is derived from dates and never stored.',
+    note: 'The exhibition. Highlighting on the site is derived from dates and never stored.',
     fields: [
       str('title', { required: true, translated: true }),
       str('slug', { required: true, unique: true, slug: true, width: 'half' }),
@@ -125,7 +125,7 @@ export const entities = {
       file('source_pdf', { note: 'The invitation or press sheet the record was derived from.' }),
       str('tour', { note: 'Root-relative folder of the exported 360° tour, e.g. /media/tours/<id>/. Empty while none is published.' }),
       dropdown('tour_status', ['available', 'restricted', 'unavailable'], { default: 'unavailable' }),
-      date('tour_available_from', { note: 'Usually the day after the analog show closes. Empty means at once.' }),
+      date('tour_available_from', { note: 'Usually the day after the exhibition closes. Empty means at once.' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'slug', 'primary_venue']),
@@ -142,7 +142,7 @@ export const entities = {
     hostAliasTemplate: '{{person.first_name}} {{person.last_name}} · {{role.title}}',
     icon: 'group', sort: 1, labels: ['Exhibition Participations', 'Exhibition Participation', 'Exhibition Participations'],
     display: ['person', 'role'], displayTemplate: '{{person.first_name}} {{person.last_name}} · {{role.title}}',
-    note: 'One person in one function on one show. A person who both makes and curates a show has two rows. The role must be one of the person\'s roles.',
+    note: 'One person in one function in one exhibition. A person who both makes and curates an exhibition has two rows. The role must be one of the person\'s roles.',
     fields: [
       m2o('person', 'persons', { template: PERSON, oneField: 'participations', oneTemplate: '{{exhibition.title}} · {{role.title}}' }),
       m2o('role', 'roles', { template: '{{title}}' }),
@@ -155,7 +155,7 @@ export const entities = {
     hostAliasTemplate: '{{person.first_name}} {{person.last_name}}: {{prompt}}',
     icon: 'format_quote', sort: 2, labels: ['Exhibition Statements', 'Exhibition Statement', 'Exhibition Statements'],
     display: ['prompt'], displayTemplate: '{{person.first_name}} {{person.last_name}}: {{prompt}}',
-    note: "An artist's words about one show.",
+    note: "An artist's words about one exhibition.",
     fields: [
       m2o('person', 'persons', { template: PERSON }),
       str('prompt', { translated: true, note: 'The question asked, e.g. "How did you approach the room?"' }),
@@ -233,13 +233,13 @@ export const entities = {
 // `owner` = sidebar parent. `sortedFrom` = the side whose list order the junction's
 // `sort` column stores (conventions §2 rule 4: one side only → the column is `sort`).
 export const junctions = [
-  { a: 'exhibitions', b: 'venues', aliasA: 'further_venues', aliasB: 'further_exhibitions', owner: 'exhibitions', sortedFrom: 'exhibitions', note: 'Further venues of a travelling show; primary_venue stays the main one.' },
+  { a: 'exhibitions', b: 'venues', aliasA: 'further_venues', aliasB: 'further_exhibitions', owner: 'exhibitions', sortedFrom: 'exhibitions', note: 'Further venues of a travelling exhibition; primary_venue stays the main one.' },
   { a: 'exhibitions', b: 'sponsors', aliasA: 'sponsors', aliasB: 'exhibitions', owner: 'sponsors', sortedFrom: 'exhibitions' },
   { a: 'persons', b: 'roles', aliasA: 'roles', aliasB: 'persons', owner: 'persons', sortedFrom: 'persons', note: 'What a person can be. A participation role must be one of these.' },
   { a: 'persons', b: 'venues', aliasA: 'venues', aliasB: 'persons', owner: 'persons', sortedFrom: 'venues', note: 'The venue represents or works with the person. Not derived from exhibitions.' },
   { a: 'persons', b: 'sponsors', aliasA: 'sponsors', aliasB: 'persons', owner: 'sponsors', sortedFrom: 'persons' },
   { a: 'locations', b: 'sponsors', aliasA: 'sponsors', aliasB: 'locations', owner: 'sponsors', sortedFrom: 'locations' },
   { a: 'sponsors', b: 'venues', aliasA: 'venues', aliasB: 'sponsors', owner: 'sponsors', sortedFrom: 'venues' },
-  { a: 'exhibitions', b: 'websites', aliasA: 'websites', aliasB: 'exhibitions', owner: 'websites', sortedFrom: 'exhibitions', note: 'External links of a show: its page on the venue site, press sheets, documents.' },
+  { a: 'exhibitions', b: 'websites', aliasA: 'websites', aliasB: 'exhibitions', owner: 'websites', sortedFrom: 'exhibitions', note: 'External links of an exhibition: its page on the venue site, press sheets, documents.' },
   { a: 'persons', b: 'websites', aliasA: 'websites', aliasB: 'persons', owner: 'websites', sortedFrom: 'persons', note: 'The links of a person. Replaced the single website_url column on 2026-09-15.' },
 ]

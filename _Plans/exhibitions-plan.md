@@ -112,22 +112,22 @@ Every line is one relation. The naming rule (conventions §2 rule 12) makes an M
 
 | From | To | Shape | Field / table | Meaning |
 |---|---|---|---|---|
-| exhibition | venue | M2O | `pp_exhibitions.primary_venue` | where the show happens; the venue lists its `exhibitions` |
-| exhibition | venue | M2M | `pp_mm__exhibitions_venues` | further venues of a travelling show; aliases `further_venues` / `further_exhibitions` |
+| exhibition | venue | M2O | `pp_exhibitions.primary_venue` | where the exhibition takes place; the venue lists its `exhibitions` |
+| exhibition | venue | M2M | `pp_mm__exhibitions_venues` | further venues of a travelling exhibition; aliases `further_venues` / `further_exhibitions` |
 | venue | location | M2O | `pp_venues.location` | the town the building stands in; the town lists its `venues` |
 | venue | venue | M2O, self | `pp_venues.part_of` | the venue this space belongs to organisationally; the parent lists its `spaces` |
-| participation | exhibition | M2O, child | `pp_exhibition_participations.exhibition` | dies with the show; the show lists `participations` |
+| participation | exhibition | M2O, child | `pp_exhibition_participations.exhibition` | dies with the exhibition; the exhibition lists `participations` |
 | participation | person | M2O | `pp_exhibition_participations.person` | who; the person lists `participations` |
 | participation | role | M2O | `pp_exhibition_participations.role` | in which function |
 | person | role | M2M | `pp_mm__persons_roles` | what the person can be; aliases `roles` / `persons` |
-| statement | exhibition | M2O, child | `pp_exhibition_statements.exhibition` | dies with the show |
+| statement | exhibition | M2O, child | `pp_exhibition_statements.exhibition` | dies with the exhibition |
 | statement | person | M2O | `pp_exhibition_statements.person` | who said it |
 | person | venue | M2M | `pp_mm__persons_venues` | the venue represents or works with the person; aliases `venues` / `persons` |
 | sponsor | venue | M2M | `pp_mm__sponsors_venues` | aliases `venues` / `sponsors` |
 | sponsor | exhibition | M2M | `pp_mm__exhibitions_sponsors` | aliases `exhibitions` / `sponsors` |
 | sponsor | person | M2M | `pp_mm__persons_sponsors` | aliases `persons` / `sponsors` |
 | sponsor | location | M2M | `pp_mm__locations_sponsors` | aliases `locations` / `sponsors` |
-| exhibition | website | M2M | `pp_mm__exhibitions_websites` | the show's external links: its page on the venue site, press sheets, documents; aliases `websites` / `exhibitions` |
+| exhibition | website | M2M | `pp_mm__exhibitions_websites` | the exhibition's external links: its page on the venue site, press sheets, documents; aliases `websites` / `exhibitions` |
 | person | website | M2M | `pp_mm__persons_websites` | the person's links, as many as needed; aliases `websites` / `persons` |
 | navigation item | navigation | M2O, child | `pp_navigation_items.navigation` | which menu |
 | navigation item | navigation item | M2O, self | `pp_navigation_items.parent` | group nesting |
@@ -196,7 +196,7 @@ Translated: `title`. Route paths are locale-neutral; the frontend passes them th
 #### `pp_websites`
 
 `id`, `status`, `sort`, `title` (English link text, e.g. "Exhibition page at stadtgalerie.net"), `url` (absolute), `kind` (dropdown `website` | `exhibition_page` | `press` | `document` | `social`, allow other), `translations`, `exhibitions`, `persons` (m2m), audit.
-Translated: `title`. One row per link; a row can hang on several records (one venue page shared by two shows). Added 2026-09-15.
+Translated: `title`. One row per link; a row can hang on several records (one venue page shared by two exhibitions). Added 2026-09-15.
 
 #### Structural junctions
 
@@ -224,7 +224,7 @@ Designed, not yet built. Each waits for its own spec or its first consumer.
 
 #### Content blocks and `pp_mm__exhibitions_files__documents`
 
-Own spec (2026-09-14 design's "Blocks: later"). Reserved names: `pp_block_richtext`, `pp_block_header`, `pp_block_images` + `pp_block_image_items`, one `pp_m2a__<host>__blocks` junction per host (exhibitions, venues, persons, locations) with a shared allowed list, and `pp_mm__exhibitions_files__documents` for attaching source documents to a show.
+Own spec (2026-09-14 design's "Blocks: later"). Reserved names: `pp_block_richtext`, `pp_block_header`, `pp_block_images` + `pp_block_image_items`, one `pp_m2a__<host>__blocks` junction per host (exhibitions, venues, persons, locations) with a shared allowed list, and `pp_mm__exhibitions_files__documents` for attaching source documents to an exhibition.
 
 - **`panoramas`** — for a native 360° viewer. `id` UUID, `exhibition` M2O → `pp_exhibitions`, `image_file` File (the 12K optimised target), `altitude` Dropdown (`bird`, `human`, `dog`), `sort`, `photographer_credit`, `capture_date`. No consumer yet: tours today are exported folders referenced by `pp_exhibitions.tour`.
 - **`hotspots`** — links between panoramas. `id` UUID, `source_panorama` / `target_panorama` M2O → `panoramas`, `yaw`, `pitch`, `target_arrival_yaw`, `icon_type` Dropdown (`arrow_up`, `arrow_down`, `info`). Depends on `panoramas`.
