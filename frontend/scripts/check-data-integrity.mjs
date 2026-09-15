@@ -49,7 +49,7 @@ async function main() {
 
   const checks = [
     ['locations count is 17', locations.length === 17],
-    ['venues count is 37', venues.length === 37],
+    ['venues count is 38', venues.length === 38],
     ['persons count is 81', persons.length === 81],
     ['roles are artist and curator', roles.map((role) => role.slug).sort().join(',') === 'artist,curator'],
     ['exhibitions count is 19', exhibitions.length === 19],
