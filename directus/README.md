@@ -27,10 +27,12 @@ docker compose pull         # fetch a newer image after changing the tag
 `bash scripts/setup.sh` is the entry point on any machine. It reports what exists, asks before each step and never deletes content:
 
 ```bash
-bash scripts/setup.sh                 # step by step
-bash scripts/setup.sh --yes           # all steps, no questions
-bash scripts/setup.sh --status        # report only
-bash scripts/setup.sh --from <dir>    # plus content import
+bash scripts/setup.sh                       # step by step
+bash scripts/setup.sh --yes                 # all steps, no questions
+bash scripts/setup.sh --status              # report only
+bash scripts/setup.sh --from <dir>          # plus content import
+bash scripts/setup.sh --reset-permissions   # delete and recreate the public read rules
+DIRECTUS_URL=<url> bash scripts/setup.sh    # target another instance (default http://localhost:8077)
 ```
 
 Single scripts, all safe to run twice:
@@ -45,6 +47,7 @@ node scripts/check-conventions.mjs    # assert the live schema follows the rules
 node scripts/export.mjs               # backup records + files to ../_BU/directus-data
 node scripts/import.mjs --from <dir>  # restore from ../_BU/directus-data by default
 node scripts/snapshot.mjs             # export schema/snapshot.yaml
+node scripts/files.mjs                # (helper, not run directly) upload/folder helpers shared by import.mjs and apply-settings.mjs
 ```
 
 **Schema changes are additive.** Edit `scripts/schema.mjs`, run `create-schema.mjs`; it adds what is missing and touches nothing else. Removing or renaming a field: do it in the admin app, then `snapshot.mjs`. There is no reset; content is never wiped by a script.
@@ -53,7 +56,23 @@ node scripts/snapshot.mjs             # export schema/snapshot.yaml
 
 **Content history:** the first load came from the frontend JSON (`../frontend/app/data`, now retired to `../_BU/frontend-app-data-2026-09-15/`) on 2026-09-15. Every later load restores from an `export.mjs` backup under `../_BU/directus-data/`.
 
-**CORS:** `.env` allows `http://localhost:4991`. On a remote host add the site's domain to `CORS_ORIGIN`.
+**CORS:** `.env` allows `http://localhost:4991` (the dev server) and `http://localhost:3000` (`pnpm preview`). On a remote host add the site's domain to `CORS_ORIGIN`.
+
+## Fresh clone
+
+No content is in git — `database/`, `uploads/` and `.env` are all git-ignored. On a new machine:
+
+```bash
+cp .env.example .env      # fill in KEY, SECRET, ADMIN_PASSWORD, ADMIN_TOKEN, PROJECT_OWNER
+docker compose up -d
+bash scripts/setup.sh --from <an export handed over out of band>
+```
+
+The export directory is not distributed through git either; get it from whoever ran `node scripts/export.mjs` last (or ask for a fresh one), then point `--from` at it.
+
+## What is public
+
+Every file in Directus is readable without a token (the public rule limits which fields come back — see `scripts/permissions.mjs`); archived records and their translations are hidden from public reads. A folder that needs to stay private (an unpublished document, a draft asset) needs its own permission policy — that is an owner decision for when it is needed, not something this setup builds in advance.
 
 ## Folders
 

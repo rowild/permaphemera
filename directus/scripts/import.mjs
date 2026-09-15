@@ -3,7 +3,7 @@
 // Idempotent: existing records (by id) and files (by folder + filename) are skipped.
 //   node scripts/import.mjs [--from <dir>]
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
-import { dirname, extname, join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { loadEnv, login } from './lib.mjs'
 import { uploadFile } from './files.mjs'
 

@@ -3,7 +3,12 @@
 // _Plans/directus-schema-conventions.md. Exit 1 on the first group of failures.
 //   node scripts/check-conventions.mjs
 import { loadEnv, login } from './lib.mjs'
-import { isValidName } from './naming.mjs'
+import { isValidName, translationsTable } from './naming.mjs'
+
+const TRANSLATIONS_PREFIX = translationsTable('')
+const FILES_PUBLIC_FIELDS = ['id', 'type', 'title', 'filename_download', 'width', 'height', 'filesize', 'modified_on', 'folder']
+const sameJSON = (a, b) => JSON.stringify(a) === JSON.stringify(b)
+const sameSet = (a, b) => Array.isArray(a) && Array.isArray(b) && a.length === b.length && b.every((x) => a.includes(x))
 
 const { api } = await login(loadEnv())
 const collections = (await api('GET', '/collections')).filter((c) => c.collection.startsWith('pp_'))
@@ -59,13 +64,35 @@ for (const r of relations) {
   check(f?.schema?.is_unique !== true, `unique index on FK: ${r.collection}.${r.field}`)
 }
 
-// Public read rule on every pp_ table except the folder and pp_meta.
+// Public read rule on every pp_ table except the folder and pp_meta, with the right filter shape,
+// plus the languages and directus_files rules every public build also needs.
 const publicPolicy = (await api('GET', '/policies?filter[name][_eq]=$t:public_label&fields=id'))[0]?.id
-const publicReads = new Set((await api('GET', `/permissions?filter[policy][_eq]=${publicPolicy}&filter[action][_eq]=read&limit=-1&fields=collection`)).map((p) => p.collection))
+if (!publicPolicy) throw new Error('no public policy ($t:public_label) found')
+const publicRules = await api('GET', `/permissions?filter[policy][_eq]=${publicPolicy}&filter[action][_eq]=read&limit=-1&fields=collection,permissions,fields`)
+const ruleByCollection = new Map(publicRules.map((p) => [p.collection, p]))
+
 for (const c of collections) {
   if (isFolder(c) || c.collection === 'pp_meta') continue
-  check(publicReads.has(c.collection), `no public read rule: ${c.collection}`)
+  const n = c.collection
+  const rule = ruleByCollection.get(n)
+  check(Boolean(rule), `no public read rule: ${n}`)
+  if (!rule) continue
+  if (isStructural(n)) {
+    if (n.startsWith(TRANSLATIONS_PREFIX)) {
+      const host = n.slice(TRANSLATIONS_PREFIX.length)
+      check(sameJSON(rule.permissions, { [`${host}_id`]: { status: { _neq: 'archived' } } }), `translations public rule wrong filter: ${n}`)
+    } else {
+      check(sameJSON(rule.permissions, {}), `structural public rule not open: ${n}`)
+    }
+  } else {
+    check(sameJSON(rule.permissions, { status: { _neq: 'archived' } }), `entity public rule wrong filter: ${n}`)
+  }
 }
+
+check(ruleByCollection.has('languages'), 'no public read rule: languages')
+const filesRule = ruleByCollection.get('directus_files')
+check(Boolean(filesRule), 'no public read rule: directus_files')
+if (filesRule) check(sameSet(filesRule.fields, FILES_PUBLIC_FIELDS), `directus_files public rule fields wrong: ${JSON.stringify(filesRule.fields)}`)
 
 // Sidebar sort contiguous per parent.
 const byGroup = new Map()

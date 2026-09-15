@@ -24,7 +24,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --yes) YES=true ;;
     --status) STATUS=true ;;
-    --from) FROM="$2"; shift ;;
+    --from) [[ $# -ge 2 ]] || { echo "--from needs a directory"; exit 1; }; FROM="$2"; shift ;;
     --reset-permissions) RESET_PERMS=true ;;
     *) echo "unknown option $1"; exit 1 ;;
   esac

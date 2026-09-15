@@ -4,6 +4,9 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { extname, join, resolve } from 'node:path'
 import { loadEnv, login } from './lib.mjs'
+import { col, translationsTable } from './naming.mjs'
+
+const TRANSLATIONS_PREFIX = translationsTable('')
 
 const args = process.argv.slice(2)
 const toIndex = args.indexOf('--to')
@@ -12,7 +15,7 @@ mkdirSync(join(target, 'files'), { recursive: true })
 
 const { api, base, token } = await login(loadEnv())
 const collections = (await api('GET', '/collections')).map((c) => c.collection)
-  .filter((n) => n.startsWith('pp_') && n !== 'pp_meta' && n !== 'pp_archive' && !n.startsWith('pp_translations__'))
+  .filter((n) => n.startsWith('pp_') && n !== col('meta') && n !== col('archive') && !n.startsWith(TRANSLATIONS_PREFIX))
 
 const FILE_FIELDS = { pp_venues: ['image', 'hero_image'], pp_exhibitions: ['image', 'source_pdf'], pp_sponsors: ['logo'] }
 const fileIds = new Set()
@@ -36,7 +39,12 @@ for (const c of collections) {
   counts[c] = rows.length
 }
 
-// Branding files too, so a restore can re-run apply-settings without the frontend checkout.
+const languageRows = await api('GET', '/items/languages?fields=*')
+writeFileSync(join(target, 'languages.json'), JSON.stringify(languageRows, null, 2) + '\n')
+
+// Branding files are exported for completeness. A restore never re-applies them on its own —
+// apply-settings.mjs re-uploads branding itself — a file only comes back here when some other
+// record (e.g. pp_sponsors.logo) still references it.
 const brandingFolder = (await api('GET', '/folders?filter[name][_eq]=branding&limit=1&fields=id'))[0]?.id
 if (brandingFolder) for (const f of await api('GET', `/files?filter[folder][_eq]=${brandingFolder}&limit=-1&fields=id`)) fileIds.add(f.id)
 
