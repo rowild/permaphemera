@@ -22,6 +22,8 @@ Cross-cutting design specs (Directus + frontend together) live in `docs/superpow
 
 ## Data model
 
-Frontend JSON in `frontend/app/data/` and the Directus collections must stay
-1:1. If you change one, change the other and update `_Plans/exhibitions-plan.md`
-section 2 in the same commit.
+Directus is the single content source. The frontend reads it at app start;
+the schema lives in `directus/scripts/schema.mjs`. When a field changes,
+change `schema.mjs`, `frontend/shared/archive-schema.mjs` if it is a file
+field or a new collection, `frontend/app/types/content.ts`, and
+`_Plans/exhibitions-plan.md` §2 in the same commit.

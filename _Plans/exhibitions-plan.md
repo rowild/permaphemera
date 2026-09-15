@@ -519,9 +519,9 @@ export function preloadPanoramasToCache(urls: string[]): void {
     ├── [x] Seed languages (en, de), roles and the two navigations — 2026-09-14
     ├── [x] Rename the frontend JSON, types and resolvers to the pp_ shape; header and footer read the navigations (plan part 2) — 2026-09-14
     ├── [x] Import the JSON records from frontend/app/data into Directus — 2026-09-15
-    ├── [x] Frontend reads from Directus at runtime (`useArchiveSource`), no SDK dependency — 2026-09-15
-    ├── [x] covered by `check:data` against the live instance — 2026-09-15
-    └── [x] Content imported: 17/36/73/13/8 records, 45 files — 2026-09-15
+    ├── [x] Introduce Directus SDK data adapter behind the existing JSON-compatible content model — frontend reads from Directus at runtime (`useArchiveSource`), no SDK dependency, 2026-09-15
+    ├── [x] Test data query payload outputs using Directus SDK deep filtering for locale switching — covered by check:data against the live instance, 2026-09-15
+    └── [x] Content imported: 17/36/73/13/15/8 records, 18 menu items, 55 files — 2026-09-15
 
 [ ] PHASE 5: THE DIRECTUS CALIBRATION EXTENSION
     ├── [ ] Initialize native Directus Interface Extension boilerplate utilizing Vue 3

@@ -32,4 +32,4 @@ docker compose up -d
 
 The frontend is live as a static site, and it reads its content from the
 local Directus instance at runtime (`useArchiveSource()`); `frontend/app/data/`
-no longer exists. The next step is hosting Directus. See Phase 4 in the plan.
+no longer exists. The next step is hosting Directus.
