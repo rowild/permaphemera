@@ -5,8 +5,19 @@
 #   bash scripts/setup.sh --status       # report only
 #   bash scripts/setup.sh --from <dir>   # also import content from <dir> (an export, or frontend/app/data)
 #   bash scripts/setup.sh --reset-permissions   # delete and recreate the public read rules (configuration, not content)
+#
+# Order without --from: Directus, schema, seeds, permissions, settings, content.
+# Order with --from:    Directus, schema, permissions, content, seeds, settings.
+#   (content import must run before seeds on a fresh instance, so seed.mjs's roles and
+#   menus don't get created with new ids ahead of the backup's own rows of the same
+#   slug/key; import.mjs ensures the languages rows itself, so nothing else has to
+#   precede it.)
+#
+# DIRECTUS_URL overrides the instance to talk to (default http://localhost:8077).
 set -euo pipefail
 cd "$(dirname "$0")/.."
+
+URL="${DIRECTUS_URL:-http://localhost:8077}"
 
 YES=false; STATUS=false; FROM=""; RESET_PERMS=false
 while [[ $# -gt 0 ]]; do
@@ -29,11 +40,11 @@ ask() { # ask "question" → 0 = yes
   [[ "$answer" =~ ^[Yy]$ ]]
 }
 
-health() { curl -fsS -o /dev/null http://localhost:8077/server/health; }
+health() { curl -fsS -o /dev/null "$URL/server/health"; }
 
 # 1. Directus
 if health; then
-  echo "Directus: running on http://localhost:8077"
+  echo "Directus: running on $URL"
 else
   echo "Directus: not running$( [[ -f database/data.db ]] && echo ' (database exists)' || echo ' (no database yet: first start creates it from .env)')"
   if ask "Start it with docker compose?"; then
@@ -61,29 +72,35 @@ import('./scripts/build.mjs').then(async ({ buildAll }) => {
 })" || schema_status=$?
 [[ $schema_status -eq 10 ]] && { ask "Add the missing collections?" && node scripts/create-schema.mjs; }
 
-# 3. Seeds
-echo; echo "Seeds:"; node scripts/seed.mjs --status 2>/dev/null || true
-ask "Add missing languages, roles and menus?" && node scripts/seed.mjs
+step_seeds() {
+  echo; echo "Seeds:"; node scripts/seed.mjs --status 2>/dev/null || true
+  if ask "Add missing languages, roles and menus?"; then node scripts/seed.mjs; fi
+}
 
-# 4. Permissions
-echo; echo "Permissions:"
-node --input-type=module -e "
+step_permissions() {
+  echo; echo "Permissions:"
+  node --input-type=module -e "
 import { loadEnv, login } from './scripts/lib.mjs'
 const { api } = await login(loadEnv())
 const p = (await api('GET', '/policies?filter[name][_eq]=\$t:public_label&fields=id'))[0]?.id
 const rules = await api('GET', '/permissions?filter[policy][_eq]=' + p + '&filter[action][_eq]=read&limit=-1&fields=collection')
 console.log('  ' + rules.length + ' public read rules')"
-if $RESET_PERMS; then ask "Delete and recreate the public read rules?" && node scripts/permissions.mjs --reset
-else ask "Add missing public read rules?" && node scripts/permissions.mjs; fi
+  if $RESET_PERMS; then
+    if ask "Delete and recreate the public read rules?"; then node scripts/permissions.mjs --reset; fi
+  else
+    if ask "Add missing public read rules?"; then node scripts/permissions.mjs; fi
+  fi
+}
 
-# 5. Settings
-echo; echo "Settings:"
-curl -s http://localhost:8077/server/info | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const p=JSON.parse(d).data.project;console.log('  name: '+p.project_name+' · colour: '+p.project_color+' · logo: '+(p.project_logo?'set':'missing'))})"
-ask "Apply project settings and branding?" && node scripts/apply-settings.mjs
+step_settings() {
+  echo; echo "Settings:"
+  curl -s "$URL/server/info" | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const p=JSON.parse(d).data.project;console.log('  name: '+p.project_name+' · colour: '+p.project_color+' · logo: '+(p.project_logo?'set':'missing'))})"
+  if ask "Apply project settings and branding?"; then node scripts/apply-settings.mjs; fi
+}
 
-# 6. Content
-echo; echo "Content:"
-node --input-type=module -e "
+step_content() {
+  echo; echo "Content:"
+  node --input-type=module -e "
 import { loadEnv, login } from './scripts/lib.mjs'
 const { api } = await login(loadEnv())
 for (const c of ['pp_locations','pp_venues','pp_persons','pp_exhibitions','pp_sponsors','pp_navigation_items']) {
@@ -94,6 +111,23 @@ for (const c of ['pp_locations','pp_venues','pp_persons','pp_exhibitions','pp_sp
     console.log('  ' + c + ': not created yet')
   }
 }" || true
-if [[ -n "$FROM" ]]; then ask "Import content from $FROM?" && node scripts/import.mjs --from "$FROM"; fi
+  if [[ -n "$FROM" ]]; then
+    if ask "Import content from $FROM?"; then node scripts/import.mjs --from "$FROM"; fi
+  fi
+}
+
+if [[ -n "$FROM" ]]; then
+  # 3. Permissions, 4. Content (import), 5. Seeds, 6. Settings
+  step_permissions
+  step_content
+  step_seeds
+  step_settings
+else
+  # 3. Seeds, 4. Permissions, 5. Settings, 6. Content
+  step_seeds
+  step_permissions
+  step_settings
+  step_content
+fi
 
 echo; echo "setup finished"
