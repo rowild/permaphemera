@@ -29,7 +29,8 @@
     "postinstall": "nuxt prepare",
     "test": "vitest run",
     "tour:publish": "node scripts/publish-tour.mjs",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "deploy:hetzner": "bash scripts/deploy-hetzner.sh"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.2.11",
