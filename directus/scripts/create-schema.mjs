@@ -1,7 +1,7 @@
 // directus/scripts/create-schema.mjs
 // Creates every collection, field and relation from build.mjs. Idempotent:
 // existing collections, fields and relations are left alone (they are not
-// updated — change the schema by resetting, see reset.sh).
+// updated — change the schema by editing schema.mjs and re-running this script).
 //
 //   node scripts/create-schema.mjs
 import { buildAll } from './build.mjs'

@@ -87,9 +87,13 @@ node --input-type=module -e "
 import { loadEnv, login } from './scripts/lib.mjs'
 const { api } = await login(loadEnv())
 for (const c of ['pp_locations','pp_venues','pp_persons','pp_exhibitions','pp_sponsors','pp_navigation_items']) {
-  const n = (await api('GET', '/items/' + c + '?aggregate[count]=id'))[0].count.id
-  console.log('  ' + c + ': ' + n)
-}"
+  try {
+    const n = (await api('GET', '/items/' + c + '?aggregate[count]=id'))[0].count.id
+    console.log('  ' + c + ': ' + n)
+  } catch (e) {
+    console.log('  ' + c + ': not created yet')
+  }
+}" || true
 if [[ -n "$FROM" ]]; then ask "Import content from $FROM?" && node scripts/import.mjs --from "$FROM"; fi
 
 echo; echo "setup finished"

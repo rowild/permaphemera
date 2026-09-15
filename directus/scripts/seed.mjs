@@ -10,8 +10,12 @@ const { api } = await login(loadEnv())
 
 if (statusOnly) {
   for (const c of ['languages', 'pp_roles', 'pp_navigations', 'pp_navigation_items']) {
-    const n = (await api('GET', `/items/${c}?aggregate[count]=*`))[0].count
-    console.log(`  ${c}: ${n}`)
+    try {
+      const n = (await api('GET', `/items/${c}?aggregate[count]=*`))[0].count
+      console.log(`  ${c}: ${n}`)
+    } catch (e) {
+      console.log(`  ${c}: not created yet`)
+    }
   }
   process.exit(0)
 }
