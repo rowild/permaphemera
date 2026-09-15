@@ -8,6 +8,7 @@ This is one repository with two runnable parts and the planning material.
 |----------------|-----------------------------------------------------|-----------------------------|
 | `frontend/`    | Nuxt 4 site. Static SPA. Reads from Directus at runtime. | `frontend/README.md`  |
 | `directus/`    | Directus 11.17.4 in Docker. The content backend.    | `directus/README.md`        |
+| `galerien-oesterreich/` | Static directory of Austrian galleries, deployed to gvoe.rowild.at | `galerien-oesterreich/README.md` |
 | `_Plans/`      | Architecture plan, design mockups, ideas.           | `_Plans/exhibitions-plan.md`|
 | `.claude/`     | Project skills and design critiques for Claude Code.| `.claude/skills/`           |
 

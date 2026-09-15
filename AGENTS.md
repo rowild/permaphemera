@@ -7,6 +7,7 @@ these folders. Each has its own rules. Read them before you change anything ther
 |-------------|----------------------------------------------|
 | `frontend/` | `frontend/AGENTS.md` (strict CSS and data rules, check scripts) |
 | `directus/` | `directus/README.md`                         |
+| `galerien-oesterreich/` | `galerien-oesterreich/README.md`   |
 | `_Plans/`   | `_Plans/exhibitions-plan.md` is the active architecture plan. `_Plans/original chat.md` is history, not a source of truth. |
 
 Cross-cutting design specs (Directus + frontend together) live in `docs/superpowers/specs/` at the root, named `YYYY-MM-DD-<topic>-design.md`. Frontend-only specs stay in `frontend/docs/superpowers/specs/`.
