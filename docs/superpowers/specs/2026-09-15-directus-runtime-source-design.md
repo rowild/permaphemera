@@ -1,7 +1,7 @@
 # Directus as the Live Data Source — Design
 
 Date: 2026-09-15
-Status: draft, awaiting owner review
+Status: approved by the owner on 2026-09-15 ("go")
 Builds on: `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md` (schema, JSON mirror). Branch: `feature/directus-runtime`.
 
 ## Problem
@@ -16,7 +16,7 @@ The frontend reads 17 JSON files. Directus holds the same schema but no content.
 | The JSON files | Kept until the site runs on Directus end to end. Then moved to `_BU/` (root, not in git) and deleted from the repo. |
 | Images and PDFs | Uploaded into Directus. The site loads them from Directus `/assets/<id>`. They leave the frontend repo. |
 | Tours | Unchanged in this step: a path string on the exhibition; folders stay in `frontend/public/media/tours/`. Own design later. |
-| `reset.sh` | Deleted. No wipe in the workflow. Additive schema changes only; export/import for backup and restore; `install.sh` for a fresh machine. |
+| `reset.sh` | Deleted. No wipe in the workflow. Additive schema changes only; export/import for backup and restore; `setup.sh` as the one safe entry point, step by step with a dialog. |
 | Logo | Directus project logo = the header temple mark `frontend/public/media/svg/brand/archive-temple.svg`; login-screen foreground = `permaphemera_seal.svg`. |
 | Branch | `feature/directus-runtime`, one branch for both folders. |
 
@@ -48,9 +48,7 @@ One fetch per page load, in `app.vue`, before `<NuxtPage>` renders. It loads the
 
 **No reset.** `reset.sh` is deleted (owner decision 2026-09-15: the one reshape is done; a wipe has no place in the loop). Schema changes are additive: edit `schema.mjs`, run `create-schema.mjs`, which only adds what is missing. Removals and renames go through the admin app or `directus schema apply` with the snapshot, which diffs before it acts. Content stays in every case.
 
-**Fresh machine** (`directus/scripts/install.sh`): refuses to run if `database/data.db` exists; otherwise `docker compose up -d`, wait for health, `create-schema`, `seed`, `permissions`, `apply-settings`, `check-conventions`, then `import.mjs --from <dir>` when a directory is given. The owner screen is skipped by the env variables in `.env`, read by Directus at first start; the script does not touch that.
-
-**Public read** (`directus/scripts/permissions.mjs`): on the public policy (`$t:public_label`), `read` on every `pp_` collection except `pp_meta`, with the filter `status != archived` where the collection has `status`; `read` on `languages`; `read` on `directus_files`. Idempotent by (policy, collection, action). Part of `install.sh` after `seed`.
+**Setup** (`directus/scripts/setup.sh`): the one entry point, safe to run any time on any machine. Six steps — Directus running, schema, seeds, permissions, settings, content — each first *reports* what exists (26 of 26 collections; 0 or 24 public read rules; logo set or not; record counts) and then *asks* before acting, unless `--yes`. `--status` only reports. `--from <dir>` enables the content step. Nothing is ever deleted; the only exception is `--reset-permissions`, which deletes and recreates the public read rules (configuration, not content). Every script it calls is idempotent, which is what makes the dialog safe. The owner screen is skipped by the env variables in `.env`, read by Directus at first start; the script does not touch that.
 
 **Branding** (`apply-settings.mjs` extended): uploads the two SVGs once (folder `branding`), sets `project_logo`, `public_foreground`, `public_note` "PERMAPHEMERA exhibition archive".
 
@@ -84,12 +82,12 @@ One fetch per page load, in `app.vue`, before `<NuxtPage>` renders. It loads the
 
 ## Verification
 
-1. On the running instance: `node directus/scripts/permissions.mjs`, `node directus/scripts/apply-settings.mjs`, `node directus/scripts/import.mjs --from ../frontend/app/data` finish; `GET http://localhost:8077/items/pp_exhibitions?limit=1` without a token returns one record; `/assets/<id>` of a venue image returns 200 with `image/webp` or `image/jpeg`. `install.sh` is proven once on a throwaway copy of the `directus/` folder with an empty `database/`, then that copy is deleted.
+1. On the running instance: `node directus/scripts/permissions.mjs`, `node directus/scripts/apply-settings.mjs`, `node directus/scripts/import.mjs --from ../frontend/app/data` finish; `GET http://localhost:8077/items/pp_exhibitions?limit=1` without a token returns one record; `/assets/<id>` of a venue image returns 200 with `image/webp` or `image/jpeg`. `setup.sh --status` reports the state before and after; `setup.sh --yes` run twice changes nothing the second time.
 2. `node directus/scripts/import.mjs` a second time creates nothing.
 3. Frontend: `pnpm test`, `pnpm check:types`, all checks green with Directus running; with Directus stopped, `pnpm check:data` fails with the URL in the message.
 4. `pnpm dev`: landing, artists, one venue, one exhibition, both locales, header and footer menus, all images visible from `localhost:8077/assets/…`. Same QA walk as 2026-09-14, plus the network tab shows no request to `/media/images/`.
 5. Edit a venue's `lede` in the Directus admin app; reload the site; the new text shows.
-6. `export.mjs` to a temp dir; the throwaway install of item 1 gets `import.mjs --from <that dir>`; its item counts equal the live instance.
+6. `export.mjs` to `_BU/directus-data/`; `import.mjs --from _BU/directus-data/` on the live instance reports every record and file as existing (proves the export is a valid restore source).
 7. After 4–6: JSON and record images moved to `_BU/`, repo builds and all checks pass without them.
 
 ## Open items for later
