@@ -10,7 +10,9 @@ button,a,summary { -webkit-tap-highlight-color:transparent; }
 
 .site-header { position:sticky; top:0; z-index:60; height:42px; padding:0 clamp(14px,2.8vw,42px); display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
 .wordmark { font-size:15px; font-weight:900; letter-spacing:-.08em; }
+.wordmark { display:inline-flex; align-items:baseline; }
 .wordmark span { font-family:Georgia,serif; font-style:italic; font-weight:400; }
+.wordmark small { margin-left:10px; font-size:7px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); }
 .site-header nav { display:flex; gap:20px; font-size:7px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
 .site-header nav a:hover { text-decoration:underline; text-underline-offset:4px; }
 .status-pill { display:flex; align-items:center; gap:6px; color:var(--muted); font-size:7px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
