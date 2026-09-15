@@ -88,7 +88,7 @@ export default function GalleryDashboard() {
   const filtersActive = selectedState || selectedCity || selectedSegment !== "Alle" || statusFilter !== "Alle" || query;
 
   return <main id="top">
-    <header className="site-header"><a className="wordmark" href="#top" aria-label="GVÖ – Galerienverzeichnis Österreich, zum Seitenanfang">GV<span>Ö</span><small>Galerienverzeichnis Österreich</small></a><nav aria-label="Hauptnavigation"><a href="#statistik">Zahlen</a><a href="#karte">Karte</a><a href="#verzeichnis">Verzeichnis</a></nav><div className="status-pill"><i />Datenstand 25.08.2026</div></header>
+    <header className="site-header"><a className="wordmark" href="#top" aria-label="GVÖ – Galerienverzeichnis Österreich, zum Seitenanfang">GV<span>Ö</span><small>Galerienverzeichnis Österreich</small></a><nav aria-label="Hauptnavigation"><a href="#statistik">Zahlen</a><a href="#karte">Karte</a><a href="#verzeichnis">Verzeichnis</a></nav><div className="status-pill"><i />Datenstand 15.09.2026</div></header>
 
     <section className="overview"><div><p className="eyebrow">Österreich · Galerien, Kunsträume & Ausstellungshäuser</p><h1>Die Kunstorte<br /><em>Österreichs.</em></h1><p className="overview-intro">Alphabetisch, durchsuchbar und quellenbasiert – inklusive früherer, geschlossener und derzeit ungeklärter Standorte.</p></div><div className="overview-metrics" aria-label="Kennzahlen"><div><strong>{galleries.length}</strong><span>Einträge<br />insgesamt</span></div><div><strong>{activeGalleries.length}</strong><span>2026<br />aktiv belegt</span></div><div><strong>{historicCount}</strong><span>historisch /<br />ungeklärt</span></div><div><strong>{allCityCount}</strong><span>Städte &<br />Orte</span></div></div></section>
 

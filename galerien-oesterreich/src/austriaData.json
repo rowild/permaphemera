@@ -20,7 +20,7 @@
     "lon": 16.520149,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 105
+    "id": 136
   },
   {
     "state": "Burgenland",
@@ -45,7 +45,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 106
+    "id": 137
   },
   {
     "state": "Burgenland",
@@ -68,7 +68,7 @@
     "lon": 16.521078,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 107
+    "id": 138
   },
   {
     "state": "Burgenland",
@@ -91,7 +91,7 @@
     "lon": 16.5275,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 108
+    "id": 139
   },
   {
     "category": "Ateliergalerie",
@@ -114,7 +114,7 @@
     "address": "Obere Hauptstraße 70, 7122 Gols",
     "lat": 47.896,
     "lon": 16.911,
-    "id": 109
+    "id": 140
   },
   {
     "state": "Burgenland",
@@ -139,7 +139,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 110
+    "id": 141
   },
   {
     "state": "Burgenland",
@@ -164,7 +164,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 111
+    "id": 142
   },
   {
     "state": "Burgenland",
@@ -189,7 +189,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 112
+    "id": 143
   },
   {
     "state": "Burgenland",
@@ -214,7 +214,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 113
+    "id": 144
   },
   {
     "state": "Burgenland",
@@ -239,7 +239,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 114
+    "id": 145
   },
   {
     "state": "Burgenland",
@@ -264,7 +264,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 115
+    "id": 146
   },
   {
     "state": "Burgenland",
@@ -289,7 +289,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 116
+    "id": 147
   },
   {
     "state": "Burgenland",
@@ -314,7 +314,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 117
+    "id": 148
   },
   {
     "state": "Burgenland",
@@ -339,7 +339,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 118
+    "id": 149
   },
   {
     "state": "Burgenland",
@@ -364,7 +364,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "address geocode rejected outside federal state",
     "coordinatePrecision": "Ort",
-    "id": 119
+    "id": 150
   },
   {
     "state": "Niederösterreich",
@@ -389,7 +389,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 120
+    "id": 151
   },
   {
     "state": "Niederösterreich",
@@ -414,7 +414,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 121
+    "id": 152
   },
   {
     "state": "Niederösterreich",
@@ -437,7 +437,7 @@
     "lon": 16.233767,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 122
+    "id": 153
   },
   {
     "state": "Niederösterreich",
@@ -462,7 +462,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 123
+    "id": 154
   },
   {
     "state": "Niederösterreich",
@@ -487,7 +487,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 124
+    "id": 155
   },
   {
     "state": "Niederösterreich",
@@ -510,7 +510,7 @@
     "lon": 15.770106,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 125
+    "id": 156
   },
   {
     "state": "Niederösterreich",
@@ -534,7 +534,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Hauptstrasse%20103+2384+Breitenfurt%20bei%20Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 126
+    "id": 157
   },
   {
     "state": "Niederösterreich",
@@ -559,7 +559,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 127
+    "id": 158
   },
   {
     "state": "Niederösterreich",
@@ -584,7 +584,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 128
+    "id": 159
   },
   {
     "state": "Niederösterreich",
@@ -609,7 +609,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 129
+    "id": 160
   },
   {
     "state": "Niederösterreich",
@@ -633,7 +633,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Gussastraße%203+2292+Engelharstetten",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 130
+    "id": 161
   },
   {
     "state": "Niederösterreich",
@@ -657,7 +657,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Gartenstrasse%202%20a%20&#40;Atelier&#41;+2115+Ernstbrunn",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 131
+    "id": 162
   },
   {
     "state": "Niederösterreich",
@@ -682,7 +682,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 132
+    "id": 163
   },
   {
     "state": "Niederösterreich",
@@ -707,7 +707,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 133
+    "id": 164
   },
   {
     "state": "Niederösterreich",
@@ -732,7 +732,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 134
+    "id": 165
   },
   {
     "state": "Niederösterreich",
@@ -757,7 +757,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 135
+    "id": 166
   },
   {
     "state": "Niederösterreich",
@@ -782,7 +782,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 136
+    "id": 167
   },
   {
     "state": "Niederösterreich",
@@ -807,7 +807,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 137
+    "id": 168
   },
   {
     "state": "Niederösterreich",
@@ -832,7 +832,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 138
+    "id": 169
   },
   {
     "state": "Niederösterreich",
@@ -855,7 +855,7 @@
     "lon": 15.722026,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 139
+    "id": 170
   },
   {
     "state": "Niederösterreich",
@@ -880,7 +880,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 140
+    "id": 171
   },
   {
     "state": "Niederösterreich",
@@ -904,7 +904,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Nr.%2068+2082+Hardegg",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 141
+    "id": 172
   },
   {
     "state": "Niederösterreich",
@@ -929,7 +929,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 142
+    "id": 173
   },
   {
     "state": "Niederösterreich",
@@ -954,7 +954,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 143
+    "id": 174
   },
   {
     "state": "Niederösterreich",
@@ -979,7 +979,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 144
+    "id": 175
   },
   {
     "state": "Niederösterreich",
@@ -1002,7 +1002,7 @@
     "lon": 16.333563,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 145
+    "id": 176
   },
   {
     "state": "Niederösterreich",
@@ -1027,7 +1027,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 146
+    "id": 177
   },
   {
     "state": "Niederösterreich",
@@ -1052,7 +1052,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 147
+    "id": 178
   },
   {
     "state": "Niederösterreich",
@@ -1077,7 +1077,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 148
+    "id": 179
   },
   {
     "state": "Niederösterreich",
@@ -1102,7 +1102,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 149
+    "id": 180
   },
   {
     "state": "Niederösterreich",
@@ -1127,7 +1127,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 150
+    "id": 181
   },
   {
     "state": "Niederösterreich",
@@ -1152,7 +1152,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 151
+    "id": 182
   },
   {
     "state": "Niederösterreich",
@@ -1175,7 +1175,7 @@
     "lon": 15.58711,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 152
+    "id": 183
   },
   {
     "state": "Niederösterreich",
@@ -1198,7 +1198,7 @@
     "lon": 15.587454,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 153
+    "id": 184
   },
   {
     "category": "Privatgalerie / Projektraum",
@@ -1221,7 +1221,7 @@
     "address": "Wegscheid 3, 3500 Krems an der Donau",
     "lat": 48.41,
     "lon": 15.6,
-    "id": 154
+    "id": 185
   },
   {
     "state": "Niederösterreich",
@@ -1246,7 +1246,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 155
+    "id": 186
   },
   {
     "state": "Niederösterreich",
@@ -1271,7 +1271,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 156
+    "id": 187
   },
   {
     "state": "Niederösterreich",
@@ -1294,7 +1294,7 @@
     "lon": 16.363638,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 157
+    "id": 188
   },
   {
     "state": "Niederösterreich",
@@ -1319,7 +1319,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 158
+    "id": 189
   },
   {
     "state": "Niederösterreich",
@@ -1344,7 +1344,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 159
+    "id": 190
   },
   {
     "state": "Niederösterreich",
@@ -1369,7 +1369,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 160
+    "id": 191
   },
   {
     "state": "Niederösterreich",
@@ -1392,7 +1392,7 @@
     "lon": 16.258348,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 161
+    "id": 192
   },
   {
     "state": "Niederösterreich",
@@ -1415,7 +1415,7 @@
     "lon": 16.258348,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 162
+    "id": 193
   },
   {
     "state": "Niederösterreich",
@@ -1440,7 +1440,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 163
+    "id": 194
   },
   {
     "state": "Niederösterreich",
@@ -1465,7 +1465,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 164
+    "id": 195
   },
   {
     "state": "Niederösterreich",
@@ -1490,7 +1490,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 165
+    "id": 196
   },
   {
     "state": "Niederösterreich",
@@ -1515,7 +1515,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 166
+    "id": 197
   },
   {
     "state": "Niederösterreich",
@@ -1540,7 +1540,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 167
+    "id": 198
   },
   {
     "state": "Niederösterreich",
@@ -1565,7 +1565,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 168
+    "id": 199
   },
   {
     "state": "Niederösterreich",
@@ -1590,7 +1590,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 169
+    "id": 200
   },
   {
     "state": "Niederösterreich",
@@ -1615,7 +1615,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 170
+    "id": 201
   },
   {
     "state": "Niederösterreich",
@@ -1640,7 +1640,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 171
+    "id": 202
   },
   {
     "state": "Niederösterreich",
@@ -1665,7 +1665,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 172
+    "id": 203
   },
   {
     "state": "Niederösterreich",
@@ -1690,7 +1690,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 173
+    "id": 204
   },
   {
     "state": "Niederösterreich",
@@ -1714,7 +1714,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Online-Galerie+2380+Perchtoldsdorf",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 174
+    "id": 205
   },
   {
     "state": "Niederösterreich",
@@ -1739,7 +1739,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 175
+    "id": 206
   },
   {
     "state": "Niederösterreich",
@@ -1764,7 +1764,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 176
+    "id": 207
   },
   {
     "state": "Niederösterreich",
@@ -1789,7 +1789,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 177
+    "id": 208
   },
   {
     "state": "Niederösterreich",
@@ -1814,7 +1814,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 178
+    "id": 209
   },
   {
     "state": "Niederösterreich",
@@ -1839,7 +1839,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 179
+    "id": 210
   },
   {
     "state": "Niederösterreich",
@@ -1864,7 +1864,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 180
+    "id": 211
   },
   {
     "state": "Niederösterreich",
@@ -1889,7 +1889,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 181
+    "id": 212
   },
   {
     "state": "Niederösterreich",
@@ -1914,7 +1914,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 182
+    "id": 213
   },
   {
     "state": "Niederösterreich",
@@ -1939,7 +1939,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 183
+    "id": 214
   },
   {
     "state": "Niederösterreich",
@@ -1962,7 +1962,7 @@
     "lon": 15.633522,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 184
+    "id": 215
   },
   {
     "state": "Niederösterreich",
@@ -1985,7 +1985,7 @@
     "lon": 15.622532,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 185
+    "id": 216
   },
   {
     "state": "Niederösterreich",
@@ -2010,7 +2010,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 186
+    "id": 217
   },
   {
     "category": "Öffentliches Ausstellungshaus",
@@ -2033,7 +2033,7 @@
     "address": "Schulring 24, 3100 St. Pölten",
     "lat": 48.2046,
     "lon": 15.625,
-    "id": 187
+    "id": 218
   },
   {
     "state": "Niederösterreich",
@@ -2058,7 +2058,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 188
+    "id": 219
   },
   {
     "state": "Niederösterreich",
@@ -2083,7 +2083,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 189
+    "id": 220
   },
   {
     "state": "Niederösterreich",
@@ -2108,7 +2108,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 190
+    "id": 221
   },
   {
     "state": "Niederösterreich",
@@ -2133,7 +2133,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 191
+    "id": 222
   },
   {
     "state": "Niederösterreich",
@@ -2158,7 +2158,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 192
+    "id": 223
   },
   {
     "state": "Niederösterreich",
@@ -2183,7 +2183,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 193
+    "id": 224
   },
   {
     "state": "Niederösterreich",
@@ -2207,7 +2207,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Albrechtsgasse%2018+3430+Tulln",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 194
+    "id": 225
   },
   {
     "state": "Niederösterreich",
@@ -2232,7 +2232,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 195
+    "id": 226
   },
   {
     "state": "Niederösterreich",
@@ -2257,7 +2257,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 196
+    "id": 227
   },
   {
     "state": "Niederösterreich",
@@ -2282,7 +2282,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 197
+    "id": 228
   },
   {
     "state": "Niederösterreich",
@@ -2307,7 +2307,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 198
+    "id": 229
   },
   {
     "state": "Niederösterreich",
@@ -2332,7 +2332,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 199
+    "id": 230
   },
   {
     "state": "Niederösterreich",
@@ -2357,7 +2357,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 200
+    "id": 231
   },
   {
     "state": "Niederösterreich",
@@ -2382,7 +2382,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 201
+    "id": 232
   },
   {
     "state": "Niederösterreich",
@@ -2407,7 +2407,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 202
+    "id": 233
   },
   {
     "state": "Niederösterreich",
@@ -2432,7 +2432,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 203
+    "id": 234
   },
   {
     "state": "Niederösterreich",
@@ -2457,7 +2457,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 204
+    "id": 235
   },
   {
     "state": "Oberösterreich",
@@ -2482,7 +2482,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 205
+    "id": 236
   },
   {
     "state": "Oberösterreich",
@@ -2507,7 +2507,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 206
+    "id": 237
   },
   {
     "state": "Oberösterreich",
@@ -2532,7 +2532,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 207
+    "id": 238
   },
   {
     "state": "Oberösterreich",
@@ -2557,7 +2557,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 208
+    "id": 239
   },
   {
     "state": "Oberösterreich",
@@ -2582,7 +2582,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 209
+    "id": 240
   },
   {
     "state": "Oberösterreich",
@@ -2607,7 +2607,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 210
+    "id": 241
   },
   {
     "state": "Oberösterreich",
@@ -2632,7 +2632,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 211
+    "id": 242
   },
   {
     "state": "Oberösterreich",
@@ -2657,7 +2657,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 212
+    "id": 243
   },
   {
     "state": "Oberösterreich",
@@ -2680,7 +2680,7 @@
     "lon": 13.802903,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 213
+    "id": 244
   },
   {
     "state": "Oberösterreich",
@@ -2704,7 +2704,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Am%20Graben%2017%20+4810+Gmunden",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 214
+    "id": 245
   },
   {
     "state": "Oberösterreich",
@@ -2727,7 +2727,7 @@
     "lon": 13.844996,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 215
+    "id": 246
   },
   {
     "state": "Oberösterreich",
@@ -2752,7 +2752,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 216
+    "id": 247
   },
   {
     "state": "Oberösterreich",
@@ -2777,7 +2777,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 217
+    "id": 248
   },
   {
     "category": "Atelierhaus / Ausstellungshaus",
@@ -2800,7 +2800,7 @@
     "address": "Obere Donaulände 15, 4020 Linz",
     "lat": 48.306,
     "lon": 14.281,
-    "id": 218
+    "id": 249
   },
   {
     "state": "Oberösterreich",
@@ -2825,7 +2825,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 219
+    "id": 250
   },
   {
     "state": "Oberösterreich",
@@ -2850,7 +2850,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 220
+    "id": 251
   },
   {
     "category": "Kommerzielle Galerie",
@@ -2873,7 +2873,7 @@
     "address": "Herrenstraße 18, 4020 Linz",
     "lat": 48.302,
     "lon": 14.286,
-    "id": 221
+    "id": 252
   },
   {
     "state": "Oberösterreich",
@@ -2897,7 +2897,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Landstr.%2031/1+4020+Linz",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 222
+    "id": 253
   },
   {
     "state": "Oberösterreich",
@@ -2922,7 +2922,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 223
+    "id": 254
   },
   {
     "state": "Oberösterreich",
@@ -2947,7 +2947,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 224
+    "id": 255
   },
   {
     "state": "Oberösterreich",
@@ -2970,7 +2970,7 @@
     "lon": 14.293773,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 225
+    "id": 256
   },
   {
     "category": "Privatgalerie / Apartment Gallery",
@@ -2993,7 +2993,7 @@
     "address": "Gerstnerstraße 13/2, 4040 Linz",
     "lat": 48.319,
     "lon": 14.286,
-    "id": 226
+    "id": 257
   },
   {
     "state": "Oberösterreich",
@@ -3018,7 +3018,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 227
+    "id": 258
   },
   {
     "state": "Oberösterreich",
@@ -3043,7 +3043,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 228
+    "id": 259
   },
   {
     "state": "Oberösterreich",
@@ -3068,7 +3068,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 229
+    "id": 260
   },
   {
     "state": "Oberösterreich",
@@ -3093,7 +3093,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 230
+    "id": 261
   },
   {
     "state": "Oberösterreich",
@@ -3117,7 +3117,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Landstraße%2079/81+4020+Linz",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 231
+    "id": 262
   },
   {
     "state": "Oberösterreich",
@@ -3141,7 +3141,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Landstr.%2031+4020+Linz",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 232
+    "id": 263
   },
   {
     "state": "Oberösterreich",
@@ -3164,7 +3164,7 @@
     "lon": 14.288929,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 233
+    "id": 264
   },
   {
     "state": "Oberösterreich",
@@ -3187,7 +3187,7 @@
     "lon": 14.291059,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 234
+    "id": 265
   },
   {
     "state": "Oberösterreich",
@@ -3212,7 +3212,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 235
+    "id": 266
   },
   {
     "state": "Oberösterreich",
@@ -3235,7 +3235,7 @@
     "lon": 14.290693,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 236
+    "id": 267
   },
   {
     "state": "Oberösterreich",
@@ -3258,7 +3258,7 @@
     "lon": 14.290746,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 237
+    "id": 268
   },
   {
     "state": "Oberösterreich",
@@ -3281,7 +3281,7 @@
     "lon": 14.282341,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 238
+    "id": 269
   },
   {
     "state": "Oberösterreich",
@@ -3306,7 +3306,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 239
+    "id": 270
   },
   {
     "state": "Oberösterreich",
@@ -3331,7 +3331,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 240
+    "id": 271
   },
   {
     "state": "Oberösterreich",
@@ -3356,7 +3356,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "address geocode rejected outside federal state",
     "coordinatePrecision": "Ort",
-    "id": 241
+    "id": 272
   },
   {
     "state": "Oberösterreich",
@@ -3381,7 +3381,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 242
+    "id": 273
   },
   {
     "state": "Oberösterreich",
@@ -3406,7 +3406,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 243
+    "id": 274
   },
   {
     "state": "Oberösterreich",
@@ -3430,7 +3430,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Bezirksgerichtsgasse%204,+4982+Obernberg%20am%20Inn%20",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 244
+    "id": 275
   },
   {
     "state": "Oberösterreich",
@@ -3453,7 +3453,7 @@
     "lon": 14.207755,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 245
+    "id": 276
   },
   {
     "state": "Oberösterreich",
@@ -3478,7 +3478,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 246
+    "id": 277
   },
   {
     "state": "Oberösterreich",
@@ -3503,7 +3503,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 247
+    "id": 278
   },
   {
     "state": "Oberösterreich",
@@ -3527,7 +3527,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=KUNSTSALON%20Ruprecht-Riederer%20|%20Kunstverein:%20Marie%20Ruprecht/Abelstraße%2011+4082+Aschach",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 248
+    "id": 279
   },
   {
     "state": "Oberösterreich",
@@ -3550,7 +3550,7 @@
     "lon": 13.36141,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 249
+    "id": 280
   },
   {
     "state": "Oberösterreich",
@@ -3575,7 +3575,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 250
+    "id": 281
   },
   {
     "state": "Oberösterreich",
@@ -3598,7 +3598,7 @@
     "lon": 13.601387,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 251
+    "id": 282
   },
   {
     "state": "Oberösterreich",
@@ -3621,7 +3621,7 @@
     "lon": 14.01996,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 252
+    "id": 283
   },
   {
     "state": "Oberösterreich",
@@ -3646,7 +3646,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 253
+    "id": 284
   },
   {
     "state": "Oberösterreich",
@@ -3671,7 +3671,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 254
+    "id": 285
   },
   {
     "state": "Oberösterreich",
@@ -3696,7 +3696,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 255
+    "id": 286
   },
   {
     "state": "Oberösterreich",
@@ -3721,7 +3721,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 256
+    "id": 287
   },
   {
     "state": "Oberösterreich",
@@ -3744,7 +3744,7 @@
     "lon": 14.025569,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 257
+    "id": 288
   },
   {
     "state": "Oberösterreich",
@@ -3768,7 +3768,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Schmidtgasse%201+4600+Wels",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 258
+    "id": 289
   },
   {
     "state": "Oberösterreich",
@@ -3793,7 +3793,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 259
+    "id": 290
   },
   {
     "category": "Projektraum / Galerie",
@@ -3816,7 +3816,7 @@
     "address": "Bayrhamerplatz 8, 5400 Hallein",
     "lat": 47.682,
     "lon": 13.095,
-    "id": 260
+    "id": 291
   },
   {
     "state": "Salzburg",
@@ -3839,7 +3839,7 @@
     "lon": 13.095947,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 261
+    "id": 292
   },
   {
     "state": "Salzburg",
@@ -3862,7 +3862,7 @@
     "lon": 13.091978,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 262
+    "id": 293
   },
   {
     "state": "Salzburg",
@@ -3887,7 +3887,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 263
+    "id": 294
   },
   {
     "state": "Salzburg",
@@ -3912,7 +3912,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 264
+    "id": 295
   },
   {
     "state": "Salzburg",
@@ -3936,7 +3936,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Ignaz-Harrer-Str.%2038+5020+Salzburg",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 265
+    "id": 296
   },
   {
     "state": "Salzburg",
@@ -3959,7 +3959,7 @@
     "lon": 13.058446,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 266
+    "id": 297
   },
   {
     "state": "Salzburg",
@@ -3982,7 +3982,7 @@
     "lon": 13.030134,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 267
+    "id": 298
   },
   {
     "state": "Salzburg",
@@ -4007,7 +4007,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 268
+    "id": 299
   },
   {
     "category": "Kommerzielle Galerie",
@@ -4030,7 +4030,7 @@
     "address": "Schießstattstraße 69, 5020 Salzburg",
     "lat": 47.8095,
     "lon": 13.055,
-    "id": 269
+    "id": 300
   },
   {
     "state": "Salzburg",
@@ -4055,7 +4055,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 270
+    "id": 301
   },
   {
     "state": "Salzburg",
@@ -4080,7 +4080,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 271
+    "id": 302
   },
   {
     "state": "Salzburg",
@@ -4105,7 +4105,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 272
+    "id": 303
   },
   {
     "state": "Salzburg",
@@ -4128,7 +4128,7 @@
     "lon": 13.064285,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 273
+    "id": 304
   },
   {
     "state": "Salzburg",
@@ -4151,7 +4151,7 @@
     "lon": 13.051607,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 274
+    "id": 305
   },
   {
     "state": "Salzburg",
@@ -4176,7 +4176,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 275
+    "id": 306
   },
   {
     "state": "Salzburg",
@@ -4199,7 +4199,7 @@
     "lon": 13.04288,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 276
+    "id": 307
   },
   {
     "state": "Salzburg",
@@ -4222,7 +4222,7 @@
     "lon": 13.047391,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 277
+    "id": 308
   },
   {
     "state": "Salzburg",
@@ -4247,7 +4247,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 278
+    "id": 309
   },
   {
     "category": "Historische Privatgalerie",
@@ -4270,7 +4270,7 @@
     "address": "Linzer Gasse 25, 5020 Salzburg",
     "lat": 47.8095,
     "lon": 13.055,
-    "id": 279
+    "id": 310
   },
   {
     "state": "Salzburg",
@@ -4293,7 +4293,7 @@
     "lon": 13.043428,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 280
+    "id": 311
   },
   {
     "state": "Salzburg",
@@ -4316,7 +4316,7 @@
     "lon": 13.047397,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 281
+    "id": 312
   },
   {
     "state": "Salzburg",
@@ -4341,7 +4341,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 282
+    "id": 313
   },
   {
     "state": "Salzburg",
@@ -4364,7 +4364,7 @@
     "lon": 13.045771,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 283
+    "id": 314
   },
   {
     "state": "Salzburg",
@@ -4389,7 +4389,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 284
+    "id": 315
   },
   {
     "state": "Salzburg",
@@ -4414,7 +4414,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 285
+    "id": 316
   },
   {
     "state": "Salzburg",
@@ -4439,7 +4439,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 286
+    "id": 317
   },
   {
     "state": "Salzburg",
@@ -4464,7 +4464,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 287
+    "id": 318
   },
   {
     "state": "Salzburg",
@@ -4488,7 +4488,7 @@
     "sourceType": "Gallery Guide Austria 2026",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse",
-    "id": 288
+    "id": 319
   },
   {
     "state": "Salzburg",
@@ -4511,7 +4511,7 @@
     "lon": 13.045649,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 289
+    "id": 320
   },
   {
     "state": "Salzburg",
@@ -4536,7 +4536,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 290
+    "id": 321
   },
   {
     "state": "Salzburg",
@@ -4559,7 +4559,7 @@
     "lon": 13.054686,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 291
+    "id": 322
   },
   {
     "state": "Salzburg",
@@ -4584,7 +4584,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 292
+    "id": 323
   },
   {
     "state": "Salzburg",
@@ -4609,7 +4609,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 293
+    "id": 324
   },
   {
     "state": "Salzburg",
@@ -4634,7 +4634,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 294
+    "id": 325
   },
   {
     "state": "Salzburg",
@@ -4659,7 +4659,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 295
+    "id": 326
   },
   {
     "state": "Salzburg",
@@ -4684,7 +4684,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 296
+    "id": 327
   },
   {
     "state": "Salzburg",
@@ -4709,7 +4709,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 297
+    "id": 328
   },
   {
     "state": "Salzburg",
@@ -4732,7 +4732,7 @@
     "lon": 13.043069,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 298
+    "id": 329
   },
   {
     "state": "Salzburg",
@@ -4757,7 +4757,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 299
+    "id": 330
   },
   {
     "state": "Salzburg",
@@ -4782,7 +4782,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 300
+    "id": 331
   },
   {
     "state": "Salzburg",
@@ -4807,7 +4807,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 301
+    "id": 332
   },
   {
     "state": "Steiermark",
@@ -4832,7 +4832,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 302
+    "id": 333
   },
   {
     "state": "Steiermark",
@@ -4857,7 +4857,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 303
+    "id": 334
   },
   {
     "state": "Steiermark",
@@ -4882,7 +4882,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 304
+    "id": 335
   },
   {
     "state": "Steiermark",
@@ -4906,7 +4906,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Nörning%2075+8273+Ebersdorf",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 305
+    "id": 336
   },
   {
     "state": "Steiermark",
@@ -4931,7 +4931,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 306
+    "id": 337
   },
   {
     "state": "Steiermark",
@@ -4956,7 +4956,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 307
+    "id": 338
   },
   {
     "state": "Steiermark",
@@ -4980,7 +4980,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Eggenberger%20Allee%2090+8020+Graz",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 308
+    "id": 339
   },
   {
     "state": "Steiermark",
@@ -5005,7 +5005,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 309
+    "id": 340
   },
   {
     "state": "Steiermark",
@@ -5030,7 +5030,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 310
+    "id": 341
   },
   {
     "state": "Steiermark",
@@ -5055,7 +5055,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 311
+    "id": 342
   },
   {
     "state": "Steiermark",
@@ -5080,7 +5080,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 312
+    "id": 343
   },
   {
     "state": "Steiermark",
@@ -5105,7 +5105,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 313
+    "id": 344
   },
   {
     "state": "Steiermark",
@@ -5130,7 +5130,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 314
+    "id": 345
   },
   {
     "state": "Steiermark",
@@ -5155,7 +5155,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 315
+    "id": 346
   },
   {
     "state": "Steiermark",
@@ -5180,7 +5180,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 316
+    "id": 347
   },
   {
     "category": "Kunstverein / Ausstellungshaus",
@@ -5203,7 +5203,7 @@
     "address": "Stadtpark 1, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 317
+    "id": 348
   },
   {
     "state": "Steiermark",
@@ -5226,7 +5226,7 @@
     "lon": 15.472442,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 318
+    "id": 349
   },
   {
     "category": "Kommerzielle Galerie",
@@ -5249,7 +5249,7 @@
     "address": "Bürgergasse 4, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 319
+    "id": 350
   },
   {
     "category": "Kommerzielle Galerie",
@@ -5272,7 +5272,7 @@
     "address": "Bürgergasse 5, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 320
+    "id": 351
   },
   {
     "state": "Steiermark",
@@ -5297,7 +5297,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 321
+    "id": 352
   },
   {
     "category": "Kommerzielle Galerie",
@@ -5320,7 +5320,7 @@
     "address": "Opernring 7 / Ecke Girardigasse, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 322
+    "id": 353
   },
   {
     "state": "Steiermark",
@@ -5343,7 +5343,7 @@
     "lon": 15.472339,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 323
+    "id": 354
   },
   {
     "category": "Artist-run / Galerie",
@@ -5366,7 +5366,7 @@
     "address": "Bürgergasse 11, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 324
+    "id": 355
   },
   {
     "category": "Kommerzielle Galerie",
@@ -5389,7 +5389,7 @@
     "address": "Opernring 7, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 325
+    "id": 356
   },
   {
     "state": "Steiermark",
@@ -5414,7 +5414,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 326
+    "id": 357
   },
   {
     "state": "Steiermark",
@@ -5439,7 +5439,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 327
+    "id": 358
   },
   {
     "state": "Steiermark",
@@ -5464,7 +5464,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 328
+    "id": 359
   },
   {
     "category": "Kunstverein / Galerie",
@@ -5487,7 +5487,7 @@
     "address": "Bürgergasse 4, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 329
+    "id": 360
   },
   {
     "state": "Steiermark",
@@ -5511,7 +5511,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Sackstraße%2018+8010+Graz",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 330
+    "id": 361
   },
   {
     "state": "Steiermark",
@@ -5534,7 +5534,7 @@
     "lon": 15.444615,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 331
+    "id": 362
   },
   {
     "state": "Steiermark",
@@ -5559,7 +5559,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 332
+    "id": 363
   },
   {
     "state": "Steiermark",
@@ -5584,7 +5584,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 333
+    "id": 364
   },
   {
     "state": "Steiermark",
@@ -5607,7 +5607,7 @@
     "lon": 15.434073,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 334
+    "id": 365
   },
   {
     "state": "Steiermark",
@@ -5632,7 +5632,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 335
+    "id": 366
   },
   {
     "category": "Museum / Ausstellungshaus",
@@ -5655,7 +5655,7 @@
     "address": "Friedrichgasse 41, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 336
+    "id": 367
   },
   {
     "state": "Steiermark",
@@ -5678,7 +5678,7 @@
     "lon": 15.436533,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 337
+    "id": 368
   },
   {
     "category": "Artist-run / Galerie",
@@ -5701,7 +5701,7 @@
     "address": "Plüddemanngasse 23, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.452,
-    "id": 338
+    "id": 369
   },
   {
     "category": "Hochschulgalerie / Non-Profit",
@@ -5724,7 +5724,7 @@
     "address": "Leechgasse 24, 8010 Graz",
     "lat": 47.078,
     "lon": 15.451,
-    "id": 339
+    "id": 370
   },
   {
     "category": "Fotoraum / Ateliergemeinschaft",
@@ -5747,7 +5747,7 @@
     "address": "Griesgasse 26, 8020 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 340
+    "id": 371
   },
   {
     "category": "Kommerzielle Galerie",
@@ -5770,7 +5770,7 @@
     "address": "Hauptplatz 6, 8010 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 341
+    "id": 372
   },
   {
     "category": "Kollektiv / Projektraum",
@@ -5793,7 +5793,7 @@
     "address": "Annenstraße 52, 8020 Graz",
     "lat": 47.0707,
     "lon": 15.4395,
-    "id": 342
+    "id": 373
   },
   {
     "state": "Steiermark",
@@ -5816,7 +5816,7 @@
     "lon": 15.442443,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 343
+    "id": 374
   },
   {
     "state": "Steiermark",
@@ -5839,7 +5839,7 @@
     "lon": 15.429083,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 344
+    "id": 375
   },
   {
     "category": "Atelierhaus / Ausstellungshaus",
@@ -5862,7 +5862,7 @@
     "address": "Puchstraße 41, 8020 Graz",
     "lat": 47.06,
     "lon": 15.43,
-    "id": 345
+    "id": 376
   },
   {
     "state": "Steiermark",
@@ -5887,7 +5887,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 346
+    "id": 377
   },
   {
     "state": "Steiermark",
@@ -5912,7 +5912,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 347
+    "id": 378
   },
   {
     "category": "Kommunale Galerie",
@@ -5935,7 +5935,7 @@
     "address": "Hauptplatz 15, 8720 Knittelfeld",
     "lat": 47.214,
     "lon": 14.828,
-    "id": 348
+    "id": 379
   },
   {
     "state": "Steiermark",
@@ -5960,7 +5960,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 349
+    "id": 380
   },
   {
     "state": "Steiermark",
@@ -5985,7 +5985,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 350
+    "id": 381
   },
   {
     "state": "Steiermark",
@@ -6008,7 +6008,7 @@
     "lon": 15.091678,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 351
+    "id": 382
   },
   {
     "state": "Steiermark",
@@ -6033,7 +6033,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 352
+    "id": 383
   },
   {
     "state": "Steiermark",
@@ -6056,7 +6056,7 @@
     "lon": 15.675305,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 353
+    "id": 384
   },
   {
     "state": "Steiermark",
@@ -6081,7 +6081,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 354
+    "id": 385
   },
   {
     "state": "Steiermark",
@@ -6106,7 +6106,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 355
+    "id": 386
   },
   {
     "state": "Tirol",
@@ -6131,7 +6131,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 356
+    "id": 387
   },
   {
     "state": "Tirol",
@@ -6156,7 +6156,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 357
+    "id": 388
   },
   {
     "state": "Tirol",
@@ -6179,7 +6179,7 @@
     "lon": 11.506052,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 358
+    "id": 389
   },
   {
     "state": "Tirol",
@@ -6204,7 +6204,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 359
+    "id": 390
   },
   {
     "state": "Tirol",
@@ -6227,7 +6227,7 @@
     "lon": 11.394296,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 360
+    "id": 391
   },
   {
     "state": "Tirol",
@@ -6250,7 +6250,7 @@
     "lon": 11.399518,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 361
+    "id": 392
   },
   {
     "state": "Tirol",
@@ -6275,7 +6275,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 362
+    "id": 393
   },
   {
     "state": "Tirol",
@@ -6300,7 +6300,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 363
+    "id": 394
   },
   {
     "state": "Tirol",
@@ -6323,7 +6323,7 @@
     "lon": 11.394815,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 364
+    "id": 395
   },
   {
     "state": "Tirol",
@@ -6346,7 +6346,7 @@
     "lon": 11.394292,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 365
+    "id": 396
   },
   {
     "state": "Tirol",
@@ -6369,7 +6369,7 @@
     "lon": 11.396113,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 366
+    "id": 397
   },
   {
     "state": "Tirol",
@@ -6394,7 +6394,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 367
+    "id": 398
   },
   {
     "state": "Tirol",
@@ -6419,7 +6419,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 368
+    "id": 399
   },
   {
     "state": "Tirol",
@@ -6442,7 +6442,7 @@
     "lon": 11.39735,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 369
+    "id": 400
   },
   {
     "state": "Tirol",
@@ -6465,7 +6465,7 @@
     "lon": 11.3984,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 370
+    "id": 401
   },
   {
     "state": "Tirol",
@@ -6488,7 +6488,7 @@
     "lon": 11.396538,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 371
+    "id": 402
   },
   {
     "state": "Tirol",
@@ -6511,7 +6511,7 @@
     "lon": 11.394292,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 372
+    "id": 403
   },
   {
     "state": "Tirol",
@@ -6536,7 +6536,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 373
+    "id": 404
   },
   {
     "state": "Tirol",
@@ -6560,7 +6560,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Amraser%20Straße%202+6020+Innsbruck",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 374
+    "id": 405
   },
   {
     "state": "Tirol",
@@ -6583,7 +6583,7 @@
     "lon": 11.433823,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 375
+    "id": 406
   },
   {
     "state": "Tirol",
@@ -6607,7 +6607,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Klostergasse%207+6020+Innsbruck",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 376
+    "id": 407
   },
   {
     "state": "Tirol",
@@ -6630,7 +6630,7 @@
     "lon": 11.39504,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 377
+    "id": 408
   },
   {
     "state": "Tirol",
@@ -6653,7 +6653,7 @@
     "lon": 11.394757,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 378
+    "id": 409
   },
   {
     "category": "Kommerzielle Galerie",
@@ -6676,7 +6676,7 @@
     "address": "Josef-Pirchl-Straße 6, 6370 Kitzbühel",
     "lat": 47.449,
     "lon": 12.391,
-    "id": 379
+    "id": 410
   },
   {
     "state": "Tirol",
@@ -6699,7 +6699,7 @@
     "lon": 12.391497,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 380
+    "id": 411
   },
   {
     "state": "Tirol",
@@ -6724,7 +6724,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 381
+    "id": 412
   },
   {
     "state": "Tirol",
@@ -6749,7 +6749,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 382
+    "id": 413
   },
   {
     "state": "Tirol",
@@ -6774,7 +6774,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 383
+    "id": 414
   },
   {
     "category": "Bankgalerie / Ausstellungsraum",
@@ -6797,7 +6797,7 @@
     "address": "Südtiroler Platz 9, 9900 Lienz",
     "lat": 46.829,
     "lon": 12.77,
-    "id": 384
+    "id": 415
   },
   {
     "state": "Tirol",
@@ -6822,7 +6822,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 385
+    "id": 416
   },
   {
     "category": "Projektraum / Galerie",
@@ -6845,7 +6845,7 @@
     "address": "Michaelsgasse 22, 9900 Lienz",
     "lat": 46.829,
     "lon": 12.77,
-    "id": 386
+    "id": 417
   },
   {
     "category": "Kommerzielle Galerie",
@@ -6868,7 +6868,7 @@
     "address": "Haslach 20, 6372 Oberndorf in Tirol",
     "lat": 47.5,
     "lon": 12.387,
-    "id": 387
+    "id": 418
   },
   {
     "state": "Tirol",
@@ -6893,7 +6893,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 388
+    "id": 419
   },
   {
     "state": "Tirol",
@@ -6918,7 +6918,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 389
+    "id": 420
   },
   {
     "state": "Tirol",
@@ -6943,7 +6943,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 390
+    "id": 421
   },
   {
     "state": "Tirol",
@@ -6968,7 +6968,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 391
+    "id": 422
   },
   {
     "state": "Tirol",
@@ -6991,7 +6991,7 @@
     "lon": 11.187694,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 392
+    "id": 423
   },
   {
     "state": "Tirol",
@@ -7016,7 +7016,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 393
+    "id": 424
   },
   {
     "category": "Kunstverein / Galerie",
@@ -7039,7 +7039,7 @@
     "address": "Am Raiffeisenplatz 1, 6700 Bludenz",
     "lat": 47.1553,
     "lon": 9.82216,
-    "id": 394
+    "id": 425
   },
   {
     "state": "Vorarlberg",
@@ -7062,7 +7062,7 @@
     "lon": 9.748038,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 395
+    "id": 426
   },
   {
     "category": "Kunstverein / Galerie",
@@ -7085,7 +7085,7 @@
     "address": "Kirchstraße 29, 6900 Bregenz",
     "lat": 47.5031,
     "lon": 9.7471,
-    "id": 396
+    "id": 427
   },
   {
     "state": "Vorarlberg",
@@ -7109,7 +7109,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Anton%20Schneider%20Str.%204a%20+6900+Bregenz",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 397
+    "id": 428
   },
   {
     "state": "Vorarlberg",
@@ -7132,7 +7132,7 @@
     "lon": 9.747236,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 398
+    "id": 429
   },
   {
     "state": "Vorarlberg",
@@ -7155,7 +7155,7 @@
     "lon": 9.744525,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 399
+    "id": 430
   },
   {
     "state": "Vorarlberg",
@@ -7178,7 +7178,7 @@
     "lon": 9.746638,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 400
+    "id": 431
   },
   {
     "state": "Vorarlberg",
@@ -7201,7 +7201,7 @@
     "lon": 9.74256,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 401
+    "id": 432
   },
   {
     "state": "Vorarlberg",
@@ -7224,7 +7224,7 @@
     "lon": 9.728083,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 402
+    "id": 433
   },
   {
     "state": "Vorarlberg",
@@ -7249,7 +7249,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 403
+    "id": 434
   },
   {
     "category": "Privatgalerie / Sammlung",
@@ -7272,7 +7272,7 @@
     "address": "Sebastianstraße 9, 6850 Dornbirn",
     "lat": 47.4124,
     "lon": 9.7417,
-    "id": 404
+    "id": 435
   },
   {
     "category": "Schaufenstergalerie / Projektraum",
@@ -7295,7 +7295,7 @@
     "address": "Schmiedgasse 12, 6800 Feldkirch",
     "lat": 47.2375,
     "lon": 9.5983,
-    "id": 405
+    "id": 436
   },
   {
     "state": "Vorarlberg",
@@ -7320,7 +7320,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 406
+    "id": 437
   },
   {
     "state": "Vorarlberg",
@@ -7345,7 +7345,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 407
+    "id": 438
   },
   {
     "state": "Vorarlberg",
@@ -7369,7 +7369,7 @@
     "sourceType": "Gallery Guide Austria 2026",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse",
-    "id": 408
+    "id": 439
   },
   {
     "state": "Vorarlberg",
@@ -7392,7 +7392,7 @@
     "lon": 9.655346,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 409
+    "id": 440
   },
   {
     "category": "Kunstverein / Ausstellungshaus",
@@ -7415,7 +7415,7 @@
     "address": "Kirchgasse 6, 6710 Nenzing",
     "lat": 47.184,
     "lon": 9.705,
-    "id": 410
+    "id": 441
   },
   {
     "category": "Kunstverein / Ausstellungshaus",
@@ -7438,7 +7438,7 @@
     "address": "Kronengasse 6, 6780 Schruns",
     "lat": 47.08136,
     "lon": 9.91842,
-    "id": 411
+    "id": 442
   },
   {
     "category": "Kunstverein / Galerie",
@@ -7461,7 +7461,7 @@
     "address": "Bahnhofstraße 12, 6780 Schruns",
     "lat": 47.0819,
     "lon": 9.918,
-    "id": 412
+    "id": 443
   },
   {
     "state": "Wien",
@@ -7484,7 +7484,7 @@
     "lon": 16.372734,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 413
+    "id": 444
   },
   {
     "state": "Wien",
@@ -7507,7 +7507,7 @@
     "lon": 16.365236,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 414
+    "id": 445
   },
   {
     "state": "Wien",
@@ -7530,7 +7530,7 @@
     "lon": 16.368181,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 415
+    "id": 446
   },
   {
     "state": "Wien",
@@ -7553,7 +7553,7 @@
     "lon": 16.37155,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 416
+    "id": 447
   },
   {
     "state": "Wien",
@@ -7578,7 +7578,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 417
+    "id": 448
   },
   {
     "state": "Wien",
@@ -7601,7 +7601,7 @@
     "lon": 16.389383,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 418
+    "id": 449
   },
   {
     "state": "Wien",
@@ -7624,7 +7624,7 @@
     "lon": 16.359142,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 419
+    "id": 450
   },
   {
     "state": "Wien",
@@ -7648,7 +7648,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Palais%20Fanto,%20Schwarzenbergpl.%206,%20Eingang%20Zaunergasse%201-3+1030+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 420
+    "id": 451
   },
   {
     "state": "Wien",
@@ -7673,7 +7673,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 421
+    "id": 452
   },
   {
     "state": "Wien",
@@ -7698,7 +7698,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 422
+    "id": 453
   },
   {
     "state": "Wien",
@@ -7723,7 +7723,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 423
+    "id": 454
   },
   {
     "state": "Wien",
@@ -7748,7 +7748,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 424
+    "id": 455
   },
   {
     "state": "Wien",
@@ -7773,7 +7773,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 425
+    "id": 456
   },
   {
     "state": "Wien",
@@ -7796,7 +7796,7 @@
     "lon": 16.34812,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 426
+    "id": 457
   },
   {
     "state": "Wien",
@@ -7819,7 +7819,7 @@
     "lon": 16.389383,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 427
+    "id": 458
   },
   {
     "state": "Wien",
@@ -7844,7 +7844,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 428
+    "id": 459
   },
   {
     "state": "Wien",
@@ -7869,7 +7869,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 429
+    "id": 460
   },
   {
     "state": "Wien",
@@ -7894,7 +7894,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 430
+    "id": 461
   },
   {
     "state": "Wien",
@@ -7919,7 +7919,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 431
+    "id": 462
   },
   {
     "state": "Wien",
@@ -7944,7 +7944,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 432
+    "id": 463
   },
   {
     "state": "Wien",
@@ -7969,7 +7969,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 433
+    "id": 464
   },
   {
     "state": "Wien",
@@ -7994,7 +7994,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 434
+    "id": 465
   },
   {
     "state": "Wien",
@@ -8018,7 +8018,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Mayerhofgasse%2012/15+1040+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 435
+    "id": 466
   },
   {
     "state": "Wien",
@@ -8043,7 +8043,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 436
+    "id": 467
   },
   {
     "state": "Wien",
@@ -8068,7 +8068,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 437
+    "id": 468
   },
   {
     "state": "Wien",
@@ -8093,7 +8093,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 438
+    "id": 469
   },
   {
     "state": "Wien",
@@ -8118,7 +8118,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 439
+    "id": 470
   },
   {
     "state": "Wien",
@@ -8141,7 +8141,7 @@
     "lon": 16.373047,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 440
+    "id": 471
   },
   {
     "state": "Wien",
@@ -8164,7 +8164,7 @@
     "lon": 16.35232,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 441
+    "id": 472
   },
   {
     "state": "Wien",
@@ -8189,7 +8189,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 442
+    "id": 473
   },
   {
     "state": "Wien",
@@ -8212,7 +8212,7 @@
     "lon": 16.383963,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 443
+    "id": 474
   },
   {
     "state": "Wien",
@@ -8235,7 +8235,7 @@
     "lon": 16.365837,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 444
+    "id": 475
   },
   {
     "state": "Wien",
@@ -8258,7 +8258,7 @@
     "lon": 16.35601,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 445
+    "id": 476
   },
   {
     "state": "Wien",
@@ -8281,7 +8281,7 @@
     "lon": 16.389383,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 446
+    "id": 477
   },
   {
     "state": "Wien",
@@ -8306,7 +8306,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 447
+    "id": 478
   },
   {
     "state": "Wien",
@@ -8329,7 +8329,7 @@
     "lon": 16.353209,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 448
+    "id": 479
   },
   {
     "state": "Wien",
@@ -8352,7 +8352,7 @@
     "lon": 16.373682,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 449
+    "id": 480
   },
   {
     "state": "Wien",
@@ -8377,7 +8377,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 450
+    "id": 481
   },
   {
     "state": "Wien",
@@ -8400,7 +8400,7 @@
     "lon": 16.389282,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 451
+    "id": 482
   },
   {
     "state": "Wien",
@@ -8423,7 +8423,7 @@
     "lon": 16.369177,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 452
+    "id": 483
   },
   {
     "state": "Wien",
@@ -8446,7 +8446,7 @@
     "lon": 16.366461,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 453
+    "id": 484
   },
   {
     "state": "Wien",
@@ -8469,7 +8469,7 @@
     "lon": 16.375172,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 454
+    "id": 485
   },
   {
     "state": "Wien",
@@ -8494,7 +8494,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 455
+    "id": 486
   },
   {
     "state": "Wien",
@@ -8517,7 +8517,7 @@
     "lon": 16.381617,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 456
+    "id": 487
   },
   {
     "state": "Wien",
@@ -8540,7 +8540,7 @@
     "lon": 16.354486,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 457
+    "id": 488
   },
   {
     "state": "Wien",
@@ -8563,7 +8563,7 @@
     "lon": 16.362879,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 458
+    "id": 489
   },
   {
     "state": "Wien",
@@ -8586,7 +8586,7 @@
     "lon": 16.379562,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 459
+    "id": 490
   },
   {
     "state": "Wien",
@@ -8611,7 +8611,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 460
+    "id": 491
   },
   {
     "state": "Wien",
@@ -8636,7 +8636,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 461
+    "id": 492
   },
   {
     "state": "Wien",
@@ -8661,7 +8661,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 462
+    "id": 493
   },
   {
     "state": "Wien",
@@ -8684,7 +8684,7 @@
     "lon": 16.363548,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 463
+    "id": 494
   },
   {
     "state": "Wien",
@@ -8707,7 +8707,7 @@
     "lon": 16.369888,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 464
+    "id": 495
   },
   {
     "state": "Wien",
@@ -8730,7 +8730,7 @@
     "lon": 16.366875,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 465
+    "id": 496
   },
   {
     "state": "Wien",
@@ -8753,7 +8753,7 @@
     "lon": 16.381697,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 466
+    "id": 497
   },
   {
     "state": "Wien",
@@ -8778,7 +8778,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 467
+    "id": 498
   },
   {
     "state": "Wien",
@@ -8801,7 +8801,7 @@
     "lon": 16.390181,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 468
+    "id": 499
   },
   {
     "state": "Wien",
@@ -8824,7 +8824,7 @@
     "lon": 16.351416,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 469
+    "id": 500
   },
   {
     "state": "Wien",
@@ -8849,7 +8849,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 470
+    "id": 501
   },
   {
     "state": "Wien",
@@ -8874,7 +8874,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 471
+    "id": 502
   },
   {
     "state": "Wien",
@@ -8899,7 +8899,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 472
+    "id": 503
   },
   {
     "state": "Wien",
@@ -8924,7 +8924,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 473
+    "id": 504
   },
   {
     "state": "Wien",
@@ -8948,7 +8948,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Piaristengasse%201/II%20&#40;Ecke%20Roter%20Hof&#41;+1080+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 474
+    "id": 505
   },
   {
     "state": "Wien",
@@ -8971,7 +8971,7 @@
     "lon": 16.341213,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 475
+    "id": 506
   },
   {
     "state": "Wien",
@@ -8994,7 +8994,7 @@
     "lon": 16.364811,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 476
+    "id": 507
   },
   {
     "state": "Wien",
@@ -9019,7 +9019,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 477
+    "id": 508
   },
   {
     "state": "Wien",
@@ -9044,7 +9044,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 478
+    "id": 509
   },
   {
     "state": "Wien",
@@ -9067,7 +9067,7 @@
     "lon": 16.368946,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 479
+    "id": 510
   },
   {
     "state": "Wien",
@@ -9092,7 +9092,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 480
+    "id": 511
   },
   {
     "state": "Wien",
@@ -9116,7 +9116,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Kalvarienberggasse%2046+1170+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 481
+    "id": 512
   },
   {
     "state": "Wien",
@@ -9139,7 +9139,7 @@
     "lon": 16.30821,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 482
+    "id": 513
   },
   {
     "state": "Wien",
@@ -9162,7 +9162,7 @@
     "lon": 16.36927,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 483
+    "id": 514
   },
   {
     "state": "Wien",
@@ -9185,7 +9185,7 @@
     "lon": 16.37532,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 484
+    "id": 515
   },
   {
     "state": "Wien",
@@ -9210,7 +9210,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 485
+    "id": 516
   },
   {
     "state": "Wien",
@@ -9233,7 +9233,7 @@
     "lon": 16.369883,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 486
+    "id": 517
   },
   {
     "state": "Wien",
@@ -9256,7 +9256,7 @@
     "lon": 16.35671,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 487
+    "id": 518
   },
   {
     "state": "Wien",
@@ -9281,7 +9281,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 488
+    "id": 519
   },
   {
     "state": "Wien",
@@ -9304,7 +9304,7 @@
     "lon": 16.369318,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 489
+    "id": 520
   },
   {
     "state": "Wien",
@@ -9327,7 +9327,7 @@
     "lon": 16.369415,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 490
+    "id": 521
   },
   {
     "state": "Wien",
@@ -9351,7 +9351,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Seilergasse%209%20/%20Top%204+1010+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 491
+    "id": 522
   },
   {
     "state": "Wien",
@@ -9376,7 +9376,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 492
+    "id": 523
   },
   {
     "state": "Wien",
@@ -9399,7 +9399,7 @@
     "lon": 16.356421,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 493
+    "id": 524
   },
   {
     "state": "Wien",
@@ -9424,7 +9424,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 494
+    "id": 525
   },
   {
     "state": "Wien",
@@ -9447,7 +9447,7 @@
     "lon": 16.370287,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 495
+    "id": 526
   },
   {
     "state": "Wien",
@@ -9470,7 +9470,7 @@
     "lon": 16.363157,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 496
+    "id": 527
   },
   {
     "state": "Wien",
@@ -9493,7 +9493,7 @@
     "lon": 16.374514,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 497
+    "id": 528
   },
   {
     "state": "Wien",
@@ -9516,7 +9516,7 @@
     "lon": 16.369314,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 498
+    "id": 529
   },
   {
     "state": "Wien",
@@ -9539,7 +9539,7 @@
     "lon": 16.36853,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 499
+    "id": 530
   },
   {
     "state": "Wien",
@@ -9562,7 +9562,7 @@
     "lon": 16.374622,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 500
+    "id": 531
   },
   {
     "state": "Wien",
@@ -9587,7 +9587,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 501
+    "id": 532
   },
   {
     "state": "Wien",
@@ -9612,7 +9612,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 502
+    "id": 533
   },
   {
     "state": "Wien",
@@ -9637,7 +9637,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 503
+    "id": 534
   },
   {
     "state": "Wien",
@@ -9660,7 +9660,7 @@
     "lon": 16.363241,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 504
+    "id": 535
   },
   {
     "state": "Wien",
@@ -9683,7 +9683,7 @@
     "lon": 16.347441,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 505
+    "id": 536
   },
   {
     "state": "Wien",
@@ -9706,7 +9706,7 @@
     "lon": 16.375854,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 506
+    "id": 537
   },
   {
     "state": "Wien",
@@ -9731,7 +9731,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 507
+    "id": 538
   },
   {
     "state": "Wien",
@@ -9754,7 +9754,7 @@
     "lon": 16.362753,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 508
+    "id": 539
   },
   {
     "state": "Wien",
@@ -9777,7 +9777,7 @@
     "lon": 16.356852,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 509
+    "id": 540
   },
   {
     "state": "Wien",
@@ -9800,7 +9800,7 @@
     "lon": 16.3734,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 510
+    "id": 541
   },
   {
     "state": "Wien",
@@ -9825,7 +9825,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 511
+    "id": 542
   },
   {
     "state": "Wien",
@@ -9850,7 +9850,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 512
+    "id": 543
   },
   {
     "state": "Wien",
@@ -9873,7 +9873,7 @@
     "lon": 16.374001,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 513
+    "id": 544
   },
   {
     "state": "Wien",
@@ -9896,7 +9896,7 @@
     "lon": 16.363707,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 514
+    "id": 545
   },
   {
     "state": "Wien",
@@ -9919,7 +9919,7 @@
     "lon": 16.367655,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 515
+    "id": 546
   },
   {
     "state": "Wien",
@@ -9944,7 +9944,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 516
+    "id": 547
   },
   {
     "state": "Wien",
@@ -9967,7 +9967,7 @@
     "lon": 16.36969,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 517
+    "id": 548
   },
   {
     "state": "Wien",
@@ -9990,7 +9990,7 @@
     "lon": 16.364548,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 518
+    "id": 549
   },
   {
     "state": "Wien",
@@ -10015,7 +10015,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 519
+    "id": 550
   },
   {
     "state": "Wien",
@@ -10038,7 +10038,7 @@
     "lon": 16.373898,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 520
+    "id": 551
   },
   {
     "state": "Wien",
@@ -10062,7 +10062,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Frauenstiftgasse%201+1210+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 521
+    "id": 552
   },
   {
     "state": "Wien",
@@ -10085,7 +10085,7 @@
     "lon": 16.366137,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 522
+    "id": 553
   },
   {
     "state": "Wien",
@@ -10110,7 +10110,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 523
+    "id": 554
   },
   {
     "state": "Wien",
@@ -10135,7 +10135,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 524
+    "id": 555
   },
   {
     "state": "Wien",
@@ -10160,7 +10160,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 525
+    "id": 556
   },
   {
     "state": "Wien",
@@ -10184,7 +10184,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Schillerplatz%203+1010+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 526
+    "id": 557
   },
   {
     "state": "Wien",
@@ -10209,7 +10209,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 527
+    "id": 558
   },
   {
     "state": "Wien",
@@ -10232,7 +10232,7 @@
     "lon": 16.360031,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 528
+    "id": 559
   },
   {
     "state": "Wien",
@@ -10255,7 +10255,7 @@
     "lon": 16.396267,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 529
+    "id": 560
   },
   {
     "state": "Wien",
@@ -10278,7 +10278,7 @@
     "lon": 16.358116,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 530
+    "id": 561
   },
   {
     "state": "Wien",
@@ -10301,7 +10301,7 @@
     "lon": 16.368088,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 531
+    "id": 562
   },
   {
     "state": "Wien",
@@ -10325,7 +10325,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Kohlgasse%2051/2+1050+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 532
+    "id": 563
   },
   {
     "state": "Wien",
@@ -10350,7 +10350,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 533
+    "id": 564
   },
   {
     "state": "Wien",
@@ -10373,7 +10373,7 @@
     "lon": 16.325211,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 534
+    "id": 565
   },
   {
     "state": "Wien",
@@ -10398,7 +10398,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 535
+    "id": 566
   },
   {
     "state": "Wien",
@@ -10423,7 +10423,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 536
+    "id": 567
   },
   {
     "state": "Wien",
@@ -10448,7 +10448,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 537
+    "id": 568
   },
   {
     "state": "Wien",
@@ -10472,7 +10472,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=U4%20Center%20•%20Stiege%20B%20•%202.%20Obergeschoß%20Schönbrunner%20Straße%20218-220+1120+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 538
+    "id": 569
   },
   {
     "state": "Wien",
@@ -10495,7 +10495,7 @@
     "lon": 16.369345,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 539
+    "id": 570
   },
   {
     "state": "Wien",
@@ -10519,7 +10519,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Spiegelgasse%2021+1010+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 540
+    "id": 571
   },
   {
     "state": "Wien",
@@ -10542,7 +10542,7 @@
     "lon": 16.392185,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 541
+    "id": 572
   },
   {
     "state": "Wien",
@@ -10565,7 +10565,7 @@
     "lon": 16.349155,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 542
+    "id": 573
   },
   {
     "state": "Wien",
@@ -10588,7 +10588,7 @@
     "lon": 16.366428,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 543
+    "id": 574
   },
   {
     "state": "Wien",
@@ -10611,7 +10611,7 @@
     "lon": 16.370731,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 544
+    "id": 575
   },
   {
     "state": "Wien",
@@ -10634,7 +10634,7 @@
     "lon": 16.36969,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 545
+    "id": 576
   },
   {
     "state": "Wien",
@@ -10657,7 +10657,7 @@
     "lon": 16.342897,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 546
+    "id": 577
   },
   {
     "state": "Wien",
@@ -10680,7 +10680,7 @@
     "lon": 16.363466,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 547
+    "id": 578
   },
   {
     "state": "Wien",
@@ -10705,7 +10705,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 548
+    "id": 579
   },
   {
     "state": "Wien",
@@ -10730,7 +10730,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 549
+    "id": 580
   },
   {
     "state": "Wien",
@@ -10755,7 +10755,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 550
+    "id": 581
   },
   {
     "state": "Wien",
@@ -10778,7 +10778,7 @@
     "lon": 16.368139,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 551
+    "id": 582
   },
   {
     "state": "Wien",
@@ -10801,7 +10801,7 @@
     "lon": 16.358425,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 552
+    "id": 583
   },
   {
     "state": "Wien",
@@ -10826,7 +10826,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 553
+    "id": 584
   },
   {
     "state": "Wien",
@@ -10851,7 +10851,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 554
+    "id": 585
   },
   {
     "state": "Wien",
@@ -10876,7 +10876,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 555
+    "id": 586
   },
   {
     "state": "Wien",
@@ -10901,7 +10901,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 556
+    "id": 587
   },
   {
     "state": "Wien",
@@ -10926,7 +10926,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 557
+    "id": 588
   },
   {
     "state": "Wien",
@@ -10951,7 +10951,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 558
+    "id": 589
   },
   {
     "state": "Wien",
@@ -10976,7 +10976,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 559
+    "id": 590
   },
   {
     "state": "Wien",
@@ -11001,7 +11001,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 560
+    "id": 591
   },
   {
     "state": "Wien",
@@ -11024,7 +11024,7 @@
     "lon": 16.393286,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 561
+    "id": 592
   },
   {
     "state": "Wien",
@@ -11047,7 +11047,7 @@
     "lon": 16.361788,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 562
+    "id": 593
   },
   {
     "state": "Wien",
@@ -11070,7 +11070,7 @@
     "lon": 16.371599,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 563
+    "id": 594
   },
   {
     "state": "Wien",
@@ -11095,7 +11095,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 564
+    "id": 595
   },
   {
     "state": "Wien",
@@ -11120,7 +11120,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 565
+    "id": 596
   },
   {
     "state": "Wien",
@@ -11143,7 +11143,7 @@
     "lon": 16.365231,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 566
+    "id": 597
   },
   {
     "state": "Wien",
@@ -11168,7 +11168,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 567
+    "id": 598
   },
   {
     "state": "Wien",
@@ -11193,7 +11193,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 568
+    "id": 599
   },
   {
     "state": "Wien",
@@ -11218,7 +11218,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 569
+    "id": 600
   },
   {
     "state": "Wien",
@@ -11241,7 +11241,7 @@
     "lon": 16.351158,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 570
+    "id": 601
   },
   {
     "state": "Wien",
@@ -11264,7 +11264,7 @@
     "lon": 16.367073,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 571
+    "id": 602
   },
   {
     "state": "Wien",
@@ -11289,7 +11289,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 572
+    "id": 603
   },
   {
     "state": "Wien",
@@ -11312,7 +11312,7 @@
     "lon": 16.376547,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 573
+    "id": 604
   },
   {
     "state": "Wien",
@@ -11335,7 +11335,7 @@
     "lon": 16.370127,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 574
+    "id": 605
   },
   {
     "state": "Wien",
@@ -11358,7 +11358,7 @@
     "lon": 16.359142,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 575
+    "id": 606
   },
   {
     "state": "Wien",
@@ -11381,7 +11381,7 @@
     "lon": 16.365952,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 576
+    "id": 607
   },
   {
     "state": "Wien",
@@ -11404,7 +11404,7 @@
     "lon": 16.373589,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 577
+    "id": 608
   },
   {
     "state": "Wien",
@@ -11427,7 +11427,7 @@
     "lon": 16.381603,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 578
+    "id": 609
   },
   {
     "state": "Wien",
@@ -11452,7 +11452,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 579
+    "id": 610
   },
   {
     "state": "Wien",
@@ -11477,7 +11477,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 580
+    "id": 611
   },
   {
     "state": "Wien",
@@ -11500,7 +11500,7 @@
     "lon": 16.363371,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 581
+    "id": 612
   },
   {
     "state": "Wien",
@@ -11525,7 +11525,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 582
+    "id": 613
   },
   {
     "state": "Wien",
@@ -11550,7 +11550,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 583
+    "id": 614
   },
   {
     "state": "Wien",
@@ -11573,7 +11573,7 @@
     "lon": 16.359919,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 584
+    "id": 615
   },
   {
     "state": "Wien",
@@ -11596,7 +11596,7 @@
     "lon": 16.358864,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 585
+    "id": 616
   },
   {
     "state": "Wien",
@@ -11619,7 +11619,7 @@
     "lon": 16.359308,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 586
+    "id": 617
   },
   {
     "state": "Wien",
@@ -11642,7 +11642,7 @@
     "lon": 16.357834,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 587
+    "id": 618
   },
   {
     "state": "Wien",
@@ -11665,7 +11665,7 @@
     "lon": 16.369247,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 588
+    "id": 619
   },
   {
     "state": "Wien",
@@ -11690,7 +11690,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 589
+    "id": 620
   },
   {
     "state": "Wien",
@@ -11715,7 +11715,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 590
+    "id": 621
   },
   {
     "state": "Wien",
@@ -11738,7 +11738,7 @@
     "lon": 16.392532,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 591
+    "id": 622
   },
   {
     "state": "Wien",
@@ -11761,7 +11761,7 @@
     "lon": 16.380955,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 592
+    "id": 623
   },
   {
     "state": "Wien",
@@ -11786,7 +11786,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 593
+    "id": 624
   },
   {
     "state": "Wien",
@@ -11811,7 +11811,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 594
+    "id": 625
   },
   {
     "state": "Wien",
@@ -11836,7 +11836,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 595
+    "id": 626
   },
   {
     "state": "Wien",
@@ -11861,7 +11861,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 596
+    "id": 627
   },
   {
     "state": "Wien",
@@ -11884,7 +11884,7 @@
     "lon": 16.365398,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 597
+    "id": 628
   },
   {
     "state": "Wien",
@@ -11909,7 +11909,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 598
+    "id": 629
   },
   {
     "state": "Wien",
@@ -11934,7 +11934,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 599
+    "id": 630
   },
   {
     "state": "Wien",
@@ -11957,7 +11957,7 @@
     "lon": 16.381487,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 600
+    "id": 631
   },
   {
     "state": "Wien",
@@ -11982,7 +11982,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 601
+    "id": 632
   },
   {
     "state": "Wien",
@@ -12006,7 +12006,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Absberggasse%2027/%20Stiege%203+1100+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 602
+    "id": 633
   },
   {
     "state": "Wien",
@@ -12029,7 +12029,7 @@
     "lon": 16.350216,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 603
+    "id": 634
   },
   {
     "state": "Wien",
@@ -12052,7 +12052,7 @@
     "lon": 16.366892,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 604
+    "id": 635
   },
   {
     "state": "Wien",
@@ -12077,7 +12077,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 605
+    "id": 636
   },
   {
     "state": "Wien",
@@ -12102,7 +12102,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 606
+    "id": 637
   },
   {
     "state": "Wien",
@@ -12127,7 +12127,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 607
+    "id": 638
   },
   {
     "state": "Wien",
@@ -12150,7 +12150,7 @@
     "lon": 16.365786,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 608
+    "id": 639
   },
   {
     "state": "Wien",
@@ -12175,7 +12175,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 609
+    "id": 640
   },
   {
     "state": "Wien",
@@ -12198,7 +12198,7 @@
     "lon": 16.373013,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 610
+    "id": 641
   },
   {
     "state": "Wien",
@@ -12221,7 +12221,7 @@
     "lon": 16.369188,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 611
+    "id": 642
   },
   {
     "state": "Wien",
@@ -12246,7 +12246,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 612
+    "id": 643
   },
   {
     "state": "Wien",
@@ -12269,7 +12269,7 @@
     "lon": 16.377378,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 613
+    "id": 644
   },
   {
     "state": "Wien",
@@ -12294,7 +12294,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 614
+    "id": 645
   },
   {
     "state": "Wien",
@@ -12317,7 +12317,7 @@
     "lon": 16.412571,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 615
+    "id": 646
   },
   {
     "state": "Wien",
@@ -12342,7 +12342,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 616
+    "id": 647
   },
   {
     "state": "Wien",
@@ -12365,7 +12365,7 @@
     "lon": 16.368532,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 617
+    "id": 648
   },
   {
     "state": "Wien",
@@ -12388,7 +12388,7 @@
     "lon": 16.355961,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 618
+    "id": 649
   },
   {
     "state": "Wien",
@@ -12411,7 +12411,7 @@
     "lon": 16.381617,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 619
+    "id": 650
   },
   {
     "state": "Wien",
@@ -12436,7 +12436,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 620
+    "id": 651
   },
   {
     "state": "Wien",
@@ -12461,7 +12461,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 621
+    "id": 652
   },
   {
     "state": "Wien",
@@ -12484,7 +12484,7 @@
     "lon": 16.418364,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 622
+    "id": 653
   },
   {
     "state": "Wien",
@@ -12509,7 +12509,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 623
+    "id": 654
   },
   {
     "state": "Wien",
@@ -12534,7 +12534,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 624
+    "id": 655
   },
   {
     "state": "Wien",
@@ -12557,7 +12557,7 @@
     "lon": 16.376635,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 625
+    "id": 656
   },
   {
     "state": "Wien",
@@ -12580,7 +12580,7 @@
     "lon": 16.379871,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 626
+    "id": 657
   },
   {
     "state": "Wien",
@@ -12605,7 +12605,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 627
+    "id": 658
   },
   {
     "state": "Wien",
@@ -12629,7 +12629,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=auf%20Anfrage+1160+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 628
+    "id": 659
   },
   {
     "state": "Wien",
@@ -12653,7 +12653,7 @@
     "googleMaps": "https://maps.google.at/maps?f=q&source=embed&hl=de&geocode=&q=Wien%203,%20Eslarng.%201/54+1030+Wien",
     "sourceType": "Art-Navi / Google-Maps-Link",
     "coordinatePrecision": "Ort",
-    "id": 629
+    "id": 660
   },
   {
     "state": "Wien",
@@ -12676,7 +12676,7 @@
     "lon": 16.392113,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 630
+    "id": 661
   },
   {
     "state": "Wien",
@@ -12699,7 +12699,7 @@
     "lon": 16.375811,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 631
+    "id": 662
   },
   {
     "state": "Wien",
@@ -12722,7 +12722,7 @@
     "lon": 16.362333,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 632
+    "id": 663
   },
   {
     "state": "Wien",
@@ -12745,7 +12745,7 @@
     "lon": 16.342106,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 633
+    "id": 664
   },
   {
     "state": "Wien",
@@ -12770,7 +12770,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 634
+    "id": 665
   },
   {
     "state": "Wien",
@@ -12795,7 +12795,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 635
+    "id": 666
   },
   {
     "state": "Wien",
@@ -12818,7 +12818,7 @@
     "lon": 16.357121,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 636
+    "id": 667
   },
   {
     "state": "Wien",
@@ -12841,7 +12841,7 @@
     "lon": 16.365837,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 637
+    "id": 668
   },
   {
     "state": "Wien",
@@ -12866,7 +12866,7 @@
     "sourceType": "Art-Navi / Google-Maps-Link",
     "geocode": "Photon/OSM address match",
     "coordinatePrecision": "Adresse / Geocoding",
-    "id": 638
+    "id": 669
   },
   {
     "state": "Wien",
@@ -12889,7 +12889,7 @@
     "lon": 16.381773,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 639
+    "id": 670
   },
   {
     "state": "Wien",
@@ -12912,7 +12912,7 @@
     "lon": 16.368944,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 640
+    "id": 671
   },
   {
     "state": "Wien",
@@ -12935,6 +12935,6 @@
     "lon": 16.342091,
     "sourceType": "Gallery Guide Austria 2026",
     "coordinatePrecision": "Adresse",
-    "id": 641
+    "id": 672
   }
 ]
