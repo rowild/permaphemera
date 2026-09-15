@@ -20,11 +20,17 @@ const counts = {}
 for (const c of collections) {
   const fields = await api('GET', `/fields/${c}`)
   const hasTranslations = fields.some((f) => f.field === 'translations')
+  // Real columns only: reverse-relation alias fields (schema: null) — e.g. participations,
+  // statements, further_venues, sponsors, venues, exhibitions, persons, roles, locations,
+  // items, children — are not part of the item shape and must never be written or restored.
+  const keep = new Set(fields.filter((f) => f.schema !== null).map((f) => f.field))
+  if (hasTranslations) keep.add('translations')
   const rows = await api('GET', `/items/${c}?limit=-1&sort=sort&fields=*${hasTranslations ? ',translations.*' : ''}`)
   for (const row of rows) {
     if (hasTranslations) row.translations = row.translations.map(({ id, [`${c.replace(/^pp_/, '')}_id`]: _h, ...rest }) => rest)
     for (const k of ['user_created', 'user_updated', 'date_created', 'date_updated']) delete row[k]
     for (const f of FILE_FIELDS[c] ?? []) if (row[f]) fileIds.add(row[f])
+    for (const k of Object.keys(row)) if (!keep.has(k)) delete row[k]
   }
   writeFileSync(join(target, `${c}.json`), JSON.stringify(rows, null, 2) + '\n')
   counts[c] = rows.length

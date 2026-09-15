@@ -23,7 +23,7 @@ export function loadEnv() {
 }
 
 export async function login(env) {
-  const base = env.PUBLIC_URL || 'http://localhost:8077'
+  const base = process.env.DIRECTUS_URL || env.PUBLIC_URL || 'http://localhost:8077'
   let token = env.ADMIN_TOKEN
 
   if (token === 'replace-with-64-hex-chars') throw new Error('ADMIN_TOKEN in .env is still the placeholder; generate one with: openssl rand -hex 32')

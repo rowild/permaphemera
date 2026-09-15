@@ -49,6 +49,36 @@ async function fileIdFor(value) {
   return result.id
 }
 
+const keepFieldsCache = new Map()
+async function keepFieldsFor(collection) {
+  if (keepFieldsCache.has(collection)) return keepFieldsCache.get(collection)
+  const fields = await api('GET', `/fields/${collection}`)
+  // Real columns only, same guard as export.mjs: reverse-relation alias fields (schema: null)
+  // must never be posted, whether the export that produced them was fixed or not.
+  const keep = new Set(fields.filter((f) => f.schema !== null).map((f) => f.field))
+  if (fields.some((f) => f.field === 'translations')) keep.add('translations')
+  keepFieldsCache.set(collection, keep)
+  return keep
+}
+
+// pp_navigation_items self-references via `parent`; on an empty instance a child row can
+// precede its parent in the source array (sorted by `sort`, not by hierarchy), so the
+// self-referencing FK insert fails. No-op for every other collection (no `parent` field).
+function parentFirst(rows) {
+  if (!rows.some((r) => 'parent' in r)) return rows
+  const byId = new Map(rows.map((r) => [r.id, r]))
+  const ordered = []
+  const seen = new Set()
+  const visit = (row) => {
+    if (seen.has(row.id)) return
+    seen.add(row.id)
+    if (row.parent && byId.has(row.parent)) visit(byId.get(row.parent))
+    ordered.push(row)
+  }
+  for (const row of rows) visit(row)
+  return ordered
+}
+
 async function exists(collection, record) {
   if (typeof record.id === 'string') {
     try { await api('GET', `/items/${collection}/${record.id}?fields=id`); return true } catch (e) { if (e.status === 403 || e.status === 404) return false; throw e }
@@ -63,13 +93,15 @@ const totals = {}
 for (const collection of ORDER) {
   const path = join(source, `${collection}.json`)
   if (!existsSync(path)) { console.log(`- ${collection} (no file)`); continue }
-  const rows = read(collection)
+  const rows = parentFirst(read(collection))
   let created = 0
   for (const row of rows) {
     if (await exists(collection, row)) { console.log(`= ${collection} ${row.id}`); continue }
     const payload = { ...row }
     for (const f of FILE_FIELDS[collection] ?? []) payload[f] = await fileIdFor(row[f])
     if (typeof payload.id === 'number') delete payload.id // junction ids are autoincrement
+    const keep = await keepFieldsFor(collection)
+    for (const k of Object.keys(payload)) if (!keep.has(k)) delete payload[k]
     await api('POST', `/items/${collection}`, payload)
     console.log(`+ ${collection} ${row.id}`)
     created += 1
