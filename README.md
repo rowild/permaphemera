@@ -6,8 +6,8 @@ This is one repository with two runnable parts and the planning material.
 
 | Folder         | What it is                                          | Docs                        |
 |----------------|-----------------------------------------------------|-----------------------------|
-| `frontend/`    | Nuxt 4 site. Static SPA. Reads local JSON today.    | `frontend/README.md`        |
-| `directus/`    | Directus 11.17.4 in Docker. Future content backend. | `directus/README.md`        |
+| `frontend/`    | Nuxt 4 site. Static SPA. Reads from Directus at runtime. | `frontend/README.md`  |
+| `directus/`    | Directus 11.17.4 in Docker. The content backend.    | `directus/README.md`        |
 | `_Plans/`      | Architecture plan, design mockups, ideas.           | `_Plans/exhibitions-plan.md`|
 | `.claude/`     | Project skills and design critiques for Claude Code.| `.claude/skills/`           |
 
@@ -30,7 +30,6 @@ docker compose up -d
 
 ## Where we are
 
-The frontend is live as a static site. Its JSON data in `frontend/app/data/`
-already mirrors the Directus schema from `_Plans/exhibitions-plan.md` section 2.
-The next step is to build those collections in Directus and swap the JSON
-adapter for the Directus SDK. See Phase 4 in the plan.
+The frontend is live as a static site, and it reads its content from the
+local Directus instance at runtime (`useArchiveSource()`); `frontend/app/data/`
+no longer exists. The next step is hosting Directus. See Phase 4 in the plan.

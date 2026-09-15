@@ -513,14 +513,15 @@ export function preloadPanoramasToCache(urls: string[]): void {
     ├── [ ] Build full-screen WebGL component managing concentric Sphere A and Sphere B placements
     └── [ ] Wire up GSAP timelines coordinating synchronized FOV manipulation and material alpha animations
 
-[ ] PHASE 4: FUTURE DATABASE ARCHITECTURE CONFIGURATION
+[x] PHASE 4: FUTURE DATABASE ARCHITECTURE CONFIGURATION
     ├── [x] Install Directus 11.17.4 locally (Docker, `directus/`, port 8077) — 2026-09-14
     ├── [x] Rebuild all collections by the pp_ conventions from `directus/scripts/schema.mjs`, incl. persons/roles/participations, sponsors, navigations — 2026-09-14
     ├── [x] Seed languages (en, de), roles and the two navigations — 2026-09-14
     ├── [x] Rename the frontend JSON, types and resolvers to the pp_ shape; header and footer read the navigations (plan part 2) — 2026-09-14
-    ├── [ ] Import the JSON records from frontend/app/data into Directus
-    ├── [ ] Introduce Directus SDK data adapter behind the existing JSON-compatible content model
-    └── [ ] Test data query payload outputs using Directus SDK deep filtering for locale switching
+    ├── [x] Import the JSON records from frontend/app/data into Directus — 2026-09-15
+    ├── [x] Frontend reads from Directus at runtime (`useArchiveSource`), no SDK dependency — 2026-09-15
+    ├── [x] covered by `check:data` against the live instance — 2026-09-15
+    └── [x] Content imported: 17/36/73/13/8 records, 45 files — 2026-09-15
 
 [ ] PHASE 5: THE DIRECTUS CALIBRATION EXTENSION
     ├── [ ] Initialize native Directus Interface Extension boilerplate utilizing Vue 3

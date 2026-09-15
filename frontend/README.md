@@ -28,7 +28,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 - a responsive temple-mark identity with browser, Apple touch, and installable web-app icons;
 - a two-accent design system using one semantic archive red and one decorative archive ochre across light and dark surfaces.
 
-The prototype does not connect to Directus or another live backend. It uses local records in the Directus shape (`app/data/pp_*.json`) carrying inline English and German translations, and bundled UI locale files. Production is configured as a client-rendered SPA for static shared hosting; provider-specific infrastructure remains future work. Exhibition pages open their exported 360-degree tour in the embedded viewer from `public/media/tour-viewer/`; a record whose `tour` is `null` shows the entry point as unavailable. `pnpm tour:publish <tour id>` copies one exported tour into `public/media/tours/`, links it to its exhibition record and runs the public-namespace check; deploying stays a separate, explicit step.
+The site reads its content from Directus at runtime; see Data Source below. Production is configured as a client-rendered SPA for static shared hosting; provider-specific infrastructure remains future work. Exhibition pages open their exported 360-degree tour in the embedded viewer from `public/media/tour-viewer/`; a record whose `tour` is `null` shows the entry point as unavailable. `pnpm tour:publish <tour id>` copies one exported tour into `public/media/tours/`, links it to its exhibition record and runs the public-namespace check; deploying stays a separate, explicit step.
 
 The active architecture plan is `../_Plans/exhibitions-plan.md`; the design references are under `../_Plans/designs/landing-page/`. The Directus backend lives in `../directus/`. All of these are part of the same repository; see the root `README.md`.
 
@@ -36,6 +36,7 @@ The active architecture plan is `../_Plans/exhibitions-plan.md`; the design refe
 
 - Node.js 24.11.1, selected through `.nvmrc`
 - pnpm 11 or newer
+- a running Directus (see `../directus/README.md`)
 
 ## Commands
 
@@ -90,9 +91,7 @@ The static SPA build succeeds. It currently emits non-fatal Vite notices for roo
 
 ```text
 app/components/                reusable visual components
-app/composables/               local archive data adapter
-app/data/                      JSON content source
-app/data/pp_exhibition_participations.json  exhibition-to-person participation records
+app/composables/               Directus-backed archive data adapter
 i18n/locales/                  English and German UI/accessibility messages
 app/pages/index.vue            landing page composition and interactions
 app/pages/about.vue            bilingual project statement
@@ -116,9 +115,9 @@ changelog.md                   version history
 
 ## Data Source
 
-Local JSON files live in `app/data/` as the local JSON collections that mirror the Directus schema: `pp_locations.json` (cities, with the coordinates radius search needs), `pp_venues.json` (buildings, each with a `type` and a `location`), `pp_persons.json`, `pp_exhibitions.json`, and the `pp_exhibition_participations.json` junction. Each record carries its own `translations[]` array; in the frontend all languages are equal and the active locale is selected by `pickTranslation`, falling back `locale → en → first available`, while in the backend English is first — it is the language entered into Directus and every other translation is derived from it. `status` (`draft` | `published`) records provenance, not visibility: draft records render, gated by the single `VISIBLE_STATUSES` constant in `app/utils/contentStatus.ts`. `app/composables/useArchiveData.ts` resolves the joins for the active locale. UI, navigation, SEO, accessibility, and privacy-notice messages live in `i18n/locales/en.json` and `i18n/locales/de.json`.
+The site fetches its content from Directus once at app start (`useArchiveSource()` in `app.vue`, URL from `NUXT_PUBLIC_DIRECTUS_URL`, default `http://localhost:8077`) into one shared in-memory snapshot; `app/data/` no longer exists. The snapshot mirrors the Directus schema, collection by collection: `pp_locations` (cities, with the coordinates radius search needs), `pp_venues` (buildings, each with a `type` and a `location`), `pp_persons`, `pp_exhibitions`, and the `pp_exhibition_participations` junction, among others. Each record carries its own `translations[]` array; in the frontend all languages are equal and the active locale is selected by `pickTranslation`, falling back `locale → en → first available`, while in the backend English is first — it is the language entered into Directus and every other translation is derived from it. `status` (`draft` | `published`) records provenance, not visibility: draft records render, gated by the single `VISIBLE_STATUSES` constant in `app/utils/contentStatus.ts`. `app/composables/useArchiveData.ts` resolves the joins for the active locale. UI, navigation, SEO, accessibility, and privacy-notice messages live in `i18n/locales/en.json` and `i18n/locales/de.json`.
 
-The content stays inside the application bundle instead of `public/`: the existing data adapter uses static local imports, so locale changes require neither a remote server nor client-side HTTP requests. This keeps the current frontend-only architecture intact while leaving the adapter boundary available for a future Directus migration.
+The snapshot is fetched once and held in memory: locale changes read the same snapshot and require no further requests to Directus. If Directus is unreachable at app start, the page shows the archive-unavailable error; run `bash ../directus/scripts/setup.sh --status` to check it.
 
 ## Implemented Routes And Sections
 
