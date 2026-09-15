@@ -49,11 +49,11 @@ async function main() {
 
   const checks = [
     ['locations count is 17', locations.length === 17],
-    ['venues count is 36', venues.length === 36],
-    ['persons count is 73', persons.length === 73],
+    ['venues count is 37', venues.length === 37],
+    ['persons count is 77', persons.length === 77],
     ['roles are artist and curator', roles.map((role) => role.slug).sort().join(',') === 'artist,curator'],
-    ['exhibitions count is 13', exhibitions.length === 13],
-    ['participations count is 15', participations.length === 15],
+    ['exhibitions count is 17', exhibitions.length === 17],
+    ['participations count is 19', participations.length === 19],
     ['sponsors count is 8', sponsors.length === 8],
     ['navigations are main and footer', navigations.map((nav) => nav.key).sort().join(',') === 'footer,main'],
     ['navigation items count is 18', navigationItems.length === 18],
