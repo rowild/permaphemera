@@ -3,7 +3,9 @@
     "homeAria": "PERMAPHEMERA home",
     "skipToContent": "Skip to content",
     "headerTagline": "A Curated Archive of Exhibitions",
-    "seoDescription": "A curated Austrian archive of 360 degree exhibition documentation."
+    "seoDescription": "A curated Austrian archive of 360 degree exhibition documentation.",
+    "archiveLoading": "Loading the archive…",
+    "archiveUnavailable": "The archive could not be loaded from {url}."
   },
   "navigation": {
     "archive": "Home",
