@@ -18,6 +18,23 @@ const { api } = session
 const read = (name) => JSON.parse(readFileSync(join(source, `${name}.json`), 'utf8'))
 const isUuid = (v) => typeof v === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v)
 
+// Every translations table FKs to languages_code, so the two languages must exist before any
+// collection with translations can be restored onto an empty instance — seed.mjs normally
+// creates them, but that runs after this script in the documented restore order. Ensure them
+// here too, with the exact values seed.mjs uses, so seed.mjs reports "=" afterwards. Prefer
+// a languages.json in the source dir if a future export carries one.
+const DEFAULT_LANGUAGES = [
+  { code: 'en', name: 'English', direction: 'ltr' },
+  { code: 'de', name: 'Deutsch', direction: 'ltr' },
+]
+const languageRows = existsSync(join(source, 'languages.json')) ? read('languages') : DEFAULT_LANGUAGES
+for (const lang of languageRows) {
+  const existing = (await api('GET', `/items/languages?filter[code][_eq]=${lang.code}&limit=1&fields=code`))[0]
+  if (existing) { console.log(`= language ${lang.code}`); continue }
+  await api('POST', '/items/languages', lang)
+  console.log(`+ language ${lang.code}`)
+}
+
 const FILE_FIELDS = { pp_venues: ['image', 'hero_image'], pp_exhibitions: ['image', 'source_pdf'], pp_sponsors: ['logo'] }
 
 // Dependency order. Entities first, then junctions.
