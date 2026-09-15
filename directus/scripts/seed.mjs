@@ -1,9 +1,20 @@
 // directus/scripts/seed.mjs
 // Reference data the site needs on day one. Safe to run twice.
 //   node scripts/seed.mjs
+//   node scripts/seed.mjs --status   # report counts only, create nothing
 import { loadEnv, login } from './lib.mjs'
 
+const statusOnly = process.argv.includes('--status')
+
 const { api } = await login(loadEnv())
+
+if (statusOnly) {
+  for (const c of ['languages', 'pp_roles', 'pp_navigations', 'pp_navigation_items']) {
+    const n = (await api('GET', `/items/${c}?aggregate[count]=*`))[0].count
+    console.log(`  ${c}: ${n}`)
+  }
+  process.exit(0)
+}
 
 const one = async (collection, filter) => {
   const q = Object.entries(filter).map(([k, v]) => `filter[${k}][_eq]=${encodeURIComponent(v)}`).join('&')

@@ -22,29 +22,36 @@ docker compose down         # stop
 docker compose pull         # fetch a newer image after changing the tag
 ```
 
-## Schema scripts
+## Scripts
 
-The schema is data: `scripts/schema.mjs` describes entities, junctions and form
-layouts; `scripts/naming.mjs` derives every junction, translation-table and FK
-name from the conventions in `../_Plans/directus-schema-conventions.md`
-(prefix `pp_`). Never create or rename a collection in the admin app.
+`bash scripts/setup.sh` is the entry point on any machine. It reports what exists, asks before each step and never deletes content:
 
 ```bash
-node --test scripts/*.test.mjs     # unit tests for naming and the builder
-node scripts/create-schema.mjs     # create what is missing (idempotent)
-node scripts/seed.mjs              # languages, roles, navigations (idempotent)
-node scripts/apply-settings.mjs    # project name, colour, default language
-node scripts/check-conventions.mjs # assert the live schema follows the rules
-node scripts/snapshot.mjs          # export schema/snapshot.yaml
-bash scripts/reset.sh --yes        # wipe database/data.db and run all of the above
+bash scripts/setup.sh                 # step by step
+bash scripts/setup.sh --yes           # all steps, no questions
+bash scripts/setup.sh --status        # report only
+bash scripts/setup.sh --from <dir>    # plus content import
 ```
 
-A fresh database starts without any browser interaction: `PROJECT_NAME`,
-`PROJECT_OWNER` and `ADMIN_TOKEN` in `.env` are read at bootstrap.
+Single scripts, all safe to run twice:
 
-To change a field: edit `scripts/schema.mjs`, run `bash scripts/reset.sh --yes`,
-then update `../frontend/app/data/`, `../frontend/app/types/content.ts` and
-`../_Plans/exhibitions-plan.md` §2 in the same commit.
+```bash
+node --test scripts/*.test.mjs        # unit tests for naming and the builder
+node scripts/create-schema.mjs        # add missing collections, fields, relations
+node scripts/seed.mjs                 # languages, roles, menus
+node scripts/permissions.mjs          # public read rules (--reset recreates them)
+node scripts/apply-settings.mjs       # name, colour, logo, login seal
+node scripts/check-conventions.mjs    # assert the live schema follows the rules
+node scripts/export.mjs               # backup records + files to ../_BU/directus-data
+node scripts/import.mjs --from <dir>  # restore, or first load from ../frontend/app/data
+node scripts/snapshot.mjs             # export schema/snapshot.yaml
+```
+
+**Schema changes are additive.** Edit `scripts/schema.mjs`, run `create-schema.mjs`; it adds what is missing and touches nothing else. Removing or renaming a field: do it in the admin app, then `snapshot.mjs`. There is no reset; content is never wiped by a script.
+
+**Backup before anything risky:** `node scripts/export.mjs`. The `_BU/` folder is not in git.
+
+**CORS:** `.env` allows `http://localhost:4991`. On a remote host add the site's domain to `CORS_ORIGIN`.
 
 ## Folders
 
