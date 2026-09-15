@@ -57,7 +57,7 @@ const iconMotionClasses = {
       <slot name="icon" />
     </span>
     <span
-      class="[ archive-text-link-label ] relative after:absolute after:right-0 after:bottom-[calc((1lh_-_1em)/2_-_0.05em)] after:left-0 after:h-px after:origin-center after:scale-x-90 after:content-[''] after:transition-[background-color,opacity,transform,translate,scale,rotate] after:duration-200 after:ease-out group-hover/archive-text-link:after:scale-x-100 group-focus-visible/archive-text-link:after:scale-x-100 motion-reduce:after:transition-none"
+      class="[ archive-text-link-label ] relative after:absolute after:right-0 after:bottom-[calc((1lh_-_1em)/2_-_0.14em)] after:left-0 after:h-px after:origin-center after:scale-x-90 after:content-[''] after:transition-[background-color,opacity,transform,translate,scale,rotate] after:duration-200 after:ease-out group-hover/archive-text-link:after:scale-x-100 group-focus-visible/archive-text-link:after:scale-x-100 motion-reduce:after:transition-none"
       :class="underlineClasses[props.surface]"
     >
       <slot />
