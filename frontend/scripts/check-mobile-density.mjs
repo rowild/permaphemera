@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { loadArchiveFromDirectus } from './lib/archive-source.mjs'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const readProjectFile = (path) => readFile(resolve(projectRoot, path), 'utf8')
@@ -57,8 +58,9 @@ const [
   readProjectFile('app/assets/css/main.css')
 ])
 
-const navigations = JSON.parse(await readProjectFile('app/data/pp_navigations.json'))
-const navigationItems = JSON.parse(await readProjectFile('app/data/pp_navigation_items.json'))
+const archive = await loadArchiveFromDirectus()
+const navigations = archive.navigations
+const navigationItems = archive.navigationItems
 const mainNavigationId = navigations.find((nav) => nav.key === 'main')?.id
 const footerNavigationId = navigations.find((nav) => nav.key === 'footer')?.id
 const routedPages = [artistPage, landingPage, venuePage, exhibitionPage].join('\n')

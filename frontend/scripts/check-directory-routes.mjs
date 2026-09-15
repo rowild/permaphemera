@@ -1,13 +1,16 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
+import { loadArchiveFromDirectus } from './lib/archive-source.mjs'
 
 const readText = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8')
 const readJson = async (path) => JSON.parse(await readText(path))
 
+const archive = await loadArchiveFromDirectus()
+const cityLocations = archive.locations
+const galleries = archive.venues
+const exhibitions = archive.exhibitions
+
 const [
-  cityLocations,
-  galleries,
-  exhibitions,
   galleriesIndex,
   galleryDetail,
   galleryCard,
@@ -22,9 +25,6 @@ const [
   header,
   footerMenu
 ] = await Promise.all([
-  readJson('app/data/pp_locations.json'),
-  readJson('app/data/pp_venues.json'),
-  readJson('app/data/pp_exhibitions.json'),
   readText('app/pages/venues/index.vue'),
   readText('app/pages/venues/[slug].vue'),
   readText('app/components/GalleryDirectoryCard.vue'),
@@ -125,8 +125,8 @@ assert(![exhibitionCard, landingExhibitionCard, relatedExhibitionCard].some((sou
 assert.match(exhibitionDetail, /localePath\('\/exhibitions\/'\)/, 'Exhibition detail breadcrumbs must return to the exhibition index.')
 assert.match(exhibitionDetail, /galleryPath/, 'Exhibition detail routes must derive their owning gallery route.')
 
-const navigations = await readJson('app/data/pp_navigations.json')
-const navigationItems = await readJson('app/data/pp_navigation_items.json')
+const navigations = archive.navigations
+const navigationItems = archive.navigationItems
 const mainNavigationId = navigations.find((nav) => nav.key === 'main')?.id
 const mainPaths = navigationItems.filter((item) => item.navigation === mainNavigationId).map((item) => item.path)
 assert(mainPaths.includes('/venues/'), 'Gallery navigation must target the real gallery index.')

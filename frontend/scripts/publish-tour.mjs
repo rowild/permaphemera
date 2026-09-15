@@ -14,14 +14,14 @@
 // _tours/exported/ beside this repository; TOUR_EXPORT_DIR or --from override it.
 
 import { spawn } from 'node:child_process'
-import { cp, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
+import { cp, readdir, readFile, rm, stat } from 'node:fs/promises'
 import { basename, dirname, join, relative, resolve } from 'node:path'
 import { createInterface } from 'node:readline/promises'
 import { fileURLToPath } from 'node:url'
+import { directusPatch, directusToken, loadArchiveFromDirectus } from './lib/archive-source.mjs'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const toursDirectory = join(projectRoot, 'public', 'media', 'tours')
-const exhibitionsFile = join(projectRoot, 'app', 'data', 'pp_exhibitions.json')
 const defaultExportDirectory = resolve(projectRoot, '..', '..', '_MacAPP TOUR-VIEWER', '_tours', 'exported')
 
 const SAFE_ID = /^[a-z0-9][a-z0-9._-]*$/iu
@@ -84,15 +84,11 @@ const displayPersonName = (person) =>
   person.display_name ?? `${person.first_name} ${person.last_name}`.trim()
 
 async function loadCatalogue() {
-  const [exhibitions, participations, persons, roles] = await Promise.all([
-    readJson(exhibitionsFile),
-    readJson(join(projectRoot, 'app', 'data', 'pp_exhibition_participations.json')),
-    readJson(join(projectRoot, 'app', 'data', 'pp_persons.json')),
-    readJson(join(projectRoot, 'app', 'data', 'pp_roles.json'))
-  ])
+  const archive = await loadArchiveFromDirectus()
+  const { exhibitions, participations, persons, roles } = archive
   const personById = new Map(persons.map((person) => [person.id, person]))
   const artistRoleId = roles.find((role) => role.slug === 'artist')?.id
-  if (!artistRoleId) fail('pp_roles.json has no role with slug "artist"')
+  if (!artistRoleId) fail('pp_roles in Directus has no role with slug "artist"')
   const artistNames = new Map()
 
   for (const participation of [...participations].sort((a, b) => a.sort - b.sort)) {
@@ -201,23 +197,6 @@ function runCheck(script) {
   })
 }
 
-// `tour` sits beside `source_pdf` in every record. A record written without
-// it (a future hand-made one) gets it in the same place, so the file keeps
-// one shape.
-function withTour(record, tour) {
-  if ('tour' in record) {
-    record.tour = tour
-    return record
-  }
-  const ordered = {}
-  for (const [key, value] of Object.entries(record)) {
-    ordered[key] = value
-    if (key === 'source_pdf') ordered.tour = tour
-  }
-  if (!('tour' in ordered)) ordered.tour = tour
-  return ordered
-}
-
 async function main() {
   const options = parseArguments(process.argv.slice(2))
   if (!options.tourId) fail('Usage: pnpm tour:publish <tour id> [--exhibition <slug>] [--from <dir>] [--dry-run]')
@@ -242,7 +221,7 @@ async function main() {
 
   if (linked) {
     if (options.exhibition && options.exhibition !== linked.slug) {
-      fail(`${options.tourId} is already linked to "${linked.slug}", not "${options.exhibition}". Set that record's "tour" to null in app/data/pp_exhibitions.json first if it should move.`)
+      fail(`${options.tourId} is already linked to "${linked.slug}", not "${options.exhibition}". Set that record's "tour" to null in Directus first if it should move.`)
     }
     log(`${options.tourId} is already linked to "${linked.slug}". Replacing the copy only.`)
   }
@@ -251,7 +230,7 @@ async function main() {
     if (options.exhibition) {
       record = exhibitions.find((item) => item.slug === options.exhibition)
       if (!record) fail(`No exhibition has the slug "${options.exhibition}".`)
-      if (record.tour) fail(`"${record.slug}" already has the tour ${record.tour}. Unlink it in app/data/pp_exhibitions.json first if that is intended.`)
+      if (record.tour) fail(`"${record.slug}" already has the tour ${record.tour}. Unlink it in Directus first if that is intended.`)
     }
     else {
       if (!candidates.length) fail('Every exhibition already has a tour. Pass --exhibition <slug> to replace one deliberately.')
@@ -268,7 +247,7 @@ async function main() {
   log(`${replacing ? 'over the existing copy at' : 'to'} ${relative(projectRoot, target)}/`)
 
   if (options.dryRun) {
-    if (!linked) log(`Would set "tour": "${tourPath}" on "${record.slug}" in app/data/pp_exhibitions.json.`)
+    if (!linked) log(`Would set "tour" on "${record.slug}" in Directus.`)
     log('Would run pnpm check:public.')
     log('Dry run complete. Nothing was written.')
     return
@@ -282,8 +261,7 @@ async function main() {
   })
 
   if (!linked) {
-    const updated = exhibitions.map((item) => (item === record ? withTour(item, tourPath) : item))
-    await writeFile(exhibitionsFile, `${JSON.stringify(updated, null, 2)}\n`)
+    await directusPatch(`/items/pp_exhibitions/${record.id}`, { tour: tourPath }, directusToken)
     log(`Linked: "${record.slug}" → ${tourPath}`)
   }
 
@@ -292,8 +270,7 @@ async function main() {
   console.log('')
   log('Published locally. Next:')
   log(`  1. pnpm dev  →  open /exhibitions/${record.slug}/ (German) or /en/exhibitions/${record.slug}/ and click Start experience.`)
-  log('  2. pnpm deploy:dry-run, then pnpm deploy.')
-  if (!linked) log('  3. Commit app/data/pp_exhibitions.json (the tour folder itself is not tracked).')
+  log('  2. pnpm deploy:dry-run, then pnpm deploy. The tour folder itself must still be deployed; it is not tracked in git.')
 }
 
 await main()

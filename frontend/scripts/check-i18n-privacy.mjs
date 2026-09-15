@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
+import { loadArchiveFromDirectus } from './lib/archive-source.mjs'
 
 const readText = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8')
 const readJson = async (path) => JSON.parse(await readText(path))
+const archive = await loadArchiveFromDirectus()
+const archiveByCollection = { pp_exhibitions: archive.exhibitions, pp_venues: archive.venues, pp_locations: archive.locations }
 
 const collectLeafKeys = (value, prefix = '', keys = []) => {
   for (const [key, child] of Object.entries(value)) {
@@ -35,10 +38,15 @@ assert.deepEqual(germanKeys, englishKeys, 'English and German UI locale files mu
 //      any record that does have a `de` entry must also have an `en` entry,
 //      and every record must resolve in at least English.
 //   2. Stable, non-translatable fields must never appear inside a `de` entry.
+//      Directus's translations relation always carries its own row primary
+//      key as `id` (unrelated to the parent record's id) plus a foreign key
+//      back to the parent — those two are structural, not a translated
+//      content leak, so the immutable-field list below checks content fields
+//      only and does not include the translation row's own `id`.
 const germanCoverage = {}
 
 for (const collection of ['pp_exhibitions', 'pp_venues', 'pp_locations']) {
-  const records = await readJson(`app/data/${collection}.json`)
+  const records = archiveByCollection[collection]
   let withDe = 0
 
   for (const record of records) {
@@ -54,7 +62,7 @@ for (const collection of ['pp_exhibitions', 'pp_venues', 'pp_locations']) {
 
     for (const entry of record.translations ?? []) {
       if (entry.languages_code !== 'de') continue
-      for (const immutableField of ['id', 'slug', 'location', 'venue_slug', 'start_date', 'end_date', 'image', 'hero_image', 'source_pdf', 'website_url']) {
+      for (const immutableField of ['slug', 'location', 'venue_slug', 'start_date', 'end_date', 'image', 'hero_image', 'source_pdf', 'website_url']) {
         assert(!(immutableField in entry), `${collection}.${record.id} must not translate stable field ${immutableField}.`)
       }
     }
@@ -119,13 +127,13 @@ assert.match(matomoTracking, /deleteCookies/, 'Withdrawing analytics consent mus
 assert.match(footerMenu, /showCookieNotice/, 'The footer must be able to reopen the privacy notice.')
 assert.match(legalPages[1], /id:\s*'external-media'/, 'The Privacy Policy must disclose the prepared Google Maps and YouTube consent categories.')
 
-// Header and footer no longer hard-code these routes: they render from
-// app/data/pp_navigation_items.json via useSiteNavigation(). So instead of
-// matching a literal localePath(...) call in the component source, confirm
-// each legal page is still registered in the navigation data and that both
-// menus consume that data.
-const navigations = await readJson('app/data/pp_navigations.json')
-const navigationItems = await readJson('app/data/pp_navigation_items.json')
+// Header and footer no longer hard-code these routes: they render from the
+// pp_navigation_items collection (in Directus) via useSiteNavigation(). So
+// instead of matching a literal localePath(...) call in the component
+// source, confirm each legal page is still registered in the navigation
+// data and that both menus consume that data.
+const navigations = archive.navigations
+const navigationItems = archive.navigationItems
 const footerNavigationId = navigations.find((nav) => nav.key === 'footer')?.id
 for (const [index, route] of ['imprint', 'privacy', 'terms', 'accessibility'].entries()) {
   assert.match(legalPages[index], /<ArchiveLegalPage/, `${route} must remain a complete routed legal page using the shared legal layout.`)
