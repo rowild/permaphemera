@@ -55,7 +55,7 @@ async function main() {
     ['exhibitions count is 20', exhibitions.length === 20],
     ['participations count is 58', participations.length === 58],
     ['sponsors count is 8', sponsors.length === 8],
-    ['websites count is 15', websites.length === 15],
+    ['websites count is 41', websites.length === 41],
     ['navigations are main and footer', navigations.map((nav) => nav.key).sort().join(',') === 'footer,main'],
     ['navigation items count is 18', navigationItems.length === 18],
 
