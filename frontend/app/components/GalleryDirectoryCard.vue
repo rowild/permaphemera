@@ -22,7 +22,10 @@ const imageStyle = computed<CSSProperties>(() => ({
 }))
 const ornamentStyle = computed<CSSProperties>(() => ({
   right: ornament.value.right,
-  bottom: ornament.value.bottom,
+  // On the regular card the ornament rides on the divider above the footer
+  // instead of sitting in the corner next to the link. 2.4rem puts its
+  // lower ring on the line and keeps it clear of the "Visit" link below.
+  bottom: props.featured ? ornament.value.bottom : `calc(${ornament.value.bottom} + 2.4rem)`,
   transform: active.value ? ornament.value.active : ornament.value.rest
 }))
 const sequence = computed(() => props.venue.archive_number || String(props.index + 1).padStart(2, '0'))
