@@ -51,7 +51,7 @@ const cityOf = (gallery) => {
   return city
 }
 
-assert.equal(galleries.length, 36, 'The gallery directory must contain Parkschlössl plus 35 additional galleries.')
+assert.equal(galleries.length, 41, 'The gallery directory must contain Parkschlössl plus 40 additional galleries.')
 assert.equal(new Set(galleries.map(({ id }) => id)).size, galleries.length, 'Gallery IDs must be unique.')
 assert.equal(new Set(galleries.map(({ slug }) => slug)).size, galleries.length, 'Gallery slugs must be unique.')
 assert.equal(new Set(galleries.map((gallery) => cityOf(gallery).state)).size, 9, 'The gallery directory must represent all nine Austrian federal states.')

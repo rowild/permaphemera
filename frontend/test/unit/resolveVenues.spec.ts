@@ -14,7 +14,7 @@ const venue = {
   image: '/i.webp', image_alt: 'alt', hero_image: null, hero_image_alt: null,
   archive_number: '03', featured: false,
   description: 'English text', lede: null, about: null, image_caption: null, coordinate_label: null,
-  status: 'draft' as const,
+  status: 'published' as const,
   translations: [{ languages_code: 'en', description: 'English text' }]
 }
 
