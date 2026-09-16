@@ -797,6 +797,7 @@
     "enterExhibition": "Visit Exhibition",
     "enter": "Visit",
     "fullTitle": "Full title",
+    "fullSummary": "Full text",
     "previewExhibition": "Preview {title}",
     "openExhibitionFor": "Visit exhibition: {title}",
     "openExhibition": "Visit Exhibition"
