@@ -38,3 +38,8 @@ frontend/dist
 # Subagent-driven-development scratch workspace
 .superpowers/
 directus/.env.remote
+
+# Working material, backups and design sources never belong in git
+_Material/
+_Plans/designs/
+*.af
