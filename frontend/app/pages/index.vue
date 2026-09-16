@@ -44,17 +44,17 @@ const directoryVenues = computed<Venue[]>(() => venues.value.map((venueRecord) =
 
 const featuredVenue = computed(() => directoryVenues.value.find((venue) => venue.featured) ?? directoryVenues.value[0]!)
 const otherVenues = computed(() => directoryVenues.value.filter((venue) => venue.id !== featuredVenue.value.id))
-const defaultLandingVenueSlugs = new Set([
-  'the-smallest-gallery-graz',
-  'artelier-contemporary-graz',
-  'citygalerie-linz',
-  'galerie-verve-vienna',
-  'kunstverein-baden'
-])
-const venueStackVenue = computed(() => otherVenues.value.find((venue) => venue.slug === 'kunstforum-montafon-schruns'))
+// The landing page shows the featured venue, then the next five published
+// venues in archive order, then one more as the "stack" card. Nothing is
+// hard-coded: whatever the owner publishes in Directus appears here.
+const LANDING_VENUE_COUNT = 5
+const archiveOrder = (left: Venue, right: Venue) =>
+  (left.archive_number || '').localeCompare(right.archive_number || '', undefined, { numeric: true }) || left.name.localeCompare(right.name)
+const orderedOtherVenues = computed(() => [...otherVenues.value].sort(archiveOrder))
+const venueStackVenue = computed(() => venueSearchQuery.value.trim() ? undefined : orderedOtherVenues.value[LANDING_VENUE_COUNT])
 const regularVenues = computed(() => venueSearchQuery.value.trim()
   ? otherVenues.value
-  : otherVenues.value.filter((venue) => defaultLandingVenueSlugs.has(venue.slug)))
+  : orderedOtherVenues.value.slice(0, LANDING_VENUE_COUNT))
 const orderedExhibitions = computed(() => [...venueExhibitions.value]
   .sort((left, right) => right.start_date.localeCompare(left.start_date)
     || right.end_date.localeCompare(left.end_date)

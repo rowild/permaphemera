@@ -23,9 +23,8 @@ const ornamentStyle = computed<CSSProperties>(() => ({
 const sequence = computed(() => String(props.index + 1).padStart(2, '0'))
 
 // The card has a fixed height, so the text can never push the footer. The
-// title is clamped to two lines; the summary gets exactly as many lines as
-// still fit above the footer (measured, so a two-line title costs the summary
-// a line). Every clamp ends in an ellipsis. When a clamp actually cuts text, a
+// title is one line with an ellipsis; the summary gets exactly as many lines as
+// still fit above the footer (measured). Every cut ends in an ellipsis. When a clamp actually cuts text, a
 // tooltip (the carousel's frame) shows the full text on hover.
 const titleEl = ref<HTMLElement | null>(null)
 const summaryBox = ref<HTMLElement | null>(null)
@@ -35,7 +34,7 @@ const summaryOverflow = ref(false)
 const summaryLines = ref(2)
 let clampObserver: ResizeObserver | null = null
 
-const isClipped = (el: HTMLElement | null) => Boolean(el) && el!.scrollHeight > el!.clientHeight + 2
+const isClipped = (el: HTMLElement | null) => Boolean(el) && (el!.scrollHeight > el!.clientHeight + 2 || el!.scrollWidth > el!.clientWidth + 2)
 const updateClamps = () => {
   titleOverflow.value = isClipped(titleEl.value)
   const box = summaryBox.value
@@ -95,7 +94,7 @@ const tooltipClass = 'pointer-events-none absolute inset-x-0 top-[calc(100%+0.3r
         <div class="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
           <p class="m-0 text-xs tracking-widest text-archive-red uppercase compact:text-3xs"><span aria-hidden="true">{{ sequence }} · </span><time :datetime="props.exhibition.start_date">{{ props.exhibition.date_range }}</time></p>
           <div class="group/title relative min-w-0">
-            <h3 ref="titleEl" class="mt-2 mb-0 line-clamp-2 text-h3 font-normal leading-[0.98] compact:text-lg">{{ props.exhibition.title }}</h3>
+            <h3 ref="titleEl" class="mt-2 mb-0 truncate text-h3 font-normal leading-[1.1] compact:text-lg">{{ props.exhibition.title }}</h3>
             <ArchiveTooltipFrame v-if="titleOverflow" as="span" pointer-side="top" :pointer-offset="-50" :class="tooltipClass" class="group-hover/title:translate-y-0 group-hover/title:scale-100 group-hover/title:opacity-100" aria-hidden="true">
               <span class="mb-0.5 block text-3xs leading-none tracking-[0.09em] text-archive-red uppercase compact:text-4xs">{{ $t('cards.fullTitle') }}</span>
               <span class="block">{{ props.exhibition.title }}</span>
