@@ -56,3 +56,24 @@ pulls records and files to this Mac. The server keeps no automatic backup yet.
 
 Content history: first load on 2026-09-15 from `_BU/directus-data`, the export of
 the local instance that had been imported from the frontend JSON.
+
+## The public site: permaphemera.at (since 2026-09-16)
+
+Cloudflare holds the DNS zone and proxies the traffic (orange cloud, SSL mode Full strict)
+to the Hetzner host. There, nginx serves the static frontend and forwards `/cms/` to the
+Directus container on the same origin, so institutional networks never see a second host.
+
+- nginx: `/etc/nginx/sites-available/permaphemera.at` — port 80 answers the ACME check and
+  redirects; port 443 serves `/srv/sites/permaphemera.at/html`, proxies `/cms/` →
+  `127.0.0.1:8060/` (prefix stripped), caches `/_nuxt/` for a year, and falls back to
+  `/200.html` for the SPA. `www` redirects to the apex.
+- Certificate: Let's Encrypt via `certbot certonly --webroot -w /var/www/letsencrypt`,
+  cert name `permaphemera.at`. Renewal runs by certbot's timer through port 80.
+  (The Cloudflare token on the host only covers project-backends.info, so DNS-01 is not
+  an option for this zone.)
+- Deploy the frontend: `cd frontend && pnpm run deploy:hetzner` builds with
+  `NUXT_PUBLIC_DIRECTUS_URL=https://permaphemera.at/cms` and rsyncs `.output/public`.
+- The Directus admin stays at https://permaphemera.project-backends.info; `PUBLIC_URL` is
+  unchanged. `/cms/` exists for the site's reads (items, assets, server).
+- Mail for permaphemera.at stays at all-inkl: MX, SPF, DMARC and DKIM were copied into the
+  Cloudflare zone. The wildcard `*` CNAME to kasserver is DNS-only.
