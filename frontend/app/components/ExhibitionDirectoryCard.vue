@@ -2,7 +2,7 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import type { CSSProperties } from 'vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
-import { createOrnamentTransform } from '~/utils/seededLayout'
+import { createCornerOrnament, createOrnamentTransform } from '~/utils/seededLayout'
 
 const props = withDefaults(defineProps<{
   exhibition: ResolvedExhibition
@@ -17,13 +17,21 @@ const localePath = useLocalePath()
 const ornament = computed(() => createOrnamentTransform(`exhibitions-directory:${props.exhibition.id}`, props.featured))
 const ornamentStyle = computed<CSSProperties>(() => ({
   right: ornament.value.right,
-  // On the regular card the ornament rides on the divider above the footer
-  // instead of sitting in the corner next to the link. 2.4rem puts its
-  // lower ring on the line and keeps it clear of the "Visit" link below.
-  bottom: props.featured ? ornament.value.bottom : `calc(${ornament.value.bottom} + 2.4rem)`,
+  bottom: ornament.value.bottom,
   transform: active.value ? ornament.value.active : ornament.value.rest
 }))
 const sequence = computed(() => String(props.index + 1).padStart(2, '0'))
+// Regular cards carry the ornament in the text area's top-right corner; the
+// featured card keeps it at the card's bottom-right.
+const corner = computed(() => createCornerOrnament(`exhibitions-directory:${props.exhibition.id}`))
+const cornerStyle = computed<CSSProperties>(() => ({
+  top: corner.value.top,
+  right: corner.value.right,
+  width: corner.value.size,
+  height: corner.value.size,
+  opacity: corner.value.opacity,
+  transform: active.value ? corner.value.active : corner.value.rest
+}))
 
 // The card has a fixed height, so the text can never push the footer. The
 // title is one line with an ellipsis; the summary gets exactly as many lines as
@@ -94,7 +102,12 @@ const tooltipClass = 'pointer-events-none absolute inset-x-0 top-[calc(100%+0.3r
     <template v-else>
       <img class="size-full object-cover transition-transform duration-700 ease-archive-lift group-hover/exhibition:scale-[1.025] motion-reduce:transition-none" :src="props.exhibition.image" :alt="props.exhibition.image_alt" loading="lazy" />
       <div class="relative z-2 flex min-h-0 min-w-0 flex-col px-6 pt-5 pb-6 compact:px-3 compact:pt-3 compact:pb-4">
-        <div class="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
+        <span
+          class="[ exhibition-directory-card-ornament ] archive-crosshair-ornament pointer-events-none absolute transition-[transform,translate,scale,rotate,opacity] duration-460 ease-archive-lift compact:hidden motion-reduce:transition-none"
+          :style="cornerStyle"
+          aria-hidden="true"
+        />
+        <div class="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
           <p class="m-0 text-xs tracking-widest text-archive-red uppercase compact:text-3xs"><span aria-hidden="true">{{ sequence }} · </span><time :datetime="props.exhibition.start_date">{{ props.exhibition.date_range }}</time></p>
           <div class="group/title relative min-w-0">
             <h3 ref="titleEl" class="mt-2 mb-0 truncate text-h3 font-normal leading-[1.3] compact:text-lg">{{ props.exhibition.title }}</h3>
@@ -120,6 +133,7 @@ const tooltipClass = 'pointer-events-none absolute inset-x-0 top-[calc(100%+0.3r
     </template>
 
     <span
+      v-if="props.featured"
       class="[ exhibition-directory-card-ornament ] archive-crosshair-ornament pointer-events-none absolute z-3 size-20 opacity-55 transition-[transform,translate,scale,rotate,opacity] duration-460 ease-archive-lift compact:size-12 motion-reduce:transition-none"
       :class="props.featured ? 'brightness-200 sepia' : ''"
       :style="ornamentStyle"

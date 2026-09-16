@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
-import { createDirectoryImageTransform, createOrnamentTransform } from '~/utils/seededLayout'
+import { createCornerOrnament, createDirectoryImageTransform, createOrnamentTransform } from '~/utils/seededLayout'
 
 const props = withDefaults(defineProps<{
   venue: ResolvedVenue
@@ -22,13 +22,21 @@ const imageStyle = computed<CSSProperties>(() => ({
 }))
 const ornamentStyle = computed<CSSProperties>(() => ({
   right: ornament.value.right,
-  // On the regular card the ornament rides on the divider above the footer
-  // instead of sitting in the corner next to the link. 2.4rem puts its
-  // lower ring on the line and keeps it clear of the "Visit" link below.
-  bottom: props.featured ? ornament.value.bottom : `calc(${ornament.value.bottom} + 2.4rem)`,
+  bottom: ornament.value.bottom,
   transform: active.value ? ornament.value.active : ornament.value.rest
 }))
 const sequence = computed(() => props.venue.archive_number || String(props.index + 1).padStart(2, '0'))
+// Regular cards carry the ornament in the text area's top-right corner; the
+// featured card keeps it at the card's bottom-right.
+const corner = computed(() => createCornerOrnament(`gallery-directory:${props.venue.id}`))
+const cornerStyle = computed<CSSProperties>(() => ({
+  top: corner.value.top,
+  right: corner.value.right,
+  width: corner.value.size,
+  height: corner.value.size,
+  opacity: corner.value.opacity,
+  transform: active.value ? corner.value.active : corner.value.rest
+}))
 </script>
 
 <template>
@@ -58,7 +66,13 @@ const sequence = computed(() => props.venue.archive_number || String(props.index
       </div>
 
       <div class="[ gallery-directory-card-copy ] relative z-2 flex min-w-0 flex-col px-6 pt-5 pb-6 compact:px-3 compact:pt-2 compact:pb-4">
-        <p class="m-0 flex items-center gap-2 text-xs tracking-widest text-archive-red uppercase compact:text-3xs">
+        <span
+          v-if="!props.featured"
+          class="[ gallery-directory-card-ornament ] archive-crosshair-ornament pointer-events-none absolute transition-[transform,translate,scale,rotate,opacity] duration-460 ease-archive-lift compact:hidden motion-reduce:transition-none"
+          :style="cornerStyle"
+          aria-hidden="true"
+        />
+        <p class="relative m-0 flex items-center gap-2 text-xs tracking-widest text-archive-red uppercase compact:text-3xs">
           <span>{{ props.venue.state }}</span>
           <span aria-hidden="true">·</span>
           <span>{{ props.venue.postal_code }}</span>
@@ -80,6 +94,7 @@ const sequence = computed(() => props.venue.archive_number || String(props.index
     </div>
     <VenueCardFrame />
     <span
+      v-if="props.featured"
       class="[ gallery-directory-card-ornament ] archive-crosshair-ornament pointer-events-none absolute z-3 size-20 opacity-50 transition-[transform,translate,scale,rotate,opacity] duration-460 ease-archive-lift compact:size-12 motion-reduce:transition-none"
       :style="ornamentStyle"
       aria-hidden="true"

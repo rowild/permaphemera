@@ -88,6 +88,35 @@ export const createOrnamentTransform = (contentId: string, featured = false): Or
   }
 }
 
+export interface CornerOrnament {
+  top: string
+  right: string
+  size: string
+  opacity: number
+  rest: string
+  active: string
+}
+
+/**
+ * Ornament for the top-right corner of a card's text area. Spot, size and
+ * opacity are random per record but stable across visits, and the spot never
+ * hugs the top or right edge.
+ */
+export const createCornerOrnament = (contentId: string): CornerOrnament => {
+  const random = seededRandom(`corner-ornament:${contentId}`)
+  const rotation = between(random, -13, 11)
+  const turn = between(random, 7, 13)
+
+  return {
+    top: `${between(random, 0.9, 2.2).toFixed(2)}rem`,
+    right: `${between(random, 1.2, 3).toFixed(2)}rem`,
+    size: `${between(random, 4.2, 6).toFixed(2)}rem`,
+    opacity: Number(between(random, 0.32, 0.6).toFixed(2)),
+    rest: `rotate(${rotation.toFixed(2)}deg)`,
+    active: `rotate(${(rotation + turn).toFixed(2)}deg) scale(1.04)`
+  }
+}
+
 export const createDirectoryImageTransform = (contentId: string): DirectoryImageTransform => {
   const random = seededRandom(`directory-image:${contentId}`)
   const rotation = between(random, -1.15, 1.15)
