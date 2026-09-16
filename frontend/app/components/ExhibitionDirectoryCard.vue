@@ -22,26 +22,36 @@ const ornamentStyle = computed<CSSProperties>(() => ({
 }))
 const sequence = computed(() => String(props.index + 1).padStart(2, '0'))
 
-// The card has a fixed height, so title and summary are clamped with an
-// ellipsis. When the clamp actually cuts text, a tooltip (the carousel's frame)
-// shows the full text on hover; when nothing is cut, no tooltip appears.
+// The card has a fixed height, so the text can never push the footer. The
+// title is clamped to two lines; the summary gets exactly as many lines as
+// still fit above the footer (measured, so a two-line title costs the summary
+// a line). Every clamp ends in an ellipsis. When a clamp actually cuts text, a
+// tooltip (the carousel's frame) shows the full text on hover.
 const titleEl = ref<HTMLElement | null>(null)
+const summaryBox = ref<HTMLElement | null>(null)
 const summaryEl = ref<HTMLElement | null>(null)
 const titleOverflow = ref(false)
 const summaryOverflow = ref(false)
+const summaryLines = ref(2)
 let clampObserver: ResizeObserver | null = null
 
 const isClipped = (el: HTMLElement | null) => Boolean(el) && el!.scrollHeight > el!.clientHeight + 2
 const updateClamps = () => {
   titleOverflow.value = isClipped(titleEl.value)
-  summaryOverflow.value = isClipped(summaryEl.value)
+  const box = summaryBox.value
+  const text = summaryEl.value
+  if (box && text) {
+    const lineHeight = Number.parseFloat(getComputedStyle(text).lineHeight) || 24
+    summaryLines.value = Math.max(0, Math.floor(box.clientHeight / lineHeight))
+  }
+  requestAnimationFrame(() => { summaryOverflow.value = summaryLines.value > 0 && isClipped(summaryEl.value) })
 }
 
 onMounted(() => {
   updateClamps()
   clampObserver = new ResizeObserver(updateClamps)
   if (titleEl.value) clampObserver.observe(titleEl.value)
-  if (summaryEl.value) clampObserver.observe(summaryEl.value)
+  if (summaryBox.value) clampObserver.observe(summaryBox.value)
 })
 
 onBeforeUnmount(() => {
@@ -82,7 +92,7 @@ const tooltipClass = 'pointer-events-none absolute inset-x-0 top-[calc(100%+0.3r
     <template v-else>
       <img class="size-full object-cover transition-transform duration-700 ease-archive-lift group-hover/exhibition:scale-[1.025] motion-reduce:transition-none" :src="props.exhibition.image" :alt="props.exhibition.image_alt" loading="lazy" />
       <div class="relative z-2 flex min-h-0 min-w-0 flex-col px-6 pt-5 pb-6 compact:px-3 compact:pt-3 compact:pb-4">
-        <div class="min-h-0 min-w-0 flex-1">
+        <div class="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
           <p class="m-0 text-xs tracking-widest text-archive-red uppercase compact:text-3xs"><span aria-hidden="true">{{ sequence }} · </span><time :datetime="props.exhibition.start_date">{{ props.exhibition.date_range }}</time></p>
           <div class="group/title relative min-w-0">
             <h3 ref="titleEl" class="mt-2 mb-0 line-clamp-2 text-h3 font-normal leading-[0.98] compact:text-lg">{{ props.exhibition.title }}</h3>
@@ -92,8 +102,8 @@ const tooltipClass = 'pointer-events-none absolute inset-x-0 top-[calc(100%+0.3r
             </ArchiveTooltipFrame>
           </div>
           <p class="mt-1 mb-0 truncate text-button text-archive-red compact:text-sm">{{ props.exhibition.artist }}</p>
-          <div class="group/summary relative min-w-0 compact:hidden">
-            <p ref="summaryEl" class="mt-4 mb-4 line-clamp-2 text-eyebrow leading-normal text-archive-body">{{ props.exhibition.summary }}</p>
+          <div ref="summaryBox" class="group/summary relative mt-4 mb-3 min-h-0 min-w-0 flex-1 overflow-hidden compact:hidden">
+            <p v-show="summaryLines > 0" ref="summaryEl" class="m-0 line-clamp-2 text-eyebrow leading-normal text-archive-body" :style="{ WebkitLineClamp: summaryLines }">{{ props.exhibition.summary }}</p>
             <ArchiveTooltipFrame v-if="summaryOverflow" as="span" pointer-side="top" :pointer-offset="-50" :class="tooltipClass" class="group-hover/summary:translate-y-0 group-hover/summary:scale-100 group-hover/summary:opacity-100" aria-hidden="true">
               <span class="mb-0.5 block text-3xs leading-none tracking-[0.09em] text-archive-red uppercase compact:text-4xs">{{ $t('cards.fullSummary') }}</span>
               <span class="block text-eyebrow leading-normal">{{ props.exhibition.summary }}</span>
