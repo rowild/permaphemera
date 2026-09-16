@@ -26,6 +26,15 @@ fi
 
 [[ -f .output/public/index.html ]] || { echo ".output/public/index.html is missing" >&2; exit 1; }
 
-echo "[deploy] rsync .output/public -> $HOST:$REMOTE_DIR"
-rsync -az --delete -e "ssh -i $KEY -o BatchMode=yes" .output/public/ "$HOST:$REMOTE_DIR/"
+# The 360° tours are not in git (frontend/.gitignore: public/media/tours/), so a
+# fresh checkout has none. They are therefore synced separately and never deleted
+# on the server: the build rsync excludes them, and the tour rsync adds only.
+echo "[deploy] rsync .output/public -> $HOST:$REMOTE_DIR (tours excluded)"
+rsync -az --delete --exclude '/media/tours/' -e "ssh -i $KEY -o BatchMode=yes" .output/public/ "$HOST:$REMOTE_DIR/"
+if [[ -d public/media/tours ]]; then
+  echo "[deploy] rsync tours (add/update only, never delete)"
+  rsync -az -e "ssh -i $KEY -o BatchMode=yes" public/media/tours/ "$HOST:$REMOTE_DIR/media/tours/"
+else
+  echo "[deploy] no local tours folder; the tours on the server stay as they are"
+fi
 echo "[deploy] done"

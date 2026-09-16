@@ -94,7 +94,7 @@ const tooltipClass = 'pointer-events-none absolute inset-x-0 top-[calc(100%+0.3r
         <div class="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
           <p class="m-0 text-xs tracking-widest text-archive-red uppercase compact:text-3xs"><span aria-hidden="true">{{ sequence }} · </span><time :datetime="props.exhibition.start_date">{{ props.exhibition.date_range }}</time></p>
           <div class="group/title relative min-w-0">
-            <h3 ref="titleEl" class="mt-2 mb-0 truncate text-h3 font-normal leading-[1.1] compact:text-lg">{{ props.exhibition.title }}</h3>
+            <h3 ref="titleEl" class="mt-2 mb-0 truncate text-h3 font-normal leading-[1.3] compact:text-lg">{{ props.exhibition.title }}</h3>
             <ArchiveTooltipFrame v-if="titleOverflow" as="span" pointer-side="top" :pointer-offset="-50" :class="tooltipClass" class="group-hover/title:translate-y-0 group-hover/title:scale-100 group-hover/title:opacity-100" aria-hidden="true">
               <span class="mb-0.5 block text-3xs leading-none tracking-[0.09em] text-archive-red uppercase compact:text-4xs">{{ $t('cards.fullTitle') }}</span>
               <span class="block">{{ props.exhibition.title }}</span>
