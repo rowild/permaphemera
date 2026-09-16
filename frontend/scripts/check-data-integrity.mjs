@@ -48,16 +48,20 @@ async function main() {
   }
 
   const checks = [
-    ['locations count is 17', locations.length === 17],
-    ['venues count is 41', venues.length === 41],
-    ['persons count is 114', persons.length === 114],
+    // Content counts are the owner's business and change in Directus every day,
+    // so nothing here pins a number. The checks below are structural: each
+    // collection the site needs is present and non-empty, and every reference
+    // resolves.
+    ['locations exist', locations.length > 0],
+    ['venues exist', venues.length > 0],
+    ['persons exist', persons.length > 0],
     ['roles are artist and curator', roles.map((role) => role.slug).sort().join(',') === 'artist,curator'],
-    ['exhibitions count is 16', exhibitions.length === 16],
-    ['participations count is 54', participations.length === 54],
-    ['sponsors count is 8', sponsors.length === 8],
-    ['websites count is 41', websites.length === 41],
+    ['exhibitions exist', exhibitions.length > 0],
+    ['participations exist', participations.length > 0],
+    ['sponsors exist', sponsors.length > 0],
+    ['websites is an array', Array.isArray(websites)],
     ['navigations are main and footer', navigations.map((nav) => nav.key).sort().join(',') === 'footer,main'],
-    ['navigation items count is 18', navigationItems.length === 18],
+    ['every navigation has items', navigations.every((nav) => navigationItems.some((item) => item.navigation === nav.id))],
 
     ['every location has coordinates inside Austria', locations.every((location) =>
       location.latitude > 46 && location.latitude < 49 && location.longitude > 9 && location.longitude < 17)],
