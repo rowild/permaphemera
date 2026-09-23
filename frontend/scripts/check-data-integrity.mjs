@@ -56,7 +56,7 @@ async function main() {
     ['locations exist', locations.length > 0],
     ['venues exist', venues.length > 0],
     ['persons exist', persons.length > 0],
-    ['roles are artist, board and curator', roles.map((role) => role.slug).sort().join(',') === 'artist,board,curator'],
+    ['roles are artist, board, curator and press', roles.map((role) => role.slug).sort().join(',') === 'artist,board,curator,press'],
     ['exhibitions exist', exhibitions.length > 0],
     ['participations exist', participations.length > 0],
     ['sponsors exist', sponsors.length > 0],

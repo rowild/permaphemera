@@ -173,7 +173,7 @@ No translations. Links live in `pp_websites` (2026-09-15); the former single `we
 
 #### `pp_roles`
 
-`id`, `status`, `sort`, `title` (English), `slug` (unique: `artist`, `curator`, `board` — board members of organisations who are neither, added 2026-09-24; the exact function sits on the membership), `translations`, `persons` (m2m), audit.
+`id`, `status`, `sort`, `title` (English), `slug` (unique: `artist`, `curator`, `board`, `press` — board members and press officers of organisations, added 2026-09-24; the exact function sits on the membership), `translations`, `persons` (m2m), audit.
 Translated: `title`. Seeded: artist ("Artist" / "Künstler:in"), curator ("Curator" / "Kurator:in").
 
 #### `pp_exhibitions`

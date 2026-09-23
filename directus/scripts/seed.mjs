@@ -43,6 +43,7 @@ await ensure('pp_roles', { slug: 'artist' }, { status: 'published', title: 'Arti
 await ensure('pp_roles', { slug: 'curator' }, { status: 'published', title: 'Curator', sort: 2, translations: tr('Curator', 'Kurator:in') })
 // Board members of organisations who are not artists or curators (added 2026-09-24). The exact function lives on the membership.
 await ensure('pp_roles', { slug: 'board' }, { status: 'published', title: 'Board member', sort: 3, translations: tr('Board member', 'Vorstandsmitglied') })
+await ensure('pp_roles', { slug: 'press' }, { status: 'published', title: 'Press', sort: 4, translations: tr('Press', 'Presse') })
 
 // Navigations. Titles come from the frontend locale files of 2026-09-14.
 const main = await ensure('pp_navigations', { key: 'main' }, { status: 'published', title: 'Main navigation', sort: 1 })
