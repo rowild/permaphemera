@@ -675,7 +675,11 @@ The featured venue spans two rows and uses a much taller image (`25–31rem` des
 
 ### 14.3 Exhibition records
 
-Use `ExhibitionFrameCard` for record surfaces. The featured record combines a large image with an inset dark overlay and primary action. Secondary records place image and structured metadata side by side on desktop and stack them on mobile.
+One component, `ExhibitionCard`, renders every list of exhibition records; pages choose a `layout` and the grid cell, never their own card markup. Its three layouts share `ExhibitionFrameCard`, the seeded crosshair ornament, the hover lift and the `Visit Exhibition` action:
+
+- `hero`: the highlighted record — a large image under an inset dark overlay with the primary action (landing collection, exhibition directory).
+- `side`: image and structured metadata side by side on desktop, stacked on mobile (landing collection, programme ledger). The title stays on one clipped line and scrolls on hover when it overflows.
+- `stacked`: image above a fixed-height record sheet (exhibition directory, related records on an exhibition page). The sheet never grows with its content: title and artist line are one line each with an ellipsis, the summary receives exactly the lines that fit above the footer, the footer sits statically at the bottom, and every clipped text shows in full in the framed tooltip on hover.
 
 Metadata order should remain stable:
 
@@ -705,7 +709,7 @@ The landing page’s current/upcoming module is a programme ledger rather than a
 second featured collection. It appears only while one or both time groups have
 records, sits directly after the hero, and caps each chronological group at
 three. Current records order by soonest closing date; upcoming records order by
-opening date. Reuse the compact `LandingExhibitionCard` so record geometry,
+opening date. Reuse `ExhibitionCard` in its `side` layout so record geometry,
 metadata order, and the centred `Visit Exhibition` image action stay identical
 to the main landing collection. Separate the module from the next landing band
 with `ArchiveExhibitionsDivider`; do not add a tonal panel, perimeter rules, or

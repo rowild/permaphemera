@@ -167,7 +167,7 @@ Translated: `title`. Seeded: artist ("Artist" / "Künstler:in"), curator ("Curat
 
 #### `pp_exhibitions`
 
-`id`, `status`, `sort`, `title`, `slug`, `primary_venue` (M2O → venues, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (markdown, English), `date_range`, `opening_hours`, `vernissage`, `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `participations`, `statements` (o2m), `websites`, `further_venues`, `sponsors` (m2m), audit.
+`id`, `status`, `sort`, `title`, `slug`, `kind` (exhibition | event), `primary_venue` (M2O → venues, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (markdown, English), `date_range`, `opening_hours`, `vernissage`, `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `participations`, `statements` (o2m), `websites`, `further_venues`, `sponsors` (m2m), audit.
 Translated: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `image_alt`, `medium`.
 
 #### `pp_exhibition_participations` (child)

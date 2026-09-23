@@ -1,6 +1,11 @@
+// Names that are never inverted to "Family, Given". Stopgap until organisations
+// get their own collection (docs/superpowers/specs/2026-09-23-organisations-design.md
+// at the repository root): an association such as "BV Kärnten" must never
+// appear as "Kärnten, BV".
 const organizationSlugs = new Set([
   '7th-spittaler-comicfestival',
   'austriatoon',
+  'bv-kaernten',
   'lebenshilfe-spittal',
   'raqs-media-collective'
 ])
@@ -11,6 +16,7 @@ const displayNameOverrides: Record<string, string> = {
 
 const letterOverrides: Record<string, string> = {
   '7th-spittaler-comicfestival': '#',
+  'bv-kaernten': 'B',
   'lebenshilfe-spittal': 'L',
   'nicoline-von-heyl': 'H'
 }

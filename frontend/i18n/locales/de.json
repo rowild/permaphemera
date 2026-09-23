@@ -178,7 +178,7 @@
     "partOf": "Teil von",
     "spaces": "Standort | Standorte",
     "notFound": "Galerie nicht gefunden",
-    "archiveVenue": "Archivort · Nr. {number}",
+    "archiveVenue": "Archivort",
     "fallbackLede": "Ein Ausstellungsraum in {city} – temporäre Begegnungen, versammelt in einer erinnerten architektonischen Hülle.",
     "address": "Adresse",
     "website": "Website",
@@ -218,25 +218,28 @@
       "season": "Saison",
       "admission": "Eintritt"
     },
-    "seoDescription": "Entdecken Sie Ausstellungseinträge von {name} in {city}."
+    "seoDescription": "Entdecken Sie Ausstellungseinträge von {name} in {city}.",
+    "eventCount": "{count} Veranstaltung | {count} Veranstaltungen",
+    "recordCount": "{count} Eintrag | {count} Einträge"
   },
   "galleries": {
     "partOf": "Im Verbund von {name}",
     "seoTitle": "Galerien in Österreich · PERMAPHEMERA",
-    "seoDescription": "Entdecken Sie 26 kleine österreichische Galerien, Projekträume und unabhängige Ausstellungsorte im PERMAPHEMERA-Verzeichnis.",
+    "seoDescription": "Entdecken Sie {count} kleine österreichische Galerien, Projekträume und unabhängige Ausstellungsorte im PERMAPHEMERA-Verzeichnis.",
     "breadcrumb": "Galerien",
     "eyebrow": "Räumliches Verzeichnis · Österreich",
     "title": "Kleine Räume.",
     "accent": "Weite Koordinaten.",
     "intro": "Ein Atlas unabhängiger Galerien, selbstorganisierter Räume und lokaler Ausstellungsorte: von überschaubarer Größe, mit eigener Stimme und verbunden durch die Einträge, die sie bewahren.",
-    "atlasCaption": "Galerien · neun Bundesländer · ein wachsendes Feldarchiv",
+    "atlasCaption": "Galerien · {states} · ein wachsendes Feldarchiv",
+    "statesCount": "{count} Bundesland | {count} Bundesländer",
     "ledgerGalleries": "Galerien",
     "ledgerStates": "Bundesländer",
     "ledgerRecords": "Bewahrte Einträge",
     "directoryEyebrow": "Der österreichische Atlas",
-    "directoryTitle": "Sechsundzwanzig Adressen.",
+    "directoryTitle": "{count} Adresse. | {count} Adressen.",
     "directoryAccent": "Kein Zentrum, viele Ränder.",
-    "directoryIntro": "Suchen Sie nach Name, Ort, Bundesland, Adresse oder Begriff – oder bewegen Sie sich quer durch die neun österreichischen Bundesländer.",
+    "directoryIntro": "Suchen Sie nach Name, Ort, Bundesland, Adresse oder Begriff – oder bewegen Sie sich quer durch die österreichischen Bundesländer.",
     "searchLabel": "Galerienverzeichnis durchsuchen",
     "searchPlaceholder": "Galerien suchen…",
     "stateFilterAria": "Galerien nach Bundesland filtern",
@@ -264,10 +267,9 @@
     "spatialEyebrow": "Treten Sie ein · 360°-Rundgang",
     "startExperience": "Erlebnis starten",
     "inPreparation": "360°-Rundgang in Vorbereitung",
-    "relatedEyebrow": "Ebenfalls an diesem Ort",
-    "relatedTitle": "Weitere Einträge aus",
-    "relatedAccentAt": "{name}.",
-    "recordNumber": "Ausstellungseintrag · Nr. {number}",
+    "relatedEyebrow": "Ebenfalls im Archiv",
+    "relatedTitle": "Weitere Einträge",
+    "relatedAccent": "aus dem Archiv.",
     "seeDetails": "Details ansehen",
     "openingExperience": "Rundgang wird geöffnet …",
     "availableFrom": "360°-Rundgang ab {date}",
@@ -276,7 +278,14 @@
     "invitationPdf": "Originaleinladung (PDF)",
     "artistWebsite": "Website der Künstler:in | Websites der Künstler:innen",
     "links": "Link | Links",
-    "statementsTitle": "Die Künstler:in über den Raum | Die Künstler:innen über den Raum"
+    "statementsTitle": "Die Künstler:in über den Raum | Die Künstler:innen über den Raum",
+    "event": {
+      "recordEyebrow": "Veranstaltungseintrag",
+      "aboutTitle": "Ein kurzes Zusammentreffen,",
+      "aboutAccent": "im Archiv vermerkt.",
+      "restricted": "Aus urheberrechtlichen Gründen dürfen wir keinen 360°-Rundgang dieser Veranstaltung zeigen.",
+      "unavailable": "Von dieser Veranstaltung gibt es keinen 360°-Rundgang."
+    }
   },
   "exhibitionsDirectory": {
     "seoTitle": "Ausstellungen im Archiv · PERMAPHEMERA",
@@ -798,9 +807,13 @@
     "enter": "Besuchen",
     "fullTitle": "Vollständiger Titel",
     "fullSummary": "Ganzer Text",
+    "fullArtists": "Alle Künstler:innen",
     "previewExhibition": "{title} als Vorschau anzeigen",
     "openExhibitionFor": "Ausstellung besuchen: {title}",
-    "openExhibition": "Ausstellung besuchen"
+    "openExhibition": "Ausstellung besuchen",
+    "openEvent": "Veranstaltung besuchen",
+    "enterEvent": "Veranstaltung besuchen",
+    "openEventFor": "Veranstaltung besuchen: {title}"
   },
   "footer": {
     "tagline": "Ein kuratiertes österreichisches Archiv von 360°-Ausstellungsdokumentationen.",
@@ -818,6 +831,9 @@
     "legalAria": "Rechtliche Navigation in der Fußzeile",
     "sealAlt": "Dauerhaft bewahrt, vorübergehend beständig",
     "copyright": "Alle Rechte vorbehalten.",
-    "curated": "Unabhängig kuratiert in Österreich."
+    "curated": "Unabhängig kuratiert in Österreich.",
+    "callTitle": "Platz für Institutionen, die",
+    "callText": "PERMAPHEMERA entsteht mit Partner:innen, denen wichtig ist, was sonst verschwindet. Diese Zeile ist für ihre Namen reserviert: Fördernde, Sponsor:innen und Partnerinstitutionen. Ihrer könnte der erste sein.",
+    "callLink": "Kontakt aufnehmen"
   }
 }

@@ -5,7 +5,6 @@ import { createCornerOrnament, createDirectoryImageTransform, createOrnamentTran
 
 const props = withDefaults(defineProps<{
   venue: ResolvedVenue
-  index: number
   recordCount?: number
   featured?: boolean
 }>(), {
@@ -25,7 +24,6 @@ const ornamentStyle = computed<CSSProperties>(() => ({
   bottom: ornament.value.bottom,
   transform: active.value ? ornament.value.active : ornament.value.rest
 }))
-const sequence = computed(() => props.venue.archive_number || String(props.index + 1).padStart(2, '0'))
 // Regular cards carry the ornament in the text area's top-right corner; the
 // featured card keeps it at the card's bottom-right.
 const corner = computed(() => createCornerOrnament(`gallery-directory:${props.venue.id}`))
@@ -62,7 +60,6 @@ const cornerStyle = computed<CSSProperties>(() => ({
           :alt="props.venue.image_alt"
           shape="frame"
         />
-        <span class="absolute top-5 left-5 z-3 bg-archive-paper/88 px-2 py-1 text-xs tracking-widest text-archive-red compact:top-3 compact:left-3 compact:px-1.5 compact:py-0.5 compact:text-3xs" aria-hidden="true">{{ sequence }}</span>
       </div>
 
       <div class="[ gallery-directory-card-copy ] relative z-2 flex min-w-0 flex-col px-6 pt-5 pb-6 compact:px-3 compact:pt-2 compact:pb-4">

@@ -63,12 +63,12 @@ const groups = computed(() => [
             </h3>
           </div>
           <div class="grid gap-3">
-            <LandingExhibitionCard
+            <ExhibitionCard
               v-for="exhibition in group.items"
               :key="exhibition.id"
               class="min-h-40"
               :exhibition="exhibition"
-              :href="localePath(`/exhibitions/${exhibition.slug}/`)"
+              layout="side"
             />
           </div>
         </section>

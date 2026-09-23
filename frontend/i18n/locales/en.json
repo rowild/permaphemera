@@ -178,7 +178,7 @@
     "partOf": "Part of",
     "spaces": "Exhibition space | Exhibition spaces",
     "notFound": "Gallery not found",
-    "archiveVenue": "Archive venue · No. {number}",
+    "archiveVenue": "Archive venue",
     "fallbackLede": "An exhibition space in {city}—temporary encounters gathered within a remembered architectural shell.",
     "address": "Address",
     "website": "Website",
@@ -218,25 +218,28 @@
       "season": "Season",
       "admission": "Admission"
     },
-    "seoDescription": "Explore exhibition records from {name} in {city}."
+    "seoDescription": "Explore exhibition records from {name} in {city}.",
+    "eventCount": "{count} event | {count} events",
+    "recordCount": "{count} record | {count} records"
   },
   "galleries": {
     "partOf": "Part of {name}",
     "seoTitle": "Galleries across Austria · PERMAPHEMERA",
-    "seoDescription": "Browse 26 small Austrian galleries, project rooms and independent exhibition spaces in the PERMAPHEMERA directory.",
+    "seoDescription": "Browse {count} small Austrian galleries, project rooms and independent exhibition spaces in the PERMAPHEMERA directory.",
     "breadcrumb": "Galleries",
     "eyebrow": "Spatial register · Austria",
     "title": "Small rooms.",
     "accent": "Wide coordinates.",
     "intro": "An atlas of independent galleries, artist-run rooms and local exhibition spaces: modest in scale, distinct in voice, and connected through the records they hold.",
-    "atlasCaption": "Galleries · nine states · one growing field archive",
+    "atlasCaption": "Galleries · {states} · one growing field archive",
+    "statesCount": "{count} federal state | {count} federal states",
     "ledgerGalleries": "Galleries",
     "ledgerStates": "Federal states",
     "ledgerRecords": "Preserved records",
     "directoryEyebrow": "The Austrian atlas",
-    "directoryTitle": "Twenty-six addresses.",
+    "directoryTitle": "{count} address. | {count} addresses.",
     "directoryAccent": "No centre, many edges.",
-    "directoryIntro": "Search a name, town, state, address or phrase, or move laterally through Austria’s nine federal states.",
+    "directoryIntro": "Search a name, town, state, address or phrase, or move laterally through Austria’s federal states.",
     "searchLabel": "Search the gallery directory",
     "searchPlaceholder": "Search galleries…",
     "stateFilterAria": "Filter galleries by federal state",
@@ -264,10 +267,9 @@
     "spatialEyebrow": "Step inside · 360° walk-through",
     "startExperience": "Start experience",
     "inPreparation": "360° walk-through in preparation",
-    "relatedEyebrow": "Also at this venue",
-    "relatedTitle": "Other records from",
-    "relatedAccentAt": "{name}.",
-    "recordNumber": "Exhibition record · No. {number}",
+    "relatedEyebrow": "Also in the archive",
+    "relatedTitle": "Other records",
+    "relatedAccent": "from the archive.",
     "seeDetails": "See details",
     "openingExperience": "Opening the walk-through…",
     "availableFrom": "360° walk-through available from {date}",
@@ -276,7 +278,14 @@
     "invitationPdf": "Original invitation (PDF)",
     "artistWebsite": "Artist website | Artist websites",
     "links": "Link | Links",
-    "statementsTitle": "The artist on this room | The artists on this room"
+    "statementsTitle": "The artist on this room | The artists on this room",
+    "event": {
+      "recordEyebrow": "Event record",
+      "aboutTitle": "A brief gathering,",
+      "aboutAccent": "noted in the archive.",
+      "restricted": "For copyright reasons we may not show a 360° walk-through of this event.",
+      "unavailable": "There is no 360° walk-through of this event."
+    }
   },
   "exhibitionsDirectory": {
     "seoTitle": "Exhibitions in the archive · PERMAPHEMERA",
@@ -798,9 +807,13 @@
     "enter": "Visit",
     "fullTitle": "Full title",
     "fullSummary": "Full text",
+    "fullArtists": "All artists",
     "previewExhibition": "Preview {title}",
     "openExhibitionFor": "Visit exhibition: {title}",
-    "openExhibition": "Visit Exhibition"
+    "openExhibition": "Visit Exhibition",
+    "openEvent": "Visit Event",
+    "enterEvent": "Visit Event",
+    "openEventFor": "Visit event: {title}"
   },
   "footer": {
     "tagline": "A curated Austrian archive of 360-degree exhibition documentation.",
@@ -818,6 +831,9 @@
     "legalAria": "Footer legal navigation",
     "sealAlt": "Permanently preserved, temporarily enduring",
     "copyright": "All rights reserved.",
-    "curated": "Curated independently in Austria."
+    "curated": "Curated independently in Austria.",
+    "callTitle": "Room for institutions that care for",
+    "callText": "PERMAPHEMERA is built with partners who value what would otherwise disappear. This row is kept for their names: supporters, sponsors and partner institutions. Yours could be the first.",
+    "callLink": "Get in touch"
   }
 }

@@ -21,10 +21,6 @@ const relatedExhibitions = computed(() => venueExhibitions.value
   .filter((item) => item.slug !== exhibition.value?.slug)
   .sort((left, right) => Number(right.venue_slug === exhibition.value?.venue_slug) - Number(left.venue_slug === exhibition.value?.venue_slug))
   .slice(0, 3))
-const recordNumber = computed(() => {
-  const index = venueExhibitions.value.findIndex((item) => item.id === exhibition.value?.id)
-  return String(Math.max(0, index) + 1).padStart(2, '0')
-})
 const galleryPath = computed(() => localePath(`/venues/${exhibition.value?.venue_slug}/`))
 const artistsWithWebsite = computed(() => exhibition.value.artists.filter((artist) => artist.website_url))
 const hostnameOf = (url: string) => {
@@ -39,6 +35,8 @@ const hostnameOf = (url: string) => {
 // decided once here and rendered identically at the top and at the end of
 // the details. Only an open record gets a button; every other state is a
 // sentence, never a disabled control.
+// Events (a sale, a festival night) are worded as events, exhibitions as exhibitions.
+const kindText = (key: 'recordEyebrow' | 'aboutTitle' | 'aboutAccent' | 'restricted' | 'unavailable') => t(exhibition.value?.kind === 'event' ? `exhibition.event.${key}` : `exhibition.${key}`)
 const tourAccess = computed(() => resolveTourAccess(exhibition.value))
 const releaseDateFormatter = computed(() => new Intl.DateTimeFormat(locale.value, { day: 'numeric', month: 'long', year: 'numeric' }))
 const tourStatus = computed(() => {
@@ -51,8 +49,8 @@ const tourStatus = computed(() => {
       text: t('exhibition.availableFrom', { date: releaseDateFormatter.value.format(new Date(`${access.date}T12:00:00`)) })
     }
     case 'preparing': return { icon: Hourglass, text: t('exhibition.inPreparation') }
-    case 'restricted': return { icon: Info, text: t('exhibition.restricted') }
-    case 'unavailable': return { icon: Info, text: t('exhibition.unavailable') }
+    case 'restricted': return { icon: Info, text: kindText('restricted') }
+    case 'unavailable': return { icon: Info, text: kindText('unavailable') }
   }
 })
 
@@ -94,8 +92,8 @@ useSeoMeta({
 
       <section id="exhibition-details" class="[ exhibition-details ] [ section-band ] relative mx-auto grid max-w-[105rem] scroll-mt-[6.4rem] grid-cols-[minmax(30rem,1.2fr)_minmax(23rem,0.8fr)] gap-x-[clamp(3rem,7vw,7rem)] gap-y-12 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] outline-none tablet:grid-cols-1 compact:gap-y-8 compact:px-4 compact:py-8" aria-labelledby="exhibition-details-title" tabindex="-1">
         <div class="[ exhibition-details-prose ]">
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.recordNumber', { number: recordNumber }) }}</p>
-          <h2 id="exhibition-details-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ $t('exhibition.aboutTitle') }} <span class="text-archive-red">{{ $t('exhibition.aboutAccent') }}</span></h2>
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ kindText('recordEyebrow') }}</p>
+          <h2 id="exhibition-details-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ kindText('aboutTitle') }} <span class="text-archive-red">{{ kindText('aboutAccent') }}</span></h2>
           <p v-if="exhibition.summary" class="[ exhibition-details-summary ] mt-6 mb-0 max-w-3xl text-lg leading-[1.65] text-archive-body compact:mt-4 compact:text-base compact:leading-normal">{{ exhibition.summary }}</p>
           <p v-if="exhibition.description" class="[ exhibition-details-description ] mt-5 mb-0 max-w-3xl text-lg leading-[1.65] text-archive-body compact:mt-3 compact:text-base compact:leading-normal">{{ exhibition.description }}</p>
 
@@ -168,10 +166,10 @@ useSeoMeta({
       <section v-if="relatedExhibitions.length" class="[ exhibition-related ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8" aria-labelledby="related-title">
         <div class="[ section-heading ] relative z-1 mb-10 compact:mb-5">
           <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.relatedEyebrow') }}</p>
-          <h2 id="related-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccentAt', { name: galleryName }) }}</span></h2>
+          <h2 id="related-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccent') }}</span></h2>
         </div>
         <div class="[ exhibition-related-grid ] grid grid-cols-3 gap-6 compact:grid-cols-1">
-          <RelatedExhibitionCard
+          <ExhibitionCard
             v-for="item in relatedExhibitions"
             :key="item.id"
             :exhibition="item"

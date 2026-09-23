@@ -121,9 +121,13 @@ export interface ParticipationRecord {
 }
 
 /** pp_exhibitions. `primary_venue` → pp_venues.id */
+/** What an exhibitions record is: the site words its pages accordingly. */
+export type ExhibitionKind = 'exhibition' | 'event'
+
 export interface ExhibitionRecord {
   id: string
   slug: string
+  kind: ExhibitionKind
   primary_venue: string
   start_date: string
   end_date: string

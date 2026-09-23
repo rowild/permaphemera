@@ -18,8 +18,7 @@ const [
   exhibitionsIndex,
   exhibitionDetail,
   exhibitionCard,
-  landingExhibitionCard,
-  relatedExhibitionCard,
+  archiveFloatingTooltip,
   englishMessages,
   germanMessages,
   mainCss,
@@ -31,9 +30,8 @@ const [
   readText('app/components/GalleryDirectoryCard.vue'),
   readText('app/pages/exhibitions/index.vue'),
   readText('app/pages/exhibitions/[slug].vue'),
-  readText('app/components/ExhibitionDirectoryCard.vue'),
-  readText('app/components/LandingExhibitionCard.vue'),
-  readText('app/components/RelatedExhibitionCard.vue'),
+  readText('app/components/ExhibitionCard.vue'),
+  readText('app/components/ArchiveFloatingTooltip.vue'),
   readJson('i18n/locales/en.json'),
   readJson('i18n/locales/de.json'),
   readText('app/assets/css/main.css'),
@@ -96,33 +94,37 @@ assert.match(galleryDetail, /venueDossier/, 'Gallery detail routes must layer op
 
 assert(exhibitions.length > 0, 'The exhibitions directory needs routed exhibition records.')
 assert.match(exhibitionsIndex, /<ArchiveSearchForm/, 'The exhibitions index must use the shared search form.')
-assert.match(exhibitionsIndex, /<ExhibitionDirectoryCard[\s\S]*v-for=/, 'The exhibitions index must render reusable exhibition cards.')
+assert.match(exhibitionsIndex, /<ExhibitionCard[\s\S]*v-for=/, 'The exhibitions index must render reusable exhibition cards.')
 assert.match(exhibitionsIndex, /right\.start_date\.localeCompare\(left\.start_date\)/, 'The exhibitions index must order records by newest start date first.')
 assert.doesNotMatch(exhibitionsIndex, /left\.featured\s*\?\s*-1\s*:\s*1/, 'Featured status must not override the chronological exhibition order.')
 assert.match(exhibitionsIndex, /selectFeaturedExhibition\(orderedExhibitions\.value, archiveToday\.value\)/, 'The exhibitions index must derive its highlighted record from the current local date.')
-assert.match(exhibitionsIndex, /:featured="exhibition\.id === featuredExhibition\?\.id"/, 'Only the date-derived exhibition may receive the highlighted card treatment.')
+assert.match(exhibitionsIndex, /:layout="exhibition\.id === featuredExhibition\?\.id \? 'hero' : 'stacked'"/, 'Only the date-derived exhibition may receive the highlighted card treatment.')
 assert.match(exhibitionCard, /<ExhibitionFrameCard/, 'Exhibition cards must use the shared generated cut-corner frame.')
-assert.match(exhibitionCard, /\$t\('cards\.openExhibition'\)/, 'Every exhibition-directory card must use the shared Visit Exhibition label.')
-assert.doesNotMatch(exhibitionCard, /\$t\('common\.open'\)/, 'Exhibition-directory cards must not use the generic Open label.')
-assert.match(landingExhibitionCard, /\[ record-card-action \][^\n]*items-center justify-center/, 'Landing exhibition actions must stay centered over their images.')
-assert.match(landingExhibitionCard, /\$t\('cards\.openExhibition'\)/, 'Landing exhibition actions must use the shared exhibition label.')
-assert.match(landingExhibitionCard, /transition-colors[^\n]*group-hover\/exhibition:text-archive-red[^\n]*group-focus-visible\/exhibition:text-archive-red/, 'Landing exhibition actions must animate to archive red on hover and keyboard focus.')
-assert.match(landingExhibitionCard, /archive-record-open-action[^\n]*text-sm[^\n]*opacity-90/, 'Landing exhibition actions must use the dedicated compact frame without reducing their label size.')
+assert.match(exhibitionCard, /open: 'cards\.openExhibition'/, 'Every exhibition card must use the shared Visit Exhibition label.')
+assert.match(exhibitionCard, /open: 'cards\.openEvent'/, 'Every exhibition card must word event records as events.')
+assert.doesNotMatch(exhibitionCard, /\$t\('common\.open'\)/, 'Exhibition cards must not use the generic Open label.')
+assert.match(exhibitionCard, /export type ExhibitionCardLayout = 'stacked' \| 'side' \| 'hero'/, 'One exhibition card component must carry the stacked, side and hero layouts.')
+assert.match(exhibitionCard, /ref="titleEl"[^>]*truncate/, 'Stacked exhibition titles must stay on one line with an ellipsis.')
+assert.match(exhibitionCard, /ref="artistEl"[^>]*truncate/, 'Stacked exhibition artist lines must stay on one line with an ellipsis.')
+assert.match(exhibitionCard, /\[ record-sheet-footer \][^\n]*mt-auto[^\n]*shrink-0/, 'The stacked record footer must sit statically at the bottom of the sheet.')
+assert.match(exhibitionCard, /\[ record-card-action \][^\n]*items-center justify-center/, 'Landing exhibition actions must stay centered over their images.')
+assert.match(exhibitionCard, /transition-colors[^\n]*group-hover\/exhibition:text-archive-red[^\n]*group-focus-visible\/exhibition:text-archive-red/, 'Landing exhibition actions must animate to archive red on hover and keyboard focus.')
+assert.match(exhibitionCard, /archive-record-open-action[^\n]*text-sm[^\n]*opacity-90/, 'Landing exhibition actions must use the dedicated compact frame without reducing their label size.')
 assert.match(mainCss, /\.archive-record-open-action\s*\{[^}]*width: min\(9\.75rem, calc\(100% - 2rem\)\);[^}]*min-height: 2\.75rem;[^}]*padding-inline: 0\.1875rem;[^}]*border-width: 0\.5rem;/s, 'Landing exhibition actions must keep a small, genuinely inset frame with minimal padding.')
-assert.match(landingExhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidden/, 'Landing exhibition titles must stay on one clipped line.')
-assert.match(landingExhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidden[^>]*pb-0\.5/, 'Landing exhibition title viewports must reserve two pixels for font descenders.')
-assert.match(landingExhibitionCard, /archive-record-title-marquee/, 'Overflowing landing exhibition titles must use the measured marquee treatment.')
-assert.match(landingExhibitionCard, /ResizeObserver/, 'Landing exhibition title overflow must respond to live card width.')
-assert.match(landingExhibitionCard, /<ArchiveTooltipFrame[\s\S]*?\[ record-title-tooltip \]/, 'Overflowing landing exhibition titles must use the shared custom archival tooltip frame.')
-assert.match(landingExhibitionCard, /\[ record-location-line \][^\n]*leading-\[1\.15\][^\n]*compact:leading-\[1\.05\]/, 'Landing exhibition locations must use compact desktop and mobile metadata line-heights.')
+assert.match(exhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidden/, 'Landing exhibition titles must stay on one clipped line.')
+assert.match(exhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidden[^>]*pb-0\.5/, 'Landing exhibition title viewports must reserve two pixels for font descenders.')
+assert.match(exhibitionCard, /archive-record-title-marquee/, 'Overflowing landing exhibition titles must use the measured marquee treatment.')
+assert.match(exhibitionCard, /ResizeObserver/, 'Exhibition card overflow must respond to live card width.')
+assert.match(exhibitionCard, /<ArchiveFloatingTooltip[\s\S]*?\[ record-title-tooltip \]/, 'Overflowing exhibition titles must use the body-level archival tooltip so no card clip can cut it.')
+assert.match(archiveFloatingTooltip, /<Teleport to="body">[\s\S]*?<ArchiveTooltipFrame/, 'The floating tooltip must teleport the shared archival frame to <body>.')
+assert.match(exhibitionCard, /\[ record-location-line \][^\n]*leading-\[1\.15\][^\n]*compact:leading-\[1\.05\]/, 'Landing exhibition locations must use compact desktop and mobile metadata line-heights.')
 assert.match(mainCss, /@keyframes archive-record-title-scroll[\s\S]*\.archive-record-title-marquee/, 'The landing exhibition title marquee animation must be globally defined.')
-assert.match(relatedExhibitionCard, /<ExhibitionFrameCard/, 'Related exhibition cards must use the shared generated cut-corner frame.')
-assert.match(relatedExhibitionCard, /\$t\('cards\.openExhibition'\)/, 'Related exhibition cards must use the shared exhibition label.')
+assert.match(exhibitionDetail, /<ExhibitionCard[\s\S]*v-for="item in relatedExhibitions"/, 'Related records on an exhibition page must reuse the one exhibition card.')
 assert.equal(englishMessages.cards.openExhibition, 'Visit Exhibition', 'English exhibition actions must use the requested label.')
 assert.equal(germanMessages.cards.openExhibition, 'Ausstellung besuchen', 'German exhibition actions must use the equivalent localized label.')
 assert.equal(englishMessages.cards.enterExhibition, 'Visit Exhibition', 'The featured exhibition action must use the requested English label.')
 assert.equal(germanMessages.cards.enterExhibition, 'Ausstellung besuchen', 'The featured exhibition action must use the equivalent localized label.')
-assert(![exhibitionCard, landingExhibitionCard, relatedExhibitionCard].some((source) => /openRecord/.test(source)), 'Exhibition cards must not retain the old open-record action keys.')
+assert.doesNotMatch(exhibitionCard, /openRecord/, 'Exhibition cards must not retain the old open-record action keys.')
 assert.match(exhibitionDetail, /localePath\('\/exhibitions\/'\)/, 'Exhibition detail breadcrumbs must return to the exhibition index.')
 assert.match(exhibitionDetail, /galleryPath/, 'Exhibition detail routes must derive their owning gallery route.')
 
@@ -136,7 +138,7 @@ for (const navigation of [header, footerMenu]) {
   assert.match(navigation, /useSiteNavigation\(\)/, 'Header and footer must render their links from the navigation data.')
 }
 
-console.log(`Directory routes are valid (${galleries.length} galleries across nine states; ${exhibitions.length} exhibition records).`)
+console.log(`Directory routes are valid (${galleries.length} galleries across ${new Set(galleries.map((gallery) => archive.locations.find((location) => location.id === gallery.location)?.state)).size} states; ${exhibitions.length} exhibition records).`)
 }
 
 await runCheck(run)

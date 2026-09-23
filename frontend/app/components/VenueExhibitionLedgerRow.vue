@@ -3,7 +3,6 @@ import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 
 const props = defineProps<{
   exhibition: ResolvedExhibition
-  index: number
   selected: boolean
 }>()
 
@@ -27,13 +26,12 @@ const localePath = useLocalePath()
     />
     <article class="grid grid-cols-[minmax(0,1fr)_3.2rem] items-stretch">
       <button
-        class="[ venue-exhibition-select ] grid min-h-[6.15rem] min-w-0 grid-cols-[2.6rem_minmax(0,1fr)] items-center gap-[0.9rem] border-0 bg-transparent py-3 pr-[0.7rem] pl-4 text-left text-inherit focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-archive-red compact:min-h-20 compact:grid-cols-[1.8rem_minmax(0,1fr)] compact:gap-2 compact:py-2 compact:pr-1 compact:pl-2"
+        class="[ venue-exhibition-select ] grid min-h-[6.15rem] min-w-0 grid-cols-1 items-center border-0 bg-transparent py-3 pr-[0.7rem] pl-4 text-left text-inherit focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-archive-red compact:min-h-20 compact:py-2 compact:pr-1 compact:pl-2"
         type="button"
         :aria-pressed="props.selected"
         :aria-label="$t('cards.previewExhibition', { title: props.exhibition.title })"
         @click="emit('select', props.exhibition)"
       >
-        <span class="[ venue-list-number ] mt-[0.2rem] self-start text-meta tracking-[0.08em] text-archive-red/62">{{ String(props.index + 1).padStart(2, '0') }}</span>
         <span class="[ venue-list-copy ] grid min-w-0">
           <time class="text-2xs leading-[1.1] tracking-[0.07em] text-archive-muted uppercase" :datetime="props.exhibition.start_date">{{ props.exhibition.date_range }}</time>
           <strong class="my-[0.08rem] mt-[0.12rem] text-lede leading-[1.15] font-normal compact:text-base">{{ props.exhibition.title }}</strong>
@@ -43,9 +41,9 @@ const localePath = useLocalePath()
       <NuxtLink
         class="[ venue-list-link ] flex items-center justify-center text-archive-red focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-archive-red"
         :to="localePath(`/exhibitions/${props.exhibition.slug}`)"
-        :aria-label="$t('cards.openExhibitionFor', { title: props.exhibition.title })"
+        :aria-label="$t(props.exhibition.kind === 'event' ? 'cards.openEventFor' : 'cards.openExhibitionFor', { title: props.exhibition.title })"
       >
-        <span class="sr-only">{{ $t('cards.openExhibition') }}</span>
+        <span class="sr-only">{{ $t(props.exhibition.kind === 'event' ? 'cards.openEvent' : 'cards.openExhibition') }}</span>
         <ArchiveArrow class="w-[1.65rem] group-hover/venue-record:translate-x-[0.32rem] group-focus-within/venue-record:translate-x-[0.32rem]" />
       </NuxtLink>
     </article>

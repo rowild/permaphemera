@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.19 - 2026-09-23 20:53:00 CEST
+
+- Replaced the three exhibition card components with one `ExhibitionCard` in three layouts (stacked, side, hero). The related records under an exhibition no longer grow with their content: title, artists and summary are clipped with an ellipsis, and the footer with the "Visit Exhibition" action stays in place. The highlighted directory record now uses the landing hero look.
+- Tooltips for clipped card texts (full title, all artists, full summary) are teleported to `<body>`, so the card's cut-corner clip and overflow can no longer cut them off; they flip above the line when the viewport ends and follow scroll and resize.
+- Removed every counting number from the site: the venue archive number on gallery cards and venue pages (with its round plate), the exhibition record numbers on cards and detail pages, and the position numbers in a venue's record list.
+- The galleries directory no longer carries fixed counts in its copy ("Twenty-six addresses", "nine states"); the heading, the atlas caption and the SEO description read their numbers from the data.
+- The "Also in the archive" block under an exhibition no longer names the venue, because it fills up with records from other venues.
+- Exhibition records carry a new `kind` (exhibition or event) in Directus. An event is worded as an event: "Event record", "A brief gathering, noted in the archive.", "Visit Event", and "There is no 360° walk-through of this event." The BV Kärnten flea market of September 2026 is the first event; venue ledgers count events and records accordingly.
+- The footer hides the placeholder sponsors (now drafts in Directus) and shows an invitation to future supporters with a link to the contact page until a real sponsor is published.
+- The coordinates row on a venue page has a compass icon like its neighbours.
+- "BV Kärnten" is kept verbatim in the artist directory instead of being inverted to "Kärnten, BV" (stopgap until organisations get their own collection; see `docs/superpowers/specs/2026-09-23-organisations-design.md`).
+
 ## 0.0.18 - 2026-08-23 12:24:05 CEST
 
 - Connected the 360-degree exhibition experience. The "Start experience" button on an exhibition page now opens the exhibition's exported tour in a full-viewport modal, asks the browser for fullscreen where it is supported, and returns to the page when the tour's close control is used or fullscreen ends. Records without a published tour keep the disabled button and the "Spatial record in preparation" line.

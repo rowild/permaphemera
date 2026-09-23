@@ -1,6 +1,5 @@
 import type {
-  ExhibitionRecord, ExhibitionStatement, JunctionRow, LocationRecord, ParticipationRecord, PersonRecord, RoleRecord, VenueRecord, WebsiteRecord
-} from '~/types/content'
+  ExhibitionRecord, ExhibitionStatement, JunctionRow, LocationRecord, ParticipationRecord, PersonRecord, RoleRecord, VenueRecord, WebsiteRecord, ExhibitionKind } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
 import type { TourStatus } from '~/utils/tourAccess'
@@ -57,6 +56,7 @@ export interface ResolvedExhibition {
   tour?: string
   tour_status: TourStatus
   tour_available_from: string | null
+  kind: ExhibitionKind
 }
 
 export const displayPersonName = (person: PersonRecord): string =>
@@ -177,7 +177,8 @@ export const resolveExhibitions = (
       source_pdf: exhibition.source_pdf ?? undefined,
       tour: exhibition.tour ?? undefined,
       tour_status: exhibition.tour_status,
-      tour_available_from: exhibition.tour_available_from
+      tour_available_from: exhibition.tour_available_from,
+      kind: exhibition.kind ?? 'exhibition'
     }
   })
 }

@@ -840,6 +840,26 @@ a:hover .archive-arrow-right {
   transform-origin: clamp(1.1rem, calc(50% + var(--archive-tooltip-pointer-offset, 0px)), calc(100% - 1.1rem)) 100%;
 }
 
+.archive-floating-tooltip-enter-active,
+.archive-floating-tooltip-leave-active {
+  transition:
+    opacity 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.archive-floating-tooltip-enter-from,
+.archive-floating-tooltip-leave-to {
+  opacity: 0;
+  transform: translateY(0.25rem) scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-floating-tooltip-enter-active,
+  .archive-floating-tooltip-leave-active {
+    transition: none;
+  }
+}
+
 .kaleidoscope-tooltip-enter-active,
 .kaleidoscope-tooltip-leave-active {
   transition:
@@ -1104,14 +1124,6 @@ a:hover .archive-arrow-right {
   content: "";
   opacity: 0.15;
   transform: rotate(9deg);
-}
-
-.archive-venue-plate::before {
-  position: absolute;
-  inset: 0.38rem;
-  border: 1px dashed rgb(var(--color-archive-red-rgb) / 0.38);
-  border-radius: 50%;
-  content: "";
 }
 
 .archive-venue-active-preview .archive-venue-preview-image-enter-active,

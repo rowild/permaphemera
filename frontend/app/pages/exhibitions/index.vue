@@ -113,12 +113,12 @@ useSeoMeta({
         </div>
 
         <div v-else class="[ exhibitions-directory-grid ] grid grid-cols-2 items-stretch gap-6 compact:grid-cols-2 compact:gap-2.5">
-          <ExhibitionDirectoryCard
-            v-for="(exhibition, index) in filteredExhibitions"
+          <ExhibitionCard
+            v-for="exhibition in filteredExhibitions"
             :key="exhibition.id"
+            :class="exhibition.id === featuredExhibition?.id ? 'col-span-2' : ''"
             :exhibition="exhibition"
-            :index="index"
-            :featured="exhibition.id === featuredExhibition?.id"
+            :layout="exhibition.id === featuredExhibition?.id ? 'hero' : 'stacked'"
           />
         </div>
       </section>

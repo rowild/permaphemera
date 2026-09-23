@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Building2, CalendarDays, ExternalLink, LayoutGrid, MapPin } from '@lucide/vue'
+import { Building2, CalendarDays, Compass, ExternalLink, LayoutGrid, MapPin } from '@lucide/vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 
@@ -63,6 +63,12 @@ const venue = computed<Venue>(() => {
 void venue.value
 
 const exhibitions = computed(() => venueExhibitions.value.filter((item) => item.venue_slug === venue.value?.slug))
+// Word the ledger after what the venue holds: exhibitions, events, or a mix of both.
+const ledgerCountKey = computed(() => {
+  const kinds = new Set(exhibitions.value.map((exhibition) => exhibition.kind))
+  if (kinds.size === 1 && kinds.has('event')) return 'venue.eventCount'
+  return kinds.size > 1 ? 'venue.recordCount' : 'venue.exhibitionCount'
+})
 const venueSearchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
 const filteredExhibitions = computed(() => {
   const query = venueSearchQuery.value.trim().toLocaleLowerCase()
@@ -151,9 +157,6 @@ onMounted(() => {
   if (firstExhibition) selectExhibition(firstExhibition)
 })
 
-const venueIndex = computed(() => venues.value.findIndex((item) => item.id === venueRecord.value?.id))
-const archiveNumber = computed(() => venue.value?.archive_number ?? String(venueIndex.value + 1).padStart(2, '0'))
-const plateCode = computed(() => venue.value?.city.slice(0, 2).toLocaleUpperCase() ?? '')
 const venueMapUrl = computed(() => {
   if (!venue.value) return undefined
   const query = venue.value.latitude !== undefined && venue.value.longitude !== undefined
@@ -197,7 +200,7 @@ useSeoMeta({
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/venues/')">{{ $t('navigation.galleries') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ venue.name }}</span>
           </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.archiveVenue', { number: archiveNumber }) }}</p>
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.archiveVenue') }}</p>
           <h1 id="venue-title" class="[ venue-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">
             {{ venue.name }}
             <span class="mt-3 block max-w-116 text-city leading-[1.02] text-archive-red">{{ venue.city }}</span>
@@ -220,7 +223,7 @@ useSeoMeta({
               </template>
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="venue.latitude !== undefined && venue.longitude !== undefined" :label="$t('venue.coordinates')" variant="venue">
-              <template #icon><span class="record-meta-icon record-meta-icon-location" aria-hidden="true" /></template>
+              <template #icon><Compass :size="18" aria-hidden="true" /></template>
               {{ venue.latitude }}° N, {{ venue.longitude }}° E
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="venue.website_url" :label="$t('venue.website')" variant="venue">
@@ -259,11 +262,6 @@ useSeoMeta({
             <span class="not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
             {{ venue.image_caption ?? $t('venue.fallbackCaption', { name: venue.name, city: venue.city }) }}
           </figcaption>
-          <div class="[ venue-plate ] archive-venue-plate absolute -right-4 bottom-[-0.4rem] z-6 grid aspect-square w-[7.8rem] -rotate-7 place-content-center rounded-full border border-archive-red/43 bg-archive-paper/90 text-center text-archive-red compact:right-[-0.35rem] compact:bottom-[-0.8rem] compact:w-[6.4rem]" aria-hidden="true">
-            <span class="text-2xs tracking-[0.12em] uppercase">{{ plateCode }}</span>
-            <strong class="text-4xl leading-[0.9] font-normal">{{ archiveNumber }}</strong>
-            <small class="max-w-24 text-2xs tracking-[0.12em] uppercase">{{ venue.coordinate_label ?? venue.city }}</small>
-          </div>
         </figure>
 
         <ArchiveScrollCue target="#venue-exhibitions" :label="$t('venue.continue')" />
@@ -273,7 +271,7 @@ useSeoMeta({
         <div class="[ venue-exhibitions-intro ] mb-12 grid grid-cols-[minmax(0,1fr)_minmax(20rem,0.55fr)] items-start gap-[clamp(2.5rem,6vw,6rem)] tablet:grid-cols-1 compact:mb-5 compact:gap-4">
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-3">
             <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.ledger', { season: seasonYears || $t('venue.recordsPending') }) }}</p>
-            <h2 id="venue-exhibitions-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ $t('venue.exhibitionCount', exhibitions.length) }}. <span class="text-archive-red">{{ $t('venue.changingSpace') }}</span></h2>
+            <h2 id="venue-exhibitions-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ $t(ledgerCountKey, exhibitions.length) }}. <span class="text-archive-red">{{ $t('venue.changingSpace') }}</span></h2>
             <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('venue.searchIntro') }}</p>
           </div>
           <ArchiveFactLedger class="mt-9 tablet:mt-0" :items="venueLedgerItems" />
@@ -300,10 +298,9 @@ useSeoMeta({
         <div v-else class="[ venue-exhibition-browser ] grid grid-cols-[minmax(24rem,0.72fr)_minmax(34rem,1.28fr)] items-start gap-[clamp(2rem,5vw,5rem)] tablet:grid-cols-[minmax(18rem,0.72fr)_minmax(28rem,1.28fr)] tablet:gap-8 medium:grid-cols-1">
           <ol class="[ venue-exhibition-list ] m-0 list-none p-0 medium:row-start-2" :aria-label="$t('venue.exhibitionsAria', { name: venue.name })">
             <VenueExhibitionLedgerRow
-              v-for="(exhibition, index) in filteredExhibitions"
+              v-for="exhibition in filteredExhibitions"
               :key="exhibition.id"
               :exhibition="exhibition"
-              :index="index"
               :selected="selectedExhibition?.id === exhibition.id"
               @select="selectExhibition"
             />

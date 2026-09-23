@@ -67,8 +67,9 @@ collections:
       icon: group
       item_duplication_fields: null
       note: >-
-        One person in one function on one show. A person who both makes and
-        curates a show has two rows. The role must be one of the person's roles.
+        One person in one function in one exhibition. A person who both makes
+        and curates an exhibition has two rows. The role must be one of the
+        person's roles.
       preview_url: null
       singleton: false
       sort: 1
@@ -96,7 +97,7 @@ collections:
       hidden: true
       icon: format_quote
       item_duplication_fields: null
-      note: An artist's words about one show.
+      note: An artist's words about one exhibition.
       preview_url: null
       singleton: false
       sort: 2
@@ -125,7 +126,7 @@ collections:
       icon: auto_awesome
       item_duplication_fields: null
       note: >-
-        The show. Highlighting on the site is derived from dates and never
+        The exhibition. Highlighting on the site is derived from dates and never
         stored.
       preview_url: null
       singleton: false
@@ -237,7 +238,9 @@ collections:
       hidden: true
       icon: import_export
       item_duplication_fields: null
-      note: Further venues of a travelling show; primary_venue stays the main one.
+      note: >-
+        Further venues of a travelling exhibition; primary_venue stays the main
+        one.
       preview_url: null
       singleton: false
       sort: 3
@@ -249,6 +252,34 @@ collections:
       versioning: false
     schema:
       name: pp_mm__exhibitions_venues
+  - collection: pp_mm__exhibitions_websites
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__exhibitions_websites
+      color: '#a6523c'
+      display_template: null
+      group: pp_websites
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: >-
+        External links of an exhibition: its page on the venue site, press
+        sheets, documents.
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Exhibitions ↔ Websites
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__exhibitions_websites
   - collection: pp_mm__locations_sponsors
     meta:
       accountability: all
@@ -355,6 +386,34 @@ collections:
       versioning: false
     schema:
       name: pp_mm__persons_venues
+  - collection: pp_mm__persons_websites
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__persons_websites
+      color: '#a6523c'
+      display_template: null
+      group: pp_websites
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: >-
+        The links of a person. Replaced the single website_url column on
+        2026-09-15.
+      preview_url: null
+      singleton: false
+      sort: 2
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Persons ↔ Websites
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__persons_websites
   - collection: pp_mm__sponsors_venues
     meta:
       accountability: all
@@ -454,8 +513,8 @@ collections:
       icon: person
       item_duplication_fields: null
       note: >-
-        People and collectives: artists, curators. The site shows a name, a
-        website link and their statements. Nothing else, by decision of
+        People and collectives: artists, curators. The site shows a name, their
+        links (see websites) and their statements. Nothing else, by decision of
         2026-09-14.
       preview_url: null
       singleton: false
@@ -485,8 +544,8 @@ collections:
       icon: badge
       item_duplication_fields: null
       note: >-
-        What a person can be on a show: artist, curator, … Vocabulary table; add
-        rows, not columns.
+        What a person can be in an exhibition: artist, curator, … Vocabulary
+        table; add rows, not columns.
       preview_url: null
       singleton: false
       sort: 6
@@ -710,6 +769,32 @@ collections:
       versioning: false
     schema:
       name: pp_translations__venues
+  - collection: pp_translations__websites
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_translations__websites
+      color: '#a6523c'
+      display_template: null
+      group: pp_websites
+      hidden: true
+      icon: translate
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 3
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Websites · Translations
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_translations__websites
   - collection: pp_venues
     meta:
       accountability: all
@@ -738,6 +823,36 @@ collections:
       versioning: false
     schema:
       name: pp_venues
+  - collection: pp_websites
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: closed
+      collection: pp_websites
+      color: '#a6523c'
+      display_template: '{{title}}'
+      group: pp_archive
+      hidden: false
+      icon: link
+      item_duplication_fields: null
+      note: >-
+        One external link: an artist site, an exhibition page, a press sheet, a
+        social profile. Persons and exhibitions link to as many as they need.
+      preview_url: null
+      singleton: false
+      sort: 8
+      sort_field: null
+      translations:
+        - language: en-US
+          plural: Websites
+          singular: Website
+          translation: Websites
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: pp_websites
 fields:
   - collection: languages
     field: code
@@ -2854,7 +2969,7 @@ fields:
       group: ui_group_tour
       hidden: false
       interface: datetime
-      note: Usually the day after the analog show closes. Empty means at once.
+      note: Usually the day after the exhibition closes. Empty means at once.
       options: null
       readonly: false
       required: false
@@ -3340,6 +3455,80 @@ fields:
       is_nullable: true
       is_unique: false
       is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_exhibitions
+    field: websites
+    type: alias
+    meta:
+      collection: pp_exhibitions
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{websites_id.title}}'
+      field: websites
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{websites_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_exhibitions
+    field: kind
+    type: string
+    meta:
+      collection: pp_exhibitions
+      conditions: null
+      display: labels
+      display_options: null
+      field: kind
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: >-
+        What the record is. An event (a sale, a festival night) gets event
+        wording on the site; an exhibition gets exhibition wording.
+      options:
+        allowOther: false
+        choices:
+          - text: exhibition
+            value: exhibition
+          - text: event
+            value: event
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: kind
+      table: pp_exhibitions
+      data_type: varchar
+      default_value: exhibition
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
       is_primary_key: false
       is_generated: false
       generation_expression: null
@@ -4721,6 +4910,172 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_mm__exhibitions_websites
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__exhibitions_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__exhibitions_websites
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__exhibitions_websites
+    field: exhibitions_id
+    type: string
+    meta:
+      collection: pp_mm__exhibitions_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: exhibitions_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: exhibitions_id
+      table: pp_mm__exhibitions_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_exhibitions
+      foreign_key_column: id
+  - collection: pp_mm__exhibitions_websites
+    field: websites_id
+    type: string
+    meta:
+      collection: pp_mm__exhibitions_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: websites_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: websites_id
+      table: pp_mm__exhibitions_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+  - collection: pp_mm__exhibitions_websites
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__exhibitions_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__exhibitions_websites
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_mm__locations_sponsors
     field: id
     type: integer
@@ -5371,6 +5726,172 @@ fields:
     schema:
       name: sort
       table: pp_mm__persons_venues
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__persons_websites
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__persons_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__persons_websites
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__persons_websites
+    field: persons_id
+    type: string
+    meta:
+      collection: pp_mm__persons_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{first_name}} {{last_name}}'
+      field: persons_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{first_name}} {{last_name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: persons_id
+      table: pp_mm__persons_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_persons
+      foreign_key_column: id
+  - collection: pp_mm__persons_websites
+    field: websites_id
+    type: string
+    meta:
+      collection: pp_mm__persons_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: websites_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: websites_id
+      table: pp_mm__persons_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+  - collection: pp_mm__persons_websites
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__persons_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__persons_websites
       data_type: integer
       default_value: null
       max_length: null
@@ -7042,7 +7563,7 @@ fields:
       translations: null
       validation: null
       validation_message: null
-      width: half
+      width: full
     schema:
       name: status
       table: pp_persons
@@ -7206,7 +7727,7 @@ fields:
       translations: null
       validation: null
       validation_message: null
-      width: half
+      width: full
     schema:
       name: display_name
       table: pp_persons
@@ -7292,47 +7813,6 @@ fields:
       validation: null
       validation_message: null
       width: full
-  - collection: pp_persons
-    field: website_url
-    type: string
-    meta:
-      collection: pp_persons
-      conditions: null
-      display: null
-      display_options: null
-      field: website_url
-      group: ui_group_links
-      hidden: false
-      interface: input
-      note: null
-      options:
-        trim: true
-      readonly: false
-      required: false
-      searchable: true
-      sort: 1
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: website_url
-      table: pp_persons
-      data_type: varchar
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
   - collection: pp_persons
     field: participations
     type: alias
@@ -7662,6 +8142,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_persons
+    field: websites
+    type: alias
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{websites_id.title}}'
+      field: websites
+      group: ui_group_links
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{websites_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_roles
     field: ui_accordion_main
     type: alias
@@ -10734,6 +11240,173 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_translations__websites
+    field: id
+    type: integer
+    meta:
+      collection: pp_translations__websites
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_translations__websites
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__websites
+    field: websites_id
+    type: string
+    meta:
+      collection: pp_translations__websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: websites_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: websites_id
+      table: pp_translations__websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+  - collection: pp_translations__websites
+    field: languages_code
+    type: string
+    meta:
+      collection: pp_translations__websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: languages_code
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: languages_code
+      table: pp_translations__websites
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: languages
+      foreign_key_column: code
+  - collection: pp_translations__websites
+    field: title
+    type: string
+    meta:
+      collection: pp_translations__websites
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_websites.title
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: pp_translations__websites
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_venues
     field: ui_accordion_main
     type: alias
@@ -12200,6 +12873,748 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_venues
+    field: part_of
+    type: string
+    meta:
+      collection: pp_venues
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: part_of
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown-m2o
+      note: >-
+        The venue this space belongs to organisationally, e.g.
+        Alpen-Adria-Galerie → Stadtgalerie Klagenfurt. Empty for independent
+        venues.
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: part_of
+      table: pp_venues
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_venues
+      foreign_key_column: id
+  - collection: pp_venues
+    field: spaces
+    type: alias
+    meta:
+      collection: pp_venues
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: spaces
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: ui_accordion_main
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_main
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+        start: first
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Main
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: ui_accordion_translations
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_translations
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Translations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: ui_group_title
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_title
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Title
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: ui_group_relations
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_relations
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Relations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: status
+    type: string
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - background: var(--theme--primary)
+            foreground: '#FFFFFF'
+            text: $t:published
+            value: published
+          - background: '#D3DAE4'
+            foreground: '#18222F'
+            text: $t:draft
+            value: draft
+          - background: var(--theme--warning)
+            foreground: '#FFFFFF'
+            text: $t:archived
+            value: archived
+        showAsDot: true
+      field: status
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: status
+      table: pp_websites
+      data_type: varchar
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_websites
+    field: title
+    type: string
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: Link text the site shows, e.g. "Exhibition page at stadtgalerie.net".
+      options:
+        trim: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: pp_websites
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_websites
+    field: url
+    type: string
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: url
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: Absolute URL including https://.
+      options:
+        trim: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: url
+      table: pp_websites
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_websites
+    field: kind
+    type: string
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: labels
+      display_options: null
+      field: kind
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        allowOther: true
+        choices:
+          - text: website
+            value: website
+          - text: exhibition_page
+            value: exhibition_page
+          - text: press
+            value: press
+          - text: document
+            value: document
+          - text: social
+            value: social
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: kind
+      table: pp_websites
+      data_type: varchar
+      default_value: website
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_websites
+    field: exhibitions
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{exhibitions_id.title}}'
+      field: exhibitions
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{exhibitions_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: persons
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+      field: persons
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: translations
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: translations
+      group: ui_accordion_translations
+      hidden: false
+      interface: translations
+      note: null
+      options:
+        defaultLanguage: en
+        defaultOpenSplitView: true
+        languageField: name
+        userLanguage: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - translations
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: id
+    type: uuid
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_websites
+    field: sort
+    type: integer
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_websites
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_websites
+    field: user_created
+    type: string
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_websites
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_websites
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_websites
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_websites
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_websites
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
 systemFields:
   - collection: directus_activity
     field: timestamp
@@ -12634,6 +14049,48 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: CASCADE
+  - collection: pp_mm__exhibitions_websites
+    field: exhibitions_id
+    related_collection: pp_exhibitions
+    meta:
+      junction_field: websites_id
+      many_collection: pp_mm__exhibitions_websites
+      many_field: exhibitions_id
+      one_allowed_collections: null
+      one_collection: pp_exhibitions
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: websites
+      sort_field: sort
+    schema:
+      table: pp_mm__exhibitions_websites
+      column: exhibitions_id
+      foreign_key_table: pp_exhibitions
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__exhibitions_websites
+    field: websites_id
+    related_collection: pp_websites
+    meta:
+      junction_field: exhibitions_id
+      many_collection: pp_mm__exhibitions_websites
+      many_field: websites_id
+      one_allowed_collections: null
+      one_collection: pp_websites
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: exhibitions
+      sort_field: null
+    schema:
+      table: pp_mm__exhibitions_websites
+      column: websites_id
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
   - collection: pp_mm__locations_sponsors
     field: locations_id
     related_collection: pp_locations
@@ -12798,6 +14255,48 @@ relations:
       table: pp_mm__persons_venues
       column: venues_id
       foreign_key_table: pp_venues
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__persons_websites
+    field: persons_id
+    related_collection: pp_persons
+    meta:
+      junction_field: websites_id
+      many_collection: pp_mm__persons_websites
+      many_field: persons_id
+      one_allowed_collections: null
+      one_collection: pp_persons
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: websites
+      sort_field: sort
+    schema:
+      table: pp_mm__persons_websites
+      column: persons_id
+      foreign_key_table: pp_persons
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__persons_websites
+    field: websites_id
+    related_collection: pp_websites
+    meta:
+      junction_field: persons_id
+      many_collection: pp_mm__persons_websites
+      many_field: websites_id
+      one_allowed_collections: null
+      one_collection: pp_websites
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: persons
+      sort_field: null
+    schema:
+      table: pp_mm__persons_websites
+      column: websites_id
+      foreign_key_table: pp_websites
       foreign_key_column: id
       constraint_name: null
       on_update: NO ACTION
@@ -13411,6 +14910,48 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: CASCADE
+  - collection: pp_translations__websites
+    field: websites_id
+    related_collection: pp_websites
+    meta:
+      junction_field: languages_code
+      many_collection: pp_translations__websites
+      many_field: websites_id
+      one_allowed_collections: null
+      one_collection: pp_websites
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: translations
+      sort_field: null
+    schema:
+      table: pp_translations__websites
+      column: websites_id
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__websites
+    field: languages_code
+    related_collection: languages
+    meta:
+      junction_field: websites_id
+      many_collection: pp_translations__websites
+      many_field: languages_code
+      one_allowed_collections: null
+      one_collection: languages
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_translations__websites
+      column: languages_code
+      foreign_key_table: languages
+      foreign_key_column: code
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
   - collection: pp_venues
     field: location
     related_collection: pp_locations
@@ -13510,6 +15051,69 @@ relations:
       sort_field: null
     schema:
       table: pp_venues
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_venues
+    field: part_of
+    related_collection: pp_venues
+    meta:
+      junction_field: null
+      many_collection: pp_venues
+      many_field: part_of
+      one_allowed_collections: null
+      one_collection: pp_venues
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: spaces
+      sort_field: null
+    schema:
+      table: pp_venues
+      column: part_of
+      foreign_key_table: pp_venues
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_websites
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_websites
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_websites
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_websites
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_websites
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_websites
       column: user_updated
       foreign_key_table: directus_users
       foreign_key_column: id

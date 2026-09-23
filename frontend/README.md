@@ -13,7 +13,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 - a searchable, URL-filterable gallery atlas with 36 small Austrian galleries across all nine federal states;
 - a searchable exhibition index with reusable framed record cards and direct detail routes;
 - an illustrated explanation of the archive method;
-- an overflow-aware sponsor strip that stays centered and static while its logos fit, then becomes a slow seamless marquee when they overflow, inside the dark editorial footer;
+- an overflow-aware sponsor strip that stays centered and static while its logos fit, then becomes a slow seamless marquee when they overflow, inside the dark editorial footer; while no sponsor is published, the footer shows an invitation to future supporters instead;
 - dynamic gallery dossiers with venue-specific record search, currently led by Parkschlössl;
 - nine real 2026 Parkschlössl exhibition records derived from local source PDFs;
 - a compact selectable exhibition ledger with a preloaded, responsive active preview;

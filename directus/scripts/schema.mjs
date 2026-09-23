@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, jsonArray, m2o, markdown, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-09-15.2'
+export const SCHEMA_VERSION = '2026-09-23.1'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -110,6 +110,7 @@ export const entities = {
     fields: [
       str('title', { required: true, translated: true }),
       str('slug', { required: true, unique: true, slug: true, width: 'half' }),
+      dropdown('kind', ['exhibition', 'event'], { default: 'exhibition', width: 'half', note: 'What the record is. An event (a sale, a festival night) gets event wording on the site; an exhibition gets exhibition wording.' }),
       m2o('primary_venue', 'venues', { oneField: 'exhibitions', oneTemplate: '{{title}}' }),
       date('start_date', { required: true }),
       date('end_date', { required: true }),
@@ -128,7 +129,7 @@ export const entities = {
       date('tour_available_from', { note: 'Usually the day after the exhibition closes. Empty means at once.' }),
     ],
     layout: [
-      section('title', 'Title', ['status', 'title', 'slug', 'primary_venue']),
+      section('title', 'Title', ['status', 'title', 'slug', 'kind', 'primary_venue']),
       section('dates', 'Dates', ['start_date', 'end_date', 'is_permanent', 'date_range', 'opening_hours', 'vernissage']),
       section('media', 'Media', ['image', 'image_alt', 'source_pdf', 'medium']),
       section('tour', 'Tour', ['tour', 'tour_status', 'tour_available_from']),

@@ -12,7 +12,7 @@ import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 // resolved records — they rebuild a smaller landing-page card projection
 // (and, on the venue side, a `location_id` field ResolvedVenue doesn't
 // carry). These two local types describe exactly what gets constructed, so
-// VenueArchiveCard/LandingExhibitionCard's narrower prop types keep checking
+// VenueArchiveCard/ExhibitionCard's narrower prop types keep checking
 // against something real instead of the deleted `Venue`/`Exhibition` types.
 interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'website_url' | 'image' | 'featured' | 'archive_number'> {
   location_id: string
@@ -393,21 +393,20 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       />
 
       <div class="[ exhibition-layout ] grid grid-cols-[minmax(28rem,1.35fr)_minmax(23rem,0.85fr)] gap-8 tablet:grid-cols-1 compact:grid-cols-2 compact:gap-3">
-        <LandingExhibitionCard
+        <ExhibitionCard
           class="[ featured-exhibition ] tablet:col-span-full"
           v-show="exhibitionMatchesSearch(featuredExhibition)"
           :exhibition="featuredExhibition"
-          variant="featured"
-          :href="localePath(`/exhibitions/${featuredExhibition.slug}/`)"
+          layout="hero"
         />
 
         <div class="[ record-list ] grid h-160 grid-rows-4 gap-[1.05rem] tablet:h-auto tablet:grid-cols-2 tablet:grid-rows-2 tablet:gap-5 compact:contents">
-          <LandingExhibitionCard
+          <ExhibitionCard
             v-for="exhibition in sideExhibitions"
             :key="exhibition.id"
             v-show="exhibitionMatchesSearch(exhibition)"
             :exhibition="exhibition"
-            :href="localePath(`/exhibitions/${exhibition.slug}/`)"
+            layout="side"
           />
         </div>
       </div>
