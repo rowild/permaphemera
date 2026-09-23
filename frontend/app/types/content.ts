@@ -88,6 +88,8 @@ export interface PersonRecord {
   middle_initial: string | null
   /** Pseudonym or collective name; shown instead of first + last when set. */
   display_name: string | null
+  /** An artist collective: display_name is shown exactly as written, never inverted to "Family, Given". */
+  is_collective: boolean
   status: ContentStatus
   sort: number
 }
@@ -222,6 +224,63 @@ export interface WebsiteRecord {
   translations: TranslationEntry[]
 }
 
+export type OrganisationKind = 'association' | 'federation' | 'institution' | 'collective' | 'company' | 'initiative' | (string & {})
+
+/** pp_organisations — associations, federations, institutions. `title` is one verbatim string, never split. `location` → pp_locations.id */
+export interface OrganisationRecord {
+  id: string
+  slug: string
+  title: string
+  short_title: string | null
+  kind: OrganisationKind
+  founded: string | null
+  address: string | null
+  location: string | null
+  logo: string | null
+  logo_alt: string | null
+  lede: string | null
+  about: string[] | null
+  description: string | null
+  status: ContentStatus
+  sort: number
+  translations: TranslationEntry[]
+}
+
+/** pp_organisation_memberships — one person in one function in one organisation. */
+export interface OrganisationMembershipRecord {
+  id: string
+  organisation: string
+  person: string
+  function: string | null
+  sort: number
+  status: ContentStatus
+  translations: TranslationEntry[]
+}
+
+export type OrganisationVenueRelation = 'runs' | 'seat' | 'exhibits_at'
+
+/** pp_organisation_venue_relations — how an organisation relates to a building. */
+export interface OrganisationVenueRelationRecord {
+  id: string
+  organisation: string
+  venue: string
+  relation: OrganisationVenueRelation
+  sort: number
+  status: ContentStatus
+}
+
+export type ExhibitionOrganiserRole = 'organiser' | 'presenter' | 'cooperation' | 'supporter'
+
+/** pp_exhibition_organisers — the organisation behind one exhibition or event, in one role. */
+export interface ExhibitionOrganiserRecord {
+  id: string
+  exhibition: string
+  organisation: string
+  role: ExhibitionOrganiserRole
+  sort: number
+  status: ContentStatus
+}
+
 /** Everything the site reads, fetched once from Directus in the JSON item shape. */
 export interface ArchiveSnapshot {
   locations: LocationRecord[]
@@ -244,4 +303,9 @@ export interface ArchiveSnapshot {
   sponsorsVenues: JunctionRow[]
   exhibitionsWebsites: JunctionRow[]
   personsWebsites: JunctionRow[]
+  organisations: OrganisationRecord[]
+  organisationMemberships: OrganisationMembershipRecord[]
+  organisationVenueRelations: OrganisationVenueRelationRecord[]
+  exhibitionOrganisers: ExhibitionOrganiserRecord[]
+  organisationsWebsites: JunctionRow[]
 }

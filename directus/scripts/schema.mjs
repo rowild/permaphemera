@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, jsonArray, m2o, markdown, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-09-23.1'
+export const SCHEMA_VERSION = '2026-09-23.2'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -31,7 +31,7 @@ export const entities = {
     layout: [
       section('title', 'Title', ['status', 'title', 'slug']),
       section('address', 'Address', ['postal_code', 'state', 'country', 'latitude', 'longitude']),
-      section('relations', 'Relations', ['venues', 'sponsors']),
+      section('relations', 'Relations', ['venues', 'organisations', 'sponsors']),
       content(['description']),
     ],
   },
@@ -66,7 +66,7 @@ export const entities = {
       section('title', 'Title', ['status', 'title', 'slug', 'type', 'location', 'part_of', 'featured', 'archive_number']),
       section('address', 'Address', ['address', 'website_url', 'latitude', 'longitude', 'coordinate_label']),
       section('images', 'Images', ['image', 'image_alt', 'hero_image', 'hero_image_alt', 'image_caption']),
-      section('relations', 'Relations', ['spaces', 'exhibitions', 'further_exhibitions', 'persons', 'sponsors']),
+      section('relations', 'Relations', ['spaces', 'exhibitions', 'further_exhibitions', 'organisation_relations', 'persons', 'sponsors']),
       content(['lede', 'about', 'description']),
     ],
   },
@@ -81,11 +81,12 @@ export const entities = {
       str('middle_initial', { width: 'half' }),
       str('display_name', { width: 'full', note: 'Pseudonym or collective name. Shown instead of first + last when set.' }),
       str('slug', { required: true, unique: true, slug: true, width: 'half' }),
+      bool('is_collective', { width: 'half', note: 'An artist collective (e.g. Raqs Media Collective): the site shows display_name exactly as written and never inverts it to "Family, Given". Associations and institutions are not persons; they belong in organisations.' }),
     ],
     layout: [
-      section('title', 'Title', ['status', 'first_name', 'last_name', 'middle_initial', 'display_name', 'slug', 'roles']),
+      section('title', 'Title', ['status', 'first_name', 'last_name', 'middle_initial', 'display_name', 'slug', 'is_collective', 'roles']),
       section('links', 'Links', ['websites']),
-      section('relations', 'Relations', ['participations', 'venues', 'sponsors']),
+      section('relations', 'Relations', ['participations', 'memberships', 'venues', 'sponsors']),
     ],
   },
 
@@ -133,7 +134,7 @@ export const entities = {
       section('dates', 'Dates', ['start_date', 'end_date', 'is_permanent', 'date_range', 'opening_hours', 'vernissage']),
       section('media', 'Media', ['image', 'image_alt', 'source_pdf', 'medium']),
       section('tour', 'Tour', ['tour', 'tour_status', 'tour_available_from']),
-      section('relations', 'Relations', ['participations', 'statements', 'websites', 'further_venues', 'sponsors']),
+      section('relations', 'Relations', ['participations', 'organisers', 'statements', 'websites', 'further_venues', 'sponsors']),
       content(['summary', 'description']),
     ],
   },
@@ -165,6 +166,72 @@ export const entities = {
     layout: { flat: ['status', 'exhibition', 'person', 'prompt', 'statement'] },
   },
 
+  exhibition_organisers: {
+    kind: 'child', host: 'exhibitions', hostField: 'exhibition', hostAlias: 'organisers',
+    hostAliasTemplate: '{{organisation.title}} · {{role}}',
+    icon: 'groups', sort: 3, labels: ['Exhibition Organisers', 'Exhibition Organiser', 'Exhibition Organisers'],
+    display: ['organisation', 'role'], displayTemplate: '{{organisation.title}} · {{role}}',
+    note: 'The organisation behind one exhibition or event, in one role. An exhibition needs at least one artist participation or one organiser/presenter.',
+    fields: [
+      m2o('organisation', 'organisations', { template: '{{title}}', oneField: 'exhibitions', oneTemplate: '{{exhibition.title}} · {{role}}' }),
+      dropdown('role', ['organiser', 'presenter', 'cooperation', 'supporter'], { default: 'organiser', note: 'organiser: put it on. presenter: shows it as its own programme. cooperation: co-produced. supporter: backed it.' }),
+    ],
+    layout: { flat: ['status', 'exhibition', 'organisation', 'role'] },
+  },
+
+  organisations: {
+    kind: 'main', icon: 'groups', sort: 9, labels: ['Organisations', 'Organisation', 'Organisations'],
+    display: ['title'], displayTemplate: '{{title}}',
+    note: 'Associations, federations, institutions, initiatives: the bodies that run venues, present exhibitions and have members. Never an artist. The title is one string shown exactly as written; it is never split into first and last name.',
+    fields: [
+      str('title', { required: true, note: 'The full name, verbatim: "BV Kärnten", "Kunstverein Velden". Never shortened by the site.' }),
+      str('short_title', { translated: true, width: 'half', note: 'A shorter official form, if one exists. Not for cutting a name.' }),
+      str('slug', { required: true, unique: true, slug: true, width: 'half' }),
+      dropdown('kind', ['association', 'federation', 'institution', 'collective', 'company', 'initiative'], { default: 'association', allowOther: true, width: 'half', note: 'Verein, Landesverband, Institution, Kollektiv, Firma, Initiative. Drives wording only.' }),
+      str('founded', { width: 'half', note: 'Free text, e.g. "November 1949".' }),
+      str('address', { note: 'The seat, when it is not one of the venues.' }),
+      m2o('location', 'locations', { oneField: 'organisations', oneTemplate: '{{title}}', note: 'The town of the seat.' }),
+      file('logo', { image: true }),
+      str('logo_alt', { width: 'half', translated: true }),
+      str('lede', { translated: true, note: 'One-line teaser.' }),
+      jsonArray('about', { translated: true, note: 'JSON array of paragraph strings.' }),
+      text('description', { translated: true }),
+    ],
+    layout: [
+      section('title', 'Title', ['status', 'title', 'short_title', 'slug', 'kind']),
+      section('seat', 'Seat', ['address', 'location', 'founded']),
+      section('media', 'Media', ['logo', 'logo_alt']),
+      section('relations', 'Relations', ['venue_relations', 'exhibitions', 'members', 'websites']),
+      content(['lede', 'about', 'description']),
+    ],
+  },
+
+  organisation_memberships: {
+    kind: 'child', host: 'organisations', hostField: 'organisation', hostAlias: 'members',
+    hostAliasTemplate: '{{person.first_name}} {{person.last_name}} · {{function}}',
+    icon: 'badge', sort: 1, labels: ['Organisation Memberships', 'Organisation Membership', 'Organisation Memberships'],
+    display: ['person', 'function'], displayTemplate: '{{person.first_name}} {{person.last_name}} · {{function}}',
+    note: 'One person in one function in one organisation: board, staff, membership when it matters.',
+    fields: [
+      m2o('person', 'persons', { template: PERSON, oneField: 'memberships', oneTemplate: '{{organisation.title}} · {{function}}' }),
+      str('function', { translated: true, note: 'e.g. "Vizepräsidentin, Galerieleitung", "Pressesprecherin", "Mitglied".' }),
+    ],
+    layout: { flat: ['status', 'organisation', 'person', 'function'] },
+  },
+
+  organisation_venue_relations: {
+    kind: 'child', host: 'organisations', hostField: 'organisation', hostAlias: 'venue_relations',
+    hostAliasTemplate: '{{venue.title}} · {{relation}}',
+    icon: 'museum', sort: 2, labels: ['Organisation Venue Relations', 'Organisation Venue Relation', 'Organisation Venue Relations'],
+    display: ['venue', 'relation'], displayTemplate: '{{venue.title}} · {{relation}}',
+    note: 'How an organisation relates to a building: it runs it, has its seat there, or exhibits there as a guest on the house\'s invitation.',
+    fields: [
+      m2o('venue', 'venues', { template: '{{title}}', oneField: 'organisation_relations', oneTemplate: '{{organisation.title}} · {{relation}}' }),
+      dropdown('relation', ['runs', 'seat', 'exhibits_at'], { default: 'exhibits_at', note: 'runs: operates the house. seat: registered there. exhibits_at: guest, invited by the venue; neither runs it nor sits there.' }),
+    ],
+    layout: { flat: ['status', 'organisation', 'venue', 'relation'] },
+  },
+
   sponsors: {
     kind: 'main', icon: 'handshake', sort: 5, labels: ['Sponsors', 'Sponsor', 'Sponsors'],
     display: ['title'], displayTemplate: '{{title}}',
@@ -194,7 +261,7 @@ export const entities = {
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'url', 'kind']),
-      section('relations', 'Relations', ['exhibitions', 'persons']),
+      section('relations', 'Relations', ['exhibitions', 'persons', 'organisations']),
     ],
   },
 
@@ -243,4 +310,5 @@ export const junctions = [
   { a: 'sponsors', b: 'venues', aliasA: 'venues', aliasB: 'sponsors', owner: 'sponsors', sortedFrom: 'venues' },
   { a: 'exhibitions', b: 'websites', aliasA: 'websites', aliasB: 'exhibitions', owner: 'websites', sortedFrom: 'exhibitions', note: 'External links of an exhibition: its page on the venue site, press sheets, documents.' },
   { a: 'persons', b: 'websites', aliasA: 'websites', aliasB: 'persons', owner: 'websites', sortedFrom: 'persons', note: 'The links of a person. Replaced the single website_url column on 2026-09-15.' },
+  { a: 'organisations', b: 'websites', aliasA: 'websites', aliasB: 'organisations', owner: 'websites', sortedFrom: 'organisations', note: 'The links of an organisation.' },
 ]

@@ -17,14 +17,18 @@ const minimal = {
   pp_exhibition_participations: [], pp_exhibition_statements: [], pp_sponsors: [{ id: 's1', logo: null }],
   pp_navigations: [], pp_navigation_items: [], pp_mm__exhibitions_venues: [], pp_mm__exhibitions_sponsors: [],
   pp_mm__persons_venues: [], pp_mm__persons_sponsors: [], pp_mm__locations_sponsors: [], pp_mm__sponsors_venues: [],
-  pp_websites: [], pp_mm__exhibitions_websites: [], pp_mm__persons_websites: []
+  pp_websites: [], pp_mm__exhibitions_websites: [], pp_mm__persons_websites: [],
+  pp_organisations: [{ id: 'o1', slug: 'o', logo: 'f4', translations: [] }], pp_organisation_memberships: [], pp_organisation_venue_relations: [],
+  pp_exhibition_organisers: [], pp_mm__organisations_websites: []
 }
 
 describe('loadArchive', () => {
-  it('fetches all 20 collections with translations where they exist and no limit', async () => {
+  it('fetches all 25 collections with translations where they exist and no limit', async () => {
     const calls: string[] = []
     await loadArchive(fake(minimal, calls))
-    expect(calls).toHaveLength(20)
+    expect(calls).toHaveLength(25)
+    expect(calls).toContain('pp_organisations?fields=*%2Ctranslations.*&limit=-1&sort=sort')
+    expect(calls).toContain('pp_organisation_memberships?fields=*%2Ctranslations.*&limit=-1&sort=sort')
     expect(calls).toContain('pp_venues?fields=*%2Ctranslations.*&limit=-1&sort=sort')
     expect(calls).toContain('pp_mm__persons_roles?fields=*&limit=-1&sort=sort')
     expect(calls).toContain('pp_persons?fields=*&limit=-1&sort=sort')
@@ -37,6 +41,7 @@ describe('loadArchive', () => {
     expect(snapshot.exhibitions[0].source_pdf).toBe('http://cms.test/assets/f3')
     expect(snapshot.exhibitions[0].tour).toBe('/media/tours/x/')
     expect(snapshot.sponsors[0].logo).toBeNull()
+    expect(snapshot.organisations[0].logo).toBe('http://cms.test/assets/f4')
   })
 
   it('names the collection when a request fails', async () => {

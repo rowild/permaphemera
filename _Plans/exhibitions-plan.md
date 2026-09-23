@@ -60,7 +60,7 @@ The following infrastructure components are **omitted from the first implementat
 
 This section is the **single living schema**. It is built by `directus/scripts/schema.mjs` (the source of truth for Directus), mirrored 1:1 by the JSON files in `frontend/app/data/` and the types in `frontend/app/types/content.ts`. Naming and layout follow `_Plans/directus-schema-conventions.md` with prefix `pp_`. The design that produced it is `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md`.
 
-Last reconciled: 2026-09-14. Schema version `2026-09-14.1` (see `pp_meta`).
+Last reconciled: 2026-09-23. Schema version `2026-09-23.2` (see `pp_meta`).
 
 ### Status and system fields
 
@@ -82,6 +82,10 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_roles` | main (vocabulary) | `pp_archive` | no |
 | `pp_navigations` | main | `pp_archive` | no |
 | `pp_websites` | main | `pp_archive` | no |
+| `pp_organisations` | main | `pp_archive` | no |
+| `pp_exhibition_organisers` | child of exhibitions | `pp_exhibitions` | yes |
+| `pp_organisation_memberships` | child of organisations | `pp_organisations` | yes |
+| `pp_organisation_venue_relations` | child of organisations | `pp_organisations` | yes |
 | `pp_exhibition_participations` | child of exhibitions | `pp_exhibitions` | yes |
 | `pp_exhibition_statements` | child of exhibitions | `pp_exhibitions` | yes |
 | `pp_navigation_items` | child of navigations | `pp_navigations` | yes |
@@ -94,6 +98,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_mm__sponsors_venues` | structural | `pp_sponsors` | yes |
 | `pp_mm__exhibitions_websites` | structural | `pp_websites` | yes |
 | `pp_mm__persons_websites` | structural | `pp_websites` | yes |
+| `pp_mm__organisations_websites` | structural | `pp_websites` | yes |
 | `pp_translations__exhibitions` | structural | `pp_exhibitions` | yes |
 | `pp_translations__venues` | structural | `pp_venues` | yes |
 | `pp_translations__locations` | structural | `pp_locations` | yes |
@@ -102,9 +107,11 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_translations__exhibition_statements` | structural | `pp_exhibition_statements` | yes |
 | `pp_translations__navigation_items` | structural | `pp_navigation_items` | yes |
 | `pp_translations__websites` | structural | `pp_websites` | yes |
+| `pp_translations__organisations` | structural | `pp_organisations` | yes |
+| `pp_translations__organisation_memberships` | structural | `pp_organisation_memberships` | yes |
 | `pp_meta` | installer state, singleton | root | yes |
 
-25 prefixed collections, 26 with the `pp_archive` folder. `pp_persons` and `pp_navigations` have no translation table.
+32 prefixed collections, 33 with the `pp_archive` folder. `pp_persons`, `pp_navigations`, `pp_exhibition_organisers` and `pp_organisation_venue_relations` have no translation table. The organisations family was added on 2026-09-23 (design: `docs/superpowers/specs/2026-09-23-organisations-design.md`).
 
 ### Relation map
 
@@ -129,6 +136,10 @@ Every line is one relation. The naming rule (conventions §2 rule 12) makes an M
 | sponsor | location | M2M | `pp_mm__locations_sponsors` | aliases `locations` / `sponsors` |
 | exhibition | website | M2M | `pp_mm__exhibitions_websites` | the exhibition's external links: its page on the venue site, press sheets, documents; aliases `websites` / `exhibitions` |
 | person | website | M2M | `pp_mm__persons_websites` | the person's links, as many as needed; aliases `websites` / `persons` |
+| organisation | website | M2M | `pp_mm__organisations_websites` | the organisation's links; aliases `websites` / `organisations` |
+| exhibition | organisation | child `pp_exhibition_organisers` | the organisation behind the record, with `role` (organiser, presenter, cooperation, supporter); aliases `organisers` on exhibitions, `exhibitions` on organisations |
+| organisation | person | child `pp_organisation_memberships` | one person in one function (translated) in one organisation; aliases `members` / `memberships` |
+| organisation | venue | child `pp_organisation_venue_relations` | `relation`: runs, seat, exhibits_at (guest on the venue's invitation); aliases `venue_relations` / `organisation_relations` |
 | navigation item | navigation | M2O, child | `pp_navigation_items.navigation` | which menu |
 | navigation item | navigation item | M2O, self | `pp_navigation_items.parent` | group nesting |
 
@@ -157,7 +168,7 @@ Translated: `description`, `lede`, `about`, `image_caption`, `coordinate_label`.
 
 #### `pp_persons`
 
-`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `slug` (unique), `roles`, `venues`, `sponsors`, `websites` (m2m), `participations` (o2m), audit.
+`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `is_collective` (bool, 2026-09-23: the name is shown verbatim, never inverted), `slug` (unique), `roles`, `venues`, `sponsors`, `websites` (m2m), `participations`, `memberships` (o2m), audit.
 No translations. Links live in `pp_websites` (2026-09-15); the former single `website_url` column was migrated into link rows and dropped.
 
 #### `pp_roles`
@@ -195,12 +206,28 @@ Translated: `title`. Route paths are locale-neutral; the frontend passes them th
 
 #### `pp_websites`
 
-`id`, `status`, `sort`, `title` (English link text, e.g. "Exhibition page at stadtgalerie.net"), `url` (absolute), `kind` (dropdown `website` | `exhibition_page` | `press` | `document` | `social`, allow other), `translations`, `exhibitions`, `persons` (m2m), audit.
+`id`, `status`, `sort`, `title` (English link text, e.g. "Exhibition page at stadtgalerie.net"), `url` (absolute), `kind` (dropdown `website` | `exhibition_page` | `press` | `document` | `social`, allow other), `translations`, `exhibitions`, `persons`, `organisations` (m2m), audit.
+
+#### `pp_organisations`
+
+`id`, `status`, `sort`, `title` (verbatim, one string), `short_title` (translated, optional), `slug` (unique), `kind` (dropdown `association` | `federation` | `institution` | `collective` | `company` | `initiative`, allow other), `founded`, `address`, `location` (M2O → locations, SET NULL), `logo` (file), `logo_alt`, `lede`, `about` (json array of paragraphs), `description`, `translations`, `venue_relations`, `members`, `exhibitions` (o2m), `websites` (m2m), audit.
+
+#### `pp_exhibition_organisers` (child of exhibitions)
+
+`id`, `status`, `sort`, `exhibition` (M2O, CASCADE), `organisation` (M2O → organisations), `role` (dropdown `organiser` | `presenter` | `cooperation` | `supporter`), audit.
+
+#### `pp_organisation_memberships` (child of organisations)
+
+`id`, `status`, `sort`, `organisation` (M2O, CASCADE), `person` (M2O → persons), `function` (translated), `translations`, audit.
+
+#### `pp_organisation_venue_relations` (child of organisations)
+
+`id`, `status`, `sort`, `organisation` (M2O, CASCADE), `venue` (M2O → venues), `relation` (dropdown `runs` | `seat` | `exhibits_at`), audit.
 Translated: `title`. One row per link; a row can hang on several records (one venue page shared by two exhibitions). Added 2026-09-15.
 
 #### Structural junctions
 
-`pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`, `pp_mm__exhibitions_websites`, `pp_mm__persons_websites`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`.
+`pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`, `pp_mm__exhibitions_websites`, `pp_mm__persons_websites`, `pp_mm__organisations_websites`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`.
 
 #### `pp_meta` (singleton, hidden)
 

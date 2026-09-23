@@ -52,6 +52,37 @@ collections:
           translation: PERMAPHEMERA
       unarchive_value: null
       versioning: false
+  - collection: pp_exhibition_organisers
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: open
+      collection: pp_exhibition_organisers
+      color: '#a6523c'
+      display_template: '{{organisation.title}} · {{role}}'
+      group: pp_exhibitions
+      hidden: true
+      icon: groups
+      item_duplication_fields: null
+      note: >-
+        The organisation behind one exhibition or event, in one role. An
+        exhibition needs at least one artist participation or one
+        organiser/presenter.
+      preview_url: null
+      singleton: false
+      sort: 3
+      sort_field: sort
+      translations:
+        - language: en-US
+          plural: Exhibition Organisers
+          singular: Exhibition Organiser
+          translation: Exhibition Organisers
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: pp_exhibition_organisers
   - collection: pp_exhibition_participations
     meta:
       accountability: all
@@ -243,7 +274,7 @@ collections:
         one.
       preview_url: null
       singleton: false
-      sort: 3
+      sort: 4
       sort_field: null
       translations:
         - language: en-US
@@ -306,6 +337,32 @@ collections:
       versioning: false
     schema:
       name: pp_mm__locations_sponsors
+  - collection: pp_mm__organisations_websites
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__organisations_websites
+      color: '#a6523c'
+      display_template: null
+      group: pp_websites
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: The links of an organisation.
+      preview_url: null
+      singleton: false
+      sort: 2
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Organisations ↔ Websites
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__organisations_websites
   - collection: pp_mm__persons_roles
     meta:
       accountability: all
@@ -405,7 +462,7 @@ collections:
         2026-09-15.
       preview_url: null
       singleton: false
-      sort: 2
+      sort: 3
       sort_field: null
       translations:
         - language: en-US
@@ -498,6 +555,98 @@ collections:
       versioning: false
     schema:
       name: pp_navigations
+  - collection: pp_organisation_memberships
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: open
+      collection: pp_organisation_memberships
+      color: '#a6523c'
+      display_template: '{{person.first_name}} {{person.last_name}} · {{function}}'
+      group: pp_organisations
+      hidden: true
+      icon: badge
+      item_duplication_fields: null
+      note: >-
+        One person in one function in one organisation: board, staff, membership
+        when it matters.
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: sort
+      translations:
+        - language: en-US
+          plural: Organisation Memberships
+          singular: Organisation Membership
+          translation: Organisation Memberships
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: pp_organisation_memberships
+  - collection: pp_organisation_venue_relations
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: open
+      collection: pp_organisation_venue_relations
+      color: '#a6523c'
+      display_template: '{{venue.title}} · {{relation}}'
+      group: pp_organisations
+      hidden: true
+      icon: museum
+      item_duplication_fields: null
+      note: >-
+        How an organisation relates to a building: it runs it, has its seat
+        there, or exhibits there as a guest on the house's invitation.
+      preview_url: null
+      singleton: false
+      sort: 2
+      sort_field: sort
+      translations:
+        - language: en-US
+          plural: Organisation Venue Relations
+          singular: Organisation Venue Relation
+          translation: Organisation Venue Relations
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: pp_organisation_venue_relations
+  - collection: pp_organisations
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: closed
+      collection: pp_organisations
+      color: '#a6523c'
+      display_template: '{{title}}'
+      group: pp_archive
+      hidden: false
+      icon: groups
+      item_duplication_fields: null
+      note: >-
+        Associations, federations, institutions, initiatives: the bodies that
+        run venues, present exhibitions and have members. Never an artist. The
+        title is one string shown exactly as written; it is never split into
+        first and last name.
+      preview_url: null
+      singleton: false
+      sort: 9
+      sort_field: null
+      translations:
+        - language: en-US
+          plural: Organisations
+          singular: Organisation
+          translation: Organisations
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: pp_organisations
   - collection: pp_persons
     meta:
       accountability: all
@@ -630,7 +779,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 4
+      sort: 5
       sort_field: null
       translations:
         - language: en-US
@@ -691,6 +840,58 @@ collections:
       versioning: false
     schema:
       name: pp_translations__navigation_items
+  - collection: pp_translations__organisation_memberships
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_translations__organisation_memberships
+      color: '#a6523c'
+      display_template: null
+      group: pp_organisation_memberships
+      hidden: true
+      icon: translate
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Organisation Memberships · Translations
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_translations__organisation_memberships
+  - collection: pp_translations__organisations
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_translations__organisations
+      color: '#a6523c'
+      display_template: null
+      group: pp_organisations
+      hidden: true
+      icon: translate
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 3
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Organisations · Translations
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_translations__organisations
   - collection: pp_translations__roles
     meta:
       accountability: all
@@ -786,7 +987,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 3
+      sort: 4
       sort_field: null
       translations:
         - language: en-US
@@ -973,6 +1174,485 @@ fields:
       is_nullable: true
       is_unique: false
       is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_exhibition_organisers
+    field: status
+    type: string
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - background: var(--theme--primary)
+            foreground: '#FFFFFF'
+            text: $t:published
+            value: published
+          - background: '#D3DAE4'
+            foreground: '#18222F'
+            text: $t:draft
+            value: draft
+          - background: var(--theme--warning)
+            foreground: '#FFFFFF'
+            text: $t:archived
+            value: archived
+        showAsDot: true
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: status
+      table: pp_exhibition_organisers
+      data_type: varchar
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_exhibition_organisers
+    field: exhibition
+    type: string
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: exhibition
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: exhibition
+      table: pp_exhibition_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_exhibitions
+      foreign_key_column: id
+  - collection: pp_exhibition_organisers
+    field: organisation
+    type: string
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: organisation
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: organisation
+      table: pp_exhibition_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+  - collection: pp_exhibition_organisers
+    field: role
+    type: string
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: labels
+      display_options: null
+      field: role
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: >-
+        organiser: put it on. presenter: shows it as its own programme.
+        cooperation: co-produced. supporter: backed it.
+      options:
+        allowOther: false
+        choices:
+          - text: organiser
+            value: organiser
+          - text: presenter
+            value: presenter
+          - text: cooperation
+            value: cooperation
+          - text: supporter
+            value: supporter
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: role
+      table: pp_exhibition_organisers
+      data_type: varchar
+      default_value: organiser
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_exhibition_organisers
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_exhibition_organisers
+    field: id
+    type: uuid
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_exhibition_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_exhibition_organisers
+    field: sort
+    type: integer
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_exhibition_organisers
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_exhibition_organisers
+    field: user_created
+    type: string
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_exhibition_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_exhibition_organisers
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_exhibition_organisers
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_exhibition_organisers
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_exhibition_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_exhibition_organisers
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_exhibition_organisers
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_exhibition_organisers
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
       is_primary_key: false
       is_generated: false
       generation_expression: null
@@ -3535,6 +4215,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_exhibitions
+    field: organisers
+    type: alias
+    meta:
+      collection: pp_exhibitions
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{organisation.title}} · {{role}}'
+      field: organisers
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{organisation.title}} · {{role}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_locations
     field: ui_accordion_main
     type: alias
@@ -4456,6 +5162,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_locations
+    field: organisations
+    type: alias
+    meta:
+      collection: pp_locations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: organisations
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_meta
     field: id
     type: uuid
@@ -5228,6 +5960,172 @@ fields:
     schema:
       name: sort
       table: pp_mm__locations_sponsors
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__organisations_websites
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__organisations_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__organisations_websites
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__organisations_websites
+    field: organisations_id
+    type: string
+    meta:
+      collection: pp_mm__organisations_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: organisations_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: organisations_id
+      table: pp_mm__organisations_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+  - collection: pp_mm__organisations_websites
+    field: websites_id
+    type: string
+    meta:
+      collection: pp_mm__organisations_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: websites_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: websites_id
+      table: pp_mm__organisations_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+  - collection: pp_mm__organisations_websites
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__organisations_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__organisations_websites
       data_type: integer
       default_value: null
       max_length: null
@@ -7377,6 +8275,2193 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_organisation_memberships
+    field: status
+    type: string
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - background: var(--theme--primary)
+            foreground: '#FFFFFF'
+            text: $t:published
+            value: published
+          - background: '#D3DAE4'
+            foreground: '#18222F'
+            text: $t:draft
+            value: draft
+          - background: var(--theme--warning)
+            foreground: '#FFFFFF'
+            text: $t:archived
+            value: archived
+        showAsDot: true
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: status
+      table: pp_organisation_memberships
+      data_type: varchar
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_memberships
+    field: organisation
+    type: string
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: organisation
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: organisation
+      table: pp_organisation_memberships
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+  - collection: pp_organisation_memberships
+    field: person
+    type: string
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{first_name}} {{last_name}}'
+      field: person
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{first_name}} {{last_name}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: person
+      table: pp_organisation_memberships
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_persons
+      foreign_key_column: id
+  - collection: pp_organisation_memberships
+    field: function
+    type: string
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: null
+      display_options: null
+      field: function
+      group: null
+      hidden: false
+      interface: input
+      note: e.g. "Vizepräsidentin, Galerieleitung", "Pressesprecherin", "Mitglied".
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: function
+      table: pp_organisation_memberships
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_memberships
+    field: ui_accordion_translations
+    type: alias
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_translations
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Translations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisation_memberships
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisation_memberships
+    field: translations
+    type: alias
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: null
+      display_options: null
+      field: translations
+      group: ui_accordion_translations
+      hidden: false
+      interface: translations
+      note: null
+      options:
+        defaultLanguage: en
+        defaultOpenSplitView: true
+        languageField: name
+        userLanguage: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - translations
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisation_memberships
+    field: id
+    type: uuid
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_organisation_memberships
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_memberships
+    field: sort
+    type: integer
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_organisation_memberships
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_memberships
+    field: user_created
+    type: string
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_organisation_memberships
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_organisation_memberships
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_organisation_memberships
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_memberships
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_organisation_memberships
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_organisation_memberships
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_organisation_memberships
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_organisation_memberships
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_venue_relations
+    field: status
+    type: string
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - background: var(--theme--primary)
+            foreground: '#FFFFFF'
+            text: $t:published
+            value: published
+          - background: '#D3DAE4'
+            foreground: '#18222F'
+            text: $t:draft
+            value: draft
+          - background: var(--theme--warning)
+            foreground: '#FFFFFF'
+            text: $t:archived
+            value: archived
+        showAsDot: true
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: status
+      table: pp_organisation_venue_relations
+      data_type: varchar
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_venue_relations
+    field: organisation
+    type: string
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: organisation
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: organisation
+      table: pp_organisation_venue_relations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+  - collection: pp_organisation_venue_relations
+    field: venue
+    type: string
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: venue
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: venue
+      table: pp_organisation_venue_relations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_venues
+      foreign_key_column: id
+  - collection: pp_organisation_venue_relations
+    field: relation
+    type: string
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: labels
+      display_options: null
+      field: relation
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: >-
+        runs: operates the house. seat: registered there. exhibits_at: guest,
+        invited by the venue; neither runs it nor sits there.
+      options:
+        allowOther: false
+        choices:
+          - text: runs
+            value: runs
+          - text: seat
+            value: seat
+          - text: exhibits_at
+            value: exhibits_at
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: relation
+      table: pp_organisation_venue_relations
+      data_type: varchar
+      default_value: exhibits_at
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_venue_relations
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisation_venue_relations
+    field: id
+    type: uuid
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_organisation_venue_relations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_venue_relations
+    field: sort
+    type: integer
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_organisation_venue_relations
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_venue_relations
+    field: user_created
+    type: string
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_organisation_venue_relations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_organisation_venue_relations
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_organisation_venue_relations
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisation_venue_relations
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_organisation_venue_relations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_organisation_venue_relations
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_organisation_venue_relations
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_organisation_venue_relations
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: ui_accordion_main
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_main
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+        start: first
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Main
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: ui_accordion_translations
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_translations
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Translations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: ui_group_title
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_title
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Title
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: ui_group_seat
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_seat
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Seat
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: ui_group_media
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_media
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Media
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: ui_group_relations
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_relations
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Relations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: ui_group_content
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_content
+      group: ui_accordion_main
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: open
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Content
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: status
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - background: var(--theme--primary)
+            foreground: '#FFFFFF'
+            text: $t:published
+            value: published
+          - background: '#D3DAE4'
+            foreground: '#18222F'
+            text: $t:draft
+            value: draft
+          - background: var(--theme--warning)
+            foreground: '#FFFFFF'
+            text: $t:archived
+            value: archived
+        showAsDot: true
+      field: status
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: status
+      table: pp_organisations
+      data_type: varchar
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: title
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: >-
+        The full name, verbatim: "BV Kärnten", "Kunstverein Velden". Never
+        shortened by the site.
+      options:
+        trim: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: pp_organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: short_title
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: short_title
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: A shorter official form, if one exists. Not for cutting a name.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: short_title
+      table: pp_organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: slug
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: slug
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: null
+      options:
+        slug: true
+        trim: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: slug
+      table: pp_organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: kind
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: labels
+      display_options: null
+      field: kind
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: >-
+        Verein, Landesverband, Institution, Kollektiv, Firma, Initiative. Drives
+        wording only.
+      options:
+        allowOther: true
+        choices:
+          - text: association
+            value: association
+          - text: federation
+            value: federation
+          - text: institution
+            value: institution
+          - text: collective
+            value: collective
+          - text: company
+            value: company
+          - text: initiative
+            value: initiative
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: kind
+      table: pp_organisations
+      data_type: varchar
+      default_value: association
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: address
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: address
+      group: ui_group_seat
+      hidden: false
+      interface: input
+      note: The seat, when it is not one of the venues.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: address
+      table: pp_organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: location
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: location
+      group: ui_group_seat
+      hidden: false
+      interface: select-dropdown-m2o
+      note: The town of the seat.
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: location
+      table: pp_organisations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_locations
+      foreign_key_column: id
+  - collection: pp_organisations
+    field: founded
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: founded
+      group: ui_group_seat
+      hidden: false
+      interface: input
+      note: Free text, e.g. "November 1949".
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: founded
+      table: pp_organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: logo
+    type: uuid
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: image
+      display_options: null
+      field: logo
+      group: ui_group_media
+      hidden: false
+      interface: file-image
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: logo
+      table: pp_organisations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_files
+      foreign_key_column: id
+  - collection: pp_organisations
+    field: logo_alt
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: logo_alt
+      group: ui_group_media
+      hidden: false
+      interface: input
+      note: null
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: logo_alt
+      table: pp_organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: venue_relations
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{venue.title}} · {{relation}}'
+      field: venue_relations
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{venue.title}} · {{relation}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: exhibitions
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{exhibition.title}} · {{role}}'
+      field: exhibitions
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{exhibition.title}} · {{role}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: members
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{person.first_name}} {{person.last_name}} · {{function}}'
+      field: members
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{person.first_name}} {{person.last_name}} · {{function}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: websites
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{websites_id.title}}'
+      field: websites
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{websites_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: lede
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: lede
+      group: ui_group_content
+      hidden: false
+      interface: input
+      note: One-line teaser.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lede
+      table: pp_organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: about
+    type: json
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: about
+      group: ui_group_content
+      hidden: false
+      interface: input-code
+      note: JSON array of paragraph strings.
+      options:
+        language: json
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about
+      table: pp_organisations
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: description
+    type: text
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: description
+      group: ui_group_content
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: description
+      table: pp_organisations
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: translations
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: translations
+      group: ui_accordion_translations
+      hidden: false
+      interface: translations
+      note: null
+      options:
+        defaultLanguage: en
+        defaultOpenSplitView: true
+        languageField: name
+        userLanguage: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - translations
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: id
+    type: uuid
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_organisations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: sort
+    type: integer
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_organisations
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: user_created
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_organisations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_organisations
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_organisations
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_organisations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_organisations
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_organisations
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_persons
     field: ui_accordion_main
     type: alias
@@ -8164,6 +11249,77 @@ fields:
       sort: 1
       special:
         - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_persons
+    field: is_collective
+    type: boolean
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: is_collective
+      group: ui_group_title
+      hidden: false
+      interface: boolean
+      note: >-
+        An artist collective (e.g. Raqs Media Collective): the site shows
+        display_name exactly as written and never inverts it to "Family, Given".
+        Associations and institutions are not persons; they belong in
+        organisations.
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special:
+        - cast-boolean
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: is_collective
+      table: pp_persons
+      data_type: boolean
+      default_value: false
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_persons
+    field: memberships
+    type: alias
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{organisation.title}} · {{function}}'
+      field: memberships
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{organisation.title}} · {{function}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - o2m
       translations: null
       validation: null
       validation_message: null
@@ -10576,6 +13732,504 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_translations__organisation_memberships
+    field: id
+    type: integer
+    meta:
+      collection: pp_translations__organisation_memberships
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_translations__organisation_memberships
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__organisation_memberships
+    field: organisation_memberships_id
+    type: string
+    meta:
+      collection: pp_translations__organisation_memberships
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{person.first_name}} {{person.last_name}} · {{function}}'
+      field: organisation_memberships_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{person.first_name}} {{person.last_name}} · {{function}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: organisation_memberships_id
+      table: pp_translations__organisation_memberships
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_organisation_memberships
+      foreign_key_column: id
+  - collection: pp_translations__organisation_memberships
+    field: languages_code
+    type: string
+    meta:
+      collection: pp_translations__organisation_memberships
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: languages_code
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: languages_code
+      table: pp_translations__organisation_memberships
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: languages
+      foreign_key_column: code
+  - collection: pp_translations__organisation_memberships
+    field: function
+    type: string
+    meta:
+      collection: pp_translations__organisation_memberships
+      conditions: null
+      display: null
+      display_options: null
+      field: function
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_organisation_memberships.function
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: function
+      table: pp_translations__organisation_memberships
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: id
+    type: integer
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_translations__organisations
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: organisations_id
+    type: string
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: organisations_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: organisations_id
+      table: pp_translations__organisations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+  - collection: pp_translations__organisations
+    field: languages_code
+    type: string
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: languages_code
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: languages_code
+      table: pp_translations__organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: languages
+      foreign_key_column: code
+  - collection: pp_translations__organisations
+    field: short_title
+    type: string
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: short_title
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_organisations.short_title
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: short_title
+      table: pp_translations__organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: logo_alt
+    type: string
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: logo_alt
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_organisations.logo_alt
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: logo_alt
+      table: pp_translations__organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: lede
+    type: string
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: lede
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_organisations.lede
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lede
+      table: pp_translations__organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: about
+    type: json
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: about
+      group: null
+      hidden: false
+      interface: input-code
+      note: Translated field for pp_organisations.about
+      options:
+        language: json
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about
+      table: pp_translations__organisations
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: description
+    type: text
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: description
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: Translated field for pp_organisations.description
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 8
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: description
+      table: pp_translations__organisations
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_translations__roles
     field: id
     type: integer
@@ -12945,6 +16599,32 @@ fields:
       validation: null
       validation_message: null
       width: full
+  - collection: pp_venues
+    field: organisation_relations
+    type: alias
+    meta:
+      collection: pp_venues
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{organisation.title}} · {{relation}}'
+      field: organisation_relations
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{organisation.title}} · {{relation}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_websites
     field: ui_accordion_main
     type: alias
@@ -13615,6 +17295,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_websites
+    field: organisations
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{organisations_id.title}}'
+      field: organisations
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{organisations_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
 systemFields:
   - collection: directus_activity
     field: timestamp
@@ -13629,6 +17335,90 @@ systemFields:
     schema:
       is_indexed: true
 relations:
+  - collection: pp_exhibition_organisers
+    field: exhibition
+    related_collection: pp_exhibitions
+    meta:
+      junction_field: null
+      many_collection: pp_exhibition_organisers
+      many_field: exhibition
+      one_allowed_collections: null
+      one_collection: pp_exhibitions
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: organisers
+      sort_field: sort
+    schema:
+      table: pp_exhibition_organisers
+      column: exhibition
+      foreign_key_table: pp_exhibitions
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_exhibition_organisers
+    field: organisation
+    related_collection: pp_organisations
+    meta:
+      junction_field: null
+      many_collection: pp_exhibition_organisers
+      many_field: organisation
+      one_allowed_collections: null
+      one_collection: pp_organisations
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: exhibitions
+      sort_field: null
+    schema:
+      table: pp_exhibition_organisers
+      column: organisation
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_exhibition_organisers
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_exhibition_organisers
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_exhibition_organisers
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_exhibition_organisers
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_exhibition_organisers
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_exhibition_organisers
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
   - collection: pp_exhibition_participations
     field: exhibition
     related_collection: pp_exhibitions
@@ -14133,6 +17923,48 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: CASCADE
+  - collection: pp_mm__organisations_websites
+    field: organisations_id
+    related_collection: pp_organisations
+    meta:
+      junction_field: websites_id
+      many_collection: pp_mm__organisations_websites
+      many_field: organisations_id
+      one_allowed_collections: null
+      one_collection: pp_organisations
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: websites
+      sort_field: sort
+    schema:
+      table: pp_mm__organisations_websites
+      column: organisations_id
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__organisations_websites
+    field: websites_id
+    related_collection: pp_websites
+    meta:
+      junction_field: organisations_id
+      many_collection: pp_mm__organisations_websites
+      many_field: websites_id
+      one_allowed_collections: null
+      one_collection: pp_websites
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: organisations
+      sort_field: null
+    schema:
+      table: pp_mm__organisations_websites
+      column: websites_id
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
   - collection: pp_mm__persons_roles
     field: persons_id
     related_collection: pp_persons
@@ -14469,6 +18301,258 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
+  - collection: pp_organisation_memberships
+    field: organisation
+    related_collection: pp_organisations
+    meta:
+      junction_field: null
+      many_collection: pp_organisation_memberships
+      many_field: organisation
+      one_allowed_collections: null
+      one_collection: pp_organisations
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: members
+      sort_field: sort
+    schema:
+      table: pp_organisation_memberships
+      column: organisation
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_organisation_memberships
+    field: person
+    related_collection: pp_persons
+    meta:
+      junction_field: null
+      many_collection: pp_organisation_memberships
+      many_field: person
+      one_allowed_collections: null
+      one_collection: pp_persons
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: memberships
+      sort_field: null
+    schema:
+      table: pp_organisation_memberships
+      column: person
+      foreign_key_table: pp_persons
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_organisation_memberships
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_organisation_memberships
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_organisation_memberships
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_organisation_memberships
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_organisation_memberships
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_organisation_memberships
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_organisation_venue_relations
+    field: organisation
+    related_collection: pp_organisations
+    meta:
+      junction_field: null
+      many_collection: pp_organisation_venue_relations
+      many_field: organisation
+      one_allowed_collections: null
+      one_collection: pp_organisations
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: venue_relations
+      sort_field: sort
+    schema:
+      table: pp_organisation_venue_relations
+      column: organisation
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_organisation_venue_relations
+    field: venue
+    related_collection: pp_venues
+    meta:
+      junction_field: null
+      many_collection: pp_organisation_venue_relations
+      many_field: venue
+      one_allowed_collections: null
+      one_collection: pp_venues
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: organisation_relations
+      sort_field: null
+    schema:
+      table: pp_organisation_venue_relations
+      column: venue
+      foreign_key_table: pp_venues
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_organisation_venue_relations
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_organisation_venue_relations
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_organisation_venue_relations
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_organisation_venue_relations
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_organisation_venue_relations
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_organisation_venue_relations
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_organisations
+    field: location
+    related_collection: pp_locations
+    meta:
+      junction_field: null
+      many_collection: pp_organisations
+      many_field: location
+      one_allowed_collections: null
+      one_collection: pp_locations
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: organisations
+      sort_field: null
+    schema:
+      table: pp_organisations
+      column: location
+      foreign_key_table: pp_locations
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_organisations
+    field: logo
+    related_collection: directus_files
+    meta:
+      junction_field: null
+      many_collection: pp_organisations
+      many_field: logo
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_organisations
+      column: logo
+      foreign_key_table: directus_files
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_organisations
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_organisations
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_organisations
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_organisations
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_organisations
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_organisations
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
   - collection: pp_persons
     field: user_created
     related_collection: directus_users
@@ -14778,6 +18862,90 @@ relations:
       sort_field: null
     schema:
       table: pp_translations__navigation_items
+      column: languages_code
+      foreign_key_table: languages
+      foreign_key_column: code
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__organisation_memberships
+    field: organisation_memberships_id
+    related_collection: pp_organisation_memberships
+    meta:
+      junction_field: languages_code
+      many_collection: pp_translations__organisation_memberships
+      many_field: organisation_memberships_id
+      one_allowed_collections: null
+      one_collection: pp_organisation_memberships
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: translations
+      sort_field: null
+    schema:
+      table: pp_translations__organisation_memberships
+      column: organisation_memberships_id
+      foreign_key_table: pp_organisation_memberships
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__organisation_memberships
+    field: languages_code
+    related_collection: languages
+    meta:
+      junction_field: organisation_memberships_id
+      many_collection: pp_translations__organisation_memberships
+      many_field: languages_code
+      one_allowed_collections: null
+      one_collection: languages
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_translations__organisation_memberships
+      column: languages_code
+      foreign_key_table: languages
+      foreign_key_column: code
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__organisations
+    field: organisations_id
+    related_collection: pp_organisations
+    meta:
+      junction_field: languages_code
+      many_collection: pp_translations__organisations
+      many_field: organisations_id
+      one_allowed_collections: null
+      one_collection: pp_organisations
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: translations
+      sort_field: null
+    schema:
+      table: pp_translations__organisations
+      column: organisations_id
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__organisations
+    field: languages_code
+    related_collection: languages
+    meta:
+      junction_field: organisations_id
+      many_collection: pp_translations__organisations
+      many_field: languages_code
+      one_allowed_collections: null
+      one_collection: languages
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_translations__organisations
       column: languages_code
       foreign_key_table: languages
       foreign_key_column: code

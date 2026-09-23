@@ -50,7 +50,7 @@ node scripts/snapshot.mjs             # export schema/snapshot.yaml
 node scripts/files.mjs                # (helper, not run directly) upload/folder helpers shared by import.mjs and apply-settings.mjs
 ```
 
-**Schema changes are additive.** Edit `scripts/schema.mjs`, run `create-schema.mjs`; it adds what is missing and touches nothing else. Removing or renaming a field: do it in the admin app, then `snapshot.mjs`. There is no reset; content is never wiped by a script.
+**Schema changes are additive.** Edit `scripts/schema.mjs`, run `create-schema.mjs`; it adds what is missing and touches nothing else, except the sidebar place (`meta.group`, `meta.sort`) of existing collections, which it realigns so a new sibling slots in without duplicate numbers. Removing or renaming a field: do it in the admin app, then `snapshot.mjs`. There is no reset; content is never wiped by a script.
 
 **Backup before anything risky:** `node scripts/export.mjs`. The `_BU/` folder is not in git.
 

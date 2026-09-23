@@ -2,6 +2,9 @@
 // Creates every collection, field and relation from build.mjs. Idempotent:
 // existing collections, fields and relations are left alone (they are not
 // updated — change the schema by editing schema.mjs and re-running this script).
+// The one thing it does align on existing collections is the sidebar place
+// (meta.group and meta.sort): that is admin-app layout, not schema, and a new
+// sibling has to slot in without leaving two tables on the same number.
 //
 //   node scripts/create-schema.mjs
 import { buildAll } from './build.mjs'
@@ -38,6 +41,17 @@ for (const c of collections) {
     : { collection: c.collection, meta: c.meta, schema: c.schema, fields: c.fields }
   await api('POST', '/collections', payload)
   console.log(`+ ${c.collection}${c.schema === null ? ' (folder)' : ` (${c.fields.length} fields)`}`)
+}
+
+// Sidebar order: contiguous within each parent (conventions §3 rule 5).
+const live = new Map((await api('GET', '/collections?limit=-1')).map((c) => [c.collection, c.meta ?? {}]))
+for (const c of collections) {
+  const meta = live.get(c.collection)
+  if (!meta || c.meta?.sort === undefined) continue
+  const group = c.meta.group ?? null
+  if (meta.sort === c.meta.sort && (meta.group ?? null) === group) continue
+  await api('PATCH', `/collections/${c.collection}`, { meta: { sort: c.meta.sort, group } })
+  console.log(`~ ${c.collection} sidebar ${meta.group ?? 'root'}#${meta.sort} -> ${group ?? 'root'}#${c.meta.sort}`)
 }
 
 for (const r of relations) {
