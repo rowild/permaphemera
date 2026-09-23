@@ -1,23 +1,12 @@
-// Names that are never inverted to "Family, Given". Stopgap until organisations
-// get their own collection (docs/superpowers/specs/2026-09-23-organisations-design.md
-// at the repository root): an association such as "BV Kärnten" must never
-// appear as "Kärnten, BV".
-const organizationSlugs = new Set([
-  '7th-spittaler-comicfestival',
-  'austriatoon',
-  'bv-kaernten',
-  'lebenshilfe-spittal',
-  'raqs-media-collective'
-])
-
+// A person's name is inverted to "Family, Given" for the alphabet; a collective
+// (pp_persons.is_collective) keeps its name exactly as written, filed under its
+// first letter. Associations and institutions are not persons at all: they live
+// in pp_organisations and never pass through here.
 const displayNameOverrides: Record<string, string> = {
   'nicoline-von-heyl': 'von Heyl, Nicoline'
 }
 
 const letterOverrides: Record<string, string> = {
-  '7th-spittaler-comicfestival': '#',
-  'bv-kaernten': 'B',
-  'lebenshilfe-spittal': 'L',
   'nicoline-von-heyl': 'H'
 }
 
@@ -26,9 +15,9 @@ export const splitArtistCredit = (value: string) => value
   .map((name) => name.trim())
   .filter(Boolean)
 
-export const formatArtistName = (name: string, slug: string) => {
+export const formatArtistName = (name: string, slug: string, isCollective = false) => {
   if (displayNameOverrides[slug]) return displayNameOverrides[slug]
-  if (organizationSlugs.has(slug)) return name
+  if (isCollective) return name
 
   const parts = name.trim().split(/\s+/)
   if (parts.length < 2) return name
@@ -37,10 +26,10 @@ export const formatArtistName = (name: string, slug: string) => {
   return `${familyName}, ${parts.join(' ')}`
 }
 
-export const getArtistFamilyLetter = (slug: string, name: string) => {
+export const getArtistFamilyLetter = (slug: string, name: string, isCollective = false) => {
   if (letterOverrides[slug]) return letterOverrides[slug]
 
-  const displayName = formatArtistName(name, slug)
+  const displayName = formatArtistName(name, slug, isCollective)
   const familyName = displayName.includes(',') ? displayName.split(',', 1)[0]! : displayName
   const letter = familyName.normalize('NFD').replace(/[\u0300-\u036f]/g, '').charAt(0).toLocaleUpperCase()
   return /^[A-Z]$/.test(letter) ? letter : '#'

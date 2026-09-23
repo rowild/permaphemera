@@ -220,7 +220,12 @@
     },
     "seoDescription": "Explore exhibition records from {name} in {city}.",
     "eventCount": "{count} event | {count} events",
-    "recordCount": "{count} record | {count} records"
+    "recordCount": "{count} record | {count} records",
+    "organisationRelations": {
+      "runs": "Run by",
+      "seat": "Seat of",
+      "exhibits_at": "Guest exhibitors"
+    }
   },
   "galleries": {
     "partOf": "Part of {name}",
@@ -285,6 +290,13 @@
       "aboutAccent": "noted in the archive.",
       "restricted": "For copyright reasons we may not show a 360° walk-through of this event.",
       "unavailable": "There is no 360° walk-through of this event."
+    },
+    "organiserLabels": {
+      "organiser": "Organised by",
+      "presenter": "Presented by",
+      "cooperation": "In cooperation with",
+      "supporter": "Supported by",
+      "mixed": "Organisations"
     }
   },
   "exhibitionsDirectory": {
@@ -835,5 +847,62 @@
     "callTitle": "Room for institutions that care for",
     "callText": "PERMAPHEMERA is built with partners who value what would otherwise disappear. This row is kept for their names: supporters, sponsors and partner institutions. Yours could be the first.",
     "callLink": "Get in touch"
+  },
+  "organisations": {
+    "seoTitle": "Organisations · PERMAPHEMERA",
+    "seoDescription": "The {count} associations, federations, institutions and initiatives behind the exhibitions and venues in the PERMAPHEMERA archive.",
+    "breadcrumb": "Organisations",
+    "eyebrow": "Bodies of the archive",
+    "title": "Who stands behind",
+    "accent": "the rooms.",
+    "intro": "Associations, federations, institutions and initiatives: the bodies that run a gallery, present an exhibition or bring their members together. Each name is shown exactly as the organisation writes it.",
+    "ledgerOrganisations": "Organisations",
+    "ledgerMembers": "People",
+    "ledgerRecords": "Records",
+    "directoryEyebrow": "The register",
+    "directoryTitle": "{count} organisation. | {count} organisations.",
+    "directoryAccent": "One line each.",
+    "directoryIntro": "Search a name, a town, a person or an exhibition.",
+    "searchLabel": "Search the organisation register",
+    "searchPlaceholder": "Search organisations…",
+    "status": "Showing {visible} of {total} organisations.",
+    "clearSearch": "Clear search",
+    "noMatches": "No organisation matches this search.",
+    "returnAll": "Show all organisations",
+    "open": "Open organisation",
+    "openFor": "Open organisation: {name}",
+    "recordCount": "{count} record | {count} records",
+    "memberCount": "{count} person | {count} people",
+    "notFound": "Organisation not found",
+    "kinds": {
+      "association": "Association",
+      "federation": "Federation",
+      "institution": "Institution",
+      "collective": "Collective",
+      "company": "Company",
+      "initiative": "Initiative"
+    },
+    "address": "Seat",
+    "founded": "Founded",
+    "links": "Link | Links",
+    "venueRelations": {
+      "runs": "Runs",
+      "seat": "Seat",
+      "exhibits_at": "Exhibits at"
+    },
+    "aboutEyebrow": "About the organisation",
+    "fallbackLede": "{kind} in the PERMAPHEMERA archive.",
+    "fallbackAbout": "{name} is recorded in the archive through the exhibitions and venues it is linked to.",
+    "membersTitle": "{count} person | {count} people",
+    "recordsEyebrow": "In the archive",
+    "recordsTitle": "{count} record | {count} records",
+    "recordsAccent": "with this organisation.",
+    "roles": {
+      "organiser": "Organised",
+      "presenter": "Presented",
+      "cooperation": "In cooperation",
+      "supporter": "Supported"
+    },
+    "noRecords": "No exhibition or event of {name} is in the archive yet."
   }
 }

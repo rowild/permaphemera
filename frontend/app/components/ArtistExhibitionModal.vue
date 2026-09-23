@@ -108,6 +108,11 @@ onBeforeUnmount(restoreBodyScroll)
               <h2 :id="`${props.modalId}-title`" class="m-0 font-display text-h2-steep font-normal leading-none compact:text-3xl">
                 {{ props.displayName }}
               </h2>
+              <p v-if="props.artist.memberships.length" class="[ artist-memberships ] mt-3 mb-0 text-button text-archive-red compact:text-sm">
+                <template v-for="(membership, index) in props.artist.memberships" :key="membership.slug">
+                  <template v-if="index"> · </template><template v-if="membership.function">{{ membership.function }}, </template><ArchiveTextLink :to="localePath(`/organisations/${membership.slug}/`)">{{ membership.title }}</ArchiveTextLink>
+                </template>
+              </p>
               <p v-if="props.artist.location || props.artist.years" class="mt-3 mb-0 text-sm text-archive-muted">
                 {{ [props.artist.location, props.artist.years].filter(Boolean).join(' · ') }}
               </p>

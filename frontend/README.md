@@ -103,6 +103,8 @@ app/pages/venues/[slug].vue    dynamic gallery dossiers
 app/pages/exhibitions/index.vue searchable exhibition archive
 app/pages/exhibitions/[slug].vue dynamic exhibition records
 app/pages/artists/index.vue    searchable artist directory
+app/pages/organisations/index.vue searchable register of associations and institutions
+app/pages/organisations/[slug].vue dynamic organisation pages
 app/assets/css/main.css        theme, base rules, and branded visual infrastructure
 public/media/images/landing/   raster assets used by the site
 public/media/images/locations/ optimized location/exhibition artwork

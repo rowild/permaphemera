@@ -1,6 +1,7 @@
 import { buildArtistDirectory } from '~/utils/artistDirectory'
 import { isVisible } from '~/utils/contentStatus'
 import { resolveExhibitions } from '~/utils/resolveExhibitions'
+import { resolveOrganisations } from '~/utils/resolveOrganisations'
 import { resolveVenues } from '~/utils/resolveVenues'
 
 export function useArchiveData() {
@@ -8,7 +9,7 @@ export function useArchiveData() {
   const { locale } = useI18n()
 
   const venuesForLocale = computed(() =>
-    resolveVenues(archive.locations, archive.venues, locale.value))
+    resolveVenues(archive.locations, archive.venues, locale.value, archive.organisationVenueRelations, archive.organisations))
 
   const exhibitionsForLocale = computed(() => resolveExhibitions(
     archive.exhibitions,
@@ -21,7 +22,23 @@ export function useArchiveData() {
     archive.statements,
     archive.websites,
     archive.exhibitionsWebsites,
-    archive.personsWebsites
+    archive.personsWebsites,
+    archive.exhibitionOrganisers,
+    archive.organisations
+  ))
+
+  const organisationsForLocale = computed(() => resolveOrganisations(
+    archive.organisations,
+    archive.locations,
+    archive.venues,
+    archive.persons,
+    archive.organisationMemberships,
+    archive.organisationVenueRelations,
+    archive.exhibitionOrganisers,
+    exhibitionsForLocale.value,
+    archive.websites,
+    archive.organisationsWebsites,
+    locale.value
   ))
 
   const artistDirectory = computed(() => buildArtistDirectory(
@@ -29,13 +46,17 @@ export function useArchiveData() {
     exhibitionsForLocale.value,
     archive.participations,
     archive.personRoles,
-    archive.roles
+    archive.roles,
+    archive.organisationMemberships,
+    archive.organisations,
+    locale.value
   ))
 
   return {
     venues: venuesForLocale,
     venueExhibitions: exhibitionsForLocale,
     sponsors: computed(() => archive.sponsors.filter(isVisible)),
+    organisations: organisationsForLocale,
     artistDirectory
   }
 }

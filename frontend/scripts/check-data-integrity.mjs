@@ -5,11 +5,12 @@ async function main() {
   const locations = a.locations, venues = a.venues, persons = a.persons, roles = a.roles, personRoles = a.personRoles
   const exhibitions = a.exhibitions, participations = a.participations, statements = a.statements, sponsors = a.sponsors
   const navigations = a.navigations, navigationItems = a.navigationItems, websites = a.websites
-  const junctions = [a.exhibitionsVenues, a.exhibitionsSponsors, a.personsVenues, a.personsSponsors, a.locationsSponsors, a.sponsorsVenues, a.exhibitionsWebsites, a.personsWebsites]
+  const organisations = a.organisations, memberships = a.organisationMemberships, venueRelations = a.organisationVenueRelations, organisers = a.exhibitionOrganisers
+  const junctions = [a.exhibitionsVenues, a.exhibitionsSponsors, a.personsVenues, a.personsSponsors, a.locationsSponsors, a.sponsorsVenues, a.exhibitionsWebsites, a.personsWebsites, a.organisationsWebsites]
 
   const ids = (records) => new Set(records.map((record) => record.id))
   const locationIds = ids(locations), venueIds = ids(venues), personIds = ids(persons), roleIds = ids(roles)
-  const exhibitionIds = ids(exhibitions), navigationIds = ids(navigations), itemIds = ids(navigationItems), websiteIds = ids(websites)
+  const exhibitionIds = ids(exhibitions), navigationIds = ids(navigations), itemIds = ids(navigationItems), websiteIds = ids(websites), organisationIds = ids(organisations)
   const roleArtist = roles.find((role) => role.slug === 'artist')?.id
 
   const uniqueBy = (records, key) => new Set(records.map((record) => record[key])).size === records.length
@@ -75,8 +76,26 @@ async function main() {
     ['participation role is one of the person\'s roles', participations.every((row) => rolesOf(row.person).has(row.role))],
     ['every person has at least one role', persons.every((person) => rolesOf(person.id).size > 0)],
     ['person-role rows resolve both ends', personRoles.every((row) => personIds.has(row.persons_id) && roleIds.has(row.roles_id))],
-    ['every exhibition has at least one artist participation', exhibitions.every((exhibition) =>
-      participations.some((row) => row.exhibition === exhibition.id && row.role === roleArtist))],
+    // An exhibition is credited to artists, or an event is credited to the organisation that put it on.
+    ['every exhibition has an artist participation or an organiser/presenter', exhibitions.every((exhibition) =>
+      participations.some((row) => row.exhibition === exhibition.id && row.role === roleArtist)
+      || organisers.some((row) => row.exhibition === exhibition.id && ['organiser', 'presenter'].includes(row.role)))],
+    // Associations and institutions are organisations, never persons. A person
+    // without first and last name is a pseudonym or a collective and carries a display name.
+    ['a person without first and last name has a display name', persons.every((person) => Boolean(person.first_name || person.last_name) || Boolean(person.display_name))],
+    ['is_collective is a boolean on every person', persons.every((person) => typeof person.is_collective === 'boolean')],
+    ['organisations is an array', Array.isArray(organisations)],
+    ['organisation slugs unique', uniqueBy(organisations, 'slug')],
+    ['organisation.location resolves or is empty', organisations.every((organisation) => organisation.location === null || locationIds.has(organisation.location))],
+    ['every organisation has an en translation', everyHasEnglish(organisations)],
+    ['organisation English mirrors its en entry', englishMirrors(organisations, ['short_title', 'logo_alt', 'lede', 'about', 'description'])],
+    ['membership rows resolve both ends', memberships.every((row) => organisationIds.has(row.organisation) && personIds.has(row.person))],
+    ['membership English mirrors its en entry', englishMirrors(memberships, ['function'])],
+    ['venue relation rows resolve both ends', venueRelations.every((row) => organisationIds.has(row.organisation) && venueIds.has(row.venue))],
+    ['venue relation is runs, seat or exhibits_at', venueRelations.every((row) => ['runs', 'seat', 'exhibits_at'].includes(row.relation))],
+    ['organiser rows resolve both ends', organisers.every((row) => organisationIds.has(row.organisation) && exhibitionIds.has(row.exhibition))],
+    ['organiser role is known', organisers.every((row) => ['organiser', 'presenter', 'cooperation', 'supporter'].includes(row.role))],
+    ['organisation-website rows resolve both ends', a.organisationsWebsites.every((row) => organisationIds.has(row.organisations_id) && websiteIds.has(row.websites_id))],
     ['statement.exhibition all resolve', statements.every((row) => exhibitionIds.has(row.exhibition))],
     ['statement.person all resolve', statements.every((row) => personIds.has(row.person))],
     ['every statement is by a participant of that exhibition', statements.every((row) =>
@@ -110,7 +129,7 @@ async function main() {
       .map((item) => item.key).sort().join(',') === ['explore', 'information', 'legal'].sort().join(',')],
     ['main navigation keys match the header active-state union', navigationItems
       .filter((item) => item.navigation === navigations.find((nav) => nav.key === 'main')?.id && item.parent === null)
-      .map((item) => item.key).sort().join(',') === ['about', 'artists', 'exhibitions', 'galleries'].sort().join(',')],
+      .map((item) => item.key).sort().join(',') === ['about', 'artists', 'exhibitions', 'galleries', 'organisations'].sort().join(',')],
 
     ['every venue has a known type', venues.every((venue) =>
       ['gallery', 'museum', 'kunsthalle', 'art_cafe', 'open_air', 'forum'].includes(venue.type))],
@@ -155,7 +174,7 @@ async function main() {
     for (const [label] of failures) console.error(`  - ${label}`)
     process.exitCode = 1
   } else {
-    console.log(`Data integrity OK: ${checks.length} assertions across 17 collections from ${directusUrl}.`)
+    console.log(`Data integrity OK: ${checks.length} assertions across ${Object.keys(a).length} collections from ${directusUrl}.`)
   }
 }
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Building2, CalendarDays, Compass, ExternalLink, LayoutGrid, MapPin } from '@lucide/vue'
+import { Building2, CalendarDays, Compass, ExternalLink, Landmark, LayoutGrid, MapPin } from '@lucide/vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 
@@ -8,7 +8,7 @@ import type { ResolvedVenue } from '~/utils/resolveVenues'
 // ResolvedVenue doesn't carry (kept from the pre-flip shape; read only in
 // this file's own template, never passed to a child component). This local
 // type describes exactly what gets constructed.
-interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'about' | 'part_of' | 'spaces'> {
+interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'about' | 'part_of' | 'spaces' | 'organisations'> {
   location_id: string
 }
 
@@ -56,7 +56,8 @@ const venue = computed<Venue>(() => {
     coordinate_label: dossier?.coordinate_label,
     about: dossier?.about,
     part_of: record.part_of,
-    spaces: record.spaces
+    spaces: record.spaces,
+    organisations: record.organisations
   }
 })
 
@@ -165,6 +166,10 @@ const venueMapUrl = computed(() => {
 
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
 })
+// Organisations grouped by relation: run by, seat of, guest exhibitors.
+const organisationGroups = computed(() => (['runs', 'seat', 'exhibits_at'] as const)
+  .map((relation) => ({ relation, organisations: (venue.value?.organisations ?? []).filter((organisation) => organisation.relation === relation) }))
+  .filter((group) => group.organisations.length))
 const websiteLabel = computed(() => {
   if (!venue.value?.website_url) return ''
   try {
@@ -220,6 +225,12 @@ useSeoMeta({
               <template #icon><LayoutGrid :size="18" aria-hidden="true" /></template>
               <template v-for="(space, index) in venue.spaces" :key="space.slug">
                 <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/venues/${space.slug}/`)">{{ space.name }}</ArchiveTextLink>
+              </template>
+            </ArchiveMetadataRow>
+            <ArchiveMetadataRow v-for="group in organisationGroups" :key="group.relation" :label="$t(`venue.organisationRelations.${group.relation}`)" variant="venue">
+              <template #icon><Landmark :size="18" aria-hidden="true" /></template>
+              <template v-for="(organisation, index) in group.organisations" :key="organisation.slug">
+                <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/organisations/${organisation.slug}/`)">{{ organisation.title }}</ArchiveTextLink>
               </template>
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="venue.latitude !== undefined && venue.longitude !== undefined" :label="$t('venue.coordinates')" variant="venue">

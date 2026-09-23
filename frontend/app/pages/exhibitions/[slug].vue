@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
-  CalendarCheck, CalendarDays, Clock3, FileText, Globe, Hourglass, Info, Link2, MapPin, Palette, Ticket, Users
-} from '@lucide/vue'
+  CalendarCheck, CalendarDays, Clock3, FileText, Globe, Hourglass, Info, Link2, MapPin, Palette, Ticket, Users, Landmark } from '@lucide/vue'
 import { resolveTourAccess } from '~/utils/tourAccess'
 
 const route = useRoute()
@@ -22,6 +21,11 @@ const relatedExhibitions = computed(() => venueExhibitions.value
   .sort((left, right) => Number(right.venue_slug === exhibition.value?.venue_slug) - Number(left.venue_slug === exhibition.value?.venue_slug))
   .slice(0, 3))
 const galleryPath = computed(() => localePath(`/venues/${exhibition.value?.venue_slug}/`))
+// One label for the organisations row: the shared role when all agree, else the generic word.
+const organiserLabel = computed(() => {
+  const roles = new Set(exhibition.value.organisers.map((organiser) => organiser.role))
+  return roles.size === 1 ? t(`exhibition.organiserLabels.${[...roles][0]}`) : t('exhibition.organiserLabels.mixed')
+})
 const artistsWithWebsite = computed(() => exhibition.value.artists.filter((artist) => artist.website_url))
 const hostnameOf = (url: string) => {
   try {
@@ -127,6 +131,12 @@ useSeoMeta({
           <ArchiveMetadataRow v-if="exhibition.artist" :label="$t('exhibition.artistParticipants')" variant="exhibition">
             <template #icon><Users :size="18" aria-hidden="true" /></template>
             {{ exhibition.artist }}
+          </ArchiveMetadataRow>
+          <ArchiveMetadataRow v-if="exhibition.organisers.length" :label="organiserLabel" variant="exhibition">
+            <template #icon><Landmark :size="18" aria-hidden="true" /></template>
+            <template v-for="(organiser, index) in exhibition.organisers" :key="organiser.id">
+              <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/organisations/${organiser.slug}/`)">{{ organiser.title }}</ArchiveTextLink>
+            </template>
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="artistsWithWebsite.length" :label="$t('exhibition.artistWebsite', artistsWithWebsite.length)" variant="exhibition">
             <template #icon><Globe :size="18" aria-hidden="true" /></template>

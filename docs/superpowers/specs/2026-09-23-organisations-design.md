@@ -1,6 +1,6 @@
 # Organisations: associations, federations and institutions as their own records
 
-Date: 2026-09-23. Status: plan, decisions taken by the owner the same day, not yet built. Cross-cutting (Directus + frontend), so it lives at the repository root.
+Date: 2026-09-23. Status: built the same day (steps 1–4); step 5 (logos row, sponsor merge) deferred. Cross-cutting (Directus + frontend), so it lives at the repository root.
 
 ## Problem
 

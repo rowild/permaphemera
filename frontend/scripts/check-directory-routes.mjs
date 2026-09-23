@@ -19,6 +19,9 @@ const [
   exhibitionDetail,
   exhibitionCard,
   archiveFloatingTooltip,
+  organisationsIndex,
+  organisationDetail,
+  organisationEntry,
   englishMessages,
   germanMessages,
   mainCss,
@@ -32,6 +35,9 @@ const [
   readText('app/pages/exhibitions/[slug].vue'),
   readText('app/components/ExhibitionCard.vue'),
   readText('app/components/ArchiveFloatingTooltip.vue'),
+  readText('app/pages/organisations/index.vue'),
+  readText('app/pages/organisations/[slug].vue'),
+  readText('app/components/OrganisationDirectoryEntry.vue'),
   readJson('i18n/locales/en.json'),
   readJson('i18n/locales/de.json'),
   readText('app/assets/css/main.css'),
@@ -128,12 +134,22 @@ assert.doesNotMatch(exhibitionCard, /openRecord/, 'Exhibition cards must not ret
 assert.match(exhibitionDetail, /localePath\('\/exhibitions\/'\)/, 'Exhibition detail breadcrumbs must return to the exhibition index.')
 assert.match(exhibitionDetail, /galleryPath/, 'Exhibition detail routes must derive their owning gallery route.')
 
+// Organisations: a register with one row per body and a page per organisation.
+assert.match(organisationsIndex, /<ArchiveSearchForm/, 'The organisations index must use the shared search form.')
+assert.match(organisationsIndex, /<OrganisationDirectoryEntry[\s\S]*v-for=/, 'The organisations index must render reusable entries.')
+assert.match(organisationsIndex, /<ArchiveHeader active="organisations"/, 'The organisations index must mark its header state.')
+assert.match(organisationDetail, /organisations\.value\.find/, 'Organisation pages must resolve the canonical organisations collection.')
+assert.match(organisationDetail, /<ExhibitionCard/, 'Organisation pages must reuse the one exhibition card for their records.')
+assert.match(organisationEntry, /props\.organisation\.title/, 'Organisation entries show the title verbatim.')
+assert.doesNotMatch(organisationEntry, /formatArtistName|split\(/, 'Organisation names are never split or inverted.')
+
 const navigations = archive.navigations
 const navigationItems = archive.navigationItems
 const mainNavigationId = navigations.find((nav) => nav.key === 'main')?.id
 const mainPaths = navigationItems.filter((item) => item.navigation === mainNavigationId).map((item) => item.path)
 assert(mainPaths.includes('/venues/'), 'Gallery navigation must target the real gallery index.')
 assert(mainPaths.includes('/exhibitions/'), 'Exhibition navigation must target the real exhibition index.')
+assert(mainPaths.includes('/organisations/'), 'Organisation navigation must target the real organisation register.')
 for (const navigation of [header, footerMenu]) {
   assert.match(navigation, /useSiteNavigation\(\)/, 'Header and footer must render their links from the navigation data.')
 }

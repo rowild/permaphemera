@@ -1,5 +1,6 @@
 import type {
-  ExhibitionRecord, ExhibitionStatement, JunctionRow, LocationRecord, ParticipationRecord, PersonRecord, RoleRecord, VenueRecord, WebsiteRecord, ExhibitionKind } from '~/types/content'
+  ExhibitionRecord, ExhibitionStatement, JunctionRow, LocationRecord, ParticipationRecord, PersonRecord, RoleRecord, VenueRecord, WebsiteRecord, ExhibitionKind,
+  ExhibitionOrganiserRecord, ExhibitionOrganiserRole, OrganisationRecord } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
 import type { TourStatus } from '~/utils/tourAccess'
@@ -20,6 +21,14 @@ export interface ResolvedExhibitionArtist {
   websites: ResolvedLink[]
 }
 
+/** The organisation behind an exhibition, in one role. Its title is shown verbatim. */
+export interface ResolvedOrganiser {
+  id: string
+  slug: string
+  title: string
+  role: ExhibitionOrganiserRole
+}
+
 export interface ResolvedStatement {
   id: string
   artist: string
@@ -35,6 +44,7 @@ export interface ResolvedExhibition {
   artist_ids: string[]
   artists: ResolvedExhibitionArtist[]
   curators: ResolvedExhibitionArtist[]
+  organisers: ResolvedOrganiser[]
   statements: ResolvedStatement[]
   websites: ResolvedLink[]
   venue_slug: string
@@ -74,8 +84,19 @@ export const resolveExhibitions = (
   statements: ExhibitionStatement[] = [],
   websites: WebsiteRecord[] = [],
   exhibitionsWebsites: JunctionRow[] = [],
-  personsWebsites: JunctionRow[] = []
+  personsWebsites: JunctionRow[] = [],
+  organisers: ExhibitionOrganiserRecord[] = [],
+  organisations: OrganisationRecord[] = []
 ): ResolvedExhibition[] => {
+  const organisationById = new Map(organisations.filter(isVisible).map((organisation) => [organisation.id, organisation]))
+  const organisersByExhibition = new Map<string, ResolvedOrganiser[]>()
+  for (const row of organisers.filter(isVisible).sort((a, b) => a.sort - b.sort)) {
+    const organisation = organisationById.get(row.organisation)
+    if (!organisation) continue
+    const rows = organisersByExhibition.get(row.exhibition) ?? []
+    rows.push({ id: organisation.id, slug: organisation.slug, title: organisation.title, role: row.role })
+    organisersByExhibition.set(row.exhibition, rows)
+  }
   const venueById = new Map(venues.map((venue) => [venue.id, venue]))
   const locationById = new Map(locations.map((location) => [location.id, location]))
   const personById = new Map(persons.map((person) => [person.id, person]))
@@ -157,6 +178,7 @@ export const resolveExhibitions = (
       artist_ids: artists.map((person) => person.id),
       artists: artists.map(toCredit),
       curators: curators.map(toCredit),
+      organisers: organisersByExhibition.get(exhibition.id) ?? [],
       statements: resolvedStatements,
       websites: linksThrough(exhibitionsWebsites, 'exhibitions_id', exhibition.id),
       venue_slug: venue.slug,

@@ -1,4 +1,4 @@
-import type { LocationRecord, VenueRecord } from '~/types/content'
+import type { LocationRecord, OrganisationRecord, OrganisationVenueRelation, OrganisationVenueRelationRecord, VenueRecord } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
 
@@ -6,6 +6,13 @@ import { pickTranslation } from '~/utils/pickTranslation'
 export interface VenueRef {
   slug: string
   name: string
+}
+
+/** An organisation that runs the venue, sits there or exhibits there as a guest. */
+export interface VenueOrganisationLink {
+  slug: string
+  title: string
+  relation: OrganisationVenueRelation
 }
 
 export interface ResolvedVenue {
@@ -16,6 +23,7 @@ export interface ResolvedVenue {
   part_of?: VenueRef
   /** Visible venues that name this one as their parent. */
   spaces: VenueRef[]
+  organisations: VenueOrganisationLink[]
   type: string
   address: string
   website_url?: string
@@ -44,9 +52,20 @@ export interface ResolvedVenue {
 export const resolveVenues = (
   locations: LocationRecord[],
   venues: VenueRecord[],
-  locale: string
+  locale: string,
+  venueRelations: OrganisationVenueRelationRecord[] = [],
+  organisations: OrganisationRecord[] = []
 ): ResolvedVenue[] => {
   const locationById = new Map(locations.map((location) => [location.id, location]))
+  const organisationById = new Map(organisations.filter(isVisible).map((organisation) => [organisation.id, organisation]))
+  const organisationsByVenue = new Map<string, VenueOrganisationLink[]>()
+  for (const row of venueRelations.filter(isVisible).sort((a, b) => a.sort - b.sort)) {
+    const organisation = organisationById.get(row.organisation)
+    if (!organisation) continue
+    const rows = organisationsByVenue.get(row.venue) ?? []
+    rows.push({ slug: organisation.slug, title: organisation.title, relation: row.relation })
+    organisationsByVenue.set(row.venue, rows)
+  }
   const visible = venues.filter(isVisible)
   const refById = new Map(visible.map((venue) => [venue.id, { slug: venue.slug, name: venue.title }]))
 
@@ -61,6 +80,7 @@ export const resolveVenues = (
       name: venue.title,
       part_of: venue.part_of ? refById.get(venue.part_of) : undefined,
       spaces: visible.filter((candidate) => candidate.part_of === venue.id).map((candidate) => refById.get(candidate.id)!),
+      organisations: organisationsByVenue.get(venue.id) ?? [],
       type: venue.type,
       address: venue.address,
       website_url: venue.website_url ?? undefined,

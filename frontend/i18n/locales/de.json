@@ -220,7 +220,12 @@
     },
     "seoDescription": "Entdecken Sie Ausstellungseinträge von {name} in {city}.",
     "eventCount": "{count} Veranstaltung | {count} Veranstaltungen",
-    "recordCount": "{count} Eintrag | {count} Einträge"
+    "recordCount": "{count} Eintrag | {count} Einträge",
+    "organisationRelations": {
+      "runs": "Betrieben von",
+      "seat": "Sitz von",
+      "exhibits_at": "Gastaussteller"
+    }
   },
   "galleries": {
     "partOf": "Im Verbund von {name}",
@@ -285,6 +290,13 @@
       "aboutAccent": "im Archiv vermerkt.",
       "restricted": "Aus urheberrechtlichen Gründen dürfen wir keinen 360°-Rundgang dieser Veranstaltung zeigen.",
       "unavailable": "Von dieser Veranstaltung gibt es keinen 360°-Rundgang."
+    },
+    "organiserLabels": {
+      "organiser": "Veranstaltet von",
+      "presenter": "Präsentiert von",
+      "cooperation": "In Kooperation mit",
+      "supporter": "Unterstützt von",
+      "mixed": "Organisationen"
     }
   },
   "exhibitionsDirectory": {
@@ -835,5 +847,62 @@
     "callTitle": "Platz für Institutionen, die",
     "callText": "PERMAPHEMERA entsteht mit Partner:innen, denen wichtig ist, was sonst verschwindet. Diese Zeile ist für ihre Namen reserviert: Fördernde, Sponsor:innen und Partnerinstitutionen. Ihrer könnte der erste sein.",
     "callLink": "Kontakt aufnehmen"
+  },
+  "organisations": {
+    "seoTitle": "Vereine & Institutionen · PERMAPHEMERA",
+    "seoDescription": "Die {count} Vereine, Verbände, Institutionen und Initiativen hinter den Ausstellungen und Orten im PERMAPHEMERA-Archiv.",
+    "breadcrumb": "Vereine & Institutionen",
+    "eyebrow": "Träger des Archivs",
+    "title": "Wer hinter",
+    "accent": "den Räumen steht.",
+    "intro": "Vereine, Verbände, Institutionen und Initiativen: die Träger, die eine Galerie betreiben, eine Ausstellung präsentieren oder ihre Mitglieder zusammenbringen. Jeder Name steht genau so, wie die Organisation ihn schreibt.",
+    "ledgerOrganisations": "Organisationen",
+    "ledgerMembers": "Personen",
+    "ledgerRecords": "Einträge",
+    "directoryEyebrow": "Das Register",
+    "directoryTitle": "{count} Organisation. | {count} Organisationen.",
+    "directoryAccent": "Je eine Zeile.",
+    "directoryIntro": "Suchen Sie nach Name, Ort, Person oder Ausstellung.",
+    "searchLabel": "Register der Organisationen durchsuchen",
+    "searchPlaceholder": "Organisationen suchen…",
+    "status": "{visible} von {total} Organisationen.",
+    "clearSearch": "Suche löschen",
+    "noMatches": "Keine Organisation passt zu dieser Suche.",
+    "returnAll": "Alle Organisationen anzeigen",
+    "open": "Organisation öffnen",
+    "openFor": "Organisation öffnen: {name}",
+    "recordCount": "{count} Eintrag | {count} Einträge",
+    "memberCount": "{count} Person | {count} Personen",
+    "notFound": "Organisation nicht gefunden",
+    "kinds": {
+      "association": "Verein",
+      "federation": "Landesverband",
+      "institution": "Institution",
+      "collective": "Kollektiv",
+      "company": "Unternehmen",
+      "initiative": "Initiative"
+    },
+    "address": "Sitz",
+    "founded": "Gegründet",
+    "links": "Link | Links",
+    "venueRelations": {
+      "runs": "Betreibt",
+      "seat": "Sitz",
+      "exhibits_at": "Stellt aus bei"
+    },
+    "aboutEyebrow": "Über die Organisation",
+    "fallbackLede": "{kind} im PERMAPHEMERA-Archiv.",
+    "fallbackAbout": "{name} ist im Archiv über die verknüpften Ausstellungen und Orte verzeichnet.",
+    "membersTitle": "{count} Person | {count} Personen",
+    "recordsEyebrow": "Im Archiv",
+    "recordsTitle": "{count} Eintrag | {count} Einträge",
+    "recordsAccent": "mit dieser Organisation.",
+    "roles": {
+      "organiser": "Veranstaltet",
+      "presenter": "Präsentiert",
+      "cooperation": "In Kooperation",
+      "supporter": "Unterstützt"
+    },
+    "noRecords": "Von {name} ist noch keine Ausstellung und keine Veranstaltung im Archiv."
   }
 }

@@ -11,6 +11,13 @@ export interface ArtistRecordLink {
   href: string
 }
 
+/** One organisation a person belongs to, with the function shown as one line: "Vizepräsidentin, BV Kärnten". */
+export interface ArtistMembership {
+  slug: string
+  title: string
+  function?: string
+}
+
 export interface DirectoryArtist {
   id: string
   slug: string
@@ -20,6 +27,7 @@ export interface DirectoryArtist {
   record_count: number
   displayName: string
   records: ArtistRecordLink[]
+  memberships: ArtistMembership[]
   letter: string
 }
 

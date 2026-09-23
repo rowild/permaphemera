@@ -1,4 +1,5 @@
-import type { ArtistRecordLink, DirectoryArtist, ParticipationRecord, PersonRecord, PersonRoleLink, RoleRecord } from '~/types/content'
+import type { ArtistMembership, ArtistRecordLink, DirectoryArtist, OrganisationMembershipRecord, OrganisationRecord, ParticipationRecord, PersonRecord, PersonRoleLink, RoleRecord } from '~/types/content'
+import { pickTranslation } from '~/utils/pickTranslation'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { displayPersonName } from '~/utils/resolveExhibitions'
 import { formatArtistName, getArtistFamilyLetter } from '~/utils/artistNames'
@@ -10,8 +11,21 @@ export const buildArtistDirectory = (
   exhibitions: ResolvedExhibition[],
   participations: ParticipationRecord[],
   personRoles: PersonRoleLink[],
-  roles: RoleRecord[]
+  roles: RoleRecord[],
+  memberships: OrganisationMembershipRecord[] = [],
+  organisations: OrganisationRecord[] = [],
+  locale = 'en'
 ): DirectoryArtist[] => {
+  const organisationById = new Map(organisations.filter(isVisible).map((organisation) => [organisation.id, organisation]))
+  const membershipsByPerson = new Map<string, ArtistMembership[]>()
+  for (const row of memberships.filter(isVisible).sort((a, b) => a.sort - b.sort)) {
+    const organisation = organisationById.get(row.organisation)
+    if (!organisation) continue
+    const rows = membershipsByPerson.get(row.person) ?? []
+    const words = pickTranslation(row, locale)
+    rows.push({ slug: organisation.slug, title: organisation.title, function: (words.function as string) || row.function || undefined })
+    membershipsByPerson.set(row.person, rows)
+  }
   const artistRole = roles.find((role) => role.slug === 'artist')?.id
   if (!artistRole) throw new Error('pp_roles.json: no role with slug "artist"')
   const artistIds = new Set(personRoles.filter((row) => row.roles_id === artistRole).map((row) => row.persons_id))
@@ -53,9 +67,10 @@ export const buildArtistDirectory = (
       location: [...new Set(records.map((record) => record.city))].join(' · '),
       years: [...(yearsByPerson.get(person.id) ?? [])].sort().join(' · '),
       record_count: records.length,
-      displayName: formatArtistName(name, person.slug),
+      displayName: formatArtistName(name, person.slug, person.is_collective),
       records,
-      letter: getArtistFamilyLetter(person.slug, name)
+      memberships: membershipsByPerson.get(person.id) ?? [],
+      letter: getArtistFamilyLetter(person.slug, name, person.is_collective)
     }
   }).sort((left, right) => {
     if (left.letter !== right.letter) return left.letter.localeCompare(right.letter)

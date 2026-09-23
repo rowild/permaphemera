@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
   // Keys of pp_navigations main items; check:data pins them.
-  active?: 'archive' | 'galleries' | 'artists' | 'exhibitions' | 'about'
+  active?: 'archive' | 'galleries' | 'artists' | 'exhibitions' | 'organisations' | 'about'
   skipTarget?: string
 }>(), {
   active: undefined,
