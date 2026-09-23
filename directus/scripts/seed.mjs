@@ -41,13 +41,15 @@ await ensure('languages', { code: 'de' }, { name: 'Deutsch', direction: 'ltr' })
 // Roles
 await ensure('pp_roles', { slug: 'artist' }, { status: 'published', title: 'Artist', sort: 1, translations: tr('Artist', 'Künstler:in') })
 await ensure('pp_roles', { slug: 'curator' }, { status: 'published', title: 'Curator', sort: 2, translations: tr('Curator', 'Kurator:in') })
+// Board members of organisations who are not artists or curators (added 2026-09-24). The exact function lives on the membership.
+await ensure('pp_roles', { slug: 'board' }, { status: 'published', title: 'Board member', sort: 3, translations: tr('Board member', 'Vorstandsmitglied') })
 
 // Navigations. Titles come from the frontend locale files of 2026-09-14.
 const main = await ensure('pp_navigations', { key: 'main' }, { status: 'published', title: 'Main navigation', sort: 1 })
 const footer = await ensure('pp_navigations', { key: 'footer' }, { status: 'published', title: 'Footer navigation', sort: 2 })
 
 const item = async (nav, key, en, de, opts = {}) => ensure('pp_navigation_items', { navigation: nav.id, key }, {
-  status: 'published', title: en, kind: opts.kind ?? 'route', path: opts.path ?? null, url: opts.url ?? null,
+  status: opts.status ?? 'published', title: en, kind: opts.kind ?? 'route', path: opts.path ?? null, url: opts.url ?? null,
   target: '_self', parent: opts.parent?.id ?? null, sort: opts.sort ?? 0, translations: tr(en, de),
 })
 
@@ -55,7 +57,9 @@ const item = async (nav, key, en, de, opts = {}) => ensure('pp_navigation_items'
 await item(main, 'exhibitions', 'Exhibitions', 'Ausstellungen', { path: '/exhibitions/', sort: 1 })
 await item(main, 'artists', 'Artists', 'Künstler:innen', { path: '/artists/', sort: 2 })
 await item(main, 'galleries', 'Galleries', 'Galerien', { path: '/venues/', sort: 3 })
-await item(main, 'about', 'About the Project', 'Über das Projekt', { path: '/about/', sort: 4 })
+// Organisations exist as routes; the menu entry stays a draft (hidden) until the owner publishes it.
+await item(main, 'organisations', 'Organisations', 'Vereine', { path: '/organisations/', sort: 4, status: 'draft' })
+await item(main, 'about', 'About the Project', 'Über das Projekt', { path: '/about/', sort: 5 })
 
 // footer groups
 const explore = await item(footer, 'explore', 'Explore', 'Entdecken', { sort: 1 })
@@ -65,6 +69,7 @@ const legal = await item(footer, 'legal', 'Legal', 'Rechtliches', { sort: 3 })
 await item(footer, 'exhibitions', 'Exhibitions', 'Ausstellungen', { path: '/exhibitions/', parent: explore, sort: 1 })
 await item(footer, 'artists', 'Artists', 'Künstler:innen', { path: '/artists/', parent: explore, sort: 2 })
 await item(footer, 'galleries', 'Galleries', 'Galerien', { path: '/venues/', parent: explore, sort: 3 })
+await item(footer, 'organisations', 'Organisations', 'Vereine', { path: '/organisations/', parent: explore, sort: 4, status: 'draft' })
 
 await item(footer, 'about', 'About the Project', 'Über das Projekt', { path: '/about/', parent: information, sort: 1 })
 await item(footer, 'how-it-works', 'How it works', 'Wie es funktioniert', { path: '/how-it-works/', parent: information, sort: 2 })
