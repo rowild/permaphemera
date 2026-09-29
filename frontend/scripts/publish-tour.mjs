@@ -10,8 +10,10 @@
 // The tour id is the folder the editor wrote on export (Tutorial No. 2). With
 // no --exhibition and no existing link, the script lists the records that
 // still have no tour, suggests the closest match from tour.json's meta block,
-// and asks for a number. The default export folder is the editor project's
-// _tours/exported/ beside this repository; TOUR_EXPORT_DIR or --from override it.
+// and asks for a number. The default export folder is
+// ../_360_GALLERIES_AND_TOURS/exported/, the tour content folder beside this
+// repository (it was the editor project's _tours/exported/ until 2026-09-29);
+// TOUR_EXPORT_DIR or --from override it.
 
 import { spawn } from 'node:child_process'
 import { cp, readdir, readFile, rm, stat } from 'node:fs/promises'
@@ -22,7 +24,7 @@ import { directusPatch, directusToken, loadArchiveFromDirectus } from './lib/arc
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const toursDirectory = join(projectRoot, 'public', 'media', 'tours')
-const defaultExportDirectory = resolve(projectRoot, '..', '..', '_MacAPP TOUR-VIEWER', '_tours', 'exported')
+const defaultExportDirectory = resolve(projectRoot, '..', '..', '_360_GALLERIES_AND_TOURS', 'exported')
 
 const SAFE_ID = /^[a-z0-9][a-z0-9._-]*$/iu
 
