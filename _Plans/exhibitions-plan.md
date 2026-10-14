@@ -58,7 +58,7 @@ The following infrastructure components are **omitted from the first implementat
 
 ## 2. Production Database Schema (Directus v11)
 
-This section is the **single living schema**. It is built by `directus/scripts/schema.mjs` (the source of truth for Directus), mirrored 1:1 by the JSON files in `frontend/app/data/` and the types in `frontend/app/types/content.ts`. Naming and layout follow `_Plans/directus-schema-conventions.md` with prefix `pp_`. The design that produced it is `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md`.
+This section is the **single living schema**. It is built by `directus/scripts/schema.mjs` (the source of truth for Directus), mirrored 1:1 by the frontend's runtime snapshot (`useArchiveSource()`, which reads Directus at app start; the JSON files in `frontend/app/data/` were retired on 2026-09-15) and the types in `frontend/app/types/content.ts`. Naming and layout follow `_Plans/directus-schema-conventions.md` with prefix `pp_`. The design that produced it is `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md`.
 
 Last reconciled: 2026-09-23. Schema version `2026-09-23.2` (see `pp_meta`).
 
@@ -99,6 +99,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_mm__exhibitions_websites` | structural | `pp_websites` | yes |
 | `pp_mm__persons_websites` | structural | `pp_websites` | yes |
 | `pp_mm__organisations_websites` | structural | `pp_websites` | yes |
+| `pp_mm__venues_websites` | structural | `pp_websites` | yes |
 | `pp_translations__exhibitions` | structural | `pp_exhibitions` | yes |
 | `pp_translations__venues` | structural | `pp_venues` | yes |
 | `pp_translations__locations` | structural | `pp_locations` | yes |
@@ -109,9 +110,10 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_translations__websites` | structural | `pp_websites` | yes |
 | `pp_translations__organisations` | structural | `pp_organisations` | yes |
 | `pp_translations__organisation_memberships` | structural | `pp_organisation_memberships` | yes |
+| `pp_translations__persons` | structural | `pp_persons` | yes |
 | `pp_meta` | installer state, singleton | root | yes |
 
-32 prefixed collections, 33 with the `pp_archive` folder. `pp_persons`, `pp_navigations`, `pp_exhibition_organisers` and `pp_organisation_venue_relations` have no translation table. The organisations family was added on 2026-09-23 (design: `docs/superpowers/specs/2026-09-23-organisations-design.md`).
+38 prefixed collections, 39 with the `pp_archive` folder (2026-10-14). `pp_navigations`, `pp_exhibition_organisers`, `pp_exhibition_participations` and `pp_organisation_venue_relations` have no translation table. The organisations family was added on 2026-09-23 (design: `docs/superpowers/specs/2026-09-23-organisations-design.md`).
 
 ### Relation map
 
@@ -137,6 +139,7 @@ Every line is one relation. The naming rule (conventions §2 rule 12) makes an M
 | exhibition | website | M2M | `pp_mm__exhibitions_websites` | the exhibition's external links: its page on the venue site, press sheets, documents; aliases `websites` / `exhibitions` |
 | person | website | M2M | `pp_mm__persons_websites` | the person's links, as many as needed; aliases `websites` / `persons` |
 | organisation | website | M2M | `pp_mm__organisations_websites` | the organisation's links; aliases `websites` / `organisations` |
+| venue | website | M2M | `pp_mm__venues_websites` | the venue's further links, usually social profiles; `website_url` stays the main link and the venue page shows three links at most (added 2026-10-14); aliases `websites` / `venues` |
 | exhibition | organisation | child `pp_exhibition_organisers` | the organisation behind the record, with `role` (organiser, presenter, cooperation, supporter); aliases `organisers` on exhibitions, `exhibitions` on organisations |
 | organisation | person | child `pp_organisation_memberships` | one person in one function (translated) in one organisation; aliases `members` / `memberships` |
 | organisation | venue | child `pp_organisation_venue_relations` | `relation`: runs, seat, exhibits_at (guest on the venue's invitation); aliases `venue_relations` / `organisation_relations` |
@@ -163,13 +166,13 @@ Translated: `description`.
 
 #### `pp_venues`
 
-`id`, `status`, `sort`, `title`, `slug`, `location` (M2O → locations, SET NULL), `part_of` (self M2O → venues, SET NULL; the venue this space belongs to organisationally, e.g. Alpen-Adria-Galerie → Stadtgalerie Klagenfurt; added 2026-09-15), `type` (dropdown, allow other), `address`, `website_url`, `latitude`, `longitude`, `image`, `image_alt`, `hero_image`, `hero_image_alt`, `archive_number`, `featured`, `description`, `lede`, `about` (json array of paragraphs), `image_caption`, `coordinate_label`, `translations`, `spaces`, `exhibitions` (o2m), `further_exhibitions`, `persons`, `sponsors` (m2m), audit.
+`id`, `status`, `sort`, `title`, `slug`, `location` (M2O → locations, SET NULL), `part_of` (self M2O → venues, SET NULL; the venue this space belongs to organisationally, e.g. Alpen-Adria-Galerie → Stadtgalerie Klagenfurt; added 2026-09-15), `type` (dropdown, allow other), `address`, `website_url` (the venue's own website only; a venue without one keeps it empty), `websites` (m2m → websites, further links such as social profiles; added 2026-10-14), `latitude`, `longitude`, `image`, `image_alt`, `hero_image`, `hero_image_alt`, `archive_number`, `featured`, `description`, `lede`, `about` (json array of paragraphs), `image_caption`, `coordinate_label`, `translations`, `spaces`, `exhibitions` (o2m), `further_exhibitions`, `persons`, `sponsors` (m2m), audit.
 Translated: `description`, `lede`, `about`, `image_caption`, `coordinate_label`.
 
 #### `pp_persons`
 
-`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `is_collective` (bool, 2026-09-23: the name is shown verbatim, never inverted), `slug` (unique), `roles`, `venues`, `sponsors`, `websites` (m2m), `participations`, `memberships` (o2m), audit.
-No translations. Links live in `pp_websites` (2026-09-15); the former single `website_url` column was migrated into link rows and dropped.
+`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `is_collective` (bool, 2026-09-23: the name is shown verbatim, never inverted), `slug` (unique), `born` (free text, e.g. "1970, Schärding"), `based_in`, `image` (file, press portrait), `image_alt`, `image_caption` (credit line), `lede` (one line), `about` (json array of paragraphs), `translations`, `roles`, `venues`, `sponsors`, `websites` (m2m), `participations`, `memberships` (o2m), audit.
+Translated: `based_in`, `image_alt`, `image_caption`, `lede`, `about`. The page fields were added on 2026-10-14 for the person page `/persons/<slug>/` (design: `docs/superpowers/specs/2026-10-14-person-sponsor-organisation-pages-design.md`); before that, persons had no translations. Links live in `pp_websites` (2026-09-15); the former single `website_url` column was migrated into link rows and dropped.
 
 #### `pp_roles`
 
@@ -183,7 +186,7 @@ Translated: `title`, `summary`, `description`, `date_range`, `opening_hours`, `v
 
 #### `pp_exhibition_participations` (child)
 
-`id`, `status`, `sort`, `exhibition` (M2O → exhibitions, CASCADE, NOT NULL), `person` (M2O → persons, SET NULL), `role` (M2O → roles, SET NULL), audit. `display_template` `{{person.first_name}} {{person.last_name}} · {{role.title}}`.
+`id`, `sort`, `exhibition` (M2O → exhibitions, CASCADE, NOT NULL), `person` (M2O → persons, SET NULL), `role` (M2O → roles, SET NULL), audit. `display_template` `{{person.first_name}} {{person.last_name}} · {{role.title}}`. No `status` since 2026-10-14: the row is shown (and publicly readable) when every record it connects is published.
 
 #### `pp_exhibition_statements` (child)
 
@@ -210,24 +213,25 @@ Translated: `title`. Route paths are locale-neutral; the frontend passes them th
 
 #### `pp_organisations`
 
-`id`, `status`, `sort`, `title` (verbatim, one string), `short_title` (translated, optional), `slug` (unique), `kind` (dropdown `association` | `federation` | `institution` | `collective` | `company` | `initiative`, allow other), `founded`, `address`, `location` (M2O → locations, SET NULL), `logo` (file), `logo_alt`, `lede`, `about` (json array of paragraphs), `description`, `translations`, `venue_relations`, `members`, `exhibitions` (o2m), `websites` (m2m), audit.
+`id`, `status`, `sort`, `title` (verbatim, one string), `short_title` (translated, optional), `slug` (unique), `kind` (dropdown `association` | `federation` | `institution` | `collective` | `company` | `initiative`, allow other), `founded`, `address`, `location` (M2O → locations, SET NULL), `logo` (file), `logo_alt`, `image` (file, press photo, 2026-10-14), `image_alt`, `image_caption` (credit line), `lede`, `about` (json array of paragraphs), `description`, `translations`, `venue_relations`, `members`, `exhibitions` (o2m), `websites` (m2m), audit.
+Translated: `short_title`, `logo_alt`, `image_alt`, `image_caption`, `lede`, `about`, `description`.
 
 #### `pp_exhibition_organisers` (child of exhibitions)
 
-`id`, `status`, `sort`, `exhibition` (M2O, CASCADE), `organisation` (M2O → organisations), `role` (dropdown `organiser` | `presenter` | `cooperation` | `supporter`), audit.
+`id`, `sort`, `exhibition` (M2O, CASCADE), `organisation` (M2O → organisations), `role` (dropdown `organiser` | `presenter` | `cooperation` | `supporter`), audit. No `status` since 2026-10-14: the row is shown (and publicly readable) when every record it connects is published.
 
 #### `pp_organisation_memberships` (child of organisations)
 
-`id`, `status`, `sort`, `organisation` (M2O, CASCADE), `person` (M2O → persons), `function` (translated), `translations`, audit.
+`id`, `sort`, `organisation` (M2O, CASCADE), `person` (M2O → persons), `function` (translated), `translations`, audit. No `status` since 2026-10-14: the row is shown (and publicly readable) when every record it connects is published.
 
 #### `pp_organisation_venue_relations` (child of organisations)
 
-`id`, `status`, `sort`, `organisation` (M2O, CASCADE), `venue` (M2O → venues), `relation` (dropdown `runs` | `seat` | `exhibits_at`), audit.
+`id`, `sort`, `organisation` (M2O, CASCADE), `venue` (M2O → venues), `relation` (dropdown `runs` | `seat` | `exhibits_at`), audit. No `status` since 2026-10-14: the row is shown (and publicly readable) when every record it connects is published.
 Translated: `title`. One row per link; a row can hang on several records (one venue page shared by two exhibitions). Added 2026-09-15.
 
 #### Structural junctions
 
-`pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`, `pp_mm__exhibitions_websites`, `pp_mm__persons_websites`, `pp_mm__organisations_websites`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`.
+`pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`, `pp_mm__exhibitions_websites`, `pp_mm__persons_websites`, `pp_mm__organisations_websites`, `pp_mm__venues_websites`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`.
 
 #### `pp_meta` (singleton, hidden)
 
@@ -577,6 +581,6 @@ export function preloadPanoramasToCache(urls: string[]): void {
 [ ] PHASE 7: OPTIMIZATION AND AUDIT CHECKLIST
     ├── [ ] Verify VRAM ceilings via Google Chrome allocation profile logs (Confirm max 2 active textures)
     ├── [ ] Confirm responsive touch gestures and view transformations hold stable on mobile devices
-    └── [ ] Deploy production build targeting live infrastructure environment
+    └── [x] Deploy production build targeting live infrastructure environment — https://permaphemera.at on Hetzner (`pnpm deploy:hetzner`), 2026-09-16
 
 ```

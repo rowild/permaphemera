@@ -46,6 +46,10 @@ export interface ResolvedOrganisation {
   city?: string
   logo?: string
   logo_alt?: string
+  /** Press photo; the credit line is image_caption. */
+  image?: string
+  image_alt?: string
+  image_caption?: string
   lede?: string
   about?: string[]
   description?: string
@@ -95,7 +99,7 @@ export const resolveOrganisations = (
       })
 
     const venueLinks: OrganisationVenueLink[] = venueRelations
-      .filter((row) => isVisible(row) && row.organisation === organisation.id)
+      .filter((row) => row.organisation === organisation.id)
       .sort((a, b) => a.sort - b.sort)
       .flatMap((row) => {
         const venue = venueById.get(row.venue)
@@ -103,7 +107,7 @@ export const resolveOrganisations = (
       })
 
     const members: OrganisationMember[] = memberships
-      .filter((row) => isVisible(row) && row.organisation === organisation.id)
+      .filter((row) => row.organisation === organisation.id)
       .sort((a, b) => a.sort - b.sort)
       .flatMap((row) => {
         const person = personById.get(row.person)
@@ -113,7 +117,7 @@ export const resolveOrganisations = (
       })
 
     const records: OrganisationRecordLink[] = organisers
-      .filter((row) => isVisible(row) && row.organisation === organisation.id)
+      .filter((row) => row.organisation === organisation.id)
       .flatMap((row) => {
         const exhibition = exhibitionById.get(row.exhibition)
         return exhibition ? [{ id: exhibition.id, slug: exhibition.slug, title: exhibition.title, role: row.role, exhibition }] : []
@@ -131,6 +135,9 @@ export const resolveOrganisations = (
       city: location?.title,
       logo: organisation.logo ?? undefined,
       logo_alt: (text.logo_alt as string) || undefined,
+      image: organisation.image ?? undefined,
+      image_alt: (text.image_alt as string) || organisation.image_alt || undefined,
+      image_caption: (text.image_caption as string) || organisation.image_caption || undefined,
       lede: (text.lede as string) || undefined,
       about: (text.about as string[]) || undefined,
       description: (text.description as string) || undefined,

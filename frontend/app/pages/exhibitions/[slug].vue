@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   CalendarCheck, CalendarDays, Clock3, FileText, Globe, Hourglass, Info, Link2, MapPin, Palette, Ticket, Users, Landmark } from '@lucide/vue'
+import { selectRelatedExhibitions } from '~/utils/relatedExhibitions'
 import { resolveTourAccess } from '~/utils/tourAccess'
 
 const route = useRoute()
@@ -16,10 +17,9 @@ const exhibition = computed(() => {
 
 const gallery = computed(() => venues.value.find((item) => item.slug === exhibition.value?.venue_slug))
 const galleryName = computed(() => gallery.value?.name ?? exhibition.value.venue)
-const relatedExhibitions = computed(() => venueExhibitions.value
-  .filter((item) => item.slug !== exhibition.value?.slug)
-  .sort((left, right) => Number(right.venue_slug === exhibition.value?.venue_slug) - Number(left.venue_slug === exhibition.value?.venue_slug))
-  .slice(0, 3))
+const archiveToday = useArchiveToday()
+// Only past exhibitions with an open 360° tour, so every card leads to an experience.
+const relatedExhibitions = computed(() => selectRelatedExhibitions(venueExhibitions.value, exhibition.value, archiveToday.value))
 const galleryPath = computed(() => localePath(`/venues/${exhibition.value?.venue_slug}/`))
 // One label for the organisations row: the shared role when all agree, else the generic word.
 const organiserLabel = computed(() => {
@@ -78,7 +78,7 @@ useSeoMeta({
           </ArchiveBreadcrumb>
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.spatialEyebrow') }}</p>
           <h1 id="exhibition-title" class="m-0 font-display text-h1 font-light leading-[0.92] text-archive-night-heading compact:text-5xl compact:leading-none">{{ exhibition.title }}</h1>
-          <p class="[ exhibition-hero-artist ] mt-[0.8rem] mb-0 text-title text-archive-ochre compact:mt-2 compact:text-lg">{{ exhibition.artist }}</p>
+          <p class="[ exhibition-hero-artist ] mt-[0.8rem] mb-0 text-title text-archive-ochre compact:mt-2 compact:text-lg"><template v-for="(artist, index) in exhibition.artists" :key="artist.id"><template v-if="index"> &amp; </template><ArchiveTextLink :to="localePath(`/persons/${artist.slug}/`)" surface="night">{{ artist.name }}</ArchiveTextLink></template></p>
           <p v-if="exhibition.summary" class="[ exhibition-hero-summary ] mt-[1.4rem] mb-0 max-w-136 text-lg leading-[1.52] text-archive-footer-copy/86 compact:mt-3 compact:text-base compact:leading-normal">{{ exhibition.summary }}</p>
 
           <p v-if="tourStatus" class="[ exhibition-tour-status ] mt-8 mb-0 flex max-w-136 items-start gap-3 text-button text-archive-night-heading compact:mt-5 compact:text-sm">
@@ -106,7 +106,7 @@ useSeoMeta({
             <figure v-for="statement in exhibition.statements" :key="statement.id" class="[ exhibition-statement ] m-0 border-l border-archive-red/42 py-1 pl-6 not-last:mb-8 compact:pl-4 compact:not-last:mb-6">
               <p v-if="statement.prompt" class="[ exhibition-statement-prompt ] m-0 mb-2 text-sm tracking-[0.04em] text-archive-red">{{ statement.prompt }}</p>
               <blockquote class="m-0 font-display text-xl leading-normal text-archive-ink compact:text-lg">{{ statement.text }}</blockquote>
-              <figcaption class="mt-3 text-sm text-archive-muted">— {{ statement.artist }}</figcaption>
+              <figcaption class="mt-3 text-sm text-archive-muted">— <ArchiveTextLink :to="localePath(`/persons/${statement.artist_slug}/`)">{{ statement.artist }}</ArchiveTextLink></figcaption>
             </figure>
           </section>
         </div>
@@ -130,7 +130,11 @@ useSeoMeta({
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.artist" :label="$t('exhibition.artistParticipants')" variant="exhibition">
             <template #icon><Users :size="18" aria-hidden="true" /></template>
-            {{ exhibition.artist }}
+            <template v-for="(artist, index) in exhibition.artists" :key="artist.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${artist.slug}/`)">{{ artist.name }}</ArchiveTextLink></template>
+          </ArchiveMetadataRow>
+          <ArchiveMetadataRow v-if="exhibition.curators.length" :label="$t('exhibition.curators', exhibition.curators.length)" variant="exhibition">
+            <template #icon><Users :size="18" aria-hidden="true" /></template>
+            <template v-for="(curator, index) in exhibition.curators" :key="curator.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${curator.slug}/`)">{{ curator.name }}</ArchiveTextLink></template>
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.organisers.length" :label="organiserLabel" variant="exhibition">
             <template #icon><Landmark :size="18" aria-hidden="true" /></template>

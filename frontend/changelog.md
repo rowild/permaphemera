@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.20 - 2026-10-14 21:20:13 CEST
+
+- Every published person has a page at `/persons/<slug>/` (English `/en/persons/<slug>/`): photo with credit line (or the image of the person's newest exhibition), intro line, biography, born, lives in, memberships, galleries and links (main link first, further links on the next line), then all exhibitions with the person's role and their statements. On desktop the biography sits under the facts, beside the photo; a portrait keeps its upright frame on tablets and phones. Curators and board members get the page without the "Artists" breadcrumb.
+- Person names link to these pages: the artists and the new curators row on exhibition pages, statement authors, names in the artist directory and on the landing page, the heading of the artist window and the member list of an organisation. In the artist directory the name opens the person page and the "i" button opens the exhibitions window; the intro text says so.
+- Sponsor pages at `/sponsors/<slug>/` list what a sponsor supports; they appear once a sponsor is published.
+- Organisations (associations, federations, institutions) have their own register and pages, run venues and present exhibitions; officers carry board and press roles. Organisation pages now show a photo.
+- Researched content: press photos and German/English biographies for 72 persons, photos for 5 organisations and 51 new links; the source list is `docs/content/2026-10-person-organisation-sources.md`.
+- New galleries and exhibitions: Europahaus Klagenfurt, Galerie im Schloss Porcia, Galerie Palais Fugger and the stARTup gallery, plus the current exhibitions of the Stadtgalerie Klagenfurt, the Alpen-Adria-Galerie and the Living Studio.
+- The start page fan shows only exhibitions whose 360° tour is open, filled up to twelve with galleries; the selected exhibitions are current or past ones only. The related cards under an exhibition show only past exhibitions with an open tour.
+- Gallery pages show up to three external links (own website first) under the eyebrow "Exhibition venue"; the artist window shows the artist's own link under the name. All external links open in a new tab.
+- The Artists page opens with a descriptive intro and goes straight into the search, without header, eyebrow or divider.
+- In the fact tables of gallery, organisation, person and sponsor pages the label sits on the baseline of the first value line.
+- Only published records reach the site: the public API no longer delivers drafts, and relation rows (participations, organisers, memberships, venue relations) have no status of their own; they show when every record they connect is published.
+
 ## 0.0.19 - 2026-09-23 20:53:00 CEST
 
 - Replaced the three exhibition card components with one `ExhibitionCard` in three layouts (stacked, side, hero). The related records under an exhibition no longer grow with their content: title, artists and summary are clipped with an ellipsis, and the footer with the "Visit Exhibition" action stays in place. The highlighted directory record now uses the landing hero look.

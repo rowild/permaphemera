@@ -25,9 +25,9 @@ const exhibitions = [
 ] as never[]
 
 const participations = [
-  { id: 'p-1', exhibition: 'e-1', person: 'a-1', role: 'role-artist', sort: 0, status: 'published' as const },
-  { id: 'p-2', exhibition: 'e-2', person: 'a-1', role: 'role-artist', sort: 0, status: 'published' as const },
-  { id: 'p-3', exhibition: 'e-1', person: 'c-1', role: 'role-curator', sort: 0, status: 'published' as const }
+  { id: 'p-1', exhibition: 'e-1', person: 'a-1', role: 'role-artist', sort: 0 },
+  { id: 'p-2', exhibition: 'e-2', person: 'a-1', role: 'role-artist', sort: 0 },
+  { id: 'p-3', exhibition: 'e-1', person: 'c-1', role: 'role-curator', sort: 0 }
 ]
 
 const build = (rows = participations) => buildArtistDirectory(persons, exhibitions, rows, personRoles, roles)
@@ -50,12 +50,40 @@ describe('buildArtistDirectory', () => {
   })
 
   it('never invents a person that has no record in pp_persons.json', () => {
-    const ghost = [{ id: 'p-9', exhibition: 'e-1', person: 'a-missing', role: 'role-artist', sort: 0, status: 'published' as const }]
+    const ghost = [{ id: 'p-9', exhibition: 'e-1', person: 'a-missing', role: 'role-artist', sort: 0 }]
     expect(build([...participations, ...ghost]).some((entry) => entry.id === 'a-missing')).toBe(false)
   })
 
-  it('does not count an archived participation toward record_count', () => {
-    const rows = participations.map((row) => (row.id === 'p-2' ? { ...row, status: 'archived' as const } : row))
-    expect(build(rows).find((entry) => entry.id === 'a-1')?.record_count).toBe(1)
+  it('counts only participations in published (resolved) exhibitions', () => {
+    const onlyFirst = buildArtistDirectory(persons, [exhibitions[0]!], participations, personRoles, roles)
+    expect(onlyFirst.find((entry) => entry.id === 'a-1')?.record_count).toBe(1)
+  })
+
+  describe('external link', () => {
+    const site = (id: string, url: string, kind: string, title: string) =>
+      ({ id, url, kind, title, status: 'published' as const, sort: 0, translations: [] })
+    const websites = [
+      site('w-insta', 'https://www.instagram.com/campidell/', 'social', 'Instagram'),
+      site('w-home', 'https://www.campidell.at/', 'website', 'campidell.at')
+    ]
+    const withLinks = (rows: { id: number, persons_id: string, websites_id: string, sort: number }[]) =>
+      buildArtistDirectory(persons, exhibitions, participations, personRoles, roles, [], [], 'en', websites, rows)
+        .find((entry) => entry.id === 'a-1')?.link
+
+    it('prefers the own website over a social profile and labels it with the host name', () => {
+      expect(withLinks([
+        { id: 1, persons_id: 'a-1', websites_id: 'w-insta', sort: 1 },
+        { id: 2, persons_id: 'a-1', websites_id: 'w-home', sort: 2 }
+      ])).toEqual({ url: 'https://www.campidell.at/', label: 'campidell.at' })
+    })
+
+    it('falls back to the first social profile, labelled with its title', () => {
+      expect(withLinks([{ id: 1, persons_id: 'a-1', websites_id: 'w-insta', sort: 1 }]))
+        .toEqual({ url: 'https://www.instagram.com/campidell/', label: 'Instagram' })
+    })
+
+    it('has no link when the person has none', () => {
+      expect(withLinks([])).toBeUndefined()
+    })
   })
 })

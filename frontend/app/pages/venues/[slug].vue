@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Building2, CalendarDays, Compass, ExternalLink, Landmark, LayoutGrid, MapPin } from '@lucide/vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
+import { linkLabel } from '~/utils/externalLinks'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 
 // `venue` below merges the routed ResolvedVenue with its optional dossier
@@ -8,7 +9,7 @@ import type { ResolvedVenue } from '~/utils/resolveVenues'
 // ResolvedVenue doesn't carry (kept from the pre-flip shape; read only in
 // this file's own template, never passed to a child component). This local
 // type describes exactly what gets constructed.
-interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'about' | 'part_of' | 'spaces' | 'organisations'> {
+interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'links' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'about' | 'part_of' | 'spaces' | 'organisations'> {
   location_id: string
 }
 
@@ -46,6 +47,7 @@ const venue = computed<Venue>(() => {
     latitude: record.latitude,
     longitude: record.longitude,
     website_url: dossier?.website_url || record.website_url,
+    links: record.links,
     image: record.image,
     featured: record.featured,
     archive_number: record.archive_number,
@@ -170,14 +172,10 @@ const venueMapUrl = computed(() => {
 const organisationGroups = computed(() => (['runs', 'seat', 'exhibits_at'] as const)
   .map((relation) => ({ relation, organisations: (venue.value?.organisations ?? []).filter((organisation) => organisation.relation === relation) }))
   .filter((group) => group.organisations.length))
-const websiteLabel = computed(() => {
-  if (!venue.value?.website_url) return ''
-  try {
-    return new URL(venue.value.website_url).hostname.replace(/^www\./, '')
-  } catch {
-    return venue.value.website_url
-  }
-})
+// One own website reads "Website"; anything else (several links, or a social profile only) reads "Links".
+const venueLinksLabel = computed(() => venue.value.links.length === 1 && venue.value.links[0]!.kind === 'website'
+  ? t('venue.website')
+  : t('venue.links', venue.value.links.length))
 const seasonYears = computed(() => [...new Set(exhibitions.value.map((exhibition) => exhibition.start_date.slice(0, 4)))].join(' · '))
 const venueLedgerItems = computed(() => [
   { label: t('venue.ledgerLabels.records'), value: String(exhibitions.value.length).padStart(2, '0') },
@@ -237,9 +235,11 @@ useSeoMeta({
               <template #icon><Compass :size="18" aria-hidden="true" /></template>
               {{ venue.latitude }}° N, {{ venue.longitude }}° E
             </ArchiveMetadataRow>
-            <ArchiveMetadataRow v-if="venue.website_url" :label="$t('venue.website')" variant="venue">
+            <ArchiveMetadataRow v-if="venue.links.length" :label="venueLinksLabel" variant="venue">
               <template #icon><ExternalLink :size="18" aria-hidden="true" /></template>
-              <ArchiveTextLink :href="venue.website_url" target="_blank" rel="noreferrer" icon-motion="external">{{ websiteLabel }}</ArchiveTextLink>
+              <template v-for="(link, index) in venue.links" :key="link.id">
+                <template v-if="index">, </template><ArchiveTextLink :href="link.url" target="_blank" rel="noreferrer" icon-motion="external">{{ linkLabel(link) }}</ArchiveTextLink>
+              </template>
             </ArchiveMetadataRow>
           </dl>
 

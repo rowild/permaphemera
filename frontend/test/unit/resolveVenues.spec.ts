@@ -46,10 +46,11 @@ describe('resolveVenues', () => {
     expect(resolveVenues(locations, [venue], 'en')[0].name).toBe('Neue Galerie Graz')
   })
 
-  it('throws with the offending id when location does not resolve', () => {
+  it('drops a venue whose town is missing or not published', () => {
     const orphan = { ...venue, location: 'location-nowhere' }
-    expect(() => resolveVenues(locations, [orphan], 'en'))
-      .toThrow(/venue-neue-galerie-graz references unknown location location-nowhere/)
+    expect(resolveVenues(locations, [orphan], 'en')).toEqual([])
+    const draftTown = locations.map((location) => ({ ...location, status: 'draft' as const }))
+    expect(resolveVenues(draftTown, [venue], 'en')).toEqual([])
   })
 
   it('carries the dossier fields through resolution', () => {
@@ -71,5 +72,43 @@ describe('resolveVenues', () => {
     expect(resolved.hero_image_alt).toBe('Front façade of the striped ochre and rose Parkschlössl beneath mature trees')
     expect(resolved.lede).toBe('A small exhibition house in the park.')
     expect(resolved.about).toEqual(['First paragraph.', 'Second paragraph.'])
+  })
+
+  describe('links', () => {
+    const site = (id: string, url: string, kind: string, title: string, status = 'published' as const) =>
+      ({ id, url, kind, title, status, sort: 0, translations: [] })
+    const websites = [
+      site('w-insta', 'https://www.instagram.com/gallery/', 'social', 'Instagram'),
+      site('w-fb', 'https://www.facebook.com/gallery/', 'social', 'Facebook'),
+      site('w-x', 'https://x.com/gallery', 'social', 'X'),
+      site('w-draft', 'https://draft.example/', 'social', 'Draft', 'draft' as never)
+    ]
+    const rows = [
+      { id: 1, venues_id: 'venue-neue-galerie-graz', websites_id: 'w-fb', sort: 2 },
+      { id: 2, venues_id: 'venue-neue-galerie-graz', websites_id: 'w-insta', sort: 1 },
+      { id: 3, venues_id: 'venue-neue-galerie-graz', websites_id: 'w-x', sort: 3 },
+      { id: 4, venues_id: 'venue-neue-galerie-graz', websites_id: 'w-draft', sort: 0 }
+    ]
+    const linksOf = (record = venue) => resolveVenues(locations, [record], 'en', [], [], websites, rows)[0].links
+
+    it('puts the own website first, then at most two further links in their order', () => {
+      const links = linksOf({ ...venue, website_url: 'https://www.museum-joanneum.at/' } as never)
+      expect(links.map((link) => link.url)).toEqual([
+        'https://www.museum-joanneum.at/', 'https://www.instagram.com/gallery/', 'https://www.facebook.com/gallery/'
+      ])
+      expect(links[0].kind).toBe('website')
+    })
+
+    it('shows up to three social links when the venue has no website of its own', () => {
+      expect(linksOf().map((link) => link.title)).toEqual(['Instagram', 'Facebook', 'X'])
+    })
+
+    it('drops unpublished links', () => {
+      expect(linksOf().some((link) => link.title === 'Draft')).toBe(false)
+    })
+
+    it('has no links when nothing is given', () => {
+      expect(resolveVenues(locations, [venue], 'en')[0].links).toEqual([])
+    })
   })
 })

@@ -3,7 +3,7 @@
 #   bash scripts/setup.sh                # step by step, with questions
 #   bash scripts/setup.sh --yes          # every step, no questions
 #   bash scripts/setup.sh --status       # report only
-#   bash scripts/setup.sh --from <dir>   # also import content from <dir> (an export, or frontend/app/data)
+#   bash scripts/setup.sh --from <dir>   # also import content from <dir> (an export, e.g. _BU/directus-data)
 #   bash scripts/setup.sh --reset-permissions   # delete and recreate the public read rules (configuration, not content)
 #
 # Order without --from: Directus, schema, seeds, permissions, settings, content.

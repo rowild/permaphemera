@@ -1,4 +1,5 @@
-import type { ArtistMembership, ArtistRecordLink, DirectoryArtist, OrganisationMembershipRecord, OrganisationRecord, ParticipationRecord, PersonRecord, PersonRoleLink, RoleRecord } from '~/types/content'
+import type { ArtistMembership, ArtistRecordLink, DirectoryArtist, JunctionRow, OrganisationMembershipRecord, OrganisationRecord, ParticipationRecord, PersonRecord, PersonRoleLink, RoleRecord, WebsiteRecord } from '~/types/content'
+import { linkLabel, linksThrough } from '~/utils/externalLinks'
 import { pickTranslation } from '~/utils/pickTranslation'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { displayPersonName } from '~/utils/resolveExhibitions'
@@ -14,11 +15,15 @@ export const buildArtistDirectory = (
   roles: RoleRecord[],
   memberships: OrganisationMembershipRecord[] = [],
   organisations: OrganisationRecord[] = [],
-  locale = 'en'
+  locale = 'en',
+  websites: WebsiteRecord[] = [],
+  personsWebsites: JunctionRow[] = []
 ): DirectoryArtist[] => {
+  const websiteById = new Map(websites.filter(isVisible).map((site) => [site.id, site]))
   const organisationById = new Map(organisations.filter(isVisible).map((organisation) => [organisation.id, organisation]))
   const membershipsByPerson = new Map<string, ArtistMembership[]>()
-  for (const row of memberships.filter(isVisible).sort((a, b) => a.sort - b.sort)) {
+  // Relation rows carry no status: a membership counts when its organisation is published.
+  for (const row of [...memberships].sort((a, b) => a.sort - b.sort)) {
     const organisation = organisationById.get(row.organisation)
     if (!organisation) continue
     const rows = membershipsByPerson.get(row.person) ?? []
@@ -34,7 +39,7 @@ export const buildArtistDirectory = (
   const recordsByPerson = new Map<string, ArtistRecordLink[]>()
   const yearsByPerson = new Map<string, Set<string>>()
 
-  for (const row of participations.filter(isVisible)) {
+  for (const row of participations) {
     if (row.role !== artistRole) continue
     const exhibition = exhibitionById.get(row.exhibition)
     if (!exhibition) continue
@@ -59,6 +64,9 @@ export const buildArtistDirectory = (
   return persons.filter((person) => artistIds.has(person.id)).map((person) => {
     const records = recordsByPerson.get(person.id) ?? []
     const name = displayPersonName(person)
+    // One external "home": the own website, else the first social profile.
+    const links = linksThrough(websiteById, personsWebsites, 'persons_id', person.id, locale)
+    const home = links.find((link) => link.kind === 'website') ?? links[0]
 
     return {
       id: person.id,
@@ -70,6 +78,7 @@ export const buildArtistDirectory = (
       displayName: formatArtistName(name, person.slug, person.is_collective),
       records,
       memberships: membershipsByPerson.get(person.id) ?? [],
+      link: home ? { url: home.url, label: linkLabel(home) } : undefined,
       letter: getArtistFamilyLetter(person.slug, name, person.is_collective)
     }
   }).sort((left, right) => {

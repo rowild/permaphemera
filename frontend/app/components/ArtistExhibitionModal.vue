@@ -106,8 +106,11 @@ onBeforeUnmount(restoreBodyScroll)
             <header class="pr-12 compact:pr-9">
               <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-sm font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('artists.linkedExhibitions') }}</p>
               <h2 :id="`${props.modalId}-title`" class="m-0 font-display text-h2-steep font-normal leading-none compact:text-3xl">
-                {{ props.displayName }}
+                <NuxtLink class="text-archive-ink no-underline hover:text-archive-red focus-visible:text-archive-red" :to="localePath(`/persons/${props.artist.slug}/`)">{{ props.displayName }}</NuxtLink>
               </h2>
+              <p v-if="props.artist.link" class="[ artist-external-link ] mt-2 mb-0 text-button compact:text-sm">
+                <ArchiveTextLink :href="props.artist.link.url" target="_blank" rel="noreferrer">{{ props.artist.link.label }}</ArchiveTextLink>
+              </p>
               <p v-if="props.artist.memberships.length" class="[ artist-memberships ] mt-3 mb-0 text-button text-archive-red compact:text-sm">
                 <template v-for="(membership, index) in props.artist.memberships" :key="membership.slug">
                   <template v-if="index"> · </template><template v-if="membership.function">{{ membership.function }}, </template><ArchiveTextLink :to="localePath(`/organisations/${membership.slug}/`)">{{ membership.title }}</ArchiveTextLink>

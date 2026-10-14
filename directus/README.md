@@ -2,6 +2,11 @@
 
 Headless CMS backend. Runs Directus 11.17.4 in Docker with SQLite.
 
+Production has run on the Hetzner host since 2026-09-15: editors use
+https://permaphemera.project-backends.info, the site reads it same-origin at
+https://permaphemera.at/cms/. See `hetzner/README.md`. This page covers the
+local instance and the scripts, which target either one.
+
 ## First start
 
 ```bash
@@ -47,6 +52,7 @@ node scripts/check-conventions.mjs    # assert the live schema follows the rules
 node scripts/export.mjs               # backup records + files to ../_BU/directus-data
 node scripts/import.mjs --from <dir>  # restore from ../_BU/directus-data by default
 node scripts/snapshot.mjs             # export schema/snapshot.yaml
+node scripts/upload-files.mjs <manifest.json>  # images/PDFs for venues and exhibitions, with credit lines (see ../docs/how-to-gallery-and-exhibition.md)
 node scripts/files.mjs                # (helper, not run directly) upload/folder helpers shared by import.mjs and apply-settings.mjs
 ```
 
@@ -72,7 +78,7 @@ The export directory is not distributed through git either; get it from whoever 
 
 ## What is public
 
-Every file in Directus is readable without a token (the public rule limits which fields come back — see `scripts/permissions.mjs`); archived records and their translations are hidden from public reads. A folder that needs to stay private (an unpublished document, a draft asset) needs its own permission policy — that is an owner decision for when it is needed, not something this setup builds in advance.
+Every file in Directus is readable without a token (the public rule limits which fields come back — see `scripts/permissions.mjs`); since 2026-10-14 only published records, their translations, and relation rows whose ends are all published are public (`scripts/public-rules.mjs`; drafts and archived records never leave Directus). Earlier: archived records and their translations were hidden from public reads. A folder that needs to stay private (an unpublished document, a draft asset) needs its own permission policy — that is an owner decision for when it is needed, not something this setup builds in advance.
 
 ## Folders
 

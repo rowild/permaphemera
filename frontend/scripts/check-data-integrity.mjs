@@ -6,7 +6,7 @@ async function main() {
   const exhibitions = a.exhibitions, participations = a.participations, statements = a.statements, sponsors = a.sponsors
   const navigations = a.navigations, navigationItems = a.navigationItems, websites = a.websites
   const organisations = a.organisations, memberships = a.organisationMemberships, venueRelations = a.organisationVenueRelations, organisers = a.exhibitionOrganisers
-  const junctions = [a.exhibitionsVenues, a.exhibitionsSponsors, a.personsVenues, a.personsSponsors, a.locationsSponsors, a.sponsorsVenues, a.exhibitionsWebsites, a.personsWebsites, a.organisationsWebsites]
+  const junctions = [a.exhibitionsVenues, a.exhibitionsSponsors, a.personsVenues, a.personsSponsors, a.locationsSponsors, a.sponsorsVenues, a.exhibitionsWebsites, a.personsWebsites, a.organisationsWebsites, a.venuesWebsites]
 
   const ids = (records) => new Set(records.map((record) => record.id))
   const locationIds = ids(locations), venueIds = ids(venues), personIds = ids(persons), roleIds = ids(roles)
@@ -25,12 +25,13 @@ async function main() {
   })
   const rolesOf = (personId) => new Set(personRoles.filter((row) => row.persons_id === personId).map((row) => row.roles_id))
 
-  // Every image/hero_image/source_pdf/logo URL Directus returned must resolve
-  // to a file it actually serves.
+  // Every file field the site turns into a URL (FILE_FIELDS: images, PDFs, logos, photos)
+  // must point at a file Directus actually serves.
+  const { COLLECTIONS, FILE_FIELDS } = await import('../shared/archive-schema.mjs')
   const fileUrls = []
-  for (const venue of venues) for (const field of ['image', 'hero_image']) if (venue[field]) fileUrls.push(venue[field])
-  for (const exhibition of exhibitions) for (const field of ['image', 'source_pdf']) if (exhibition[field]) fileUrls.push(exhibition[field])
-  for (const sponsor of sponsors) if (sponsor.logo) fileUrls.push(sponsor.logo)
+  for (const [key, collection] of Object.entries(COLLECTIONS)) {
+    for (const field of FILE_FIELDS[collection] ?? []) for (const record of a[key] ?? []) if (record[field]) fileUrls.push(record[field])
+  }
   // Directus rate-limits to ~50 requests per second, so ask in small batches and
   // retry a 429 once after the limiter's window has passed.
   const headOk = async (id) => {
@@ -59,7 +60,8 @@ async function main() {
     ['roles are artist, board, curator and press', roles.map((role) => role.slug).sort().join(',') === 'artist,board,curator,press'],
     ['exhibitions exist', exhibitions.length > 0],
     ['participations exist', participations.length > 0],
-    ['sponsors exist', sponsors.length > 0],
+    // Only published sponsors leave Directus; none published is a valid state.
+    ['sponsors is an array', Array.isArray(sponsors)],
     ['websites is an array', Array.isArray(websites)],
     ['navigations are main and footer', navigations.map((nav) => nav.key).sort().join(',') === 'footer,main'],
     ['every navigation has items', navigations.every((nav) => navigationItems.some((item) => item.navigation === nav.id))],
@@ -96,6 +98,7 @@ async function main() {
     ['organiser rows resolve both ends', organisers.every((row) => organisationIds.has(row.organisation) && exhibitionIds.has(row.exhibition))],
     ['organiser role is known', organisers.every((row) => ['organiser', 'presenter', 'cooperation', 'supporter'].includes(row.role))],
     ['organisation-website rows resolve both ends', a.organisationsWebsites.every((row) => organisationIds.has(row.organisations_id) && websiteIds.has(row.websites_id))],
+    ['venue-website rows resolve both ends', a.venuesWebsites.every((row) => venueIds.has(row.venues_id) && websiteIds.has(row.websites_id))],
     ['statement.exhibition all resolve', statements.every((row) => exhibitionIds.has(row.exhibition))],
     ['statement.person all resolve', statements.every((row) => personIds.has(row.person))],
     ['every statement is by a participant of that exhibition', statements.every((row) =>
@@ -127,9 +130,11 @@ async function main() {
     ['footer navigation has exactly the groups explore, information, legal', navigationItems
       .filter((item) => item.navigation === navigations.find((nav) => nav.key === 'footer')?.id && item.parent === null)
       .map((item) => item.key).sort().join(',') === ['explore', 'information', 'legal'].sort().join(',')],
-    ['main navigation keys match the header active-state union', navigationItems
+    // Only published entries reach this check (draft menu entries never leave Directus), so a
+    // hidden entry is allowed; every visible one must have a header active state.
+    ['every visible main navigation key has a header active state', navigationItems
       .filter((item) => item.navigation === navigations.find((nav) => nav.key === 'main')?.id && item.parent === null)
-      .map((item) => item.key).sort().join(',') === ['about', 'artists', 'exhibitions', 'galleries', 'organisations'].sort().join(',')],
+      .every((item) => ['about', 'artists', 'exhibitions', 'galleries', 'organisations'].includes(item.key))],
 
     ['every venue has a known type', venues.every((venue) =>
       ['gallery', 'museum', 'kunsthalle', 'art_cafe', 'open_air', 'forum'].includes(venue.type))],
@@ -147,7 +152,7 @@ async function main() {
     ['every sponsor has an en translation', everyHasEnglish(sponsors)],
     ['every navigation item has an en translation', everyHasEnglish(navigationItems)],
     ['every website has an en translation', everyHasEnglish(websites)],
-    ['persons carry no translations', persons.every((person) => person.translations === undefined)],
+    ['persons: English on the record equals the en entry', englishMirrors(persons, ['based_in', 'image_alt', 'image_caption', 'lede', 'about'])],
 
     ['locations: English on the record equals the en entry', englishMirrors(locations, ['description'])],
     ['venues: English on the record equals the en entry', englishMirrors(venues, ['description', 'lede', 'about', 'image_caption', 'coordinate_label'])],
@@ -159,13 +164,14 @@ async function main() {
     ['every published sponsor has a logo', sponsors.filter((s) => s.status === 'published').every((s) => typeof s.logo === 'string' && s.logo.length > 0)],
     ['navigation items: English on the record equals the en entry', englishMirrors(navigationItems, ['title'])],
 
-    ['all collections have a valid status', [locations, venues, persons, roles, exhibitions, participations, statements, sponsors, navigations, navigationItems].every(validStatus)],
+    ['all collections have a valid status', [locations, venues, persons, roles, exhibitions, statements, sponsors, navigations, navigationItems].every(validStatus)],
     ['no person keeps dropped fields', persons.every((person) => ['website_url', 'biography', 'birth_year', 'death_year', 'nationality', 'instagram_handle', 'profile_image', 'artist_name', 'record_count'].every((field) => person[field] === undefined))],
     ['no exhibition keeps a manual featured flag', exhibitions.every((exhibition) => exhibition.featured === undefined)],
     ['no old key survives', [...venues, ...exhibitions, ...participations, ...statements].every((record) =>
       ['location_id', 'primary_venue_id', 'exhibition_id', 'artist_id', 'name', 'city_name'].every((key) => record[key] === undefined))],
 
-    [`every file field points at a file Directus serves (${fileUrls.length} checked)`, fileChecks.every(Boolean)]
+    [`every file field points at a file Directus serves (${fileUrls.length} checked)`, fileChecks.every(Boolean)],
+    ['the file check covers person and organisation photos', [...persons, ...organisations].every((record) => !record.image || fileUrls.includes(record.image))]
   ]
 
   const failures = checks.filter(([, passed]) => !passed)

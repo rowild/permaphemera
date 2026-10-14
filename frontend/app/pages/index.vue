@@ -5,6 +5,7 @@ import {
 import { gsap } from 'gsap'
 import type { KaleidoscopeExhibitionItem } from '~/types/kaleidoscope'
 import { selectExhibitionSchedule, selectFeaturedExhibition } from '~/utils/exhibitionSchedule'
+import { buildHeroItems, HERO_BLADE_COUNT, selectOpenedExhibitions } from '~/utils/heroItems'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 
@@ -59,12 +60,14 @@ const orderedExhibitions = computed(() => [...venueExhibitions.value]
   .sort((left, right) => right.start_date.localeCompare(left.start_date)
     || right.end_date.localeCompare(left.end_date)
     || left.title.localeCompare(right.title)))
-const featuredExhibitionRecord = computed(() => selectFeaturedExhibition(orderedExhibitions.value, archiveToday.value))
+// "Selected exhibitions" shows what is on or has been on; announced exhibitions have their own section.
+const openedExhibitions = computed(() => selectOpenedExhibitions(orderedExhibitions.value, archiveToday.value))
+const featuredExhibitionRecord = computed(() => selectFeaturedExhibition(openedExhibitions.value, archiveToday.value))
 const selectedExhibitions = computed<Exhibition[]>(() => {
   const featured = featuredExhibitionRecord.value
   const records = featured
-    ? [featured, ...orderedExhibitions.value.filter((exhibition) => exhibition.id !== featured.id)]
-    : orderedExhibitions.value
+    ? [featured, ...openedExhibitions.value.filter((exhibition) => exhibition.id !== featured.id)]
+    : openedExhibitions.value
 
   return records.slice(0, 5)
     .map((exhibition) => ({
@@ -85,18 +88,16 @@ const currentExhibitions = computed(() => exhibitionSchedule.value.current)
 const upcomingExhibitions = computed(() => exhibitionSchedule.value.upcoming)
 const hasTimelyExhibitions = computed(() => currentExhibitions.value.length > 0 || upcomingExhibitions.value.length > 0)
 const firstLandingSectionTarget = computed(() => hasTimelyExhibitions.value ? '#current-upcoming' : '#venues')
-const heroExhibitionItems = computed<KaleidoscopeExhibitionItem[]>(() => [...venueExhibitions.value]
-  .sort((left, right) => right.start_date.localeCompare(left.start_date))
-  .map((exhibition) => ({
-    id: exhibition.id,
-    image: exhibition.image,
-    href: localePath(`/exhibitions/${exhibition.slug}/`),
-    label: exhibition.title,
-    title: exhibition.title,
-    artist: exhibition.artist,
-    location: `${exhibition.venue}, ${exhibition.city}`,
-    dateRange: exhibition.date_range
-  })))
+// The fan links only to open 360° experiences; galleries fill it up to twelve blades for now.
+const heroExhibitionItems = computed<KaleidoscopeExhibitionItem[]>(() => buildHeroItems(
+  venueExhibitions.value,
+  venues.value,
+  archiveToday.value,
+  {
+    exhibition: (slug) => localePath(`/exhibitions/${slug}/`),
+    venue: (slug) => localePath(`/venues/${slug}/`)
+  }
+))
 const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
 const artistGroupOrder = ['B', 'E', 'J', 'K', 'L', 'R', 'W']
 const venueStackItems = [
@@ -290,7 +291,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       <div class="[ hero-wheel-area ] grid self-center justify-items-center gap-[clamp(0.9rem,1.8vw,1.45rem)] tablet:row-start-1 tablet-landscape:col-start-2">
         <HeroKaleidoscope
           ref="kaleidoscopeRef"
-          :items="heroExhibitionItems.slice(0, 12)"
+          :items="heroExhibitionItems.slice(0, HERO_BLADE_COUNT)"
           :item-pool="heroExhibitionItems"
           @animation-state-change="handleKaleidoscopeAnimationState"
           @controls-reveal="revealWheelControls"

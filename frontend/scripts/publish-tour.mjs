@@ -276,7 +276,8 @@ async function main() {
   console.log('')
   log('Published locally. Next:')
   log(`  1. pnpm dev  →  open /exhibitions/${record.slug}/ (German) or /en/exhibitions/${record.slug}/ and click Start experience.`)
-  log('  2. pnpm deploy:dry-run, then pnpm deploy. The tour folder itself must still be deployed; it is not tracked in git.')
+  log('  2. In Directus, check tour_status (available) and tour_available_from: the button shows only when both allow it.')
+  log('  3. pnpm deploy:hetzner. The tour folder itself must still be deployed; it is not tracked in git.')
 }
 
 await main()

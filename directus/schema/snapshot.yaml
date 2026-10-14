@@ -55,9 +55,9 @@ collections:
   - collection: pp_exhibition_organisers
     meta:
       accountability: all
-      archive_app_filter: true
-      archive_field: status
-      archive_value: archived
+      archive_app_filter: false
+      archive_field: null
+      archive_value: null
       collapse: open
       collection: pp_exhibition_organisers
       color: '#a6523c'
@@ -79,16 +79,16 @@ collections:
           plural: Exhibition Organisers
           singular: Exhibition Organiser
           translation: Exhibition Organisers
-      unarchive_value: draft
+      unarchive_value: null
       versioning: false
     schema:
       name: pp_exhibition_organisers
   - collection: pp_exhibition_participations
     meta:
       accountability: all
-      archive_app_filter: true
-      archive_field: status
-      archive_value: archived
+      archive_app_filter: false
+      archive_field: null
+      archive_value: null
       collapse: open
       collection: pp_exhibition_participations
       color: '#a6523c'
@@ -110,7 +110,7 @@ collections:
           plural: Exhibition Participations
           singular: Exhibition Participation
           translation: Exhibition Participations
-      unarchive_value: draft
+      unarchive_value: null
       versioning: false
     schema:
       name: pp_exhibition_participations
@@ -497,6 +497,34 @@ collections:
       versioning: false
     schema:
       name: pp_mm__sponsors_venues
+  - collection: pp_mm__venues_websites
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__venues_websites
+      color: '#a6523c'
+      display_template: null
+      group: pp_websites
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: >-
+        Further links of a venue, usually its social profiles. website_url stays
+        the main link; the site shows at most three links.
+      preview_url: null
+      singleton: false
+      sort: 4
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Venues ↔ Websites
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__venues_websites
   - collection: pp_navigation_items
     meta:
       accountability: all
@@ -558,9 +586,9 @@ collections:
   - collection: pp_organisation_memberships
     meta:
       accountability: all
-      archive_app_filter: true
-      archive_field: status
-      archive_value: archived
+      archive_app_filter: false
+      archive_field: null
+      archive_value: null
       collapse: open
       collection: pp_organisation_memberships
       color: '#a6523c'
@@ -581,16 +609,16 @@ collections:
           plural: Organisation Memberships
           singular: Organisation Membership
           translation: Organisation Memberships
-      unarchive_value: draft
+      unarchive_value: null
       versioning: false
     schema:
       name: pp_organisation_memberships
   - collection: pp_organisation_venue_relations
     meta:
       accountability: all
-      archive_app_filter: true
-      archive_field: status
-      archive_value: archived
+      archive_app_filter: false
+      archive_field: null
+      archive_value: null
       collapse: open
       collection: pp_organisation_venue_relations
       color: '#a6523c'
@@ -611,7 +639,7 @@ collections:
           plural: Organisation Venue Relations
           singular: Organisation Venue Relation
           translation: Organisation Venue Relations
-      unarchive_value: draft
+      unarchive_value: null
       versioning: false
     schema:
       name: pp_organisation_venue_relations
@@ -892,6 +920,32 @@ collections:
       versioning: false
     schema:
       name: pp_translations__organisations
+  - collection: pp_translations__persons
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_translations__persons
+      color: '#a6523c'
+      display_template: null
+      group: pp_persons
+      hidden: true
+      icon: translate
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 3
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Persons · Translations
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_translations__persons
   - collection: pp_translations__roles
     meta:
       accountability: all
@@ -987,7 +1041,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 4
+      sort: 5
       sort_field: null
       translations:
         - language: en-US
@@ -6970,6 +7024,172 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_mm__venues_websites
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__venues_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__venues_websites
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__venues_websites
+    field: venues_id
+    type: string
+    meta:
+      collection: pp_mm__venues_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: venues_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: venues_id
+      table: pp_mm__venues_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_venues
+      foreign_key_column: id
+  - collection: pp_mm__venues_websites
+    field: websites_id
+    type: string
+    meta:
+      collection: pp_mm__venues_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: websites_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: websites_id
+      table: pp_mm__venues_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+  - collection: pp_mm__venues_websites
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__venues_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__venues_websites
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_navigation_items
     field: status
     type: string
@@ -10462,6 +10682,129 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_organisations
+    field: image
+    type: uuid
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: image
+      display_options: null
+      field: image
+      group: ui_group_media
+      hidden: false
+      interface: file-image
+      note: Press photo of the organisation. Credit goes into image_caption.
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image
+      table: pp_organisations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_files
+      foreign_key_column: id
+  - collection: pp_organisations
+    field: image_alt
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: image_alt
+      group: ui_group_media
+      hidden: false
+      interface: input
+      note: null
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image_alt
+      table: pp_organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: image_caption
+    type: string
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: image_caption
+      group: ui_group_media
+      hidden: false
+      interface: input
+      note: Credit line under the photo.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: image_caption
+      table: pp_organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_persons
     field: ui_accordion_main
     type: alias
@@ -10510,7 +10853,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 2
+      sort: 3
       special:
         - alias
         - no-data
@@ -10566,7 +10909,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 2
+      sort: 5
       special:
         - alias
         - no-data
@@ -10594,7 +10937,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 3
+      sort: 6
       special:
         - alias
         - no-data
@@ -10891,7 +11234,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 7
+      sort: 8
       special:
         - m2m
       translations: null
@@ -10943,7 +11286,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 2
+      sort: 3
       special:
         - m2m
       translations: null
@@ -10969,7 +11312,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 3
+      sort: 4
       special:
         - m2m
       translations: null
@@ -11320,6 +11663,437 @@ fields:
       sort: 2
       special:
         - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_persons
+    field: ui_accordion_translations
+    type: alias
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_translations
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Translations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_persons
+    field: ui_group_facts
+    type: alias
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_facts
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Facts
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_persons
+    field: born
+    type: string
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: born
+      group: ui_group_facts
+      hidden: false
+      interface: input
+      note: Free text, e.g. "1970, Schärding".
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: born
+      table: pp_persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_persons
+    field: based_in
+    type: string
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: based_in
+      group: ui_group_facts
+      hidden: false
+      interface: input
+      note: Where the person lives and works, e.g. "Wien" / "Vienna".
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: based_in
+      table: pp_persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_persons
+    field: ui_group_media
+    type: alias
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_media
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Photo
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_persons
+    field: image
+    type: uuid
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: image
+      display_options: null
+      field: image
+      group: ui_group_media
+      hidden: false
+      interface: file-image
+      note: Press portrait. Credit goes into image_caption.
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image
+      table: pp_persons
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_files
+      foreign_key_column: id
+  - collection: pp_persons
+    field: image_alt
+    type: string
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: image_alt
+      group: ui_group_media
+      hidden: false
+      interface: input
+      note: null
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image_alt
+      table: pp_persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_persons
+    field: image_caption
+    type: string
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: image_caption
+      group: ui_group_media
+      hidden: false
+      interface: input
+      note: 'Credit line under the photo: "<what> · Foto: <holder>".'
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: image_caption
+      table: pp_persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_persons
+    field: ui_group_text
+    type: alias
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_text
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Text
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_persons
+    field: lede
+    type: string
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: lede
+      group: ui_group_text
+      hidden: false
+      interface: input
+      note: One line under the name on the person page.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lede
+      table: pp_persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_persons
+    field: about
+    type: json
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: about
+      group: ui_group_text
+      hidden: false
+      interface: input-code
+      note: >-
+        Biography: JSON array of paragraph strings; the last one names the
+        source.
+      options:
+        language: json
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about
+      table: pp_persons
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_persons
+    field: translations
+    type: alias
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: translations
+      group: ui_accordion_translations
+      hidden: false
+      interface: translations
+      note: null
+      options:
+        defaultLanguage: en
+        defaultOpenSplitView: true
+        languageField: name
+        userLanguage: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - translations
       translations: null
       validation: null
       validation_message: null
@@ -14230,6 +15004,420 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: image_alt
+    type: string
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: image_alt
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_organisations.image_alt
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image_alt
+      table: pp_translations__organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: image_caption
+    type: string
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: image_caption
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_organisations.image_caption
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: image_caption
+      table: pp_translations__organisations
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__persons
+    field: id
+    type: integer
+    meta:
+      collection: pp_translations__persons
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_translations__persons
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__persons
+    field: persons_id
+    type: string
+    meta:
+      collection: pp_translations__persons
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{first_name}} {{last_name}}'
+      field: persons_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{first_name}} {{last_name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: persons_id
+      table: pp_translations__persons
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_persons
+      foreign_key_column: id
+  - collection: pp_translations__persons
+    field: languages_code
+    type: string
+    meta:
+      collection: pp_translations__persons
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: languages_code
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: languages_code
+      table: pp_translations__persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: languages
+      foreign_key_column: code
+  - collection: pp_translations__persons
+    field: based_in
+    type: string
+    meta:
+      collection: pp_translations__persons
+      conditions: null
+      display: null
+      display_options: null
+      field: based_in
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_persons.based_in
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: based_in
+      table: pp_translations__persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__persons
+    field: image_alt
+    type: string
+    meta:
+      collection: pp_translations__persons
+      conditions: null
+      display: null
+      display_options: null
+      field: image_alt
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_persons.image_alt
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image_alt
+      table: pp_translations__persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__persons
+    field: image_caption
+    type: string
+    meta:
+      collection: pp_translations__persons
+      conditions: null
+      display: null
+      display_options: null
+      field: image_caption
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_persons.image_caption
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: image_caption
+      table: pp_translations__persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__persons
+    field: lede
+    type: string
+    meta:
+      collection: pp_translations__persons
+      conditions: null
+      display: null
+      display_options: null
+      field: lede
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_persons.lede
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lede
+      table: pp_translations__persons
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__persons
+    field: about
+    type: json
+    meta:
+      collection: pp_translations__persons
+      conditions: null
+      display: null
+      display_options: null
+      field: about
+      group: null
+      hidden: false
+      interface: input-code
+      note: Translated field for pp_persons.about
+      options:
+        language: json
+      readonly: false
+      required: false
+      searchable: true
+      sort: 8
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about
+      table: pp_translations__persons
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_translations__roles
     field: id
     type: integer
@@ -15666,7 +16854,9 @@ fields:
       group: ui_group_address
       hidden: false
       interface: input
-      note: null
+      note: >-
+        The venue's own website. No website of its own: leave empty and put the
+        social profile into Links.
       options:
         trim: true
       readonly: false
@@ -16625,6 +17815,32 @@ fields:
       validation: null
       validation_message: null
       width: full
+  - collection: pp_venues
+    field: websites
+    type: alias
+    meta:
+      collection: pp_venues
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{websites_id.title}}'
+      field: websites
+      group: ui_group_address
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{websites_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_websites
     field: ui_accordion_main
     type: alias
@@ -17315,6 +18531,32 @@ fields:
       required: false
       searchable: true
       sort: 3
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_websites
+    field: venues
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{venues_id.title}}'
+      field: venues
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{venues_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
       special:
         - m2m
       translations: null
@@ -18175,6 +19417,48 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: CASCADE
+  - collection: pp_mm__venues_websites
+    field: venues_id
+    related_collection: pp_venues
+    meta:
+      junction_field: websites_id
+      many_collection: pp_mm__venues_websites
+      many_field: venues_id
+      one_allowed_collections: null
+      one_collection: pp_venues
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: websites
+      sort_field: sort
+    schema:
+      table: pp_mm__venues_websites
+      column: venues_id
+      foreign_key_table: pp_venues
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__venues_websites
+    field: websites_id
+    related_collection: pp_websites
+    meta:
+      junction_field: venues_id
+      many_collection: pp_mm__venues_websites
+      many_field: websites_id
+      one_allowed_collections: null
+      one_collection: pp_websites
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: venues
+      sort_field: null
+    schema:
+      table: pp_mm__venues_websites
+      column: websites_id
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
   - collection: pp_navigation_items
     field: navigation
     related_collection: pp_navigations
@@ -18553,6 +19837,27 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
+  - collection: pp_organisations
+    field: image
+    related_collection: directus_files
+    meta:
+      junction_field: null
+      many_collection: pp_organisations
+      many_field: image
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_organisations
+      column: image
+      foreign_key_table: directus_files
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
   - collection: pp_persons
     field: user_created
     related_collection: directus_users
@@ -18591,6 +19896,27 @@ relations:
       table: pp_persons
       column: user_updated
       foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_persons
+    field: image
+    related_collection: directus_files
+    meta:
+      junction_field: null
+      many_collection: pp_persons
+      many_field: image
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_persons
+      column: image
+      foreign_key_table: directus_files
       foreign_key_column: id
       constraint_name: null
       on_update: NO ACTION
@@ -18946,6 +20272,48 @@ relations:
       sort_field: null
     schema:
       table: pp_translations__organisations
+      column: languages_code
+      foreign_key_table: languages
+      foreign_key_column: code
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__persons
+    field: persons_id
+    related_collection: pp_persons
+    meta:
+      junction_field: languages_code
+      many_collection: pp_translations__persons
+      many_field: persons_id
+      one_allowed_collections: null
+      one_collection: pp_persons
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: translations
+      sort_field: null
+    schema:
+      table: pp_translations__persons
+      column: persons_id
+      foreign_key_table: pp_persons
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__persons
+    field: languages_code
+    related_collection: languages
+    meta:
+      junction_field: persons_id
+      many_collection: pp_translations__persons
+      many_field: languages_code
+      one_allowed_collections: null
+      one_collection: languages
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_translations__persons
       column: languages_code
       foreign_key_table: languages
       foreign_key_column: code

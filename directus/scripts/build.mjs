@@ -67,9 +67,11 @@ export function buildAll(overrides = {}) {
     const data = [...e.fields, ...e.aliases]
     if (hasTranslations) data.push(translationsAlias())
     const system = [uuidPk(), sortField(), ...auditFields()]
-    const status = statusField()
-    if (e.statusWidth) status.meta.width = e.statusWidth
-    const byField = Object.fromEntries([...data, status].map((f) => [f.field, f]))
+    // Relation rows (statusless) carry no status: the records they connect decide visibility.
+    const status = e.statusless ? null : statusField()
+    if (status && e.statusWidth) status.meta.width = e.statusWidth
+    const own = status ? [...data, status] : data
+    const byField = Object.fromEntries(own.map((f) => [f.field, f]))
 
     const fields = []
     let sort = 1
@@ -91,7 +93,7 @@ export function buildAll(overrides = {}) {
         // Child entities have a flat layout with no content group (conventions §6.3), so this guard only applies to mains.
         if (s.key === 'content' && s.fields.at(-1) !== 'description') throw new Error(`${name}: ui_group_content must end with description, got ${s.fields.at(-1)}`)
       })
-      for (const f of [...data, status]) {
+      for (const f of own) {
         if (f.field === 'translations') { fields.push(placed([f], 'ui_accordion_translations', 1)[0]); continue }
         if (!used.has(f.field)) throw new Error(`${name}: data field ${f.field} not placed in any layout section`)
       }
@@ -104,7 +106,7 @@ export function buildAll(overrides = {}) {
         used.add(fname)
         fields.push(placed([f], null, i + 1)[0])
       })
-      for (const f of [...data, status]) {
+      for (const f of own) {
         if (f.field === 'translations') continue
         if (!used.has(f.field)) throw new Error(`${name}: data field ${f.field} not placed in the flat layout`)
       }
@@ -132,7 +134,9 @@ export function buildAll(overrides = {}) {
       meta: { icon: e.icon, color: COLOR, note: e.note ?? null, display_template: e.displayTemplate,
         group: e.kind === 'child' ? col(e.host) : col(ROOT_FOLDER), hidden: e.kind === 'child',
         collapse: e.kind === 'child' ? 'open' : 'closed', sort_field: e.kind === 'child' ? 'sort' : null, accountability: 'all',
-        archive_field: 'status', archive_value: 'archived', unarchive_value: 'draft', archive_app_filter: true,
+        ...(e.statusless
+          ? { archive_field: null, archive_value: null, unarchive_value: null, archive_app_filter: false }
+          : { archive_field: 'status', archive_value: 'archived', unarchive_value: 'draft', archive_app_filter: true }),
         translations: [{ language: 'en-US', translation: e.labels[0], singular: e.labels[1], plural: e.labels[2] }] } })
 
     // Translation table.

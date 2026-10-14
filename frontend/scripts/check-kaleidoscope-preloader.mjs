@@ -38,6 +38,7 @@ const kaleidoscopeLoader = await readProjectFile('app/components/KaleidoscopeLoa
 const archiveTooltipFrame = await readProjectFile('app/components/ArchiveTooltipFrame.vue')
 const mainCss = await readProjectFile('app/assets/css/main.css')
 const landingPage = await readProjectFile('app/pages/index.vue')
+const heroItems = await readProjectFile('app/utils/heroItems.ts')
 const enMessages = JSON.parse(await readProjectFile('i18n/locales/en.json'))
 const deMessages = JSON.parse(await readProjectFile('i18n/locales/de.json'))
 const preloadTexturePoolSource = extractFunctionSource(heroKaleidoscope, 'preloadTexturePool')
@@ -144,7 +145,8 @@ const checks = [
   ['the dial shows the download percentage of the image in flight', kaleidoscopeLoader.includes('Math.round(clampedFraction.value * 100)') && kaleidoscopeLoader.includes('stroke-dashoffset')],
   ['the dial uses a spaced structural marker and no scoped styles', kaleidoscopeLoader.includes('[ kaleidoscope-loader ]') && !kaleidoscopeLoader.includes('[kaleidoscope-loader]') && !kaleidoscopeLoader.includes('<style')],
   ['the dial is inert to pointer input', kaleidoscopeLoader.includes('pointer-events-none')],
-  ['fan items carry the complete exhibition preview projection', ['title: exhibition.title', 'artist: exhibition.artist', 'location: `${exhibition.venue}, ${exhibition.city}`', 'dateRange: exhibition.date_range'].every((field) => landingPage.includes(field))],
+  ['fan items carry the complete exhibition preview projection', landingPage.includes('buildHeroItems(') && ['title: exhibition.title', 'artist: exhibition.artist', 'location: `${exhibition.venue}, ${exhibition.city}`', 'dateRange: exhibition.date_range'].every((field) => heroItems.includes(field))],
+  ['fan offers only open 360° experiences and fills up to twelve blades with galleries', heroItems.includes("resolveTourAccess(exhibition, today).kind === 'open'") && heroItems.includes('export const HERO_BLADE_COUNT = 12') && heroItems.includes("kind: 'venue'")],
   ['fan previews reuse the shared archival tooltip frame', heroKaleidoscope.includes('<ArchiveTooltipFrame') && archiveTooltipFrame.includes('archive-button-secondary-frame') && archiveTooltipFrame.includes('[ archive-tooltip-pointer ]')],
   ['fan previews support cursor tracking, focus, dismissal, and two-tap touch activation', ['@pointerenter="handleBladePointerEnter', '@pointermove="handleBladePointerMove', '@focus="handleBladeFocus', '@blur="handleBladeBlur', '@click="handleBladeClick', 'touchPreviewIndex.value === index', 'event.preventDefault()', 'handleDocumentPointerDown'].every((contract) => heroKaleidoscope.includes(contract))],
   ['fan previews render as a body-level fixed overlay', heroKaleidoscope.includes('<Teleport to="body">') && heroKaleidoscope.includes('hero-fan-tooltip pointer-events-none fixed') && !heroKaleidoscope.includes('hero-fan-tooltip pointer-events-none absolute')],

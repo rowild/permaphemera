@@ -1475,7 +1475,7 @@ watch(
           :key="`${index}-${item.id}`"
           class="hero-kaleidoscope__blade-link"
           :href="item.href || undefined"
-          :aria-label="item.href ? t('landing.hero.openBlade', { title: item.label }) : undefined"
+          :aria-label="item.href ? t(item.kind === 'venue' ? 'landing.hero.openBladeVenue' : 'landing.hero.openBlade', { title: item.label }) : undefined"
           :tabindex="isInteractionLocked || !item.href ? -1 : undefined"
           :transform.attr="`rotate(${bladeLinkRotationValues[index]} 50 50)`"
           @pointerenter="handleBladePointerEnter(index, $event)"
@@ -1515,19 +1515,19 @@ watch(
         :style="tooltipPositionStyle"
         role="tooltip"
       >
-        <span class="mb-1 block text-3xs leading-none tracking-widest text-archive-red uppercase">{{ $t('landing.hero.tooltipEyebrow') }}</span>
+        <span class="mb-1 block text-3xs leading-none tracking-widest text-archive-red uppercase">{{ $t(activeTooltipItem.kind === 'venue' ? 'landing.hero.tooltipEyebrowVenue' : 'landing.hero.tooltipEyebrow') }}</span>
         <strong class="block pb-0.5 text-lg leading-[1.08] font-medium">{{ activeTooltipItem.title }}</strong>
-        <span class="mb-1.5 block text-sm leading-tight text-archive-red">{{ activeTooltipItem.artist }}</span>
+        <span v-if="activeTooltipItem.artist" class="mb-1.5 block text-sm leading-tight text-archive-red">{{ activeTooltipItem.artist }}</span>
         <span class="archive-record-divider mb-1.5 block h-[0.55rem] w-full opacity-54" aria-hidden="true" />
         <span class="mb-0.5 flex items-start gap-1.5 text-xs leading-tight text-archive-record-meta">
           <span class="archive-record-meta-icon record-meta-icon-location mt-px inline-block size-3 flex-none bg-current" aria-hidden="true" />
           {{ activeTooltipItem.location }}
         </span>
-        <span class="flex items-center gap-1.5 text-xs leading-tight text-archive-record-meta">
+        <span v-if="activeTooltipItem.dateRange" class="flex items-center gap-1.5 text-xs leading-tight text-archive-record-meta">
           <span class="archive-record-meta-icon record-meta-icon-calendar inline-block size-3 flex-none bg-current" aria-hidden="true" />
           {{ activeTooltipItem.dateRange }}
         </span>
-        <span v-if="touchPreviewIndex === activeTooltipIndex" class="mt-2 block border-t border-archive-rule-warm/14 pt-1.5 text-3xs leading-tight tracking-wide text-archive-muted">{{ $t('landing.hero.touchHint') }}</span>
+        <span v-if="touchPreviewIndex === activeTooltipIndex" class="mt-2 block border-t border-archive-rule-warm/14 pt-1.5 text-3xs leading-tight tracking-wide text-archive-muted">{{ $t(activeTooltipItem.kind === 'venue' ? 'landing.hero.touchHintVenue' : 'landing.hero.touchHint') }}</span>
       </ArchiveTooltipFrame>
     </Transition>
   </Teleport>

@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, jsonArray, m2o, markdown, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-09-23.2'
+export const SCHEMA_VERSION = '2026-10-14.3'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -47,7 +47,7 @@ export const entities = {
       m2o('part_of', 'venues', { template: '{{title}}', oneField: 'spaces', oneTemplate: '{{title}}', note: 'The venue this space belongs to organisationally, e.g. Alpen-Adria-Galerie → Stadtgalerie Klagenfurt. Empty for independent venues.' }),
       dropdown('type', ['gallery', 'museum', 'kunsthalle', 'art_cafe', 'open_air', 'forum'], { default: 'gallery', allowOther: true }),
       str('address'),
-      str('website_url', { width: 'half' }),
+      str('website_url', { width: 'half', note: 'The venue\'s own website. No website of its own: leave empty and put the social profile into Links.' }),
       float('latitude', { note: 'Optional exact building pin.' }),
       float('longitude'),
       file('image', { image: true }),
@@ -64,7 +64,7 @@ export const entities = {
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'slug', 'type', 'location', 'part_of', 'featured', 'archive_number']),
-      section('address', 'Address', ['address', 'website_url', 'latitude', 'longitude', 'coordinate_label']),
+      section('address', 'Address', ['address', 'website_url', 'websites', 'latitude', 'longitude', 'coordinate_label']),
       section('images', 'Images', ['image', 'image_alt', 'hero_image', 'hero_image_alt', 'image_caption']),
       section('relations', 'Relations', ['spaces', 'exhibitions', 'further_exhibitions', 'organisation_relations', 'persons', 'sponsors']),
       content(['lede', 'about', 'description']),
@@ -74,7 +74,7 @@ export const entities = {
   persons: {
     kind: 'main', icon: 'person', sort: 3, labels: ['Persons', 'Person', 'Persons'],
     display: ['first_name', 'last_name'], displayTemplate: PERSON, statusWidth: 'full',
-    note: 'People and collectives: artists, curators. The site shows a name, their links (see websites) and their statements. Nothing else, by decision of 2026-09-14.',
+    note: 'People and collectives: artists, curators, board members, press. Each published person has a page at /persons/<slug>/ with photo, intro line, biography, facts, links, memberships and exhibitions.',
     fields: [
       str('first_name', { width: 'half' }),
       str('last_name', { width: 'half' }),
@@ -82,9 +82,19 @@ export const entities = {
       str('display_name', { width: 'full', note: 'Pseudonym or collective name. Shown instead of first + last when set.' }),
       str('slug', { required: true, unique: true, slug: true, width: 'half' }),
       bool('is_collective', { width: 'half', note: 'An artist collective (e.g. Raqs Media Collective): the site shows display_name exactly as written and never inverts it to "Family, Given". Associations and institutions are not persons; they belong in organisations.' }),
+      str('born', { width: 'half', note: 'Free text, e.g. "1970, Schärding".' }),
+      str('based_in', { width: 'half', translated: true, note: 'Where the person lives and works, e.g. "Wien" / "Vienna".' }),
+      file('image', { image: true, note: 'Press portrait. Credit goes into image_caption.' }),
+      str('image_alt', { width: 'half', translated: true }),
+      str('image_caption', { translated: true, note: 'Credit line under the photo: "<what> · Foto: <holder>".' }),
+      str('lede', { translated: true, note: 'One line under the name on the person page.' }),
+      jsonArray('about', { translated: true, note: 'Biography: JSON array of paragraph strings; the last one names the source.' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'first_name', 'last_name', 'middle_initial', 'display_name', 'slug', 'is_collective', 'roles']),
+      section('facts', 'Facts', ['born', 'based_in']),
+      section('media', 'Photo', ['image', 'image_alt', 'image_caption']),
+      section('text', 'Text', ['lede', 'about']),
       section('links', 'Links', ['websites']),
       section('relations', 'Relations', ['participations', 'memberships', 'venues', 'sponsors']),
     ],
@@ -140,6 +150,8 @@ export const entities = {
   },
 
   exhibition_participations: {
+    // A relation row has no status: it is shown when every record it connects is published.
+    statusless: true,
     kind: 'child', host: 'exhibitions', hostField: 'exhibition', hostAlias: 'participations',
     hostAliasTemplate: '{{person.first_name}} {{person.last_name}} · {{role.title}}',
     icon: 'group', sort: 1, labels: ['Exhibition Participations', 'Exhibition Participation', 'Exhibition Participations'],
@@ -149,7 +161,7 @@ export const entities = {
       m2o('person', 'persons', { template: PERSON, oneField: 'participations', oneTemplate: '{{exhibition.title}} · {{role.title}}' }),
       m2o('role', 'roles', { template: '{{title}}' }),
     ],
-    layout: { flat: ['status', 'exhibition', 'person', 'role'] },
+    layout: { flat: ['exhibition', 'person', 'role'] },
   },
 
   exhibition_statements: {
@@ -167,6 +179,8 @@ export const entities = {
   },
 
   exhibition_organisers: {
+    // A relation row has no status: it is shown when every record it connects is published.
+    statusless: true,
     kind: 'child', host: 'exhibitions', hostField: 'exhibition', hostAlias: 'organisers',
     hostAliasTemplate: '{{organisation.title}} · {{role}}',
     icon: 'groups', sort: 3, labels: ['Exhibition Organisers', 'Exhibition Organiser', 'Exhibition Organisers'],
@@ -176,7 +190,7 @@ export const entities = {
       m2o('organisation', 'organisations', { template: '{{title}}', oneField: 'exhibitions', oneTemplate: '{{exhibition.title}} · {{role}}' }),
       dropdown('role', ['organiser', 'presenter', 'cooperation', 'supporter'], { default: 'organiser', note: 'organiser: put it on. presenter: shows it as its own programme. cooperation: co-produced. supporter: backed it.' }),
     ],
-    layout: { flat: ['status', 'exhibition', 'organisation', 'role'] },
+    layout: { flat: ['exhibition', 'organisation', 'role'] },
   },
 
   organisations: {
@@ -193,6 +207,9 @@ export const entities = {
       m2o('location', 'locations', { oneField: 'organisations', oneTemplate: '{{title}}', note: 'The town of the seat.' }),
       file('logo', { image: true }),
       str('logo_alt', { width: 'half', translated: true }),
+      file('image', { image: true, note: 'Press photo of the organisation. Credit goes into image_caption.' }),
+      str('image_alt', { width: 'half', translated: true }),
+      str('image_caption', { translated: true, note: 'Credit line under the photo.' }),
       str('lede', { translated: true, note: 'One-line teaser.' }),
       jsonArray('about', { translated: true, note: 'JSON array of paragraph strings.' }),
       text('description', { translated: true }),
@@ -200,13 +217,15 @@ export const entities = {
     layout: [
       section('title', 'Title', ['status', 'title', 'short_title', 'slug', 'kind']),
       section('seat', 'Seat', ['address', 'location', 'founded']),
-      section('media', 'Media', ['logo', 'logo_alt']),
+      section('media', 'Media', ['logo', 'logo_alt', 'image', 'image_alt', 'image_caption']),
       section('relations', 'Relations', ['venue_relations', 'exhibitions', 'members', 'websites']),
       content(['lede', 'about', 'description']),
     ],
   },
 
   organisation_memberships: {
+    // A relation row has no status: it is shown when every record it connects is published.
+    statusless: true,
     kind: 'child', host: 'organisations', hostField: 'organisation', hostAlias: 'members',
     hostAliasTemplate: '{{person.first_name}} {{person.last_name}} · {{function}}',
     icon: 'badge', sort: 1, labels: ['Organisation Memberships', 'Organisation Membership', 'Organisation Memberships'],
@@ -216,10 +235,12 @@ export const entities = {
       m2o('person', 'persons', { template: PERSON, oneField: 'memberships', oneTemplate: '{{organisation.title}} · {{function}}' }),
       str('function', { translated: true, note: 'e.g. "Vizepräsidentin, Galerieleitung", "Pressesprecherin", "Mitglied".' }),
     ],
-    layout: { flat: ['status', 'organisation', 'person', 'function'] },
+    layout: { flat: ['organisation', 'person', 'function'] },
   },
 
   organisation_venue_relations: {
+    // A relation row has no status: it is shown when every record it connects is published.
+    statusless: true,
     kind: 'child', host: 'organisations', hostField: 'organisation', hostAlias: 'venue_relations',
     hostAliasTemplate: '{{venue.title}} · {{relation}}',
     icon: 'museum', sort: 2, labels: ['Organisation Venue Relations', 'Organisation Venue Relation', 'Organisation Venue Relations'],
@@ -229,7 +250,7 @@ export const entities = {
       m2o('venue', 'venues', { template: '{{title}}', oneField: 'organisation_relations', oneTemplate: '{{organisation.title}} · {{relation}}' }),
       dropdown('relation', ['runs', 'seat', 'exhibits_at'], { default: 'exhibits_at', note: 'runs: operates the house. seat: registered there. exhibits_at: guest, invited by the venue; neither runs it nor sits there.' }),
     ],
-    layout: { flat: ['status', 'organisation', 'venue', 'relation'] },
+    layout: { flat: ['organisation', 'venue', 'relation'] },
   },
 
   sponsors: {
@@ -261,7 +282,7 @@ export const entities = {
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'url', 'kind']),
-      section('relations', 'Relations', ['exhibitions', 'persons', 'organisations']),
+      section('relations', 'Relations', ['exhibitions', 'persons', 'organisations', 'venues']),
     ],
   },
 
@@ -311,4 +332,5 @@ export const junctions = [
   { a: 'exhibitions', b: 'websites', aliasA: 'websites', aliasB: 'exhibitions', owner: 'websites', sortedFrom: 'exhibitions', note: 'External links of an exhibition: its page on the venue site, press sheets, documents.' },
   { a: 'persons', b: 'websites', aliasA: 'websites', aliasB: 'persons', owner: 'websites', sortedFrom: 'persons', note: 'The links of a person. Replaced the single website_url column on 2026-09-15.' },
   { a: 'organisations', b: 'websites', aliasA: 'websites', aliasB: 'organisations', owner: 'websites', sortedFrom: 'organisations', note: 'The links of an organisation.' },
+  { a: 'venues', b: 'websites', aliasA: 'websites', aliasB: 'venues', owner: 'websites', sortedFrom: 'venues', note: 'Further links of a venue, usually its social profiles. website_url stays the main link; the site shows at most three links.' },
 ]

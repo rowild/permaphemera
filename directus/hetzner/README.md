@@ -41,13 +41,13 @@ The frontend reads the remote instance when `NUXT_PUBLIC_DIRECTUS_URL` in
 `pnpm dev` after changing it). `CORS_ORIGIN` on the server already allows
 `http://localhost:4991`, `http://localhost:3000` and `https://permaphemera.at`.
 
-## Going live under permaphemera.at (planned)
+## Under permaphemera.at (live since 2026-09-16)
 
-When the domain is ready: the site's nginx block on the same server forwards
-`permaphemera.at/cms/` to this container, so browsers only ever talk to
-`permaphemera.at` (some institutional networks block third-party hosts). The
-site is then built with `NUXT_PUBLIC_DIRECTUS_URL=https://permaphemera.at/cms`.
-Editors keep using `permaphemera.project-backends.info`.
+The site's nginx block on the same server forwards `permaphemera.at/cms/` to
+this container, so browsers only ever talk to `permaphemera.at` (some
+institutional networks block third-party hosts). The site is built with
+`NUXT_PUBLIC_DIRECTUS_URL=https://permaphemera.at/cms`. Editors keep using
+`permaphemera.project-backends.info`. Details below, under *The public site*.
 
 ## Backups
 
@@ -72,7 +72,8 @@ Directus container on the same origin, so institutional networks never see a sec
   (The Cloudflare token on the host only covers project-backends.info, so DNS-01 is not
   an option for this zone.)
 - Deploy the frontend: `cd frontend && pnpm run deploy:hetzner` builds with
-  `NUXT_PUBLIC_DIRECTUS_URL=https://permaphemera.at/cms` and rsyncs `.output/public`.
+  `NUXT_PUBLIC_DIRECTUS_URL=https://permaphemera.at/cms` and rsyncs `.output/public`
+  (tours excluded), then rsyncs `public/media/tours/` add/update only, never deleting.
 - The Directus admin stays at https://permaphemera.project-backends.info; `PUBLIC_URL` is
   unchanged. `/cms/` exists for the site's reads (items, assets, server).
 - Mail for permaphemera.at stays at all-inkl: MX, SPF, DMARC and DKIM were copied into the

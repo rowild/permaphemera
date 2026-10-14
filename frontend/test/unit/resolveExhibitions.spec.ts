@@ -43,9 +43,9 @@ const exhibitions = [{
 }]
 
 const participations = [
-  { id: 'p-2', exhibition: 'parkschloessl-campidell-kulle-2026', person: 'person-judith-maria-kulle', role: 'role-artist', sort: 1, status: 'published' as const },
-  { id: 'p-1', exhibition: 'parkschloessl-campidell-kulle-2026', person: 'person-sylvia-campidell', role: 'role-artist', sort: 0, status: 'published' as const },
-  { id: 'p-3', exhibition: 'parkschloessl-campidell-kulle-2026', person: 'person-curator', role: 'role-curator', sort: 0, status: 'published' as const }
+  { id: 'p-2', exhibition: 'parkschloessl-campidell-kulle-2026', person: 'person-judith-maria-kulle', role: 'role-artist', sort: 1 },
+  { id: 'p-1', exhibition: 'parkschloessl-campidell-kulle-2026', person: 'person-sylvia-campidell', role: 'role-artist', sort: 0 },
+  { id: 'p-3', exhibition: 'parkschloessl-campidell-kulle-2026', person: 'person-curator', role: 'role-curator', sort: 0 }
 ]
 
 const resolve = () => resolveExhibitions(exhibitions, venues, locations, participations, persons, roles, 'en')
@@ -73,16 +73,22 @@ describe('resolveExhibitions', () => {
       .toBe('/media/tours/2026-07-30-farben-im-park/')
   })
 
-  it('throws when primary_venue does not resolve', () => {
+  it('drops an exhibition whose venue is missing or not published', () => {
     const orphan = [{ ...exhibitions[0], primary_venue: 'venue-nowhere' }]
-    expect(() => resolveExhibitions(orphan, venues, locations, participations, persons, roles, 'en'))
-      .toThrow(/references unknown venue venue-nowhere/)
+    expect(resolveExhibitions(orphan, venues, locations, participations, persons, roles, 'en')).toEqual([])
+    const draftVenue = venues.map((venue) => ({ ...venue, status: 'draft' as const }))
+    expect(resolveExhibitions(exhibitions, draftVenue, locations, participations, persons, roles, 'en')).toEqual([])
   })
 
-  it('throws when a participation names an unknown person', () => {
-    const broken = [{ id: 'p-9', exhibition: 'parkschloessl-campidell-kulle-2026', person: 'person-ghost', role: 'role-artist', sort: 0, status: 'published' as const }]
-    expect(() => resolveExhibitions(exhibitions, venues, locations, broken, persons, roles, 'en'))
-      .toThrow(/unknown person person-ghost/)
+  it('drops a participation whose person is missing', () => {
+    const broken = [{ id: 'p-9', exhibition: 'parkschloessl-campidell-kulle-2026', person: 'person-ghost', role: 'role-artist', sort: 0 }]
+    expect(resolveExhibitions(exhibitions, venues, locations, broken, persons, roles, 'en')[0]!.artists).toEqual([])
+  })
+
+  it('shows a participation only while the person is published: the row itself has no status', () => {
+    const draftKulle = persons.map((person) => (person.id === 'person-judith-maria-kulle' ? { ...person, status: 'draft' as const } : person))
+    const [record] = resolveExhibitions(exhibitions, venues, locations, participations, draftKulle, roles, 'en')
+    expect(record!.artists.map((artist) => artist.id)).toEqual(['person-sylvia-campidell'])
   })
 
   it('exposes each linked artist with its links, the exhibition links and the venue website', () => {
@@ -99,8 +105,8 @@ describe('resolveExhibitions', () => {
     const linkedVenues = venues.map((venue) => ({ ...venue, website_url: 'https://venue.example/' }))
     const [record] = resolveExhibitions(exhibitions, linkedVenues, locations, participations, persons, roles, 'en', [], websites, exhibitionsWebsites, personsWebsites)
     expect(record.artists).toEqual([
-      { id: 'person-sylvia-campidell', name: 'Sylvia Campidell', website_url: 'https://example.org/', websites: [{ id: 'w-1', title: 'Website', url: 'https://example.org/', kind: 'website' }] },
-      { id: 'person-judith-maria-kulle', name: 'Judith Maria Kulle', website_url: undefined, websites: [] }
+      { id: 'person-sylvia-campidell', slug: 'sylvia-campidell', name: 'Sylvia Campidell', website_url: 'https://example.org/', websites: [{ id: 'w-1', title: 'Website', url: 'https://example.org/', kind: 'website' }] },
+      { id: 'person-judith-maria-kulle', slug: 'judith-maria-kulle', name: 'Judith Maria Kulle', website_url: undefined, websites: [] }
     ])
     expect(record.websites).toEqual([{ id: 'w-2', title: 'Exhibition page', url: 'https://venue.example/show', kind: 'exhibition_page' }])
     expect(record.venue_website).toBe('https://venue.example/')
@@ -125,7 +131,7 @@ describe('resolveExhibitions', () => {
     ]
     const en = resolveExhibitions(exhibitions, venues, locations, participations, persons, roles, 'en', statements)[0]
     expect(en.statements.map(({ id }) => id)).toEqual(['first', 'second'])
-    expect(en.statements[0]).toMatchObject({ artist: 'Sylvia Campidell', prompt: 'How did you approach the room?', text: 'Words about the room' })
+    expect(en.statements[0]).toMatchObject({ artist: 'Sylvia Campidell', artist_slug: 'sylvia-campidell', prompt: 'How did you approach the room?', text: 'Words about the room' })
     const de = resolveExhibitions(exhibitions, venues, locations, participations, persons, roles, 'de', statements)[0]
     expect(de.statements[0].text).toBe('DE Words about the room')
     expect(resolve()[0].statements).toEqual([])
@@ -137,10 +143,9 @@ describe('resolveExhibitions', () => {
     expect(record.curators.map((c) => c.name)).toEqual(['Cura Tor'])
   })
 
-  it('throws when a participation names an unknown role', () => {
-    const broken = [{ ...participations[0], role: 'role-ghost' }]
-    expect(() => resolveExhibitions(exhibitions, venues, locations, broken, persons, roles, 'en'))
-      .toThrow(/unknown role role-ghost/)
+  it('drops a participation whose role is missing', () => {
+    const broken = [{ ...participations[0]!, role: 'role-ghost' }]
+    expect(resolveExhibitions(exhibitions, venues, locations, broken, persons, roles, 'en')[0]!.artists).toEqual([])
   })
 
   it('credits a person by their display_name unchanged, e.g. VALIE EXPORT', () => {

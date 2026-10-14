@@ -149,10 +149,40 @@ const mainNavigationId = navigations.find((nav) => nav.key === 'main')?.id
 const mainPaths = navigationItems.filter((item) => item.navigation === mainNavigationId).map((item) => item.path)
 assert(mainPaths.includes('/venues/'), 'Gallery navigation must target the real gallery index.')
 assert(mainPaths.includes('/exhibitions/'), 'Exhibition navigation must target the real exhibition index.')
-assert(mainPaths.includes('/organisations/'), 'Organisation navigation must target the real organisation register.')
+// The organisations entry may still be a draft (drafts never leave Directus); once it is
+// published it must point at the register, not at a stand-in route.
+const organisationsNavItem = navigationItems.find((item) => item.navigation === mainNavigationId && item.key === 'organisations')
+if (organisationsNavItem) assert(organisationsNavItem.path === '/organisations/', 'Organisation navigation must target the real organisation register.')
 for (const navigation of [header, footerMenu]) {
   assert.match(navigation, /useSiteNavigation\(\)/, 'Header and footer must render their links from the navigation data.')
 }
+
+// Person and sponsor pages: an unknown slug shows the 404 page. Organisation pages show the
+// photo and link every member to their person page.
+const [personPage, sponsorPage, organisationPage] = await Promise.all([
+  readText('app/pages/persons/[slug].vue'),
+  readText('app/pages/sponsors/[slug].vue'),
+  readText('app/pages/organisations/[slug].vue')
+])
+assert.match(personPage, /createError\(\{ statusCode: 404/, 'An unknown person slug must show the 404 page.')
+assert.match(sponsorPage, /createError\(\{ statusCode: 404/, 'An unknown sponsor slug must show the 404 page.')
+// A portrait keeps its upright frame at every width (a wide frame would crop the head);
+// the fallback exhibition image, usually landscape, gets the wide frame.
+assert.match(personPage, /person\.image\.fromExhibition \? 'aspect-\[1\.28\]' : 'aspect-\[0\.8\]/, 'The person photo frame must follow the image source.')
+assert.doesNotMatch(personPage, /tablet:aspect-\[1\.28\]/, 'A person portrait must not switch to a wide frame on tablets.')
+// All external links sit in the Links row, the main link first on its own line; nothing
+// under the name. The biography sits in the left column, under the facts, beside the photo.
+assert.doesNotMatch(personPage, /person-home-link/, 'The person page must not repeat a link under the name.')
+assert.match(personPage, /person-link-main[\s\S]{0,300}person\.home\.url/, 'The Links row must start with the main link.')
+assert.match(personPage, /person-hero-copy[\s\S]*person-facts[\s\S]*person-about[\s\S]*person-hero-figure/, 'The biography must follow the facts inside the left column.')
+assert.match(organisationPage, /:to="localePath\(`\/persons\/\$\{member\.slug\}\/`\)"/, 'Organisation members must link to their person page.')
+assert.match(organisationPage, /v-if="organisation\.image"/, 'The organisation page must show the organisation photo when there is one.')
+const exhibitionPage = await readText('app/pages/exhibitions/[slug].vue')
+for (const [pattern, what] of [
+  [/:to="localePath\(`\/persons\/\$\{artist\.slug\}\/`\)"/, 'artist names'],
+  [/:to="localePath\(`\/persons\/\$\{curator\.slug\}\/`\)"/, 'curator names'],
+  [/:to="localePath\(`\/persons\/\$\{statement\.artist_slug\}\/`\)"/, 'statement authors']
+]) assert.match(exhibitionPage, pattern, `On the exhibition page, ${what} must link to the person page.`)
 
 console.log(`Directory routes are valid (${galleries.length} galleries across ${new Set(galleries.map((gallery) => archive.locations.find((location) => location.id === gallery.location)?.state)).size} states; ${exhibitions.length} exhibition records).`)
 }

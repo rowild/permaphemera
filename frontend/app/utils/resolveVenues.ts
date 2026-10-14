@@ -1,6 +1,11 @@
-import type { LocationRecord, OrganisationRecord, OrganisationVenueRelation, OrganisationVenueRelationRecord, VenueRecord } from '~/types/content'
+import type { JunctionRow, LocationRecord, OrganisationRecord, OrganisationVenueRelation, OrganisationVenueRelationRecord, VenueRecord, WebsiteRecord } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
+import { hostnameOf, linksThrough } from '~/utils/externalLinks'
 import { pickTranslation } from '~/utils/pickTranslation'
+import type { ResolvedLink } from '~/utils/resolveExhibitions'
+
+/** A venue page shows its own website plus further links (social profiles), three at most. */
+const MAX_VENUE_LINKS = 3
 
 /** A venue named by slug and title, for "part of" and "spaces" links. */
 export interface VenueRef {
@@ -27,6 +32,8 @@ export interface ResolvedVenue {
   type: string
   address: string
   website_url?: string
+  /** External links: the own website first (if any), then the venue's further links; at most three. */
+  links: ResolvedLink[]
   image: string
   image_alt: string
   hero_image?: string
@@ -54,25 +61,35 @@ export const resolveVenues = (
   venues: VenueRecord[],
   locale: string,
   venueRelations: OrganisationVenueRelationRecord[] = [],
-  organisations: OrganisationRecord[] = []
+  organisations: OrganisationRecord[] = [],
+  websites: WebsiteRecord[] = [],
+  venuesWebsites: JunctionRow[] = []
 ): ResolvedVenue[] => {
-  const locationById = new Map(locations.map((location) => [location.id, location]))
+  const locationById = new Map(locations.filter(isVisible).map((location) => [location.id, location]))
+  const websiteById = new Map(websites.filter(isVisible).map((site) => [site.id, site]))
   const organisationById = new Map(organisations.filter(isVisible).map((organisation) => [organisation.id, organisation]))
   const organisationsByVenue = new Map<string, VenueOrganisationLink[]>()
-  for (const row of venueRelations.filter(isVisible).sort((a, b) => a.sort - b.sort)) {
+  // Relation rows carry no status: a row counts when the organisation is published too.
+  for (const row of [...venueRelations].sort((a, b) => a.sort - b.sort)) {
     const organisation = organisationById.get(row.organisation)
     if (!organisation) continue
     const rows = organisationsByVenue.get(row.venue) ?? []
     rows.push({ slug: organisation.slug, title: organisation.title, relation: row.relation })
     organisationsByVenue.set(row.venue, rows)
   }
-  const visible = venues.filter(isVisible)
+  // A venue needs a published town; without one it cannot be placed and drops out quietly.
+  const visible = venues.filter((venue) => isVisible(venue) && locationById.has(venue.location))
   const refById = new Map(visible.map((venue) => [venue.id, { slug: venue.slug, name: venue.title }]))
 
   return visible.map((venue) => {
-    const location = locationById.get(venue.location)
-    if (!location) throw new Error(`pp_venues.json: ${venue.id} references unknown location ${venue.location}`)
+    const location = locationById.get(venue.location)!
     const text = pickTranslation(venue, locale)
+    const ownWebsite: ResolvedLink[] = venue.website_url
+      ? [{ id: `${venue.id}-website`, title: hostnameOf(venue.website_url), url: venue.website_url, kind: 'website' }]
+      : []
+    const links = [...ownWebsite, ...linksThrough(websiteById, venuesWebsites, 'venues_id', venue.id, locale)]
+      .filter((link, index, all) => all.findIndex((other) => other.url === link.url) === index)
+      .slice(0, MAX_VENUE_LINKS)
 
     return {
       id: venue.id,
@@ -84,6 +101,7 @@ export const resolveVenues = (
       type: venue.type,
       address: venue.address,
       website_url: venue.website_url ?? undefined,
+      links,
       image: venue.image,
       image_alt: venue.image_alt,
       hero_image: venue.hero_image ?? undefined,

@@ -14,17 +14,17 @@ const [entry, modal, artistsPage, landingPage, artistDirectory] = await Promise.
 ])
 
 const entryButtons = [...entry.matchAll(/<button[\s\S]*?<\/button>/g)].map(([button]) => button)
-const nameButton = entryButtons.find((button) => button.includes('artist-name-button')) ?? ''
 const infoButton = entryButtons.find((button) => button.includes('artist-info-button')) ?? ''
 
 const checks = [
   ['artist rows render the shared modal', /<ArtistExhibitionModal\b/.test(entry)],
   ['artist names never route to a directory query filter', !entry.includes('query: { q: props.artist.name }')],
-  ['artist names open the modal only when routed records exist', nameButton.includes('v-if="records.length"') && nameButton.includes('@click="requestToggle(\'name\')"')],
-  ['artists without routed records render as strongly muted non-interactive names', /<span[\s\S]{0,160}v-else[\s\S]{0,220}artist-name\b[\s\S]{0,220}text-archive-muted[\s\S]{0,80}opacity-60/.test(entry)],
-  ['name and info controls expose the same modal relationship', [nameButton, infoButton].every((button) => button.includes(':aria-controls="modalId"') && button.includes(':aria-expanded="props.open"'))],
-  ['info controls require at least one routed record', infoButton.includes('v-if="records.length"') && infoButton.includes('@click="requestToggle(\'info\')"')],
-  ['modal focus returns to the control that opened it', /lastTrigger/.test(entry) && /nameButtonRef/.test(entry) && /infoButtonRef/.test(entry)],
+  ['artist names link to their person page', /<NuxtLink[\s\S]{0,400}artist-name-link[\s\S]{0,400}:to="localePath\(`\/persons\/\$\{props\.artist\.slug\}\/`\)"/.test(entry)],
+  ['artists without routed records keep a strongly muted name', /records\.length \? 'text-archive-ink' : 'text-archive-muted opacity-60'/.test(entry)],
+  ['the info control exposes the modal relationship', infoButton.includes(':aria-controls="modalId"') && infoButton.includes(':aria-expanded="props.open"')],
+  ['info controls require at least one routed record', infoButton.includes('v-if="records.length"') && infoButton.includes('@click="emit(\'toggle\')"')],
+  ['modal focus returns to the info control', /infoButtonRef\.value\?\.focus\(\)/.test(entry) && !/nameButtonRef/.test(entry)],
+  ['the modal heading links to the person page', /:to="localePath\(`\/persons\/\$\{props\.artist\.slug\}\/`\)"/.test(modal)],
   ['the obsolete in-column dropdown is absent', !entry.includes('artist-info-dropdown')],
   ['the modal teleports to the document body', /<Teleport\s+to="body">/.test(modal)],
   ['the modal exposes dialog semantics', /role="dialog"/.test(modal) && /aria-modal="true"/.test(modal)],

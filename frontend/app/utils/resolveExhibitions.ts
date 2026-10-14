@@ -15,6 +15,8 @@ export interface ResolvedLink {
 
 export interface ResolvedExhibitionArtist {
   id: string
+  /** The person page is /persons/<slug>/. */
+  slug: string
   name: string
   /** The first link of kind "website", or the first link at all. */
   website_url?: string
@@ -32,6 +34,8 @@ export interface ResolvedOrganiser {
 export interface ResolvedStatement {
   id: string
   artist: string
+  /** The author's person page is /persons/<artist_slug>/. */
+  artist_slug: string
   prompt?: string
   text: string
 }
@@ -88,19 +92,22 @@ export const resolveExhibitions = (
   organisers: ExhibitionOrganiserRecord[] = [],
   organisations: OrganisationRecord[] = []
 ): ResolvedExhibition[] => {
+  // Relation rows (organisers, participations) carry no status of their own: a row counts
+  // when every record it connects is published. Anything unpublished or missing drops out
+  // quietly, so one draft never breaks a page.
   const organisationById = new Map(organisations.filter(isVisible).map((organisation) => [organisation.id, organisation]))
   const organisersByExhibition = new Map<string, ResolvedOrganiser[]>()
-  for (const row of organisers.filter(isVisible).sort((a, b) => a.sort - b.sort)) {
+  for (const row of [...organisers].sort((a, b) => a.sort - b.sort)) {
     const organisation = organisationById.get(row.organisation)
     if (!organisation) continue
     const rows = organisersByExhibition.get(row.exhibition) ?? []
     rows.push({ id: organisation.id, slug: organisation.slug, title: organisation.title, role: row.role })
     organisersByExhibition.set(row.exhibition, rows)
   }
-  const venueById = new Map(venues.map((venue) => [venue.id, venue]))
-  const locationById = new Map(locations.map((location) => [location.id, location]))
-  const personById = new Map(persons.map((person) => [person.id, person]))
-  const roleSlugById = new Map(roles.map((role) => [role.id, role.slug]))
+  const venueById = new Map(venues.filter(isVisible).map((venue) => [venue.id, venue]))
+  const locationById = new Map(locations.filter(isVisible).map((location) => [location.id, location]))
+  const personById = new Map(persons.filter(isVisible).map((person) => [person.id, person]))
+  const roleSlugById = new Map(roles.filter(isVisible).map((role) => [role.id, role.slug]))
   const websiteById = new Map(websites.filter(isVisible).map((site) => [site.id, site]))
 
   // Links reach a record through a junction table; unpublished links and rows
@@ -118,11 +125,11 @@ export const resolveExhibitions = (
   const toCredit = (person: PersonRecord): ResolvedExhibitionArtist => {
     const links = linksThrough(personsWebsites, 'persons_id', person.id)
     const primary = links.find((link) => link.kind === 'website') ?? links[0]
-    return { id: person.id, name: displayPersonName(person), website_url: primary?.url, websites: links }
+    return { id: person.id, slug: person.slug, name: displayPersonName(person), website_url: primary?.url, websites: links }
   }
 
   const participationsByExhibition = new Map<string, ParticipationRecord[]>()
-  for (const row of participations.filter(isVisible)) {
+  for (const row of participations) {
     const rows = participationsByExhibition.get(row.exhibition) ?? []
     rows.push(row)
     participationsByExhibition.set(row.exhibition, rows)
@@ -135,21 +142,17 @@ export const resolveExhibitions = (
     statementsByExhibition.set(statement.exhibition, rows)
   }
 
-  return exhibitions.filter(isVisible).map((exhibition) => {
+  // An exhibition needs a published venue in a published town; without them it cannot be placed.
+  return exhibitions.filter(isVisible).flatMap((exhibition) => {
     const venue = venueById.get(exhibition.primary_venue)
-    if (!venue) {
-      throw new Error(`pp_exhibitions.json: ${exhibition.id} references unknown venue ${exhibition.primary_venue}`)
-    }
-    const location = locationById.get(venue.location)
-    if (!location) throw new Error(`pp_venues.json: ${venue.id} references unknown location ${venue.location}`)
+    const location = venue ? locationById.get(venue.location) : undefined
+    if (!venue || !location) return []
 
     const rows = (participationsByExhibition.get(exhibition.id) ?? []).sort((a, b) => a.sort - b.sort)
-    const credited = rows.map((row) => {
+    const credited = rows.flatMap((row) => {
       const person = personById.get(row.person)
-      if (!person) throw new Error(`pp_exhibition_participations.json: unknown person ${row.person}`)
       const role = roleSlugById.get(row.role)
-      if (!role) throw new Error(`pp_exhibition_participations.json: unknown role ${row.role}`)
-      return { person, role }
+      return person && role ? [{ person, role }] : []
     })
     const artists = credited.filter(({ role }) => role === 'artist').map(({ person }) => person)
     const curators = credited.filter(({ role }) => role === 'curator').map(({ person }) => person)
@@ -157,20 +160,21 @@ export const resolveExhibitions = (
     const text = pickTranslation(exhibition, locale)
     const resolvedStatements = (statementsByExhibition.get(exhibition.id) ?? [])
       .sort((a, b) => a.sort - b.sort)
-      .map((statement) => {
+      .flatMap((statement) => {
         const person = personById.get(statement.person)
-        if (!person) throw new Error(`pp_exhibition_statements.json: unknown person ${statement.person}`)
+        if (!person) return []
         const words = pickTranslation(statement, locale)
-        return {
+        return [{
           id: statement.id,
           artist: displayPersonName(person),
+          artist_slug: person.slug,
           prompt: (words.prompt as string) || undefined,
           text: (words.statement as string) ?? ''
-        }
+        }]
       })
       .filter((statement) => statement.text)
 
-    return {
+    return [{
       id: exhibition.id,
       slug: exhibition.slug,
       title: (text.title as string) || exhibition.title,
@@ -201,6 +205,6 @@ export const resolveExhibitions = (
       tour_status: exhibition.tour_status,
       tour_available_from: exhibition.tour_available_from,
       kind: exhibition.kind ?? 'exhibition'
-    }
+    }]
   })
 }

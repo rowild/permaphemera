@@ -8,12 +8,12 @@ defineProps<{
 
 const rowClasses: Record<MetadataRowVariant, string> = {
   exhibition: 'grid grid-cols-[8rem_minmax(0,1fr)] items-baseline gap-4 border-b border-archive-rule-warm/20 py-[0.72rem] compact:grid-cols-[6.5rem_minmax(0,1fr)] compact:gap-2 compact:py-2',
-  venue: 'grid grid-cols-[7.5rem_minmax(0,1fr)] gap-4 border-t border-archive-rule-warm/22 py-[0.65rem] compact:grid-cols-[6.5rem_minmax(0,1fr)] compact:gap-2 compact:py-2',
+  venue: 'grid grid-cols-[7.5rem_minmax(0,1fr)] items-baseline gap-4 border-t border-archive-rule-warm/22 py-[0.65rem] compact:grid-cols-[6.5rem_minmax(0,1fr)] compact:gap-2 compact:py-2',
 }
 
 const termClasses: Record<MetadataRowVariant, string> = {
   exhibition: 'grid grid-cols-[1.125rem_minmax(0,1fr)] items-baseline gap-2 text-xs leading-5 tracking-[0.06em] text-archive-red uppercase compact:text-2xs',
-  venue: 'm-0 flex items-center gap-[0.45rem] text-meta text-archive-red uppercase compact:text-2xs',
+  venue: 'm-0 flex items-baseline gap-[0.45rem] text-meta text-archive-red uppercase compact:text-2xs',
 }
 
 const valueClasses: Record<MetadataRowVariant, string> = {
@@ -23,7 +23,7 @@ const valueClasses: Record<MetadataRowVariant, string> = {
 
 const iconClasses: Record<MetadataRowVariant, string> = {
   exhibition: '[ metadata-icon ] self-center leading-none [&>svg]:block',
-  venue: '[ metadata-icon ] flex items-center leading-none [&>svg]:block',
+  venue: '[ metadata-icon ] flex items-center self-center leading-none [&>svg]:block',
 }
 </script>
 

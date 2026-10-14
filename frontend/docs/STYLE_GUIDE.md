@@ -86,7 +86,7 @@ The current visual system lives primarily in:
 app/assets/css/main.css       global tokens and page styling
 app/pages/index.vue           composition and interaction patterns
 app/components/               reusable frames, masks, arrows, kaleidoscope
-app/data/                     local content contracts
+app/types/content.ts          content contracts (records come from Directus)
 public/media/images/landing/  raster compositions and extracted details
 public/media/svg/             scalable frames, icons, rules, and ornaments
 ```

@@ -28,6 +28,8 @@ export interface DirectoryArtist {
   displayName: string
   records: ArtistRecordLink[]
   memberships: ArtistMembership[]
+  /** The artist's external home: own website, else the first social profile. */
+  link?: { url: string, label: string }
   letter: string
 }
 
@@ -87,7 +89,7 @@ export interface VenueRecord {
   translations: TranslationEntry[]
 }
 
-/** pp_persons — people and collectives. No translations, no biography (owner decision 2026-09-14). Links live in pp_websites. */
+/** pp_persons — people and collectives, each with a page at /persons/<slug>/. Links live in pp_websites. */
 export interface PersonRecord {
   id: string
   slug: string
@@ -98,8 +100,20 @@ export interface PersonRecord {
   display_name: string | null
   /** An artist collective: display_name is shown exactly as written, never inverted to "Family, Given". */
   is_collective: boolean
+  /** Free text, e.g. "1970, Schärding". */
+  born?: string | null
+  based_in?: string | null
+  /** Press portrait (file URL); the credit is in image_caption. */
+  image?: string | null
+  image_alt?: string | null
+  image_caption?: string | null
+  /** One line under the name on the person page. */
+  lede?: string | null
+  /** Biography paragraphs. */
+  about?: string[] | null
   status: ContentStatus
   sort: number
+  translations?: TranslationEntry[]
 }
 
 /** pp_roles — what a person can be: artist, curator, … */
@@ -120,14 +134,13 @@ export interface PersonRoleLink {
   sort: number
 }
 
-/** pp_exhibition_participations — one person in one function on one show. */
+/** pp_exhibition_participations — one person in one function in one exhibition. No status: shown when exhibition, person and role are published. */
 export interface ParticipationRecord {
   id: string
   exhibition: string
   person: string
   role: string
   sort: number
-  status: ContentStatus
 }
 
 /** pp_exhibitions. `primary_venue` → pp_venues.id */
@@ -246,6 +259,10 @@ export interface OrganisationRecord {
   location: string | null
   logo: string | null
   logo_alt: string | null
+  /** Press photo of the organisation (file URL); the credit is in image_caption. */
+  image?: string | null
+  image_alt?: string | null
+  image_caption?: string | null
   lede: string | null
   about: string[] | null
   description: string | null
@@ -261,7 +278,6 @@ export interface OrganisationMembershipRecord {
   person: string
   function: string | null
   sort: number
-  status: ContentStatus
   translations: TranslationEntry[]
 }
 
@@ -274,7 +290,6 @@ export interface OrganisationVenueRelationRecord {
   venue: string
   relation: OrganisationVenueRelation
   sort: number
-  status: ContentStatus
 }
 
 export type ExhibitionOrganiserRole = 'organiser' | 'presenter' | 'cooperation' | 'supporter'
@@ -286,7 +301,6 @@ export interface ExhibitionOrganiserRecord {
   organisation: string
   role: ExhibitionOrganiserRole
   sort: number
-  status: ContentStatus
 }
 
 /** Everything the site reads, fetched once from Directus in the JSON item shape. */
@@ -316,4 +330,5 @@ export interface ArchiveSnapshot {
   organisationVenueRelations: OrganisationVenueRelationRecord[]
   exhibitionOrganisers: ExhibitionOrganiserRecord[]
   organisationsWebsites: JunctionRow[]
+  venuesWebsites: JunctionRow[]
 }

@@ -3,9 +3,10 @@
 // _Plans/directus-schema-conventions.md. Exit 1 on the first group of failures.
 //   node scripts/check-conventions.mjs
 import { loadEnv, login } from './lib.mjs'
-import { isValidName, translationsTable } from './naming.mjs'
+import { col, isValidName } from './naming.mjs'
+import { publicReadRule } from './public-rules.mjs'
+import { entities } from './schema.mjs'
 
-const TRANSLATIONS_PREFIX = translationsTable('')
 const FILES_PUBLIC_FIELDS = ['id', 'type', 'title', 'filename_download', 'width', 'height', 'filesize', 'modified_on', 'folder']
 const sameJSON = (a, b) => JSON.stringify(a) === JSON.stringify(b)
 const sameSet = (a, b) => Array.isArray(a) && Array.isArray(b) && a.length === b.length && b.every((x) => a.includes(x))
@@ -23,6 +24,8 @@ const isFolder = (c) => c.schema === null
 const fieldsOf = (n) => fields.filter((f) => f.collection === n)
 const has = (n, f) => fieldsOf(n).some((x) => x.field === f)
 const SIX = ['status', 'sort', 'user_created', 'date_created', 'user_updated', 'date_updated']
+// Relation rows (schema.mjs `statusless`) carry the five system fields but no status.
+const statusless = new Set(Object.entries(entities).filter(([, e]) => e.statusless).map(([key]) => col(key)))
 const fieldByKey = new Map(fields.map((f) => [`${f.collection}.${f.field}`, f]))
 
 for (const c of collections) {
@@ -38,8 +41,14 @@ for (const c of collections) {
     check(c.meta.hidden === true, `structural table not hidden: ${n}`)
     check(Boolean(c.meta.group), `structural table loose at root: ${n}`)
   } else {
-    for (const f of SIX) check(has(n, f), `entity misses ${f}: ${n}`)
-    check(c.meta.archive_field === 'status', `archive not on status: ${n}`)
+    const own = statusless.has(n) ? SIX.filter((x) => x !== 'status') : SIX
+    for (const f of own) check(has(n, f), `entity misses ${f}: ${n}`)
+    if (statusless.has(n)) {
+      check(!has(n, 'status'), `relation table still carries status: ${n}`)
+      check(c.meta.archive_field == null, `relation table still archives on status: ${n}`)
+    } else {
+      check(c.meta.archive_field === 'status', `archive not on status: ${n}`)
+    }
     const top = fieldsOf(n).filter((f) => f.meta?.group == null).sort((a, b) => a.meta.sort - b.meta.sort).map((f) => f.field)
     if (c.meta.group === 'pp_archive') {
       const expected = has(n, 'translations') ? ['ui_accordion_main', 'ui_accordion_translations', 'ui_group_system'] : ['ui_accordion_main', 'ui_group_system']
@@ -51,7 +60,7 @@ for (const c of collections) {
     }
     const status = fieldsOf(n).find((f) => f.field === 'status')
     const values = status?.meta?.options?.choices?.map((x) => x.value).sort()
-    check(JSON.stringify(values) === JSON.stringify(['archived', 'draft', 'published']), `status choices wrong: ${n}`)
+    if (!statusless.has(n)) check(JSON.stringify(values) === JSON.stringify(['archived', 'draft', 'published']), `status choices wrong: ${n}`)
   }
 }
 
@@ -77,16 +86,8 @@ for (const c of collections) {
   const rule = ruleByCollection.get(n)
   check(Boolean(rule), `no public read rule: ${n}`)
   if (!rule) continue
-  if (isStructural(n)) {
-    if (n.startsWith(TRANSLATIONS_PREFIX)) {
-      const host = n.slice(TRANSLATIONS_PREFIX.length)
-      check(sameJSON(rule.permissions, { [`${host}_id`]: { status: { _neq: 'archived' } } }), `translations public rule wrong filter: ${n}`)
-    } else {
-      check(sameJSON(rule.permissions, {}), `structural public rule not open: ${n}`)
-    }
-  } else {
-    check(sameJSON(rule.permissions, { status: { _neq: 'archived' } }), `entity public rule wrong filter: ${n}`)
-  }
+  // Only published content is public: see public-rules.mjs.
+  check(sameJSON(rule.permissions ?? {}, publicReadRule(n)), `public rule wrong filter: ${n}`)
 }
 
 check(ruleByCollection.has('languages'), 'no public read rule: languages')

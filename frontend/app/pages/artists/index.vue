@@ -113,7 +113,7 @@ useSeoMeta({
     <ArchiveHeader active="artists" />
 
     <div id="main-content">
-      <section class="[ artists-page-intro ] [ section-band ] relative mx-auto grid min-h-120 max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] items-end gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:min-h-0 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:py-6" aria-labelledby="artists-page-title">
+      <section class="[ artists-page-intro ] [ section-band ] relative mx-auto grid min-h-120 max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] items-end gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:min-h-0 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-4" aria-labelledby="artists-page-title">
         <div class="[ artists-page-heading ]">
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('artists.breadcrumb') }}</span>
@@ -126,15 +126,8 @@ useSeoMeta({
         <ArchiveFactLedger class="[ artists-page-ledger ]" :items="artistLedgerItems" desktop-layout="stacked" />
       </section>
 
-      <ArchiveInsetDivider class="compact:hidden" />
-
-      <section id="artist-directory" class="[ artist-directory ] [ section-band ] relative py-[clamp(3rem,5vw,5rem)] compact:py-6" aria-labelledby="artist-directory-title">
+      <section id="artist-directory" class="[ artist-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('artists.directory')">
         <div class="[ artist-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
-          <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
-            <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('artists.directory') }}</p>
-            <h2 id="artist-directory-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('artists.directoryTitle') }} <span class="text-archive-red">{{ $t('artists.directoryAccent') }}</span></h2>
-          </div>
-
           <ArchiveSearchForm
             v-model="artistSearchQuery"
             class="[ artist-directory-search ]"

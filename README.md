@@ -31,6 +31,9 @@ docker compose up -d
 
 ## Where we are
 
-The frontend is live as a static site, and it reads its content from the
-local Directus instance at runtime (`useArchiveSource()`); `frontend/app/data/`
-no longer exists. The next step is hosting Directus.
+The frontend is live as a static site at https://permaphemera.at (Hetzner;
+deploy with `pnpm deploy:hetzner` from `frontend/`), and it reads its content
+from Directus at runtime (`useArchiveSource()`); `frontend/app/data/` no longer
+exists. Directus is hosted too, since 2026-09-15: editors use
+https://permaphemera.project-backends.info, the site reads it same-origin at
+https://permaphemera.at/cms/ (see `directus/hetzner/README.md`).

@@ -10,14 +10,15 @@
 // in archive-schema.d.ts for the frontend's TypeScript code.
 
 /** Collections with a translations table get `translations.*`; the rest only `*`. */
-export const TRANSLATED = new Set(['pp_locations', 'pp_venues', 'pp_roles', 'pp_exhibitions', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigation_items', 'pp_websites', 'pp_organisations', 'pp_organisation_memberships'])
+export const TRANSLATED = new Set(['pp_locations', 'pp_venues', 'pp_roles', 'pp_exhibitions', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigation_items', 'pp_websites', 'pp_organisations', 'pp_organisation_memberships', 'pp_persons'])
 
 /** File fields per collection: Directus returns file ids; the site needs URLs. */
 export const FILE_FIELDS = {
   pp_venues: ['image', 'hero_image'],
   pp_exhibitions: ['image', 'source_pdf'],
   pp_sponsors: ['logo'],
-  pp_organisations: ['logo']
+  pp_organisations: ['logo', 'image'],
+  pp_persons: ['image']
 }
 
 /** ArchiveSnapshot key -> Directus collection name, one entry per collection the site reads. */
@@ -46,7 +47,8 @@ export const COLLECTIONS = {
   organisationMemberships: 'pp_organisation_memberships',
   organisationVenueRelations: 'pp_organisation_venue_relations',
   exhibitionOrganisers: 'pp_exhibition_organisers',
-  organisationsWebsites: 'pp_mm__organisations_websites'
+  organisationsWebsites: 'pp_mm__organisations_websites',
+  venuesWebsites: 'pp_mm__venues_websites'
 }
 
 /** Directus returns a file id; the site and the admin scripts both need a fetchable URL. */

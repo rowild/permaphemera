@@ -78,8 +78,11 @@
       "wheelAria": "Rotating archive image wheel",
       "bladeLinksAria": "Exhibitions in the image wheel",
       "openBlade": "Open exhibition: {title}",
+      "openBladeVenue": "Open gallery: {title}",
       "tooltipEyebrow": "Exhibition",
+      "tooltipEyebrowVenue": "Gallery",
       "touchHint": "Tap again to open the exhibition.",
+      "touchHintVenue": "Tap again to open the gallery.",
       "loadingTitle": "Loading Exhibition Image",
       "loadingCounter": "{current} of {total}",
       "loadingProgress": "{loaded} of {total} exhibitions loaded",
@@ -178,10 +181,11 @@
     "partOf": "Part of",
     "spaces": "Exhibition space | Exhibition spaces",
     "notFound": "Gallery not found",
-    "archiveVenue": "Archive venue",
+    "archiveVenue": "Exhibition venue",
     "fallbackLede": "An exhibition space in {city}—temporary encounters gathered within a remembered architectural shell.",
     "address": "Address",
     "website": "Website",
+    "links": "Link | Links",
     "coordinates": "Coordinates",
     "browse": "Browse this archive",
     "viewMap": "View on map",
@@ -297,7 +301,8 @@
       "cooperation": "In cooperation with",
       "supporter": "Supported by",
       "mixed": "Organisations"
-    }
+    },
+    "curators": "Curator | Curators"
   },
   "exhibitionsDirectory": {
     "seoTitle": "Exhibitions in the archive · PERMAPHEMERA",
@@ -333,10 +338,8 @@
     "eyebrow": "People index · A–Z",
     "title": "Artists, names",
     "accent": "& traces.",
-    "intro": "A deliberately direct directory: many names, many links, and short paths into the exhibitions, venues and years held by the archive.",
-    "directory": "Directory",
-    "directoryTitle": "Find a name.",
-    "directoryAccent": "Follow every lead.",
+    "intro": "Every artist in the archive, from A to Z. Search for a name, an exhibition, a venue, a town or a year, or choose the first letter of a surname. A name opens the artist’s page; the “i” next to it lists their exhibitions and leads straight to them.",
+    "directory": "Artist directory",
     "searchLabel": "Search the artist directory",
     "searchPlaceholder": "Search names…",
     "alphabetAria": "Artist alphabet filter",
@@ -904,5 +907,44 @@
       "supporter": "Supported"
     },
     "noRecords": "No exhibition or event of {name} is in the archive yet."
+  },
+  "persons": {
+    "notFound": "Person not found",
+    "seoDescription": "{name} in the PERMAPHEMERA archive: exhibitions, roles, links and biography.",
+    "fallbackLede": "{name} is recorded in the archive as {roles}.",
+    "fallbackLedeNoRole": "{name} is recorded in the PERMAPHEMERA archive.",
+    "born": "Born",
+    "basedIn": "Lives in",
+    "memberOf": "Member of",
+    "galleries": "Gallery | Galleries",
+    "links": "Link | Links",
+    "fromExhibition": "From the exhibition “{title}”",
+    "aboutTitle": "About {name}",
+    "noBio": "There is no biography of {name} in the archive yet. The exhibitions below show {name}'s work in the archive.",
+    "noBioNoRecords": "There is no biography of {name} in the archive yet.",
+    "recordsEyebrow": "In the archive",
+    "recordsTitle": "Exhibitions with {name} in the archive",
+    "noRecords": "No exhibition with {name} is in the archive yet.",
+    "statementsTitle": "{name} in their own words",
+    "statementOn": "On the exhibition",
+    "roleLabels": {
+      "artist": "Artist",
+      "curator": "Curator",
+      "press": "Press",
+      "board": "Board member"
+    }
+  },
+  "sponsorPages": {
+    "notFound": "Sponsor not found",
+    "eyebrow": "Sponsor",
+    "website": "Website",
+    "supportsTitle": "Supported by {name}",
+    "supportsIntro": "These records in the archive are supported by {name}.",
+    "exhibitions": "Exhibitions",
+    "galleries": "Galleries",
+    "persons": "Persons",
+    "towns": "Towns",
+    "noSupports": "{name} supports PERMAPHEMERA. No supported record is in the archive yet.",
+    "seoDescription": "{name} supports PERMAPHEMERA: the supported exhibitions, galleries and persons in the archive."
   }
 }

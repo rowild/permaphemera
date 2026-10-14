@@ -78,8 +78,11 @@
       "wheelAria": "Rotierendes Rad aus Archivbildern",
       "bladeLinksAria": "Ausstellungen im Bilderrad",
       "openBlade": "Ausstellung öffnen: {title}",
+      "openBladeVenue": "Galerie öffnen: {title}",
       "tooltipEyebrow": "Ausstellung",
+      "tooltipEyebrowVenue": "Galerie",
       "touchHint": "Nochmals tippen, um die Ausstellung zu öffnen.",
+      "touchHintVenue": "Nochmals tippen, um die Galerie zu öffnen.",
       "loadingTitle": "Ausstellungsbild wird geladen",
       "loadingCounter": "{current} von {total}",
       "loadingProgress": "{loaded} von {total} Ausstellungen geladen",
@@ -178,10 +181,11 @@
     "partOf": "Teil von",
     "spaces": "Standort | Standorte",
     "notFound": "Galerie nicht gefunden",
-    "archiveVenue": "Archivort",
+    "archiveVenue": "Ausstellungsort",
     "fallbackLede": "Ein Ausstellungsraum in {city} – temporäre Begegnungen, versammelt in einer erinnerten architektonischen Hülle.",
     "address": "Adresse",
     "website": "Website",
+    "links": "Link | Links",
     "coordinates": "Koordinaten",
     "browse": "Dieses Archiv durchsuchen",
     "viewMap": "Auf der Karte anzeigen",
@@ -297,7 +301,8 @@
       "cooperation": "In Kooperation mit",
       "supporter": "Unterstützt von",
       "mixed": "Organisationen"
-    }
+    },
+    "curators": "Kurator:in | Kurator:innen"
   },
   "exhibitionsDirectory": {
     "seoTitle": "Ausstellungen im Archiv · PERMAPHEMERA",
@@ -333,10 +338,8 @@
     "eyebrow": "Personenindex · A–Z",
     "title": "Künstler:innen, Namen",
     "accent": "& Spuren.",
-    "intro": "Ein bewusst direktes Verzeichnis: viele Namen, viele Verbindungen und kurze Wege zu den Ausstellungen, Orten und Jahren des Archivs.",
-    "directory": "Verzeichnis",
-    "directoryTitle": "Einen Namen finden.",
-    "directoryAccent": "Jeder Spur folgen.",
+    "intro": "Alle Künstler:innen des Archivs von A bis Z. Suchen Sie nach einem Namen, einer Ausstellung, einem Ort oder einem Jahr, oder wählen Sie den Anfangsbuchstaben des Nachnamens. Ein Klick auf einen Namen öffnet die Seite der Person; das „i“ daneben zeigt ihre Ausstellungen und führt direkt dorthin.",
+    "directory": "Künstler:innenverzeichnis",
     "searchLabel": "Künstler:innenverzeichnis durchsuchen",
     "searchPlaceholder": "Namen suchen…",
     "alphabetAria": "Alphabetischer Künstler:innenfilter",
@@ -904,5 +907,44 @@
       "supporter": "Unterstützt"
     },
     "noRecords": "Von {name} ist noch keine Ausstellung und keine Veranstaltung im Archiv."
+  },
+  "persons": {
+    "notFound": "Person nicht gefunden",
+    "seoDescription": "{name} im PERMAPHEMERA-Archiv: Ausstellungen, Rollen, Links und Biografie.",
+    "fallbackLede": "{name} ist im Archiv verzeichnet als {roles}.",
+    "fallbackLedeNoRole": "{name} ist im PERMAPHEMERA-Archiv verzeichnet.",
+    "born": "Geboren",
+    "basedIn": "Lebt in",
+    "memberOf": "Mitglied bei",
+    "galleries": "Galerie | Galerien",
+    "links": "Link | Links",
+    "fromExhibition": "Aus der Ausstellung „{title}“",
+    "aboutTitle": "Über {name}",
+    "noBio": "Im Archiv gibt es noch keine Biografie von {name}. Die Ausstellungen unten zeigen die Arbeit von {name} im Archiv.",
+    "noBioNoRecords": "Im Archiv gibt es noch keine Biografie von {name}.",
+    "recordsEyebrow": "Im Archiv",
+    "recordsTitle": "Ausstellungen mit {name} im Archiv",
+    "noRecords": "Im Archiv ist noch keine Ausstellung mit {name}.",
+    "statementsTitle": "{name} in eigenen Worten",
+    "statementOn": "Zur Ausstellung",
+    "roleLabels": {
+      "artist": "Künstler:in",
+      "curator": "Kurator:in",
+      "press": "Presse",
+      "board": "Vorstand"
+    }
+  },
+  "sponsorPages": {
+    "notFound": "Sponsor nicht gefunden",
+    "eyebrow": "Sponsor",
+    "website": "Website",
+    "supportsTitle": "Unterstützt von {name}",
+    "supportsIntro": "Diese Einträge im Archiv unterstützt {name}.",
+    "exhibitions": "Ausstellungen",
+    "galleries": "Galerien",
+    "persons": "Personen",
+    "towns": "Orte",
+    "noSupports": "{name} unterstützt PERMAPHEMERA. Im Archiv ist noch kein unterstützter Eintrag.",
+    "seoDescription": "{name} unterstützt PERMAPHEMERA: die unterstützten Ausstellungen, Galerien und Personen im Archiv."
   }
 }

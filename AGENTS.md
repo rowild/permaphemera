@@ -3,6 +3,9 @@
 This repository holds the whole PERMAPHEMERA project. Work happens in one of
 these folders. Each has its own rules. Read them before you change anything there.
 
+`PROJECT_INFO.md` maps this repo and its two sibling folders (the 360° image
+pipeline and the Tour Editor app) and says where each step of the work happens.
+
 | Folder      | Read first                                   |
 |-------------|----------------------------------------------|
 | `frontend/` | `frontend/AGENTS.md` (strict CSS and data rules, check scripts) |
@@ -19,6 +22,7 @@ Cross-cutting design specs (Directus + frontend together) live in `docs/superpow
 - Never commit `directus/.env`, `directus/database/`, `directus/uploads/`, or `frontend/.env.deploy.local`.
 - `_Material/` and `_BU/` are git-ignored source material. Do not add code there.
 - The `frontend-qa-checklist` skill lives in `.claude/skills/`. Use it before shipping frontend UI changes.
+- Adding or updating a gallery (venue), town, artist or exhibition in Directus: follow `docs/how-to-gallery-and-exhibition.md` (skill `gallery-exhibition` in `.claude/skills/`).
 - The `fin-patch` skill is global (`~/.claude/skills/fin-patch/`) and works from any folder.
 
 ## Data model
