@@ -24,6 +24,7 @@ Cross-cutting design specs (Directus + frontend together) live in `docs/superpow
 - The `frontend-qa-checklist` skill lives in `.claude/skills/`. Use it before shipping frontend UI changes.
 - Adding or updating a gallery (venue), town, artist or exhibition in Directus: follow `docs/how-to-gallery-and-exhibition.md` (skill `gallery-exhibition` in `.claude/skills/`).
 - The `fin-patch` skill is global (`~/.claude/skills/fin-patch/`) and works from any folder.
+- Agreed work parked for later lives in `BACKLOG.md` at the root.
 
 ## Data model
 

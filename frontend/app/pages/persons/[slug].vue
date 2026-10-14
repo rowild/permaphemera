@@ -94,7 +94,7 @@ useSeoMeta({
             :src="person.image.src"
             :alt="person.image.alt"
           />
-          <figcaption class="[ person-hero-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic">
+          <figcaption v-if="person.image.caption || person.image.fromExhibition" class="[ person-hero-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic">
             <span class="not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
             {{ person.image.caption ?? (person.image.fromExhibition ? $t('persons.fromExhibition', { title: person.image.fromExhibition }) : '') }}
           </figcaption>

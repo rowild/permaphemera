@@ -173,6 +173,8 @@ assert.doesNotMatch(personPage, /tablet:aspect-\[1\.28\]/, 'A person portrait mu
 // All external links sit in the Links row, the main link first on its own line; nothing
 // under the name. The biography sits in the left column, under the facts, beside the photo.
 assert.doesNotMatch(personPage, /person-home-link/, 'The person page must not repeat a link under the name.')
+// A photo without a credit line must not leave a lone "FIG. I" label behind.
+assert.match(personPage, /<figcaption v-if="person\.image\.caption \|\| person\.image\.fromExhibition"/, 'The person photo caption must hide when there is nothing to show.')
 assert.match(personPage, /person-link-main[\s\S]{0,300}person\.home\.url/, 'The Links row must start with the main link.')
 assert.match(personPage, /person-hero-copy[\s\S]*person-facts[\s\S]*person-about[\s\S]*person-hero-figure/, 'The biography must follow the facts inside the left column.')
 assert.match(organisationPage, /:to="localePath\(`\/persons\/\$\{member\.slug\}\/`\)"/, 'Organisation members must link to their person page.')
