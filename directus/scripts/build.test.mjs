@@ -73,7 +73,7 @@ test('the builder refuses a content group that does not end with description', (
     section('address', 'Address', ['address', 'website_url', 'latitude', 'longitude', 'coordinate_label']),
     section('images', 'Images', ['image', 'image_alt', 'hero_image', 'hero_image_alt', 'image_caption']),
     section('relations', 'Relations', ['exhibitions', 'further_exhibitions', 'persons', 'sponsors']),
-    content(['lede', 'description', 'about']),
+    content(['lede', 'description', 'about_html']),
   ]
   assert.throws(() => buildAll({ venues: { layout } }), /must end with description/)
 })

@@ -173,6 +173,16 @@ assert.doesNotMatch(personPage, /tablet:aspect-\[1\.28\]/, 'A person portrait mu
 // All external links sit in the Links row, the main link first on its own line; nothing
 // under the name. The biography sits in the left column, under the facts, beside the photo.
 assert.doesNotMatch(personPage, /person-home-link/, 'The person page must not repeat a link under the name.')
+// Preview sections on the start page show only galleries with a real image (no placeholder, no gap).
+const landingPage = await readText('app/pages/index.vue')
+assert.match(landingPage, /venues\.value\.filter\(\(venueRecord\) => venueRecord\.has_image\)/, 'The start page must preview only galleries with a real image.')
+assert.match(landingPage, /const previewExhibitions = computed\(\(\) => venueExhibitions\.value\.filter\(\(exhibition\) => exhibition\.has_image\)\)/, 'The start page must preview only exhibitions with a real image.')
+for (const use of [/\[\.\.\.previewExhibitions\.value\]/, /selectExhibitionSchedule\(previewExhibitions\.value/, /buildHeroItems\(\s*previewExhibitions\.value/]) assert.match(landingPage, use, `Every start page exhibition section must use previewExhibitions (${use}).`)
+// The figure label ("FIG. I") never wraps, however long the caption beside it is.
+const venuePage = await readText('app/pages/venues/[slug].vue')
+for (const [name, page] of [['venue', venuePage], ['person', personPage], ['organisation', organisationPage]]) {
+  assert.match(page, /<span class="shrink-0 whitespace-nowrap not-italic[^"]*">\{\{ \$t\('venue\.figure'\) \}\}/, `The ${name} page figure label must not wrap.`)
+}
 // A photo without a credit line must not leave a lone "FIG. I" label behind.
 assert.match(personPage, /<figcaption v-if="person\.image\.caption \|\| person\.image\.fromExhibition"/, 'The person photo caption must hide when there is nothing to show.')
 assert.match(personPage, /person-link-main[\s\S]{0,300}person\.home\.url/, 'The Links row must start with the main link.')
@@ -185,6 +195,8 @@ for (const [pattern, what] of [
   [/:to="localePath\(`\/persons\/\$\{curator\.slug\}\/`\)"/, 'curator names'],
   [/:to="localePath\(`\/persons\/\$\{statement\.artist_slug\}\/`\)"/, 'statement authors']
 ]) assert.match(exhibitionPage, pattern, `On the exhibition page, ${what} must link to the person page.`)
+// Admission comes from the record; an empty field means free admission.
+assert.match(exhibitionPage, /\{\{ exhibition\.admission \?\? \$t\('exhibition\.freeAdmission'\) \}\}/, 'The exhibition page must show the admission field, or "Free admission" when it is empty.')
 
 console.log(`Directory routes are valid (${galleries.length} galleries across ${new Set(galleries.map((gallery) => archive.locations.find((location) => location.id === gallery.location)?.state)).size} states; ${exhibitions.length} exhibition records).`)
 }

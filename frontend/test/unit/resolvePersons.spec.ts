@@ -9,17 +9,17 @@ const roles = [
   { id: 'r-artist', slug: 'artist', title: 'Artist', status: 'published' as const, sort: 1, translations: [{ languages_code: 'en', title: 'Artist' }, { languages_code: 'de', title: 'Künstler:in' }] },
   { id: 'r-curator', slug: 'curator', title: 'Curator', status: 'published' as const, sort: 2, translations: [] }
 ]
-const exhibition = (id: string, start: string, image = `/img/${id}.jpg`) => ({
-  id, slug: id, title: `Title ${id}`, start_date: start, image, image_alt: `Alt ${id}`
+const exhibition = (id: string, start: string, image = `/img/${id}.jpg`, hasImage = true) => ({
+  id, slug: id, title: `Title ${id}`, start_date: start, image, image_alt: `Alt ${id}`, has_image: hasImage
 }) as never
 
 const base = (overrides: Partial<PersonSources> = {}): PersonSources => ({
   persons: [person('urach', {
     image: '/img/urach.jpg', image_alt: 'Portrait', image_caption: 'Inés Urach · Foto: Inés Urach',
-    born: '1970, Klagenfurt', based_in: 'Klagenfurt', lede: 'Painter.', about: ['Bio.'],
+    born: '1970, Klagenfurt', based_in: 'Klagenfurt', lede: 'Painter.', about_html: '<p>Bio.</p>',
     translations: [
-      { languages_code: 'en', based_in: 'Klagenfurt', lede: 'Painter.', about: ['Bio.'], image_alt: 'Portrait', image_caption: 'Inés Urach · Foto: Inés Urach' },
-      { languages_code: 'de', based_in: 'Klagenfurt', lede: 'Malerin.', about: ['Biografie.'], image_alt: 'Porträt', image_caption: 'Inés Urach · Foto: Inés Urach' }
+      { languages_code: 'en', based_in: 'Klagenfurt', lede: 'Painter.', about_html: '<p>Bio.</p>', image_alt: 'Portrait', image_caption: 'Inés Urach · Foto: Inés Urach' },
+      { languages_code: 'de', based_in: 'Klagenfurt', lede: 'Malerin.', about_html: '<p>Biografie.</p>', image_alt: 'Porträt', image_caption: 'Inés Urach · Foto: Inés Urach' }
     ]
   })],
   roles,
@@ -50,7 +50,7 @@ const base = (overrides: Partial<PersonSources> = {}): PersonSources => ({
 describe('resolvePersons', () => {
   it('builds the page model: roles, facts, home link, records newest first with their role', () => {
     const [p] = resolvePersons(base())
-    expect(p).toMatchObject({ slug: 'urach', isArtist: true, born: '1970, Klagenfurt', basedIn: 'Klagenfurt', lede: 'Painter.', about: ['Bio.'] })
+    expect(p).toMatchObject({ slug: 'urach', isArtist: true, born: '1970, Klagenfurt', basedIn: 'Klagenfurt', lede: 'Painter.', aboutHtml: '<p>Bio.</p>' })
     expect(p!.roles).toEqual([{ slug: 'artist', title: 'Artist' }])
     expect(p!.home).toEqual({ url: 'https://www.inesurach.at/', label: 'inesurach.at' })
     expect(p!.records.map((r) => [r.exhibition.id, r.role])).toEqual([['e-new', 'curator'], ['e-old', 'artist']])
@@ -59,7 +59,7 @@ describe('resolvePersons', () => {
 
   it('uses the German texts and role titles in German', () => {
     const [p] = resolvePersons(base({ locale: 'de' }))
-    expect(p).toMatchObject({ lede: 'Malerin.', about: ['Biografie.'] })
+    expect(p).toMatchObject({ lede: 'Malerin.', aboutHtml: '<p>Biografie.</p>' })
     expect(p!.roles).toEqual([{ slug: 'artist', title: 'Künstler:in' }])
   })
 
@@ -73,7 +73,12 @@ describe('resolvePersons', () => {
     expect(p).toMatchObject({ slug: 'nobody', isArtist: false, roles: [], records: [], links: [], statements: [] })
     expect(p!.image).toBeUndefined()
     expect(p!.home).toBeUndefined()
-    expect(p!.about).toBeUndefined()
+    expect(p!.aboutHtml).toBeUndefined()
+  })
+
+  it('never takes a placeholder exhibition image as the fallback photo', () => {
+    const [p] = resolvePersons(base({ persons: [person('urach')], exhibitions: [exhibition('e-old', '2025-01-01'), exhibition('e-new', '2026-10-03', '/assets/placeholder', false)] }))
+    expect(p!.image).toEqual({ src: '/img/e-old.jpg', alt: 'Alt e-old', fromExhibition: 'Title e-old' })
   })
 
   it('has no records and no fallback image when the only exhibition is unpublished', () => {

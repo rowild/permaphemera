@@ -1,10 +1,10 @@
 // directus/scripts/schema.mjs
 // The PERMAPHEMERA schema as data. Names of junction tables, translation tables
 // and FK columns are never written here; naming.mjs derives them.
-import { bool, date, dropdown, file, float, jsonArray, m2o, markdown, str, text } from './fields.mjs'
+import { bool, date, dropdown, file, float, m2o, markdown, richText, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-10-14.3'
+export const SCHEMA_VERSION = '2026-10-15.2'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -58,7 +58,7 @@ export const entities = {
       bool('featured', { note: 'Curated landing-page highlight.' }),
       text('description', { translated: true }),
       str('lede', { translated: true, note: 'One-line teaser under the venue title.' }),
-      jsonArray('about', { translated: true, note: 'JSON array of paragraph strings.' }),
+      richText('about_html', { translated: true, label: 'About', note: 'Paragraphs, bold, italic, lists. No links: add them under Links.' }),
       str('image_caption', { translated: true }),
       str('coordinate_label', { translated: true, note: 'Human-readable DMS readout.' }),
     ],
@@ -67,7 +67,7 @@ export const entities = {
       section('address', 'Address', ['address', 'website_url', 'websites', 'latitude', 'longitude', 'coordinate_label']),
       section('images', 'Images', ['image', 'image_alt', 'hero_image', 'hero_image_alt', 'image_caption']),
       section('relations', 'Relations', ['spaces', 'exhibitions', 'further_exhibitions', 'organisation_relations', 'persons', 'sponsors']),
-      content(['lede', 'about', 'description']),
+      content(['lede', 'about_html', 'description']),
     ],
   },
 
@@ -88,13 +88,13 @@ export const entities = {
       str('image_alt', { width: 'half', translated: true }),
       str('image_caption', { translated: true, note: 'Credit line under the photo: "<what> · Foto: <holder>".' }),
       str('lede', { translated: true, note: 'One line under the name on the person page.' }),
-      jsonArray('about', { translated: true, note: 'Biography: JSON array of paragraph strings; the last one names the source.' }),
+      richText('about_html', { translated: true, label: 'Biography', note: 'Biography (paragraphs, bold, italic, lists); the last sentence names the source. No links: add them under Links.' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'first_name', 'last_name', 'middle_initial', 'display_name', 'slug', 'is_collective', 'roles']),
       section('facts', 'Facts', ['born', 'based_in']),
       section('media', 'Photo', ['image', 'image_alt', 'image_caption']),
-      section('text', 'Text', ['lede', 'about']),
+      section('text', 'Text', ['lede', 'about_html']),
       section('links', 'Links', ['websites']),
       section('relations', 'Relations', ['participations', 'memberships', 'venues', 'sponsors']),
     ],
@@ -133,6 +133,7 @@ export const entities = {
       str('date_range', { width: 'half', translated: true, note: 'Display form of the dates.' }),
       str('opening_hours', { width: 'half', translated: true }),
       str('vernissage', { width: 'half', translated: true }),
+      str('admission', { width: 'half', translated: true, note: 'E.g. "€ 5, reduced € 3". Leave empty for free admission: the site then shows "Free admission".' }),
       str('medium', { width: 'half', translated: true }),
       file('source_pdf', { note: 'The invitation or press sheet the record was derived from.' }),
       str('tour', { note: 'Root-relative folder of the exported 360° tour, e.g. /media/tours/<id>/. Empty while none is published.' }),
@@ -141,7 +142,7 @@ export const entities = {
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'slug', 'kind', 'primary_venue']),
-      section('dates', 'Dates', ['start_date', 'end_date', 'is_permanent', 'date_range', 'opening_hours', 'vernissage']),
+      section('dates', 'Dates', ['start_date', 'end_date', 'is_permanent', 'date_range', 'opening_hours', 'vernissage', 'admission']),
       section('media', 'Media', ['image', 'image_alt', 'source_pdf', 'medium']),
       section('tour', 'Tour', ['tour', 'tour_status', 'tour_available_from']),
       section('relations', 'Relations', ['participations', 'organisers', 'statements', 'websites', 'further_venues', 'sponsors']),
@@ -211,7 +212,7 @@ export const entities = {
       str('image_alt', { width: 'half', translated: true }),
       str('image_caption', { translated: true, note: 'Credit line under the photo.' }),
       str('lede', { translated: true, note: 'One-line teaser.' }),
-      jsonArray('about', { translated: true, note: 'JSON array of paragraph strings.' }),
+      richText('about_html', { translated: true, label: 'About', note: 'Paragraphs, bold, italic, lists. No links: add them under Links.' }),
       text('description', { translated: true }),
     ],
     layout: [
@@ -219,7 +220,7 @@ export const entities = {
       section('seat', 'Seat', ['address', 'location', 'founded']),
       section('media', 'Media', ['logo', 'logo_alt', 'image', 'image_alt', 'image_caption']),
       section('relations', 'Relations', ['venue_relations', 'exhibitions', 'members', 'websites']),
-      content(['lede', 'about', 'description']),
+      content(['lede', 'about_html', 'description']),
     ],
   },
 

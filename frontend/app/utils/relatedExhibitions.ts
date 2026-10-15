@@ -6,11 +6,13 @@ interface RelatedCandidate extends TourReadyExhibition {
   start_date: string
   end_date: string
   is_permanent: boolean
+  has_image: boolean
 }
 
 /**
- * "Also in the archive" on an exhibition page: only exhibitions that are over and whose 360°
- * tour is open, so every card leads to an experience. Same venue first, then newest first.
+ * "Also in the archive" on an exhibition page: only exhibitions that are over, whose 360°
+ * tour is open and that have a real image (no placeholder), so every card leads to an
+ * experience. Same venue first, then newest first.
  */
 export const selectRelatedExhibitions = <T extends RelatedCandidate>(
   exhibitions: readonly T[],
@@ -20,6 +22,7 @@ export const selectRelatedExhibitions = <T extends RelatedCandidate>(
 ): T[] => exhibitions
   .filter((item) => item.slug !== current.slug
     && !item.is_permanent
+    && item.has_image
     && item.end_date < today
     && resolveTourAccess(item, today).kind === 'open')
   .sort((left, right) =>

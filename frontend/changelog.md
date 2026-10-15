@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.21 - 2026-10-15 06:15:08 CEST
+
+- The "About" texts of galleries, organisations and persons are written in the Directus WYSIWYG editor instead of a JSON code field (new field `about_html`, all texts carried over). The site shows them in the archive typography and keeps only paragraphs, bold, italic and lists; links stay link records.
+- Exhibitions have a real admission field. An empty field shows "Free admission" / "Eintritt frei"; until now every exhibition said "Free".
+- Previews show only records with a real image: the start page hero fan, the current/upcoming programme, the selected exhibitions and the gallery cards, as well as the related exhibitions under an exhibition, leave out anything whose image is missing or a placeholder. A person without a photo no longer borrows a placeholder exhibition image.
+- New gallery: the Galerie im Stiegenhaus in the Impuls Center, Seeboden am Millstätter See, run by the association kultur.im.puls, with its current exhibition "Blinddate der Perspektiven" (Inés Urach, Nicoline von Heyl, Roswitha Bucher-Sakowski) and the announced "Klaus Zlattinger & Friends".
+- New exhibition in the Living Studio: "Biodiversität entdecken" by school classes from 17 Carinthian primary schools, with kärnten.museum, Universität Klagenfurt and Climate Fund Klagenfurt as cooperation partners (Volkskino Klagenfurt and JUMP DOME Klagenfurt as supporters, still drafts).
+- Small cards on the start page: the date icon sits on the first line of a wrapping date, and titles keep the descenders of letters like g and p.
+- The "FIG. I" label under a photo stays on one line next to long captions, and disappears when a photo has no caption.
+
 ## 0.0.20 - 2026-10-14 21:20:13 CEST
 
 - Every published person has a page at `/persons/<slug>/` (English `/en/persons/<slug>/`): photo with credit line (or the image of the person's newest exhibition), intro line, biography, born, lives in, memberships, galleries and links (main link first, further links on the next line), then all exhibitions with the person's role and their statements. On desktop the biography sits under the facts, beside the photo; a portrait keeps its upright frame on tablets and phones. Curators and board members get the page without the "Artists" breadcrumb.

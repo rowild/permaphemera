@@ -12,7 +12,7 @@ const venues = [{
   id: 'venue-parkschloessl', slug: 'parkschloessl-spittal-drau', location: 'location-spittal',
   title: 'Parkschlössl', type: 'gallery' as const, address: '', website_url: null, latitude: null, longitude: null,
   image: '/v.webp', image_alt: '', hero_image: null, hero_image_alt: null,
-  archive_number: '17', featured: true, description: null, lede: null, about: null, image_caption: null, coordinate_label: null,
+  archive_number: '17', featured: true, description: null, lede: null, about_html: null, image_caption: null, coordinate_label: null,
   status: 'published' as const, translations: [{ languages_code: 'en', description: '' }]
 }]
 
@@ -64,6 +64,19 @@ describe('resolveExhibitions', () => {
     expect(record.venue_slug).toBe('parkschloessl-spittal-drau')
     expect(record.venue).toBe('Parkschlössl')
     expect(record.city).toBe('Spittal an der Drau')
+  })
+
+  it('passes the localized admission text through, and nothing when it is empty', () => {
+    expect(resolve()[0].admission).toBeUndefined()
+    const paid = [{ ...exhibitions[0], admission: '€ 5', translations: [{ ...exhibitions[0]!.translations[0], admission: '€ 5' }, { languages_code: 'de', admission: '5 €' }] }]
+    expect(resolveExhibitions(paid as never, venues, locations, participations, persons, roles, 'de')[0].admission).toBe('5 €')
+    expect(resolveExhibitions(paid as never, venues, locations, participations, persons, roles, 'en')[0].admission).toBe('€ 5')
+  })
+
+  it('says whether an exhibition has a real image: not missing and not a placeholder file', () => {
+    expect(resolve()[0].has_image).toBe(true)
+    const placeholder = [{ ...exhibitions[0], image_placeholder: true }]
+    expect(resolveExhibitions(placeholder as never, venues, locations, participations, persons, roles, 'en')[0].has_image).toBe(false)
   })
 
   it('passes a published tour folder through and drops a null one', () => {

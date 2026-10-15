@@ -27,11 +27,11 @@ describe('loadArchive', () => {
     const calls: string[] = []
     await loadArchive(fake(minimal, calls))
     expect(calls).toHaveLength(26)
-    expect(calls).toContain('pp_organisations?fields=*%2Ctranslations.*&limit=-1&sort=sort')
+    expect(calls).toContain('pp_organisations?fields=*%2Ctranslations.*%2Clogo.id%2Clogo.filename_download%2Cimage.id%2Cimage.filename_download&limit=-1&sort=sort')
     expect(calls).toContain('pp_organisation_memberships?fields=*%2Ctranslations.*&limit=-1&sort=sort')
-    expect(calls).toContain('pp_venues?fields=*%2Ctranslations.*&limit=-1&sort=sort')
+    expect(calls).toContain('pp_venues?fields=*%2Ctranslations.*%2Cimage.id%2Cimage.filename_download%2Chero_image.id%2Chero_image.filename_download&limit=-1&sort=sort')
     expect(calls).toContain('pp_mm__persons_roles?fields=*&limit=-1&sort=sort')
-    expect(calls).toContain('pp_persons?fields=*%2Ctranslations.*&limit=-1&sort=sort')
+    expect(calls).toContain('pp_persons?fields=*%2Ctranslations.*%2Cimage.id%2Cimage.filename_download&limit=-1&sort=sort')
   })
 
   it('turns file ids into asset URLs and leaves nulls and tour paths alone', async () => {
@@ -42,6 +42,18 @@ describe('loadArchive', () => {
     expect(snapshot.exhibitions[0].tour).toBe('/media/tours/x/')
     expect(snapshot.sponsors[0].logo).toBeNull()
     expect(snapshot.organisations[0].logo).toBe('http://cms.test/assets/f4')
+  })
+
+  it('turns expanded file objects into asset URLs and flags placeholder files', async () => {
+    const snapshot = await loadArchive(fake({
+      ...minimal,
+      pp_venues: [
+        { id: 'v1', slug: 'v', image: { id: 'f9', filename_download: 'placeholder-venue.svg' }, hero_image: null, translations: [] },
+        { id: 'v2', slug: 'w', image: { id: 'f1', filename_download: 'europahaus-klagenfurt.jpg' }, hero_image: null, translations: [] }
+      ]
+    }))
+    expect(snapshot.venues[0]).toMatchObject({ image: 'http://cms.test/assets/f9', image_placeholder: true, hero_image: null, hero_image_placeholder: false })
+    expect(snapshot.venues[1]).toMatchObject({ image: 'http://cms.test/assets/f1', image_placeholder: false })
   })
 
   it('names the collection when a request fails', async () => {

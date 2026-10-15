@@ -9,8 +9,8 @@ const exhibition = (id: string, start: string, end: string, tour?: { tour?: stri
   tour: tour?.tour, tour_status: tour?.status ?? 'unavailable', tour_available_from: tour?.from ?? null
 })
 
-const venue = (slug: string, archive: string, image = `/img/${slug}.jpg`) => ({
-  id: `id-${slug}`, slug, name: `Venue ${slug}`, city_name: 'Klagenfurt', image, archive_number: archive
+const venue = (slug: string, archive: string, image = `/img/${slug}.jpg`, hasImage = Boolean(image)) => ({
+  id: `id-${slug}`, slug, name: `Venue ${slug}`, city_name: 'Klagenfurt', image, has_image: hasImage, archive_number: archive
 })
 
 const href = {
@@ -51,6 +51,12 @@ describe('buildHeroItems', () => {
     expect(items.map((item) => item.id)).toEqual(['t1', 'venue-id-a', 'venue-id-b', 'venue-id-parkschloessl'])
     const gallery = items[1]!
     expect(gallery).toMatchObject({ kind: 'venue', href: '/venues/a/', title: 'Venue a', location: 'Klagenfurt', artist: '', dateRange: '' })
+  })
+
+  it('never fills a blade with a gallery whose image is a placeholder', () => {
+    const venues = [venue('a', '27'), venue('placeholder', '26', '/assets/placeholder', false)]
+    const items = buildHeroItems([open('t1', '2026-06-01')], venues, today, href)
+    expect(items.map((item) => item.id)).toEqual(['t1', 'venue-id-a'])
   })
 
   it('needs no galleries once there are twelve open tours', () => {

@@ -203,7 +203,7 @@ const surfaceClass = {
           <div ref="recordTitleViewport" class="[ record-title-viewport ] overflow-hidden pb-0.5">
             <h3
               ref="recordTitleText"
-              class="[ record-title ] m-0 w-max max-w-none font-display text-lg font-medium leading-[1.08] whitespace-nowrap compact:text-sm"
+              class="[ record-title ] m-0 w-max max-w-none font-display text-lg font-medium leading-tight whitespace-nowrap compact:text-sm"
               :class="recordTitleOverflow && active ? 'archive-record-title-marquee' : ''"
               :style="recordTitleStyle"
             >{{ props.exhibition.title }}</h3>
@@ -214,13 +214,13 @@ const surfaceClass = {
           <p ref="artistEl" class="[ artist-name ] my-[0.08rem] mt-[0.18rem] truncate font-display leading-[1.1] text-archive-red compact:text-sm">{{ props.exhibition.artist }}</p>
           <ArchiveFloatingTooltip :anchor="artistEl" :open="artistOverflow && tip === 'artist'" :label="$t('cards.fullArtists')"><span class="text-archive-red">{{ props.exhibition.artist }}</span></ArchiveFloatingTooltip>
         </div>
-        <p class="[ record-location-line ] [ record-meta-line ] my-[0.08rem] flex min-w-0 items-center gap-[0.48rem] font-display text-sm leading-[1.15] text-archive-record-meta compact:text-xs compact:leading-[1.05]" :title="`${props.exhibition.venue}, ${props.exhibition.city}`">
-          <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-location inline-block size-4 flex-none bg-current" aria-hidden="true" />
+        <p class="[ record-location-line ] [ record-meta-line ] my-[0.08rem] flex min-w-0 items-start gap-[0.48rem] font-display text-sm leading-[1.15] text-archive-record-meta compact:text-xs compact:leading-[1.05]" :title="`${props.exhibition.venue}, ${props.exhibition.city}`">
+          <span class="[ record-meta-icon-box ] flex h-lh flex-none items-center" aria-hidden="true"><span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-location inline-block size-4 flex-none bg-current" /></span>
           <span class="min-w-0 truncate">{{ props.exhibition.venue }}, {{ props.exhibition.city }}</span>
         </p>
-        <p class="[ record-date-line ] [ record-meta-line ] my-[0.08rem] flex items-center gap-[0.48rem] font-display text-sm leading-[1.15] text-archive-record-meta compact:text-xs compact:leading-[1.05]">
-          <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-calendar inline-block size-4 flex-none bg-current" aria-hidden="true" />
-          {{ props.exhibition.date_range }}
+        <p class="[ record-date-line ] [ record-meta-line ] my-[0.08rem] flex items-start gap-[0.48rem] font-display text-sm leading-[1.15] text-archive-record-meta compact:text-xs compact:leading-[1.05]">
+          <span class="[ record-meta-icon-box ] flex h-lh flex-none items-center" aria-hidden="true"><span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-calendar inline-block size-4 flex-none bg-current" /></span>
+          <span class="min-w-0">{{ props.exhibition.date_range }}</span>
         </p>
       </div>
     </template>

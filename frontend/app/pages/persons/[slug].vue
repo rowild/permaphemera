@@ -80,9 +80,7 @@ useSeoMeta({
 
           <section class="[ person-about ] mt-[clamp(2.5rem,4vw,4rem)] compact:mt-8" aria-labelledby="person-about-title">
             <h2 id="person-about-title" class="m-0 mb-4 font-display text-h3 font-normal leading-[1.15] compact:text-lg">{{ $t('persons.aboutTitle', { name: person.name }) }}</h2>
-            <template v-if="person.about">
-              <p v-for="paragraph in person.about" :key="paragraph" class="max-w-176 text-button leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ paragraph }}</p>
-            </template>
+            <ArchiveRichText v-if="person.aboutHtml" :html="person.aboutHtml" />
             <p v-else class="m-0 max-w-176 text-button text-archive-muted compact:text-sm">{{ $t(person.records.length ? 'persons.noBio' : 'persons.noBioNoRecords', { name: person.name }) }}</p>
           </section>
         </div>
@@ -95,7 +93,7 @@ useSeoMeta({
             :alt="person.image.alt"
           />
           <figcaption v-if="person.image.caption || person.image.fromExhibition" class="[ person-hero-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic">
-            <span class="not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
+            <span class="shrink-0 whitespace-nowrap not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
             {{ person.image.caption ?? (person.image.fromExhibition ? $t('persons.fromExhibition', { title: person.image.fromExhibition }) : '') }}
           </figcaption>
         </figure>

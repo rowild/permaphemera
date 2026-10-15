@@ -160,7 +160,7 @@ useSeoMeta({
           </ArchiveMetadataRow>
           <ArchiveMetadataRow :label="$t('exhibition.admission')" variant="exhibition">
             <template #icon><Ticket :size="18" aria-hidden="true" /></template>
-            {{ $t('common.free') }}
+            {{ exhibition.admission ?? $t('exhibition.freeAdmission') }}
           </ArchiveMetadataRow>
         </dl>
 

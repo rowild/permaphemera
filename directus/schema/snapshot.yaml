@@ -3168,7 +3168,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 4
+      sort: 5
       special:
         - m2o
       translations: null
@@ -3776,7 +3776,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 2
+      sort: 3
       special:
         - o2m
       translations: null
@@ -3802,7 +3802,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 3
+      sort: 5
       special:
         - m2m
       translations: null
@@ -3828,7 +3828,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 4
+      sort: 6
       special:
         - m2m
       translations: null
@@ -4214,7 +4214,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 3
+      sort: 4
       special:
         - m2m
       translations: null
@@ -4295,6 +4295,49 @@ fields:
       validation: null
       validation_message: null
       width: full
+  - collection: pp_exhibitions
+    field: admission
+    type: string
+    meta:
+      collection: pp_exhibitions
+      conditions: null
+      display: null
+      display_options: null
+      field: admission
+      group: ui_group_dates
+      hidden: false
+      interface: input
+      note: >-
+        E.g. "€ 5, reduced € 3". Leave empty for free admission: the site then
+        shows "Free admission".
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: admission
+      table: pp_exhibitions
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_locations
     field: ui_accordion_main
     type: alias
@@ -10322,48 +10365,6 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: pp_organisations
-    field: about
-    type: json
-    meta:
-      collection: pp_organisations
-      conditions: null
-      display: null
-      display_options: null
-      field: about
-      group: ui_group_content
-      hidden: false
-      interface: input-code
-      note: JSON array of paragraph strings.
-      options:
-        language: json
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special:
-        - cast-json
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: about
-      table: pp_organisations
-      data_type: json
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: pp_organisations
     field: description
     type: text
     meta:
@@ -10794,6 +10795,56 @@ fields:
       data_type: varchar
       default_value: null
       max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_organisations
+    field: about_html
+    type: text
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: about_html
+      group: ui_group_content
+      hidden: false
+      interface: input-rich-text-html
+      note: 'Paragraphs, bold, italic, lists. No links: add them under Links.'
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations:
+        - language: en-US
+          translation: About
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about_html
+      table: pp_organisations
+      data_type: text
+      default_value: null
+      max_length: null
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -12027,50 +12078,6 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: pp_persons
-    field: about
-    type: json
-    meta:
-      collection: pp_persons
-      conditions: null
-      display: null
-      display_options: null
-      field: about
-      group: ui_group_text
-      hidden: false
-      interface: input-code
-      note: >-
-        Biography: JSON array of paragraph strings; the last one names the
-        source.
-      options:
-        language: json
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special:
-        - cast-json
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: about
-      table: pp_persons
-      data_type: json
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: pp_persons
     field: translations
     type: alias
     meta:
@@ -12098,6 +12105,58 @@ fields:
       validation: null
       validation_message: null
       width: full
+  - collection: pp_persons
+    field: about_html
+    type: text
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: about_html
+      group: ui_group_text
+      hidden: false
+      interface: input-rich-text-html
+      note: >-
+        Biography (paragraphs, bold, italic, lists); the last sentence names the
+        source. No links: add them under Links.
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations:
+        - language: en-US
+          translation: Biography
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about_html
+      table: pp_persons
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_roles
     field: ui_accordion_main
     type: alias
@@ -14150,7 +14209,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 11
+      sort: 12
       special: null
       translations: null
       validation: null
@@ -14158,6 +14217,47 @@ fields:
       width: half
     schema:
       name: medium
+      table: pp_translations__exhibitions
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__exhibitions
+    field: admission
+    type: string
+    meta:
+      collection: pp_translations__exhibitions
+      conditions: null
+      display: null
+      display_options: null
+      field: admission
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_exhibitions.admission
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 11
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: admission
       table: pp_translations__exhibitions
       data_type: varchar
       default_value: null
@@ -14899,7 +14999,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 6
+      sort: 8
       special: null
       translations: null
       validation: null
@@ -14911,48 +15011,6 @@ fields:
       data_type: varchar
       default_value: null
       max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: pp_translations__organisations
-    field: about
-    type: json
-    meta:
-      collection: pp_translations__organisations
-      conditions: null
-      display: null
-      display_options: null
-      field: about
-      group: null
-      hidden: false
-      interface: input-code
-      note: Translated field for pp_organisations.about
-      options:
-        language: json
-      readonly: false
-      required: false
-      searchable: true
-      sort: 7
-      special:
-        - cast-json
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: about
-      table: pp_translations__organisations
-      data_type: json
-      default_value: null
-      max_length: null
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -14981,7 +15039,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 8
+      sort: 10
       special: null
       translations: null
       validation: null
@@ -15075,6 +15133,56 @@ fields:
       data_type: varchar
       default_value: null
       max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: about_html
+    type: text
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: about_html
+      group: null
+      hidden: false
+      interface: input-rich-text-html
+      note: Translated field for pp_organisations.about_html
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
+      readonly: false
+      required: false
+      searchable: true
+      sort: 9
+      special: null
+      translations:
+        - language: en-US
+          translation: About
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about_html
+      table: pp_translations__organisations
+      data_type: text
+      default_value: null
+      max_length: null
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -15377,34 +15485,42 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: pp_translations__persons
-    field: about
-    type: json
+    field: about_html
+    type: text
     meta:
       collection: pp_translations__persons
       conditions: null
       display: null
       display_options: null
-      field: about
+      field: about_html
       group: null
       hidden: false
-      interface: input-code
-      note: Translated field for pp_persons.about
+      interface: input-rich-text-html
+      note: Translated field for pp_persons.about_html
       options:
-        language: json
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
       readonly: false
       required: false
       searchable: true
       sort: 8
-      special:
-        - cast-json
-      translations: null
+      special: null
+      translations:
+        - language: en-US
+          translation: Biography
       validation: null
       validation_message: null
       width: full
     schema:
-      name: about
+      name: about_html
       table: pp_translations__persons
-      data_type: json
+      data_type: text
       default_value: null
       max_length: null
       numeric_precision: null
@@ -15959,48 +16075,6 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: pp_translations__venues
-    field: about
-    type: json
-    meta:
-      collection: pp_translations__venues
-      conditions: null
-      display: null
-      display_options: null
-      field: about
-      group: null
-      hidden: false
-      interface: input-code
-      note: Translated field for pp_venues.about
-      options:
-        language: json
-      readonly: false
-      required: false
-      searchable: true
-      sort: 6
-      special:
-        - cast-json
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: about
-      table: pp_translations__venues
-      data_type: json
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: pp_translations__venues
     field: image_caption
     type: string
     meta:
@@ -16071,6 +16145,56 @@ fields:
       data_type: varchar
       default_value: null
       max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__venues
+    field: about_html
+    type: text
+    meta:
+      collection: pp_translations__venues
+      conditions: null
+      display: null
+      display_options: null
+      field: about_html
+      group: null
+      hidden: false
+      interface: input-rich-text-html
+      note: Translated field for pp_venues.about_html
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations:
+        - language: en-US
+          translation: About
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about_html
+      table: pp_translations__venues
+      data_type: text
+      default_value: null
+      max_length: null
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -16736,7 +16860,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 6
+      sort: 7
       special:
         - cast-boolean
       translations: null
@@ -16778,7 +16902,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 7
+      sort: 8
       special: null
       translations: null
       validation: null
@@ -16902,7 +17026,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 3
+      sort: 4
       special: null
       translations: null
       validation: null
@@ -16942,7 +17066,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 4
+      sort: 5
       special: null
       translations: null
       validation: null
@@ -16983,7 +17107,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 5
+      sort: 6
       special: null
       translations: null
       validation: null
@@ -17230,7 +17354,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 1
+      sort: 2
       special:
         - o2m
       translations: null
@@ -17256,7 +17380,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 2
+      sort: 3
       special:
         - m2m
       translations: null
@@ -17282,7 +17406,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 3
+      sort: 5
       special:
         - m2m
       translations: null
@@ -17308,7 +17432,7 @@ fields:
       readonly: false
       required: false
       searchable: true
-      sort: 4
+      sort: 6
       special:
         - m2m
       translations: null
@@ -17345,48 +17469,6 @@ fields:
       data_type: varchar
       default_value: null
       max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: pp_venues
-    field: about
-    type: json
-    meta:
-      collection: pp_venues
-      conditions: null
-      display: null
-      display_options: null
-      field: about
-      group: ui_group_content
-      hidden: false
-      interface: input-code
-      note: JSON array of paragraph strings.
-      options:
-        language: json
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special:
-        - cast-json
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: about
-      table: pp_venues
-      data_type: json
-      default_value: null
-      max_length: null
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -17841,6 +17923,56 @@ fields:
       validation: null
       validation_message: null
       width: full
+  - collection: pp_venues
+    field: about_html
+    type: text
+    meta:
+      collection: pp_venues
+      conditions: null
+      display: null
+      display_options: null
+      field: about_html
+      group: ui_group_content
+      hidden: false
+      interface: input-rich-text-html
+      note: 'Paragraphs, bold, italic, lists. No links: add them under Links.'
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations:
+        - language: en-US
+          translation: About
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about_html
+      table: pp_venues
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_websites
     field: ui_accordion_main
     type: alias

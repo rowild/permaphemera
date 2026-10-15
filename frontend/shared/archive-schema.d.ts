@@ -6,3 +6,5 @@ export declare const COLLECTIONS: Record<string, string>
 export declare const TRANSLATED: Set<string>
 export declare const FILE_FIELDS: Record<string, string[]>
 export declare function assetUrl(baseUrl: string, id: unknown): string | null
+/** True when an expanded file object `{ id, filename_download }` is a placeholder (`placeholder-…`). */
+export declare function isPlaceholderFile(value: unknown): boolean

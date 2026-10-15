@@ -9,7 +9,7 @@ import type { ResolvedVenue } from '~/utils/resolveVenues'
 // ResolvedVenue doesn't carry (kept from the pre-flip shape; read only in
 // this file's own template, never passed to a child component). This local
 // type describes exactly what gets constructed.
-interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'links' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'about' | 'part_of' | 'spaces' | 'organisations'> {
+interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'links' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'aboutHtml' | 'part_of' | 'spaces' | 'organisations'> {
   location_id: string
 }
 
@@ -56,7 +56,7 @@ const venue = computed<Venue>(() => {
     lede: dossier?.lede ?? record.description,
     image_caption: dossier?.image_caption,
     coordinate_label: dossier?.coordinate_label,
-    about: dossier?.about,
+    aboutHtml: dossier?.aboutHtml,
     part_of: record.part_of,
     spaces: record.spaces,
     organisations: record.organisations
@@ -270,7 +270,7 @@ useSeoMeta({
             :alt="venue.hero_image_alt ?? $t('venue.fallbackAlt', { name: venue.name, city: venue.city })"
           />
           <figcaption class="[ venue-hero-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic">
-            <span class="not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
+            <span class="shrink-0 whitespace-nowrap not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
             {{ venue.image_caption ?? $t('venue.fallbackCaption', { name: venue.name, city: venue.city }) }}
           </figcaption>
         </figure>
@@ -361,7 +361,10 @@ useSeoMeta({
         <div class="[ venue-about-copy ]">
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.venueEyebrow') }}</p>
           <h2 id="venue-about-title" class="mb-[1.85rem] text-h2-lg font-light leading-[0.98] compact:mb-4 compact:text-4xl">{{ $t('venue.venueTitle') }} <span class="text-archive-red">{{ $t('venue.venueAccent') }}</span></h2>
-          <p v-for="paragraph in venue.about ?? [$t('venue.fallbackAbout1', { name: venue.name, city: venue.city }), $t('venue.fallbackAbout2')]" :key="paragraph" class="max-w-180 text-button leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ paragraph }}</p>
+          <ArchiveRichText v-if="venue.aboutHtml" class="max-w-180" :html="venue.aboutHtml" />
+          <template v-else>
+            <p v-for="paragraph in [$t('venue.fallbackAbout1', { name: venue.name, city: venue.city }), $t('venue.fallbackAbout2')]" :key="paragraph" class="max-w-180 text-button leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ paragraph }}</p>
+          </template>
         </div>
         <blockquote class="m-0 border-l border-archive-red/48 pl-8 text-title leading-[1.4] italic text-archive-copy-warm tablet:max-w-2xl compact:pl-4 compact:text-base">
           “{{ $t('venue.quote') }}”

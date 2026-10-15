@@ -32,7 +32,7 @@ Additive only; `create-schema.mjs` then `permissions.mjs` against production.
 | `image_alt` | string | yes | |
 | `image_caption` | string | yes | Credit line under the photo: `<what> · Foto: <holder>` |
 | `lede` | string | yes | One line under the name |
-| `about` | JSON array of paragraphs | yes | Bio, 2–4 sentences per language, ends with the source domain |
+| `about` → `about_html` | JSON array of paragraphs; since 2026-10-15 WYSIWYG HTML (owner decision) | yes | Bio, 2–4 sentences per language, ends with the source domain |
 | `born` | string | – | Free text, e.g. `1970, Schärding` |
 | `based_in` | string | yes | e.g. `Wien` / `Vienna` |
 

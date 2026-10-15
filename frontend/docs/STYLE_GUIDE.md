@@ -285,7 +285,7 @@ For single-line animated titles, confirm at representative breakpoints that the 
 - Hero ledes use a tighter `1.25` line-height and a maximum width near `29rem`.
 - Use short paragraphs. The interface is designed for concise curatorial copy, not long uninterrupted essays.
 - For long-form future pages, target a reading measure of `38–45rem` or roughly `55–75` characters per line and increase line-height to `1.55–1.7`.
-- HTML-rich content supplied by the future CMS must use the prepared Tailwind Typography `.prose` wrapper so headings, paragraphs, lists, links, quotations, tables, code, and media captions share one controlled descendant style. Use `.prose.prose-invert` only on intentional night surfaces and `.not-prose` around embedded interface components. The HTML must be sanitized before it reaches Vue's `v-html`; styling does not make untrusted HTML safe.
+- HTML-rich content supplied by the CMS (the `about_html` WYSIWYG fields of venues, organisations and persons) renders through `ArchiveRichText`, which sanitises it (paragraphs, line breaks, bold, italic and lists only; no links) and uses the prepared Tailwind Typography `.prose` wrapper so headings, paragraphs, lists, links, quotations, tables, code, and media captions share one controlled descendant style. Use `.prose.prose-invert` only on intentional night surfaces and `.not-prose` around embedded interface components. The HTML must be sanitized before it reaches Vue's `v-html`; styling does not make untrusted HTML safe.
 
 ### 6.7 Eyebrows and labels
 

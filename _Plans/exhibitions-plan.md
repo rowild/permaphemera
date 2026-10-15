@@ -166,13 +166,13 @@ Translated: `description`.
 
 #### `pp_venues`
 
-`id`, `status`, `sort`, `title`, `slug`, `location` (M2O → locations, SET NULL), `part_of` (self M2O → venues, SET NULL; the venue this space belongs to organisationally, e.g. Alpen-Adria-Galerie → Stadtgalerie Klagenfurt; added 2026-09-15), `type` (dropdown, allow other), `address`, `website_url` (the venue's own website only; a venue without one keeps it empty), `websites` (m2m → websites, further links such as social profiles; added 2026-10-14), `latitude`, `longitude`, `image`, `image_alt`, `hero_image`, `hero_image_alt`, `archive_number`, `featured`, `description`, `lede`, `about` (json array of paragraphs), `image_caption`, `coordinate_label`, `translations`, `spaces`, `exhibitions` (o2m), `further_exhibitions`, `persons`, `sponsors` (m2m), audit.
-Translated: `description`, `lede`, `about`, `image_caption`, `coordinate_label`.
+`id`, `status`, `sort`, `title`, `slug`, `location` (M2O → locations, SET NULL), `part_of` (self M2O → venues, SET NULL; the venue this space belongs to organisationally, e.g. Alpen-Adria-Galerie → Stadtgalerie Klagenfurt; added 2026-09-15), `type` (dropdown, allow other), `address`, `website_url` (the venue's own website only; a venue without one keeps it empty), `websites` (m2m → websites, further links such as social profiles; added 2026-10-14), `latitude`, `longitude`, `image`, `image_alt`, `hero_image`, `hero_image_alt`, `archive_number`, `featured`, `description`, `lede`, `about_html` (WYSIWYG HTML: paragraphs, bold, italic, lists; replaced the JSON array `about` on 2026-10-15), `image_caption`, `coordinate_label`, `translations`, `spaces`, `exhibitions` (o2m), `further_exhibitions`, `persons`, `sponsors` (m2m), audit.
+Translated: `description`, `lede`, `about_html`, `image_caption`, `coordinate_label`.
 
 #### `pp_persons`
 
-`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `is_collective` (bool, 2026-09-23: the name is shown verbatim, never inverted), `slug` (unique), `born` (free text, e.g. "1970, Schärding"), `based_in`, `image` (file, press portrait), `image_alt`, `image_caption` (credit line), `lede` (one line), `about` (json array of paragraphs), `translations`, `roles`, `venues`, `sponsors`, `websites` (m2m), `participations`, `memberships` (o2m), audit.
-Translated: `based_in`, `image_alt`, `image_caption`, `lede`, `about`. The page fields were added on 2026-10-14 for the person page `/persons/<slug>/` (design: `docs/superpowers/specs/2026-10-14-person-sponsor-organisation-pages-design.md`); before that, persons had no translations. Links live in `pp_websites` (2026-09-15); the former single `website_url` column was migrated into link rows and dropped.
+`id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `is_collective` (bool, 2026-09-23: the name is shown verbatim, never inverted), `slug` (unique), `born` (free text, e.g. "1970, Schärding"), `based_in`, `image` (file, press portrait), `image_alt`, `image_caption` (credit line), `lede` (one line), `about_html` (WYSIWYG HTML: paragraphs, bold, italic, lists; replaced the JSON array `about` on 2026-10-15), `translations`, `roles`, `venues`, `sponsors`, `websites` (m2m), `participations`, `memberships` (o2m), audit.
+Translated: `based_in`, `image_alt`, `image_caption`, `lede`, `about_html`. The page fields were added on 2026-10-14 for the person page `/persons/<slug>/` (design: `docs/superpowers/specs/2026-10-14-person-sponsor-organisation-pages-design.md`); before that, persons had no translations. Links live in `pp_websites` (2026-09-15); the former single `website_url` column was migrated into link rows and dropped.
 
 #### `pp_roles`
 
@@ -181,8 +181,8 @@ Translated: `title`. Seeded: artist ("Artist" / "Künstler:in"), curator ("Curat
 
 #### `pp_exhibitions`
 
-`id`, `status`, `sort`, `title`, `slug`, `kind` (exhibition | event), `primary_venue` (M2O → venues, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (markdown, English), `date_range`, `opening_hours`, `vernissage`, `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `participations`, `statements` (o2m), `websites`, `further_venues`, `sponsors` (m2m), audit.
-Translated: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `image_alt`, `medium`.
+`id`, `status`, `sort`, `title`, `slug`, `kind` (exhibition | event), `primary_venue` (M2O → venues, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (markdown, English), `date_range`, `opening_hours`, `vernissage`, `admission` (empty = the site shows "Free admission"; added 2026-10-15), `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `participations`, `statements` (o2m), `websites`, `further_venues`, `sponsors` (m2m), audit.
+Translated: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `admission`, `image_alt`, `medium`.
 
 #### `pp_exhibition_participations` (child)
 
@@ -213,8 +213,8 @@ Translated: `title`. Route paths are locale-neutral; the frontend passes them th
 
 #### `pp_organisations`
 
-`id`, `status`, `sort`, `title` (verbatim, one string), `short_title` (translated, optional), `slug` (unique), `kind` (dropdown `association` | `federation` | `institution` | `collective` | `company` | `initiative`, allow other), `founded`, `address`, `location` (M2O → locations, SET NULL), `logo` (file), `logo_alt`, `image` (file, press photo, 2026-10-14), `image_alt`, `image_caption` (credit line), `lede`, `about` (json array of paragraphs), `description`, `translations`, `venue_relations`, `members`, `exhibitions` (o2m), `websites` (m2m), audit.
-Translated: `short_title`, `logo_alt`, `image_alt`, `image_caption`, `lede`, `about`, `description`.
+`id`, `status`, `sort`, `title` (verbatim, one string), `short_title` (translated, optional), `slug` (unique), `kind` (dropdown `association` | `federation` | `institution` | `collective` | `company` | `initiative`, allow other), `founded`, `address`, `location` (M2O → locations, SET NULL), `logo` (file), `logo_alt`, `image` (file, press photo, 2026-10-14), `image_alt`, `image_caption` (credit line), `lede`, `about_html` (WYSIWYG HTML: paragraphs, bold, italic, lists; replaced the JSON array `about` on 2026-10-15), `description`, `translations`, `venue_relations`, `members`, `exhibitions` (o2m), `websites` (m2m), audit.
+Translated: `short_title`, `logo_alt`, `image_alt`, `image_caption`, `lede`, `about_html`, `description`.
 
 #### `pp_exhibition_organisers` (child of exhibitions)
 

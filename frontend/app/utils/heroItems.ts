@@ -26,6 +26,7 @@ interface HeroVenue {
   name: string
   city_name: string
   image: string
+  has_image: boolean
   archive_number: string
 }
 
@@ -70,7 +71,7 @@ export const buildHeroItems = (
     .map((exhibition) => exhibition.venue_slug))
   const archiveOrder = (left: HeroVenue, right: HeroVenue) =>
     (left.archive_number || '').localeCompare(right.archive_number || '', undefined, { numeric: true }) || left.name.localeCompare(right.name)
-  const candidates = venues.filter((venue) => venue.image).sort(archiveOrder)
+  const candidates = venues.filter((venue) => venue.has_image).sort(archiveOrder)
   const galleries: KaleidoscopeExhibitionItem[] = [
     ...candidates.filter((venue) => !tourVenues.has(venue.slug)),
     ...candidates.filter((venue) => tourVenues.has(venue.slug))

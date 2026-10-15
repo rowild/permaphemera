@@ -51,5 +51,15 @@ export const COLLECTIONS = {
   venuesWebsites: 'pp_mm__venues_websites'
 }
 
+/** A file field holds an id, or `{ id, filename_download }` when the query expands it. */
+const fileId = (value) => (value && typeof value === 'object' ? value.id : value)
+
 /** Directus returns a file id; the site and the admin scripts both need a fetchable URL. */
-export const assetUrl = (baseUrl, id) => (typeof id === 'string' && id ? `${baseUrl}/assets/${id}` : null)
+export const assetUrl = (baseUrl, value) => {
+  const id = fileId(value)
+  return typeof id === 'string' && id ? `${baseUrl}/assets/${id}` : null
+}
+
+/** Placeholder files are named `placeholder-…` in Directus (e.g. placeholder-venue.svg). */
+export const isPlaceholderFile = (value) =>
+  Boolean(value && typeof value === 'object' && String(value.filename_download ?? '').startsWith('placeholder-'))

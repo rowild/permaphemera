@@ -189,16 +189,16 @@ published venue in a draft town does not show).
 | `image`, `hero_image` | the Commons photo; `image_alt`, `hero_image_alt` in English |
 | `image_caption` | `<what> · Foto: <Author> (<Licence>)` |
 | `lede` | one line |
-| `about` | JSON array of 1–2 paragraphs: building, history, who runs it, opening hours |
+| `about_html` | WYSIWYG text, 1–2 paragraphs: building, history, who runs it, opening hours. Paragraphs, bold, italic and lists only; no links (they go into link records). Via the API write HTML: `<p>…</p><p>…</p>` |
 | `description` | one sentence |
-| `translations` | `en` and `de` with `lede`, `about`, `description`, `image_caption`, `coordinate_label` |
+| `translations` | `en` and `de` with `lede`, `about_html`, `description`, `image_caption`, `coordinate_label` |
 
 The plain fields hold the **English** text and must equal the `en` translation word for word
 (`pnpm check:data` tests this).
 
 Who runs the venue: a Verein or institution → `pp_organisation_venue_relations`
 (`runs` / `seat` / `exhibits_at`). A city department running its own gallery (Stadtgalerie,
-Galerie Porcia) gets no organisation record; name it in `about`. A person the venue represents
+Galerie Porcia) gets no organisation record; name it in `about_html`. A person the venue represents
 (e.g. Harald Scheicher at the Galerie Palais Fugger) → `pp_mm__persons_venues`.
 
 ---
@@ -206,7 +206,7 @@ Galerie Porcia) gets no organisation record; name it in `about`. A person the ve
 ## 6. Organisation (`pp_organisations`), only when a body puts on the exhibition
 
 `title` verbatim, `slug`, `kind` (`association` = Verein, `federation`, `institution`,
-`collective`, `company`, `initiative`), `location`, `address`, `founded`, `lede`, `about`,
+`collective`, `company`, `initiative`), `location`, `address`, `founded`, `lede`, `about_html` (WYSIWYG),
 `description`, `image` + `image_alt` + `image_caption` (photo, see §3), translations. Link it to the exhibition in `pp_exhibition_organisers` with
 `role`: `organiser` (put it on), `presenter` (shows it as its own programme), `cooperation`,
 `supporter`. Do not add umbrella events (ORF Lange Nacht) or a frame without organising role
@@ -227,10 +227,10 @@ Galerie Porcia) gets no organisation record; name it in `about`. A person the ve
   a dead link is worse than none.
 - Every published person has a page at `/persons/<slug>/` (English `/en/persons/<slug>/`). It shows:
   `image` (portrait, see §3) with `image_alt` and `image_caption` (`<Name> · Foto: <holder>`),
-  `lede` (one line), `about` (JSON array of paragraphs, the last sentence names the source:
+  `lede` (one line), `about_html` (WYSIWYG biography, the last sentence names the source:
   `Quelle: <domain>.`), `born` (`1970, Schärding`), `based_in` (`Wien` / `Vienna`), the roles, the
   links, the memberships, the galleries and every published exhibition with the person.
-  Translated: `based_in`, `image_alt`, `image_caption`, `lede`, `about` — write `en` and `de`; the
+  Translated: `based_in`, `image_alt`, `image_caption`, `lede`, `about_html` — write `en` and `de`; the
   plain fields hold English. Only facts with a source; no metaphors, no praise words.
 
 ---
@@ -246,13 +246,14 @@ Galerie Porcia) gets no organisation record; name it in `about`. A person the ve
 | `start_date` / `end_date` | first and last **public** day of the run. The vernissage evening goes into `vernissage`, not into `start_date`. One-night presentations: same date twice. |
 | `date_range` | EN `12 September–24 October 2026`, DE `12. September–24. Oktober 2026` (Austrian `Jänner`) |
 | `opening_hours`, `vernissage`, `medium` | short text, EN on the record, DE in the translation |
+| `admission` | the price as the source states it (`€ 5, reduced € 3`), EN and DE. Leave it empty only when admission is free: the site then shows "Free admission" / "Eintritt frei". Unknown admission: ask, or leave empty and report it |
 | `image`, `image_alt` | §3; alt ends with `(© holder)` |
 | `source_pdf` | the invitation PDF file id, if there is one |
 | `summary` | one line |
 | `description` | 60–130 words, own words, neutral archive tone, ends with `Source: <domains>` (DE `Quelle: …`) |
 | `participations` | nested rows `{ person, role, sort }` (no status); artists in the order of the invitation, curator first |
 | `websites` | `[{ "websites_id": <existing id> }]` or a nested new link with en/de titles |
-| `translations` | `en` and `de`: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `medium`, `image_alt` |
+| `translations` | `en` and `de`: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `admission`, `medium`, `image_alt` |
 
 ### Tour fields
 
@@ -292,7 +293,7 @@ Get the ids with a read of `pp_translations__exhibitions` filtered by `exhibitio
 
 ## 8a. Links are always link records, never text
 
-Never write a URL, a domain or a handle ("@galeriepalaisfugger") into `about`, `description`
+Never write a URL, a domain or a handle ("@galeriepalaisfugger") into `about_html`, `description`
 or any other text: the site cannot click it. Every external address goes into a link field
 (`website_url`) or a `pp_websites` row (venue, person, organisation, exhibition). The site
 opens all of them in a new tab. Known platforms show their name ("Instagram", "Facebook"),

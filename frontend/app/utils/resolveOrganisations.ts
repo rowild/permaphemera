@@ -1,3 +1,4 @@
+import { toRichHtml } from '~/utils/richText'
 import type {
   ExhibitionOrganiserRecord, ExhibitionOrganiserRole, JunctionRow, LocationRecord, OrganisationMembershipRecord, OrganisationRecord,
   OrganisationVenueRelation, OrganisationVenueRelationRecord, PersonRecord, VenueRecord, WebsiteRecord } from '~/types/content'
@@ -51,7 +52,8 @@ export interface ResolvedOrganisation {
   image_alt?: string
   image_caption?: string
   lede?: string
-  about?: string[]
+  /** The about text as sanitised HTML from the WYSIWYG field. */
+  aboutHtml?: string
   description?: string
   websites: ResolvedLink[]
   venues: OrganisationVenueLink[]
@@ -139,7 +141,7 @@ export const resolveOrganisations = (
       image_alt: (text.image_alt as string) || organisation.image_alt || undefined,
       image_caption: (text.image_caption as string) || organisation.image_caption || undefined,
       lede: (text.lede as string) || undefined,
-      about: (text.about as string[]) || undefined,
+      aboutHtml: toRichHtml((text.about_html as string) || organisation.about_html),
       description: (text.description as string) || undefined,
       websites: links,
       venues: venueLinks,

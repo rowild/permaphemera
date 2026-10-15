@@ -77,12 +77,13 @@ useSeoMeta({
           <figure v-if="organisation.image" class="[ organisation-figure ] archive-venue-hero-artwork relative m-0 mb-10 pt-[1.1rem] pr-4 pb-6 pl-0 compact:mx-[-0.45rem] compact:mb-6 compact:pr-0">
             <ArchiveFramedImage class="[ organisation-image ] aspect-[1.28] rotate-[0.65deg] compact:rotate-0" :src="organisation.image" :alt="organisation.image_alt ?? organisation.title" />
             <figcaption v-if="organisation.image_caption" class="mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic">
-              <span class="not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
+              <span class="shrink-0 whitespace-nowrap not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
               {{ organisation.image_caption }}
             </figcaption>
           </figure>
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('organisations.aboutEyebrow') }}</p>
-          <p v-for="paragraph in organisation.about ?? [organisation.description ?? $t('organisations.fallbackAbout', { name: organisation.title })]" :key="paragraph" class="max-w-176 text-button leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ paragraph }}</p>
+          <ArchiveRichText v-if="organisation.aboutHtml" :html="organisation.aboutHtml" />
+          <p v-else class="max-w-176 text-button leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ organisation.description ?? $t('organisations.fallbackAbout', { name: organisation.title }) }}</p>
 
           <section v-if="organisation.members.length" class="[ organisation-members ] mt-10 compact:mt-6" aria-labelledby="organisation-members-title">
             <h2 id="organisation-members-title" class="m-0 mb-4 inline-flex items-center gap-3 font-display text-h3 font-normal leading-[1.15] compact:text-lg"><Users :size="20" aria-hidden="true" /> {{ $t('organisations.membersTitle', organisation.members.length) }}</h2>

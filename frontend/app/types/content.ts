@@ -77,11 +77,15 @@ export interface VenueRecord {
   image_alt: string
   hero_image: string | null
   hero_image_alt: string | null
+  /** Set by the loader: the file is a placeholder (`placeholder-…`), not a photo of the venue. */
+  image_placeholder?: boolean
+  hero_image_placeholder?: boolean
   archive_number: string
   featured: boolean
   description: string | null
   lede: string | null
-  about: string[] | null
+  /** HTML from the WYSIWYG field. */
+  about_html: string | null
   image_caption: string | null
   coordinate_label: string | null
   status: ContentStatus
@@ -110,7 +114,8 @@ export interface PersonRecord {
   /** One line under the name on the person page. */
   lede?: string | null
   /** Biography paragraphs. */
-  about?: string[] | null
+  /** Biography: HTML from the WYSIWYG field. */
+  about_html?: string | null
   status: ContentStatus
   sort: number
   translations?: TranslationEntry[]
@@ -156,6 +161,10 @@ export interface ExhibitionRecord {
   end_date: string
   is_permanent: boolean
   image: string
+  /** Set by the loader: the image is a placeholder file (`placeholder-…`). */
+  image_placeholder?: boolean
+  /** Admission text, translated; empty means free admission. */
+  admission?: string | null
   image_alt: string
   title: string
   summary: string | null
@@ -264,7 +273,8 @@ export interface OrganisationRecord {
   image_alt?: string | null
   image_caption?: string | null
   lede: string | null
-  about: string[] | null
+  /** HTML from the WYSIWYG field. */
+  about_html: string | null
   description: string | null
   status: ContentStatus
   sort: number

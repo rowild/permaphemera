@@ -1,3 +1,4 @@
+import { toRichHtml } from '~/utils/richText'
 import type {
   ArtistMembership, ExhibitionStatement, JunctionRow, OrganisationMembershipRecord, OrganisationRecord,
   ParticipationRecord, PersonRecord, PersonRoleLink, RoleRecord, VenueRecord, WebsiteRecord } from '~/types/content'
@@ -20,7 +21,8 @@ export interface ResolvedPerson {
   roles: PersonRole[]
   isArtist: boolean
   lede?: string
-  about?: string[]
+  /** The biography as sanitised HTML from the WYSIWYG field. */
+  aboutHtml?: string
   born?: string
   basedIn?: string
   /** The own photo, else the image of the newest exhibition in the archive. */
@@ -102,9 +104,10 @@ export const resolvePersons = (s: PersonSources): ResolvedPerson[] => {
 
     // pickTranslation returns translated fields only; the plain fields (English) are the fallback.
     const word = (field: 'lede' | 'based_in' | 'image_alt' | 'image_caption') => (text[field] as string) || person[field] || undefined
-    const about = (text.about as string[] | undefined) ?? person.about ?? undefined
+    const aboutHtml = toRichHtml((text.about_html as string) || person.about_html)
 
-    const newestWithImage = records.find((record) => record.exhibition.image)?.exhibition
+    // A placeholder ("image to follow") is never a stand-in for a person's photo.
+    const newestWithImage = records.find((record) => record.exhibition.has_image)?.exhibition
     const image: PersonImage | undefined = person.image
       ? { src: person.image, alt: word('image_alt') || displayPersonName(person), caption: word('image_caption') }
       : newestWithImage
@@ -118,7 +121,7 @@ export const resolvePersons = (s: PersonSources): ResolvedPerson[] => {
       roles,
       isArtist: roles.some((role) => role.slug === 'artist'),
       lede: word('lede'),
-      about: about?.length ? about : undefined,
+      aboutHtml,
       born: person.born || undefined,
       basedIn: word('based_in'),
       image,

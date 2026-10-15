@@ -13,7 +13,7 @@ const venue = {
   website_url: null, latitude: null, longitude: null,
   image: '/i.webp', image_alt: 'alt', hero_image: null, hero_image_alt: null,
   archive_number: '03', featured: false,
-  description: 'English text', lede: null, about: null, image_caption: null, coordinate_label: null,
+  description: 'English text', lede: null, about_html: null, image_caption: null, coordinate_label: null,
   status: 'published' as const,
   translations: [{ languages_code: 'en', description: 'English text' }]
 }
@@ -42,6 +42,15 @@ describe('resolveVenues', () => {
     expect(resolveVenues(locations, [venue], 'en')).toHaveLength(1)
   })
 
+  it('says whether a venue has a real image: not missing and not a placeholder file', () => {
+    const [real, placeholder, none] = resolveVenues(locations, [
+      venue,
+      { ...venue, id: 'v-p', slug: 'p', image: '/assets/placeholder', image_placeholder: true },
+      { ...venue, id: 'v-n', slug: 'n', image: null }
+    ] as never, 'en')
+    expect([real.has_image, placeholder.has_image, none.has_image]).toEqual([true, false, false])
+  })
+
   it('maps title to the component-facing name', () => {
     expect(resolveVenues(locations, [venue], 'en')[0].name).toBe('Neue Galerie Graz')
   })
@@ -59,19 +68,19 @@ describe('resolveVenues', () => {
       hero_image: '/media/images/landing/parkschloessl.jpg',
       hero_image_alt: 'Front façade of the striped ochre and rose Parkschlössl beneath mature trees',
       lede: 'A small exhibition house in the park.',
-      about: ['First paragraph.', 'Second paragraph.'],
+      about_html: '<p>First paragraph.</p><p>Second paragraph.</p>',
       translations: [{
         languages_code: 'en',
         description: 'English text',
         lede: 'A small exhibition house in the park.',
-        about: ['First paragraph.', 'Second paragraph.']
+        about_html: '<p class="x">First paragraph.</p><p>Second paragraph.</p>'
       }]
     }
     const resolved = resolveVenues(locations, [dossierVenue], 'en')[0]
     expect(resolved.hero_image).toBe('/media/images/landing/parkschloessl.jpg')
     expect(resolved.hero_image_alt).toBe('Front façade of the striped ochre and rose Parkschlössl beneath mature trees')
     expect(resolved.lede).toBe('A small exhibition house in the park.')
-    expect(resolved.about).toEqual(['First paragraph.', 'Second paragraph.'])
+    expect(resolved.aboutHtml).toBe('<p>First paragraph.</p><p>Second paragraph.</p>')
   })
 
   describe('links', () => {

@@ -1,3 +1,4 @@
+import { toRichHtml } from '~/utils/richText'
 import type { JunctionRow, LocationRecord, OrganisationRecord, OrganisationVenueRelation, OrganisationVenueRelationRecord, VenueRecord, WebsiteRecord } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { hostnameOf, linksThrough } from '~/utils/externalLinks'
@@ -36,6 +37,8 @@ export interface ResolvedVenue {
   links: ResolvedLink[]
   image: string
   image_alt: string
+  /** A real photo: an image that is not a placeholder file. Preview sections show only these venues. */
+  has_image: boolean
   hero_image?: string
   hero_image_alt?: string
   archive_number: string
@@ -51,7 +54,8 @@ export interface ResolvedVenue {
   city_longitude: number
   description?: string
   lede?: string
-  about?: string[]
+  /** The about text as sanitised HTML from the WYSIWYG field. */
+  aboutHtml?: string
   image_caption?: string
   coordinate_label?: string
 }
@@ -106,6 +110,7 @@ export const resolveVenues = (
       image_alt: venue.image_alt,
       hero_image: venue.hero_image ?? undefined,
       hero_image_alt: venue.hero_image_alt ?? undefined,
+      has_image: Boolean(venue.image) && !venue.image_placeholder,
       archive_number: venue.archive_number,
       featured: venue.featured,
       city: location.title,
@@ -119,7 +124,7 @@ export const resolveVenues = (
       city_longitude: location.longitude,
       description: (text.description as string) || undefined,
       lede: (text.lede as string) || undefined,
-      about: (text.about as string[]) || undefined,
+      aboutHtml: toRichHtml((text.about_html as string) || venue.about_html),
       image_caption: (text.image_caption as string) || undefined,
       coordinate_label: (text.coordinate_label as string) || undefined
     }

@@ -57,6 +57,17 @@ export const text = (field, opts = {}) => withOpts(base(field, 'text',
 export const markdown = (field, opts = {}) => withOpts(base(field, 'text',
   { interface: 'input-rich-text-md', width: 'full' }, { is_nullable: true }), opts)
 
+// WYSIWYG text (HTML). The toolbar offers only what the site renders: paragraphs, bold,
+// italic and lists. No links: every external address is a link record (pp_websites).
+export const richText = (field, opts = {}) => {
+  const payload = base(field, 'text', {
+    interface: 'input-rich-text-html', width: 'full',
+    options: { toolbar: ['bold', 'italic', 'bullist', 'numlist', 'removeformat', 'undo', 'redo'] },
+  }, { is_nullable: true })
+  if (opts.label) payload.meta.translations = [{ language: 'en-US', translation: opts.label }]
+  return withOpts(payload, opts)
+}
+
 export const integer = (field, opts = {}) => withOpts(base(field, 'integer',
   { interface: 'input', width: opts.width ?? 'half' }, { is_nullable: true }), opts)
 
