@@ -9,8 +9,8 @@ const roles = [
   { id: 'r-artist', slug: 'artist', title: 'Artist', status: 'published' as const, sort: 1, translations: [{ languages_code: 'en', title: 'Artist' }, { languages_code: 'de', title: 'Künstler:in' }] },
   { id: 'r-curator', slug: 'curator', title: 'Curator', status: 'published' as const, sort: 2, translations: [] }
 ]
-const exhibition = (id: string, start: string, image = `/img/${id}.jpg`, hasImage = true) => ({
-  id, slug: id, title: `Title ${id}`, start_date: start, image, image_alt: `Alt ${id}`, has_image: hasImage
+const exhibition = (id: string, start: string) => ({
+  id, slug: id, title: `Title ${id}`, start_date: start, image: `/img/${id}.jpg`, image_alt: `Alt ${id}`
 }) as never
 
 const base = (overrides: Partial<PersonSources> = {}): PersonSources => ({
@@ -74,11 +74,6 @@ describe('resolvePersons', () => {
     expect(p!.image).toBeUndefined()
     expect(p!.home).toBeUndefined()
     expect(p!.aboutHtml).toBeUndefined()
-  })
-
-  it('never takes a placeholder exhibition image as the fallback photo', () => {
-    const [p] = resolvePersons(base({ persons: [person('urach')], exhibitions: [exhibition('e-old', '2025-01-01'), exhibition('e-new', '2026-10-03', '/assets/placeholder', false)] }))
-    expect(p!.image).toEqual({ src: '/img/e-old.jpg', alt: 'Alt e-old', fromExhibition: 'Title e-old' })
   })
 
   it('has no records and no fallback image when the only exhibition is unpublished', () => {

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.22 - 2026-10-19 19:11:44 CEST
+
+- An exhibition without a real image (no image, or only the placeholder) no longer shows anywhere on the site: not in the exhibition lists, not on gallery, person, sponsor or organisation pages, not in the artist directory. Its own page answers "not found". It appears as soon as it gets a real image.
+- The exhibitions page is ordered by time: current exhibitions first (three per row), then upcoming and past side by side in two columns of smaller cards. Each group shows up to ten; a larger group links to its own page at `/exhibitions/current/`, `/exhibitions/upcoming/` or `/exhibitions/past/`.
+- A search on the exhibitions page shows one list of every match, newest first. Search results and the group pages show twenty exhibitions per page with numbered pages; the page number is part of the address.
+- Exhibition links say "Visit Exhibition" / "Ausstellung besuchen" only while the 360° tour is open. All other exhibitions say "About the Exhibition" / "Zur Ausstellung", events "About the Event" / "Zur Veranstaltung". The label changes by itself on the day a tour opens. This applies to every exhibition card, the gallery list rows and the gallery preview.
+- A card title cut off with "…" by only a pixel or two now shows its full title on hover; before, the tooltip was missing (for example "Blinddate der Perspektiven" on wide screens).
+
 ## 0.0.21 - 2026-10-15 06:15:08 CEST
 
 - The "About" texts of galleries, organisations and persons are written in the Directus WYSIWYG editor instead of a JSON code field (new field `about_html`, all texts carried over). The site shows them in the archive typography and keeps only paragraphs, bold, italic and lists; links stay link records.

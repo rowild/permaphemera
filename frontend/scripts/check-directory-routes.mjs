@@ -22,6 +22,8 @@ const [
   organisationsIndex,
   organisationDetail,
   organisationEntry,
+  exhibitionTimeGroup,
+  exhibitionPagedList,
   englishMessages,
   germanMessages,
   mainCss,
@@ -38,12 +40,17 @@ const [
   readText('app/pages/organisations/index.vue'),
   readText('app/pages/organisations/[slug].vue'),
   readText('app/components/OrganisationDirectoryEntry.vue'),
+  readText('app/components/ExhibitionTimeGroup.vue'),
+  readText('app/components/ExhibitionPagedList.vue'),
   readJson('i18n/locales/en.json'),
   readJson('i18n/locales/de.json'),
   readText('app/assets/css/main.css'),
   readText('app/components/ArchiveHeader.vue'),
   readText('app/components/ArchiveFooterMenu.vue')
 ])
+
+const exhibitionGroupPages = Object.fromEntries(await Promise.all(['current', 'upcoming', 'past']
+  .map(async (group) => [group, await readText(`app/pages/exhibitions/${group}.vue`)])))
 
 // `pp_locations.json` holds the 17 cities; galleries live in `pp_venues.json`
 // and reach their city fields (state, country, postal code) through
@@ -100,14 +107,24 @@ assert.match(galleryDetail, /venueDossier/, 'Gallery detail routes must layer op
 
 assert(exhibitions.length > 0, 'The exhibitions directory needs routed exhibition records.')
 assert.match(exhibitionsIndex, /<ArchiveSearchForm/, 'The exhibitions index must use the shared search form.')
-assert.match(exhibitionsIndex, /<ExhibitionCard[\s\S]*v-for=/, 'The exhibitions index must render reusable exhibition cards.')
-assert.match(exhibitionsIndex, /right\.start_date\.localeCompare\(left\.start_date\)/, 'The exhibitions index must order records by newest start date first.')
+assert.match(exhibitionsIndex, /right\.start_date\.localeCompare\(left\.start_date\)/, 'Exhibition search results must be ordered by newest start date first.')
 assert.doesNotMatch(exhibitionsIndex, /left\.featured\s*\?\s*-1\s*:\s*1/, 'Featured status must not override the chronological exhibition order.')
 assert.match(exhibitionsIndex, /selectFeaturedExhibition\(orderedExhibitions\.value, archiveToday\.value\)/, 'The exhibitions index must derive its highlighted record from the current local date.')
-assert.match(exhibitionsIndex, /:layout="exhibition\.id === featuredExhibition\?\.id \? 'hero' : 'stacked'"/, 'Only the date-derived exhibition may receive the highlighted card treatment.')
+// Without a search the index shows the three time groups, current first, then upcoming beside
+// past; a search shows one flat list in pages. Each group links to its own page.
+assert.match(exhibitionsIndex, /groupExhibitionsByTime\(venueExhibitions\.value, archiveToday\.value\)/, 'The exhibitions index must group records by the local day.')
+assert.match(exhibitionsIndex, /<ExhibitionTimeGroup group="current"[\s\S]*exhibitions-time-columns[\s\S]*<ExhibitionTimeGroup group="upcoming"[\s\S]*<ExhibitionTimeGroup group="past"/, 'The exhibitions index must show current first, then upcoming beside past.')
+assert.match(exhibitionsIndex, /<ExhibitionPagedList v-else :exhibitions="filteredExhibitions"/, 'Exhibition search results must be one flat list in pages.')
+assert.match(exhibitionTimeGroup, /<ExhibitionCard[\s\S]*v-for=/, 'An exhibition time group must render reusable exhibition cards.')
+assert.match(exhibitionTimeGroup, /localePath\(`\/exhibitions\/\$\{props\.group\}\/`\)/, 'An exhibition time group must link to its own page.')
+assert.match(exhibitionPagedList, /<ExhibitionCard[\s\S]*v-for=[\s\S]*<ArchivePager/, 'A paged exhibition list must render reusable cards and the pager.')
+for (const [group, page] of Object.entries(exhibitionGroupPages)) {
+  assert.match(page, new RegExp(`<ExhibitionGroupPage group="${group}" />`), `/exhibitions/${group}/ must show only the ${group} group.`)
+  assert(!exhibitions.some(({ slug }) => slug === group), `No exhibition may use the slug "${group}": /exhibitions/${group}/ is the group page.`)
+}
 assert.match(exhibitionCard, /<ExhibitionFrameCard/, 'Exhibition cards must use the shared generated cut-corner frame.')
-assert.match(exhibitionCard, /open: 'cards\.openExhibition'/, 'Every exhibition card must use the shared Visit Exhibition label.')
-assert.match(exhibitionCard, /open: 'cards\.openEvent'/, 'Every exhibition card must word event records as events.')
+// "Visit" only while the 360° tour is open (exhibitionLinkLabels decides, events as events).
+assert.match(exhibitionCard, /const labels = computed\(\(\) => exhibitionLinkLabels\(props\.exhibition, archiveToday\.value\)\)/, 'Every exhibition card must take its action label from the tour state.')
 assert.doesNotMatch(exhibitionCard, /\$t\('common\.open'\)/, 'Exhibition cards must not use the generic Open label.')
 assert.match(exhibitionCard, /export type ExhibitionCardLayout = 'stacked' \| 'side' \| 'hero'/, 'One exhibition card component must carry the stacked, side and hero layouts.')
 assert.match(exhibitionCard, /ref="titleEl"[^>]*truncate/, 'Stacked exhibition titles must stay on one line with an ellipsis.')
@@ -130,6 +147,8 @@ assert.equal(englishMessages.cards.openExhibition, 'Visit Exhibition', 'English 
 assert.equal(germanMessages.cards.openExhibition, 'Ausstellung besuchen', 'German exhibition actions must use the equivalent localized label.')
 assert.equal(englishMessages.cards.enterExhibition, 'Visit Exhibition', 'The featured exhibition action must use the requested English label.')
 assert.equal(germanMessages.cards.enterExhibition, 'Ausstellung besuchen', 'The featured exhibition action must use the equivalent localized label.')
+assert.equal(englishMessages.cards.aboutExhibition, 'About the Exhibition', 'An exhibition without an open tour must not promise a visit.')
+assert.equal(germanMessages.cards.aboutExhibition, 'Zur Ausstellung', 'An exhibition without an open tour must not promise a visit (German).')
 assert.doesNotMatch(exhibitionCard, /openRecord/, 'Exhibition cards must not retain the old open-record action keys.')
 assert.match(exhibitionDetail, /localePath\('\/exhibitions\/'\)/, 'Exhibition detail breadcrumbs must return to the exhibition index.')
 assert.match(exhibitionDetail, /galleryPath/, 'Exhibition detail routes must derive their owning gallery route.')
@@ -174,10 +193,9 @@ assert.doesNotMatch(personPage, /tablet:aspect-\[1\.28\]/, 'A person portrait mu
 // under the name. The biography sits in the left column, under the facts, beside the photo.
 assert.doesNotMatch(personPage, /person-home-link/, 'The person page must not repeat a link under the name.')
 // Preview sections on the start page show only galleries with a real image (no placeholder, no gap).
+// Exhibitions need no filter here: resolveExhibitions drops every one without a real image.
 const landingPage = await readText('app/pages/index.vue')
 assert.match(landingPage, /venues\.value\.filter\(\(venueRecord\) => venueRecord\.has_image\)/, 'The start page must preview only galleries with a real image.')
-assert.match(landingPage, /const previewExhibitions = computed\(\(\) => venueExhibitions\.value\.filter\(\(exhibition\) => exhibition\.has_image\)\)/, 'The start page must preview only exhibitions with a real image.')
-for (const use of [/\[\.\.\.previewExhibitions\.value\]/, /selectExhibitionSchedule\(previewExhibitions\.value/, /buildHeroItems\(\s*previewExhibitions\.value/]) assert.match(landingPage, use, `Every start page exhibition section must use previewExhibitions (${use}).`)
 // The figure label ("FIG. I") never wraps, however long the caption beside it is.
 const venuePage = await readText('app/pages/venues/[slug].vue')
 for (const [name, page] of [['venue', venuePage], ['person', personPage], ['organisation', organisationPage]]) {

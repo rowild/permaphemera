@@ -106,12 +106,12 @@ export const resolvePersons = (s: PersonSources): ResolvedPerson[] => {
     const word = (field: 'lede' | 'based_in' | 'image_alt' | 'image_caption') => (text[field] as string) || person[field] || undefined
     const aboutHtml = toRichHtml((text.about_html as string) || person.about_html)
 
-    // A placeholder ("image to follow") is never a stand-in for a person's photo.
-    const newestWithImage = records.find((record) => record.exhibition.has_image)?.exhibition
+    // Every resolved exhibition has a real image, so the newest one can stand in for a missing photo.
+    const newest = records[0]?.exhibition
     const image: PersonImage | undefined = person.image
       ? { src: person.image, alt: word('image_alt') || displayPersonName(person), caption: word('image_caption') }
-      : newestWithImage
-        ? { src: newestWithImage.image, alt: newestWithImage.image_alt || newestWithImage.title, fromExhibition: newestWithImage.title }
+      : newest
+        ? { src: newest.image, alt: newest.image_alt || newest.title, fromExhibition: newest.title }
         : undefined
 
     return {

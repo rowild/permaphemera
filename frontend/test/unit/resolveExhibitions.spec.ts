@@ -73,10 +73,12 @@ describe('resolveExhibitions', () => {
     expect(resolveExhibitions(paid as never, venues, locations, participations, persons, roles, 'en')[0].admission).toBe('€ 5')
   })
 
-  it('says whether an exhibition has a real image: not missing and not a placeholder file', () => {
-    expect(resolve()[0].has_image).toBe(true)
+  it('drops an exhibition without a real image: missing or a placeholder file', () => {
+    expect(resolve()).toHaveLength(1)
     const placeholder = [{ ...exhibitions[0], image_placeholder: true }]
-    expect(resolveExhibitions(placeholder as never, venues, locations, participations, persons, roles, 'en')[0].has_image).toBe(false)
+    expect(resolveExhibitions(placeholder as never, venues, locations, participations, persons, roles, 'en')).toEqual([])
+    const missing = [{ ...exhibitions[0], image: null }]
+    expect(resolveExhibitions(missing as never, venues, locations, participations, persons, roles, 'en')).toEqual([])
   })
 
   it('passes a published tour folder through and drops a null one', () => {

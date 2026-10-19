@@ -61,8 +61,6 @@ export interface ResolvedExhibition {
   date_range: string
   image: string
   image_alt: string
-  /** A real image: not a placeholder file. Previews and person-page fallbacks use only these. */
-  has_image: boolean
   /** Admission text from the record; undefined means free admission. */
   admission?: string
   summary: string
@@ -147,7 +145,9 @@ export const resolveExhibitions = (
   }
 
   // An exhibition needs a published venue in a published town; without them it cannot be placed.
+  // It also needs a real image (not missing, not a placeholder file): until it has one it shows nowhere.
   return exhibitions.filter(isVisible).flatMap((exhibition) => {
+    if (!exhibition.image || exhibition.image_placeholder) return []
     const venue = venueById.get(exhibition.primary_venue)
     const location = venue ? locationById.get(venue.location) : undefined
     if (!venue || !location) return []
@@ -198,7 +198,6 @@ export const resolveExhibitions = (
       is_permanent: exhibition.is_permanent,
       date_range: (text.date_range as string) || exhibition.date_range || '',
       image: exhibition.image,
-      has_image: Boolean(exhibition.image) && !exhibition.image_placeholder,
       admission: (text.admission as string) || exhibition.admission || undefined,
       image_alt: (text.image_alt as string) || exhibition.image_alt,
       summary: (text.summary as string) || exhibition.summary || '',

@@ -207,7 +207,6 @@
     "showAll": "Show every record at {name}",
     "exhibitionsAria": "{name} exhibitions",
     "previewAria": "Selected exhibition preview",
-    "openExhibition": "Visit exhibition",
     "loadingPreview": "Loading record image",
     "previewUnavailable": "Preview unavailable. Select another record or open the exhibition page.",
     "venueEyebrow": "The venue",
@@ -323,10 +322,34 @@
     "indexIntro": "Search across title, artist, gallery, city, date, medium and the language of each record.",
     "searchLabel": "Search the exhibition archive",
     "searchPlaceholder": "Search records…",
-    "status": "Showing {visible} of {total} exhibition records.",
     "clearSearch": "Clear search",
     "noMatches": "No exhibition record matches this search.",
-    "returnAll": "Return to every exhibition"
+    "returnAll": "Return to every exhibition",
+    "statusSearch": "{visible} of {total} exhibition records match this search.",
+    "statusAll": "{total} exhibition records in the archive.",
+    "groups": {
+      "current": {
+        "title": "Current exhibitions",
+        "empty": "No exhibition is open today.",
+        "all": "All current exhibitions ({count})",
+        "seoDescription": "Exhibitions open today, recorded in the PERMAPHEMERA archive."
+      },
+      "upcoming": {
+        "title": "Upcoming exhibitions",
+        "empty": "No upcoming exhibition is recorded yet.",
+        "all": "All upcoming exhibitions ({count})",
+        "seoDescription": "Exhibitions that open soon, recorded in the PERMAPHEMERA archive."
+      },
+      "past": {
+        "title": "Past exhibitions",
+        "empty": "No past exhibition is recorded yet.",
+        "all": "All past exhibitions ({count})",
+        "seoDescription": "Exhibitions that have closed, preserved in the PERMAPHEMERA archive."
+      }
+    },
+    "groupCount": "{count} exhibition | {count} exhibitions",
+    "groupSeoTitle": "{title} · PERMAPHEMERA",
+    "backToIndex": "Back to all exhibitions"
   },
   "artists": {
     "seoTitle": "Artists in the archive · PERMAPHEMERA",
@@ -829,7 +852,12 @@
     "openExhibition": "Visit Exhibition",
     "openEvent": "Visit Event",
     "enterEvent": "Visit Event",
-    "openEventFor": "Visit event: {title}"
+    "openEventFor": "Visit event: {title}",
+    "aboutExhibition": "About the Exhibition",
+    "aboutEvent": "About the Event",
+    "aboutShort": "Details",
+    "aboutExhibitionFor": "About the exhibition: {title}",
+    "aboutEventFor": "About the event: {title}"
   },
   "footer": {
     "tagline": "A curated Austrian archive of 360-degree exhibition documentation.",
@@ -947,5 +975,11 @@
     "towns": "Towns",
     "noSupports": "{name} supports PERMAPHEMERA. No supported record is in the archive yet.",
     "seoDescription": "{name} supports PERMAPHEMERA: the supported exhibitions, galleries and persons in the archive."
+  },
+  "pager": {
+    "label": "Pages",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {page}"
   }
 }

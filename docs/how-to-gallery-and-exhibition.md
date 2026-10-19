@@ -108,6 +108,10 @@ Use the official press or invitation image (artist, venue or organiser site; the
 page; the invitation PDF). Prefer a picture of the work over a poster with text. If there is
 none, use the placeholder image and say "image to follow" in the alt text.
 
+An exhibition with the placeholder image (or no image) does not show anywhere on the site:
+not in the exhibition lists, not on the venue, person or artist pages, and its own page answers
+"not found". It appears as soon as it gets a real image. So look for a real image first.
+
 ### Person and organisation photo: press photo with a © note
 
 A person's photo is a portrait, not an artwork. Look in this order: the person's own website

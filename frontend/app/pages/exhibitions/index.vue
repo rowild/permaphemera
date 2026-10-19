@@ -13,6 +13,7 @@ const orderedExhibitions = computed(() => [...venueExhibitions.value].sort((left
     || right.end_date.localeCompare(left.end_date)
     || left.title.localeCompare(right.title)
 }))
+const searching = computed(() => Boolean(normalize(exhibitionSearchQuery.value)))
 const filteredExhibitions = computed(() => {
   const query = normalize(exhibitionSearchQuery.value)
   if (!query) return orderedExhibitions.value
@@ -36,6 +37,7 @@ const exhibitionLedgerItems = computed(() => [
   { label: t('exhibitionsDirectory.ledgerSeason'), value: exhibitionYears.value.join(' · ') }
 ])
 const featuredExhibition = computed(() => selectFeaturedExhibition(orderedExhibitions.value, archiveToday.value))
+const timeGroups = computed(() => groupExhibitionsByTime(venueExhibitions.value, archiveToday.value))
 
 watch(() => route.query.q, (query) => {
   exhibitionSearchQuery.value = typeof query === 'string' ? query : ''
@@ -103,23 +105,26 @@ useSeoMeta({
         />
 
         <div class="[ exhibitions-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-          <p class="m-0" role="status" aria-live="polite">{{ $t('exhibitionsDirectory.status', { visible: filteredExhibitions.length, total: venueExhibitions.length }) }}</p>
+          <p class="m-0" role="status" aria-live="polite">{{ searching ? $t('exhibitionsDirectory.statusSearch', { visible: filteredExhibitions.length, total: venueExhibitions.length }) : $t('exhibitionsDirectory.statusAll', { total: venueExhibitions.length }) }}</p>
           <button v-if="exhibitionSearchQuery" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.clearSearch') }}</button>
         </div>
 
-        <div v-if="!filteredExhibitions.length" class="[ exhibitions-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-          <p class="m-0 text-title text-archive-ink">{{ $t('exhibitionsDirectory.noMatches') }}</p>
-          <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.returnAll') }}</button>
-        </div>
+        <!-- A search shows one flat list of every match, newest first, in pages. -->
+        <template v-if="searching">
+          <div v-if="!filteredExhibitions.length" class="[ exhibitions-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
+            <p class="m-0 text-title text-archive-ink">{{ $t('exhibitionsDirectory.noMatches') }}</p>
+            <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.returnAll') }}</button>
+          </div>
+          <ExhibitionPagedList v-else :exhibitions="filteredExhibitions" anchor="exhibitions-directory-results" />
+        </template>
 
-        <div v-else class="[ exhibitions-directory-grid ] grid grid-cols-2 items-stretch gap-6 compact:grid-cols-2 compact:gap-2.5">
-          <ExhibitionCard
-            v-for="exhibition in filteredExhibitions"
-            :key="exhibition.id"
-            :class="exhibition.id === featuredExhibition?.id ? 'col-span-2' : ''"
-            :exhibition="exhibition"
-            :layout="exhibition.id === featuredExhibition?.id ? 'hero' : 'stacked'"
-          />
+        <!-- Without a search: current exhibitions first, then upcoming beside past. -->
+        <div v-else class="[ exhibitions-time-groups ] grid gap-[clamp(3rem,5vw,5rem)] compact:gap-8">
+          <ExhibitionTimeGroup group="current" :exhibitions="timeGroups.current" />
+          <div class="[ exhibitions-time-columns ] grid grid-cols-2 items-start gap-[clamp(2rem,4vw,4rem)] tablet:grid-cols-1 tablet:gap-12 compact:gap-8">
+            <ExhibitionTimeGroup group="upcoming" :exhibitions="timeGroups.upcoming" />
+            <ExhibitionTimeGroup group="past" :exhibitions="timeGroups.past" />
+          </div>
         </div>
       </section>
     </div>

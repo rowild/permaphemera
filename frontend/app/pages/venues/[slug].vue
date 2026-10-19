@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Building2, CalendarDays, Compass, ExternalLink, Landmark, LayoutGrid, MapPin } from '@lucide/vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
+import { exhibitionLinkLabels } from '~/utils/exhibitionLinkLabels'
 import { linkLabel } from '~/utils/externalLinks'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 
@@ -88,6 +89,8 @@ const filteredExhibitions = computed(() => {
 })
 const selectedExhibition = ref<ResolvedExhibition | null>(exhibitions.value[0] ?? null)
 const previewExhibition = ref<ResolvedExhibition | null>(exhibitions.value[0] ?? null)
+const archiveToday = useArchiveToday()
+const previewLabels = computed(() => previewExhibition.value ? exhibitionLinkLabels(previewExhibition.value, archiveToday.value) : undefined)
 const previewLoading = ref(Boolean(exhibitions.value.length))
 const previewLoadFailed = ref(false)
 const cachedPreviewImages = new Set<string>()
@@ -333,7 +336,7 @@ useSeoMeta({
                 <h3 class="[ venue-preview-title ] m-0 max-w-152 text-h2-sm leading-[0.95] font-light">{{ previewExhibition.title }}</h3>
                 <p class="[ artist-name ] mt-[0.4rem] mb-[1.15rem] font-display text-lg text-archive-ochre">{{ previewExhibition.artist }}</p>
                 <ArchiveTextLink class="[ venue-preview-link ] gap-[0.65rem]" surface="night" :to="localePath(`/exhibitions/${previewExhibition.slug}`)">
-                  {{ $t('venue.openExhibition') }}
+                  {{ previewLabels ? $t(previewLabels.open) : '' }}
                   <template #icon><ArchiveArrow class="w-[1.65rem]" /></template>
                 </ArchiveTextLink>
               </div>

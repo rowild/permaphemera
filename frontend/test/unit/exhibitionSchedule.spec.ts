@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  groupExhibitionsByTime,
   localDateKey,
   selectExhibitionSchedule,
   selectFeaturedExhibition
@@ -46,6 +47,35 @@ describe('selectExhibitionSchedule', () => {
   it('keeps permanent exhibitions current after their start date', () => {
     const permanent = exhibition('permanent', '2020-01-01', '2020-01-02', true)
     expect(selectExhibitionSchedule([permanent], '2026-08-13').current[0]?.id).toBe('permanent')
+  })
+})
+
+describe('groupExhibitionsByTime', () => {
+  const records = [
+    exhibition('past-early', '2026-06-01', '2026-06-30'),
+    exhibition('past-late', '2026-07-01', '2026-08-10'),
+    exhibition('past-short', '2026-08-09', '2026-08-09'),
+    exhibition('current-late', '2026-08-01', '2026-08-22'),
+    exhibition('current-soon', '2026-08-11', '2026-08-15'),
+    exhibition('permanent', '2020-01-01', '2020-01-02', true),
+    exhibition('upcoming-later', '2026-09-08', '2026-09-18'),
+    exhibition('upcoming-next', '2026-08-25', '2026-09-04')
+  ]
+
+  it('puts every record in exactly one group, with no limit', () => {
+    const { current, upcoming, past } = groupExhibitionsByTime(records, '2026-08-13')
+    expect(current.length + upcoming.length + past.length).toBe(records.length)
+  })
+
+  it('orders current by closing date, upcoming by opening date, past by most recently closed', () => {
+    const { current, upcoming, past } = groupExhibitionsByTime(records, '2026-08-13')
+    expect(current.map(({ id }) => id)).toEqual(['current-soon', 'current-late', 'permanent'])
+    expect(upcoming.map(({ id }) => id)).toEqual(['upcoming-next', 'upcoming-later'])
+    expect(past.map(({ id }) => id)).toEqual(['past-late', 'past-short', 'past-early'])
+  })
+
+  it('never puts a permanent exhibition in the past', () => {
+    expect(groupExhibitionsByTime(records, '2030-01-01').past.map(({ id }) => id)).not.toContain('permanent')
   })
 })
 

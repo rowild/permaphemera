@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import type { CSSProperties } from 'vue'
+import { exhibitionLinkLabels } from '~/utils/exhibitionLinkLabels'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { createCornerOrnament, createOrnamentTransform } from '~/utils/seededLayout'
 
@@ -10,18 +11,19 @@ import { createCornerOrnament, createOrnamentTransform } from '~/utils/seededLay
 // - `stacked`: image above a fixed-height record sheet. The sheet never grows:
 //   the title and the artist line are one line each with an ellipsis, the
 //   summary gets exactly as many lines as still fit above the footer, and every
-//   cut text shows in full in a framed tooltip on hover. Used by the exhibition
-//   directory and the related records on an exhibition page.
+//   cut text shows in full in a framed tooltip on hover. Used by the current
+//   exhibitions in the directory and the related records on an exhibition page.
 // - `side`: image beside the copy (mockup "selected exhibitions", regular
 //   records). The title stays on one clipped line and scrolls on hover when it
-//   overflows. Used by the landing collection and the programme ledger.
+//   overflows. Used by the landing collection, the programme ledger, and the
+//   directory's upcoming and past columns, search results and group pages.
 // - `hero`: full-bleed image under a dark overlay with the primary action. Used
-//   for the highlighted record on the landing page and in the directory.
+//   for the highlighted record on the landing page.
 export type ExhibitionCardLayout = 'stacked' | 'side' | 'hero'
 
 const props = withDefaults(defineProps<{
   exhibition: Pick<ResolvedExhibition, 'id' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image'>
-    & Partial<Pick<ResolvedExhibition, 'slug' | 'start_date' | 'image_alt' | 'summary' | 'kind'>>
+    & Partial<Pick<ResolvedExhibition, 'slug' | 'start_date' | 'image_alt' | 'summary' | 'kind' | 'tour' | 'tour_status' | 'tour_available_from'>>
   layout?: ExhibitionCardLayout
   /** `stacked` only: hide the summary block. */
   summary?: boolean
@@ -34,13 +36,12 @@ const props = withDefaults(defineProps<{
 })
 
 const localePath = useLocalePath()
+const archiveToday = useArchiveToday()
 const active = ref(false)
 const href = computed(() => props.href ?? (props.exhibition.slug ? localePath(`/exhibitions/${props.exhibition.slug}/`) : undefined))
 const imageAlt = computed(() => props.exhibition.image_alt ?? props.exhibition.title)
-// Events say "Visit Event", exhibitions "Visit Exhibition".
-const labels = computed(() => props.exhibition.kind === 'event'
-  ? { open: 'cards.openEvent', enter: 'cards.enterEvent', enterShort: 'cards.enter', openFor: 'cards.openEventFor' }
-  : { open: 'cards.openExhibition', enter: 'cards.enterExhibition', enterShort: 'cards.enter', openFor: 'cards.openExhibitionFor' })
+// "Visit Exhibition" only while the 360° tour is open, else "About the Exhibition"; events as events.
+const labels = computed(() => exhibitionLinkLabels(props.exhibition, archiveToday.value))
 
 // Seeded ornament: the stacked sheet carries it in the copy's top-right corner,
 // the other layouts at the card's bottom-right.
@@ -84,19 +85,30 @@ const tip = ref<Tip>(null)
 const show = (which: Tip) => { tip.value = which }
 const hide = () => { tip.value = null }
 
-const isClipped = (el: HTMLElement | null) => Boolean(el) && (el!.scrollHeight > el!.clientHeight + 2 || el!.scrollWidth > el!.clientWidth + 2)
+// One-line texts: the browser draws "…" at any overflow, even a fraction of a pixel, which
+// the rounded scrollWidth/clientWidth cannot see (a title 442.55px wide in a 440.54px box
+// showed "…" without a tooltip). So compare exact widths: the text's own (a Range) with its
+// box. Both rects share any hover transform; these boxes have no side padding.
+const textOverflowAcross = (text: Element, box: Element) => {
+  const range = document.createRange()
+  range.selectNodeContents(text)
+  return range.getBoundingClientRect().width - box.getBoundingClientRect().width
+}
+const isCutAcross = (el: HTMLElement | null) => Boolean(el) && textOverflowAcross(el!, el!) > 0.05
+// Clamped paragraphs: line boxes round, so allow 2px before calling the text cut.
+const isCutBelow = (el: HTMLElement | null) => Boolean(el) && el!.scrollHeight > el!.clientHeight + 2
 const measure = () => {
-  titleOverflow.value = isClipped(titleEl.value)
-  artistOverflow.value = isClipped(artistEl.value)
+  titleOverflow.value = isCutAcross(titleEl.value)
+  artistOverflow.value = isCutAcross(artistEl.value)
   if (summaryBox.value && summaryEl.value) {
     const lineHeight = Number.parseFloat(getComputedStyle(summaryEl.value).lineHeight) || 24
     summaryLines.value = Math.max(0, Math.floor(summaryBox.value.clientHeight / lineHeight))
-    requestAnimationFrame(() => { summaryOverflow.value = summaryLines.value > 0 && isClipped(summaryEl.value) })
+    requestAnimationFrame(() => { summaryOverflow.value = summaryLines.value > 0 && isCutBelow(summaryEl.value) })
   }
   if (recordTitleViewport.value && recordTitleText.value) {
-    const overflow = Math.max(0, recordTitleText.value.scrollWidth - recordTitleViewport.value.clientWidth)
+    const overflow = Math.max(0, textOverflowAcross(recordTitleText.value, recordTitleViewport.value))
     recordTitleShift.value = Math.ceil(overflow)
-    recordTitleOverflow.value = overflow > 2
+    recordTitleOverflow.value = overflow > 0.05
   } else {
     recordTitleShift.value = 0
     recordTitleOverflow.value = false
@@ -177,7 +189,7 @@ const surfaceClass = {
         </div>
         <ArchiveButton class="w-fit justify-self-center compact:min-h-10 compact:px-2" as="span" variant="primary">
           <span class="compact:hidden">{{ $t(labels.enter) }}</span>
-          <span class="hidden compact:inline">{{ $t(labels.enterShort) }}</span>
+          <span class="hidden compact:inline">{{ $t(labels.short) }}</span>
           <ArchiveArrow class="compact:hidden" />
         </ArchiveButton>
       </div>

@@ -675,11 +675,11 @@ The featured venue spans two rows and uses a much taller image (`25–31rem` des
 
 ### 14.3 Exhibition records
 
-One component, `ExhibitionCard`, renders every list of exhibition records; pages choose a `layout` and the grid cell, never their own card markup. Its three layouts share `ExhibitionFrameCard`, the seeded crosshair ornament, the hover lift and the `Visit Exhibition` action:
+One component, `ExhibitionCard`, renders every list of exhibition records; pages choose a `layout` and the grid cell, never their own card markup. Its three layouts share `ExhibitionFrameCard`, the seeded crosshair ornament, the hover lift and one record action. The action says `Visit Exhibition` only while the record's 360° tour is open today; every other record says `About the Exhibition` (German `Zur Ausstellung`, short form `Details`), and events say `Visit Event` / `About the Event`. `exhibitionLinkLabels` decides, so the label switches by itself on the tour's release date; venue ledger rows and the venue preview use the same rule:
 
-- `hero`: the highlighted record — a large image under an inset dark overlay with the primary action (landing collection, exhibition directory).
-- `side`: image and structured metadata side by side on desktop, stacked on mobile (landing collection, programme ledger). The title stays on one clipped line and scrolls on hover when it overflows.
-- `stacked`: image above a fixed-height record sheet (exhibition directory, related records on an exhibition page). The sheet never grows with its content: title and artist line are one line each with an ellipsis, the summary receives exactly the lines that fit above the footer, the footer sits statically at the bottom, and every clipped text shows in full in the framed tooltip on hover.
+- `hero`: the highlighted record — a large image under an inset dark overlay with the primary action (landing collection).
+- `side`: image and structured metadata side by side on desktop, stacked on mobile (landing collection, programme ledger, the upcoming and past columns of the exhibition directory, search results and group pages). The title stays on one clipped line and scrolls on hover when it overflows.
+- `stacked`: image above a fixed-height record sheet (current exhibitions in the exhibition directory, related records on an exhibition page). The sheet never grows with its content: title and artist line are one line each with an ellipsis, the summary receives exactly the lines that fit above the footer, the footer sits statically at the bottom, and every clipped text shows in full in the framed tooltip on hover.
 
 Metadata order should remain stable:
 
@@ -689,15 +689,30 @@ Metadata order should remain stable:
 4. date range;
 5. record action.
 
-The complete exhibition directory is a reverse-chronological index: order
-records by ISO start date from newest to oldest, then by end date and title for
+The exhibition directory (`/exhibitions/`) groups records by the visitor's
+local calendar day (`groupExhibitionsByTime`). Current exhibitions come first,
+as `stacked` cards three per row (two from the tablet breakpoint); below them upcoming and past sit side by side,
+each a column of `side` cards (one column from the tablet breakpoint, upcoming
+first). Each group shows at most ten records (`ExhibitionTimeGroup`); a larger
+group ends in a text link to its own page, `/exhibitions/current/`,
+`/exhibitions/upcoming/` or `/exhibitions/past/` (`ExhibitionGroupPage`), which
+lists only that group. Current records order by soonest closing date, upcoming
+by opening date, past by most recently closed. An empty group says so in one
+muted line; the structure does not change.
+
+A search replaces the groups with one flat, reverse-chronological list of every
+match: ISO start date from newest to oldest, then end date and title for
 deterministic ties. Search filters this already ordered collection and must not
-reorder its results. Derive the visually highlighted exhibition from the
-visitor's local calendar day: choose a running exhibition first, otherwise the
-nearest upcoming exhibition, otherwise the first record in the ordered list.
-When several exhibitions are running, use the current-programme order and
-highlight the one closing soonest. Never store a manual `featured` flag on an
-exhibition record; the highlight must move automatically as dates pass.
+reorder its results. Long lists — search results and group pages — show twenty
+records per page (`ExhibitionPagedList`) with the numbered `ArchivePager`; the
+page lives in the address as `?page=2`, and every pager link jumps to the top of
+its list.
+
+The intro figure still shows one date-derived exhibition: a running exhibition
+first, otherwise the nearest upcoming exhibition, otherwise the first record in
+the ordered list; when several are running, the one closing soonest. Never store
+a manual `featured` flag on an exhibition record; the highlight must move
+automatically as dates pass.
 
 Use semantic `<time>` elements for real dates in future routed pages.
 
@@ -710,7 +725,7 @@ second featured collection. It appears only while one or both time groups have
 records, sits directly after the hero, and caps each chronological group at
 three. Current records order by soonest closing date; upcoming records order by
 opening date. Reuse `ExhibitionCard` in its `side` layout so record geometry,
-metadata order, and the centred `Visit Exhibition` image action stay identical
+metadata order, and the centred image action stay identical
 to the main landing collection. Separate the module from the next landing band
 with `ArchiveExhibitionsDivider`; do not add a tonal panel, perimeter rules, or
 decorative record counts. The current group carries the strongest red status
@@ -1068,7 +1083,7 @@ Explain what the archive preserves and how the visitor can engage with it. Use c
 
 ### 20.3 Labels and actions
 
-Use exact nouns and verbs. `Visit Exhibition` is better than `Discover more`. `Locations` is better than an abstract label like `Places` when the underlying data model is locations.
+Use exact nouns and verbs. `Visit Exhibition` is better than `Discover more` — and is used only when the visit (the 360° tour) really exists; otherwise `About the Exhibition`. `Locations` is better than an abstract label like `Places` when the underlying data model is locations.
 
 ### 20.4 Naming consistency
 

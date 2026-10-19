@@ -207,7 +207,6 @@
     "showAll": "Alle Einträge von {name} anzeigen",
     "exhibitionsAria": "Ausstellungen von {name}",
     "previewAria": "Vorschau der ausgewählten Ausstellung",
-    "openExhibition": "Ausstellung besuchen",
     "loadingPreview": "Bild des Eintrags wird geladen",
     "previewUnavailable": "Die Vorschau ist nicht verfügbar. Wählen Sie einen anderen Eintrag oder öffnen Sie die Ausstellungsseite.",
     "venueEyebrow": "Der Ort",
@@ -323,10 +322,34 @@
     "indexIntro": "Suchen Sie nach Titel, Künstler:in, Galerie, Stadt, Datum, Medium und der Sprache jedes Eintrags.",
     "searchLabel": "Ausstellungsarchiv durchsuchen",
     "searchPlaceholder": "Einträge suchen…",
-    "status": "{visible} von {total} Ausstellungseinträgen werden angezeigt.",
     "clearSearch": "Suche löschen",
     "noMatches": "Kein Ausstellungseintrag entspricht dieser Suche.",
-    "returnAll": "Zu allen Ausstellungen zurückkehren"
+    "returnAll": "Zu allen Ausstellungen zurückkehren",
+    "statusSearch": "{visible} von {total} Ausstellungseinträgen passen zu dieser Suche.",
+    "statusAll": "{total} Ausstellungseinträge im Archiv.",
+    "groups": {
+      "current": {
+        "title": "Aktuelle Ausstellungen",
+        "empty": "Heute ist keine Ausstellung geöffnet.",
+        "all": "Alle aktuellen Ausstellungen ({count})",
+        "seoDescription": "Ausstellungen, die heute geöffnet sind, verzeichnet im PERMAPHEMERA-Archiv."
+      },
+      "upcoming": {
+        "title": "Kommende Ausstellungen",
+        "empty": "Noch keine kommende Ausstellung verzeichnet.",
+        "all": "Alle kommenden Ausstellungen ({count})",
+        "seoDescription": "Ausstellungen, die bald eröffnen, verzeichnet im PERMAPHEMERA-Archiv."
+      },
+      "past": {
+        "title": "Vergangene Ausstellungen",
+        "empty": "Noch keine vergangene Ausstellung verzeichnet.",
+        "all": "Alle vergangenen Ausstellungen ({count})",
+        "seoDescription": "Ausstellungen, die geschlossen haben, bewahrt im PERMAPHEMERA-Archiv."
+      }
+    },
+    "groupCount": "{count} Ausstellung | {count} Ausstellungen",
+    "groupSeoTitle": "{title} · PERMAPHEMERA",
+    "backToIndex": "Zurück zu allen Ausstellungen"
   },
   "artists": {
     "seoTitle": "Künstler:innen im Archiv · PERMAPHEMERA",
@@ -829,7 +852,12 @@
     "openExhibition": "Ausstellung besuchen",
     "openEvent": "Veranstaltung besuchen",
     "enterEvent": "Veranstaltung besuchen",
-    "openEventFor": "Veranstaltung besuchen: {title}"
+    "openEventFor": "Veranstaltung besuchen: {title}",
+    "aboutExhibition": "Zur Ausstellung",
+    "aboutEvent": "Zur Veranstaltung",
+    "aboutShort": "Details",
+    "aboutExhibitionFor": "Zur Ausstellung: {title}",
+    "aboutEventFor": "Zur Veranstaltung: {title}"
   },
   "footer": {
     "tagline": "Ein kuratiertes österreichisches Archiv von 360°-Ausstellungsdokumentationen.",
@@ -947,5 +975,11 @@
     "towns": "Orte",
     "noSupports": "{name} unterstützt PERMAPHEMERA. Im Archiv ist noch kein unterstützter Eintrag.",
     "seoDescription": "{name} unterstützt PERMAPHEMERA: die unterstützten Ausstellungen, Galerien und Personen im Archiv."
+  },
+  "pager": {
+    "label": "Seiten",
+    "previous": "Vorherige Seite",
+    "next": "Nächste Seite",
+    "page": "Seite {page}"
   }
 }

@@ -19,29 +19,47 @@ export function localDateKey(date = new Date()): string {
   return `${year}-${month}-${day}`
 }
 
+export interface ExhibitionTimeGroups<T> extends ExhibitionSchedule<T> {
+  past: T[]
+}
+
+export type ExhibitionTimeGroupId = keyof ExhibitionTimeGroups<unknown>
+
+/**
+ * Every record in exactly one group, with no limit. Current: closing soonest first
+ * (permanent last). Upcoming: opening soonest first. Past: most recently closed first.
+ */
+export function groupExhibitionsByTime<T extends ScheduleReadyExhibition>(
+  exhibitions: readonly T[],
+  today = localDateKey()
+): ExhibitionTimeGroups<T> {
+  const closing = (exhibition: T) => exhibition.is_permanent ? '9999-12-31' : exhibition.end_date
+  const current: T[] = []
+  const upcoming: T[] = []
+  const past: T[] = []
+
+  for (const exhibition of exhibitions) {
+    if (exhibition.start_date > today) upcoming.push(exhibition)
+    else if (closing(exhibition) >= today) current.push(exhibition)
+    else past.push(exhibition)
+  }
+
+  current.sort((left, right) => closing(left).localeCompare(closing(right)) || left.start_date.localeCompare(right.start_date))
+  upcoming.sort((left, right) => left.start_date.localeCompare(right.start_date))
+  past.sort((left, right) => right.end_date.localeCompare(left.end_date) || right.start_date.localeCompare(left.start_date))
+
+  return { current, upcoming, past }
+}
+
 export function selectExhibitionSchedule<T extends ScheduleReadyExhibition>(
   exhibitions: readonly T[],
   today = localDateKey(),
   maximumPerGroup = MAX_SCHEDULE_EXHIBITIONS_PER_GROUP
 ): ExhibitionSchedule<T> {
   const limit = Math.max(0, Math.floor(maximumPerGroup))
-  const current = exhibitions
-    .filter((exhibition) => exhibition.start_date <= today
-      && (exhibition.is_permanent || exhibition.end_date >= today))
-    .sort((left, right) => {
-      const leftEnd = left.is_permanent ? '9999-12-31' : left.end_date
-      const rightEnd = right.is_permanent ? '9999-12-31' : right.end_date
+  const { current, upcoming } = groupExhibitionsByTime(exhibitions, today)
 
-      return leftEnd.localeCompare(rightEnd) || left.start_date.localeCompare(right.start_date)
-    })
-    .slice(0, limit)
-
-  const upcoming = exhibitions
-    .filter((exhibition) => exhibition.start_date > today)
-    .sort((left, right) => left.start_date.localeCompare(right.start_date))
-    .slice(0, limit)
-
-  return { current, upcoming }
+  return { current: current.slice(0, limit), upcoming: upcoming.slice(0, limit) }
 }
 
 export function selectFeaturedExhibition<T extends ScheduleReadyExhibition>(

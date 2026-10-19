@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { exhibitionLinkLabels } from '~/utils/exhibitionLinkLabels'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 
 const props = defineProps<{
@@ -10,6 +11,8 @@ const emit = defineEmits<{
   select: [exhibition: ResolvedExhibition]
 }>()
 const localePath = useLocalePath()
+const archiveToday = useArchiveToday()
+const labels = computed(() => exhibitionLinkLabels(props.exhibition, archiveToday.value))
 </script>
 
 <template>
@@ -41,9 +44,9 @@ const localePath = useLocalePath()
       <NuxtLink
         class="[ venue-list-link ] flex items-center justify-center text-archive-red focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-archive-red"
         :to="localePath(`/exhibitions/${props.exhibition.slug}`)"
-        :aria-label="$t(props.exhibition.kind === 'event' ? 'cards.openEventFor' : 'cards.openExhibitionFor', { title: props.exhibition.title })"
+        :aria-label="$t(labels.openFor, { title: props.exhibition.title })"
       >
-        <span class="sr-only">{{ $t(props.exhibition.kind === 'event' ? 'cards.openEvent' : 'cards.openExhibition') }}</span>
+        <span class="sr-only">{{ $t(labels.open) }}</span>
         <ArchiveArrow class="w-[1.65rem] group-hover/venue-record:translate-x-[0.32rem] group-focus-within/venue-record:translate-x-[0.32rem]" />
       </NuxtLink>
     </article>

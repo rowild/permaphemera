@@ -3,8 +3,8 @@ import { selectRelatedExhibitions } from '~/utils/relatedExhibitions'
 
 const today = '2026-10-14'
 
-const record = (slug: string, venue: string, start: string, end: string, tour?: string, hasImage = true) => ({
-  slug, venue_slug: venue, start_date: start, end_date: end, is_permanent: false, has_image: hasImage,
+const record = (slug: string, venue: string, start: string, end: string, tour?: string) => ({
+  slug, venue_slug: venue, start_date: start, end_date: end, is_permanent: false,
   tour, tour_status: tour ? 'available' as const : 'unavailable' as const, tour_available_from: null
 })
 
@@ -31,12 +31,6 @@ describe('selectRelatedExhibitions', () => {
     expect(slugs).not.toContain('current')
     expect(slugs).not.toContain('future-tour')
     expect(slugs).not.toContain('scheduled')
-  })
-
-  it('never offers an exhibition whose image is a placeholder', () => {
-    const placeholder = record('placeholder-tour', 'europahaus', '2026-05-02', '2026-05-12', '/media/tours/p/', false)
-    const slugs = selectRelatedExhibitions([...all, placeholder], all[0]!, today, 10).map((item) => item.slug)
-    expect(slugs).not.toContain('placeholder-tour')
   })
 
   it('returns fewer cards, or none, when not enough exhibitions qualify', () => {

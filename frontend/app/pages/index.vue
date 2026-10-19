@@ -57,9 +57,7 @@ const venueStackVenue = computed(() => venueSearchQuery.value.trim() ? undefined
 const regularVenues = computed(() => venueSearchQuery.value.trim()
   ? otherVenues.value
   : orderedOtherVenues.value.slice(0, LANDING_VENUE_COUNT))
-// Every exhibition section on this page previews only exhibitions with a real image (no placeholder).
-const previewExhibitions = computed(() => venueExhibitions.value.filter((exhibition) => exhibition.has_image))
-const orderedExhibitions = computed(() => [...previewExhibitions.value]
+const orderedExhibitions = computed(() => [...venueExhibitions.value]
   .sort((left, right) => right.start_date.localeCompare(left.start_date)
     || right.end_date.localeCompare(left.end_date)
     || left.title.localeCompare(right.title)))
@@ -86,14 +84,14 @@ const selectedExhibitions = computed<Exhibition[]>(() => {
 })
 const featuredExhibition = computed(() => selectedExhibitions.value.find((exhibition) => exhibition.id === featuredExhibitionRecord.value?.id) ?? selectedExhibitions.value[0]!)
 const sideExhibitions = computed(() => selectedExhibitions.value.filter((exhibition) => exhibition.id !== featuredExhibition.value.id))
-const exhibitionSchedule = computed(() => selectExhibitionSchedule(previewExhibitions.value, archiveToday.value))
+const exhibitionSchedule = computed(() => selectExhibitionSchedule(venueExhibitions.value, archiveToday.value))
 const currentExhibitions = computed(() => exhibitionSchedule.value.current)
 const upcomingExhibitions = computed(() => exhibitionSchedule.value.upcoming)
 const hasTimelyExhibitions = computed(() => currentExhibitions.value.length > 0 || upcomingExhibitions.value.length > 0)
 const firstLandingSectionTarget = computed(() => hasTimelyExhibitions.value ? '#current-upcoming' : '#venues')
 // The fan links only to open 360° experiences; galleries fill it up to twelve blades for now.
 const heroExhibitionItems = computed<KaleidoscopeExhibitionItem[]>(() => buildHeroItems(
-  previewExhibitions.value,
+  venueExhibitions.value,
   venues.value,
   archiveToday.value,
   {

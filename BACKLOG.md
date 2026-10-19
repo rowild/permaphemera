@@ -2,6 +2,18 @@
 
 Work that is agreed but parked for later. Newest first.
 
+## Frontend: a not-found exhibition page is blank in `pnpm dev`
+
+Found 2026-10-19.
+
+`/exhibitions/<unknown-slug>/` shows the archive 404 page in the build and on permaphemera.at,
+but in `pnpm dev` the page stays empty. The console shows "Unhandled error during execution of
+beforeUnmount hook" in `[slug].vue`. The page throws `createError(404)` from `setup`; the dev
+error overlay or HMR may handle that differently. Only the dev server is affected.
+
+Local dev note: the hosted Directus answers CORS only for `http://localhost:3000`, so
+`pnpm dev` must run on port 3000.
+
 ## Directus: delete the `status` field on the four relation tables
 
 Added 2026-10-14.
