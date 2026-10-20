@@ -160,7 +160,7 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 
 ## 5. Per-folder reference
 
-### `_360_GALLERIES_AND_TOURS/` (about 25 GB; git for its text files only)
+### `_360_GALLERIES_AND_TOURS/` (about 34 GB; git for its text files only, GitHub `rowild/permaphemera-tour-data`)
 
 | Folder | Purpose |
 |---|---|
@@ -188,7 +188,7 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 - This folder was called `_tours/` and sat inside the Tour Editor repo until
   2026-09-29.
 
-### `_MacAPP TOUR-VIEWER/` (git)
+### `_MacAPP TOUR-VIEWER/` (git, GitHub `rowild/tour-editor`, private, since 2026-10-20)
 
 - Read first: `CLAUDE.md`, `README.md`, `AGENTS.md` (large; skim headings).
 - Two apps, one data file (`tour.json`, schema v2; Tour → Building → Floor →
@@ -208,7 +208,7 @@ are uploaded with `directus/scripts/upload-files.mjs`.
   360 folder plus the skills `rowild-panorama-tour-naming`/`-grading`/`-markers`/`-setup`,
   earlier the project skill `.claude/skills/pano-pipeline/` in this repo).
 
-### `_WEBSITE PERMAPHEMERA/` (git)
+### `_WEBSITE PERMAPHEMERA/` (git, GitHub `rowild/permaphemera`)
 
 - Read first: `AGENTS.md`, then `frontend/AGENTS.md`, `directus/README.md`.
 - `frontend/` — Nuxt 4, static (`nuxt generate`). Reads all content from
