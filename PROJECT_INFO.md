@@ -42,8 +42,10 @@ DJI Osmo 360 (15520×7760 equirectangular JPG, already stitched in camera)
    ▼  drop into
 _360_GALLERIES_AND_TOURS/collection/<group>/<tour-id>/building_01/floor_01/room_01/{normal,high,low}/
    │
-   ▼  _pipeline/run.sh  rename → proof → grade → web           (= GRADING)
-   │     backups → _originals/   graded JPG → _masters/   8192 WebP → collection/
+   ▼  run.sh (skill rowild-panorama-tour)  rename → check-heights → proof → grade → web   (= GRADING)
+   │     backups → _grading/originals/   graded JPG → _grading/masters/   8192 WebP → collection/
+   │
+   ▼  markers (same skill, MARKERS.md) → tour.json with links, hidden markers checked
    │
    ▼  Tour Editor: library = collection/   → writes collection/<…>/<tour-id>/tour.json
    │
@@ -74,11 +76,11 @@ The only link between the two is the text field `pp_exhibitions.tour`.
 
 | Question | Answer |
 |---|---|
-| **Where do I grade images?** | `_360_GALLERIES_AND_TOURS/_pipeline/` with `./run.sh`. Fuse brackets first with the global `fuse` skill. See §3 step 2. |
-| **Where do I add or update a gallery (venue), a town, an artist or an exhibition?** | In **Directus** (production): `pp_venues`, `pp_locations`, `pp_persons`, `pp_exhibitions`. Follow the step-by-step how-to **`_WEBSITE PERMAPHEMERA/docs/how-to-gallery-and-exhibition.md`** (Claude skill `gallery-exhibition`). The sources for each gallery are in `_360_GALLERIES_AND_TOURS/collection/<venue-folder>/sources.txt` and its PDFs. See §4. |
-| **Where do I start a new 360° tour (a new shoot)?** | `_360_GALLERIES_AND_TOURS/collection/<group>/<tour-id>/building_01/floor_01/room_01/normal/`. See §3 step 1. |
-| **Where do I build the tour (links, hotspots, texts)?** | `Tour Editor.app` (in `_MacAPP TOUR-VIEWER/`). See §3 step 3. |
-| **Where do I upload finalised tours?** | Export from the Tour Editor to `_360_GALLERIES_AND_TOURS/exported/`. Then in `_WEBSITE PERMAPHEMERA/frontend/`: `pnpm tour:publish <tour-id>`, then `pnpm deploy:hetzner`. See §3 steps 4–5. |
+| **Where do I grade images?** | `run.sh` in the global skill `rowild-panorama-tour` (`~/.claude/skills/rowild-panorama-tour/scripts/`). Fuse brackets first with the global skill `rowild-photo-fuse`. See §3 step 4. |
+| **Where do I add or update a gallery (venue), a town, an artist or an exhibition?** | In **Directus** (production): `pp_venues`, `pp_locations`, `pp_persons`, `pp_exhibitions`. Follow the step-by-step how-to **`_WEBSITE PERMAPHEMERA/docs/how-to-gallery-and-exhibition.md`** (global Claude skill `rowild-create-or-update-gallery-or-exhibition-in-permaphemera`). The sources for each gallery are in `_360_GALLERIES_AND_TOURS/collection/<venue-folder>/sources.txt` and its PDFs. See §4. |
+| **Where do I start a new 360° tour (a new shoot)?** | `_360_GALLERIES_AND_TOURS/collection/<group>/<tour-id>/building_01/floor_01/room_01/normal/`. See §3 step 2. |
+| **Where do I build the tour (links, hotspots, texts)?** | `Tour Editor.app` (in `_MacAPP TOUR-VIEWER/`). See §3 steps 5–6 (markers are made by script first). |
+| **Where do I upload finalised tours?** | Export from the Tour Editor to `_360_GALLERIES_AND_TOURS/exported/`. Then in `_WEBSITE PERMAPHEMERA/frontend/`: `pnpm tour:publish <tour-id>`, then `pnpm deploy:hetzner`. See §3 steps 7–8. |
 | **Where do I change the database schema (new fields)?** | `_WEBSITE PERMAPHEMERA/directus/scripts/schema.mjs` plus the other files that root `AGENTS.md` lists. Never only in the admin app. |
 | **Where does the viewer JS on the website come from?** | `_MacAPP TOUR-VIEWER`: `pnpm build:all` → copy `dist/tour-viewer.js` and `dist/tour-viewer.css` to `_WEBSITE PERMAPHEMERA/frontend/public/media/tour-viewer/`. |
 
@@ -86,104 +88,26 @@ The only link between the two is the text field `pp_exhibitions.tour`.
 
 ## 3. The tour workflow, step by step
 
-### Step 1 — Put the shoot in place (`_360_GALLERIES_AND_TOURS`)
+**The whole chain is ONE checklist: the global skill `rowild-panorama-tour`**
+(`~/.claude/skills/rowild-panorama-tour/SKILL.md`, since 2026-10-20). It has the command and a
+"done when" check for every step, and holds all the 360 scripts (`scripts/`) and their pages
+(NAMING.md, GRADING.md, MARKERS.md). This
+section is only the overview.
 
-- Folder layout for every tour:
-  `collection/<group>/<tour-id>/building_NN/floor_NN/room_NN/{normal|high|low}/NN.jpg`
-  - `normal` is required. `high` and `low` are extra tripod heights.
-  - `NN.jpg` is the position number. Height files pair by the **same file name**.
-    Never renumber to close a gap.
-  - The folder tree **is** the tour structure. The Tour Editor cannot create or
-    reorder buildings, floors, rooms or positions.
-- `<group>` is a venue-and-year folder, e.g. `parkschloessl_2026/`. Some tours
-  sit directly under `collection/` (e.g. `stadtgalerie_klagenfurt_2026/`).
-- **`<tour-id>` naming:** `YYYY-MM-DD-<venue>-<city>-<artist>`, e.g.
-  `2026-08-10-parkschloessl-spittal-moertl-birgit`. The folder name becomes the
-  tour id **and the web address**. Fix it before the first publish.
-- Put the exhibition poster in the tour folder as `poster.pdf`. The tour texts
-  are copied from it.
+| # | Step | Where | Skill |
+|---|---|---|---|
+| 0 | Exhibition record in Directus (production) | Directus | `rowild-create-or-update-gallery-or-exhibition-in-permaphemera` |
+| 1 | Fuse brackets (bracket shoots only; never `punch` tour photos) | the shoot folder | `rowild-photo-fuse` |
+| 2 | Photos in place, tour id `YYYY-MM-DD-<title>`, `poster.pdf` | `_360_GALLERIES_AND_TOURS/collection/` | `rowild-panorama-tour` (NAMING.md) |
+| 3 | `rename` + `check-heights` | `run.sh` in the skill | `rowild-panorama-tour` (NAMING.md) |
+| 4 | `proof`, `grade`, `web` (`sky` outdoors), `verify` | `run.sh` in the skill | `rowild-panorama-tour` (GRADING.md) |
+| 5 | Markers + hidden markers | `scripts/markers/` in the skill | `rowild-panorama-tour` (MARKERS.md) |
+| 6 | Check and save (⌘S) in the Tour Editor | `_MacAPP TOUR-VIEWER` | `rowild-panorama-tour` (SKILL.md) |
+| 7 | Export (⌘E) to `exported/<tour-id>/` | Tour Editor | `rowild-panorama-tour` (SKILL.md) |
+| 8 | `pnpm tour:publish` + `pnpm deploy:hetzner` | `_WEBSITE PERMAPHEMERA/frontend/` | `rowild-panorama-tour` (SKILL.md) |
 
-### Step 2 — Grade (`_360_GALLERIES_AND_TOURS/_pipeline/`)
-
-Main doc: `_360_GALLERIES_AND_TOURS/_pipeline/README.md`. Read its "Gotchas".
-
-1. **Bracketed shoot?** Fuse first. The Osmo shoots no HDR stills, so each scene
-   is a manual bracket in its own subfolder.
-   ```sh
-   python3 ~/.claude/skills/fuse/scripts/fuse_brackets.py --root "<shoot>" --equirect --dry-run
-   python3 ~/.claude/skills/fuse/scripts/fuse_brackets.py --root "<shoot>" --equirect
-   ```
-   Optional: `punch.py` (contrast, clarity, vibrance). Tutorial:
-   `_pipeline/Imitating HDR.md`. The skill is installed at `~/.claude/skills/fuse/`.
-   Its editable working copy is `_MacAPP TOUR-VIEWER/_claude-skill-fuse/`
-   (git-ignored, synced with `rsync`).
-2. **Grade:**
-   ```sh
-   cd "/Users/robertwildling/Desktop/_WWW/_360_GALLERIES_AND_TOURS/_pipeline"
-   export TOUR=parkschloessl_2026/<tour-id>   # path RELATIVE TO collection/
-   ./run.sh rename            # camera names → 01.jpg, 02.jpg … (writes)
-   ./run.sh snapshot <label>  # before any re-run that replaces output
-   ./run.sh proof             # contact sheet → ~/Desktop/pano-proof (read only)
-   ./run.sh grade             # backup → _originals, grade, move → _masters (writes)
-   ./run.sh web               # _masters → 8192×4096 WebP q72 in collection/ (writes)
-   ./run.sh sky-proof && ./run.sh sky   # only for outdoor shots with a blown sky
-   ./run.sh verify            # read-only audit
-   ```
-   - `TOUR` must be the path under `collection/`, including the group folder.
-     The example in the `run.sh` header (bare tour id) is older than the
-     regrouping of 2026-09-06.
-   - Without `TOUR`, the **whole** collection is processed.
-   - `./run.sh web --tiled` copies the master JPG instead of making a WebP. The
-     Tour Editor then cuts the tiles itself.
-   - Other graders: `grade_set.py` (one lighting set, e.g. a party),
-     `grade_affinity_wb.py` (reproduces a hand-made Affinity white-balance look;
-     used on `stadtgalerie_klagenfurt_2026` on 2026-10-03, workspace
-     `_wb_probe/`).
-   - Nothing in the pipeline deletes files. Superseded files go to `_to_delete/`
-     for manual removal.
-
-### Step 3 — Build the tour (`_MacAPP TOUR-VIEWER`, Tour Editor)
-
-- Open `/Users/robertwildling/Desktop/_WWW/_MacAPP TOUR-VIEWER/Tour Editor.app`
-  (or `pnpm desktop:dev` in that repo).
-- Library folder = `_360_GALLERIES_AND_TOURS/collection/`. Press **Update**. A new
-  folder shows as a **Draft** card. Opening it builds the tour from the folders.
-- Add: `meta` (artist, title, curator, venue, dates — from `poster.pdf`),
-  languages, links, doors, hotspots, start view. **⌘S** writes `tour.json` into
-  the tour folder.
-- Optional: Settings → Tiles → Build tiles (multi-resolution `<stem>.tiles/`).
-- The app does **no** grading. It only reads images, writes `tour.json`, cuts
-  tiles, and exports. It never talks to Directus or any server (on purpose).
-
-### Step 4 — Export (Tour Editor)
-
-- **⌘E** exports to `_360_GALLERIES_AND_TOURS/exported/<tour-id>/`
-  (`tour.json` + only the images it uses). `exported/` is flat: no group folder.
-- Export refuses if an image is missing or the tiles are incomplete.
-
-### Step 5 — Publish and deploy (`_WEBSITE PERMAPHEMERA/frontend/`)
-
-```sh
-cd "/Users/robertwildling/Desktop/_WWW/_WEBSITE PERMAPHEMERA/frontend"
-nvm use
-pnpm tour:publish <tour-id> --dry-run
-pnpm tour:publish <tour-id> [--exhibition <exhibition-slug>]
-pnpm dev                     # check http://localhost:4991/en/exhibitions/<slug>/
-pnpm deploy:hetzner          # build + rsync to permaphemera.at
-```
-
-- `tour:publish` (`frontend/scripts/publish-tour.mjs`):
-  - reads `../../_360_GALLERIES_AND_TOURS/exported/<tour-id>/` (override with
-    `--from <dir>` or `TOUR_EXPORT_DIR`);
-  - mirrors it to `frontend/public/media/tours/<tour-id>/` (git-ignored);
-  - on first publish, sets `pp_exhibitions.tour` in Directus. `frontend/.env`
-    points at **production** Directus, so this writes to production;
-  - runs `pnpm check:public`. It does **not** deploy.
-- The exhibition record must already exist in Directus (§4).
-- Also set `tour_status` (`available` / `restricted` / `unavailable`) and, if
-  needed, `tour_available_from` on the exhibition.
-- `deploy:hetzner` (`frontend/scripts/deploy-hetzner.sh`) syncs tours **add and
-  update only, never delete**. Removing a tour from the server is a manual job.
+The Tour Editor does **no** grading. It only reads images, writes `tour.json`, cuts tiles
+and exports. It never talks to Directus or any server (on purpose).
 
 ---
 
@@ -236,21 +160,31 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 
 ## 5. Per-folder reference
 
-### `_360_GALLERIES_AND_TOURS/` (no git, about 25 GB)
+### `_360_GALLERIES_AND_TOURS/` (about 25 GB; git for its text files only)
 
 | Folder | Purpose |
 |---|---|
 | `collection/` | The tours. Graded 8192 WebP (or master JPG for tiled tours) + `tour.json` + `poster.pdf`. Also a work area: raw shoots, brackets, phone photos, `_BU/` backups. |
-| `_originals/` | Untouched camera files. The pipeline copies each source here before grading. "Has a backup" marks a file as graded. |
-| `_masters/` | Graded JPEG q93 at native size. WebP and tiles are made from here. |
-| `_pipeline/` | Scripts (`run.sh`, `grade_panos.py`, `grade_sky_panos.py`, `grade_set.py`, `grade_affinity_wb.py`, `make_web.py`, `rename_positions.py`, `verify.py`) and docs (`README.md`, `Imitating HDR.md`, `SUPERSEDED.md`, `move-log.txt`). |
-| `_versions/` | Snapshots from `./run.sh snapshot <label>`: `YYYY-MM-DD-HHMM-<label>/`. |
-| `_wb_probe/` | One-off white-balance experiment (2026-10-03, stadtgalerie). |
-| `_to_delete/` | Superseded files, for manual removal. |
+| `_grading/` | Data of the grading scripts (since 2026-10-20; before at the root): `originals/` (untouched camera files; "has a backup" marks a file as graded), `masters/` (graded JPEG q93 at native size; WebP and tiles are made from here), `versions/` (snapshots `YYYY-MM-DD-HHMM-<label>/`), `to_delete/` (superseded files, for manual removal), `verify-accepted.txt`, `move-log.txt`. The former `_pipeline/` folder was deleted on 2026-10-20. |
+| `_markers/` | Work folder and results of the marker steps, one folder per tour id: step results, check sheets, hidden-marker review, the tour's `meta.json`. The 2 GB feature cache `featcache/` exists only during a run. |
 | `exported/` | Tour Editor exports, flat by tour id. Input of `pnpm tour:publish`. |
+| `__MATERIAL/` | Material per gallery and artist, kept by hand. No script uses it. |
+| `_experiments/` | Finished tests, no script uses them: `2026-10-03-wb-probe-stadtgalerie/` (white-balance experiment), `2026-10-19-flicker-probe-palais-fugger/` (lamp-flicker analysis and the 24 repaired Fugger photos, not yet in the tour; see its `README.md`). |
 
-- `_masters/` and `_originals/` mirror the `collection/` paths. If you move a tour
-  inside `collection/`, move its `_masters/` and `_originals/` folders too.
+- **Git, text files only** (since 2026-10-20): GitHub `rowild/permaphemera-tour-data`
+  (private). `.gitignore` lets in only `*.json`, `*.txt`, `*.md` and `poster.pdf`: the
+  `tour.json` files, `_markers/`, logs, `sources.txt`, posters (about 30 MB). Photos, masters,
+  originals, exports and snapshots are NOT in git; only Time Machine keeps them (its backup
+  disk must be connected). Save after a step that changes `tour.json` or marker results:
+  `git -C ~/Desktop/_WWW/_360_GALLERIES_AND_TOURS add -A && git commit -m "<tour-id>: <what>" && git push`.
+- The scripts are NOT here: they live in the global skill `rowild-panorama-tour`
+  (`~/.claude/skills/rowild-panorama-tour/scripts/`, since 2026-10-20). Its source is the
+  git repo `~/Desktop/_WWW/__SKILLS-DEV/rowild-skills` (GitHub `rowild/rowild-skills`,
+  private) with all `rowild-*` skills; its `setup.sh` links them into `~/.claude/skills/`
+  and `~/.agents/skills/` (Codex) and writes the paths file `~/.config/rowild-skills/paths.env`.
+  Edit skills in the repo, then commit and push.
+- `_grading/masters/` and `_grading/originals/` mirror the `collection/` paths. If you move a
+  tour inside `collection/`, move its masters and originals folders too.
 - This folder was called `_tours/` and sat inside the Tour Editor repo until
   2026-09-29.
 
@@ -269,8 +203,10 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 - Commands (pnpm): `dev`, `build`, `build:all` (+ widget), `desktop:dev`,
   `desktop:build` (copies the app to `Tour Editor.app`), `test`, `typecheck`,
   `verify` (the full gate; every change ends with it).
-- Project skill `.claude/skills/pano-pipeline/SKILL.md` documents the grading
-  pipeline of the 360 folder.
+- The 360 scripts (naming, grading, markers) and their docs are the global skill
+  `~/.claude/skills/rowild-panorama-tour/` (since 2026-10-20; before: `_pipeline/` in the
+  360 folder plus the skills `rowild-panorama-tour-naming`/`-grading`/`-markers`/`-setup`,
+  earlier the project skill `.claude/skills/pano-pipeline/` in this repo).
 
 ### `_WEBSITE PERMAPHEMERA/` (git)
 
@@ -285,7 +221,8 @@ are uploaded with `directus/scripts/upload-files.mjs`.
   `permissions.mjs`, `export.mjs`, `import.mjs`, `upload-files.mjs`, …). Scripts
   use local `.env` by default; `DIRECTUS_ENV_FILE=.env.remote` targets production.
 - `docs/how-to-gallery-and-exhibition.md` — how to create or update galleries,
-  towns, artists and exhibitions. Claude skill: `.claude/skills/gallery-exhibition/`.
+  towns, artists and exhibitions. Global Claude skill:
+  `~/.claude/skills/rowild-create-or-update-gallery-or-exhibition-in-permaphemera/` (until 2026-10-20 the project skill `gallery-exhibition`).
 - `galerien-oesterreich/` — separate static React site (GVÖ), not linked to Directus.
 - `_Plans/exhibitions-plan.md` — the active architecture plan (§2 = data model).
 - `_Material/`, `_BU/` — git-ignored source material and backups.
@@ -319,16 +256,12 @@ old folder names and paths, `TOUR=` examples) were corrected that day in all
   all-inkl host, not to permaphemera.at. Use **`pnpm deploy:hetzner`**.
 - A tour button shows only when `tour_status` is `available` **and**
   `tour_available_from` has passed. `pnpm tour:publish` sets only `tour`.
-- The installed fuse skill `~/.claude/skills/fuse/README.md` still has the old
-  `/Volumes/Work/__MY_WWW/...` path. The working copy in
-  `_MacAPP TOUR-VIEWER/_claude-skill-fuse/` is fixed; sync it over (rsync
-  command in that README).
 - `_MacAPP TOUR-VIEWER/docs/tutorials/pdf/Tour-Editor-Handbook-Tutorial-03-Website.pdf`
   is older than the updated HTML tutorial.
 - Some tours were graded ad hoc (logs: `collection/*/_originals/grading-claude-2026-09-22.txt`),
-  with backups inside the tour folder, not in the root `_originals/`.
+  with backups inside the tour folder, not in `_grading/originals/`.
 - `dobratsch-aussichtsplatform-2026-08-16`: its `tour.json` id is
-  `Dobratsch_Aussichtsplatform_2026-08-16` (matches `_masters/`, not its
+  `Dobratsch_Aussichtsplatform_2026-08-16` (matches `_grading/masters/`, not its
   `collection/` folder).
 
 ---

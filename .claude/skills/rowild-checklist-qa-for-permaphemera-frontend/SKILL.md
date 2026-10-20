@@ -1,5 +1,5 @@
 ---
-name: frontend-qa-checklist
+name: rowild-checklist-qa-for-permaphemera-frontend
 description: Pre-ship visual and interaction verification checklist for the PERMAPHEMERA frontend. Use before shipping or after materially changing any page, layout, or interaction, to confirm desktop and mobile behavior against the approved mockups.
 ---
 

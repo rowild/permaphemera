@@ -6,7 +6,7 @@ This repository is the PERMAPHEMERA frontend: the first working milestone for a 
 
 The primary active plan is `../_Plans/exhibitions-plan.md`. Treat `../_Plans/original chat.md` as historical context, not as the current implementation source of truth. This folder is one part of a single repository whose root holds `_Plans/`, `directus/` and this `frontend/`; read the root `AGENTS.md` first.
 
-The `frontend-qa-checklist` skill referenced below lives in `../.claude/skills/` at the repository root, because Claude Code is run from the root workspace directory rather than from `frontend/`. The `fin-patch` skill is installed globally in `~/.claude/skills/fin-patch/` and works in any repository from any directory.
+The `rowild-checklist-qa-for-permaphemera-frontend` skill (until 2026-10-20 `frontend-qa-checklist`) referenced below lives in `../.claude/skills/` at the repository root, because Claude Code is run from the root workspace directory rather than from `frontend/`. The `fin-patch` skill is installed globally in `~/.claude/skills/fin-patch/` and works in any repository from any directory.
 
 ## Design Source Of Truth
 
@@ -124,7 +124,7 @@ Hand-drawn archival ornaments use transparent PNGs reconstructed from the approv
 
 Match the mockups closely across desktop and mobile before expanding scope.
 
-The full pre-ship verification checklist lives in the `frontend-qa-checklist` skill.
+The full pre-ship verification checklist lives in the `rowild-checklist-qa-for-permaphemera-frontend` skill.
 
 Do not broaden the existing static SFTP publishing workflow into backend, admin, or provider-provisioning work until that scope is explicitly requested.
 

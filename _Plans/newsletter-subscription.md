@@ -619,7 +619,7 @@ former. Verify the full loop end to end with a real address.
 ### Phase 6 — Privacy, checks, QA
 
 Privacy page additions, `check-newsletter-cities.mjs`, extended `check-i18n-privacy.mjs`, and the
-`frontend-qa-checklist` skill across desktop and mobile.
+`rowild-checklist-qa-for-permaphemera-frontend` skill across desktop and mobile.
 
 ### Phase 7 — Deploy
 

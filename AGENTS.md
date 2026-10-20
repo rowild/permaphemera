@@ -21,8 +21,8 @@ Cross-cutting design specs (Directus + frontend together) live in `docs/superpow
 - Run Directus commands from `directus/` with `docker compose`.
 - Never commit `directus/.env`, `directus/database/`, `directus/uploads/`, or `frontend/.env.deploy.local`.
 - `_Material/` and `_BU/` are git-ignored source material. Do not add code there.
-- The `frontend-qa-checklist` skill lives in `.claude/skills/`. Use it before shipping frontend UI changes.
-- Adding or updating a gallery (venue), town, artist or exhibition in Directus: follow `docs/how-to-gallery-and-exhibition.md` (skill `gallery-exhibition` in `.claude/skills/`).
+- The `rowild-checklist-qa-for-permaphemera-frontend` skill (until 2026-10-20 `frontend-qa-checklist`) lives in `.claude/skills/`. Use it before shipping frontend UI changes.
+- Adding or updating a gallery (venue), town, artist or exhibition in Directus: follow `docs/how-to-gallery-and-exhibition.md` (global skill `rowild-create-or-update-gallery-or-exhibition-in-permaphemera` in `~/.claude/skills/`, until 2026-10-20 the project skill `gallery-exhibition`).
 - The `fin-patch` skill is global (`~/.claude/skills/fin-patch/`) and works from any folder.
 - Agreed work parked for later lives in `BACKLOG.md` at the root.
 
