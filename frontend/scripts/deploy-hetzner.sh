@@ -4,6 +4,9 @@
 #   pnpm run deploy:hetzner            build + upload
 #   pnpm run deploy:hetzner -- --skip-build   upload the existing .output/public
 #
+# After the upload it empties Cloudflare's cache (needs CLOUDFLARE_API_TOKEN and
+# CLOUDFLARE_ZONE_ID in .env.deploy.local; without them it warns and skips).
+#
 # The Directus URL is baked into the build. On permaphemera.at Directus is reached
 # same-origin under /cms/ (nginx proxies it to the container), so the build must
 # use that URL and never localhost.
@@ -37,4 +40,9 @@ if [[ -d public/media/tours ]]; then
 else
   echo "[deploy] no local tours folder; the tours on the server stay as they are"
 fi
+
+# Cloudflare keeps static files for up to 4 hours, so a file replaced under
+# the same name (tour-viewer.js, a re-graded panorama) would stay old. Empty
+# its cache now that everything is uploaded (scripts/purge-cloudflare.mjs).
+node scripts/purge-cloudflare.mjs
 echo "[deploy] done"

@@ -30,7 +30,8 @@
     "test": "vitest run",
     "tour:publish": "node scripts/publish-tour.mjs",
     "test:watch": "vitest",
-    "deploy:hetzner": "bash scripts/deploy-hetzner.sh"
+    "deploy:hetzner": "bash scripts/deploy-hetzner.sh",
+    "cache:purge": "node scripts/purge-cloudflare.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.2.11",
