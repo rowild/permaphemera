@@ -73,7 +73,8 @@ Directus container on the same origin, so institutional networks never see a sec
   an option for this zone.)
 - Deploy the frontend: `cd frontend && pnpm run deploy:hetzner` builds with
   `NUXT_PUBLIC_DIRECTUS_URL=https://permaphemera.at/cms` and rsyncs `.output/public`
-  (tours excluded), then rsyncs `public/media/tours/` add/update only, never deleting.
+  (tours excluded), then mirrors each local tour into its own folder under `media/tours/`
+  (old files of that tour are removed; a tour that exists only on the server is kept).
 - The Directus admin stays at https://permaphemera.project-backends.info; `PUBLIC_URL` is
   unchanged. `/cms/` exists for the site's reads (items, assets, server).
 - Mail for permaphemera.at stays at all-inkl: MX, SPF, DMARC and DKIM were copied into the
