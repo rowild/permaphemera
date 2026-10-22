@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { orbitRadius, orbitSegments, pointOnOrbit } from '~/utils/orbitGeometry'
 import { toRomanNumeral } from '~/utils/romanNumerals'
 
+// The loading legend in the centre of the wheel: what is loading, which image
+// of how many, and the download percentage of the image in flight. Since
+// 2026-10-22 it draws no ring on the orbit: the faded arrows circle there.
 const props = defineProps<{
   readySlices: boolean[]
   total: number
@@ -12,17 +14,8 @@ const props = defineProps<{
 }>()
 const { t } = useI18n()
 
-const circumference = 2 * Math.PI * orbitRadius
 const loadedCount = computed(() => props.readySlices.filter(Boolean).length)
 const clampedFraction = computed(() => Math.min(1, Math.max(0, props.fraction)))
-// The ring spans all twelve galleries: each one owns a twelfth of the circle,
-// and that twelfth fills with its own download. So the arc only ever grows.
-const overallFraction = computed(() => Math.min(
-  1,
-  Math.max(0, (props.activeIndex + clampedFraction.value) / props.total)
-))
-const dashOffset = computed(() => (circumference * (1 - overallFraction.value)).toFixed(3))
-// The centre reports the single image in flight, which the ring cannot show.
 const percentText = computed(() => `${Math.round(clampedFraction.value * 100)}%`)
 const counterText = computed(() => t('landing.hero.loadingCounter', {
   current: toRomanNumeral(Math.min(props.activeIndex + 1, props.total)),
@@ -32,19 +25,6 @@ const progressText = computed(() => t('landing.hero.loadingProgress', {
   loaded: loadedCount.value,
   total: props.total
 }))
-const tickReach = 2.6
-const ticks = orbitSegments.map((segment) => {
-  const inner = pointOnOrbit(segment.rotation, orbitRadius - tickReach)
-  const outer = pointOnOrbit(segment.rotation, orbitRadius + tickReach)
-
-  return {
-    id: segment.id,
-    x1: inner.x.toFixed(3),
-    y1: inner.y.toFixed(3),
-    x2: outer.x.toFixed(3),
-    y2: outer.y.toFixed(3)
-  }
-})
 </script>
 
 <template>
@@ -58,43 +38,6 @@ const ticks = orbitSegments.map((segment) => {
     :aria-valuenow="loadedCount"
     :aria-valuetext="progressText"
   >
-    <svg
-      class="absolute inset-[-2%] size-[104%] overflow-visible text-archive-red"
-      viewBox="0 0 100 100"
-      aria-hidden="true"
-    >
-      <circle
-        class="fill-none stroke-current opacity-15"
-        cx="50"
-        cy="50"
-        :r.attr="orbitRadius"
-        stroke-width="0.18"
-      />
-      <line
-        v-for="tick in ticks"
-        :key="tick.id"
-        class="stroke-current transition-opacity duration-500 ease-out motion-reduce:transition-none"
-        :class="props.readySlices[tick.id] ? 'opacity-70' : 'opacity-15'"
-        :x1.attr="tick.x1"
-        :y1.attr="tick.y1"
-        :x2.attr="tick.x2"
-        :y2.attr="tick.y2"
-        stroke-width="0.42"
-        stroke-linecap="round"
-      />
-      <circle
-        class="fill-none stroke-current opacity-80"
-        cx="50"
-        cy="50"
-        :r.attr="orbitRadius"
-        stroke-width="0.5"
-        stroke-linecap="round"
-        :stroke-dasharray.attr="circumference.toFixed(3)"
-        :stroke-dashoffset.attr="dashOffset"
-        transform="rotate(-90 50 50)"
-      />
-    </svg>
-
     <!-- The widget's own aria-label and aria-valuetext already carry this, so
          the visible legend is hidden to avoid a doubled announcement. -->
     <p class="relative grid justify-items-center gap-[0.3rem] text-center font-display" aria-hidden="true">

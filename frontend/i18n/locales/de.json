@@ -854,9 +854,10 @@
     "aboutShort": "Details",
     "aboutExhibitionFor": "Zur Ausstellung: {title}",
     "aboutEventFor": "Zur Veranstaltung: {title}",
+    "startTour": "360°-Rundgang starten",
     "startTourFor": "360°-Rundgang starten: {title}",
     "onlineFrom": "Online verfügbar ab {date}",
-    "onlinePreparing": "Online in Vorbereitung"
+    "onlinePreparing": "360°-Rundgang in Vorbereitung"
   },
   "footer": {
     "tagline": "Ein kuratiertes österreichisches Archiv von 360°-Ausstellungsdokumentationen.",

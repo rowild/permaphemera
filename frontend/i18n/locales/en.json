@@ -854,9 +854,10 @@
     "aboutShort": "Details",
     "aboutExhibitionFor": "About the exhibition: {title}",
     "aboutEventFor": "About the event: {title}",
+    "startTour": "Start the 360° walk-through",
     "startTourFor": "Start the 360° walk-through: {title}",
     "onlineFrom": "Online from {date}",
-    "onlinePreparing": "Online in preparation"
+    "onlinePreparing": "360° tour in preparation"
   },
   "footer": {
     "tagline": "A curated Austrian archive of 360-degree exhibition documentation.",

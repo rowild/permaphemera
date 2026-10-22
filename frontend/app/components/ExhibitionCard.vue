@@ -48,6 +48,7 @@ const isHero = computed(() => props.layout === 'hero')
 const href = computed(() => props.href ?? (props.exhibition.slug ? localePath(`/exhibitions/${props.exhibition.slug}/`) : undefined))
 const imageAlt = computed(() => props.exhibition.image_alt ?? props.exhibition.title)
 const pageLabel = computed(() => t(props.exhibition.kind === 'event' ? 'cards.aboutEventFor' : 'cards.aboutExhibitionFor', { title: props.exhibition.title }))
+const pageHint = computed(() => t(props.exhibition.kind === 'event' ? 'cards.aboutEvent' : 'cards.aboutExhibition'))
 
 // The 360° tile only while the tour is open; a scheduled or prepared tour gets
 // a line in its place. "Unavailable" and "restricted" records promise nothing.
@@ -150,6 +151,16 @@ const textClass = {
   slide: 'shrink-0',
   hero: 'archive-record-overlay relative z-2'
 }
+// One inset on all four sides, at every size: 24px from the card box, so 16px
+// from the paper edge (the frame clips 8px), and 16px below the image. Beside
+// the image (`side` on desktop) the text starts 16px after it. The hero has
+// its own, larger inset, also the same on its three free sides.
+const copyClass = {
+  stacked: 'px-6 pt-4 pb-6',
+  side: 'py-6 pr-6 pl-4 tablet:pt-4 tablet:pl-6',
+  slide: 'px-6 pt-4 pb-6',
+  hero: 'px-10 pt-16 pb-10 compact:px-6 compact:pt-10 compact:pb-6'
+}
 </script>
 
 <template>
@@ -174,9 +185,7 @@ const textClass = {
     <div class="[ record-card-text ] @container flex min-h-0 min-w-0 flex-col" :class="textClass[props.layout]">
       <div
         class="[ record-card-copy ] flex h-full min-w-0 flex-col"
-        :class="isHero
-          ? 'px-10 pt-16 pb-8 compact:px-4 compact:pt-10 compact:pb-5'
-          : 'px-3 pt-3 pb-5 @card-m:px-4 @card-m:pb-4 @card-l:px-6 @card-l:pt-5 @card-l:pb-6'"
+        :class="copyClass[props.layout]"
       >
         <div class="relative min-w-0" @mouseenter="show('title')" @mouseleave="hide()">
           <h3
@@ -200,7 +209,7 @@ const textClass = {
           <ArchiveFloatingTooltip :anchor="artistEl" :open="artistOverflow && tip === 'artist'" :label="$t('cards.fullArtists')"><span class="text-archive-red">{{ props.exhibition.artist }}</span></ArchiveFloatingTooltip>
         </div>
 
-        <div class="[ record-facts ] mt-2 font-display text-meta leading-5 @card-m:mt-3 @card-m:text-sm @card-l:mt-4" :class="isHero ? 'text-archive-light-ink' : 'text-archive-record-meta'">
+        <div class="[ record-facts ] mt-2 font-display text-meta leading-5 @card-m:mt-3 @card-m:text-sm @card-l:mt-4 compact:mb-3" :class="isHero ? 'text-archive-light-ink' : 'text-archive-record-meta'">
           <p class="[ record-location-line ] m-0 flex min-w-0 items-center gap-2">
             <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-location hidden size-3.5 flex-none bg-current @card-m:inline-block" aria-hidden="true" />
             <span class="min-w-0 truncate"><span class="@card-m:hidden">{{ props.exhibition.venue }}</span><span class="hidden @card-m:inline">{{ props.exhibition.venue }} · {{ props.exhibition.city }}</span></span>
@@ -216,17 +225,22 @@ const textClass = {
           class="[ record-summary ] mt-3 mb-0 hidden min-h-12 font-display text-base leading-6 text-archive-body @card-l:line-clamp-2"
         >{{ props.exhibition.summary }}</p>
 
-        <div class="[ record-card-actions ] mt-auto flex min-h-9 items-end justify-between gap-2 pt-2 @card-m:pt-3 @card-l:pt-4">
+        <!-- On phones a rule separates the actions from the facts, on every card, so siblings stay aligned. -->
+        <div
+          class="[ record-card-actions ] mt-auto flex min-h-7.5 items-end justify-between gap-2 pt-2 @card-m:pt-3 @card-l:pt-4 compact:border-t compact:pt-3"
+          :class="isHero ? 'compact:border-archive-light-ink/20' : 'compact:border-archive-rule-warm/22'"
+        >
           <ExhibitionActionTile
             v-if="tourAccess.kind === 'open'"
             kind="tour"
             :label="$t('cards.startTourFor', { title: props.exhibition.title })"
+            :hint="$t('cards.startTour')"
             :busy="tourOpening"
             @click="openTour(tourAccess.url, $event.currentTarget as HTMLElement)"
           />
           <p v-else-if="tourNote" class="[ record-tour-note ] m-0 min-w-0 self-center text-xs" :class="isHero ? 'text-archive-light-ink' : 'text-archive-copy-warm'">{{ tourNote }}</p>
           <span v-else aria-hidden="true" />
-          <ExhibitionActionTile v-if="href" kind="page" :label="pageLabel" :to="href" />
+          <ExhibitionActionTile v-if="href" kind="page" :label="pageLabel" :hint="pageHint" :to="href" />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import type { CSSProperties } from 'vue'
 import { gsap } from 'gsap'
 import * as THREE from 'three'
@@ -17,12 +17,18 @@ import type { KaleidoscopeExhibitionItem } from '~/types/kaleidoscope'
 const props = defineProps<{
   items: KaleidoscopeExhibitionItem[]
   itemPool?: KaleidoscopeExhibitionItem[]
+  /** True while the archive is still on its way: the wheel waits, faded arrows run. */
+  pending?: boolean
+  /** True while the hero text is still setting itself: the blades wait for it. */
+  holdIntro?: boolean
 }>()
 const { t } = useI18n()
 const { openTour } = useTourViewer()
 const emit = defineEmits<{
   animationStateChange: [isAnimating: boolean]
   controlsReveal: []
+  /** The wheel's entrance has finished: every blade is in place. */
+  introComplete: []
 }>()
 
 const sliceCount = 12
@@ -92,6 +98,10 @@ const introConfig = {
   // Positive N: triangle 1 starts with arrow N. Negative N: arrow 1 starts with triangle N.
   sequenceOverlap: -9
 }
+// The whole entrance (blades and arrows) plays this much faster than its
+// authored timings, so the choreography stays the same, only quicker
+// (2026-10-22: 3.9 s → 2.4 s, matching the quicker hero text).
+const INTRO_TIME_SCALE = 1.6
 const triangleAnimationConfig = {
   duration: 2.25,
   stagger: 0.12,
@@ -1077,6 +1087,7 @@ function createIntroTimeline(delay = 0.15) {
   gsap.set(arrows, { opacity: 0 })
   gsap.set(arrowLines, { strokeDasharray: pathLength, strokeDashoffset: pathLength })
   gsap.set(arrowHeads, { opacity: 0 })
+  finishPendingArrows()
 
   if (reduceMotion) {
     gsap.set(arrows, { opacity: 1 })
@@ -1085,11 +1096,15 @@ function createIntroTimeline(delay = 0.15) {
     sliceBladePivots.forEach((bladePivot) => {
       bladePivot.rotation.x = 0
     })
+    sliceImageStates.forEach((state) => {
+      state.layers[state.activeIndex].material.opacity = 1
+    })
     setAnimationActive(false)
     if (!controlsRevealEmitted) {
       controlsRevealEmitted = true
       emit('controlsReveal')
     }
+    emit('introComplete')
     return
   }
 
@@ -1097,6 +1112,7 @@ function createIntroTimeline(delay = 0.15) {
     delay,
     onComplete: () => {
       if (introTimeline === timeline) setAnimationActive(false)
+      emit('introComplete')
     },
     onInterrupt: () => {
       if (introTimeline === timeline) {
@@ -1180,6 +1196,7 @@ function createIntroTimeline(delay = 0.15) {
     )
   }
 
+  timeline.timeScale(INTRO_TIME_SCALE)
   introTimeline = timeline
   setAnimationActive(true)
 }
@@ -1205,11 +1222,130 @@ function markSliceReady(index: number) {
   readySlices.value = next
 }
 
+// While the archive is on its way (`pending`), a faded copy of the orbit
+// arrows runs round the wheel: each arrow draws in as in the intro, and when
+// the fourth after it starts, it runs out from its tail, so a short arc of
+// arrows keeps circling. When the real intro starts (images loaded, in sync
+// with the blades), the real arrows draw exactly over the faded ones; the
+// faded arrows are never cut off: each finishes its run until it is empty.
+const PENDING_LEAD = 3
+// One round of the faded circle; each arrow draws in (and later runs out) in
+// the time the next PENDING_LEAD arrows take to start.
+const PENDING_ROUND_SECONDS = 1.25
+const PENDING_STAGGER = PENDING_ROUND_SECONDS / orbitSegments.length
+const PENDING_DRAW_SECONDS = PENDING_STAGGER * PENDING_LEAD
+// TEST ONLY (2026-10-22): `?wheel-delay` in the address holds the image loading
+// back by 1.5 s (`?wheel-delay=5`: 5 s), so the faded arrows can be watched.
+// Remove once the hand-over is approved.
+const wheelTestDelaySeconds = (() => {
+  const value = new URLSearchParams(window.location.search).get('wheel-delay')
+  if (value === null) return 0
+  const seconds = Number(value || 1.5)
+  return Number.isFinite(seconds) ? Math.min(Math.max(seconds, 0), 30) : 1.5
+})()
+const pendingArrowsVisible = ref(Boolean(props.pending) || wheelTestDelaySeconds > 0)
+let pendingTimelines: gsap.core.Timeline[] = []
+
+function startPendingArrows() {
+  if (!containerRef.value || pendingTimelines.length) return
+
+  const arrows = gsap.utils.toArray<SVGGElement>(
+    containerRef.value.querySelectorAll('.hero-kaleidoscope__pending-arrow')
+  )
+  const pathLength = containerRef.value.querySelector<SVGPathElement>('#hero-orbit-arrow-line')?.getTotalLength() ?? 24
+  const duration = PENDING_DRAW_SECONDS
+  const period = arrows.length * PENDING_STAGGER
+
+  pendingTimelines = arrows.flatMap((arrow, index) => {
+    const arrowLine = arrow.querySelector<SVGUseElement>('.hero-kaleidoscope__arrow-line')
+    const arrowHead = arrow.querySelector<SVGUseElement>('.hero-kaleidoscope__arrow-head')
+    if (!arrowLine || !arrowHead) return []
+
+    gsap.set(arrowLine, { strokeDasharray: pathLength, strokeDashoffset: pathLength })
+    gsap.set(arrowHead, { opacity: 0 })
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(arrowLine, { strokeDashoffset: 0 })
+      gsap.set(arrowHead, { opacity: 1 })
+      return []
+    }
+
+    const rank = getStaggerRank(index, arrows.length, introConfig.arrowStaggerDirection, 'cw')
+    const cycle = gsap.timeline({ delay: rank * PENDING_STAGGER, repeat: -1, repeatDelay: period - 2 * duration })
+    cycle.fromTo(arrowLine, { strokeDashoffset: pathLength }, { strokeDashoffset: 0, duration, ease: 'power2.inOut' }, 0)
+    cycle.fromTo(arrowHead, { opacity: 0 }, { opacity: 1, duration: duration * 0.24, ease: 'power2.out' }, duration * 0.72)
+    // Runs out when the arrow PENDING_LEAD places further on starts to draw.
+    cycle.to(arrowLine, { strokeDashoffset: -pathLength, duration, ease: 'power2.inOut' }, duration)
+    cycle.to(arrowHead, { opacity: 0, duration: duration * 0.3, ease: 'power2.in' }, duration * 1.62)
+    return [cycle]
+  })
+}
+
+function finishPendingArrows() {
+  const timelines = pendingTimelines
+  pendingTimelines = []
+  if (!timelines.length) {
+    pendingArrowsVisible.value = false
+    return
+  }
+
+  // Each arrow stops where its next run would begin: it has run out by then.
+  let running = timelines.length
+  timelines.forEach((timeline) => {
+    timeline.eventCallback('onRepeat', () => {
+      timeline.kill()
+      running -= 1
+      if (!running) pendingArrowsVisible.value = false
+    })
+  })
+}
+
+function waitForArchive() {
+  return new Promise<void>((resolve) => {
+    if (!props.pending) {
+      resolve()
+      return
+    }
+    const stop = watch(() => props.pending, (pending) => {
+      if (pending) return
+      stop()
+      resolve()
+    })
+  })
+}
+
+// The blades start only once the hero text has set itself (`holdIntro`), so
+// the two entrances do not compete; the faded arrows keep running meanwhile.
+function startIntroWhenReleased(delay: number) {
+  if (!props.holdIntro) {
+    createIntroTimeline(delay)
+    return
+  }
+  const stop = watch(() => props.holdIntro, (hold) => {
+    if (hold) return
+    stop()
+    if (isActive) createIntroTimeline(delay)
+  })
+}
+
+function waitForIntroRelease() {
+  return new Promise<void>((resolve) => {
+    if (!props.holdIntro) {
+      resolve()
+      return
+    }
+    const stop = watch(() => props.holdIntro, (hold) => {
+      if (hold) return
+      stop()
+      resolve()
+    })
+  })
+}
+
 function dismissLoader() {
   window.clearTimeout(loaderGraceTimer)
 
   if (!isLoaderVisible.value) {
-    createIntroTimeline(LOADER_INTRO_OVERLAP_SECONDS)
+    startIntroWhenReleased(LOADER_INTRO_OVERLAP_SECONDS)
     return
   }
 
@@ -1220,7 +1356,7 @@ function dismissLoader() {
     if (!isActive) return
 
     isLoaderDismissing.value = true
-    createIntroTimeline(LOADER_INTRO_OVERLAP_SECONDS)
+    startIntroWhenReleased(LOADER_INTRO_OVERLAP_SECONDS)
 
     window.setTimeout(() => {
       if (!isActive) return
@@ -1234,6 +1370,13 @@ onMounted(async () => {
 
   document.addEventListener('pointerdown', handleDocumentPointerDown)
   setAnimationActive(true)
+
+  if (props.pending || wheelTestDelaySeconds) {
+    startPendingArrows()
+    await waitForArchive()
+    if (wheelTestDelaySeconds) await new Promise((resolve) => window.setTimeout(resolve, wheelTestDelaySeconds * 1000))
+    if (!isActive || !containerRef.value || !canvasRef.value) return
+  }
 
   loaderGraceTimer = window.setTimeout(() => {
     if (!isActive) return
@@ -1288,15 +1431,28 @@ onMounted(async () => {
     }
 
     try {
-      textures.push(await loadTexture(url, (fraction) => {
+      const texture = await loadTexture(url, (fraction) => {
         if (isActive) loadingFraction.value = fraction
-      }))
+      })
+      textures.push(texture)
     } catch (error) {
       console.warn(`Could not load kaleidoscope image: ${url}`, error)
       textures.push(getFallbackTexture())
     }
 
     if (isActive) markSliceReady(index)
+  }
+
+  // Upload the images to the GPU only after the hero text has set itself
+  // (`holdIntro`), one per frame. Each upload costs 50–75 ms of main thread;
+  // left to the first render, all twelve went up at once (a 440 ms freeze), and
+  // even one per frame made the letters stutter (measured 2026-10-22).
+  await waitForIntroRelease()
+  if (!isActive) return
+  for (const texture of new Set(textures)) {
+    renderer?.initTexture(texture)
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+    if (!isActive) return
   }
 
   sliceItems.value = Array.from(
@@ -1313,7 +1469,10 @@ onMounted(async () => {
     const layerMaterials = [0, 1].map((layerIndex) => new THREE.MeshBasicMaterial({
       depthWrite: false,
       map: texture,
-      opacity: layerIndex === 0 ? 1 : 0,
+      // Built invisible: the blades wait folded edge-on, and an opaque blade
+      // seen edge-on is a thin line from the centre; twelve of them flashed
+      // as a star until the intro faded them in (measured 2026-10-22).
+      opacity: 0,
       side: THREE.DoubleSide,
       transparent: true
     }))
@@ -1391,6 +1550,8 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
   isActive = false
+  pendingTimelines.forEach((timeline) => timeline.kill())
+  pendingTimelines = []
   window.clearTimeout(loaderGraceTimer)
   window.clearTimeout(touchPreviewTimer)
   document.removeEventListener('pointerdown', handleDocumentPointerDown)
@@ -1461,6 +1622,17 @@ watch(
         <path id="hero-orbit-arrow-line" :d="orbitArrowPath" />
         <polygon id="hero-orbit-arrow-head" :points.attr="orbitArrowHead" />
       </defs>
+      <g v-if="pendingArrowsVisible" class="[ kaleidoscope-pending-arrows ] opacity-50">
+        <g
+          v-for="segment in orbitSegments"
+          :key="segment.id"
+          class="hero-kaleidoscope__pending-arrow"
+          :transform.attr="`rotate(${segment.rotation} 50 50)`"
+        >
+          <use class="hero-kaleidoscope__arrow-line" href="#hero-orbit-arrow-line" />
+          <use class="hero-kaleidoscope__arrow-head" href="#hero-orbit-arrow-head" />
+        </g>
+      </g>
       <g
         v-for="segment in orbitSegments"
         :key="segment.id"

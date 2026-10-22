@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import { BRAND_STUCK_LETTER } from '~/utils/seededLayout'
+
 const props = withDefaults(defineProps<{
   // Keys of pp_navigations main items; check:data pins them.
   active?: 'archive' | 'galleries' | 'artists' | 'exhibitions' | 'organisations' | 'about'
   skipTarget?: string
+  // The start page plays the header into its intro (index.vue): the logo's H
+  // starts upright and falls there. Everywhere else it already leans.
+  intro?: boolean
 }>(), {
   active: undefined,
   skipTarget: 'main-content'
@@ -39,27 +44,28 @@ const runAction = (action?: string) => {
 <template>
   <header class="[ site-header ] archive-header-surface sticky top-0 z-30 grid min-h-[6.4rem] grid-cols-[auto_minmax(0,1fr)_auto] content-center items-baseline px-[clamp(1.4rem,5vw,5.2rem)] pt-3 tablet:min-h-24 tablet:grid-cols-[1fr_auto] tablet:items-center tablet:pt-3 compact:min-h-16 compact:grid-cols-[minmax(0,1fr)_auto] compact:content-start compact:gap-y-0 compact:px-4 compact:pt-2 compact:pb-0">
     <a class="[ skip-link ] absolute left-5 -top-20 z-60 border border-archive-red bg-archive-paper px-4 py-[0.7rem] text-archive-ink focus:top-[0.65rem]" :href="`#${props.skipTarget}`">{{ $t('site.skipToContent') }}</a>
-    <p class="[ header-eyebrow ] col-span-full m-0 translate-y-1 self-end pl-[2.65rem] font-display text-3xs leading-none font-medium tracking-widest text-archive-red/82 compact:translate-y-2 compact:pl-8 narrow:pl-7">
+    <p data-header-tagline class="[ header-eyebrow ] col-span-full m-0 translate-y-1 self-end pl-[2.65rem] font-display text-3xs leading-none font-medium tracking-widest text-archive-red/82 compact:translate-y-2 compact:pl-8 narrow:pl-7">
       {{ $t('site.headerTagline') }}
     </p>
-    <NuxtLink class="[ brand ] inline-flex items-baseline gap-[0.65rem] justify-self-start font-display text-brand leading-none font-medium tracking-[0.24em] compact:gap-2 compact:text-xl compact:tracking-widest compact:whitespace-nowrap narrow:text-base narrow:tracking-[0.08em]" :to="localePath('/')" :aria-label="$t('site.homeAria')">
+    <NuxtLink class="[ brand ] inline-flex items-baseline gap-[0.65rem] justify-self-start font-display text-brand leading-none font-medium tracking-[0.24em] compact:gap-2 compact:text-xl compact:tracking-widest compact:whitespace-nowrap narrow:text-base narrow:tracking-[0.08em]" :to="localePath('/')" :aria-label="$t('site.homeAria')" data-header-brand>
       <img
         class="[ brand-mark ] size-8 flex-none translate-y-0.5 self-baseline object-contain opacity-82 compact:size-6 narrow:size-5"
         src="/media/svg/brand/archive-temple.svg"
         alt=""
         width="64"
         height="64"
+        data-header-brand-mark
       >
-      <span>PERMAPHEMERA</span>
+      <span><ArchiveLetters text="PERMAPHEMERA" :stuck="BRAND_STUCK_LETTER" :fallen="!props.intro" /></span>
     </NuxtLink>
-    <nav class="[ desktop-nav ] archive-primary-nav ml-[clamp(3.5rem,5vw,6rem)] flex items-baseline gap-[clamp(0.75rem,1.2vw,1.25rem)] justify-self-start self-baseline font-display text-lg leading-none font-normal whitespace-nowrap tablet:hidden" :aria-label="$t('navigation.primaryAria')">
+    <nav class="[ desktop-nav ] archive-primary-nav ml-[clamp(3.5rem,5vw,6rem)] flex items-baseline gap-[clamp(0.75rem,1.2vw,1.25rem)] justify-self-start self-baseline font-display text-lg leading-none font-normal whitespace-nowrap tablet:hidden" :aria-label="$t('navigation.primaryAria')" data-header-nav>
       <template v-for="(link, index) in primaryLinks" :key="link.key">
         <NuxtLink
           class="archive-navigation-link relative no-underline transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red current-page:text-archive-red"
           :to="link.to"
           :aria-current="props.active === link.key ? 'page' : undefined"
         >
-          {{ link.label }}
+          <ArchiveLetters :text="link.label" />
         </NuxtLink>
         <img
           v-if="index < primaryLinks.length - 1"
@@ -67,11 +73,12 @@ const runAction = (action?: string) => {
           src="/media/svg/frames/sponsor-strip-frame.svg"
           alt=""
           aria-hidden="true"
+          data-header-divider
         >
       </template>
     </nav>
     <div class="[ header-actions ] flex items-center justify-end justify-self-end self-center gap-[1.4rem] compact:gap-2">
-      <ArchiveLanguageSwitch @click="menuOpen = false" />
+      <ArchiveLanguageSwitch data-header-language @click="menuOpen = false" />
       <button
         class="[ mobile-menu ] inline-flex min-h-11 w-11 items-center justify-end border-0 bg-transparent text-archive-ink"
         type="button"
@@ -80,7 +87,7 @@ const runAction = (action?: string) => {
         :aria-expanded="menuOpen"
         @click="menuOpen = !menuOpen"
       >
-        <span class="svg-icon svg-icon-menu inline-block size-[1.65rem] flex-none bg-current compact:size-5" aria-hidden="true" />
+        <span class="svg-icon svg-icon-menu inline-block size-[1.65rem] flex-none bg-current compact:size-5" aria-hidden="true" data-header-menu-icon />
       </button>
     </div>
     <Transition name="archive-header-menu">

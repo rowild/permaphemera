@@ -71,8 +71,14 @@ watch(total, () => nextTick(measure))
         <ExhibitionCard :exhibition="exhibition" layout="slide" :size="props.size" />
       </li>
     </ul>
-    <p v-if="total > 1" class="[ exhibition-slide-count ] m-0 mt-1 px-4 font-display text-sm leading-5 tracking-widest text-archive-record-meta tabular-nums lining-nums" aria-hidden="true">
-      <span class="text-archive-red">{{ current }}</span> / {{ total }}
-    </p>
+    <!-- The counter and the group's "all" link (slot `link`) share one row. -->
+    <div v-if="total > 1 || $slots.link" class="[ exhibition-slide-footer ] mt-1 flex items-baseline justify-between gap-4 px-4">
+      <p v-if="total > 1" class="[ exhibition-slide-count ] m-0 shrink-0 font-display text-sm leading-5 tracking-widest text-archive-record-meta tabular-nums lining-nums" aria-hidden="true">
+        <span class="text-archive-red">{{ current }}</span> / {{ total }}
+      </p>
+      <div v-if="$slots.link" class="ml-auto min-w-0 text-right">
+        <slot name="link" />
+      </div>
+    </div>
   </div>
 </template>

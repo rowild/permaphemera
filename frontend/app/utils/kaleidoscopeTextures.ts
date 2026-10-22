@@ -4,6 +4,17 @@ import { createTextureCache } from '~/utils/textureCache'
 // The twelve displayed slices plus one rotation's worth of replacements.
 const TEXTURE_CAPACITY = 24
 
+/**
+ * The wheel is at most 42rem wide, so a blade never needs more than about
+ * 800 image pixels, even on a dense screen. Directus delivers that size as
+ * WebP: about a quarter of the bytes and of the pixels to decode and upload
+ * (measured 2026-10-22: 285 KB → 66 KB). Other URLs (local fallbacks) pass.
+ */
+export function wheelTextureUrl(url: string) {
+  if (!url.includes('/assets/')) return url
+  return `${url}${url.includes('?') ? '&' : '?'}width=800&quality=80&format=webp&withoutEnlargement=true`
+}
+
 export type ProgressHandler = (fraction: number) => void
 
 let textureLoader: THREE.TextureLoader | null = null
@@ -59,8 +70,14 @@ async function loadTextureFromNetwork(url: string) {
   textureLoader ??= new THREE.TextureLoader()
 
   try {
-    // The image is fully decoded once this resolves, so the blob URL can go.
-    return prepareTexture(await textureLoader.loadAsync(blobUrl))
+    const texture = await textureLoader.loadAsync(blobUrl)
+    // Decode off the main thread now; otherwise the browser decodes the image
+    // synchronously when it first goes to the GPU. A failed decode only means
+    // that work happens later, so it is not an error.
+    const image = texture.image as HTMLImageElement | undefined
+    await image?.decode?.().catch(() => {})
+    // The image is decoded once this resolves, so the blob URL can go.
+    return prepareTexture(texture)
   } finally {
     URL.revokeObjectURL(blobUrl)
   }
@@ -79,7 +96,8 @@ const cache = createTextureCache<THREE.Texture>({
  * `onProgress` receives the download fraction of this one image. A cached
  * image reports 1 immediately, because nothing is transferred.
  */
-export function loadTexture(url: string, onProgress?: ProgressHandler) {
+export function loadTexture(sourceUrl: string, onProgress?: ProgressHandler) {
+  const url = wheelTextureUrl(sourceUrl)
   if (cache.has(url)) {
     onProgress?.(1)
     return cache.get(url)
@@ -93,7 +111,7 @@ export function loadTexture(url: string, onProgress?: ProgressHandler) {
 }
 
 export function isTextureCached(url: string) {
-  return cache.has(url)
+  return cache.has(wheelTextureUrl(url))
 }
 
 /** A transparent stand-in so one failed image cannot stall the wheel. */

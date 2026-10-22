@@ -19,6 +19,39 @@ Steps:
    tiles, container queries (`@container`, Safari 16+) and `Intl.DateTimeFormat.formatRange`.
 4. Record the Safari step in the `rowild-checklist-qa-for-permaphemera-frontend` skill.
 
+## Frontend: retry the archive load before the error page
+
+Found 2026-10-22.
+
+`useArchiveSource()` asks Directus once. One failed request shows the fatal page "The archive
+could not be loaded" (seen once on permaphemera.at in a phone test; a reload worked and the
+API answered normally). Retry once or twice with a short pause before `showError`.
+
+## Frontend: remove the `?wheel-delay` test switch
+
+Added 2026-10-22.
+
+`HeroKaleidoscope.vue` holds the wheel images back when the address has `?wheel-delay`
+(1.5 s, or `?wheel-delay=5`), so the faded loading arrows can be watched. Remove it when the
+owner says the preloader tests are done.
+
+## Frontend: one slow frame when the page below the hero is built
+
+Found 2026-10-22.
+
+At about 2.4 s on the start page, right after the hero text and header intro, one frame takes
+about 70 ms: the page below the hero and the wheel's GPU uploads start in the same moment.
+Nothing moves in the header then, but the faded wheel arrows may stutter once. Spread the two
+apart (for example, build the page below only after the uploads).
+
+## Open decision: inset of the large gallery cards on desktop
+
+Added 2026-10-22.
+
+The card rule is one inset of 16 px from the paper edge on all sides. The cards of the gallery
+index (`GalleryDirectoryCard`) follow it on phones; on desktop they keep their even 24 px,
+because they are large. The owner decides whether they also go to 16 px.
+
 ## Frontend: a not-found exhibition page is blank in `pnpm dev`
 
 Found 2026-10-19.

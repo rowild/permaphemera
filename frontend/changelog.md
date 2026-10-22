@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.24 - 2026-10-22 17:01:28 CEST
+
+- The start page appears at once, before the archive has arrived. The header and the hero text come in letter by letter: the logo first, the headline a moment later, then the menu, the language switch and the menu star, which turns in. The image wheel follows when both are done; while it waits for its images, faded arrows circle where it will be. The page below the hero builds after the text, or at once when you scroll, tap or press a key.
+- The logo has a broken letter: the H of PERMAPHEMERA leans, in the header and in the footer. On the start page it falls crooked together with a few letters of the headline, once the wheel is built.
+- The wheel loads smaller WebP images (about a quarter of the data) and no longer freezes the text while it prepares them. Its loading legend keeps the title, the "III of XII" counter and the percentage, without the ring. A short star-shaped flash before the blades appeared is gone.
+- The paper-coloured background no longer moves while the page grows; it stays fixed to the window. On phones the drawn background graphics (caption, diagram, column, ruler, crosshairs) are 15% smaller.
+- Scrollbars are thin, with a red thumb and no visible track. The page scrollbar is there from the start, so nothing shifts sideways when the content arrives.
+- Under each mobile exhibition slider, the "1 / 5" counter and the "All …" link share one row.
+- Exhibition and gallery cards have the same space on all four sides, 16 px from the paper edge, on phones and on desktop; on phones the text no longer sits 4 px from the edge.
+- The card icons are smaller (30 px) and read as buttons: a light shadow, a fine arrow out of the top right corner, and a lift on hover. Hovering or focusing one shows the site's tooltip ("About the Exhibition", "Start the 360° walk-through"). On phones a thin line separates them from the place and date.
+- A card whose tour is not ready says "360° tour in preparation" / "360°-Rundgang in Vorbereitung" instead of "Online in preparation".
+
 ## 0.0.23 - 2026-10-22 09:24:32 CEST
 
 - The exhibitions and galleries pages have one header each instead of two: a plain title ("Die Ausstellungen, die wir festhalten." / "Wo die Ausstellungen stattfinden."), a line on what you can search for, and the facts table beside it. The decorative image and the second, poetic headline are gone. On phones the table becomes one line above the title, for example "21 Ausstellungen · 10 Galerien".

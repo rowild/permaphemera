@@ -61,8 +61,8 @@ Every line box is 16, 20, 24 or 32 px, so every slot height stays on the 4 px gr
 
 ### 3.3 Spacing (4 px base)
 
-- **Padding (top / sides / bottom):** S 12/12/20, M 12/16/16, L 20/24/24.
-- **Corner rule:** for the bottom row, (side − 4)² + (bottom − 4)² must be at least 16². Valid pairs are 12/20, 16/16 and 24/12.
+- **Inset (owner, 2026-10-22):** the same on all four sides, at every size: 16 px from the paper edge (24 px from the card box, because the frame clips 8 px). Below an image, the text starts 16 px under it. Beside an image (`side` on desktop), the text starts 16 px after it. The same rule holds for the gallery cards (`VenueArchiveCard`, and `GalleryDirectoryCard` on phones). The hero card has 32 px on its three free sides (16 px on phones).
+- **Corner rule:** for the bottom row, (side − 4)² + (bottom − 4)² must be at least 16². The inset gives 24/24, which passes.
 - **Gaps:**
   - title → artist: 4
   - artist → facts: 8 (S), 12 (M), 16 (L)
@@ -95,11 +95,13 @@ Every line box is 16, 20, 24 or 32 px, so every slot height stays on the 4 px gr
 
 - The card is never a link: no card-wide link, no link on the image. Only the two icon tiles are links.
 - The tiles sit in the action row below the text, with space between them:
-  - **left**: the 360° tour, a button with the Tour Editor icon (`public/media/svg/icons/tour-tile.svg`). It shows only while the tour is open. Otherwise the tour note ("Online verfügbar ab 24. Okt. 2026", "Online in Vorbereitung") takes its place, or nothing when no tour is planned;
+  - **left**: the 360° tour, a button with the Tour Editor icon (`public/media/svg/icons/tour-tile.svg`). It shows only while the tour is open. Otherwise the tour note ("Online verfügbar ab 24. Okt. 2026", "360°-Rundgang in Vorbereitung") takes its place, or nothing when no tour is planned;
   - **right**: the exhibition page, a link with the site icon (`public/media/svg/icons/exhibition-tile.svg`).
 - Both icons sit on the site's inset-corner frame (the shape of `button-secondary-frame.svg`), and the corners are transparent.
-- A tile shows 36 × 36 px. Its `::before` widens the hit area to 44 × 44 px.
-- Each tile has an accessible name and a `title`: "360°-Rundgang starten: {title}", "Zur Ausstellung: {title}".
+- A tile shows 30 × 30 px (owner, 2026-10-22). Its `::before` widens the hit area to 44 × 44 px.
+- A tile reads as a control: it rests on the paper with a small shadow (`drop-shadow-tile`), and a fine red arrow (↗, drawn in SVG) runs out of its upper right corner cut, about 6 px past the corner. The arrow keeps clear of the icon's ring: a ring with an arrow from its centre or its edge reads as the male symbol ♂. On hover the tile lifts by 1 px (`drop-shadow-tile-lift`) and the arrow grows a little from its start; when pressed the tile sinks.
+- On phones, a thin rule separates the action row from the facts, on every card, so sibling cards stay aligned.
+- Each tile has an accessible name with the title: "360°-Rundgang starten: {title}", "Zur Ausstellung: {title}". Mouse hover and keyboard focus show the short action in the site's framed tooltip (`ArchiveFloatingTooltip`, `fit="content"`, above the tile): "360°-Rundgang starten", "Zur Ausstellung". No native `title`.
 - Component: `ExhibitionActionTile.vue`.
 
 ## 4. Mobile sliders
@@ -122,3 +124,5 @@ Every line box is 16, 20, 24 or 32 px, so every slot height stays on the 4 px gr
 3. **Actions:** two icon tiles below the text (§3.7); no button on the image, no card-wide link.
 4. **Title weight:** 400 as a trial. Check it again and maybe go back to 500.
 5. **"(Lange Nacht der Museen)":** still part of the date text in Directus. Moving it into its own field is open (a data change). Until then, cards below L show the short date without it.
+6. **Inset:** the same on all four sides, 16 px from the paper edge, on every card and at every size (§3.3). It replaces the S/M/L paddings.
+7. **Tiles as controls:** 30 px, shadow, corner arrow, tooltip, and on phones a rule above the action row (§3.7).

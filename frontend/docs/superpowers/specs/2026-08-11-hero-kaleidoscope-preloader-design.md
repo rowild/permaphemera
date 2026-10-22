@@ -259,3 +259,14 @@ WebP or AVIF therefore remains available as a later step if the hero needs to
 get faster still. Nothing in the current implementation depends on the
 container: `loadTexture` fetches whatever URL it is given as a blob, so a
 format change would only touch the path strings in `app/pages/index.vue`.
+
+## Changes 2026-10-22 (owner's decisions)
+
+- The start page renders before the archive arrives. While it waits, a faded copy of the orbit arrows (50 %) circles the empty wheel. Each arrow draws in and runs out again when the arrow three places further on starts to draw, so one round takes 1.25 s. When the real intro starts, every faded arrow finishes its run until it is empty. Nothing is cut off.
+- The dial no longer draws a ring or ticks on the orbit, because they fought the faded arrows. It keeps its legend: title, "III of XII", and the percentage of the image in flight.
+- The wheel requests 800 px WebP versions from Directus (`wheelTextureUrl`), about a quarter of the bytes and pixels.
+- The images download as soon as the archive is there. They are uploaded to the GPU only after the hero text has set itself, one per frame. Before, all twelve uploads came at once: a measured 440 ms freeze in the middle of the text entrance.
+- The intro (blades and real arrows) waits for the hero text (`holdIntro`). When the intro is complete, the wheel emits `introComplete`, and the hero's stuck letters fall crooked.
+- The header takes part in the intro (`ArchiveHeader intro`), at the same time as the hero text. The temple mark and the logo set themselves first, letter by letter. The headline starts 0.45 s later, while the logo is still setting. Meanwhile the header fills from left to right: the tagline, the menu rising letter by letter (the dots between the links pop in), the language switch, and the menu star spinning in (a 3D turn on its vertical axis, fading in). The wheel starts when header and hero text are both finished.
+- The logo has its own broken letter: the H in the middle leans 10° (`BRAND_STUCK_LETTER`). On the start page it starts upright and falls last, after the hero's stuck letters, once the wheel is built. On every other page, and in the footer, it already leans.
+- Everything the intro shows is hidden before the first paint. The menu links arrive with the archive, often after the intro has started, so the whole menu is hidden and its letters are taken only at the menu's turn; they share one 0.7 s window in every language. Links that arrive after their turn simply appear. Measured: no header part is visible before its turn.

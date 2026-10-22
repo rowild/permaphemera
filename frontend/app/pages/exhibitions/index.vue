@@ -127,11 +127,14 @@ useSeoMeta({
               :aria-labelledby="`exhibitions-${group.id}-slider-title`"
             >
               <h3 :id="`exhibitions-${group.id}-slider-title`" class="m-0 mb-4 pb-0.5 font-display text-3xl font-normal leading-[1.12]">{{ $t(`exhibitionsDirectory.groups.${group.id}.title`) }}</h3>
-              <ExhibitionSlideTrack :exhibitions="group.items.slice(0, SLIDES[group.id])" :size="group.size" />
-              <ArchiveTextLink class="mt-3" :to="localePath(`/exhibitions/${group.id}/`)">
-                {{ $t(`exhibitionsDirectory.groups.${group.id}.all`, { count: group.items.length }) }}
-                <ArchiveArrow />
-              </ArchiveTextLink>
+              <ExhibitionSlideTrack :exhibitions="group.items.slice(0, SLIDES[group.id])" :size="group.size">
+                <template #link>
+                  <ArchiveTextLink :to="localePath(`/exhibitions/${group.id}/`)">
+                    {{ $t(`exhibitionsDirectory.groups.${group.id}.all`, { count: group.items.length }) }}
+                    <ArchiveArrow />
+                  </ArchiveTextLink>
+                </template>
+              </ExhibitionSlideTrack>
             </section>
             <div class="[ exhibitions-time-columns ] grid grid-cols-2 items-start gap-[clamp(2rem,4vw,4rem)] tablet:grid-cols-1 tablet:gap-12 compact:gap-8">
               <ExhibitionTimeGroup group="upcoming" class="compact:hidden" :exhibitions="timeGroups.upcoming" />

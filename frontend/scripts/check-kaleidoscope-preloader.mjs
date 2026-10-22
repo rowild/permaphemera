@@ -137,12 +137,12 @@ const checks = [
   ['background preload is capped to one rotation instead of walking the whole pool', /const preloadBatchSize = 12\b/.test(heroKaleidoscope) && /if\s*\([^)]*(>=|>)\s*preloadBatchSize[^)]*\)\s*return/.test(preloadTexturePoolSource)],
   ['the dial reports progress to assistive technology', kaleidoscopeLoader.includes('role="progressbar"') && kaleidoscopeLoader.includes(':aria-valuenow="loadedCount"') && kaleidoscopeLoader.includes(':aria-valuemax="props.total"') && kaleidoscopeLoader.includes(':aria-valuetext="progressText"')],
   ['the dial derives its count from the ready slices rather than a second counter', kaleidoscopeLoader.includes('props.readySlices.filter(Boolean).length') && !kaleidoscopeLoader.includes('loadedCount.value =')],
-  ['the dial reuses the shared orbit geometry and roman numerals', kaleidoscopeLoader.includes("from '~/utils/orbitGeometry'") && kaleidoscopeLoader.includes("from '~/utils/romanNumerals'")],
+  ['the dial counts in roman numerals and draws nothing on the orbit (the faded arrows circle there)', kaleidoscopeLoader.includes("from '~/utils/romanNumerals'") && !kaleidoscopeLoader.includes('<svg') && !kaleidoscopeLoader.includes('<circle')],
   ['the dial does not reach into the hero SVG defs by id', !kaleidoscopeLoader.includes('#hero-orbit-arrow-line') && !kaleidoscopeLoader.includes('#hero-orbit-arrow-head')],
-  ['the dial draws one tick per wheel position', kaleidoscopeLoader.includes('v-for="tick in ticks"') && kaleidoscopeLoader.includes('orbitSegments.map')],
-  ['ticks ink in for slices that have arrived', /props\.readySlices\[tick\.id\]\s*\?\s*'opacity-70'\s*:\s*'opacity-15'/.test(kaleidoscopeLoader)],
+  ['the dial keeps its legend: title, counter and percentage', kaleidoscopeLoader.includes('loadingTitle') && kaleidoscopeLoader.includes('{{ counterText }}') && kaleidoscopeLoader.includes('{{ percentText }}')],
+  ['the dial has no ticks or ring left over', !kaleidoscopeLoader.includes('v-for="tick in ticks"') && !kaleidoscopeLoader.includes('stroke-dashoffset')],
   ['the dial honours reduced motion on every transition it runs', (kaleidoscopeLoader.match(/transition-/g) ?? []).length === (kaleidoscopeLoader.match(/motion-reduce:transition-none/g) ?? []).length * 2],
-  ['the dial shows the download percentage of the image in flight', kaleidoscopeLoader.includes('Math.round(clampedFraction.value * 100)') && kaleidoscopeLoader.includes('stroke-dashoffset')],
+  ['the dial shows the download percentage of the image in flight', kaleidoscopeLoader.includes('Math.round(clampedFraction.value * 100)')],
   ['the dial uses a spaced structural marker and no scoped styles', kaleidoscopeLoader.includes('[ kaleidoscope-loader ]') && !kaleidoscopeLoader.includes('[kaleidoscope-loader]') && !kaleidoscopeLoader.includes('<style')],
   ['the dial is inert to pointer input', kaleidoscopeLoader.includes('pointer-events-none')],
   ['fan items carry the complete exhibition preview projection', landingPage.includes('buildHeroItems(') && ['title: exhibition.title', 'artist: exhibition.artist', 'location: `${exhibition.venue}, ${exhibition.city}`', 'dateRange: exhibition.date_range'].every((field) => heroItems.includes(field))],
@@ -152,7 +152,6 @@ const checks = [
   ['fan previews render as a body-level fixed overlay', heroKaleidoscope.includes('<Teleport to="body">') && heroKaleidoscope.includes('hero-fan-tooltip pointer-events-none fixed') && !heroKaleidoscope.includes('hero-fan-tooltip pointer-events-none absolute')],
   ['fan preview motion pivots around the paper pointer', mainCss.includes('.archive-shared-tooltip-frame.has-pointer-top {') && mainCss.includes('transform-origin: clamp(1.1rem, calc(50% + var(--archive-tooltip-pointer-offset, 0px)), calc(100% - 1.1rem)) 0;') && mainCss.includes('transform-origin: clamp(1.1rem, calc(50% + var(--archive-tooltip-pointer-offset, 0px)), calc(100% - 1.1rem)) 100%;')],
   ['loading copy is localized for the title and the counter', enMessages.landing.hero.loadingTitle === 'Loading Exhibition Image' && deMessages.landing.hero.loadingTitle === 'Ausstellungsbild wird geladen' && ['{current}', '{total}'].every((token) => enMessages.landing.hero.loadingCounter.includes(token) && deMessages.landing.hero.loadingCounter.includes(token))],
-  ['the ring spans all twelve galleries rather than refilling per image', kaleidoscopeLoader.includes('(props.activeIndex + clampedFraction.value) / props.total') && kaleidoscopeLoader.includes('circumference * (1 - overallFraction.value)')],
   ['the rotate controls reshuffle what is on screen instead of fetching', rotateBySource.includes('shuffleSliceTextures()') && !rotateBySource.includes('randomizeSliceTextures')],
   ['the middle replay control still fetches fresh imagery', restartIntroSource.includes('randomizeSliceTextures(')],
   ['loading progress copy interpolates both counts in both locales', ['{loaded}', '{total}'].every((token) => enMessages.landing.hero.loadingProgress.includes(token) && deMessages.landing.hero.loadingProgress.includes(token))],
@@ -166,7 +165,7 @@ const checks = [
   ['late promise callbacks cannot write to an unmounted component', heroKaleidoscope.includes('let isActive = true') && heroKaleidoscope.includes('isActive = false') && /if \(!isActive\) return/.test(heroKaleidoscope)],
   ['the dial is rendered while loading and receives the slice state', heroKaleidoscope.includes('<KaleidoscopeLoader') && heroKaleidoscope.includes('v-if="isLoaderVisible"') && heroKaleidoscope.includes(':ready-slices="readySlices"') && heroKaleidoscope.includes(':dismissing="isLoaderDismissing"')],
   ['the dial waits out a grace period and a minimum visible time', heroKaleidoscope.includes('LOADER_GRACE_MS = 180') && heroKaleidoscope.includes('LOADER_MIN_VISIBLE_MS = 500') && heroKaleidoscope.includes('LOADER_HOLD_MS = 120') && heroKaleidoscope.includes('LOADER_FADE_MS = 400')],
-  ['the intro overlaps the dial fade rather than following it', heroKaleidoscope.includes('createIntroTimeline(LOADER_INTRO_OVERLAP_SECONDS)')],
+  ['the intro overlaps the dial fade rather than following it (unless the hero text still holds it)', heroKaleidoscope.includes('startIntroWhenReleased(LOADER_INTRO_OVERLAP_SECONDS)') && /function startIntroWhenReleased\(delay: number\)[\s\S]*?createIntroTimeline\(delay\)/.test(heroKaleidoscope)],
   ['the grace timer is cleared on unmount', heroKaleidoscope.includes('window.clearTimeout(loaderGraceTimer)')]
 ]
 

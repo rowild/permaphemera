@@ -7,90 +7,90 @@ import { resolveSponsors } from '~/utils/resolveSponsors'
 import { resolveVenues } from '~/utils/resolveVenues'
 
 export function useArchiveData() {
-  const archive = useArchive()
+  const archive = useArchiveSnapshot()
   const { locale } = useI18n()
 
   const venuesForLocale = computed(() =>
-    resolveVenues(archive.locations, archive.venues, locale.value, archive.organisationVenueRelations, archive.organisations, archive.websites, archive.venuesWebsites))
+    resolveVenues(archive.value.locations, archive.value.venues, locale.value, archive.value.organisationVenueRelations, archive.value.organisations, archive.value.websites, archive.value.venuesWebsites))
 
   const exhibitionsForLocale = computed(() => resolveExhibitions(
-    archive.exhibitions,
-    archive.venues,
-    archive.locations,
-    archive.participations,
-    archive.persons,
-    archive.roles,
+    archive.value.exhibitions,
+    archive.value.venues,
+    archive.value.locations,
+    archive.value.participations,
+    archive.value.persons,
+    archive.value.roles,
     locale.value,
-    archive.statements,
-    archive.websites,
-    archive.exhibitionsWebsites,
-    archive.personsWebsites,
-    archive.exhibitionOrganisers,
-    archive.organisations
+    archive.value.statements,
+    archive.value.websites,
+    archive.value.exhibitionsWebsites,
+    archive.value.personsWebsites,
+    archive.value.exhibitionOrganisers,
+    archive.value.organisations
   ))
 
   const organisationsForLocale = computed(() => resolveOrganisations(
-    archive.organisations,
-    archive.locations,
-    archive.venues,
-    archive.persons,
-    archive.organisationMemberships,
-    archive.organisationVenueRelations,
-    archive.exhibitionOrganisers,
+    archive.value.organisations,
+    archive.value.locations,
+    archive.value.venues,
+    archive.value.persons,
+    archive.value.organisationMemberships,
+    archive.value.organisationVenueRelations,
+    archive.value.exhibitionOrganisers,
     exhibitionsForLocale.value,
-    archive.websites,
-    archive.organisationsWebsites,
+    archive.value.websites,
+    archive.value.organisationsWebsites,
     locale.value
   ))
 
   const artistDirectory = computed(() => buildArtistDirectory(
-    archive.persons.filter(isVisible),
+    archive.value.persons.filter(isVisible),
     exhibitionsForLocale.value,
-    archive.participations,
-    archive.personRoles,
-    archive.roles,
-    archive.organisationMemberships,
-    archive.organisations,
+    archive.value.participations,
+    archive.value.personRoles,
+    archive.value.roles,
+    archive.value.organisationMemberships,
+    archive.value.organisations,
     locale.value,
-    archive.websites,
-    archive.personsWebsites
+    archive.value.websites,
+    archive.value.personsWebsites
   ))
 
   // Every published person with a page at /persons/<slug>/.
   const personsForLocale = computed(() => resolvePersons({
-    persons: archive.persons,
-    roles: archive.roles,
-    personRoles: archive.personRoles,
-    participations: archive.participations,
+    persons: archive.value.persons,
+    roles: archive.value.roles,
+    personRoles: archive.value.personRoles,
+    participations: archive.value.participations,
     exhibitions: exhibitionsForLocale.value,
-    statements: archive.statements,
-    memberships: archive.organisationMemberships,
-    organisations: archive.organisations,
-    venues: archive.venues,
-    personsVenues: archive.personsVenues,
-    websites: archive.websites,
-    personsWebsites: archive.personsWebsites,
+    statements: archive.value.statements,
+    memberships: archive.value.organisationMemberships,
+    organisations: archive.value.organisations,
+    venues: archive.value.venues,
+    personsVenues: archive.value.personsVenues,
+    websites: archive.value.websites,
+    personsWebsites: archive.value.personsWebsites,
     locale: locale.value
   }))
 
   // Every published sponsor with a page at /sponsors/<slug>/. `sponsors` below stays the plain list for the footer.
   const sponsorPagesForLocale = computed(() => resolveSponsors({
-    sponsors: archive.sponsors,
+    sponsors: archive.value.sponsors,
     exhibitions: exhibitionsForLocale.value,
-    venues: archive.venues,
-    persons: archive.persons,
-    locations: archive.locations,
-    exhibitionsSponsors: archive.exhibitionsSponsors,
-    sponsorsVenues: archive.sponsorsVenues,
-    personsSponsors: archive.personsSponsors,
-    locationsSponsors: archive.locationsSponsors,
+    venues: archive.value.venues,
+    persons: archive.value.persons,
+    locations: archive.value.locations,
+    exhibitionsSponsors: archive.value.exhibitionsSponsors,
+    sponsorsVenues: archive.value.sponsorsVenues,
+    personsSponsors: archive.value.personsSponsors,
+    locationsSponsors: archive.value.locationsSponsors,
     locale: locale.value
   }))
 
   return {
     venues: venuesForLocale,
     venueExhibitions: exhibitionsForLocale,
-    sponsors: computed(() => archive.sponsors.filter(isVisible)),
+    sponsors: computed(() => archive.value.sponsors.filter(isVisible)),
     organisations: organisationsForLocale,
     artistDirectory,
     persons: personsForLocale,

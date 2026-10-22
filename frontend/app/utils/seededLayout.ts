@@ -127,3 +127,31 @@ export const createDirectoryImageTransform = (contentId: string): DirectoryImage
     active: `translateX(${horizontalShift.toFixed(2)}px) rotate(${(rotation * 0.35).toFixed(2)}deg) scale(1.012)`
   }
 }
+
+export interface StuckLetter {
+  /** Index of the letter in the text. */
+  index: number
+  /** Degrees the letter leans while it is stuck. */
+  tilt: number
+}
+
+/**
+ * The one letter of a text that sticks during a letter-by-letter reveal
+ * (ArchiveLetters): never the first or the last character, never a space or
+ * punctuation. Seeded by the text, so the same word always sticks the same way.
+ */
+/** The logo's broken letter: the H in the middle of PERMAPHEMERA leans 10°. */
+export const BRAND_STUCK_LETTER: StuckLetter = { index: 6, tilt: 10 }
+
+export const pickStuckLetter = (text: string): StuckLetter | null => {
+  const candidates = [...text]
+    .map((character, index) => ({ character, index }))
+    .filter(({ character, index }) => index > 0 && index < text.length - 1 && /\p{L}/u.test(character))
+  if (!candidates.length) return null
+
+  const random = seededRandom(`stuck-letter:${text}`)
+  const pick = candidates[Math.floor(random() * candidates.length)]!
+  const tilt = (9 + random() * 7) * (random() < 0.5 ? -1 : 1)
+
+  return { index: pick.index, tilt: Number(tilt.toFixed(2)) }
+}

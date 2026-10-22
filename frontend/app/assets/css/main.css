@@ -102,6 +102,9 @@
   /* Mobile slider cards: current exhibitions 4/5 of the screen width, all others 2/3 (`w-slide-feature`, `w-slide`). */
   --container-slide-feature: 80vw;
   --container-slide: calc(100vw * 2 / 3);
+  /* A card's icon tile rests on the paper like a pressable stamp; it lifts on hover (`drop-shadow-tile`, `drop-shadow-tile-lift`). */
+  --drop-shadow-tile: 0 1px 1.5px rgb(75 52 29 / 0.3);
+  --drop-shadow-tile-lift: 0 3px 4px rgb(75 52 29 / 0.26);
 }
 
 :root {
@@ -177,17 +180,57 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--color-archive-paper);
+}
+
+/* The paper's light and warm glow. It is fixed to the window: on the body it
+   was placed by the page height, so it moved while the start page grew below
+   the hero. The height is the large viewport, so it also stays put when a
+   phone's browser bar folds away. */
+html::before {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 100lvh;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 78% 12%, rgba(255, 250, 236, 0.74), transparent 26rem),
+    radial-gradient(circle at 24% 52%, rgba(255, 255, 255, 0.52), transparent 34rem),
+    radial-gradient(circle at 50% 100%, rgba(190, 139, 82, 0.14), transparent 34rem),
+    linear-gradient(115deg, rgba(183, 113, 70, 0.1), transparent 34%);
+  content: "";
+}
+
+/* Scrollbars, site-wide: thin, no visible track, the thumb in archive red. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-archive-red) transparent;
+}
+
+/* Safari has no scrollbar-color; the same look through the WebKit pseudo-elements
+   (browsers that support the standard properties above ignore these). */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--color-archive-red);
 }
 
 body {
   position: relative;
   margin: 0;
-  background:
-    radial-gradient(circle at 78% 12%, rgba(255, 250, 236, 0.74), transparent 26rem),
-    radial-gradient(circle at 24% 52%, rgba(255, 255, 255, 0.52), transparent 34rem),
-    radial-gradient(circle at 50% 100%, rgba(190, 139, 82, 0.14), transparent 34rem),
-    linear-gradient(115deg, rgba(183, 113, 70, 0.1), transparent 34%),
-    var(--color-archive-paper);
+  /* The page scrollbar is there from the first paint. The start page renders
+     before the archive arrives and is short until then; a scrollbar that came
+     in with the data narrowed the page and shifted the hero. */
+  overflow-y: scroll;
   color: var(--color-archive-ink);
   font-family: var(--font-body);
   font-size: 16px;
@@ -991,7 +1034,8 @@ a:hover .archive-arrow-right {
 }
 
 .archive-alphabet-rail,
-.archive-slide-track {
+.archive-slide-track,
+.archive-sponsor-strip {
   scrollbar-width: none;
 }
 
@@ -1064,6 +1108,50 @@ a:hover .archive-arrow-right {
     width: 80%;
     height: 0.75rem;
     transform: none;
+  }
+}
+
+/* On phones the drawn background graphics (the caption, the diagram and its
+   star, the column, the ruler, the crosshairs) are 15 % smaller: at full size
+   they crowded the narrow screen. */
+@media (max-width: 700px) {
+  body::before {
+    background-position:
+      left 2.2rem bottom 2.9rem,
+      right 3.75rem top 1.85rem,
+      right 3.4rem top 1.7rem,
+      center bottom;
+    background-size:
+      11.25rem auto,
+      11.05rem auto,
+      3.05rem auto,
+      auto;
+  }
+
+  body::after {
+    top: 6.2rem;
+    width: 11.9rem;
+    height: 51rem;
+  }
+
+  .global-right-ruler,
+  .archive-footer-surface::after {
+    background-size: 6.3rem auto;
+  }
+
+  .archive-footer-surface::before {
+    width: 11.9rem;
+    height: min(51rem, 92%);
+  }
+
+  .archive-drafting-canvas::before {
+    width: 5.1rem;
+    height: 5.1rem;
+  }
+
+  .archive-drafting-canvas::after {
+    width: 4.25rem;
+    height: 4.25rem;
   }
 }
 
