@@ -6,8 +6,12 @@
 // (ExhibitionExperience), a hero blade and a landing slide card.
 // Callers offer a tour only while it is open (see utils/tourAccess).
 
-const VIEWER_SCRIPT = '/media/tour-viewer/tour-viewer.js'
-const VIEWER_STYLES = '/media/tour-viewer/tour-viewer.css'
+import { TOUR_VIEWER_BUILD } from '~/utils/tourViewerBuild'
+
+// The fingerprint makes every viewer update a new address, so neither a
+// browser nor Cloudflare can hand out the old file (`pnpm viewer:update`).
+const VIEWER_SCRIPT = `/media/tour-viewer/tour-viewer.js?v=${TOUR_VIEWER_BUILD}`
+const VIEWER_STYLES = `/media/tour-viewer/tour-viewer.css?v=${TOUR_VIEWER_BUILD}`
 
 interface MountedTour {
   destroy: () => void

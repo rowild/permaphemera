@@ -31,7 +31,8 @@
     "tour:publish": "node scripts/publish-tour.mjs",
     "test:watch": "vitest",
     "deploy:hetzner": "bash scripts/deploy-hetzner.sh",
-    "cache:purge": "node scripts/purge-cloudflare.mjs"
+    "cache:purge": "node scripts/purge-cloudflare.mjs",
+    "viewer:update": "node scripts/update-tour-viewer.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.2.11",
