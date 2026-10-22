@@ -263,7 +263,7 @@ Galerie Porcia) gets no organisation record; name it in `about_html`. A person t
 
 | Situation | `tour_status` | `tour_available_from` | Text |
 |---|---|---|---|
-| Photographed or will be photographed | `available` | day after `end_date` | Before that date the site shows the date. Add to summary: "The 360° tour will be available here from <date>." |
+| Photographed or will be photographed | `available` | the last day, = `end_date` (since 2026-10-21; before, the day after) | Before that date the site shows the date. Add to summary: "The 360° tour will be available here from <date>." |
 | Photographed, date passed, files not yet published | `available` | as above | Site shows "being prepared". Text: "PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here." |
 | Tour published | `available` | as above | `pnpm tour:publish <id>` sets `tour` (see `PROJECT_INFO.md` §3) |
 | Not photographed | `unavailable` | empty | no tour sentence |
@@ -279,7 +279,7 @@ Announcements start the summary with "Announcement:" and the description with
    "primary_venue": "<venue id>", "start_date": "2026-09-12", "end_date": "2026-10-24",
    "date_range": "12 September–24 October 2026", "opening_hours": "…", "vernissage": "…",
    "medium": "…", "image": "<file id>", "image_alt": "… (© …)", "source_pdf": "<file id>",
-   "tour_status": "available", "tour_available_from": "2026-10-25",
+   "tour_status": "available", "tour_available_from": "2026-10-24",
    "summary": "…", "description": "… Source: …",
    "translations": [
      { "languages_code": "en", "title": "…", "date_range": "…", "opening_hours": "…", "vernissage": "…",

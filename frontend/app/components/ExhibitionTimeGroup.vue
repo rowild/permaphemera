@@ -35,7 +35,6 @@ const big = computed(() => props.group === 'current')
       <ExhibitionCard
         v-for="exhibition in shown"
         :key="exhibition.id"
-        :class="big ? '' : 'min-h-40'"
         :exhibition="exhibition"
         :layout="big ? 'stacked' : 'side'"
       />

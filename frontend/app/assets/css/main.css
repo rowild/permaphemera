@@ -96,6 +96,12 @@
   --font-display: "Cormorant Garamond", "EB Garamond", "Adobe Garamond Pro", "Garamond", "Times New Roman", serif;
   --font-body: "Cormorant Garamond", "EB Garamond", "Adobe Garamond Pro", "Garamond", "Times New Roman", serif;
   --ease-archive-lift: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Exhibition card size classes, measured on the card's text block (`@card-m:`, `@card-l:`). */
+  --container-card-m: 13rem;
+  --container-card-l: 24rem;
+  /* Mobile slider cards: current exhibitions 4/5 of the screen width, all others 2/3 (`w-slide-feature`, `w-slide`). */
+  --container-slide-feature: 80vw;
+  --container-slide: calc(100vw * 2 / 3);
 }
 
 :root {
@@ -523,13 +529,6 @@ a:hover .archive-arrow-right {
   border-image: url("/media/svg/frames/button-secondary-frame.svg") 20 fill stretch;
 }
 
-.archive-record-open-action {
-  width: min(9.75rem, calc(100% - 2rem));
-  min-height: 2.75rem;
-  padding-inline: 0.1875rem;
-  border-width: 0.5rem;
-}
-
 .archive-modal-frame {
   border-image: url("/media/svg/frames/button-secondary-frame.svg") 20 fill stretch;
 }
@@ -784,32 +783,6 @@ a:hover .archive-arrow-right {
   -webkit-mask-image: url("/media/svg/icons/calendar-archival.svg");
 }
 
-.archive-record-card-copy {
-  background: linear-gradient(
-    118deg,
-    rgba(255, 253, 248, 0.96) 0,
-    rgba(249, 240, 227, 0.92) 58%,
-    rgba(238, 218, 191, 0.78) 100%
-  );
-}
-
-@keyframes archive-record-title-scroll {
-  0%,
-  12% {
-    transform: translateX(0);
-  }
-
-  88%,
-  100% {
-    transform: translateX(var(--archive-record-title-shift, 0));
-  }
-}
-
-.archive-record-title-marquee {
-  animation: archive-record-title-scroll var(--archive-record-title-duration, 3.4s) ease-in-out both;
-  will-change: transform;
-}
-
 .archive-shared-tooltip-pointer {
   position: absolute;
   left: clamp(1.1rem, calc(50% + var(--archive-tooltip-pointer-offset, 0px)), calc(100% - 1.1rem));
@@ -882,11 +855,6 @@ a:hover .archive-arrow-right {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .archive-record-title-marquee {
-    animation: none;
-    transform: none;
-  }
-
   .kaleidoscope-tooltip-enter-active,
   .kaleidoscope-tooltip-leave-active {
     transition: none;
@@ -1022,11 +990,13 @@ a:hover .archive-arrow-right {
   }
 }
 
-.archive-alphabet-rail {
+.archive-alphabet-rail,
+.archive-slide-track {
   scrollbar-width: none;
 }
 
-.archive-alphabet-rail::-webkit-scrollbar {
+.archive-alphabet-rail::-webkit-scrollbar,
+.archive-slide-track::-webkit-scrollbar {
   display: none;
 }
 
@@ -1114,6 +1084,13 @@ a:hover .archive-arrow-right {
   mask: url("/media/images/landing/background/locations-eyebrow-symbol.png") center / contain no-repeat;
   -webkit-mask: url("/media/images/landing/background/locations-eyebrow-symbol.png") center / contain no-repeat;
   opacity: 0.78;
+}
+
+/* On mobile the index pages put their facts row in the eyebrow's place ("21 Ausstellungen · 10 Galerien · …"); it needs the full width, so it drops the ornament. */
+@media (max-width: 700px) {
+  .archive-routed-eyebrow-facts::after {
+    display: none;
+  }
 }
 
 .archive-venue-hero-artwork::before {

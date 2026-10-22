@@ -13,7 +13,7 @@ export interface TourReadyExhibition {
   /** Root-relative tour folder, or null while none is exported. */
   tour?: string | null
   tour_status: TourStatus
-  /** ISO date (YYYY-MM-DD) from which the record may be shown, or null for "at once". Usually the day after the analog exhibition closes, so the digital record never competes with the real visit. */
+  /** ISO date (YYYY-MM-DD) from which the record may be shown, or null for "at once". Usually the last day of the analog exhibition (= `end_date`, since 2026-10-21; before, the day after). */
   tour_available_from: string | null
 }
 

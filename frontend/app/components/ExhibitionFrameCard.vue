@@ -2,13 +2,13 @@
 import { computed, onBeforeUnmount, onMounted, ref, useId } from 'vue'
 import { createVenueInnerFramePath } from '../utils/venueFrameGeometry'
 
+// The cut-corner paper frame around one exhibition card. The surface is in
+// the normal flow, so a card is as tall as its content unless the card gives
+// itself a height; the paper and the frame lines are drawn over it.
+// The card itself is never a link: only its action tiles are (card rules §3.7).
 const props = withDefaults(defineProps<{
-  href?: string
-  ariaLabel?: string
   surfaceClass?: string
 }>(), {
-  href: undefined,
-  ariaLabel: undefined,
   surfaceClass: ''
 })
 
@@ -48,13 +48,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <component
-    :is="props.href ? 'a' : 'article'"
+  <article
     ref="cardRef"
-    class="[ exhibition-frame-card ] group/exhibition relative min-w-0 overflow-visible border-0 bg-transparent shadow-none text-inherit no-underline filter-[drop-shadow(0_0.55rem_0.6rem_rgba(75,52,29,0.12))] isolate [transition:filter_0.42s_ease,translate_0.42s_var(--ease-archive-lift)] motion-reduce:transition-none"
-    :class="props.href ? 'cursor-pointer hover:translate-y-[-0.18rem] hover:filter-[drop-shadow(0_0.8rem_0.85rem_rgba(75,52,29,0.2))] focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red' : 'cursor-default'"
-    :href="props.href"
-    :aria-label="props.ariaLabel"
+    class="[ exhibition-frame-card ] group/exhibition relative isolate min-w-0 overflow-visible border-0 bg-transparent text-inherit shadow-none filter-[drop-shadow(0_0.55rem_0.6rem_rgba(75,52,29,0.12))]"
   >
     <svg
       class="[ exhibition-card-mask-defs ] pointer-events-none absolute size-0 overflow-hidden"
@@ -68,12 +64,12 @@ onBeforeUnmount(() => {
       </defs>
     </svg>
     <div
-      class="[ exhibition-card-surface ] absolute inset-0 z-1 overflow-hidden"
+      class="[ exhibition-card-surface ] relative z-1 h-full overflow-hidden"
       :class="props.surfaceClass"
       :style="{ clipPath: `url(#${clipId})` }"
     >
       <slot />
     </div>
     <VenueCardFrame />
-  </component>
+  </article>
 </template>

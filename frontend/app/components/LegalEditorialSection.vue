@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <section :id="section.id" class="[ legal-editorial-section ] grid scroll-mt-32 grid-cols-[minmax(14rem,0.58fr)_minmax(0,1.42fr)] gap-[clamp(2.5rem,7vw,7rem)] py-[clamp(2.8rem,5vw,4.8rem)] tablet:grid-cols-[minmax(12rem,0.5fr)_minmax(0,1.5fr)] tablet:gap-8 compact:scroll-mt-20 compact:grid-cols-1 compact:gap-4 compact:py-8" :aria-labelledby="`${section.id}-title`">
+  <section :id="section.id" class="[ legal-editorial-section ] grid scroll-mt-32 grid-cols-[minmax(14rem,0.58fr)_minmax(0,1.42fr)] gap-[clamp(2.5rem,7vw,7rem)] py-[clamp(2.8rem,5vw,4.8rem)] tablet:grid-cols-[minmax(12rem,0.5fr)_minmax(0,1.5fr)] tablet:gap-8 compact:scroll-mt-20 compact:grid-cols-1 compact:gap-4 compact:py-5" :aria-labelledby="`${section.id}-title`">
     <header class="[ legal-editorial-heading ] self-start tablet:max-w-180">
       <p v-if="section.eyebrow" class="m-0 mb-3 font-display text-xs font-medium tracking-widest text-archive-red uppercase compact:mb-2">
         {{ section.eyebrow }}

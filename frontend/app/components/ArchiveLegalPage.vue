@@ -23,7 +23,7 @@ const localePath = useLocalePath()
     <ArchiveHeader />
 
     <div id="main-content">
-      <section class="[ legal-page-intro ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1.12fr)_minmax(20rem,0.88fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-6" :aria-labelledby="`${props.sections[0]?.id ?? 'legal'}-page-title`">
+      <section class="[ legal-page-intro ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1.12fr)_minmax(20rem,0.88fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-4" :aria-labelledby="`${props.sections[0]?.id ?? 'legal'}-page-title`">
         <header class="[ legal-page-heading ]">
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ props.breadcrumb }}</span>
@@ -57,7 +57,7 @@ const localePath = useLocalePath()
 
       <ArchiveInsetDivider />
 
-      <section class="[ legal-page-body ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8">
+      <section class="[ legal-page-body ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <article class="[ legal-page-article ] min-w-0" :aria-label="props.articleAria">
           <LegalEditorialSection
             v-for="section in props.sections"

@@ -35,7 +35,7 @@ useSeoMeta({
     <ArchiveHeader :active="person.isArtist ? 'artists' : undefined" />
 
     <div id="main-content">
-      <section class="[ person-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(24rem,1.1fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-10" aria-labelledby="person-title">
+      <section class="[ person-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(24rem,1.1fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="person-title">
         <div class="[ person-hero-copy ] relative z-2">
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span>
@@ -101,7 +101,7 @@ useSeoMeta({
 
       <ArchiveExhibitionsDivider />
 
-      <section v-if="person.records.length" class="[ person-records ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8" aria-labelledby="person-records-title">
+      <section v-if="person.records.length" class="[ person-records ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="person-records-title">
         <div class="[ section-heading ] mb-10 compact:mb-5">
           <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('persons.recordsEyebrow') }}</p>
           <h2 id="person-records-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('persons.recordsTitle', { name: person.name }) }}</h2>
@@ -113,11 +113,11 @@ useSeoMeta({
           </div>
         </div>
       </section>
-      <section v-else class="[ person-records-empty ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(2rem,4vw,4rem)] compact:px-4 compact:py-6">
+      <section v-else class="[ person-records-empty ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(2rem,4vw,4rem)] compact:px-4 compact:py-4">
         <p class="m-0 max-w-176 text-button text-archive-muted compact:text-sm">{{ $t('persons.noRecords', { name: person.name }) }}</p>
       </section>
 
-      <section v-if="person.statements.length" class="[ person-statements ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pb-[clamp(3rem,5vw,5rem)] compact:px-4 compact:pb-8" aria-labelledby="person-statements-title">
+      <section v-if="person.statements.length" class="[ person-statements ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pb-[clamp(3rem,5vw,5rem)] compact:px-4 compact:pb-5" aria-labelledby="person-statements-title">
         <h2 id="person-statements-title" class="m-0 mb-6 font-display text-h3-sm font-normal compact:mb-4 compact:text-2xl">{{ $t('persons.statementsTitle', { name: person.name }) }}</h2>
         <figure v-for="statement in person.statements" :key="statement.id" class="[ person-statement ] m-0 mb-8 max-w-3xl border-l border-archive-red/42 py-1 pl-6">
           <p v-if="statement.prompt" class="m-0 mb-2 text-sm tracking-[0.04em] text-archive-red">{{ statement.prompt }}</p>

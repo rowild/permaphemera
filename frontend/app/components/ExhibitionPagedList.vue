@@ -23,7 +23,6 @@ const shown = computed(() => paginate(props.exhibitions, pageFromQuery(route.que
       <ExhibitionCard
         v-for="exhibition in shown.items"
         :key="exhibition.id"
-        class="min-h-40"
         :exhibition="exhibition"
         layout="side"
       />

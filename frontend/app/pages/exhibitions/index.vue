@@ -36,8 +36,17 @@ const exhibitionLedgerItems = computed(() => [
   { label: t('exhibitionsDirectory.ledgerVenues'), value: exhibitionVenues.value },
   { label: t('exhibitionsDirectory.ledgerSeason'), value: exhibitionYears.value.join(' · ') }
 ])
-const featuredExhibition = computed(() => selectFeaturedExhibition(orderedExhibitions.value, archiveToday.value))
+// Mobile: the ledger's counts as one line in the eyebrow's place.
+const exhibitionFacts = computed(() => [
+  t('exhibitionsDirectory.factExhibitions', venueExhibitions.value.length),
+  t('exhibitionsDirectory.factVenues', exhibitionVenues.value)
+].map((fact) => fact.replaceAll(' ', '\u00A0')).join(' · '))
 const timeGroups = computed(() => groupExhibitionsByTime(venueExhibitions.value, archiveToday.value))
+// Mobile: one slider per time group; current exhibitions in the larger cards.
+const SLIDES = { current: 5, upcoming: 5, past: 10 } as const
+const sliderGroups = computed(() => (['current', 'upcoming', 'past'] as const)
+  .map((id) => ({ id, items: timeGroups.value[id], size: id === 'current' ? 'feature' as const : 'regular' as const }))
+  .filter((group) => group.items.length))
 
 watch(() => route.query.q, (query) => {
   exhibitionSearchQuery.value = typeof query === 'string' ? query : ''
@@ -66,64 +75,68 @@ useSeoMeta({
     <ArchiveHeader active="exhibitions" />
 
     <div id="main-content">
-      <section class="[ exhibitions-directory-intro ] [ section-band ] relative mx-auto grid min-h-144 max-w-[105rem] grid-cols-[minmax(0,0.9fr)_minmax(25rem,1.1fr)] items-center gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:grid-cols-1 tablet:gap-10 compact:min-h-0 compact:gap-6 compact:px-4 compact:py-6" aria-labelledby="exhibitions-directory-title">
-        <div class="[ exhibitions-directory-heading ] tablet:row-start-2">
+      <section class="[ exhibitions-directory-intro ] [ section-band ] relative mx-auto grid min-h-120 max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] items-end gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:min-h-0 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-4" aria-labelledby="exhibitions-directory-title">
+        <div class="[ exhibitions-directory-heading ]">
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('exhibitionsDirectory.breadcrumb') }}</span>
           </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibitionsDirectory.eyebrow') }}</p>
-          <h1 id="exhibitions-directory-title" class="m-0 max-w-232 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">{{ $t('exhibitionsDirectory.title') }} <span class="text-archive-red">{{ $t('exhibitionsDirectory.accent') }}</span></h1>
-          <p class="mt-[1.4rem] mb-0 max-w-168 text-lg leading-[1.55] text-archive-body compact:mt-4 compact:text-base compact:leading-normal">{{ $t('exhibitionsDirectory.intro') }}</p>
-          <ArchiveFactLedger class="mt-8" :items="exhibitionLedgerItems" />
+          <p class="[ eyebrow ] archive-routed-eyebrow archive-routed-eyebrow-facts m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs"><span class="compact:hidden">{{ $t('exhibitionsDirectory.eyebrow') }}</span><span class="hidden compact:inline">{{ exhibitionFacts }}</span></p>
+          <h1 id="exhibitions-directory-title" class="m-0 max-w-232 font-display text-hero font-light leading-[0.92] tablet:text-h1-steep compact:text-5xl compact:leading-none">{{ $t('exhibitionsDirectory.title') }} <span class="text-archive-red">{{ $t('exhibitionsDirectory.accent') }}</span></h1>
+          <p class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ $t('exhibitionsDirectory.intro') }}</p>
         </div>
 
-        <figure v-if="featuredExhibition" class="[ exhibitions-directory-hero-figure ] relative m-0 tablet:row-start-1">
-          <ArchiveFramedImage class="aspect-[1.18] rotate-[0.6deg] compact:aspect-[1.3] compact:rotate-0" :src="featuredExhibition.image" :alt="featuredExhibition.image_alt" />
-          <figcaption class="mt-3 ml-5 flex items-center gap-3 text-sm text-archive-muted compact:mt-2 compact:ml-2 compact:text-xs"><span class="tracking-widest text-archive-red uppercase">{{ $t('exhibitionsDirectory.figure') }}</span>{{ featuredExhibition.title }} · {{ featuredExhibition.artist }}</figcaption>
-          <div class="absolute -right-5 -bottom-5 z-6 grid size-28 -rotate-6 place-content-center rounded-full border border-archive-red/42 bg-archive-paper/92 text-center text-archive-red compact:-right-1 compact:-bottom-3 compact:size-20" aria-hidden="true">
-            <span class="text-xs tracking-widest uppercase">REC</span>
-            <strong class="text-4xl leading-none font-light compact:text-3xl">{{ String(venueExhibitions.length).padStart(2, '0') }}</strong>
-          </div>
-        </figure>
+        <ArchiveFactLedger class="[ exhibitions-directory-ledger ] compact:hidden" :items="exhibitionLedgerItems" desktop-layout="stacked" />
       </section>
 
-      <ArchiveInsetDivider />
-
-      <section id="exhibitions-directory" class="[ exhibitions-directory ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-3 compact:py-6" aria-labelledby="exhibitions-index-title">
-        <div class="[ section-heading ] relative z-1 mb-4">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibitionsDirectory.indexEyebrow') }}</p>
-          <h2 id="exhibitions-index-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('exhibitionsDirectory.indexTitle') }} <span class="text-archive-red">{{ $t('exhibitionsDirectory.indexAccent') }}</span></h2>
-          <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('exhibitionsDirectory.indexIntro') }}</p>
+      <section id="exhibitions-directory" class="[ exhibitions-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('exhibitionsDirectory.directory')">
+        <div class="[ exhibitions-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
+          <ArchiveSearchForm
+            v-model="exhibitionSearchQuery"
+            class="[ exhibitions-directory-search ]"
+            id="exhibitions-directory-search"
+            :label="$t('exhibitionsDirectory.searchLabel')"
+            :placeholder="$t('exhibitionsDirectory.searchPlaceholder')"
+          />
         </div>
 
-        <ArchiveSearchForm
-          v-model="exhibitionSearchQuery"
-          class="[ exhibitions-directory-search ]"
-          id="exhibitions-directory-search"
-          :label="$t('exhibitionsDirectory.searchLabel')"
-          :placeholder="$t('exhibitionsDirectory.searchPlaceholder')"
-        />
+        <ArchiveInsetDivider class="mt-8 compact:mt-4" />
 
-        <div class="[ exhibitions-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-          <p class="m-0" role="status" aria-live="polite">{{ searching ? $t('exhibitionsDirectory.statusSearch', { visible: filteredExhibitions.length, total: venueExhibitions.length }) : $t('exhibitionsDirectory.statusAll', { total: venueExhibitions.length }) }}</p>
-          <button v-if="exhibitionSearchQuery" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.clearSearch') }}</button>
-        </div>
-
-        <!-- A search shows one flat list of every match, newest first, in pages. -->
-        <template v-if="searching">
-          <div v-if="!filteredExhibitions.length" class="[ exhibitions-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-            <p class="m-0 text-title text-archive-ink">{{ $t('exhibitionsDirectory.noMatches') }}</p>
-            <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.returnAll') }}</button>
+        <div class="[ exhibitions-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-3">
+          <div class="[ exhibitions-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
+            <p class="m-0" role="status" aria-live="polite">{{ searching ? $t('exhibitionsDirectory.statusSearch', { visible: filteredExhibitions.length, total: venueExhibitions.length }) : $t('exhibitionsDirectory.statusAll', { total: venueExhibitions.length }) }}</p>
+            <button v-if="exhibitionSearchQuery" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.clearSearch') }}</button>
           </div>
-          <ExhibitionPagedList v-else :exhibitions="filteredExhibitions" anchor="exhibitions-directory-results" />
-        </template>
 
-        <!-- Without a search: current exhibitions first, then upcoming beside past. -->
-        <div v-else class="[ exhibitions-time-groups ] grid gap-[clamp(3rem,5vw,5rem)] compact:gap-8">
-          <ExhibitionTimeGroup group="current" :exhibitions="timeGroups.current" />
-          <div class="[ exhibitions-time-columns ] grid grid-cols-2 items-start gap-[clamp(2rem,4vw,4rem)] tablet:grid-cols-1 tablet:gap-12 compact:gap-8">
-            <ExhibitionTimeGroup group="upcoming" :exhibitions="timeGroups.upcoming" />
-            <ExhibitionTimeGroup group="past" :exhibitions="timeGroups.past" />
+          <!-- A search shows one flat list of every match, newest first, in pages. -->
+          <template v-if="searching">
+            <div v-if="!filteredExhibitions.length" class="[ exhibitions-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
+              <p class="m-0 text-title text-archive-ink">{{ $t('exhibitionsDirectory.noMatches') }}</p>
+              <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.returnAll') }}</button>
+            </div>
+            <ExhibitionPagedList v-else :exhibitions="filteredExhibitions" anchor="exhibitions-directory-results" />
+          </template>
+
+          <!-- Without a search: current exhibitions first, then upcoming beside past.
+               Mobile: current and upcoming as tabs over one slider each, then past. -->
+          <div v-else class="[ exhibitions-time-groups ] grid gap-[clamp(3rem,5vw,5rem)] compact:gap-8">
+            <ExhibitionTimeGroup group="current" class="compact:hidden" :exhibitions="timeGroups.current" />
+            <section
+              v-for="group in sliderGroups"
+              :key="group.id"
+              class="[ exhibitions-slider ] hidden min-w-0 compact:block"
+              :aria-labelledby="`exhibitions-${group.id}-slider-title`"
+            >
+              <h3 :id="`exhibitions-${group.id}-slider-title`" class="m-0 mb-4 pb-0.5 font-display text-3xl font-normal leading-[1.12]">{{ $t(`exhibitionsDirectory.groups.${group.id}.title`) }}</h3>
+              <ExhibitionSlideTrack :exhibitions="group.items.slice(0, SLIDES[group.id])" :size="group.size" />
+              <ArchiveTextLink class="mt-3" :to="localePath(`/exhibitions/${group.id}/`)">
+                {{ $t(`exhibitionsDirectory.groups.${group.id}.all`, { count: group.items.length }) }}
+                <ArchiveArrow />
+              </ArchiveTextLink>
+            </section>
+            <div class="[ exhibitions-time-columns ] grid grid-cols-2 items-start gap-[clamp(2rem,4vw,4rem)] tablet:grid-cols-1 tablet:gap-12 compact:gap-8">
+              <ExhibitionTimeGroup group="upcoming" class="compact:hidden" :exhibitions="timeGroups.upcoming" />
+              <ExhibitionTimeGroup group="past" class="compact:hidden" :exhibitions="timeGroups.past" />
+            </div>
           </div>
         </div>
       </section>

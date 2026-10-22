@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.23 - 2026-10-22 09:24:32 CEST
+
+- The exhibitions and galleries pages have one header each instead of two: a plain title ("Die Ausstellungen, die wir festhalten." / "Wo die Ausstellungen stattfinden."), a line on what you can search for, and the facts table beside it. The decorative image and the second, poetic headline are gone. On phones the table becomes one line above the title, for example "21 Ausstellungen · 10 Galerien".
+- A blade of the start page wheel opens the exhibition's 360° tour directly. On touch, the first tap shows what the blade is and the second starts the tour; a Cmd/Ctrl click still opens the exhibition page.
+- On phones, current, upcoming and past exhibitions are horizontal sliders, one per group, each with a "1 / 5" counter below. Current exhibitions get larger cards (4/5 of the screen wide), the others are 2/3 wide; a slider holds up to 5 current, 5 upcoming or 10 past exhibitions.
+- Exhibition cards follow one set of rules: every card has the same rows (a title of up to two lines, artist, place, date), so cards side by side line up; text sizes follow the card's width; the date sits with the place; a long title wraps instead of being cut on one line; a cut title or artist list shows in full on hover.
+- A card is no longer one big link. Two icons sit below the text: the Tour Editor icon starts the 360° tour (only while it is open) and the site icon opens the exhibition page. While a tour is still to come, the card says "Online verfügbar ab <date>" in its place.
+- The 360° tour of an exhibition now opens on the exhibition's last day, not the day after. Fifteen exhibitions and the texts of three announcements were changed to match.
+- Less space between sections on phones, on every page.
+
 ## 0.0.22 - 2026-10-19 19:11:44 CEST
 
 - An exhibition without a real image (no image, or only the placeholder) no longer shows anywhere on the site: not in the exhibition lists, not on gallery, person, sponsor or organisation pages, not in the artist directory. Its own page answers "not found". It appears as soon as it gets a real image.

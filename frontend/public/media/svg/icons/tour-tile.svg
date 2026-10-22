@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- The Tour Editor app icon (view cone over a viewpoint) on the site's inset-corner frame; the corners stay transparent. -->
+  <path d="M13 1H51A12 12 0 0 0 63 13V51A12 12 0 0 0 51 63H13A12 12 0 0 0 1 51V13A12 12 0 0 0 13 1Z" fill="#e7d9c4" stroke="#b99d7d" stroke-width="1.4"/>
+  <path d="M16.492 5H47.508A16 16 0 0 0 59 16.492V47.508A16 16 0 0 0 47.508 59H16.492A16 16 0 0 0 5 47.508V16.492A16 16 0 0 0 16.492 5Z" fill="none" stroke="#fffaf0" stroke-width="1"/>
+  <circle cx="32" cy="32" r="18.6" fill="none" stroke="#a6523c" stroke-width="4.3"/>
+  <path d="M32 29.9 23.2 17.9A16.5 16.5 0 0 1 40.8 17.9Z" fill="#a6523c"/>
+  <circle cx="32" cy="34.4" r="4.6" fill="#191714"/>
+</svg>

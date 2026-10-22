@@ -43,6 +43,7 @@ describe('buildHeroItems', () => {
     expect(items.map((item) => item.id)).toEqual(['newer', 'older'])
     expect(items.every((item) => item.kind === 'exhibition')).toBe(true)
     expect(items[0]!.href).toBe('/exhibitions/newer/')
+    expect(items[0]!.tourUrl).toBe('/media/tours/newer/')
   })
 
   it('fills up to twelve blades with galleries in archive order, venues without a tour first', () => {
@@ -51,6 +52,7 @@ describe('buildHeroItems', () => {
     expect(items.map((item) => item.id)).toEqual(['t1', 'venue-id-a', 'venue-id-b', 'venue-id-parkschloessl'])
     const gallery = items[1]!
     expect(gallery).toMatchObject({ kind: 'venue', href: '/venues/a/', title: 'Venue a', location: 'Klagenfurt', artist: '', dateRange: '' })
+    expect(gallery.tourUrl).toBeUndefined()
   })
 
   it('never fills a blade with a gallery whose image is a placeholder', () => {

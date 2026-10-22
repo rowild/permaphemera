@@ -10,6 +10,8 @@ export interface ExhibitionSchedule<T> {
 }
 
 export const MAX_SCHEDULE_EXHIBITIONS_PER_GROUP = 3
+/** The landing page's mobile slider shows more of each group than the desktop columns. */
+export const MAX_SCHEDULE_SLIDES_PER_GROUP = 5
 
 export function localDateKey(date = new Date()): string {
   const year = date.getFullYear()

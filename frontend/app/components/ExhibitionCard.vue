@@ -1,124 +1,116 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import type { CSSProperties } from 'vue'
-import { exhibitionLinkLabels } from '~/utils/exhibitionLinkLabels'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
-import { createCornerOrnament, createOrnamentTransform } from '~/utils/seededLayout'
+import { resolveTourAccess } from '~/utils/tourAccess'
 
 // The one exhibition card. Every list of exhibition records renders this
-// component; the page only decides the layout and the grid cell.
+// component; the page only decides the layout and the grid cell. The rules
+// (docs/superpowers/specs/2026-10-21-exhibition-card-rules-design.md):
 //
-// - `stacked`: image above a fixed-height record sheet. The sheet never grows:
-//   the title and the artist line are one line each with an ellipsis, the
-//   summary gets exactly as many lines as still fit above the footer, and every
-//   cut text shows in full in a framed tooltip on hover. Used by the current
-//   exhibitions in the directory and the related records on an exhibition page.
-// - `side`: image beside the copy (mockup "selected exhibitions", regular
-//   records). The title stays on one clipped line and scrolls on hover when it
-//   overflows. Used by the landing collection, the programme ledger, and the
-//   directory's upcoming and past columns, search results and group pages.
-// - `hero`: full-bleed image under a dark overlay with the primary action. Used
-//   for the highlighted record on the landing page.
-export type ExhibitionCardLayout = 'stacked' | 'side' | 'hero'
+// - Every card has the same slots: title (2 lines, reserved), artist (1 line,
+//   reserved), place, date, summary (wide stacked cards only), action row. A
+//   slot keeps its height when its data is missing, so sibling cards line up.
+// - Text sizes come from the width of the text block, not from the layout:
+//   S under 13rem, M from 13rem (`@card-m:`), L from 24rem (`@card-l:`).
+// - The card is not a link. Its action row holds two icon tiles: the 360°
+//   tour on the left (only while it is open; otherwise when it will be
+//   online) and the exhibition page on the right.
+//
+// Layouts: `stacked` (image above the text), `side` (image beside the text on
+// desktop, above it below 1280px), `slide` (a mobile slider card with a fixed
+// height; the image takes what the text leaves) and `hero` (text over the
+// full image, for the highlighted record on the landing page).
+export type ExhibitionCardLayout = 'stacked' | 'side' | 'hero' | 'slide'
 
 const props = withDefaults(defineProps<{
   exhibition: Pick<ResolvedExhibition, 'id' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image'>
-    & Partial<Pick<ResolvedExhibition, 'slug' | 'start_date' | 'image_alt' | 'summary' | 'kind' | 'tour' | 'tour_status' | 'tour_available_from'>>
+    & Partial<Pick<ResolvedExhibition, 'slug' | 'start_date' | 'end_date' | 'is_permanent' | 'image_alt' | 'summary' | 'kind' | 'tour' | 'tour_status' | 'tour_available_from'>>
   layout?: ExhibitionCardLayout
-  /** `stacked` only: hide the summary block. */
+  /** `stacked` only: show the summary on wide cards. */
   summary?: boolean
   /** Overrides the route derived from the record's slug. */
   href?: string
+  /** `slide` only: `feature` is the larger card of the current exhibitions. */
+  size?: 'regular' | 'feature'
 }>(), {
   layout: 'stacked',
   summary: true,
-  href: undefined
+  href: undefined,
+  size: 'regular'
 })
 
 const localePath = useLocalePath()
 const archiveToday = useArchiveToday()
-const active = ref(false)
+const { t, locale } = useI18n()
+const { opening: tourOpening, openTour } = useTourViewer()
+
+const isHero = computed(() => props.layout === 'hero')
 const href = computed(() => props.href ?? (props.exhibition.slug ? localePath(`/exhibitions/${props.exhibition.slug}/`) : undefined))
 const imageAlt = computed(() => props.exhibition.image_alt ?? props.exhibition.title)
-// "Visit Exhibition" only while the 360° tour is open, else "About the Exhibition"; events as events.
-const labels = computed(() => exhibitionLinkLabels(props.exhibition, archiveToday.value))
+const pageLabel = computed(() => t(props.exhibition.kind === 'event' ? 'cards.aboutEventFor' : 'cards.aboutExhibitionFor', { title: props.exhibition.title }))
 
-// Seeded ornament: the stacked sheet carries it in the copy's top-right corner,
-// the other layouts at the card's bottom-right.
-const ornament = computed(() => createOrnamentTransform(`exhibition:${props.exhibition.id}`, props.layout === 'hero'))
-const ornamentStyle = computed<CSSProperties>(() => ({
-  right: ornament.value.right,
-  bottom: ornament.value.bottom,
-  transform: active.value ? ornament.value.active : ornament.value.rest
-}))
-const corner = computed(() => createCornerOrnament(`exhibition:${props.exhibition.id}`))
-const cornerStyle = computed<CSSProperties>(() => ({
-  top: corner.value.top,
-  right: corner.value.right,
-  width: corner.value.size,
-  height: corner.value.size,
-  opacity: corner.value.opacity,
-  transform: active.value ? corner.value.active : corner.value.rest
-}))
+// The 360° tile only while the tour is open; a scheduled or prepared tour gets
+// a line in its place. "Unavailable" and "restricted" records promise nothing.
+const tourAccess = computed(() => props.exhibition.tour_status
+  ? resolveTourAccess({ tour: props.exhibition.tour, tour_status: props.exhibition.tour_status, tour_available_from: props.exhibition.tour_available_from ?? null }, archiveToday.value)
+  : { kind: 'unavailable' as const })
+const tourNote = computed(() => {
+  const access = tourAccess.value
+  if (access.kind === 'scheduled') {
+    // No-break spaces keep the date on one line when the note wraps.
+    const date = new Intl.DateTimeFormat(locale.value, { day: 'numeric', month: 'short', year: 'numeric' })
+      .format(new Date(`${access.date}T12:00:00`))
+      .replaceAll(' ', ' ')
+    return t('cards.onlineFrom', { date })
+  }
+  return access.kind === 'preparing' ? t('cards.onlinePreparing') : ''
+})
 
-// Overflow measurement. Each ref exists only in the layout that renders it;
-// one observer re-measures whatever is present when the card changes width.
+// Below the L size the date uses short months and no spaces around the dash
+// ("12. Sept.–24. Okt. 2026"), so it never needs cutting; across a year end
+// it uses digits ("30.12.26–15.01.27"). L shows the record's own wording.
+const shortDateRange = computed(() => {
+  const { start_date: start, end_date: end, is_permanent: permanent, date_range: full } = props.exhibition
+  if (!start || !end || permanent) return full
+  const sameYear = start.slice(0, 4) === end.slice(0, 4)
+  const format = new Intl.DateTimeFormat(locale.value === 'en' ? 'en-GB' : locale.value, sameYear
+    ? { day: 'numeric', month: 'short', year: 'numeric' }
+    : { day: '2-digit', month: '2-digit', year: '2-digit' })
+  return format.formatRange(new Date(`${start}T12:00:00`), new Date(`${end}T12:00:00`)).replace(/\s+–\s+/, '–')
+})
+
+// Cut text shows in full in a framed tooltip on hover, and the title also on
+// keyboard focus inside the card. The tooltip lives in <body>
+// (ArchiveFloatingTooltip), so the card's clip-path cannot cut it.
 const titleEl = ref<HTMLElement | null>(null)
 const artistEl = ref<HTMLElement | null>(null)
-const summaryBox = ref<HTMLElement | null>(null)
-const summaryEl = ref<HTMLElement | null>(null)
-const recordTitleViewport = ref<HTMLElement | null>(null)
-const recordTitleText = ref<HTMLElement | null>(null)
 const titleOverflow = ref(false)
 const artistOverflow = ref(false)
-const summaryOverflow = ref(false)
-const summaryLines = ref(2)
-const recordTitleOverflow = ref(false)
-const recordTitleShift = ref(0)
-let observer: ResizeObserver | null = null
-
-// Which clipped text shows its tooltip. Hover of the text's own box sets it;
-// keyboard focus on the card shows the title. The tooltip itself lives in
-// <body> (ArchiveFloatingTooltip), so the card's clip-path cannot cut it.
-type Tip = 'title' | 'artist' | 'summary' | null
+type Tip = 'title' | 'artist' | null
 const tip = ref<Tip>(null)
 const show = (which: Tip) => { tip.value = which }
 const hide = () => { tip.value = null }
 
-// One-line texts: the browser draws "…" at any overflow, even a fraction of a pixel, which
-// the rounded scrollWidth/clientWidth cannot see (a title 442.55px wide in a 440.54px box
-// showed "…" without a tooltip). So compare exact widths: the text's own (a Range) with its
-// box. Both rects share any hover transform; these boxes have no side padding.
-const textOverflowAcross = (text: Element, box: Element) => {
+// One-line text: the browser draws "…" at any overflow, even a fraction of a
+// pixel, which the rounded scrollWidth/clientWidth cannot see; compare exact
+// widths instead. Clamped text: line boxes round, so allow 2px.
+const isCutAcross = (el: HTMLElement | null) => {
+  if (!el) return false
   const range = document.createRange()
-  range.selectNodeContents(text)
-  return range.getBoundingClientRect().width - box.getBoundingClientRect().width
+  range.selectNodeContents(el)
+  return range.getBoundingClientRect().width - el.getBoundingClientRect().width > 0.05
 }
-const isCutAcross = (el: HTMLElement | null) => Boolean(el) && textOverflowAcross(el!, el!) > 0.05
-// Clamped paragraphs: line boxes round, so allow 2px before calling the text cut.
 const isCutBelow = (el: HTMLElement | null) => Boolean(el) && el!.scrollHeight > el!.clientHeight + 2
 const measure = () => {
-  titleOverflow.value = isCutAcross(titleEl.value)
+  titleOverflow.value = isCutBelow(titleEl.value)
   artistOverflow.value = isCutAcross(artistEl.value)
-  if (summaryBox.value && summaryEl.value) {
-    const lineHeight = Number.parseFloat(getComputedStyle(summaryEl.value).lineHeight) || 24
-    summaryLines.value = Math.max(0, Math.floor(summaryBox.value.clientHeight / lineHeight))
-    requestAnimationFrame(() => { summaryOverflow.value = summaryLines.value > 0 && isCutBelow(summaryEl.value) })
-  }
-  if (recordTitleViewport.value && recordTitleText.value) {
-    const overflow = Math.max(0, textOverflowAcross(recordTitleText.value, recordTitleViewport.value))
-    recordTitleShift.value = Math.ceil(overflow)
-    recordTitleOverflow.value = overflow > 0.05
-  } else {
-    recordTitleShift.value = 0
-    recordTitleOverflow.value = false
-  }
 }
+let observer: ResizeObserver | null = null
 const observe = () => {
   observer?.disconnect()
   observer = new ResizeObserver(measure)
-  for (const el of [titleEl, artistEl, summaryBox, recordTitleViewport, recordTitleText]) {
-    if (el.value) observer.observe(el.value)
+  for (const el of [titleEl.value, artistEl.value]) {
+    if (el) observer.observe(el)
   }
 }
 
@@ -127,152 +119,116 @@ onMounted(async () => {
   measure()
   observe()
 })
-
-watch(() => [props.exhibition.title, props.exhibition.artist, props.exhibition.summary, props.layout], async () => {
+watch(() => [props.exhibition.title, props.exhibition.artist, props.layout], async () => {
   await nextTick()
   measure()
-  observe()
 })
+onBeforeUnmount(() => observer?.disconnect())
 
-onBeforeUnmount(() => {
-  observer?.disconnect()
-})
-
-const recordTitleStyle = computed(() => ({
-  '--archive-record-title-shift': `${-recordTitleShift.value}px`,
-  '--archive-record-title-duration': `${Math.max(2.8, recordTitleShift.value / 42 + 1.7)}s`
-} as CSSProperties))
-
-const rootClass = {
-  stacked: '[ exhibition-card-stacked ] min-h-132 compact:min-h-76',
-  side: '[ exhibition-card-side ] [ record-card ] tablet:min-h-96 compact:min-h-64',
-  hero: '[ exhibition-card-hero ] [ featured-record ] min-h-160 tablet:min-h-128 compact:min-h-80'
-}
+const rootClass = computed(() => ({
+  stacked: '[ exhibition-card-stacked ]',
+  side: '[ exhibition-card-side ] [ record-card ]',
+  slide: `[ exhibition-card-slide ] [ record-card ] ${props.size === 'feature' ? 'h-94' : 'h-78'}`,
+  hero: '[ exhibition-card-hero ] [ featured-record ]'
+})[props.layout])
 const surfaceClass = {
-  stacked: 'grid grid-rows-[16rem_1fr] bg-archive-record-paper compact:grid-rows-[8.5rem_1fr]',
-  side: 'grid grid-cols-[49%_minmax(0,1fr)] bg-archive-record-paper tablet:grid-cols-1 tablet:grid-rows-[12.5rem_1fr] compact:grid-rows-[7rem_1fr]',
-  hero: 'bg-archive-record-night'
+  stacked: '@container/card flex flex-col bg-archive-record-paper',
+  side: '@container/card grid grid-cols-[49%_minmax(0,1fr)] bg-archive-record-paper tablet:flex tablet:flex-col',
+  slide: '@container/card flex flex-col bg-archive-record-paper',
+  hero: '@container/card flex min-h-160 flex-col justify-end bg-archive-record-night tablet:min-h-128 compact:min-h-80'
+}
+// Fixed image proportions per size; a slide image takes the height the text leaves.
+const mediaClass = {
+  stacked: 'relative aspect-4/3 @card-m/card:aspect-video @card-l/card:aspect-16/10',
+  side: 'relative tablet:aspect-4/3 tablet:@card-m/card:aspect-video',
+  slide: 'relative flex-1',
+  hero: 'absolute inset-0'
+}
+const textClass = {
+  stacked: 'flex-1',
+  side: '',
+  slide: 'shrink-0',
+  hero: 'archive-record-overlay relative z-2'
 }
 </script>
 
 <template>
   <ExhibitionFrameCard
     class="[ exhibition-card ]"
-    :class="rootClass[props.layout]"
+    :class="rootClass"
     :surface-class="surfaceClass[props.layout]"
-    :href="href"
-    :aria-label="$t(labels.openFor, { title: props.exhibition.title })"
-    @mouseenter="active = true"
-    @mouseleave="active = false; hide()"
-    @focusin="active = true; show('title')"
-    @focusout="active = false; hide()"
+    @mouseleave="hide()"
+    @focusin="show('title')"
+    @focusout="hide()"
   >
-    <template v-if="props.layout === 'hero'">
+    <div class="[ record-card-media ] min-h-0 overflow-hidden" :class="mediaClass[props.layout]">
       <img
-        class="[ featured-record-image ] size-full object-cover brightness-72 saturate-86 transition-transform duration-700 ease-archive-lift group-hover/exhibition:scale-[1.035] compact:min-h-80 motion-reduce:transition-none"
+        class="[ record-card-image ] absolute inset-0 size-full object-cover"
+        :class="isHero ? 'brightness-72 saturate-86' : ''"
         :src="props.exhibition.image"
         :alt="imageAlt"
+        :loading="isHero ? undefined : 'lazy'"
       />
-      <div class="[ record-overlay ] archive-record-overlay absolute inset-x-0 bottom-0 grid min-h-62 grid-cols-[minmax(0,1fr)_auto] items-end gap-6 px-10 pt-14 pb-8 text-archive-light-ink compact:min-h-0 compact:grid-cols-1 compact:gap-2 compact:px-4 compact:pt-8 compact:pb-5">
-        <div>
-          <h3 class="[ record-title ] m-0 font-display text-h3 font-medium leading-[1.08] compact:text-lg">{{ props.exhibition.title }}</h3>
-          <p class="[ artist-name ] mt-[0.2rem] mb-[0.45rem] font-display text-lg text-archive-ochre compact:text-sm">{{ props.exhibition.artist }}</p>
-          <span class="[ record-divider ] archive-record-divider mb-[0.4rem] block h-[0.7rem] w-[min(18rem,80%)] brightness-170 opacity-72" aria-hidden="true" />
-          <p class="[ record-meta-line ] my-[0.18rem] flex items-center gap-[0.48rem] font-display text-inherit compact:text-xs">
-            <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-location inline-block size-4 flex-none bg-current compact:size-3" aria-hidden="true" />
-            {{ props.exhibition.venue }}, {{ props.exhibition.city }}
-          </p>
-          <p class="[ record-meta-line ] my-[0.18rem] flex items-center gap-[0.48rem] font-display text-inherit compact:text-xs">
-            <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-calendar inline-block size-4 flex-none bg-current compact:size-3" aria-hidden="true" />
-            <span><time v-if="props.exhibition.start_date" :datetime="props.exhibition.start_date">{{ props.exhibition.date_range }}</time><template v-else>{{ props.exhibition.date_range }}</template></span>
-          </p>
-        </div>
-        <ArchiveButton class="w-fit justify-self-center compact:min-h-10 compact:px-2" as="span" variant="primary">
-          <span class="compact:hidden">{{ $t(labels.enter) }}</span>
-          <span class="hidden compact:inline">{{ $t(labels.short) }}</span>
-          <ArchiveArrow class="compact:hidden" />
-        </ArchiveButton>
-      </div>
-    </template>
+    </div>
 
-    <template v-else-if="props.layout === 'side'">
-      <div class="[ record-card-media ] relative min-h-0 overflow-hidden">
-        <img
-          class="[ record-card-image ] size-full min-h-0 object-cover transition-transform duration-700 ease-archive-lift group-hover/exhibition:scale-[1.035] motion-reduce:transition-none"
-          :src="props.exhibition.image"
-          :alt="imageAlt"
-        />
-        <div class="[ record-card-action ] pointer-events-none absolute inset-0 z-2 flex items-center justify-center p-3 compact:p-1">
-          <ArchiveButton class="archive-record-open-action text-sm whitespace-nowrap opacity-90 compact:text-xs" as="span" variant="secondary">
-            <span class="inline-flex scale-85 items-center gap-2 transition-colors duration-200 ease-out group-hover/exhibition:text-archive-red group-focus-visible/exhibition:text-archive-red compact:gap-0 motion-reduce:transition-none">
-              {{ $t(labels.open) }} <ArchiveArrow class="w-6 compact:hidden" />
-            </span>
-          </ArchiveButton>
+    <div class="[ record-card-text ] @container flex min-h-0 min-w-0 flex-col" :class="textClass[props.layout]">
+      <div
+        class="[ record-card-copy ] flex h-full min-w-0 flex-col"
+        :class="isHero
+          ? 'px-10 pt-16 pb-8 compact:px-4 compact:pt-10 compact:pb-5'
+          : 'px-3 pt-3 pb-5 @card-m:px-4 @card-m:pb-4 @card-l:px-6 @card-l:pt-5 @card-l:pb-6'"
+      >
+        <div class="relative min-w-0" @mouseenter="show('title')" @mouseleave="hide()">
+          <h3
+            ref="titleEl"
+            class="[ record-title ] m-0 font-display font-normal wrap-break-word hyphens-auto"
+            :class="isHero
+              ? 'line-clamp-3 text-h3 text-archive-light-ink compact:text-title'
+              : 'line-clamp-2 min-h-10 text-base leading-5 text-archive-ink @card-m:min-h-12 @card-m:text-xl @card-m:leading-6 @card-l:min-h-16 @card-l:text-title-lg @card-l:leading-8'"
+          >{{ props.exhibition.title }}</h3>
+          <ArchiveFloatingTooltip class="[ record-title-tooltip ]" :anchor="titleEl" :open="titleOverflow && tip === 'title'" :label="$t('cards.fullTitle')">{{ props.exhibition.title }}</ArchiveFloatingTooltip>
         </div>
-      </div>
-      <div class="[ record-card-copy ] archive-record-card-copy relative z-2 flex min-w-0 flex-col px-[1.35rem] pt-[1.1rem] pb-[0.85rem] compact:px-4 compact:pt-3 compact:pb-5">
-        <div class="[ record-title-shell ] relative min-w-0" @mouseenter="show('title')" @mouseleave="hide()">
-          <div ref="recordTitleViewport" class="[ record-title-viewport ] overflow-hidden pb-0.5">
-            <h3
-              ref="recordTitleText"
-              class="[ record-title ] m-0 w-max max-w-none font-display text-lg font-medium leading-tight whitespace-nowrap compact:text-sm"
-              :class="recordTitleOverflow && active ? 'archive-record-title-marquee' : ''"
-              :style="recordTitleStyle"
-            >{{ props.exhibition.title }}</h3>
-          </div>
-          <ArchiveFloatingTooltip class="[ record-title-tooltip ]" :anchor="recordTitleViewport" :open="recordTitleOverflow && tip === 'title'" :label="$t('cards.fullTitle')">{{ props.exhibition.title }}</ArchiveFloatingTooltip>
-        </div>
+
         <div class="relative min-w-0" @mouseenter="show('artist')" @mouseleave="hide()">
-          <p ref="artistEl" class="[ artist-name ] my-[0.08rem] mt-[0.18rem] truncate font-display leading-[1.1] text-archive-red compact:text-sm">{{ props.exhibition.artist }}</p>
+          <p
+            ref="artistEl"
+            class="[ artist-name ] mt-1 mb-0 truncate font-display"
+            :class="isHero
+              ? 'text-lg text-archive-ochre compact:text-sm'
+              : 'min-h-5 text-sm leading-5 text-archive-red @card-m:min-h-6 @card-m:text-base @card-m:leading-6 @card-l:text-lg @card-l:leading-6'"
+          >{{ props.exhibition.artist }}</p>
           <ArchiveFloatingTooltip :anchor="artistEl" :open="artistOverflow && tip === 'artist'" :label="$t('cards.fullArtists')"><span class="text-archive-red">{{ props.exhibition.artist }}</span></ArchiveFloatingTooltip>
         </div>
-        <p class="[ record-location-line ] [ record-meta-line ] my-[0.08rem] flex min-w-0 items-start gap-[0.48rem] font-display text-sm leading-[1.15] text-archive-record-meta compact:text-xs compact:leading-[1.05]" :title="`${props.exhibition.venue}, ${props.exhibition.city}`">
-          <span class="[ record-meta-icon-box ] flex h-lh flex-none items-center" aria-hidden="true"><span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-location inline-block size-4 flex-none bg-current" /></span>
-          <span class="min-w-0 truncate">{{ props.exhibition.venue }}, {{ props.exhibition.city }}</span>
-        </p>
-        <p class="[ record-date-line ] [ record-meta-line ] my-[0.08rem] flex items-start gap-[0.48rem] font-display text-sm leading-[1.15] text-archive-record-meta compact:text-xs compact:leading-[1.05]">
-          <span class="[ record-meta-icon-box ] flex h-lh flex-none items-center" aria-hidden="true"><span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-calendar inline-block size-4 flex-none bg-current" /></span>
-          <span class="min-w-0">{{ props.exhibition.date_range }}</span>
-        </p>
-      </div>
-    </template>
 
-    <template v-else>
-      <img class="size-full object-cover transition-transform duration-700 ease-archive-lift group-hover/exhibition:scale-[1.025] motion-reduce:transition-none" :src="props.exhibition.image" :alt="imageAlt" loading="lazy" />
-      <div class="[ record-sheet ] relative z-2 flex min-h-0 min-w-0 flex-col px-6 pt-5 pb-6 compact:px-3 compact:pt-3 compact:pb-4">
-        <span
-          class="[ record-ornament ] archive-crosshair-ornament pointer-events-none absolute transition-[transform,translate,scale,rotate,opacity] duration-460 ease-archive-lift compact:hidden motion-reduce:transition-none"
-          :style="cornerStyle"
-          aria-hidden="true"
-        />
-        <div class="[ record-sheet-body ] relative flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
-          <p class="m-0 text-xs tracking-widest text-archive-red uppercase compact:text-3xs"><time v-if="props.exhibition.start_date" :datetime="props.exhibition.start_date">{{ props.exhibition.date_range }}</time><template v-else>{{ props.exhibition.date_range }}</template></p>
-          <div class="relative min-w-0" @mouseenter="show('title')" @mouseleave="hide()">
-            <h3 ref="titleEl" class="[ record-title ] mt-2 mb-0 truncate text-h3 font-normal leading-[1.3] compact:text-lg">{{ props.exhibition.title }}</h3>
-            <ArchiveFloatingTooltip :anchor="titleEl" :open="titleOverflow && tip === 'title'" :label="$t('cards.fullTitle')">{{ props.exhibition.title }}</ArchiveFloatingTooltip>
-          </div>
-          <div class="relative min-w-0" @mouseenter="show('artist')" @mouseleave="hide()">
-            <p ref="artistEl" class="[ artist-name ] mt-1 mb-0 truncate text-button text-archive-red compact:text-sm">{{ props.exhibition.artist }}</p>
-            <ArchiveFloatingTooltip :anchor="artistEl" :open="artistOverflow && tip === 'artist'" :label="$t('cards.fullArtists')"><span class="text-button text-archive-red">{{ props.exhibition.artist }}</span></ArchiveFloatingTooltip>
-          </div>
-          <div v-if="props.summary && props.exhibition.summary" ref="summaryBox" class="relative mt-4 mb-3 min-h-0 min-w-0 flex-1 overflow-hidden compact:hidden" @mouseenter="show('summary')" @mouseleave="hide()">
-            <p v-show="summaryLines > 0" ref="summaryEl" class="m-0 line-clamp-2 text-eyebrow leading-normal text-archive-body" :style="{ WebkitLineClamp: summaryLines }">{{ props.exhibition.summary }}</p>
-            <ArchiveFloatingTooltip :anchor="summaryBox" :open="summaryOverflow && tip === 'summary'" :label="$t('cards.fullSummary')"><span class="text-eyebrow leading-normal">{{ props.exhibition.summary }}</span></ArchiveFloatingTooltip>
-          </div>
+        <div class="[ record-facts ] mt-2 font-display text-meta leading-5 @card-m:mt-3 @card-m:text-sm @card-l:mt-4" :class="isHero ? 'text-archive-light-ink' : 'text-archive-record-meta'">
+          <p class="[ record-location-line ] m-0 flex min-w-0 items-center gap-2">
+            <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-location hidden size-3.5 flex-none bg-current @card-m:inline-block" aria-hidden="true" />
+            <span class="min-w-0 truncate"><span class="@card-m:hidden">{{ props.exhibition.venue }}</span><span class="hidden @card-m:inline">{{ props.exhibition.venue }} · {{ props.exhibition.city }}</span></span>
+          </p>
+          <p class="[ record-date-line ] m-0 flex min-w-0 items-center gap-2">
+            <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-calendar hidden size-3.5 flex-none bg-current @card-m:inline-block" aria-hidden="true" />
+            <time class="min-w-0 truncate" :datetime="props.exhibition.start_date"><span class="@card-l:hidden">{{ shortDateRange }}</span><span class="hidden @card-l:inline">{{ props.exhibition.date_range }}</span></time>
+          </p>
         </div>
-        <div class="[ record-sheet-footer ] mt-auto flex shrink-0 items-end justify-between gap-4 border-t border-archive-rule-warm/22 pt-4 compact:pt-2">
-          <p class="m-0 text-sm text-archive-muted compact:text-xs">{{ props.exhibition.venue }} · {{ props.exhibition.city }}</p>
-          <span class="flex shrink-0 items-center gap-2 text-archive-red compact:gap-1 compact:text-xs"><span class="compact:hidden">{{ $t(labels.open) }}</span><ArchiveArrow class="w-6 compact:w-5" /></span>
+
+        <p
+          v-if="props.layout === 'stacked' && props.summary && props.exhibition.summary"
+          class="[ record-summary ] mt-3 mb-0 hidden min-h-12 font-display text-base leading-6 text-archive-body @card-l:line-clamp-2"
+        >{{ props.exhibition.summary }}</p>
+
+        <div class="[ record-card-actions ] mt-auto flex min-h-9 items-end justify-between gap-2 pt-2 @card-m:pt-3 @card-l:pt-4">
+          <ExhibitionActionTile
+            v-if="tourAccess.kind === 'open'"
+            kind="tour"
+            :label="$t('cards.startTourFor', { title: props.exhibition.title })"
+            :busy="tourOpening"
+            @click="openTour(tourAccess.url, $event.currentTarget as HTMLElement)"
+          />
+          <p v-else-if="tourNote" class="[ record-tour-note ] m-0 min-w-0 self-center text-xs" :class="isHero ? 'text-archive-light-ink' : 'text-archive-copy-warm'">{{ tourNote }}</p>
+          <span v-else aria-hidden="true" />
+          <ExhibitionActionTile v-if="href" kind="page" :label="pageLabel" :to="href" />
         </div>
       </div>
-    </template>
-
-    <span
-      v-if="props.layout !== 'stacked'"
-      class="[ record-ornament ] archive-crosshair-ornament pointer-events-none absolute z-3 transition-[transform,translate,scale,rotate,opacity] duration-460 ease-archive-lift motion-reduce:transition-none"
-      :class="props.layout === 'hero' ? 'size-[5.2rem] brightness-215 sepia-25 saturate-115 opacity-66 compact:size-12' : 'size-[5.4rem] opacity-62 compact:size-12'"
-      :style="ornamentStyle"
-      aria-hidden="true"
-    />
+    </div>
   </ExhibitionFrameCard>
 </template>

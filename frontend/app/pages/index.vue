@@ -4,21 +4,20 @@ import {
 } from '@lucide/vue'
 import { gsap } from 'gsap'
 import type { KaleidoscopeExhibitionItem } from '~/types/kaleidoscope'
-import { selectExhibitionSchedule, selectFeaturedExhibition } from '~/utils/exhibitionSchedule'
+import { MAX_SCHEDULE_SLIDES_PER_GROUP, selectExhibitionSchedule, selectFeaturedExhibition } from '~/utils/exhibitionSchedule'
 import { buildHeroItems, HERO_BLADE_COUNT, selectOpenedExhibitions } from '~/utils/heroItems'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 
-// `directoryVenues`/`selectedExhibitions` below don't hand out the full
-// resolved records — they rebuild a smaller landing-page card projection
-// (and, on the venue side, a `location_id` field ResolvedVenue doesn't
-// carry). These two local types describe exactly what gets constructed, so
-// VenueArchiveCard/ExhibitionCard's narrower prop types keep checking
-// against something real instead of the deleted `Venue`/`Exhibition` types.
+// `directoryVenues` below doesn't hand out the full resolved records — it
+// rebuilds a smaller landing-page card projection with a `location_id` field
+// ResolvedVenue doesn't carry. This local type describes exactly what gets
+// constructed. Exhibitions go to ExhibitionCard whole: the card needs the
+// dates and the tour fields for its short date and its 360° tile.
 interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'website_url' | 'image' | 'featured' | 'archive_number'> {
   location_id: string
 }
-type Exhibition = Pick<ResolvedExhibition, 'id' | 'slug' | 'title' | 'artist' | 'venue' | 'city' | 'date_range' | 'image'>
+type Exhibition = ResolvedExhibition
 
 const { venues, venueExhibitions, artistDirectory: directoryArtists } = useArchiveData()
 const { t } = useI18n()
@@ -71,20 +70,11 @@ const selectedExhibitions = computed<Exhibition[]>(() => {
     : openedExhibitions.value
 
   return records.slice(0, 5)
-    .map((exhibition) => ({
-      id: exhibition.id,
-      slug: exhibition.slug,
-      title: exhibition.title,
-      artist: exhibition.artist,
-      venue: exhibition.venue,
-      city: exhibition.city,
-      date_range: exhibition.date_range,
-      image: exhibition.image
-    }))
 })
 const featuredExhibition = computed(() => selectedExhibitions.value.find((exhibition) => exhibition.id === featuredExhibitionRecord.value?.id) ?? selectedExhibitions.value[0]!)
 const sideExhibitions = computed(() => selectedExhibitions.value.filter((exhibition) => exhibition.id !== featuredExhibition.value.id))
-const exhibitionSchedule = computed(() => selectExhibitionSchedule(venueExhibitions.value, archiveToday.value))
+// Up to five per group for the mobile slider; the desktop columns show the first three.
+const exhibitionSchedule = computed(() => selectExhibitionSchedule(venueExhibitions.value, archiveToday.value, MAX_SCHEDULE_SLIDES_PER_GROUP))
 const currentExhibitions = computed(() => exhibitionSchedule.value.current)
 const upcomingExhibitions = computed(() => exhibitionSchedule.value.upcoming)
 const hasTimelyExhibitions = computed(() => currentExhibitions.value.length > 0 || upcomingExhibitions.value.length > 0)
@@ -337,7 +327,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       :upcoming="upcomingExhibitions"
     />
 
-    <section id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8">
+    <section id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
       <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
         <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.venues.eyebrow') }}</p>
         <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.venues.title') }} <span class="text-archive-red">{{ $t('landing.venues.accent') }}</span></h2>
@@ -379,7 +369,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       <ArchiveExhibitionsDivider />
     </section>
 
-    <section id="exhibitions" class="[ exhibitions-section ] [ section-band ] relative isolate mx-auto max-w-[105rem] overflow-hidden px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-8">
+    <section id="exhibitions" class="[ exhibitions-section ] [ section-band ] relative isolate mx-auto max-w-[105rem] overflow-hidden px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
       <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
         <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.exhibitions.eyebrow') }}</p>
         <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></h2>
@@ -402,7 +392,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           layout="hero"
         />
 
-        <div class="[ record-list ] grid h-160 grid-rows-4 gap-[1.05rem] tablet:h-auto tablet:grid-cols-2 tablet:grid-rows-2 tablet:gap-5 compact:contents">
+        <div class="[ record-list ] grid content-start gap-4 tablet:grid-cols-2 tablet:gap-5 compact:contents">
           <ExhibitionCard
             v-for="exhibition in sideExhibitions"
             :key="exhibition.id"
@@ -416,7 +406,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       <ArchiveExhibitionsDivider />
     </section>
 
-    <section id="artists" class="[ artists-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] gap-[clamp(2rem,5vw,4.5rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-5 compact:px-4 compact:py-8">
+    <section id="artists" class="[ artists-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] gap-[clamp(2rem,5vw,4.5rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-5 compact:px-4 compact:py-5">
       <div class="[ artists-main ] min-w-0">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
           <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.artists.eyebrow') }}</p>
@@ -508,7 +498,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
       />
     </section>
 
-    <section id="method" class="[ method-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(20rem,0.58fr)_minmax(36rem,1.42fr)] gap-x-[clamp(2.5rem,4vw,4.5rem)] gap-y-0 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:px-4 compact:py-8">
+    <section id="method" class="[ method-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(20rem,0.58fr)_minmax(36rem,1.42fr)] gap-x-[clamp(2.5rem,4vw,4.5rem)] gap-y-0 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:px-4 compact:py-5">
       <div class="[ method-copy ] relative z-1">
         <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.method.eyebrow') }}</p>
         <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.method.title') }} <span class="text-archive-red">{{ $t('landing.method.accent') }}</span></h2>

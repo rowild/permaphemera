@@ -69,7 +69,7 @@ useSeoMeta({
     <ArchiveHeader active="about" />
 
     <div id="main-content">
-      <section class="[ about-page-intro ] [ section-band ] relative mx-auto grid min-h-144 max-w-[105rem] grid-cols-[minmax(0,0.88fr)_minmax(28rem,1.12fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 tablet:gap-10 compact:gap-6 compact:px-4 compact:py-6" aria-labelledby="about-page-title">
+      <section class="[ about-page-intro ] [ section-band ] relative mx-auto grid min-h-144 max-w-[105rem] grid-cols-[minmax(0,0.88fr)_minmax(28rem,1.12fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 tablet:gap-10 compact:gap-6 compact:px-4 compact:py-4" aria-labelledby="about-page-title">
         <div class="[ about-page-heading ] tablet:row-start-2">
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('about.breadcrumb') }}</span>
@@ -116,7 +116,7 @@ useSeoMeta({
 
       <ArchiveExhibitionsDivider />
 
-      <section class="[ about-page-actions ] [ section-band ] mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-10 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:grid-cols-1 compact:gap-5 compact:px-4 compact:py-8" aria-labelledby="about-actions-title">
+      <section class="[ about-page-actions ] [ section-band ] mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-10 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:grid-cols-1 compact:gap-5 compact:px-4 compact:py-5" aria-labelledby="about-actions-title">
         <div>
           <p class="m-0 mb-3 font-display text-eyebrow font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('about.actionsEyebrow') }}</p>
           <h2 id="about-actions-title" class="m-0 max-w-192 pb-1 font-display text-h2 font-normal leading-[1.08] compact:pb-0.5 compact:text-3xl compact:leading-tight">

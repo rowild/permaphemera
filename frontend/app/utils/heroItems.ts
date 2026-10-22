@@ -40,7 +40,8 @@ export const selectOpenedExhibitions = <T extends DatedExhibition>(exhibitions: 
   exhibitions.filter((exhibition) => exhibition.start_date <= today)
 
 /**
- * The fan offers only exhibitions whose 360° experience is open, newest first. Until there are
+ * The fan offers only exhibitions whose 360° experience is open, newest first; a blade opens the
+ * tour itself (`tourUrl`), and `href` (the exhibition page) is the fallback for a new tab. Until there are
  * twelve of them, galleries fill the remaining blades: venues without a tour of their own first,
  * each group in archive order. The gallery fill is a stop-gap until enough tours exist.
  */
@@ -58,6 +59,7 @@ export const buildHeroItems = (
       kind: 'exhibition',
       image: exhibition.image,
       href: href.exhibition(exhibition.slug),
+      tourUrl: exhibition.tour ?? undefined,
       label: exhibition.title,
       title: exhibition.title,
       artist: exhibition.artist,

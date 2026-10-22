@@ -19,6 +19,7 @@ const props = defineProps<{
   itemPool?: KaleidoscopeExhibitionItem[]
 }>()
 const { t } = useI18n()
+const { openTour } = useTourViewer()
 const emit = defineEmits<{
   animationStateChange: [isAnimating: boolean]
   controlsReveal: []
@@ -634,22 +635,30 @@ function handleBladeKeyDown(index: number) {
 function handleBladeClick(index: number, item: KaleidoscopeExhibitionItem, event: MouseEvent) {
   const isTouchActivation = lastActivationType === 'touch' || lastActivationType === 'pen'
   lastActivationType = null
-  if (!isTouchActivation || !item.href) return
+  if (!item.href) return
 
-  if (touchPreviewIndex.value === index && activeTooltipIndex.value === index) {
+  // Touch: the first tap only previews the blade, the second tap opens it.
+  if (isTouchActivation) {
+    if (touchPreviewIndex.value !== index || activeTooltipIndex.value !== index) {
+      event.preventDefault()
+      clearTouchPreview()
+      touchPreviewIndex.value = index
+      showBladeTooltip(index, event.clientX, event.clientY)
+      touchPreviewTimer = window.setTimeout(() => {
+        hideBladeTooltip(index)
+        clearTouchPreview()
+      }, 4500)
+      return
+    }
     clearTouchPreview()
-    hideBladeTooltip(index)
-    return
   }
 
+  // An exhibition blade starts its 360° tour at once. A modified click keeps
+  // the link to the exhibition page (new tab or window); a gallery blade is a link.
+  hideBladeTooltip(index)
+  if (!item.tourUrl || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
   event.preventDefault()
-  clearTouchPreview()
-  touchPreviewIndex.value = index
-  showBladeTooltip(index, event.clientX, event.clientY)
-  touchPreviewTimer = window.setTimeout(() => {
-    hideBladeTooltip(index)
-    clearTouchPreview()
-  }, 4500)
+  void openTour(item.tourUrl, event.currentTarget as SVGAElement)
 }
 
 function handleDocumentPointerDown(event: PointerEvent) {

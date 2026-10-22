@@ -27,12 +27,12 @@ useSeoMeta({
     <ArchiveHeader active="exhibitions" />
 
     <div id="main-content">
-      <section class="[ exhibition-group ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-3 compact:py-6" aria-labelledby="exhibition-group-title">
+      <section class="[ exhibition-group ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-3 compact:py-4" aria-labelledby="exhibition-group-title">
         <header class="[ section-heading ] relative z-1 mb-8 compact:mb-5">
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><ArchiveTextLink :to="localePath('/exhibitions/')">{{ $t('exhibitionsDirectory.breadcrumb') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ title }}</span>
           </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibitionsDirectory.indexEyebrow') }}</p>
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibitionsDirectory.eyebrow') }}</p>
           <h1 id="exhibition-group-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ title }}</h1>
           <p class="mt-[0.85rem] mb-0 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('exhibitionsDirectory.groupCount', exhibitions.length) }}</p>
         </header>

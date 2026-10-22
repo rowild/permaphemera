@@ -138,7 +138,7 @@ export const entities = {
       file('source_pdf', { note: 'The invitation or press sheet the record was derived from.' }),
       str('tour', { note: 'Root-relative folder of the exported 360° tour, e.g. /media/tours/<id>/. Empty while none is published.' }),
       dropdown('tour_status', ['available', 'restricted', 'unavailable'], { default: 'unavailable' }),
-      date('tour_available_from', { note: 'Usually the day after the exhibition closes. Empty means at once.' }),
+      date('tour_available_from', { note: 'Usually the last day of the exhibition (= end_date). Empty means at once.' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'slug', 'kind', 'primary_venue']),

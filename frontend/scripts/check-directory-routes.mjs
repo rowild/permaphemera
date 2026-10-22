@@ -18,6 +18,8 @@ const [
   exhibitionsIndex,
   exhibitionDetail,
   exhibitionCard,
+  exhibitionFrameCard,
+  slideTrack,
   archiveFloatingTooltip,
   organisationsIndex,
   organisationDetail,
@@ -36,6 +38,8 @@ const [
   readText('app/pages/exhibitions/index.vue'),
   readText('app/pages/exhibitions/[slug].vue'),
   readText('app/components/ExhibitionCard.vue'),
+  readText('app/components/ExhibitionFrameCard.vue'),
+  readText('app/components/ExhibitionSlideTrack.vue'),
   readText('app/components/ArchiveFloatingTooltip.vue'),
   readText('app/pages/organisations/index.vue'),
   readText('app/pages/organisations/[slug].vue'),
@@ -109,7 +113,12 @@ assert(exhibitions.length > 0, 'The exhibitions directory needs routed exhibitio
 assert.match(exhibitionsIndex, /<ArchiveSearchForm/, 'The exhibitions index must use the shared search form.')
 assert.match(exhibitionsIndex, /right\.start_date\.localeCompare\(left\.start_date\)/, 'Exhibition search results must be ordered by newest start date first.')
 assert.doesNotMatch(exhibitionsIndex, /left\.featured\s*\?\s*-1\s*:\s*1/, 'Featured status must not override the chronological exhibition order.')
-assert.match(exhibitionsIndex, /selectFeaturedExhibition\(orderedExhibitions\.value, archiveToday\.value\)/, 'The exhibitions index must derive its highlighted record from the current local date.')
+// One header per index page, as on the artists page: heading left, fact ledger right, the search below.
+for (const [name, page] of [['exhibitions', exhibitionsIndex], ['galleries', galleriesIndex]]) {
+  assert.equal((page.match(/<h1 /g) ?? []).length, 1, `The ${name} index must have one header.`)
+  assert.doesNotMatch(page, /<h2 /, `The ${name} index must not repeat its header above the search.`)
+  assert.match(page, /<ArchiveFactLedger[^>]*desktop-layout="stacked"[\s\S]*<ArchiveSearchForm/, `The ${name} index must put its fact ledger beside the heading, above the search.`)
+}
 // Without a search the index shows the three time groups, current first, then upcoming beside
 // past; a search shows one flat list in pages. Each group links to its own page.
 assert.match(exhibitionsIndex, /groupExhibitionsByTime\(venueExhibitions\.value, archiveToday\.value\)/, 'The exhibitions index must group records by the local day.')
@@ -123,25 +132,21 @@ for (const [group, page] of Object.entries(exhibitionGroupPages)) {
   assert(!exhibitions.some(({ slug }) => slug === group), `No exhibition may use the slug "${group}": /exhibitions/${group}/ is the group page.`)
 }
 assert.match(exhibitionCard, /<ExhibitionFrameCard/, 'Exhibition cards must use the shared generated cut-corner frame.')
-// "Visit" only while the 360° tour is open (exhibitionLinkLabels decides, events as events).
-assert.match(exhibitionCard, /const labels = computed\(\(\) => exhibitionLinkLabels\(props\.exhibition, archiveToday\.value\)\)/, 'Every exhibition card must take its action label from the tour state.')
-assert.doesNotMatch(exhibitionCard, /\$t\('common\.open'\)/, 'Exhibition cards must not use the generic Open label.')
-assert.match(exhibitionCard, /export type ExhibitionCardLayout = 'stacked' \| 'side' \| 'hero'/, 'One exhibition card component must carry the stacked, side and hero layouts.')
-assert.match(exhibitionCard, /ref="titleEl"[^>]*truncate/, 'Stacked exhibition titles must stay on one line with an ellipsis.')
-assert.match(exhibitionCard, /ref="artistEl"[^>]*truncate/, 'Stacked exhibition artist lines must stay on one line with an ellipsis.')
-assert.match(exhibitionCard, /\[ record-sheet-footer \][^\n]*mt-auto[^\n]*shrink-0/, 'The stacked record footer must sit statically at the bottom of the sheet.')
-assert.match(exhibitionCard, /\[ record-card-action \][^\n]*items-center justify-center/, 'Landing exhibition actions must stay centered over their images.')
-assert.match(exhibitionCard, /transition-colors[^\n]*group-hover\/exhibition:text-archive-red[^\n]*group-focus-visible\/exhibition:text-archive-red/, 'Landing exhibition actions must animate to archive red on hover and keyboard focus.')
-assert.match(exhibitionCard, /archive-record-open-action[^\n]*text-sm[^\n]*opacity-90/, 'Landing exhibition actions must use the dedicated compact frame without reducing their label size.')
-assert.match(mainCss, /\.archive-record-open-action\s*\{[^}]*width: min\(9\.75rem, calc\(100% - 2rem\)\);[^}]*min-height: 2\.75rem;[^}]*padding-inline: 0\.1875rem;[^}]*border-width: 0\.5rem;/s, 'Landing exhibition actions must keep a small, genuinely inset frame with minimal padding.')
-assert.match(exhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidden/, 'Landing exhibition titles must stay on one clipped line.')
-assert.match(exhibitionCard, /ref="recordTitleViewport"[^>]*overflow-hidden[^>]*pb-0\.5/, 'Landing exhibition title viewports must reserve two pixels for font descenders.')
-assert.match(exhibitionCard, /archive-record-title-marquee/, 'Overflowing landing exhibition titles must use the measured marquee treatment.')
+// Card rules: docs/superpowers/specs/2026-10-21-exhibition-card-rules-design.md.
+assert.match(exhibitionCard, /export type ExhibitionCardLayout = 'stacked' \| 'side' \| 'hero' \| 'slide'/, 'One exhibition card component must carry the stacked, side, hero and slide layouts.')
+assert.match(exhibitionFrameCard, /<article/, 'An exhibition card is an article.')
+assert.doesNotMatch(exhibitionFrameCard, /href/, 'An exhibition card is never a link itself; only its action tiles are.')
+assert.match(exhibitionCard, /v-if="tourAccess\.kind === 'open'"\s*kind="tour"/, 'The 360° tile must show only while the tour is open.')
+assert.match(exhibitionCard, /<ExhibitionActionTile v-if="href" kind="page"/, 'Every card must reach its exhibition page through the page tile.')
+assert.match(exhibitionCard, /\[ record-card-actions \][^\n]*justify-between/, 'The two tiles sit below the text, the tour on the left and the page on the right.')
+assert.match(exhibitionCard, /line-clamp-2 min-h-10/, 'Card titles must clamp to two lines with their height reserved.')
+assert.match(exhibitionCard, /ref="artistEl"[\s\S]*?truncate/, 'Artist lines must stay on one line with an ellipsis.')
+assert.match(exhibitionCard, /\[ record-facts \][^\n]*text-meta leading-5/, 'Place and date must share one metadata role on the 4px grid.')
+assert.match(mainCss, /--container-card-m: 13rem;[\s\S]*--container-card-l: 24rem;/, 'Card size classes S, M and L must come from the width of the text block.')
+assert.match(slideTrack, /w-slide-feature/, 'Current exhibitions must use the larger mobile slider cards.')
 assert.match(exhibitionCard, /ResizeObserver/, 'Exhibition card overflow must respond to live card width.')
-assert.match(exhibitionCard, /<ArchiveFloatingTooltip[\s\S]*?\[ record-title-tooltip \]/, 'Overflowing exhibition titles must use the body-level archival tooltip so no card clip can cut it.')
+assert.match(exhibitionCard, /<ArchiveFloatingTooltip[\s\S]*?\[ record-title-tooltip \]/, 'Cut exhibition titles must use the body-level archival tooltip so no card clip can cut it.')
 assert.match(archiveFloatingTooltip, /<Teleport to="body">[\s\S]*?<ArchiveTooltipFrame/, 'The floating tooltip must teleport the shared archival frame to <body>.')
-assert.match(exhibitionCard, /\[ record-location-line \][^\n]*leading-\[1\.15\][^\n]*compact:leading-\[1\.05\]/, 'Landing exhibition locations must use compact desktop and mobile metadata line-heights.')
-assert.match(mainCss, /@keyframes archive-record-title-scroll[\s\S]*\.archive-record-title-marquee/, 'The landing exhibition title marquee animation must be globally defined.')
 assert.match(exhibitionDetail, /<ExhibitionCard[\s\S]*v-for="item in relatedExhibitions"/, 'Related records on an exhibition page must reuse the one exhibition card.')
 assert.equal(englishMessages.cards.openExhibition, 'Visit Exhibition', 'English exhibition actions must use the requested label.')
 assert.equal(germanMessages.cards.openExhibition, 'Ausstellung besuchen', 'German exhibition actions must use the equivalent localized label.')

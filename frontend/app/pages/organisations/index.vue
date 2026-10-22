@@ -56,7 +56,7 @@ useSeoMeta({
     <ArchiveHeader active="organisations" />
 
     <div id="main-content">
-      <section class="[ organisations-page-intro ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_minmax(20rem,0.62fr)] items-end gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-6" aria-labelledby="organisations-page-title">
+      <section class="[ organisations-page-intro ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_minmax(20rem,0.62fr)] items-end gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-4" aria-labelledby="organisations-page-title">
         <div class="[ organisations-page-heading ]">
           <ArchiveBreadcrumb>
             <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('organisations.breadcrumb') }}</span>
@@ -70,7 +70,7 @@ useSeoMeta({
 
       <ArchiveInsetDivider class="compact:hidden" />
 
-      <section id="organisation-directory" class="[ organisation-directory ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-6" aria-labelledby="organisation-directory-title">
+      <section id="organisation-directory" class="[ organisation-directory ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-4" aria-labelledby="organisation-directory-title">
         <div class="[ section-heading ] relative z-1 mb-4">
           <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('organisations.directoryEyebrow') }}</p>
           <h2 id="organisation-directory-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('organisations.directoryTitle', organisations.length) }} <span class="text-archive-red">{{ $t('organisations.directoryAccent') }}</span></h2>
