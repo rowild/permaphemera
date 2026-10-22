@@ -27,9 +27,12 @@ export function parseEnvFile(source) {
   return values
 }
 
-/** The API token and zone id, or null when either is missing or blank. */
+/** The purge token and zone id, or null when either is missing or blank.
+ *  The token has a name of its own on purpose: CLOUDFLARE_API_TOKEN is what
+ *  wrangler and other Cloudflare tools read, so a shell may export a different
+ *  token under it — and the environment wins over .env.deploy.local. */
 export function readCloudflareSettings(env) {
-  const token = env.CLOUDFLARE_API_TOKEN?.trim()
+  const token = env.CLOUDFLARE_PURGE_TOKEN?.trim()
   const zoneId = env.CLOUDFLARE_ZONE_ID?.trim()
   return token && zoneId ? { token, zoneId } : null
 }

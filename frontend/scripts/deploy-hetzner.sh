@@ -4,7 +4,7 @@
 #   pnpm run deploy:hetzner            build + upload
 #   pnpm run deploy:hetzner -- --skip-build   upload the existing .output/public
 #
-# After the upload it empties Cloudflare's cache (needs CLOUDFLARE_API_TOKEN and
+# After the upload it empties Cloudflare's cache (needs CLOUDFLARE_PURGE_TOKEN and
 # CLOUDFLARE_ZONE_ID in .env.deploy.local; without them it warns and skips).
 #
 # The Directus URL is baked into the build. On permaphemera.at Directus is reached

@@ -6,20 +6,27 @@ import { parseEnvFile, purgeEverything, readCloudflareSettings } from '../../scr
 // therefore empties Cloudflare's cache after every upload (2026-10-22).
 describe('parseEnvFile', () => {
   it('reads KEY=value lines, strips quotes, skips comments and blanks', () => {
-    expect(parseEnvFile('# note\nCLOUDFLARE_ZONE_ID=abc\n\nCLOUDFLARE_API_TOKEN = "t0k"\n')).toEqual({
+    expect(parseEnvFile('# note\nCLOUDFLARE_ZONE_ID=abc\n\nCLOUDFLARE_PURGE_TOKEN = "t0k"\n')).toEqual({
       CLOUDFLARE_ZONE_ID: 'abc',
-      CLOUDFLARE_API_TOKEN: 't0k',
+      CLOUDFLARE_PURGE_TOKEN: 't0k',
     })
   })
 })
 
 describe('readCloudflareSettings', () => {
   it('returns the token and zone when both are set', () => {
-    expect(readCloudflareSettings({ CLOUDFLARE_API_TOKEN: 't', CLOUDFLARE_ZONE_ID: 'z' })).toEqual({ token: 't', zoneId: 'z' })
+    expect(readCloudflareSettings({ CLOUDFLARE_PURGE_TOKEN: 't', CLOUDFLARE_ZONE_ID: 'z' })).toEqual({ token: 't', zoneId: 'z' })
   })
   it('returns null when either is missing or blank', () => {
-    expect(readCloudflareSettings({ CLOUDFLARE_API_TOKEN: 't' })).toBeNull()
-    expect(readCloudflareSettings({ CLOUDFLARE_API_TOKEN: ' ', CLOUDFLARE_ZONE_ID: 'z' })).toBeNull()
+    expect(readCloudflareSettings({ CLOUDFLARE_PURGE_TOKEN: 't' })).toBeNull()
+    expect(readCloudflareSettings({ CLOUDFLARE_PURGE_TOKEN: ' ', CLOUDFLARE_ZONE_ID: 'z' })).toBeNull()
+  })
+  // The generic name is what wrangler and other Cloudflare tools read, so a
+  // shell may export a DIFFERENT token under it (2026-10-22: ~/.zprofile did,
+  // and the environment beat .env.deploy.local). The purge never reads it.
+  it('ignores the generic CLOUDFLARE_API_TOKEN other tools export', () => {
+    expect(readCloudflareSettings({ CLOUDFLARE_API_TOKEN: 'other', CLOUDFLARE_ZONE_ID: 'z' })).toBeNull()
+    expect(readCloudflareSettings({ CLOUDFLARE_API_TOKEN: 'other', CLOUDFLARE_PURGE_TOKEN: 't', CLOUDFLARE_ZONE_ID: 'z' })).toEqual({ token: 't', zoneId: 'z' })
   })
 })
 
