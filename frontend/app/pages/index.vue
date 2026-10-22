@@ -25,7 +25,7 @@ definePageMeta({ archiveOptional: true })
 
 const { venues, venueExhibitions, artistDirectory: directoryArtists } = useArchiveData()
 const archiveReady = useArchiveReady()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const archiveToday = useArchiveToday()
 
@@ -115,6 +115,17 @@ const exhibitionSearchQuery = ref('')
 const artistSearchQuery = ref('')
 const openLandingArtistSlug = ref('')
 const preservedExhibitionCount = computed(() => venueExhibitions.value.length)
+// The towns of the published galleries, the one with the most galleries first,
+// then by name; at most five, the full list is on /venues/.
+const SIDEBAR_CITY_COUNT = 5
+const sidebarCities = computed(() => {
+  const galleriesPerCity = new Map<string, number>()
+  venues.value.forEach((venue) => galleriesPerCity.set(venue.city_name, (galleriesPerCity.get(venue.city_name) ?? 0) + 1))
+  return [...galleriesPerCity]
+    .sort(([cityA, countA], [cityB, countB]) => countB - countA || cityA.localeCompare(cityB, locale.value))
+    .slice(0, SIDEBAR_CITY_COUNT)
+    .map(([city]) => city)
+})
 const availableArtistLetters = computed(() => new Set(directoryArtists.value.map((artist) => artist.letter)))
 const artistLetterRoute = (letter: string) => ({
   path: localePath('/artists/'),
@@ -646,11 +657,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
             <strong class="[ archive-sidebar-count ] mt-[0.4rem] mb-10 block font-display text-title font-normal">{{ preservedExhibitionCount }}</strong>
             <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.cities') }}</p>
             <ul class="[ archive-sidebar-locations ] m-0 mb-6 grid list-none gap-[0.45rem] p-0">
-              <li>{{ $t('landing.sidebar.vienna') }}</li>
-              <li>Graz</li>
-              <li>Linz</li>
-              <li>Salzburg</li>
-              <li>Innsbruck</li>
+              <li v-for="city in sidebarCities" :key="city">{{ city }}</li>
             </ul>
             <a class="[ archive-sidebar-link ] flex items-center gap-2 font-display text-button text-archive-red" href="#venues">{{ $t('landing.sidebar.viewAll') }} <ArchiveArrow class="w-[1.65rem]" /></a>
             <ArchivePaperStack

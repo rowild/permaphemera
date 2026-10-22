@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.26 - 2026-10-22 18:23:41 CEST
+
+- The "Cities" list beside the artist directory on the start page shows the towns that really have galleries in the archive, taken from Directus: Klagenfurt am Wörthersee, Spittal an der Drau, Kötschach-Mauthen and Seeboden am Millstätter See. The town with the most galleries comes first; at most five are shown. Before, it was a fixed list of cities without galleries in the archive (Vienna, Graz, Linz, Salzburg, Innsbruck).
+
 ## 0.0.25 - 2026-10-22 17:12:26 CEST
 
 - The thin line above a card's icons now shows on desktop too, on every exhibition card, not only on phones.
