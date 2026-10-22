@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.25 - 2026-10-22 17:12:26 CEST
+
+- The thin line above a card's icons now shows on desktop too, on every exhibition card, not only on phones.
+- The English site says "tour" instead of "walk-through" everywhere: "Start the 360° tour", "360° tour in preparation", "360° tour available from …", "Opening the tour…", the exhibition page and the About page. The German texts already said "Rundgang".
+
 ## 0.0.24 - 2026-10-22 17:01:28 CEST
 
 - The start page appears at once, before the archive has arrived. The header and the hero text come in letter by letter: the logo first, the headline a moment later, then the menu, the language switch and the menu star, which turns in. The image wheel follows when both are done; while it waits for its images, faded arrows circle where it will be. The page below the hero builds after the text, or at once when you scroll, tap or press a key.

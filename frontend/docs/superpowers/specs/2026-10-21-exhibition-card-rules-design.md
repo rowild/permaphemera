@@ -100,7 +100,7 @@ Every line box is 16, 20, 24 or 32 px, so every slot height stays on the 4 px gr
 - Both icons sit on the site's inset-corner frame (the shape of `button-secondary-frame.svg`), and the corners are transparent.
 - A tile shows 30 × 30 px (owner, 2026-10-22). Its `::before` widens the hit area to 44 × 44 px.
 - A tile reads as a control: it rests on the paper with a small shadow (`drop-shadow-tile`), and a fine red arrow (↗, drawn in SVG) runs out of its upper right corner cut, about 6 px past the corner. The arrow keeps clear of the icon's ring: a ring with an arrow from its centre or its edge reads as the male symbol ♂. On hover the tile lifts by 1 px (`drop-shadow-tile-lift`) and the arrow grows a little from its start; when pressed the tile sinks.
-- On phones, a thin rule separates the action row from the facts, on every card, so sibling cards stay aligned.
+- A thin rule separates the action row from the facts, on every card and at every width, so sibling cards stay aligned. 12 px above and below it; 16 px at L.
 - Each tile has an accessible name with the title: "360°-Rundgang starten: {title}", "Zur Ausstellung: {title}". Mouse hover and keyboard focus show the short action in the site's framed tooltip (`ArchiveFloatingTooltip`, `fit="content"`, above the tile): "360°-Rundgang starten", "Zur Ausstellung". No native `title`.
 - Component: `ExhibitionActionTile.vue`.
 
@@ -125,4 +125,4 @@ Every line box is 16, 20, 24 or 32 px, so every slot height stays on the 4 px gr
 4. **Title weight:** 400 as a trial. Check it again and maybe go back to 500.
 5. **"(Lange Nacht der Museen)":** still part of the date text in Directus. Moving it into its own field is open (a data change). Until then, cards below L show the short date without it.
 6. **Inset:** the same on all four sides, 16 px from the paper edge, on every card and at every size (§3.3). It replaces the S/M/L paddings.
-7. **Tiles as controls:** 30 px, shadow, corner arrow, tooltip, and on phones a rule above the action row (§3.7).
+7. **Tiles as controls:** 30 px, shadow, corner arrow, tooltip, and a rule above the action row (§3.7).

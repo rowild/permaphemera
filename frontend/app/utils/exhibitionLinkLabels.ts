@@ -14,7 +14,7 @@ export interface ExhibitionLinkLabels {
 }
 
 /**
- * "Visit" promises the 360° walk-through, so a link says it only while the tour is open
+ * "Visit" promises the 360° tour, so a link says it only while the tour is open
  * today (it switches by itself on the release date). Every other record, and a record
  * without tour fields, gets the neutral "About the exhibition".
  */

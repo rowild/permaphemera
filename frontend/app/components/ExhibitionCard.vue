@@ -209,7 +209,7 @@ const copyClass = {
           <ArchiveFloatingTooltip :anchor="artistEl" :open="artistOverflow && tip === 'artist'" :label="$t('cards.fullArtists')"><span class="text-archive-red">{{ props.exhibition.artist }}</span></ArchiveFloatingTooltip>
         </div>
 
-        <div class="[ record-facts ] mt-2 font-display text-meta leading-5 @card-m:mt-3 @card-m:text-sm @card-l:mt-4 compact:mb-3" :class="isHero ? 'text-archive-light-ink' : 'text-archive-record-meta'">
+        <div class="[ record-facts ] mt-2 font-display text-meta leading-5 @card-m:mt-3 @card-m:text-sm @card-l:mt-4" :class="isHero ? 'text-archive-light-ink' : 'text-archive-record-meta'">
           <p class="[ record-location-line ] m-0 flex min-w-0 items-center gap-2">
             <span class="[ record-meta-icon ] archive-record-meta-icon record-meta-icon-location hidden size-3.5 flex-none bg-current @card-m:inline-block" aria-hidden="true" />
             <span class="min-w-0 truncate"><span class="@card-m:hidden">{{ props.exhibition.venue }}</span><span class="hidden @card-m:inline">{{ props.exhibition.venue }} · {{ props.exhibition.city }}</span></span>
@@ -225,22 +225,24 @@ const copyClass = {
           class="[ record-summary ] mt-3 mb-0 hidden min-h-12 font-display text-base leading-6 text-archive-body @card-l:line-clamp-2"
         >{{ props.exhibition.summary }}</p>
 
-        <!-- On phones a rule separates the actions from the facts, on every card, so siblings stay aligned. -->
-        <div
-          class="[ record-card-actions ] mt-auto flex min-h-7.5 items-end justify-between gap-2 pt-2 @card-m:pt-3 @card-l:pt-4 compact:border-t compact:pt-3"
-          :class="isHero ? 'compact:border-archive-light-ink/20' : 'compact:border-archive-rule-warm/22'"
-        >
-          <ExhibitionActionTile
-            v-if="tourAccess.kind === 'open'"
-            kind="tour"
-            :label="$t('cards.startTourFor', { title: props.exhibition.title })"
-            :hint="$t('cards.startTour')"
-            :busy="tourOpening"
-            @click="openTour(tourAccess.url, $event.currentTarget as HTMLElement)"
-          />
-          <p v-else-if="tourNote" class="[ record-tour-note ] m-0 min-w-0 self-center text-xs" :class="isHero ? 'text-archive-light-ink' : 'text-archive-copy-warm'">{{ tourNote }}</p>
-          <span v-else aria-hidden="true" />
-          <ExhibitionActionTile v-if="href" kind="page" :label="pageLabel" :hint="pageHint" :to="href" />
+        <!-- A rule separates the actions from the facts on every card, so siblings stay aligned. -->
+        <div class="mt-auto pt-3 @card-l:pt-4">
+          <div
+            class="[ record-card-actions ] flex min-h-7.5 items-end justify-between gap-2 border-t pt-3 @card-l:pt-4"
+            :class="isHero ? 'border-archive-light-ink/20' : 'border-archive-rule-warm/22'"
+          >
+            <ExhibitionActionTile
+              v-if="tourAccess.kind === 'open'"
+              kind="tour"
+              :label="$t('cards.startTourFor', { title: props.exhibition.title })"
+              :hint="$t('cards.startTour')"
+              :busy="tourOpening"
+              @click="openTour(tourAccess.url, $event.currentTarget as HTMLElement)"
+            />
+            <p v-else-if="tourNote" class="[ record-tour-note ] m-0 min-w-0 self-center text-xs" :class="isHero ? 'text-archive-light-ink' : 'text-archive-copy-warm'">{{ tourNote }}</p>
+            <span v-else aria-hidden="true" />
+            <ExhibitionActionTile v-if="href" kind="page" :label="pageLabel" :hint="pageHint" :to="href" />
+          </div>
         </div>
       </div>
     </div>
