@@ -58,6 +58,16 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon-archive-temple.png' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'manifest', href: '/site.webmanifest' }
+      ],
+      script: [
+        // Umami, self-hosted and cookieless, loads for every visitor without a consent switch
+        // (owner's decision, 2026-10-24). It counts only on permaphemera.at, never on localhost.
+        {
+          src: 'https://umami.project-backends.info/p.js',
+          defer: true,
+          'data-website-id': 'd7a5053b-b94e-4fbc-9b6f-78e1b388742c',
+          'data-domains': 'permaphemera.at'
+        }
       ]
     }
   },

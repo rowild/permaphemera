@@ -72,6 +72,7 @@ Stable ids you will need (production):
 |---|---|
 | role `artist` | `37b28cb2-e0ba-4081-b51b-836149de0a06` |
 | role `curator` | `68b75859-8a9b-4bc8-aa98-8c6577c18fb3` |
+| role `organiser` (a person who organises the exhibition; since 2026-10-24) | `095bd21b-4c58-4a42-a6c8-e5d41e91f16f` |
 | placeholder exhibition image | `76dbe630-c514-4983-ab42-be301a834a04` |
 | placeholder venue image | `f2d3d3ea-5097-46c0-8577-0f405d6c677d` |
 | town Klagenfurt am Wörthersee | `2e1e264b-ab44-48ff-9f0f-03f613f7865c` |
@@ -255,7 +256,7 @@ Galerie Porcia) gets no organisation record; name it in `about_html`. A person t
 | `source_pdf` | the invitation PDF file id, if there is one |
 | `summary` | one line |
 | `description` | 60–130 words, own words, neutral archive tone, ends with `Source: <domains>` (DE `Quelle: …`) |
-| `participations` | nested rows `{ person, role, sort }` (no status); artists in the order of the invitation, curator first |
+| `participations` | nested rows `{ person, role, sort }` (no status); artists in the order of the invitation, curator first. A person who organises the exhibition gets the role `organiser` (own row "Organiser" on the page); the body behind it stays in `organisers` (§6) |
 | `websites` | `[{ "websites_id": <existing id> }]` or a nested new link with en/de titles |
 | `translations` | `en` and `de`: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `admission`, `medium`, `image_alt` |
 

@@ -158,6 +158,17 @@ describe('resolveExhibitions', () => {
     expect(record.curators.map((c) => c.name)).toEqual(['Cura Tor'])
   })
 
+  it('lists organiser-role participations as organiser persons, not as artists', () => {
+    const organiserRole = { id: 'role-organiser', slug: 'organiser', title: 'Organiser', status: 'published' as const, sort: 5, translations: [{ languages_code: 'en', title: 'Organiser' }] }
+    const organiser = { id: 'person-organiser', slug: 'orga-niser', first_name: 'Orga', last_name: 'Niser', middle_initial: null, display_name: null, status: 'published' as const }
+    const rows = [...participations, { id: 'p-4', exhibition: exhibitions[0].id, person: 'person-organiser', role: 'role-organiser', sort: 0 }]
+    const [record] = resolveExhibitions(exhibitions, venues, locations, rows, [...persons, organiser], [...roles, organiserRole], 'en')
+    expect(record.organiser_persons.map((p) => p.name)).toEqual(['Orga Niser'])
+    expect(record.organiser_persons[0]).toMatchObject({ slug: 'orga-niser' })
+    expect(record.artist).toBe('Sylvia Campidell & Judith Maria Kulle')
+    expect(resolve()[0].organiser_persons).toEqual([])
+  })
+
   it('drops a participation whose role is missing', () => {
     const broken = [{ ...participations[0]!, role: 'role-ghost' }]
     expect(resolveExhibitions(exhibitions, venues, locations, broken, persons, roles, 'en')[0]!.artists).toEqual([])

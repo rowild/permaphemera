@@ -1,13 +1,13 @@
 type ConsentDecision = 'granted' | 'denied' | null
 
 export interface ConsentSelection {
-  analytics: boolean
   googleMaps: boolean
   youtube: boolean
 }
 
+// Version 2 records written before 2026-10-24 also carry an `analytics` decision for the
+// former analytics switch; it is ignored. Umami needs no switch (it sets no cookies).
 interface StoredConsent {
-  analytics: Exclude<ConsentDecision, null>
   googleMaps: Exclude<ConsentDecision, null>
   youtube: Exclude<ConsentDecision, null>
   savedAt: number
@@ -23,17 +23,14 @@ const isDecision = (value: unknown): value is Exclude<ConsentDecision, null> => 
 
 export function useCookieNotice() {
   const isVisible = useState('cookie-notice-visible', () => false)
-  const analyticsConsent = useState<ConsentDecision>('analytics-consent', () => null)
   const googleMapsConsent = useState<ConsentDecision>('google-maps-consent', () => null)
   const youtubeConsent = useState<ConsentDecision>('youtube-consent', () => null)
   const initialized = useState('cookie-consent-initialized', () => false)
-  const { enable: enableMatomo, disable: disableMatomo } = useMatomo()
 
   const remember = (selection: ConsentSelection) => {
     if (!import.meta.client) return
 
     const preference: StoredConsent = {
-      analytics: toDecision(selection.analytics),
       googleMaps: toDecision(selection.googleMaps),
       youtube: toDecision(selection.youtube),
       savedAt: Date.now(),
@@ -45,12 +42,8 @@ export function useCookieNotice() {
   }
 
   const applySelection = (selection: ConsentSelection) => {
-    analyticsConsent.value = toDecision(selection.analytics)
     googleMapsConsent.value = toDecision(selection.googleMaps)
     youtubeConsent.value = toDecision(selection.youtube)
-
-    if (selection.analytics) enableMatomo()
-    else disableMatomo()
   }
 
   const initialize = () => {
@@ -61,7 +54,6 @@ export function useCookieNotice() {
       const rawPreference = window.localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY)
       const preference = rawPreference ? JSON.parse(rawPreference) as Partial<StoredConsent> : null
       const isCurrent = preference?.version === 2
-        && isDecision(preference.analytics)
         && isDecision(preference.googleMaps)
         && isDecision(preference.youtube)
         && typeof preference.savedAt === 'number'
@@ -69,7 +61,6 @@ export function useCookieNotice() {
 
       if (isCurrent) {
         applySelection({
-          analytics: preference.analytics === 'granted',
           googleMaps: preference.googleMaps === 'granted',
           youtube: preference.youtube === 'granted'
         })
@@ -80,10 +71,8 @@ export function useCookieNotice() {
       window.localStorage.removeItem(COOKIE_CONSENT_STORAGE_KEY)
     }
 
-    analyticsConsent.value = null
     googleMapsConsent.value = null
     youtubeConsent.value = null
-    disableMatomo()
     isVisible.value = true
   }
 
@@ -94,7 +83,7 @@ export function useCookieNotice() {
   }
 
   const acceptAll = () => {
-    savePreferences({ analytics: true, googleMaps: true, youtube: true })
+    savePreferences({ googleMaps: true, youtube: true })
   }
 
   const show = () => {
@@ -103,7 +92,6 @@ export function useCookieNotice() {
 
   return {
     isVisible: readonly(isVisible),
-    analyticsConsent: readonly(analyticsConsent),
     googleMapsConsent: readonly(googleMapsConsent),
     youtubeConsent: readonly(youtubeConsent),
     initialize,

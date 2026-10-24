@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.27 - 2026-10-24 11:00:36 CEST
+
+- The main menu reads Exhibitions · Artists · Galleries · Organisations. "About the Project" moved into the menu behind the star, as the first link under "Information".
+- The Organisations page lists who organises the exhibitions, in three blocks with one search box: the organisations that run a gallery, organise exhibitions or are a group (association, initiative, federation, collective); the people, split into organisers (including board members) and curators; and the sponsors, a block that appears once a sponsor is published. Every row opens the organisation, person or sponsor page. The header says plainly what the page lists ("Wer die Ausstellungen organisiert." / "Who organises the exhibitions."); on phones its facts form one line above the title.
+- A person can have the new role "Organiser" ("Organisator:in"). The exhibition page names such a person in its own row after the curators, and the person's page labels the exhibition "Organiser". Gerhard Lepicnik is the first, for Trigeniale 26.
+- The exhibition page has the temple divider before "Weitere Einträge aus dem Archiv", as on gallery, person and organisation pages.
+- Visits are counted with Umami, self-hosted at umami.project-backends.info, without cookies and only on permaphemera.at. Matomo is gone: the cookie settings no longer offer it, and the privacy policy describes Umami instead (dated 24 October 2026).
+
 ## 0.0.26 - 2026-10-22 18:23:41 CEST
 
 - The "Cities" list beside the artist directory on the start page shows the towns that really have galleries in the archive, taken from Directus: Klagenfurt am Wörthersee, Spittal an der Drau, Kötschach-Mauthen and Seeboden am Millstätter See. The town with the most galleries comes first; at most five are shown. Before, it was a fixed list of cities without galleries in the archive (Vienna, Graz, Linz, Salzburg, Innsbruck).

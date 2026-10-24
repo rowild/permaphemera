@@ -136,6 +136,10 @@ useSeoMeta({
             <template #icon><Users :size="18" aria-hidden="true" /></template>
             <template v-for="(curator, index) in exhibition.curators" :key="curator.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${curator.slug}/`)">{{ curator.name }}</ArchiveTextLink></template>
           </ArchiveMetadataRow>
+          <ArchiveMetadataRow v-if="exhibition.organiser_persons.length" :label="$t('exhibition.organiserPersons', exhibition.organiser_persons.length)" variant="exhibition">
+            <template #icon><Users :size="18" aria-hidden="true" /></template>
+            <template v-for="(organiser, index) in exhibition.organiser_persons" :key="organiser.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${organiser.slug}/`)">{{ organiser.name }}</ArchiveTextLink></template>
+          </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.organisers.length" :label="organiserLabel" variant="exhibition">
             <template #icon><Landmark :size="18" aria-hidden="true" /></template>
             <template v-for="(organiser, index) in exhibition.organisers" :key="organiser.id">
@@ -176,6 +180,8 @@ useSeoMeta({
           </p>
         </div>
       </section>
+
+      <ArchiveExhibitionsDivider v-if="relatedExhibitions.length" />
 
       <section v-if="relatedExhibitions.length" class="[ exhibition-related ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="related-title">
         <div class="[ section-heading ] relative z-1 mb-10 compact:mb-5">

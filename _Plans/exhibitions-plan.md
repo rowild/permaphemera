@@ -176,7 +176,7 @@ Translated: `based_in`, `image_alt`, `image_caption`, `lede`, `about_html`. The 
 
 #### `pp_roles`
 
-`id`, `status`, `sort`, `title` (English), `slug` (unique: `artist`, `curator`, `board`, `press` — board members and press officers of organisations, added 2026-09-24; the exact function sits on the membership), `translations`, `persons` (m2m), audit.
+`id`, `status`, `sort`, `title` (English), `slug` (unique: `artist`, `curator`, `board`, `press` — board members and press officers of organisations, added 2026-09-24; the exact function sits on the membership; `organiser` — a person who organises an exhibition, added 2026-10-24, shown on the exhibition page in its own row after the curators), `translations`, `persons` (m2m), audit.
 Translated: `title`. Seeded: artist ("Artist" / "Künstler:in"), curator ("Curator" / "Kurator:in").
 
 #### `pp_exhibitions`

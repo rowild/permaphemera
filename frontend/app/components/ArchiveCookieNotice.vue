@@ -2,7 +2,6 @@
 const localePath = useLocalePath()
 const {
   isVisible,
-  analyticsConsent,
   googleMapsConsent,
   youtubeConsent,
   initialize,
@@ -10,26 +9,22 @@ const {
   acceptAll
 } = useCookieNotice()
 
-const analyticsSelected = ref(false)
 const googleMapsSelected = ref(false)
 const youtubeSelected = ref(false)
 
 const syncSelection = () => {
-  analyticsSelected.value = analyticsConsent.value === 'granted'
   googleMapsSelected.value = googleMapsConsent.value === 'granted'
   youtubeSelected.value = youtubeConsent.value === 'granted'
 }
 
 const saveSelection = () => {
   savePreferences({
-    analytics: analyticsSelected.value,
     googleMaps: googleMapsSelected.value,
     youtube: youtubeSelected.value
   })
 }
 
 const acceptAllServices = () => {
-  analyticsSelected.value = true
   googleMapsSelected.value = true
   youtubeSelected.value = true
   acceptAll()
@@ -75,14 +70,6 @@ onMounted(() => {
                 <span class="font-display text-xs tracking-widest text-archive-muted uppercase">{{ $t('privacyNotice.alwaysActive') }}</span>
               </span>
               <span class="block text-xs leading-snug text-archive-muted">{{ $t('privacyNotice.necessary.description') }}</span>
-            </span>
-          </label>
-
-          <label class="grid cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-start gap-3">
-            <input v-model="analyticsSelected" class="mt-1 size-5 shrink-0 cursor-pointer accent-archive-red" type="checkbox">
-            <span class="min-w-0">
-              <span class="font-display text-base text-archive-ink">{{ $t('privacyNotice.analytics.title') }}</span>
-              <span class="block text-xs leading-snug text-archive-muted">{{ $t('privacyNotice.analytics.description') }}</span>
             </span>
           </label>
 

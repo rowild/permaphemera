@@ -7,7 +7,7 @@ const recordItems = computed<LegalRecordItem[]>(() => [
   { label: t('legal.common.document'), value: t('legal.privacy.recordType') },
   { label: t('legal.common.controller'), value: 'Robert Wildling' },
   { label: t('legal.common.hosting'), value: 'ALL-INKL.COM · Neue Medien Münnich' },
-  { label: t('legal.common.updated'), value: t('legal.common.updatedValue') }
+  { label: t('legal.common.updated'), value: t('legal.privacy.updatedValue') }
 ])
 
 const sections = computed<LegalSection[]>(() => [
@@ -68,7 +68,7 @@ const sections = computed<LegalSection[]>(() => [
     ]
   },
   {
-    id: 'matomo-analytics',
+    id: 'umami-analytics',
     eyebrow: t('legal.privacy.sections.analytics.eyebrow'),
     title: t('legal.privacy.sections.analytics.title'),
     paragraphs: [
@@ -78,13 +78,12 @@ const sections = computed<LegalSection[]>(() => [
       t('legal.privacy.sections.analytics.p4')
     ],
     details: [
-      { label: t('legal.privacy.sections.analytics.instanceLabel'), value: 'https://matomo.rowild.at/' },
-      { label: t('legal.privacy.sections.analytics.siteLabel'), value: '9' },
+      { label: t('legal.privacy.sections.analytics.instanceLabel'), value: 'https://umami.project-backends.info/' },
+      { label: t('legal.privacy.sections.analytics.cookiesLabel'), value: t('legal.privacy.sections.analytics.cookiesValue') },
       { label: t('legal.privacy.sections.analytics.consentLabel'), value: t('legal.privacy.sections.analytics.consentValue') }
     ],
     links: [
-      { label: t('legal.privacy.sections.analytics.matomoConsent'), href: 'https://developer.matomo.org/guides/tracking-consent' },
-      { label: t('legal.privacy.sections.analytics.matomoCookies'), href: 'https://matomo.org/faq/general/faq_146/' }
+      { label: t('legal.privacy.sections.analytics.umamiDocs'), href: 'https://docs.umami.is/docs/faq' }
     ]
   },
   {

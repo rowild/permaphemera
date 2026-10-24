@@ -48,6 +48,8 @@ export interface ResolvedExhibition {
   artist_ids: string[]
   artists: ResolvedExhibitionArtist[]
   curators: ResolvedExhibitionArtist[]
+  /** Persons in the role "organiser"; the organisations behind the exhibition are `organisers`. */
+  organiser_persons: ResolvedExhibitionArtist[]
   organisers: ResolvedOrganiser[]
   statements: ResolvedStatement[]
   websites: ResolvedLink[]
@@ -160,6 +162,7 @@ export const resolveExhibitions = (
     })
     const artists = credited.filter(({ role }) => role === 'artist').map(({ person }) => person)
     const curators = credited.filter(({ role }) => role === 'curator').map(({ person }) => person)
+    const organiserPersons = credited.filter(({ role }) => role === 'organiser').map(({ person }) => person)
 
     const text = pickTranslation(exhibition, locale)
     const resolvedStatements = (statementsByExhibition.get(exhibition.id) ?? [])
@@ -186,6 +189,7 @@ export const resolveExhibitions = (
       artist_ids: artists.map((person) => person.id),
       artists: artists.map(toCredit),
       curators: curators.map(toCredit),
+      organiser_persons: organiserPersons.map(toCredit),
       organisers: organisersByExhibition.get(exhibition.id) ?? [],
       statements: resolvedStatements,
       websites: linksThrough(exhibitionsWebsites, 'exhibitions_id', exhibition.id),

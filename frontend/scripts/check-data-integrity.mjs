@@ -57,7 +57,7 @@ async function main() {
     ['locations exist', locations.length > 0],
     ['venues exist', venues.length > 0],
     ['persons exist', persons.length > 0],
-    ['roles are artist, board, curator and press', roles.map((role) => role.slug).sort().join(',') === 'artist,board,curator,press'],
+    ['roles are artist, board, curator, organiser and press', roles.map((role) => role.slug).sort().join(',') === 'artist,board,curator,organiser,press'],
     ['exhibitions exist', exhibitions.length > 0],
     ['participations exist', participations.length > 0],
     // Only published sponsors leave Directus; none published is a valid state.

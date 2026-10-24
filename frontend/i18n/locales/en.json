@@ -26,15 +26,11 @@
   },
   "privacyNotice": {
     "title": "Cookie settings",
-    "description": "Choose which optional services may be activated. Necessary storage is always active; Matomo, Google Maps and YouTube remain blocked until you allow them.",
+    "description": "Choose which optional services may be activated. Necessary storage is always active; Google Maps and YouTube remain blocked until you allow them.",
     "selectionAria": "Privacy services",
     "necessary": {
       "title": "Necessary",
       "description": "Stores your language and privacy selection."
-    },
-    "analytics": {
-      "title": "Matomo analytics",
-      "description": "Measures page views and link use on our self-hosted Matomo instance."
     },
     "googleMaps": {
       "title": "Google Maps",
@@ -299,7 +295,8 @@
       "supporter": "Supported by",
       "mixed": "Organisations"
     },
-    "curators": "Curator | Curators"
+    "curators": "Curator | Curators",
+    "organiserPersons": "Organiser | Organisers"
   },
   "exhibitionsDirectory": {
     "seoTitle": "Exhibitions in the archive · PERMAPHEMERA",
@@ -615,7 +612,8 @@
       "eyebrow": "Data & transparency",
       "title": "As little data as possible.",
       "accent": "As clear as necessary.",
-      "intro": "When you use this website, PERMAPHEMERA processes data for secure operation, language selection and direct contact. Matomo, Google Maps and YouTube may be activated only through separate consent choices. The archive also publishes editorial information about exhibitions and participants.",
+      "intro": "When you use this website, PERMAPHEMERA processes data for secure operation, language selection, cookieless audience measurement with Umami and direct contact. Google Maps and YouTube may be activated only through separate consent choices. The archive also publishes editorial information about exhibitions and participants.",
+      "updatedValue": "24 October 2026",
       "recordType": "Privacy information",
       "recordAria": "Document record for the Privacy Policy",
       "articleAria": "PERMAPHEMERA Privacy Policy",
@@ -640,9 +638,9 @@
         "storage": {
           "eyebrow": "Your device",
           "title": "Language preference and privacy choice",
-          "p1": "Functional information is stored on your device regardless of your analytics choice. It is not used for advertising and is not combined into a usage profile.",
+          "p1": "Functional information is stored on your device. It is not used for advertising and is not combined into a usage profile.",
           "locale": "Necessary cookie storing the selected language; retained for up to one year.",
-          "consent": "Local browser storage for your individual Matomo, Google Maps and YouTube choices; requested again after no more than one year."
+          "consent": "Local browser storage for your individual Google Maps and YouTube choices; requested again after no more than one year."
         },
         "contact": {
           "eyebrow": "Direct communication",
@@ -658,18 +656,18 @@
           "p3": "Editorial archive information may be retained for as long as its documentary purpose continues and no overriding rights prevent this. Corrections and reasoned requests for rectification, objection or removal can be sent to the contact address given above."
         },
         "analytics": {
-          "eyebrow": "Optional audience measurement",
-          "title": "Matomo on a dedicated subdomain",
-          "p1": "After you consent, this website loads Matomo from matomo.rowild.at and uses site ID 9. Page views and link use are measured so that audience reach, navigation and technically unusual access can be understood.",
-          "p2": "The data processed may include the page address and title, referring page, time, browser and device information, screen resolution and interactions. The IP address technically reaches the Matomo server when the connection is established; whether and in what shortened form it is stored depends on the server-side Matomo configuration and still needs to be conclusively verified.",
-          "p3": "The legal basis is your consent under Article 6(1)(a) GDPR. Matomo is not loaded before you make a choice. You may withdraw consent at any time through “Cookie settings”; no further visits will then be recorded and existing Matomo cookies will be deleted.",
-          "p4": "The standard configuration of the tracking code used may set first-party cookies with these lifetimes: _pk_id for returning-visitor recognition for 13 months, _pk_ses for the session for 30 minutes and _pk_ref for the original referrer for six months. The server-side retention period for analytics data still needs to be confirmed in the Matomo installation and then specified here.",
-          "instanceLabel": "Matomo instance",
-          "siteLabel": "Site ID",
+          "eyebrow": "Audience measurement",
+          "title": "Umami, without cookies",
+          "p1": "This website uses Umami, an open-source analytics tool that runs on our own server at umami.project-backends.info. It counts page views so that we can see how the archive is used and which exhibitions are visited. We look at the results only as totals, never per person.",
+          "p2": "When a page loads, the Umami script sends the page address and title, the referring page, the screen size and the browser language to our Umami server. The server also receives your IP address and the browser identification with the request. Umami does not store the IP address. It uses it to determine the approximate location (country, region, city) and, together with the browser identification, to form a pseudonymous visitor identifier that changes every month.",
+          "p3": "The script sets no cookies and stores nothing on your device. The legal basis is our legitimate interest in measuring the reach of the archive in aggregated form (Article 6(1)(f) GDPR). You may object to this processing at any time; please write to us.",
+          "p4": "The data stays on our server and is not passed on. The retention period for the statistics is set in the Umami installation and will be specified here.",
+          "instanceLabel": "Umami instance",
+          "cookiesLabel": "Cookies",
+          "cookiesValue": "None",
           "consentLabel": "Activation",
-          "consentValue": "Only after voluntary consent",
-          "matomoConsent": "Matomo consent documentation",
-          "matomoCookies": "Matomo cookie documentation"
+          "consentValue": "For every visit, without cookies",
+          "umamiDocs": "Umami documentation"
         },
         "externalMedia": {
           "eyebrow": "Optional external media",
@@ -697,7 +695,7 @@
         "recipients": {
           "eyebrow": "Recipients",
           "title": "Disclosure and international transfers",
-          "p1": "During ordinary technical operation, the hosting provider receives access to the data required for hosting, maintenance and security. After analytics consent, usage data is also sent to the Matomo instance available at matomo.rowild.at. The integration does not use a Matomo Cloud service. No further disclosure occurs unless required by law, necessary to establish or defend legal claims, or expressly permitted.",
+          "p1": "During ordinary technical operation, the hosting provider receives access to the data required for hosting, maintenance and security. Usage data for audience measurement goes to our self-hosted Umami instance at umami.project-backends.info; no external analytics service is used. No further disclosure occurs unless required by law, necessary to establish or defend legal claims, or expressly permitted.",
           "p2": "Google Maps and YouTube are currently inactive. If either service is introduced and you consent to it, data will be sent to Google as described under Optional external media; Google’s information about international transfers then applies. Ordinary external links transmit data only when their destination is opened."
         },
         "rights": {
@@ -880,26 +878,21 @@
     "callLink": "Get in touch"
   },
   "organisations": {
-    "seoTitle": "Organisations · PERMAPHEMERA",
-    "seoDescription": "The {count} associations, federations, institutions and initiatives behind the exhibitions and venues in the PERMAPHEMERA archive.",
+    "seoTitle": "Organisations and people · PERMAPHEMERA",
+    "seoDescription": "{count} organisations, the organisers and curators behind the exhibitions, and the sponsors of the PERMAPHEMERA archive.",
     "breadcrumb": "Organisations",
-    "eyebrow": "Bodies of the archive",
-    "title": "Who stands behind",
-    "accent": "the rooms.",
-    "intro": "Associations, federations, institutions and initiatives: the bodies that run a gallery, present an exhibition or bring their members together. Each name is shown exactly as the organisation writes it.",
+    "eyebrow": "Organisation index",
+    "title": "Who organises",
+    "accent": "the exhibitions.",
+    "intro": "Associations, initiatives, federations and institutions that run a gallery or put on exhibitions; the people who organise and curate; and the sponsors of the archive. Search by name, town, person or exhibition.",
     "ledgerOrganisations": "Organisations",
-    "ledgerMembers": "People",
     "ledgerRecords": "Records",
-    "directoryEyebrow": "The register",
-    "directoryTitle": "{count} organisation. | {count} organisations.",
-    "directoryAccent": "One line each.",
-    "directoryIntro": "Search a name, a town, a person or an exhibition.",
-    "searchLabel": "Search the organisation register",
-    "searchPlaceholder": "Search organisations…",
-    "status": "Showing {visible} of {total} organisations.",
+    "searchLabel": "Search organisations, people and sponsors",
+    "searchPlaceholder": "Search names, towns, exhibitions…",
+    "status": "Showing {visible} of {total} entries.",
     "clearSearch": "Clear search",
-    "noMatches": "No organisation matches this search.",
-    "returnAll": "Show all organisations",
+    "noMatches": "No organisation, person or sponsor matches this search.",
+    "returnAll": "Show all entries",
     "open": "Open organisation",
     "openFor": "Open organisation: {name}",
     "recordCount": "{count} record | {count} records",
@@ -934,7 +927,20 @@
       "cooperation": "In cooperation",
       "supporter": "Supported"
     },
-    "noRecords": "No exhibition or event of {name} is in the archive yet."
+    "noRecords": "No exhibition or event of {name} is in the archive yet.",
+    "ledgerPeople": "People",
+    "factOrganisations": "{count} organisation | {count} organisations",
+    "factPeople": "{count} person | {count} people",
+    "factRecords": "{count} record | {count} records",
+    "directory": "Organisations, people and sponsors",
+    "listTitle": "Organisations",
+    "listIntro": "Associations, initiatives, federations and institutions that run a gallery, put on exhibitions or bring artists together. Each name is written as the organisation writes it.",
+    "peopleTitle": "People",
+    "peopleIntro": "Organisers run a gallery, an exhibition or a group; board members count as organisers. Curators select and arrange exhibitions.",
+    "organisersTitle": "Organisers",
+    "curatorsTitle": "Curators",
+    "sponsorsTitle": "Sponsors",
+    "sponsorsIntro": "Companies and institutions that support PERMAPHEMERA. Each page shows the records they support."
   },
   "persons": {
     "notFound": "Person not found",
@@ -959,8 +965,11 @@
       "artist": "Artist",
       "curator": "Curator",
       "press": "Press",
-      "board": "Board member"
-    }
+      "board": "Board member",
+      "organiser": "Organiser"
+    },
+    "open": "Open person",
+    "openFor": "Open person: {name}"
   },
   "sponsorPages": {
     "notFound": "Sponsor not found",
@@ -973,7 +982,10 @@
     "persons": "Persons",
     "towns": "Towns",
     "noSupports": "{name} supports PERMAPHEMERA. No supported record is in the archive yet.",
-    "seoDescription": "{name} supports PERMAPHEMERA: the supported exhibitions, galleries and persons in the archive."
+    "seoDescription": "{name} supports PERMAPHEMERA: the supported exhibitions, galleries and persons in the archive.",
+    "open": "Open sponsor",
+    "openFor": "Open sponsor: {name}",
+    "supportsCount": "Supports {count} record | Supports {count} records"
   },
   "pager": {
     "label": "Pages",
