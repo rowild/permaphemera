@@ -106,6 +106,12 @@ done
 cp scripts/server/seo-refresh.sh "$bundle/seo-refresh.sh"
 rsync -az --delete -e "ssh -i $KEY -o BatchMode=yes" "$bundle/" "$HOST:$SEO_REFRESH_DIR/"
 ssh -i "$KEY" -o BatchMode=yes "$HOST" "crontab -l 2>/dev/null | grep -qF '$SEO_REFRESH_DIR/seo-refresh.sh' || { crontab -l 2>/dev/null; echo '15 0 * * * sh $SEO_REFRESH_DIR/seo-refresh.sh'; } | crontab -"
+# The job only logs; say here when its last night went wrong.
+last_run="$(ssh -i "$KEY" -o BatchMode=yes "$HOST" "tail -n 20 '$(dirname "$REMOTE_DIR")/seo-refresh.log' 2>/dev/null | awk '/^== [0-9]/ { block = \"\" } { block = block \$0 \"\\n\" } END { printf \"%s\", block }'")"
+if grep -qE 'failed|problems' <<<"$last_run"; then
+  echo "[deploy] WARNING: the last nightly SEO refresh failed (/srv/sites/permaphemera.at/seo-refresh.log):" >&2
+  echo "$last_run" >&2
+fi
 
 # Cloudflare keeps static files for up to 4 hours, so a file replaced under
 # the same name (tour-viewer.js, a re-graded panorama) would stay old. Empty

@@ -4,6 +4,7 @@
 
 - The sentence about an exhibition's 360° tour in its search description now writes itself from the tour fields: "360°-Rundgang ab 29. Oktober." before the day, "… in Vorbereitung." until the tour is published, "… online." after. The server updates the pages every night at 00:15, so nobody has to change these texts or deploy for it. The 15 stored texts lost their old tour sentence.
 - Directus: the old, unused "status" column of four linking tables is gone (no visible change).
+- A deploy says so when the last nightly update failed (it only writes a log on the server).
 
 ## 0.0.32 - 2026-10-24 15:45:30 CEST
 
