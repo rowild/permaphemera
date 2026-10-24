@@ -1,5 +1,5 @@
 import type { MaybeRefOrGetter } from 'vue'
-import { headFor, recordSeoEntries, staticSeoEntries, type SeoEntry, type SeoLocale, type SeoMessages } from '../../shared/seo.mjs'
+import { headFor, pageSeoEntry, type SeoEntry, type SeoLocale, type SeoMessages } from '../../shared/seo.mjs'
 
 /**
  * Puts the SEO entry of `path` (locale-neutral, e.g. `/exhibitions/trigeniale-26/`) into the head:
@@ -20,15 +20,7 @@ export function usePageSeo(path: MaybeRefOrGetter<string>) {
       if (!te(key)) return undefined
       return typeof params.count === 'number' ? t(key, params, params.count) : t(key, params)
     }
-    const target = toValue(path)
-    const counts = {
-      venues: archive.value.venues.filter((venue) => venue.status === 'published').length,
-      organisations: archive.value.organisations.filter((organisation) => organisation.status === 'published').length
-    }
-    const fixed = staticSeoEntries(messages, counts).find((item) => item.path === target && item.locale === code)
-    if (fixed) return fixed
-    if (!ready.value) return undefined
-    return recordSeoEntries(archive.value, { assetBase, messages, path: target }).find((item) => item.locale === code)
+    return pageSeoEntry(archive.value, { path: toValue(path), locale: code, messages, assetBase, ready: ready.value })
   })
 
   useHead(() => {

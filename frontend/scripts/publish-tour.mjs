@@ -21,6 +21,7 @@ import { basename, dirname, join, relative, resolve } from 'node:path'
 import { createInterface } from 'node:readline/promises'
 import { fileURLToPath } from 'node:url'
 import { directusPatch, directusToken, loadArchiveFromDirectus } from './lib/archive-source.mjs'
+import { staleTourWording } from '../shared/seo.mjs'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const toursDirectory = join(projectRoot, 'public', 'media', 'tours')
@@ -277,7 +278,12 @@ async function main() {
   log('Published locally. Next:')
   log(`  1. pnpm dev  →  open /exhibitions/${record.slug}/ (German) or /en/exhibitions/${record.slug}/ and click Start experience.`)
   log('  2. In Directus, check tour_status (available) and tour_available_from: the button shows only when both allow it.')
-  log('  3. pnpm deploy:hetzner. The tour folder itself must still be deployed; it is not tracked in git.')
+  log('  3. In Directus, section SEO (de and en): the description must not say the tour is in preparation or comes later.')
+  log('  4. pnpm deploy:hetzner. The tour folder itself must still be deployed; it is not tracked in git.')
+  const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Vienna' })
+  if (staleTourWording({ ...record, tour: tourPath }, today)) {
+    log(`WARNING: the SEO text of "${record.slug}" still announces the tour. Update it (step 3) before you deploy.`)
+  }
 }
 
 await main()

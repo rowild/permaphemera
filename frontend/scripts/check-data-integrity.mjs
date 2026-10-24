@@ -28,26 +28,39 @@ async function main() {
   // Every file field the site turns into a URL (FILE_FIELDS: images, PDFs, logos, photos)
   // must point at a file Directus actually serves.
   const { COLLECTIONS, FILE_FIELDS } = await import('../shared/archive-schema.mjs')
+  const { staleTourWording } = await import('../shared/seo.mjs')
   const fileUrls = []
   for (const [key, collection] of Object.entries(COLLECTIONS)) {
     for (const field of FILE_FIELDS[collection] ?? []) for (const record of a[key] ?? []) if (record[field]) fileUrls.push(record[field])
   }
   // Directus rate-limits to ~50 requests per second, so ask in small batches and
   // retry a 429 once after the limiter's window has passed.
-  const headOk = async (id) => {
+  const headFile = async (id) => {
     for (let attempt = 0; attempt < 2; attempt += 1) {
       const response = await fetch(`${directusUrl}/assets/${id}`, { method: 'HEAD' })
-      if (response.status !== 429) return response.ok
+      if (response.status !== 429) return { id, ok: response.ok, type: response.headers.get('content-type')?.split(';')[0] ?? null }
       await new Promise((resolve) => setTimeout(resolve, 1200))
     }
-    return false
+    return { id, ok: false, type: null }
   }
-  const fileChecks = []
-  for (let i = 0; i < fileUrls.length; i += 10) {
-    const batch = fileUrls.slice(i, i + 10).map((url) => headOk(url.split('/assets/')[1]))
-    fileChecks.push(...(await Promise.all(batch)))
-    if (i + 10 < fileUrls.length) await new Promise((resolve) => setTimeout(resolve, 250))
+  const headAll = async (ids) => {
+    const results = []
+    for (let i = 0; i < ids.length; i += 10) {
+      results.push(...(await Promise.all(ids.slice(i, i + 10).map(headFile))))
+      if (i + 10 < ids.length) await new Promise((resolve) => setTimeout(resolve, 250))
+    }
+    return results
   }
+  const fileChecks = await headAll(fileUrls.map((url) => url.split('/assets/')[1]))
+  // The share image chosen in a record's SEO section: link previews need a JPEG, PNG or WebP
+  // (Directus converts only those to the JPEG it sends; an SVG would go out as it is).
+  const shareImages = [exhibitions, venues, persons, organisations, sponsors].flat().filter((record) => record.seo?.og_image)
+  const shareChecks = await headAll(shareImages.map((record) => record.seo.og_image))
+  const badShare = shareChecks.map((check, index) => (check.ok && ['image/jpeg', 'image/png', 'image/webp'].includes(check.type) ? null : `${shareImages[index].slug} (${check.ok ? check.type : 'missing'})`)).filter(Boolean)
+  const untyped = fileChecks.filter((check) => check.type === 'application/octet-stream').map((check) => check.id)
+  const named = (label, list) => (list.length ? `${label}: ${list.join(', ')}` : label)
+  // The exhibition groups are fixed pages under /exhibitions/; a record with such a slug would have no page.
+  const reservedSlugs = exhibitions.filter((exhibition) => ['current', 'upcoming', 'past'].includes(exhibition.slug)).map((exhibition) => exhibition.slug)
 
   const checks = [
     // Content counts are the owner's business and change in Directus every day,
@@ -175,7 +188,11 @@ async function main() {
     ['no old key survives', [...venues, ...exhibitions, ...participations, ...statements].every((record) =>
       ['location_id', 'primary_venue_id', 'exhibition_id', 'artist_id', 'name', 'city_name'].every((key) => record[key] === undefined))],
 
-    [`every file field points at a file Directus serves (${fileUrls.length} checked)`, fileChecks.every(Boolean)],
+    [`every file field points at a file Directus serves (${fileUrls.length} checked)`, fileChecks.every((check) => check.ok)],
+    // A file uploaded without its type (e.g. MCP files import) is neither scaled nor converted by Directus.
+    [named('every file has its type in Directus, none is application/octet-stream', untyped), untyped.length === 0],
+    [named(`every SEO share image exists and is a JPEG, PNG or WebP (${shareImages.length} checked)`, badShare), badShare.length === 0],
+    [named('no exhibition slug is current, upcoming or past (fixed pages)', reservedSlugs), reservedSlugs.length === 0],
     ['the file check covers person and organisation photos', [...persons, ...organisations].every((record) => !record.image || fileUrls.includes(record.image))]
   ]
 
@@ -187,6 +204,11 @@ async function main() {
   } else {
     console.log(`Data integrity OK: ${checks.length} assertions across ${Object.keys(a).length} collections from ${directusUrl}.`)
   }
+
+  // A reminder, not a failure: the SEO text still promises a tour that is open now or will not come.
+  const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Vienna' })
+  const staleTours = exhibitions.filter((exhibition) => staleTourWording(exhibition, today)).map((exhibition) => exhibition.slug)
+  if (staleTours.length) console.warn(`Warning: update the SEO text (de and en) of these exhibitions; it talks about the 360° tour as it no longer is: ${staleTours.join(', ')}`)
 }
 
 try {

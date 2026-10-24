@@ -217,7 +217,7 @@
       "season": "Saison",
       "admission": "Eintritt"
     },
-    "seoDescription": "Entdecken Sie Ausstellungseinträge von {name} in {city}.",
+    "seoDescription": "{name}, {city}: Adresse, Lage auf der Karte und die dort verzeichneten Ausstellungen im PERMAPHEMERA-Archiv.",
     "eventCount": "{count} Veranstaltung | {count} Veranstaltungen",
     "recordCount": "{count} Eintrag | {count} Einträge",
     "organisationRelations": {
@@ -297,7 +297,9 @@
       "mixed": "Organisationen"
     },
     "curators": "Kurator:in | Kurator:innen",
-    "organiserPersons": "Organisator:in | Organisator:innen"
+    "organiserPersons": "Organisator:in | Organisator:innen",
+    "seoDescription": "Ausstellung „{title}“, {details}.",
+    "seoDescriptionArtists": "Ausstellung „{title}“ mit {artists}, {details}."
   },
   "exhibitionsDirectory": {
     "seoTitle": "Ausstellungen in Galerien in Österreich · PERMAPHEMERA",
@@ -886,6 +888,7 @@
   "organisations": {
     "seoTitle": "Organisationen und Personen · PERMAPHEMERA",
     "seoDescription": "{count} Vereine, Initiativen und Institutionen, die Galerien betreiben oder Ausstellungen veranstalten, dazu Organisator:innen, Kurator:innen und Sponsoren.",
+    "recordSeoDescription": "{name} im PERMAPHEMERA-Archiv: Ausstellungen und Veranstaltungen, Personen, Sitz und Links.",
     "breadcrumb": "Organisationen",
     "eyebrow": "Organisationsindex",
     "title": "Wer die Ausstellungen",

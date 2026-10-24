@@ -63,3 +63,26 @@ export const assetUrl = (baseUrl, value) => {
 /** Placeholder files are named `placeholder-…` in Directus (e.g. placeholder-venue.svg). */
 export const isPlaceholderFile = (value) =>
   Boolean(value && typeof value === 'object' && String(value.filename_download ?? '').startsWith('placeholder-'))
+
+/** The MIME type of an expanded file object, or null when the query did not ask for it. */
+export const fileType = (value) => (value && typeof value === 'object' && typeof value.type === 'string' ? value.type : null)
+
+/** The `fields` query of a collection: all fields, translations where they exist, and per file field id, name and type. */
+export const fieldsQuery = (collection) => [
+  TRANSLATED.has(collection) ? '*,translations.*' : '*',
+  ...(FILE_FIELDS[collection] ?? []).map((field) => `${field}.id,${field}.filename_download,${field}.type`)
+].join(',')
+
+/**
+ * A row with each file field as an asset URL, plus `<field>_placeholder` (the file is a placeholder,
+ * `placeholder-…`) and `<field>_type` (its MIME type, e.g. to keep SVG logos out of link previews).
+ */
+export const withFileUrls = (baseUrl, collection, row) => {
+  const next = { ...row }
+  for (const field of FILE_FIELDS[collection] ?? []) {
+    next[field] = assetUrl(baseUrl, row[field])
+    next[`${field}_placeholder`] = isPlaceholderFile(row[field])
+    next[`${field}_type`] = fileType(row[field])
+  }
+  return next
+}

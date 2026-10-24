@@ -1,6 +1,12 @@
-import { describe, expect, it } from 'vitest'
-import { renderSitemap, renderSnapshot, sitemapProblems, verifySnapshot } from '../../scripts/lib/seo-snapshot.mjs'
-import type { SeoEntry } from '../../shared/seo.mjs'
+import { existsSync } from 'node:fs'
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { dirname, join } from 'node:path'
+import { afterEach, describe, expect, it } from 'vitest'
+import de from '../../i18n/locales/de.json'
+import en from '../../i18n/locales/en.json'
+import { renderSitemap, renderSnapshot, sitemapProblems, snapshotFile, staleSnapshots, verifySnapshot, writeSnapshots } from '../../scripts/lib/seo-snapshot.mjs'
+import { staticSeoEntries, type SeoEntry } from '../../shared/seo.mjs'
 
 const shell = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>PERMAPHEMERA</title><meta name="description" content="A curated archive."><meta name="theme-color" content="#efe5d2"></head><body><div id="__nuxt"></div></body></html>'
 
@@ -96,5 +102,66 @@ describe('sitemapProblems', () => {
       'route listed twice: de /exhibitions/trigeniale-26/'
     ])
     expect(sitemapProblems(renderSitemap([base, english]), [base])).toEqual(['sitemap.xml has extra https://permaphemera.at/en/exhibitions/trigeniale-26/'])
+  })
+})
+
+describe('sitemapProblems with the fixed pages', () => {
+  it('reports a record whose slug takes the address of a fixed page', () => {
+    const statics = staticSeoEntries({ de, en })
+    const clash = { ...base, path: '/exhibitions/current/', canonical: 'https://permaphemera.at/exhibitions/current/' }
+    expect(sitemapProblems(renderSitemap(statics), [...statics, clash])).toContain('route listed twice: de /exhibitions/current/')
+  })
+})
+
+describe('snapshotFile', () => {
+  it('maps a route to its index.html, English under en/', () => {
+    expect(snapshotFile(base)).toBe('exhibitions/trigeniale-26/index.html')
+    expect(snapshotFile({ ...base, locale: 'en' })).toBe('en/exhibitions/trigeniale-26/index.html')
+    expect(snapshotFile({ ...base, path: '/' })).toBe('index.html')
+  })
+
+  it('refuses a path that would leave the output folder', () => {
+    expect(snapshotFile({ ...base, path: '/persons/../../etc/' })).toBeUndefined()
+  })
+})
+
+describe('staleSnapshots', () => {
+  it('lists the record pages no entry writes any more, never fixed pages or other files', () => {
+    const files = [
+      'exhibitions/trigeniale-26/index.html', 'exhibitions/gone/index.html', 'en/persons/gone/index.html', 'exhibitions/current/index.html',
+      'exhibitions/index.html', 'about/index.html', '_nuxt/x/index.html', 'venues/a/b/index.html'
+    ]
+    const current = { ...base, path: '/exhibitions/current/' }
+    expect(staleSnapshots(files, [base, current])).toEqual(['exhibitions/gone/index.html', 'en/persons/gone/index.html'])
+  })
+})
+
+describe('writeSnapshots', () => {
+  let output = ''
+  const put = async (file: string) => {
+    await mkdir(dirname(join(output, file)), { recursive: true })
+    await writeFile(join(output, file), 'old')
+  }
+  afterEach(async () => { if (output) await rm(output, { recursive: true, force: true }) })
+
+  it('writes every entry, a hidden page too, and removes the snapshots of records that are gone', async () => {
+    output = await mkdtemp(join(tmpdir(), 'seo-snapshot-'))
+    for (const file of ['exhibitions/gone/index.html', 'en/persons/gone/index.html', 'venues/kept/index.html', 'venues/kept/photo.jpg', '_nuxt/entry.js']) await put(file)
+    const hidden = { ...base, locale: 'en' as const, canonical: base.alternates.en, noIndex: true }
+    const result = await writeSnapshots(output, shell, [base, hidden])
+    expect(result.problems).toEqual([])
+    expect(await readFile(join(output, 'exhibitions/trigeniale-26/index.html'), 'utf8')).toContain('<title data-seo-snapshot>')
+    expect(await readFile(join(output, 'en/exhibitions/trigeniale-26/index.html'), 'utf8')).toContain('content="noindex, follow"')
+    expect([...result.removed].sort()).toEqual(['en/persons/gone/index.html', 'exhibitions/gone/index.html', 'venues/kept/index.html'])
+    expect(existsSync(join(output, 'exhibitions/gone'))).toBe(false)
+    expect(existsSync(join(output, 'venues/kept/photo.jpg'))).toBe(true)
+    expect(existsSync(join(output, '_nuxt/entry.js'))).toBe(true)
+  })
+
+  it('reports an entry whose path leaves the output folder and writes nothing for it', async () => {
+    output = await mkdtemp(join(tmpdir(), 'seo-snapshot-'))
+    const result = await writeSnapshots(output, shell, [{ ...base, path: '/persons/../../etc/' }])
+    expect(result.problems).toEqual(['/persons/../../etc/ (de): leaves the output folder'])
+    expect(existsSync(join(output, 'etc'))).toBe(false)
   })
 })

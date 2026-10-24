@@ -127,10 +127,11 @@ To take an image out of a local PDF: `qlmanage -t -s 2000 -o <dir> <file.pdf>` o
 
 ### Upload with the script (not the MCP file import)
 
-Some earlier imports (e.g. the Europahaus photos) sit in Directus as `application/octet-stream`
-without width and height, most likely from importing by URL. Use the project script instead: it
-sends the right type, so Directus reads the size, sets the credit line, and reuses a file with
-the same folder and name:
+The MCP file import by URL stores a file as `application/octet-stream` without width and height.
+Directus then neither scales nor converts it, so pages and link previews get the full original
+(the Europahaus and BV photos had this until 2026-10-24; `pnpm check:data` now fails on it). Use
+the project script instead: it sends the right type, so Directus reads the size, sets the credit
+line, and reuses a file with the same folder and name:
 
 ```sh
 cd "/Users/robertwildling/Desktop/_WWW/_WEBSITE PERMAPHEMERA/directus"
@@ -273,6 +274,21 @@ Galerie Porcia) gets no organisation record; name it in `about_html`. A person t
 Announcements start the summary with "Announcement:" and the description with
 "Announcement. This exhibition has not opened yet." **Remove both once the exhibition opens.**
 
+### SEO texts (section "SEO")
+
+Every page has a search title (at most 60 characters) and description (130–160 characters) in
+the `seo` field: English on the record and in its `en` translation, German in `de`. Write them
+for new records with `directus/scripts/write-seo.mjs` (format and rules in its header and in
+`directus/README.md`). Without them the site builds a plain text from the record: title,
+artists, dates, gallery and town.
+
+- The share image (`og_image`) is optional. Choose a JPEG, PNG or WebP, never an SVG logo:
+  link previews cannot show SVG, and `pnpm check:data` fails on it.
+- An exhibition's description names its tour state ("360° tour from 29 October", "360° tour in
+  preparation"). **Update it in de and en whenever that state changes**: the date is reached,
+  the tour is published (`pnpm tour:publish`), or `tour_status` changes. `pnpm check:data`,
+  `pnpm tour:publish` and every deploy warn about texts that no longer fit.
+
 ### Minimal create payload (MCP `items` → `create`, collection `pp_exhibitions`)
 
 ```json
@@ -311,6 +327,7 @@ a website its host name ("galerie3.com").
 Check each running and announced exhibition against the newest invitation/press PDF:
 
 - Stale wording: "Announcement" / "has not opened yet" after the opening date.
+- Stale SEO text (de and en): the old tour state or an announcement (§8, SEO texts).
 - Dates: `start_date` must be the first public day, not the vernissage day.
 - Title additions (Grabmayr → "Franz Grabmayr – Alles Farbe").
 - Missing artists and curators (DIALOG had 1 of 15 artists, no curator).

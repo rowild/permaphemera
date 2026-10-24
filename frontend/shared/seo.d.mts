@@ -44,6 +44,7 @@ export type SeoMessages = { de: object, en: object } | ((locale: SeoLocale, key:
 export declare const SITE_URL: string
 export declare const SITE_NAME: string
 export declare const DEFAULT_SHARE_IMAGE: string
+export declare const SNAPSHOT_ATTRIBUTE: string
 export declare function localizedPath(path: string, locale: SeoLocale): string
 export declare function stripMarkup(value: unknown): string
 export declare function fitTitle(base: string, max?: number): string
@@ -52,3 +53,7 @@ export declare function readSeo(record: object, locale: SeoLocale): SeoRead
 export declare function recordSeoEntries(archive: object, options: { assetBase: string, messages: SeoMessages, path?: string }): SeoEntry[]
 export declare function staticSeoEntries(messages: SeoMessages, counts?: { venues?: number, organisations?: number }): SeoEntry[]
 export declare function headFor(entry: SeoEntry): SeoHead
+export declare function seoCounts(archive: object): { venues: number, organisations: number }
+export declare function pageSeoEntry(archive: object, options: { path: string, locale: SeoLocale, messages: SeoMessages, assetBase: string, ready: boolean }): SeoEntry | undefined
+export declare function removeSnapshotTags(root: { querySelectorAll(selector: string): Iterable<{ remove(): void }> }): void
+export declare function staleTourWording(exhibition: object, today: string): boolean

@@ -217,7 +217,7 @@
       "season": "Season",
       "admission": "Admission"
     },
-    "seoDescription": "Explore exhibition records from {name} in {city}.",
+    "seoDescription": "{name}, {city}: address, location on the map and the exhibitions recorded there in the PERMAPHEMERA archive.",
     "eventCount": "{count} event | {count} events",
     "recordCount": "{count} record | {count} records",
     "organisationRelations": {
@@ -297,7 +297,9 @@
       "mixed": "Organisations"
     },
     "curators": "Curator | Curators",
-    "organiserPersons": "Organiser | Organisers"
+    "organiserPersons": "Organiser | Organisers",
+    "seoDescription": "Exhibition “{title}”, {details}.",
+    "seoDescriptionArtists": "Exhibition “{title}” with {artists}, {details}."
   },
   "exhibitionsDirectory": {
     "seoTitle": "Exhibitions in Austrian galleries · PERMAPHEMERA",
@@ -886,6 +888,7 @@
   "organisations": {
     "seoTitle": "Organisations and people · PERMAPHEMERA",
     "seoDescription": "{count} associations, initiatives and institutions that run galleries or organise exhibitions, plus the organisers, curators and sponsors of the archive.",
+    "recordSeoDescription": "{name} in the PERMAPHEMERA archive: exhibitions and events, people, seat and links.",
     "breadcrumb": "Organisations",
     "eyebrow": "Organisation index",
     "title": "Who organises",

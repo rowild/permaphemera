@@ -3,7 +3,7 @@ import de from '../../i18n/locales/de.json'
 import en from '../../i18n/locales/en.json'
 import { resolveExhibitions } from '~/utils/resolveExhibitions'
 import { resolveVenues } from '~/utils/resolveVenues'
-import { SITE_URL, fitDescription, fitTitle, headFor, localizedPath, readSeo, recordSeoEntries, staticSeoEntries } from '../../shared/seo.mjs'
+import { DEFAULT_SHARE_IMAGE, SITE_NAME, SITE_URL, fitDescription, fitTitle, headFor, localizedPath, pageSeoEntry, readSeo, recordSeoEntries, removeSnapshotTags, staleTourWording, staticSeoEntries } from '../../shared/seo.mjs'
 
 const messages = { de, en }
 const assetBase = 'https://cms.test'
@@ -207,5 +207,145 @@ describe('one page at a time', () => {
     const only = recordSeoEntries(archive({ persons: [counted, nackler] }), { assetBase, messages, path: '/persons/karl-nackler/' })
     expect(only.map((item) => `${item.locale} ${item.path}`)).toEqual(['de /persons/karl-nackler/', 'en /persons/karl-nackler/'])
     expect(reads).toBe(0)
+  })
+})
+
+// A record as a new editor entry leaves it: no SEO text and none of the given text fields.
+const bare = <T extends { translations: object[] }>(record: T, fields: string[]) => {
+  const keep = (item: object) => Object.fromEntries(Object.entries(item).filter(([key]) => !fields.includes(key) && key !== 'seo'))
+  return { ...keep(record), seo: null, translations: record.translations.map(keep) } as unknown as T
+}
+
+describe('descriptions are never empty', () => {
+  it('builds an exhibition description from title, artists, dates, gallery and town', () => {
+    const list = entries({ exhibitions: [bare(exhibition, ['summary', 'description'])] })
+    const german = entry(list, '/exhibitions/trigeniale-26/', 'de').description
+    expect(german).toContain('Ausstellung „Trigeniale 26“ mit Alessandra Minin & Karl Nackler, ')
+    expect(german).toContain('Oktober 2026, Studiogalerie im Stadthaus Klagenfurt, Klagenfurt am Wörthersee.')
+    const english = entry(list, '/exhibitions/trigeniale-26/', 'en').description
+    expect(english).toContain('Exhibition “Trigeniale 26” with Alessandra Minin & Karl Nackler, ')
+    expect(english).toContain('October 2026, Studiogalerie im Stadthaus Klagenfurt, Klagenfurt am Wörthersee.')
+  })
+
+  it('takes the date range the editors wrote and leaves out the artists when there are none', () => {
+    const written = { ...bare(exhibition, ['summary', 'description']), date_range: '15–29 Oct 2026' }
+    written.translations = [{ languages_code: 'en', title: 'Trigeniale 26', date_range: '15–29 Oct 2026' }, { languages_code: 'de', title: 'Trigeniale 26', date_range: '15.–29.10.2026' }] as never
+    const list = entries({ exhibitions: [written], participations: [] })
+    expect(entry(list, '/exhibitions/trigeniale-26/', 'de').description).toBe('Ausstellung „Trigeniale 26“, 15.–29.10.2026, Studiogalerie im Stadthaus Klagenfurt, Klagenfurt am Wörthersee.')
+    expect(entry(list, '/exhibitions/trigeniale-26/', 'en').description).toBe('Exhibition “Trigeniale 26”, 15–29 Oct 2026, Studiogalerie im Stadthaus Klagenfurt, Klagenfurt am Wörthersee.')
+  })
+
+  it('describes a gallery and an organisation without any text by name and town', () => {
+    const list = entries({ venues: [bare(venue, ['lede'])], organisations: [bare(organisation, ['lede'])] })
+    expect(entry(list, '/venues/studiogalerie-klagenfurt/', 'de').description).toContain('Studiogalerie im Stadthaus Klagenfurt, Klagenfurt am Wörthersee: Adresse')
+    expect(entry(list, '/organisations/bewegung-in-kultur/', 'en').description).toContain('bewegung / movimento / gibanje IN kultur in the PERMAPHEMERA archive')
+  })
+
+  it('gives every page of an archive without texts a description without placeholders', () => {
+    const list = entries({
+      exhibitions: [bare(exhibition, ['summary', 'description'])], venues: [bare(venue, ['lede'])],
+      persons: [bare(minin, ['lede']), bare(nackler, ['lede'])], organisations: [bare(organisation, ['lede'])]
+    })
+    expect(list.length).toBeGreaterThan(0)
+    for (const item of list) {
+      expect(item.description, `${item.locale} ${item.path}`).not.toBe('')
+      expect(item.description, `${item.locale} ${item.path}`).not.toMatch(/[{}]/)
+    }
+  })
+})
+
+describe('share image text', () => {
+  it('names the site when the page uses the default share image', () => {
+    const english = entry(entries(), '/organisations/bewegung-in-kultur/', 'en')
+    expect(english.image).toBe(DEFAULT_SHARE_IMAGE)
+    expect(english.imageAlt).toBe(SITE_NAME)
+    expect(entry(entries(), '/persons/karl-nackler/', 'de').imageAlt).toBe(SITE_NAME)
+  })
+
+  it('uses the page title for a chosen SEO share image, which the record image text does not describe', () => {
+    expect(entry(entries(), '/exhibitions/trigeniale-26/', 'de').imageAlt).toBe('Trigeniale 26 – Alpen-Adria-Ausstellung')
+  })
+
+  it('keeps the image text of the record image', () => {
+    const list = entries({ exhibitions: [{ ...exhibition, seo: { ...exhibitionSeo, og_image: null } }] })
+    expect(entry(list, '/exhibitions/trigeniale-26/', 'en').imageAlt).toBe('Works')
+  })
+})
+
+describe('share images that link previews can show', () => {
+  it('never shares an SVG logo and falls back to the site image', () => {
+    const svg = { ...organisation, logo: `${assetBase}/assets/logo-svg`, logo_type: 'image/svg+xml' }
+    expect(entry(entries({ organisations: [svg] }), '/organisations/bewegung-in-kultur/', 'en').image).toBe(DEFAULT_SHARE_IMAGE)
+  })
+
+  it('shares a PNG logo', () => {
+    const png = { ...organisation, logo: `${assetBase}/assets/logo-png`, logo_type: 'image/png' }
+    expect(entry(entries({ organisations: [png] }), '/organisations/bewegung-in-kultur/', 'en').image).toBe(`${assetBase}/assets/logo-png${SHARE}`)
+  })
+})
+
+describe('plain text keeps its characters', () => {
+  it('keeps a gender star and an underscore in a generated title', () => {
+    const star = { ...nackler, display_name: 'Kollektiv Künstler*innen_Kärnten' }
+    expect(entry(entries({ persons: [minin, star] }), '/persons/karl-nackler/', 'de').title).toContain('Kollektiv Künstler*innen_Kärnten')
+  })
+
+  it('keeps a gender star, a hash and a lone angle bracket in a description but strips Markdown and HTML', () => {
+    expect(fitDescription('Ein Treffen für **alle** Künstler*innen in Halle #3. <b>Eintritt</b> frei.')).toBe('Ein Treffen für alle Künstler*innen in Halle #3. Eintritt frei.')
+    expect(fitDescription('# Titel\n> Zitat: a < b und c > d, _kursiv_ und [Link](https://x.test).')).toBe('Titel Zitat: a < b und c > d, kursiv und Link.')
+  })
+})
+
+describe('pageSeoEntry (what usePageSeo puts into the head)', () => {
+  const site = archive({ venues: [venue, { ...venue, id: 'v-draft', slug: 'draft', status: 'draft' }] })
+  const page = (path: string, ready = true) => pageSeoEntry(site, { path, locale: 'en', messages, assetBase, ready })
+
+  it('serves a fixed page from the locale files, counting published records, also before the archive is ready', () => {
+    const expected = staticSeoEntries(messages, { venues: 1, organisations: 1 }).find((item) => item.path === '/venues/' && item.locale === 'en')
+    expect(page('/venues/', false)).toEqual(expected)
+  })
+
+  it('serves a record page once the archive is ready', () => {
+    expect(page('/exhibitions/trigeniale-26/')?.title).toBe('Trigeniale 26 – Alps-Adriatic exhibition')
+    expect(page('/exhibitions/trigeniale-26/', false)).toBeUndefined()
+  })
+
+  it('returns nothing for a page without an entry', () => {
+    expect(page('/exhibitions/gone/')).toBeUndefined()
+  })
+})
+
+describe('removeSnapshotTags (the running app takes over the head)', () => {
+  it('removes exactly the tags the deploy marked', () => {
+    const removed: string[] = []
+    const tag = (name: string) => ({ remove: () => removed.push(name) })
+    const root = { querySelectorAll: (selector: string) => (selector === '[data-seo-snapshot]' ? [tag('title'), tag('description')] : [tag('charset')]) }
+    removeSnapshotTags(root)
+    expect(removed).toEqual(['title', 'description'])
+  })
+})
+
+describe('staleTourWording (the SEO text still talks about a tour that is not in that state)', () => {
+  const said = (meta: string, extra: Record<string, unknown> = {}) => ({
+    ...exhibition, tour: null, tour_status: 'available', tour_available_from: '2026-10-29',
+    seo: { ...exhibitionSeo, meta_description: meta }, translations: [{ languages_code: 'de', seo: { meta_description: meta } }], ...extra
+  })
+
+  it('accepts "tour from" before that day and "in preparation" while there is no tour', () => {
+    expect(staleTourWording(said('360° tour from 29 October.'), '2026-10-24')).toBe(false)
+    expect(staleTourWording(said('360°-Rundgang in Vorbereitung.', { tour_available_from: null }), '2026-10-24')).toBe(false)
+    expect(staleTourWording(said('Five artists.'), '2026-10-30')).toBe(false)
+  })
+
+  it('reports "in preparation" once the tour is open', () => {
+    expect(staleTourWording(said('360°-Rundgang in Vorbereitung.', { tour: '/media/tours/x/' }), '2026-10-30')).toBe(true)
+  })
+
+  it('reports "tour from" once that day has passed', () => {
+    expect(staleTourWording(said('360° tour from 29 October.'), '2026-10-30')).toBe(true)
+  })
+
+  it('reports any promised tour when there will be none', () => {
+    expect(staleTourWording(said('360° tour in preparation.', { tour_status: 'restricted' }), '2026-10-24')).toBe(true)
   })
 })

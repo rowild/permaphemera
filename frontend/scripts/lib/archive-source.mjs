@@ -2,7 +2,7 @@
 // The check scripts' view of the archive: fetched from Directus, same shape as the site's loader.
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { COLLECTIONS, FILE_FIELDS, TRANSLATED, assetUrl, isPlaceholderFile } from '../../shared/archive-schema.mjs'
+import { COLLECTIONS, fieldsQuery, withFileUrls } from '../../shared/archive-schema.mjs'
 
 const projectRoot = resolve(import.meta.dirname, '..', '..')
 
@@ -61,15 +61,10 @@ export async function loadArchiveFromDirectus() {
   const snapshot = {}
   for (const [key, collection] of Object.entries(COLLECTIONS)) {
     // Same shape as the site's loader (app/utils/loadArchive.ts): file fields as asset URLs plus
-    // `<field>_placeholder`, which the SEO snapshot needs to leave placeholder exhibitions out.
-    const fileFields = FILE_FIELDS[collection] ?? []
-    const fields = [TRANSLATED.has(collection) ? '*,translations.*' : '*', ...fileFields.map((field) => `${field}.id,${field}.filename_download`)].join(',')
-    const rows = await directusGet(`/items/${collection}?fields=${encodeURIComponent(fields)}&limit=-1&sort=sort`)
-    for (const field of fileFields) for (const row of rows) {
-      row[`${field}_placeholder`] = isPlaceholderFile(row[field])
-      row[field] = assetUrl(directusUrl, row[field])
-    }
-    snapshot[key] = rows
+    // `<field>_placeholder` and `<field>_type`, which the SEO snapshot needs to leave placeholder
+    // exhibitions out and keep SVG logos out of link previews.
+    const rows = await directusGet(`/items/${collection}?fields=${encodeURIComponent(fieldsQuery(collection))}&limit=-1&sort=sort`)
+    snapshot[key] = rows.map((row) => withFileUrls(directusUrl, collection, row))
   }
   return snapshot
 }

@@ -1,8 +1,13 @@
 // scripts/lib/seo-snapshot.mjs
-// Pure renderers for the deploy's SEO snapshots (scripts/seo-snapshot.mjs): the SPA shell with
-// one route's head tags, and the sitemap. The tags come from headFor() in shared/seo.mjs, the
-// same function the running site uses, and carry data-seo-snapshot so the app can drop them.
-import { headFor } from '../../shared/seo.mjs'
+// The deploy's SEO snapshots (scripts/seo-snapshot.mjs): the SPA shell with one route's head tags,
+// the files they go to, and the sitemap. The tags come from headFor() in shared/seo.mjs, the same
+// function the running site uses, and carry data-seo-snapshot so the app can drop them.
+import { mkdir, readdir, rm, rmdir, stat, writeFile } from 'node:fs/promises'
+import { dirname, join } from 'node:path'
+import { SNAPSHOT_ATTRIBUTE, headFor, localizedPath } from '../../shared/seo.mjs'
+
+// The sections whose pages are records (`/<section>/<slug>/`); a record taken offline leaves its snapshot here.
+const RECORD_SECTIONS = ['exhibitions', 'venues', 'persons', 'organisations', 'sponsors']
 
 const escapeHtml = (value) => String(value ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -16,11 +21,11 @@ const attributes = (pairs) => Object.entries(pairs)
 export const renderSnapshot = (shellHtml, entry) => {
   const head = headFor(entry)
   const tags = [
-    `<title data-seo-snapshot>${escapeHtml(head.title)}</title>`,
-    ...head.meta.map((tag) => `<meta data-seo-snapshot${attributes({ name: tag.name, property: tag.property, content: tag.content })}>`),
-    ...head.link.map((link) => `<link data-seo-snapshot${attributes({ rel: link.rel, hreflang: link.hreflang, href: link.href })}>`),
-    // headFor() already writes "<" as <, so no "</script>" can occur inside.
-    ...head.jsonLd.map((json) => `<script data-seo-snapshot type="application/ld+json">${json}</script>`)
+    `<title ${SNAPSHOT_ATTRIBUTE}>${escapeHtml(head.title)}</title>`,
+    ...head.meta.map((tag) => `<meta ${SNAPSHOT_ATTRIBUTE}${attributes({ name: tag.name, property: tag.property, content: tag.content })}>`),
+    ...head.link.map((link) => `<link ${SNAPSHOT_ATTRIBUTE}${attributes({ rel: link.rel, hreflang: link.hreflang, href: link.href })}>`),
+    // headFor() already writes "<" as \u003c, so no "</script>" can occur inside.
+    ...head.jsonLd.map((json) => `<script ${SNAPSHOT_ATTRIBUTE} type="application/ld+json">${json}</script>`)
   ].join('')
   return shellHtml
     .replace(/<html(\s[^>]*)?>/, (match, attrs = '') => `<html${attrs.replace(/\s+lang="[^"]*"/, '')} lang="${entry.locale}">`)
@@ -77,4 +82,51 @@ export const renderSitemap = (entries) => {
       '</url>'
     ].join(''))
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>\n`
+}
+
+/** The snapshot file of an entry, relative to the output folder (English under en/); undefined for a path that would leave it. */
+export const snapshotFile = (entry) => {
+  const segments = localizedPath(entry.path, entry.locale).split('/').filter(Boolean)
+  if (segments.some((segment) => segment === '.' || segment === '..' || segment.includes('\\'))) return undefined
+  return [...segments, 'index.html'].join('/')
+}
+
+/** The record snapshots (`<section>/<slug>/index.html`, also under en/) among `files` that no entry writes any more. */
+export const staleSnapshots = (files, entries) => {
+  const written = new Set(entries.map(snapshotFile))
+  const recordPage = new RegExp(`^(en/)?(${RECORD_SECTIONS.join('|')})/[^/]+/index\\.html$`)
+  return files.filter((file) => recordPage.test(file) && !written.has(file))
+}
+
+/**
+ * Writes the snapshot of every entry into `output` and removes the snapshots of records that have
+ * no entry any more (taken offline since the build that --skip-build reuses). Other files stay.
+ */
+export const writeSnapshots = async (output, shell, entries) => {
+  const problems = []
+  for (const entry of entries) {
+    const file = snapshotFile(entry)
+    if (!file) {
+      problems.push(`${entry.path} (${entry.locale}): leaves the output folder`)
+      continue
+    }
+    const html = renderSnapshot(shell, entry)
+    problems.push(...verifySnapshot(html, entry))
+    await mkdir(dirname(join(output, file)), { recursive: true })
+    await writeFile(join(output, file), html)
+  }
+  const found = []
+  for (const prefix of ['', 'en/']) for (const section of RECORD_SECTIONS) {
+    for (const slug of await readdir(join(output, prefix, section)).catch(() => [])) {
+      const file = `${prefix}${section}/${slug}/index.html`
+      if (await stat(join(output, file)).then((info) => info.isFile(), () => false)) found.push(file)
+    }
+  }
+  const removed = staleSnapshots(found, entries)
+  for (const file of removed) {
+    await rm(join(output, file))
+    // Only an empty folder goes: rmdir refuses one that still holds other files.
+    await rmdir(dirname(join(output, file))).catch(() => {})
+  }
+  return { problems, removed }
 }

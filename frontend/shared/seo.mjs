@@ -13,6 +13,8 @@
 export const SITE_URL = 'https://permaphemera.at'
 export const SITE_NAME = 'PERMAPHEMERA'
 export const DEFAULT_SHARE_IMAGE = `${SITE_URL}/media/images/share/permaphemera-share.jpg`
+/** Marks the head tags of a deploy snapshot, so the running app can remove them (removeSnapshotTags). */
+export const SNAPSHOT_ATTRIBUTE = 'data-seo-snapshot'
 
 const LOCALES = ['de', 'en']
 const OG_LOCALE = { de: 'de_AT', en: 'en_GB' }
@@ -33,6 +35,10 @@ const VENUE_TYPES = {
 const SCHEMA_PLACE = { gallery: 'ArtGallery', museum: 'Museum' }
 const COUNTRY_CODES = { Austria: 'AT', 'Österreich': 'AT', Germany: 'DE', Italy: 'IT', Slovenia: 'SI' }
 const MORE_ARTISTS = { de: 'u. a.', en: 'and others' }
+const DATE_LOCALES = { de: 'de-AT', en: 'en-GB' }
+// Directus scales and converts only these to the JPEG a link preview needs; an SVG logo or a file
+// stored as application/octet-stream would go out as it is.
+const SHAREABLE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/tiff', 'image/avif'])
 
 export const localizedPath = (path, locale) => (locale === 'en' ? `/en${path}` : path)
 const absolute = (path, locale) => `${SITE_URL}${localizedPath(path, locale)}`
@@ -44,14 +50,19 @@ const entryOf = (record, code) => (record.translations ?? []).find((entry) => en
 const textOf = (record, locale, field) => present(entryOf(record, locale)?.[field]) ?? present(entryOf(record, 'en')?.[field]) ?? present(record[field])
 const personName = (person) => present(person.display_name) ?? `${person.first_name ?? ''} ${person.last_name ?? ''}`.trim()
 
-/** Plain text from WYSIWYG HTML or Markdown. */
-export const stripMarkup = (value) => String(value ?? '')
-  .replace(/<[^>]*>/g, ' ')
+const squish = (value) => String(value ?? '').replace(/\s+/g, ' ').trim()
+
+/**
+ * Plain text from WYSIWYG HTML or Markdown. Only markup goes: a gender star or an underscore inside
+ * a word (Künstler*innen), a # or > within a line and a lone < stay as the editors wrote them.
+ */
+export const stripMarkup = (value) => squish(String(value ?? '')
+  .replace(/<\/?[a-z][^>]*>/gi, ' ')
   .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-  .replace(/[*_#`>]+/g, '')
-  .replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&#39;/g, '\'').replace(/&amp;/g, '&')
-  .replace(/\s+/g, ' ')
-  .trim()
+  .replace(/^[ \t]*(#{1,6}|>)[ \t]*/gm, '')
+  .replace(/(?<![\p{L}\p{N}])[*_]+|[*_]+(?![\p{L}\p{N}])/gu, '')
+  .replace(/`/g, '')
+  .replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&#39;/g, '\'').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'))
 
 const cutAtWord = (text, max) => {
   if (text.length <= max) return text
@@ -62,7 +73,7 @@ const cutAtWord = (text, max) => {
 
 /** A generated title: with " · PERMAPHEMERA" when that stays within 60 characters. */
 export const fitTitle = (base, max = TITLE_MAX) => {
-  const text = stripMarkup(base)
+  const text = squish(base)
   if (text.length + SUFFIX.length <= max) return `${text}${SUFFIX}`
   return cutAtWord(text, max)
 }
@@ -71,7 +82,7 @@ export const fitDescription = (text, max = DESCRIPTION_MAX) => cutAtWord(stripMa
 
 /** The first candidate that fits with the site name, else the first that fits, else the last cut. */
 const generatedTitle = (candidates) => {
-  const list = candidates.filter(Boolean).map(stripMarkup)
+  const list = candidates.filter(Boolean).map(squish)
   return list.find((text) => text.length + SUFFIX.length <= TITLE_MAX)?.concat(SUFFIX)
     ?? list.find((text) => text.length <= TITLE_MAX)
     ?? cutAtWord(list.at(-1), TITLE_MAX)
@@ -115,6 +126,19 @@ const shareImage = (value, assetBase) => {
   return `${url}${url.includes('?') ? '&' : '?'}${SHARE_TRANSFORM}`
 }
 const realImage = (record, field) => (record[field] && !record[`${field}_placeholder`] ? record[field] : undefined)
+/** A real image a link preview can show. `<field>_type` comes from the loaders; unknown counts as fine. */
+const shareable = (record, field) => {
+  const type = record[`${field}_type`]
+  return type == null || SHAREABLE_TYPES.has(type) ? realImage(record, field) : undefined
+}
+
+/** "15.–29. Oktober 2026" / "15–29 October 2026"; nothing for a permanent exhibition. */
+const dateRange = (record, locale) => {
+  if (record.is_permanent || !record.start_date) return undefined
+  const format = new Intl.DateTimeFormat(DATE_LOCALES[locale], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+  const start = new Date(record.start_date)
+  return record.end_date && record.end_date !== record.start_date ? format.formatRange(start, new Date(record.end_date)) : format.format(start)
+}
 
 const breadcrumbs = (items) => ({
   '@context': 'https://schema.org',
@@ -158,13 +182,18 @@ const linksOf = (archive, junction, ownerColumn, ownerId) => {
 const entry = ({ path, locale, record, generated, description, image, imageAlt, ogType, jsonLd, changeFrequency, priority }, assetBase) => {
   const seo = record ? readSeo(record, locale) : { noIndex: false, noFollow: false }
   const canonical = absolute(path, locale)
+  const title = seo.title ?? generated
+  const shared = seo.image ?? image
+  // The record's image text describes the record image only. A share image chosen in the SEO
+  // section gets the page title, the site's default image the site name.
+  const ownImage = !seo.image || Boolean(image?.endsWith(`/assets/${seo.image}`))
   return {
     path,
     locale,
-    title: seo.title ?? generated,
+    title,
     description: seo.description ?? fitDescription(description ?? ''),
-    image: shareImage(seo.image ?? image, assetBase),
-    imageAlt: imageAlt ?? seo.title ?? generated,
+    image: shareImage(shared, assetBase),
+    imageAlt: !shared ? SITE_NAME : (ownImage ? imageAlt : undefined) ?? title,
     ogType,
     noIndex: seo.noIndex,
     noFollow: seo.noFollow,
@@ -207,7 +236,9 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only }) =
       const title = textOf(exhibition, locale, 'title') ?? exhibition.title
       const names = artists.map(personName)
       const credit = names.length > 2 ? `${names[0]} ${MORE_ARTISTS[locale]}` : names.join(' & ')
+      const details = [textOf(exhibition, locale, 'date_range') ?? dateRange(exhibition, locale), venue.title, location.title].filter(Boolean).join(', ')
       const description = textOf(exhibition, locale, 'summary') ?? textOf(exhibition, locale, 'description')
+        ?? message(messages, locale, credit ? 'exhibition.seoDescriptionArtists' : 'exhibition.seoDescription', { title, artists: credit, details })
       list.push(entry({
         path, locale, record: exhibition,
         generated: generatedTitle([
@@ -218,7 +249,7 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only }) =
           `${title} · ${venue.title}`,
           title
         ]),
-        description, image: exhibition.image, imageAlt: textOf(exhibition, locale, 'image_alt'), ogType: 'article',
+        description, image: shareable(exhibition, 'image'), imageAlt: textOf(exhibition, locale, 'image_alt'), ogType: 'article',
         changeFrequency: 'monthly', priority: '0.7',
         jsonLd: (url) => [
           {
@@ -248,14 +279,16 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only }) =
     if (skip(path)) continue
     const location = locations.get(venue.location)
     const image = realImage(venue, 'hero_image') ?? realImage(venue, 'image')
+    const share = shareable(venue, 'hero_image') ?? shareable(venue, 'image')
     const sameAs = [present(venue.website_url), ...linksOf(archive, 'venuesWebsites', 'venues_id', venue.id)].filter(Boolean)
     for (const locale of LOCALES) {
       const type = VENUE_TYPES[venue.type]?.[locale]
       const description = textOf(venue, locale, 'lede') ?? textOf(venue, locale, 'description') ?? textOf(venue, locale, 'about_html')
+        ?? message(messages, locale, 'venue.seoDescription', { name: venue.title, city: location.title })
       list.push(entry({
         path, locale, record: venue,
         generated: generatedTitle([type && `${venue.title}, ${location.title} · ${type}`, `${venue.title}, ${location.title}`, type && `${venue.title} · ${type}`, venue.title]),
-        description, image, imageAlt: venue.image_alt, ogType: 'website', changeFrequency: 'monthly', priority: '0.6',
+        description, image: share, imageAlt: venue.image_alt, ogType: 'website', changeFrequency: 'monthly', priority: '0.6',
         jsonLd: (url) => [
           { '@context': 'https://schema.org', ...place(venue, location, locale), url, ...(image ? { image } : {}), description: fitDescription(description ?? '', 300), ...(sameAs.length ? { sameAs } : {}) },
           breadcrumbs([home(locale), { name: message(messages, locale, 'galleries.breadcrumb'), url: absolute('/venues/', locale) }, { name: venue.title, url }])
@@ -272,6 +305,7 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only }) =
     const isArtist = personRoles.some((role) => role.slug === 'artist')
     const sameAs = linksOf(archive, 'personsWebsites', 'persons_id', person.id)
     const image = realImage(person, 'image')
+    const share = shareable(person, 'image')
     for (const locale of LOCALES) {
       const roleLine = personRoles.map((role) => textOf(role, locale, 'title') ?? role.title).join(', ')
       const description = textOf(person, locale, 'lede') ?? textOf(person, locale, 'about_html') ?? message(messages, locale, 'persons.seoDescription', { name })
@@ -279,7 +313,7 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only }) =
       list.push(entry({
         path, locale, record: person,
         generated: generatedTitle([roleLine && `${name} · ${roleLine}`, name]),
-        description, image, imageAlt: textOf(person, locale, 'image_alt') ?? name, ogType: 'profile', changeFrequency: 'monthly', priority: '0.5',
+        description, image: share, imageAlt: textOf(person, locale, 'image_alt') ?? name, ogType: 'profile', changeFrequency: 'monthly', priority: '0.5',
         jsonLd: (url) => [
           {
             '@context': 'https://schema.org', '@type': 'Person', name, url,
@@ -301,13 +335,15 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only }) =
     const town = locations.get(organisation.location)?.title
     const sameAs = linksOf(archive, 'organisationsWebsites', 'organisations_id', organisation.id)
     const image = realImage(organisation, 'image') ?? realImage(organisation, 'logo')
+    const share = shareable(organisation, 'image') ?? shareable(organisation, 'logo')
     for (const locale of LOCALES) {
       const kind = message(messages, locale, `organisations.kinds.${organisation.kind}`)
       const description = textOf(organisation, locale, 'lede') ?? textOf(organisation, locale, 'description') ?? textOf(organisation, locale, 'about_html')
+        ?? message(messages, locale, 'organisations.recordSeoDescription', { name: organisation.title })
       list.push(entry({
         path, locale, record: organisation,
         generated: generatedTitle([kind && town && `${organisation.title} · ${kind}, ${town}`, kind && `${organisation.title} · ${kind}`, organisation.title]),
-        description, image, imageAlt: textOf(organisation, locale, 'image_alt') ?? organisation.title, ogType: 'website', changeFrequency: 'monthly', priority: '0.5',
+        description, image: share, imageAlt: textOf(organisation, locale, 'image_alt') ?? organisation.title, ogType: 'website', changeFrequency: 'monthly', priority: '0.5',
         jsonLd: (url) => [
           {
             '@context': 'https://schema.org', '@type': 'Organization', name: organisation.title, url,
@@ -327,12 +363,13 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only }) =
     const path = `/sponsors/${sponsor.slug}/`
     if (skip(path)) continue
     const image = realImage(sponsor, 'logo')
+    const share = shareable(sponsor, 'logo')
     for (const locale of LOCALES) {
       const description = textOf(sponsor, locale, 'description') ?? message(messages, locale, 'sponsorPages.seoDescription', { name: sponsor.title })
       list.push(entry({
         path, locale, record: sponsor,
         generated: generatedTitle([`${sponsor.title} · ${message(messages, locale, 'sponsorPages.eyebrow') ?? 'Sponsor'}`, sponsor.title]),
-        description, image, imageAlt: sponsor.title, ogType: 'website', changeFrequency: 'yearly', priority: '0.3',
+        description, image: share, imageAlt: sponsor.title, ogType: 'website', changeFrequency: 'yearly', priority: '0.3',
         jsonLd: (url) => [
           { '@context': 'https://schema.org', '@type': 'Organization', name: sponsor.title, url, ...(image ? { logo: image } : {}), ...(present(sponsor.website_url) ? { sameAs: [sponsor.website_url] } : {}) },
           breadcrumbs([home(locale), { name: sponsor.title, url }])
@@ -378,6 +415,44 @@ export const staticSeoEntries = (messages, counts = {}) => STATIC_PAGES.flatMap(
   }, SITE_URL)
 }))
 
+/** The numbers in the fixed pages' texts ("13 galleries…"): published records only. */
+export const seoCounts = (archive) => ({
+  venues: (archive.venues ?? []).filter(published).length,
+  organisations: (archive.organisations ?? []).filter(published).length
+})
+
+/** The entry of one page for the running site: a fixed page at once, a record page once the archive is loaded. */
+export const pageSeoEntry = (archive, { path, locale, messages, assetBase, ready }) => {
+  const fixed = staticSeoEntries(messages, seoCounts(archive)).find((item) => item.path === path && item.locale === locale)
+  if (fixed) return fixed
+  if (!ready) return undefined
+  return recordSeoEntries(archive, { assetBase, messages, path }).find((item) => item.locale === locale)
+}
+
+/** Removes the head tags of a deploy snapshot from `root` (the document); the running app sets its own. */
+export const removeSnapshotTags = (root) => {
+  for (const element of root.querySelectorAll(`[${SNAPSHOT_ATTRIBUTE}]`)) element.remove()
+}
+
+const TOUR_PREPARING = /in preparation|in Vorbereitung/i
+const TOUR_FROM = /tour from|Rundgang ab/i
+
+/**
+ * True when an exhibition's SEO text (either language) announces its tour in a way the tour fields
+ * no longer support: "in preparation" once the tour is open, "tour from <day>" once that day has
+ * passed, any announcement when there will be no tour. `today` is YYYY-MM-DD.
+ */
+export const staleTourWording = (exhibition, today) => {
+  const text = [exhibition.seo, ...(exhibition.translations ?? []).map((item) => item.seo)]
+    .flatMap((seo) => [seo?.title, seo?.meta_description]).filter(Boolean).join('\n')
+  const preparing = TOUR_PREPARING.test(text)
+  const dated = TOUR_FROM.test(text)
+  if (!preparing && !dated) return false
+  if (exhibition.tour_status !== 'available') return true
+  const reached = !exhibition.tour_available_from || exhibition.tour_available_from <= today
+  return reached && (dated || Boolean(exhibition.tour))
+}
+
 /** The tags of one entry, for useHead() and for the static snapshot. */
 export const headFor = (item) => {
   const other = item.locale === 'de' ? 'en' : 'de'
@@ -405,7 +480,7 @@ export const headFor = (item) => {
       { rel: 'canonical', href: item.canonical },
       ...['de', 'en', 'x-default'].map((hreflang) => ({ rel: 'alternate', hreflang, href: item.alternates[hreflang] }))
     ],
-    // `<` as < keeps a "</script>" in a title from closing the script element.
+    // `<` as \u003c keeps a "</script>" in a title from closing the script element.
     jsonLd: item.jsonLd.map((data) => JSON.stringify(data).replace(/</g, '\\u003c'))
   }
 }
