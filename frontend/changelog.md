@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.30 - 2026-10-24 13:45:20 CEST
+
+- Every page has its own search-engine and link-preview information: title, description, share image, canonical address, links between the German and English version, and structured data for Google (exhibitions as events with gallery, dates and organisers; persons; organisations; galleries; breadcrumbs).
+- The texts are edited in Directus with the Directus Labs SEO plugin (Google and social preview, length bars, "hide from search engines", sitemap settings), in German and English. All 121 published exhibitions, galleries, persons and organisations got a hand-checked title and description; the fixed pages got new, plain texts.
+- Every deploy writes a static HTML file per page with these tags, so search engines and link previews (Facebook, WhatsApp, LinkedIn) see them without running JavaScript, plus `sitemap.xml`, which `robots.txt` now names. A default share image shows the start-page wheel.
+
 ## 0.0.29 - 2026-10-24 12:24:00 CEST
 
 - The privacy policy states how long Umami keeps visit data: 36 months. A nightly job on the server deletes older PERMAPHEMERA data (only this website; the other sites on the same Umami are not touched).

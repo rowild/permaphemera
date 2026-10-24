@@ -94,6 +94,8 @@ Every file in Directus is readable without a token (the public rule limits which
   `titleTemplate`, `descriptionTemplate`; the stored JSON keys are `title`, `meta_description`,
   `og_image`, `no_index`, `no_follow`, `sitemap.change_frequency`, `sitemap.priority`.
 
+- **SEO texts:** `node scripts/write-seo.mjs <file.json> [--dry-run]` (with `DIRECTUS_ENV_FILE=.env.remote` for production) writes hand-written titles and descriptions into the `seo` fields: English into the record and its `en` translation, German into `de`; share image, robots and sitemap settings stay. Rules (title ≤ 60, description 130–160 characters) in `scripts/seo-texts.mjs`; the first batch is `seo/2026-10-24-seo-texts.json`.
+
 ## Folders
 
 | Folder        | Purpose                          | In git |
