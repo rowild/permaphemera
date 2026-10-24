@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.34 - 2026-10-24 18:56:22 CEST
+
+- The note on exhibitions and events whose tour may not be shown no longer says "wir"/"we": "Aus urheberrechtlichen Gründen darf von dieser Ausstellung kein 360°-Rundgang gezeigt werden." / "For copyright reasons, no 360° tour of this exhibition may be shown."
+
 ## 0.0.33 - 2026-10-24 16:17:58 CEST
 
 - The sentence about an exhibition's 360° tour in its search description now writes itself from the tour fields: "360°-Rundgang ab 29. Oktober." before the day, "… in Vorbereitung." until the tour is published, "… online." after. The server updates the pages every night at 00:15, so nobody has to change these texts or deploy for it. The 15 stored texts lost their old tour sentence.

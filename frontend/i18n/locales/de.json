@@ -276,7 +276,7 @@
     "seeDetails": "Details ansehen",
     "openingExperience": "Rundgang wird geöffnet …",
     "availableFrom": "360°-Rundgang ab {date}",
-    "restricted": "Aus urheberrechtlichen Gründen dürfen wir keinen 360°-Rundgang dieser Ausstellung zeigen.",
+    "restricted": "Aus urheberrechtlichen Gründen darf von dieser Ausstellung kein 360°-Rundgang gezeigt werden.",
     "unavailable": "Von dieser Ausstellung gibt es keinen 360°-Rundgang.",
     "invitationPdf": "Originaleinladung (PDF)",
     "artistWebsite": "Website der Künstler:in | Websites der Künstler:innen",
@@ -286,7 +286,7 @@
       "recordEyebrow": "Veranstaltungseintrag",
       "aboutTitle": "Ein kurzes Zusammentreffen,",
       "aboutAccent": "im Archiv vermerkt.",
-      "restricted": "Aus urheberrechtlichen Gründen dürfen wir keinen 360°-Rundgang dieser Veranstaltung zeigen.",
+      "restricted": "Aus urheberrechtlichen Gründen darf von dieser Veranstaltung kein 360°-Rundgang gezeigt werden.",
       "unavailable": "Von dieser Veranstaltung gibt es keinen 360°-Rundgang."
     },
     "organiserLabels": {

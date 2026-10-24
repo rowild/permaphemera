@@ -276,7 +276,7 @@
     "seeDetails": "See details",
     "openingExperience": "Opening the tour…",
     "availableFrom": "360° tour available from {date}",
-    "restricted": "For copyright reasons we may not show a 360° tour of this exhibition.",
+    "restricted": "For copyright reasons, no 360° tour of this exhibition may be shown.",
     "unavailable": "There is no 360° tour of this exhibition.",
     "invitationPdf": "Original invitation (PDF)",
     "artistWebsite": "Artist website | Artist websites",
@@ -286,7 +286,7 @@
       "recordEyebrow": "Event record",
       "aboutTitle": "A brief gathering,",
       "aboutAccent": "noted in the archive.",
-      "restricted": "For copyright reasons we may not show a 360° tour of this event.",
+      "restricted": "For copyright reasons, no 360° tour of this event may be shown.",
       "unavailable": "There is no 360° tour of this event."
     },
     "organiserLabels": {
