@@ -79,3 +79,8 @@ Directus container on the same origin, so institutional networks never see a sec
   unchanged. `/cms/` exists for the site's reads (items, assets, server).
 - Mail for permaphemera.at stays at all-inkl: MX, SPF, DMARC and DKIM were copied into the
   Cloudflare zone. The wildcard `*` CNAME to kasserver is DNS-only.
+- Umami (umami.project-backends.info, stack `/srv/stacks/umami.project-backends.info`)
+  serves several websites. PERMAPHEMERA's visit data is deleted after 36 months by
+  `umami-retention-permaphemera.sh` (in this folder; a copy sits in the stack folder),
+  run nightly at 03:17 from the crontab of `rowild`, log next to it. It touches only
+  website `d7a5053b-…`; the privacy policy states the period.

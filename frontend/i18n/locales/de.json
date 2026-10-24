@@ -664,13 +664,15 @@
           "p1": "Diese Website verwendet Umami, ein Open-Source-Analysewerkzeug, das auf unserem eigenen Server unter umami.project-backends.info läuft. Es zählt Seitenaufrufe, damit wir sehen, wie das Archiv genutzt wird und welche Ausstellungen aufgerufen werden. Wir betrachten die Ergebnisse nur als Summen, nie pro Person.",
           "p2": "Beim Laden einer Seite sendet das Umami-Skript die Seitenadresse und den Seitentitel, die Herkunftsseite, die Bildschirmgröße und die Browsersprache an unseren Umami-Server. Mit der Anfrage erhält der Server außerdem Ihre IP-Adresse und die Browserkennung. Umami speichert die IP-Adresse nicht. Es ermittelt daraus den ungefähren Standort (Land, Region, Stadt) und bildet zusammen mit der Browserkennung eine pseudonyme Besucherkennung, die sich jeden Monat ändert.",
           "p3": "Das Skript setzt keine Cookies und speichert nichts auf Ihrem Endgerät. Rechtsgrundlage ist unser berechtigtes Interesse, die Reichweite des Archivs in zusammengefasster Form zu messen (Art. 6 Abs. 1 lit. f DSGVO). Sie können dieser Verarbeitung jederzeit widersprechen; schreiben Sie uns dazu.",
-          "p4": "Die Daten bleiben auf unserem Server und werden nicht weitergegeben. Die Aufbewahrungsdauer der Statistik wird in der Umami-Installation festgelegt und hier ergänzt.",
+          "p4": "Die Daten bleiben auf unserem Server und werden nicht weitergegeben. Besuchsdaten werden nach 36 Monaten automatisch gelöscht.",
           "instanceLabel": "Umami-Instanz",
           "cookiesLabel": "Cookies",
           "cookiesValue": "Keine",
           "consentLabel": "Aktivierung",
           "consentValue": "Bei jedem Besuch, ohne Cookies",
-          "umamiDocs": "Umami-Dokumentation"
+          "umamiDocs": "Umami-Dokumentation",
+          "retentionLabel": "Speicherdauer",
+          "retentionValue": "Löschung nach 36 Monaten"
         },
         "externalMedia": {
           "eyebrow": "Optionale externe Medien",

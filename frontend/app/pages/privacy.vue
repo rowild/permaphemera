@@ -82,6 +82,7 @@ const sections = computed<LegalSection[]>(() => [
     details: [
       { label: t('legal.privacy.sections.analytics.instanceLabel'), value: 'https://umami.project-backends.info/' },
       { label: t('legal.privacy.sections.analytics.cookiesLabel'), value: t('legal.privacy.sections.analytics.cookiesValue') },
+      { label: t('legal.privacy.sections.analytics.retentionLabel'), value: t('legal.privacy.sections.analytics.retentionValue') },
       { label: t('legal.privacy.sections.analytics.consentLabel'), value: t('legal.privacy.sections.analytics.consentValue') }
     ],
     links: [

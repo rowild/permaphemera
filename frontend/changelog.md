@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.29 - 2026-10-24 12:24:00 CEST
+
+- The privacy policy states how long Umami keeps visit data: 36 months. A nightly job on the server deletes older PERMAPHEMERA data (only this website; the other sites on the same Umami are not touched).
+
 ## 0.0.28 - 2026-10-24 11:33:31 CEST
 
 - On an exhibition page the artists now follow the organisers: Kurator:innen, Organisator:in, Veranstaltet von, then Künstler:innen.
