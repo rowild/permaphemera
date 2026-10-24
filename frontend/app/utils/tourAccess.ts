@@ -1,4 +1,5 @@
 import { localDateKey } from '~/utils/exhibitionSchedule'
+import { tourAccess } from '../../shared/tour-access.mjs'
 
 /**
  * Editorial decision about the 360° record of one exhibition. Mirrors the
@@ -24,12 +25,7 @@ export type TourAccess =
   | { kind: 'restricted' }
   | { kind: 'unavailable' }
 
+/** The rules live in shared/tour-access.mjs, which the SEO module uses too. */
 export function resolveTourAccess(exhibition: TourReadyExhibition, today = localDateKey()): TourAccess {
-  if (exhibition.tour_status === 'restricted') return { kind: 'restricted' }
-  if (exhibition.tour_status === 'unavailable') return { kind: 'unavailable' }
-
-  const releaseDate = exhibition.tour_available_from
-  if (releaseDate && releaseDate > today) return { kind: 'scheduled', date: releaseDate }
-  if (exhibition.tour) return { kind: 'open', url: exhibition.tour }
-  return { kind: 'preparing' }
+  return tourAccess(exhibition, today)
 }

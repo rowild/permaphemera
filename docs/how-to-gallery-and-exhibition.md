@@ -284,10 +284,13 @@ and only when both are empty builds a plain text from title, artists, dates, gal
 
 - The share image (`og_image`) is optional. Choose a JPEG, PNG or WebP (TIFF and AVIF work too),
   never an SVG logo: link previews cannot show SVG, and `pnpm check:data` fails on it.
-- An exhibition's description names its tour state ("360° tour from 29 October", "360° tour in
-  preparation"). **Update it in de and en whenever that state changes**: the date is reached,
-  the tour is published (`pnpm tour:publish`), or `tour_status` changes. `pnpm check:data`,
-  `pnpm tour:publish` and every deploy warn about texts that no longer fit.
+- **Never write the tour into an exhibition's description.** The site adds the sentence itself
+  from the tour fields: "360° tour from 29 October." before `tour_available_from`, "… in
+  preparation." from that day until `pnpm tour:publish` links the tour, "… online." after; none
+  for `restricted` or `unavailable`. The server rewrites the static pages every night at 00:15,
+  so the sentence changes on its day without a deploy. Exhibitions with a tour therefore keep
+  their stored description to 98–128 characters (room for the sentence); `write-seo.mjs` and
+  `pnpm check:data` refuse a tour sentence or a longer text.
 
 ### Minimal create payload (MCP `items` → `create`, collection `pp_exhibitions`)
 
@@ -327,7 +330,8 @@ a website its host name ("galerie3.com").
 Check each running and announced exhibition against the newest invitation/press PDF:
 
 - Stale wording: "Announcement" / "has not opened yet" after the opening date.
-- Stale SEO text (de and en): the old tour state or an announcement (§8, SEO texts).
+- Stale SEO text (de and en): an announcement after the opening (§8, SEO texts). The tour
+  sentence updates itself.
 - Dates: `start_date` must be the first public day, not the vernissage day.
 - Title additions (Grabmayr → "Franz Grabmayr – Alles Farbe").
 - Missing artists and curators (DIALOG had 1 of 15 artists, no curator).

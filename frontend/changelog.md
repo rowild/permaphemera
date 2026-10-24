@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.33 - 2026-10-24 16:17:58 CEST
+
+- The sentence about an exhibition's 360° tour in its search description now writes itself from the tour fields: "360°-Rundgang ab 29. Oktober." before the day, "… in Vorbereitung." until the tour is published, "… online." after. The server updates the pages every night at 00:15, so nobody has to change these texts or deploy for it. The 15 stored texts lost their old tour sentence.
+- Directus: the old, unused "status" column of four linking tables is gone (no visible change).
+
 ## 0.0.32 - 2026-10-24 15:45:30 CEST
 
 - The picture texts of the galleries exist in German and English now. The German gallery pages, the gallery cards and the link previews use the German text (12 galleries, written by hand).

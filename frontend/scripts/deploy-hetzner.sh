@@ -18,6 +18,7 @@ cd "$(dirname "$0")/.."
 HOST="${HETZNER_HOST:-rowild@138.199.205.241}"
 KEY="${HETZNER_KEY:-$HOME/.ssh/id_hetzner}"
 REMOTE_DIR="${HETZNER_REMOTE_DIR:-/srv/sites/permaphemera.at/html}"
+SEO_REFRESH_DIR="$(dirname "$REMOTE_DIR")/seo-refresh"
 export NUXT_PUBLIC_DIRECTUS_URL="${NUXT_PUBLIC_DIRECTUS_URL_PROD:-https://permaphemera.at/cms}"
 
 SKIP_BUILD=0
@@ -91,6 +92,20 @@ if [[ -d public/media/tours ]]; then
 else
   echo "[deploy] no local tours folder; the tours on the server stay as they are"
 fi
+
+# The server rewrites the SEO snapshots every night with the same code (scripts/server/seo-refresh.sh),
+# so an exhibition's tour sentence changes on its day. Copy that code next to the site (outside
+# html/) and make sure the cron line exists.
+echo "[deploy] nightly SEO refresh: code to $SEO_REFRESH_DIR, cron 00:15"
+bundle=.output/seo-refresh
+rm -rf "$bundle" && mkdir -p "$bundle"
+for file in scripts/seo-snapshot.mjs scripts/lib/seo-snapshot.mjs scripts/lib/archive-source.mjs \
+  shared/seo.mjs shared/archive-schema.mjs shared/tour-access.mjs i18n/locales/de.json i18n/locales/en.json; do
+  mkdir -p "$bundle/$(dirname "$file")" && cp "$file" "$bundle/$file"
+done
+cp scripts/server/seo-refresh.sh "$bundle/seo-refresh.sh"
+rsync -az --delete -e "ssh -i $KEY -o BatchMode=yes" "$bundle/" "$HOST:$SEO_REFRESH_DIR/"
+ssh -i "$KEY" -o BatchMode=yes "$HOST" "crontab -l 2>/dev/null | grep -qF '$SEO_REFRESH_DIR/seo-refresh.sh' || { crontab -l 2>/dev/null; echo '15 0 * * * sh $SEO_REFRESH_DIR/seo-refresh.sh'; } | crontab -"
 
 # Cloudflare keeps static files for up to 4 hours, so a file replaced under
 # the same name (tour-viewer.js, a re-graded panorama) would stay old. Empty

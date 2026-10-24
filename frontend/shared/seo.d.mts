@@ -46,15 +46,18 @@ export declare const SITE_NAME: string
 export declare const DEFAULT_SHARE_IMAGE: string
 export declare const SNAPSHOT_ATTRIBUTE: string
 export declare const SHAREABLE_TYPES: ReadonlySet<string>
+export declare const TOUR_SENTENCE_RESERVE: number
 export declare function localizedPath(path: string, locale: SeoLocale): string
 export declare function stripMarkup(value: unknown): string
 export declare function fitTitle(base: string, max?: number): string
 export declare function fitDescription(text: string, max?: number): string
 export declare function readSeo(record: object, locale: SeoLocale): SeoRead
-export declare function recordSeoEntries(archive: object, options: { assetBase: string, messages: SeoMessages, path?: string }): SeoEntry[]
+export declare function recordSeoEntries(archive: object, options: { assetBase: string, messages: SeoMessages, path?: string, today?: string }): SeoEntry[]
 export declare function staticSeoEntries(messages: SeoMessages, counts?: { venues?: number, organisations?: number }): SeoEntry[]
 export declare function headFor(entry: SeoEntry): SeoHead
 export declare function seoCounts(archive: object): { venues: number, organisations: number }
-export declare function pageSeoEntry(archive: object, options: { path: string, locale: SeoLocale, messages: SeoMessages, assetBase: string, ready: boolean }): SeoEntry | undefined
+export declare function pageSeoEntry(archive: object, options: { path: string, locale: SeoLocale, messages: SeoMessages, assetBase: string, ready: boolean, today?: string }): SeoEntry | undefined
 export declare function removeSnapshotTags(root: { querySelectorAll(selector: string): Iterable<{ remove(): void }> }): void
-export declare function staleTourWording(exhibition: object, today: string): boolean
+export declare function viennaToday(): string
+export declare function mentionsTour(text: unknown): boolean
+export declare function tourSentence(exhibition: object, locale: SeoLocale, today: string, messages: SeoMessages): string | undefined

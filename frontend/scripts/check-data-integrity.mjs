@@ -28,7 +28,7 @@ async function main() {
   // Every file field the site turns into a URL (FILE_FIELDS: images, PDFs, logos, photos)
   // must point at a file Directus actually serves.
   const { COLLECTIONS, FILE_FIELDS } = await import('../shared/archive-schema.mjs')
-  const { SHAREABLE_TYPES, staleTourWording } = await import('../shared/seo.mjs')
+  const { SHAREABLE_TYPES, TOUR_SENTENCE_RESERVE, mentionsTour } = await import('../shared/seo.mjs')
   const fileUrls = []
   const fileOwners = []
   for (const [key, collection] of Object.entries(COLLECTIONS)) {
@@ -65,6 +65,15 @@ async function main() {
   const named = (label, list) => (list.length ? `${label}: ${list.join(', ')}` : label)
   // The exhibition groups are fixed pages under /exhibitions/; a record with such a slug would have no page.
   const reservedSlugs = exhibitions.filter((exhibition) => ['current', 'upcoming', 'past'].includes(exhibition.slug)).map((exhibition) => exhibition.slug)
+  // The site adds the sentence about the 360° tour to an exhibition's SEO description itself
+  // (tourSentence in shared/seo.mjs), so the stored text must neither name the tour nor leave too
+  // little room for it.
+  const seoDescriptions = (exhibition) => [exhibition.seo, ...(exhibition.translations ?? []).map((entry) => entry.seo)].map((seo) => seo?.meta_description).filter(Boolean)
+  const namesTour = exhibitions.filter((exhibition) => seoDescriptions(exhibition).some(mentionsTour)).map((exhibition) => exhibition.slug)
+  const roomForTour = 160 - TOUR_SENTENCE_RESERVE
+  const noRoom = exhibitions
+    .filter((exhibition) => !['restricted', 'unavailable'].includes(exhibition.tour_status) && seoDescriptions(exhibition).some((text) => text.length > roomForTour))
+    .map((exhibition) => exhibition.slug)
 
   const checks = [
     // Content counts are the owner's business and change in Directus every day,
@@ -197,6 +206,8 @@ async function main() {
     [named('every file has its type in Directus, none is application/octet-stream', untyped), untyped.length === 0],
     [named(`every SEO share image exists and is a JPEG, PNG, WebP, TIFF or AVIF (${shareImages.length} checked)`, badShare), badShare.length === 0],
     [named('no exhibition slug is current, upcoming or past (fixed pages)', reservedSlugs), reservedSlugs.length === 0],
+    [named('no exhibition SEO text names the 360° tour (the site adds that sentence)', namesTour), namesTour.length === 0],
+    [named(`every exhibition with a tour keeps its SEO description to ${roomForTour} characters (room for the tour sentence)`, noRoom), noRoom.length === 0],
     ['the file check covers person and organisation photos', [...persons, ...organisations].every((record) => !record.image || fileUrls.includes(record.image))]
   ]
 
@@ -208,11 +219,6 @@ async function main() {
   } else {
     console.log(`Data integrity OK: ${checks.length} assertions across ${Object.keys(a).length} collections from ${directusUrl}.`)
   }
-
-  // A reminder, not a failure: the SEO text still promises a tour that is open now or will not come.
-  const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Vienna' })
-  const staleTours = exhibitions.filter((exhibition) => staleTourWording(exhibition, today)).map((exhibition) => exhibition.slug)
-  if (staleTours.length) console.warn(`Warning: update the SEO text (de and en) of these exhibitions; it talks about the 360° tour as it no longer is: ${staleTours.join(', ')}`)
 }
 
 try {

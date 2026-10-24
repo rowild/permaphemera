@@ -301,7 +301,10 @@
     "seoDescription": "Exhibition “{title}”, {details}.",
     "seoDescriptionArtists": "Exhibition “{title}” with {artists}, {details}.",
     "seoDescriptionEvent": "Event “{title}”, {details}.",
-    "seoDescriptionEventArtists": "Event “{title}” with {artists}, {details}."
+    "seoDescriptionEventArtists": "Event “{title}” with {artists}, {details}.",
+    "seoTourScheduled": "360° tour from {date}.",
+    "seoTourPreparing": "360° tour in preparation.",
+    "seoTourOpen": "360° tour online."
   },
   "exhibitionsDirectory": {
     "seoTitle": "Exhibitions in Austrian galleries · PERMAPHEMERA",

@@ -167,6 +167,16 @@ describe('writeSnapshots', () => {
     expect(existsSync(join(output, 'venues/kept/photo.jpg'))).toBe(true)
   })
 
+  it('rewrites only the snapshots whose content changed, and leaves no temporary file', async () => {
+    output = await mkdtemp(join(tmpdir(), 'seo-snapshot-'))
+    const english = { ...base, locale: 'en' as const, canonical: base.alternates.en }
+    expect((await writeSnapshots(output, shell, [base, english])).written).toEqual(['exhibitions/trigeniale-26/index.html', 'en/exhibitions/trigeniale-26/index.html'])
+    const again = await writeSnapshots(output, shell, [{ ...base, description: 'Neue Beschreibung' }, english])
+    expect(again.written).toEqual(['exhibitions/trigeniale-26/index.html'])
+    expect(await readFile(join(output, 'exhibitions/trigeniale-26/index.html'), 'utf8')).toContain('Neue Beschreibung')
+    expect(existsSync(join(output, 'exhibitions/trigeniale-26/index.html.tmp'))).toBe(false)
+  })
+
   it('keeps the new snapshot when only the case of a slug changed (macOS ignores case)', async () => {
     output = await mkdtemp(join(tmpdir(), 'seo-snapshot-'))
     await put('exhibitions/Trigeniale-26/index.html')

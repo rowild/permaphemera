@@ -301,7 +301,10 @@
     "seoDescription": "Ausstellung „{title}“, {details}.",
     "seoDescriptionArtists": "Ausstellung „{title}“ mit {artists}, {details}.",
     "seoDescriptionEvent": "Veranstaltung „{title}“, {details}.",
-    "seoDescriptionEventArtists": "Veranstaltung „{title}“ mit {artists}, {details}."
+    "seoDescriptionEventArtists": "Veranstaltung „{title}“ mit {artists}, {details}.",
+    "seoTourScheduled": "360°-Rundgang ab {date}.",
+    "seoTourPreparing": "360°-Rundgang in Vorbereitung.",
+    "seoTourOpen": "360°-Rundgang online."
   },
   "exhibitionsDirectory": {
     "seoTitle": "Ausstellungen in Galerien in Österreich · PERMAPHEMERA",

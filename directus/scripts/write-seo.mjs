@@ -16,13 +16,18 @@ const dryRun = process.argv.includes('--dry-run')
 if (!file) throw new Error('usage: node scripts/write-seo.mjs <file.json> [--dry-run]')
 
 const items = JSON.parse(readFileSync(file, 'utf8'))
-const errors = validateSeoTexts(items)
+const { api } = await login(loadEnv())
+// The exhibitions' tour_status decides their length rule: the site adds the tour sentence.
+const slugs = items.filter((item) => item.collection === 'exhibitions').map((item) => item.slug)
+const tourStatus = slugs.length
+  ? Object.fromEntries((await api('GET', `/items/pp_exhibitions?filter[slug][_in]=${slugs.map(encodeURIComponent).join(',')}&fields=slug,tour_status&limit=-1`)).map((row) => [row.slug, row.tour_status]))
+  : {}
+const errors = validateSeoTexts(items, { tourStatus })
 if (errors.length) {
   console.error(`${errors.length} problems in ${file}:\n  ${errors.join('\n  ')}`)
   process.exit(1)
 }
 
-const { api } = await login(loadEnv())
 let written = 0
 for (const item of items) {
   const collection = COLLECTION_OF[item.collection]

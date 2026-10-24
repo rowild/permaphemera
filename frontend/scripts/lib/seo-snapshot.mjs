@@ -2,7 +2,7 @@
 // The deploy's SEO snapshots (scripts/seo-snapshot.mjs): the SPA shell with one route's head tags,
 // the files they go to, and the sitemap. The tags come from headFor() in shared/seo.mjs, the same
 // function the running site uses, and carry data-seo-snapshot so the app can drop them.
-import { mkdir, readdir, rm, stat, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { SNAPSHOT_ATTRIBUTE, headFor, localizedPath } from '../../shared/seo.mjs'
 
@@ -99,8 +99,22 @@ export const staleSnapshots = (files, entries) => {
 }
 
 /**
- * Writes the snapshot of every entry into `output` and removes the snapshots of records that have
- * no entry any more (taken offline since the build that --skip-build reuses). Other files stay.
+ * Writes `text` to `file` unless it already holds exactly that; returns whether it wrote. The new
+ * content goes to a temporary file first and replaces the old one in one step, so nginx never
+ * serves half a page while the nightly refresh runs on the live folder.
+ */
+export const writeIfChanged = async (file, text) => {
+  if (await readFile(file, 'utf8').then((current) => current === text, () => false)) return false
+  await mkdir(dirname(file), { recursive: true })
+  await writeFile(`${file}.tmp`, text)
+  await rename(`${file}.tmp`, file)
+  return true
+}
+
+/**
+ * Writes the snapshot of every entry into `output` (only where the content changed) and removes the
+ * snapshots of records that have no entry any more (taken offline since the build that
+ * --skip-build reuses, or since the last nightly refresh). Other files stay.
  */
 export const writeSnapshots = async (output, shell, entries) => {
   const problems = []
@@ -114,6 +128,7 @@ export const writeSnapshots = async (output, shell, entries) => {
     }
   }
   const removed = []
+  const written = []
   for (const file of staleSnapshots(found, entries)) {
     // The whole folder goes: left without index.html, nginx would answer 403 instead of serving
     // the app. Only hidden files (.DS_Store) may go with it; anything else stops the deploy.
@@ -134,8 +149,7 @@ export const writeSnapshots = async (output, shell, entries) => {
     }
     const html = renderSnapshot(shell, entry)
     problems.push(...verifySnapshot(html, entry))
-    await mkdir(dirname(join(output, file)), { recursive: true })
-    await writeFile(join(output, file), html)
+    if (await writeIfChanged(join(output, file), html)) written.push(file)
   }
-  return { problems, removed }
+  return { problems, removed, written }
 }

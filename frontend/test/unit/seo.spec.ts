@@ -4,7 +4,7 @@ import de from '../../i18n/locales/de.json'
 import en from '../../i18n/locales/en.json'
 import { resolveExhibitions } from '~/utils/resolveExhibitions'
 import { resolveVenues } from '~/utils/resolveVenues'
-import { DEFAULT_SHARE_IMAGE, SITE_NAME, SITE_URL, fitDescription, fitTitle, headFor, localizedPath, pageSeoEntry, readSeo, recordSeoEntries, removeSnapshotTags, staleTourWording, staticSeoEntries } from '../../shared/seo.mjs'
+import { DEFAULT_SHARE_IMAGE, SITE_NAME, SITE_URL, TOUR_SENTENCE_RESERVE, fitDescription, fitTitle, headFor, localizedPath, mentionsTour, pageSeoEntry, readSeo, recordSeoEntries, removeSnapshotTags, staticSeoEntries, tourSentence } from '../../shared/seo.mjs'
 
 const messages = { de, en }
 const assetBase = 'https://cms.test'
@@ -24,6 +24,7 @@ const exhibitionSeo = { title: 'Trigeniale 26 – Alps-Adriatic exhibition', met
 const exhibition = {
   id: 'ex', slug: 'trigeniale-26', title: 'Trigeniale 26', primary_venue: 'ven', start_date: '2026-10-15', end_date: '2026-10-29',
   image: `${assetBase}/assets/img-ex`, image_placeholder: false, image_alt: 'Works', summary: 'Five artists.', admission: null,
+  tour: null as string | null, tour_status: 'unavailable', tour_available_from: null as string | null,
   date_updated: '2026-10-24T10:00:00.000Z', seo: exhibitionSeo, status: 'published',
   translations: [
     { languages_code: 'en', title: 'Trigeniale 26', summary: 'Five artists.', seo: { title: exhibitionSeo.title, meta_description: exhibitionSeo.meta_description } },
@@ -326,30 +327,6 @@ describe('removeSnapshotTags (the running app takes over the head)', () => {
   })
 })
 
-describe('staleTourWording (the SEO text still talks about a tour that is not in that state)', () => {
-  const said = (meta: string, extra: Record<string, unknown> = {}) => ({
-    ...exhibition, tour: null, tour_status: 'available', tour_available_from: '2026-10-29',
-    seo: { ...exhibitionSeo, meta_description: meta }, translations: [{ languages_code: 'de', seo: { meta_description: meta } }], ...extra
-  })
-
-  it('accepts "tour from" before that day and "in preparation" while there is no tour', () => {
-    expect(staleTourWording(said('360° tour from 29 October.'), '2026-10-24')).toBe(false)
-    expect(staleTourWording(said('360°-Rundgang in Vorbereitung.', { tour_available_from: null }), '2026-10-24')).toBe(false)
-    expect(staleTourWording(said('Five artists.'), '2026-10-30')).toBe(false)
-  })
-
-  it('reports "in preparation" once the tour is open', () => {
-    expect(staleTourWording(said('360°-Rundgang in Vorbereitung.', { tour: '/media/tours/x/' }), '2026-10-30')).toBe(true)
-  })
-
-  it('reports "tour from" once that day has passed', () => {
-    expect(staleTourWording(said('360° tour from 29 October.'), '2026-10-30')).toBe(true)
-  })
-
-  it('reports any promised tour when there will be none', () => {
-    expect(staleTourWording(said('360° tour in preparation.', { tour_status: 'restricted' }), '2026-10-24')).toBe(true)
-  })
-})
 
 describe('review fixes', () => {
   it('uses no lookbehind, which Safari before 16.4 cannot parse', () => {
@@ -392,10 +369,62 @@ describe('review fixes', () => {
     expect((entry(list, '/exhibitions/trigeniale-26/', 'en').jsonLd[0] as { '@type': string })['@type']).toBe('Event')
   })
 
-  it('reads only the tour wording, not other uses of "Rundgang ab" or "in Vorbereitung"', () => {
-    const said = (meta: string) => ({ ...exhibition, tour: null, tour_status: 'restricted', tour_available_from: null, seo: { meta_description: meta }, translations: [] })
-    expect(staleTourWording(said('Galerienrundgang ab 18 Uhr, Katalog in Vorbereitung.'), '2026-10-24')).toBe(false)
-    expect(staleTourWording(said('360°-Rundgang ab 19. Dezember.'), '2026-10-24')).toBe(true)
-    expect(staleTourWording(said('360° tour in preparation.'), '2026-10-24')).toBe(true)
+})
+
+describe('the tour sentence comes from the tour fields', () => {
+  const withTour = (fields: Record<string, unknown>) => ({ ...exhibition, tour_status: 'available', tour: null, tour_available_from: '2026-10-29', ...fields })
+  const at = (fields: Record<string, unknown>, today: string, locale: 'de' | 'en' = 'de') =>
+    entry(recordSeoEntries(archive({ exhibitions: [withTour(fields)] }), { assetBase, messages, today }), '/exhibitions/trigeniale-26/', locale).description
+
+  it('announces the day before it has come', () => {
+    expect(at({}, '2026-10-24')).toBe('DE Beschreibung 360°-Rundgang ab 29. Oktober.')
+    expect(at({}, '2026-10-24', 'en')).toBe('EN description 360° tour from 29 October.')
+  })
+
+  it('says "in preparation" from that day until the tour is published', () => {
+    expect(at({}, '2026-10-29')).toBe('DE Beschreibung 360°-Rundgang in Vorbereitung.')
+  })
+
+  it('says "online" once the tour is published', () => {
+    expect(at({ tour: '/media/tours/x/' }, '2026-10-29', 'en')).toBe('EN description 360° tour online.')
+  })
+
+  it('says nothing when there will be no tour', () => {
+    expect(at({ tour_status: 'restricted' }, '2026-10-24')).toBe('DE Beschreibung')
+  })
+
+  it('keeps a description built from the summary within 160 characters, sentence included', () => {
+    const long = 'Wort '.repeat(60).trim()
+    const text = at({ seo: null, translations: [{ languages_code: 'de', title: 'Trigeniale 26', summary: long }, { languages_code: 'en', title: 'Trigeniale 26', summary: long }] }, '2026-10-24')
+    expect(text.length).toBeLessThanOrEqual(160)
+    expect(text.endsWith('Wort… 360°-Rundgang ab 29. Oktober.')).toBe(true)
+  })
+
+  it('reserves room for the longest sentence in either language', () => {
+    for (const locale of ['de', 'en'] as const) {
+      for (let month = 1; month <= 12; month += 1) {
+        const date = `2026-${String(month).padStart(2, '0')}-${month === 2 ? '28' : '30'}`
+        for (const fields of [{ tour_available_from: date }, { tour_available_from: null }, { tour_available_from: null, tour: '/t/' }]) {
+          const sentence = tourSentence(withTour(fields), locale, '2026-01-01', messages)
+          expect(sentence, `${locale} ${date}`).toBeTruthy()
+          expect(sentence!.length + 1, sentence).toBeLessThanOrEqual(TOUR_SENTENCE_RESERVE)
+        }
+      }
+    }
+  })
+
+  it('reaches the head of the running site with the visitor\'s day', () => {
+    const site = archive({ exhibitions: [withTour({})] })
+    expect(pageSeoEntry(site, { path: '/exhibitions/trigeniale-26/', locale: 'en', messages, assetBase, ready: true, today: '2026-10-30' })?.description).toBe('EN description 360° tour in preparation.')
+  })
+})
+
+describe('mentionsTour (a stored text leaves the tour sentence to the site)', () => {
+  it('finds the tour sentences the stored texts used to end with', () => {
+    for (const text of ['360° tour in preparation.', '360°-Rundgang ab 19. Dezember.', 'Walk through it as a 360° tour in the archive.', 'Als 360°-Rundgang im Archiv begehbar.']) expect(mentionsTour(text), text).toBe(true)
+  })
+
+  it('ignores other tours and other preparations', () => {
+    expect(mentionsTour('Galerienrundgang ab 18 Uhr, Katalog in Vorbereitung.')).toBe(false)
   })
 })

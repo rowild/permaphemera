@@ -10,6 +10,8 @@
 // Input: the raw archive snapshot (keys of COLLECTIONS; file fields already asset URLs, plus
 // `<field>_placeholder` and `<field>_type`) and the locale messages ({ de, en } from i18n/locales).
 
+import { tourAccess } from './tour-access.mjs'
+
 export const SITE_URL = 'https://permaphemera.at'
 export const SITE_NAME = 'PERMAPHEMERA'
 export const DEFAULT_SHARE_IMAGE = `${SITE_URL}/media/images/share/permaphemera-share.jpg`
@@ -36,6 +38,12 @@ const SCHEMA_PLACE = { gallery: 'ArtGallery', museum: 'Museum' }
 const COUNTRY_CODES = { Austria: 'AT', 'Österreich': 'AT', Germany: 'DE', Italy: 'IT', Slovenia: 'SI' }
 const MORE_ARTISTS = { de: 'u. a.', en: 'and others' }
 const DATE_LOCALES = { de: 'de-AT', en: 'en-GB' }
+/**
+ * Room an exhibition's stored description leaves for the tour sentence the site adds (space
+ * included; the longest is "360°-Rundgang ab 30. September."). Stored texts of exhibitions with a
+ * tour therefore have at most 160 − 32 = 128 characters (check:data, directus/scripts/seo-texts.mjs).
+ */
+export const TOUR_SENTENCE_RESERVE = 32
 /**
  * File types Directus scales and converts to the JPEG a link preview needs; an SVG logo or a file
  * stored as application/octet-stream would go out as it is. check:data uses the same list.
@@ -137,6 +145,28 @@ const shareable = (record, field) => {
   return type == null || SHAREABLE_TYPES.has(type) ? realImage(record, field) : undefined
 }
 
+/** Today in Vienna as YYYY-MM-DD: the day the deploy and the nightly refresh write the tour sentence for. */
+export const viennaToday = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Vienna' })
+
+/** A stored SEO text that names the 360° tour; the site adds that sentence itself (tourSentence). */
+export const mentionsTour = (text) => /360°[\s-]*(?:tour|Rundgang)/i.test(String(text ?? ''))
+
+/**
+ * The sentence about the exhibition's 360° tour on `today`, from its tour fields and the rules the
+ * page uses (shared/tour-access.mjs): "360° tour from 29 October." before the day, "… in
+ * preparation." from then until the tour is published, "… online." after; none without a tour.
+ */
+export const tourSentence = (exhibition, locale, today, messages) => {
+  const access = tourAccess(exhibition, today)
+  if (access.kind === 'scheduled') {
+    const date = new Intl.DateTimeFormat(DATE_LOCALES[locale], { day: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(access.date))
+    return message(messages, locale, 'exhibition.seoTourScheduled', { date })
+  }
+  if (access.kind === 'preparing') return message(messages, locale, 'exhibition.seoTourPreparing')
+  if (access.kind === 'open') return message(messages, locale, 'exhibition.seoTourOpen')
+  return undefined
+}
+
 /** "15.–29. Oktober 2026" / "15 – 29 October 2026"; nothing for a permanent exhibition. */
 const dateRange = (record, locale) => {
   if (record.is_permanent || !record.start_date) return undefined
@@ -184,7 +214,7 @@ const linksOf = (archive, junction, ownerColumn, ownerId) => {
     .filter(Boolean)
 }
 
-const entry = ({ path, locale, record, generated, description, image, imageAlt, ogType, jsonLd, changeFrequency, priority }, assetBase) => {
+const entry = ({ path, locale, record, generated, description, suffix, image, imageAlt, ogType, jsonLd, changeFrequency, priority }, assetBase) => {
   const seo = record ? readSeo(record, locale) : { noIndex: false, noFollow: false }
   const canonical = absolute(path, locale)
   const title = seo.title ?? generated
@@ -196,7 +226,10 @@ const entry = ({ path, locale, record, generated, description, image, imageAlt, 
     path,
     locale,
     title,
-    description: seo.description ?? fitDescription(description ?? ''),
+    // `suffix` (the tour sentence) follows the stored text as it is, or a generated one cut to make room.
+    description: suffix
+      ? `${seo.description ?? fitDescription(description ?? '', DESCRIPTION_MAX - suffix.length - 1)} ${suffix}`
+      : seo.description ?? fitDescription(description ?? ''),
     image: shareImage(shared, assetBase),
     imageAlt: !shared ? SITE_NAME : (ownImage ? imageAlt : undefined) ?? title,
     ogType,
@@ -213,7 +246,8 @@ const entry = ({ path, locale, record, generated, description, image, imageAlt, 
 
 /** One entry per published exhibition, gallery, person, organisation and sponsor page, in both languages. */
 /** With `path`, only that page's entries are built (a page needs one; the deploy needs all). */
-export const recordSeoEntries = (archive, { assetBase, messages, path: only }) => {
+/** `today` (YYYY-MM-DD) decides the tour sentence of exhibitions; default: today in Vienna. */
+export const recordSeoEntries = (archive, { assetBase, messages, path: only, today = viennaToday() }) => {
   const skip = (path) => only !== undefined && path !== only
   const locations = new Map((archive.locations ?? []).filter(published).map((location) => [location.id, location]))
   const venues = new Map((archive.venues ?? []).filter((venue) => published(venue) && locations.has(venue.location)).map((venue) => [venue.id, venue]))
@@ -255,7 +289,8 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only }) =
           `${title} · ${venue.title}`,
           title
         ]),
-        description, image: shareable(exhibition, 'image'), imageAlt: textOf(exhibition, locale, 'image_alt'), ogType: 'article',
+        description, suffix: tourSentence(exhibition, locale, today, messages),
+        image: shareable(exhibition, 'image'), imageAlt: textOf(exhibition, locale, 'image_alt'), ogType: 'article',
         changeFrequency: 'monthly', priority: '0.7',
         jsonLd: (url) => [
           {
@@ -433,38 +468,16 @@ export const seoCounts = (archive) => ({
 })
 
 /** The entry of one page for the running site: a fixed page at once, a record page once the archive is loaded. */
-export const pageSeoEntry = (archive, { path, locale, messages, assetBase, ready }) => {
+export const pageSeoEntry = (archive, { path, locale, messages, assetBase, ready, today }) => {
   const fixed = staticSeoEntries(messages, seoCounts(archive)).find((item) => item.path === path && item.locale === locale)
   if (fixed) return fixed
   if (!ready) return undefined
-  return recordSeoEntries(archive, { assetBase, messages, path }).find((item) => item.locale === locale)
+  return recordSeoEntries(archive, { assetBase, messages, path, today }).find((item) => item.locale === locale)
 }
 
 /** Removes the head tags of a deploy snapshot from `root` (the document); the running app sets its own. */
 export const removeSnapshotTags = (root) => {
   for (const element of root.querySelectorAll(`[${SNAPSHOT_ATTRIBUTE}]`)) element.remove()
-}
-
-// "360° tour in preparation", "360°-Rundgang ab 19. Dezember": only the tour sentence, not a
-// "Galerienrundgang ab 18 Uhr" or a "Katalog in Vorbereitung".
-const TOUR = String.raw`360°[\s-]*(?:tour|Rundgang)`
-const TOUR_PREPARING = new RegExp(`${TOUR}\\s+(?:in preparation|in Vorbereitung)`, 'i')
-const TOUR_FROM = new RegExp(`${TOUR}\\s+(?:from|ab)\\s`, 'i')
-
-/**
- * True when an exhibition's SEO text (either language) announces its tour in a way the tour fields
- * no longer support: "in preparation" once the tour is open, "tour from <day>" from that day on
- * (the site opens the tour on it), any announcement when there will be no tour. `today` is YYYY-MM-DD.
- */
-export const staleTourWording = (exhibition, today) => {
-  const text = [exhibition.seo, ...(exhibition.translations ?? []).map((item) => item.seo)]
-    .flatMap((seo) => [seo?.title, seo?.meta_description]).filter(Boolean).join('\n')
-  const preparing = TOUR_PREPARING.test(text)
-  const dated = TOUR_FROM.test(text)
-  if (!preparing && !dated) return false
-  if (exhibition.tour_status !== 'available') return true
-  const reached = !exhibition.tour_available_from || exhibition.tour_available_from <= today
-  return reached && (dated || Boolean(exhibition.tour))
 }
 
 /** The tags of one entry, for useHead() and for the static snapshot. */

@@ -20,7 +20,8 @@ export function usePageSeo(path: MaybeRefOrGetter<string>) {
       if (!te(key)) return undefined
       return typeof params.count === 'number' ? t(key, params, params.count) : t(key, params)
     }
-    return pageSeoEntry(archive.value, { path: toValue(path), locale: code, messages, assetBase, ready: ready.value })
+    // The visitor's day, as for the tour button on the page (resolveTourAccess).
+    return pageSeoEntry(archive.value, { path: toValue(path), locale: code, messages, assetBase, ready: ready.value, today: localDateKey() })
   })
 
   useHead(() => {
