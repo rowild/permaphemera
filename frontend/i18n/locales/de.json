@@ -4,7 +4,7 @@
     "skipToContent": "Zum Inhalt springen",
     "headerTagline": "Ein kuratiertes Archiv von Ausstellungen",
     "seoTitle": "PERMAPHEMERA · Ausstellungen als 360°-Rundgang bewahrt",
-    "seoDescription": "Ein kuratiertes österreichisches Archiv von 360°-Ausstellungsdokumentationen.",
+    "seoDescription": "Archiv temporärer Kunstausstellungen in österreichischen Galerien: 360°-Rundgänge, Künstler:innen, Orte und Daten, auch nach dem Ende jeder Ausstellung.",
     "archiveLoading": "Das Archiv wird geladen …",
     "archiveUnavailable": "Das Archiv konnte nicht von {url} geladen werden.",
     "errorExplanation": "Die gesuchte Seite ist nicht verfügbar. Von hier aus können Sie zum Archiv zurückkehren.",
@@ -229,7 +229,7 @@
   "galleries": {
     "partOf": "Im Verbund von {name}",
     "seoTitle": "Galerien in Österreich · PERMAPHEMERA",
-    "seoDescription": "Entdecken Sie {count} kleine österreichische Galerien, Projekträume und unabhängige Ausstellungsorte im PERMAPHEMERA-Verzeichnis.",
+    "seoDescription": "{count} Galerien und Ausstellungsorte in Österreich im PERMAPHEMERA-Archiv, jeweils mit Adresse, Lage auf der Karte und den dort verzeichneten Ausstellungen.",
     "breadcrumb": "Galerien",
     "eyebrow": "Galerienindex",
     "title": "Wo die Ausstellungen",
@@ -300,8 +300,8 @@
     "organiserPersons": "Organisator:in | Organisator:innen"
   },
   "exhibitionsDirectory": {
-    "seoTitle": "Ausstellungen im Archiv · PERMAPHEMERA",
-    "seoDescription": "Durchsuchen Sie Ausstellungen, die im PERMAPHEMERA-Archiv als räumliche Dokumente bewahrt sind.",
+    "seoTitle": "Ausstellungen in Galerien in Österreich · PERMAPHEMERA",
+    "seoDescription": "Alle Ausstellungen im PERMAPHEMERA-Archiv, aktuell, kommend und vergangen, mit Künstler:innen, Galerien, Daten und 360°-Rundgängen. Suche nach Titel und Ort.",
     "breadcrumb": "Ausstellungen",
     "eyebrow": "Ausstellungsindex",
     "title": "Die Ausstellungen,",
@@ -322,19 +322,19 @@
         "title": "Aktuelle Ausstellungen",
         "empty": "Heute ist keine Ausstellung geöffnet.",
         "all": "Alle aktuellen Ausstellungen ({count})",
-        "seoDescription": "Ausstellungen, die heute geöffnet sind, verzeichnet im PERMAPHEMERA-Archiv."
+        "seoDescription": "Ausstellungen, die heute in österreichischen Galerien geöffnet sind, mit Künstler:innen, Orten, Öffnungszeiten und, wo vorhanden, dem 360°-Rundgang."
       },
       "upcoming": {
         "title": "Kommende Ausstellungen",
         "empty": "Noch keine kommende Ausstellung verzeichnet.",
         "all": "Alle kommenden Ausstellungen ({count})",
-        "seoDescription": "Ausstellungen, die bald eröffnen, verzeichnet im PERMAPHEMERA-Archiv."
+        "seoDescription": "Ausstellungen, die bald in österreichischen Galerien eröffnen: Titel, Künstler:innen, Orte, Daten und Vernissagen, vorab im PERMAPHEMERA-Archiv verzeichnet."
       },
       "past": {
         "title": "Vergangene Ausstellungen",
         "empty": "Noch keine vergangene Ausstellung verzeichnet.",
         "all": "Alle vergangenen Ausstellungen ({count})",
-        "seoDescription": "Ausstellungen, die geschlossen haben, bewahrt im PERMAPHEMERA-Archiv."
+        "seoDescription": "Abgeschlossene Ausstellungen im PERMAPHEMERA-Archiv: als 360°-Rundgang begehbar, jeweils mit Künstler:innen, Galerie und Ausstellungsdaten."
       }
     },
     "groupCount": "{count} Ausstellung | {count} Ausstellungen",
@@ -346,7 +346,7 @@
   },
   "artists": {
     "seoTitle": "Künstler:innen im Archiv · PERMAPHEMERA",
-    "seoDescription": "Durchsuchen Sie Künstler:innen, Ausstellungseinträge, Orte und Jahre im PERMAPHEMERA-Archiv.",
+    "seoDescription": "Künstler:innen, deren Ausstellungen PERMAPHEMERA verzeichnet hat, von A bis Z, mit Ausstellungen, Galerien und Jahren und einer Seite mit Biografie und Links.",
     "ledgerArtists": "Künstler:innen",
     "linkedRecords": "Verknüpfte Einträge",
     "index": "Index",
@@ -372,8 +372,8 @@
     "closeFor": "Ausstellungen von {name} schließen"
   },
   "about": {
-    "seoTitle": "Über das Projekt · Räumliche Ausstellungserinnerungen",
-    "seoDescription": "Warum PERMAPHEMERA temporäre Ausstellungen auch nach ihrem Ende begehbar hält und einen österreichweiten Index von Galerien und Ausstellungsorten aufbaut.",
+    "seoTitle": "Über das Projekt · PERMAPHEMERA",
+    "seoDescription": "Warum PERMAPHEMERA temporäre Ausstellungen als 360°-Rundgang festhält und einen Index österreichischer Galerien, Ausstellungen und Künstler:innen aufbaut.",
     "breadcrumb": "Über das Projekt",
     "eyebrow": "Auftrag & Haltung",
     "title": "Was vergeht,",
@@ -434,8 +434,8 @@
     "viewGalleries": "Galerien entdecken"
   },
   "howItWorksPage": {
-    "seoTitle": "Wie es funktioniert · Vom Ausstellungsraum zum 360°-Dokument",
-    "seoDescription": "Wie PERMAPHEMERA ausgewählte Ausstellungen vor Ort erfasst, zu räumlichen 360°-Dokumenten verbindet und mit Kontext langfristig zugänglich macht.",
+    "seoTitle": "Wie es funktioniert · PERMAPHEMERA",
+    "seoDescription": "Wie PERMAPHEMERA eine Ausstellung vor Ort aufnimmt, die Panoramen zu einem 360°-Rundgang verbindet und ihn mit Künstler:innen, Daten und Galerie veröffentlicht.",
     "breadcrumb": "Wie es funktioniert",
     "eyebrow": "Vom Raum zum Dokument",
     "title": "Aus Räumen werden",
@@ -487,7 +487,7 @@
   },
   "contactPage": {
     "seoTitle": "Kontakt · PERMAPHEMERA",
-    "seoDescription": "Kontakt zu PERMAPHEMERA für Ausstellungsvorschläge, Korrekturen, Kooperationen, Recherche und Hinweise zur Barrierefreiheit.",
+    "seoDescription": "Kontakt zu PERMAPHEMERA: eine Ausstellung für eine 360°-Aufnahme vorschlagen, eine Korrektur melden, eine Kooperation anfragen oder Barrieren melden.",
     "breadcrumb": "Kontakt",
     "eyebrow": "Kontakt & Vorschläge",
     "title": "Ein Raum, eine Ausstellung,",
@@ -563,7 +563,7 @@
     },
     "imprint": {
       "seoTitle": "Impressum · PERMAPHEMERA",
-      "seoDescription": "Anbieterkennzeichnung, Medieninhaber und redaktionelle Verantwortung für PERMAPHEMERA.",
+      "seoDescription": "Impressum von PERMAPHEMERA: Medieninhaber und Diensteanbieter, grundlegende Richtung, Urheberrecht und Bildnachweise sowie die Rechtsgrundlage der Angaben.",
       "breadcrumb": "Impressum",
       "eyebrow": "Verantwortung & Offenlegung",
       "title": "Wer hinter dem Archiv",
@@ -608,7 +608,7 @@
     },
     "privacy": {
       "seoTitle": "Datenschutzerklärung · PERMAPHEMERA",
-      "seoDescription": "Informationen zur Verarbeitung personenbezogener Daten, zum Hosting, zu Einwilligungen, optionalen externen Medien und zu Ihren Datenschutzrechten.",
+      "seoDescription": "Wie PERMAPHEMERA Daten verarbeitet: Hosting bei Hetzner, Auslieferung über Cloudflare, Statistik ohne Cookies mit Umami, Kontakt, Speicherdauer und Rechte.",
       "breadcrumb": "Datenschutzerklärung",
       "eyebrow": "Daten & Transparenz",
       "title": "So wenig Daten wie möglich.",
@@ -723,7 +723,7 @@
     },
     "terms": {
       "seoTitle": "Nutzungsbedingungen · PERMAPHEMERA",
-      "seoDescription": "Bedingungen für die Nutzung des frei zugänglichen Ausstellungsarchivs PERMAPHEMERA.",
+      "seoDescription": "Bedingungen für das frei zugängliche Archiv PERMAPHEMERA: Ansehen, Recherche und Verlinken, die Rechte der vielen Beteiligten, externe Links und Recht.",
       "breadcrumb": "Nutzungsbedingungen",
       "eyebrow": "Zugang & Verantwortung",
       "title": "Offen zum Erkunden.",
@@ -781,7 +781,7 @@
     },
     "accessibility": {
       "seoTitle": "Barrierefreiheit · PERMAPHEMERA",
-      "seoDescription": "Barrierefreiheitsziel, umgesetzte Maßnahmen, bekannte Einschränkungen und Kontakt für Rückmeldungen zu PERMAPHEMERA.",
+      "seoDescription": "Barrierefreiheit von PERMAPHEMERA: Aufbau, Tastatur und reduzierte Bewegung, die Grenzen von 360°-Rundgängen, Alternativen und Kontakt für Rückmeldungen.",
       "breadcrumb": "Barrierefreiheit",
       "eyebrow": "Zugang & Teilhabe",
       "title": "Räume sollen",
@@ -885,7 +885,7 @@
   },
   "organisations": {
     "seoTitle": "Organisationen und Personen · PERMAPHEMERA",
-    "seoDescription": "{count} Organisationen, die Organisator:innen und Kurator:innen hinter den Ausstellungen und die Sponsoren des PERMAPHEMERA-Archivs.",
+    "seoDescription": "{count} Vereine, Initiativen und Institutionen, die Galerien betreiben oder Ausstellungen veranstalten, dazu Organisator:innen, Kurator:innen und Sponsoren.",
     "breadcrumb": "Organisationen",
     "eyebrow": "Organisationsindex",
     "title": "Wer die Ausstellungen",

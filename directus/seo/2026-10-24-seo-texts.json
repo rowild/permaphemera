@@ -1,0 +1,1454 @@
+[
+ {
+  "collection": "exhibitions",
+  "slug": "african-heart",
+  "en": {
+   "title": "African Heart – Birgit Mörtl · Parkschlössl, Spittal",
+   "meta_description": "Works by Birgit Mörtl on animals and the African landscape. Parkschlössl, Spittal an der Drau, 11–21 August 2026. Walk through it as a 360° tour in the archive."
+  },
+  "de": {
+   "title": "African Heart – Birgit Mörtl · Parkschlössl, Spittal",
+   "meta_description": "Arbeiten von Birgit Mörtl zu Tieren und afrikanischer Landschaft. Parkschlössl, Spittal an der Drau, 11.–21. August 2026. Als 360°-Rundgang im Archiv begehbar."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "all-about-nature",
+  "en": {
+   "title": "ALL ABOUT NATURE · Stadtgalerie Klagenfurt · PERMAPHEMERA",
+   "meta_description": "“Zwischen Idylle, Krise und Hoffnung”: 35 artists on people and nature, curated by Ulli Sturm. Stadtgalerie Klagenfurt, 29 May–6 September 2026."
+  },
+  "de": {
+   "title": "ALL ABOUT NATURE · Stadtgalerie Klagenfurt · PERMAPHEMERA",
+   "meta_description": "„Zwischen Idylle, Krise und Hoffnung“: 35 Künstler:innen zu Mensch und Natur, kuratiert von Ulli Sturm. Stadtgalerie Klagenfurt, 29. Mai–6. September 2026."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "all-the-magic",
+  "en": {
+   "title": "All the magic – Adi Schmölzer · Parkschlössl, Spittal",
+   "meta_description": "Drawn signs, architectural fragments and colour fields by Adi Schmölzer. Parkschlössl, Spittal, 2–12 June 2026. Walk through it as a 360° tour in the archive."
+  },
+  "de": {
+   "title": "All the magic – Adi Schmölzer · Parkschlössl, Spittal",
+   "meta_description": "Gezeichnete Zeichen, architektonische Fragmente und Farbfelder von Adi Schmölzer. Parkschlössl, Spittal, 2.–12. Juni 2026. Als 360°-Rundgang im Archiv begehbar."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "armin-guerino-durch-die-zeit",
+  "en": {
+   "title": "Armin Guerino – Durch die Zeit · Alpen-Adria-Galerie",
+   "meta_description": "Egg tempera works on paper by Armin Guerino at the Alpen-Adria-Galerie in Klagenfurt, 23 September–29 November 2026. Curated by Gabriele Ruff."
+  },
+  "de": {
+   "title": "Armin Guerino – Durch die Zeit · Alpen-Adria-Galerie",
+   "meta_description": "Arbeiten in Eitempera auf Papier von Armin Guerino in der Alpen-Adria-Galerie in Klagenfurt, 23. September–29. November 2026. Kuratiert von Gabriele Ruff."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "auf-linien-zum-leben",
+  "en": {
+   "title": "Auf Linien zum Leben – Spittaler Comicfestival",
+   "meta_description": "Comics, cartoons, illustration, outsider art and an open drawing studio. Parkschlössl, Spittal, 15–20 June 2026. Walk through it as a 360° tour in the archive."
+  },
+  "de": {
+   "title": "Auf Linien zum Leben – Spittaler Comicfestival",
+   "meta_description": "Comics, Cartoons, Illustration und Outsider Art mit offenem Zeichenstudio, im Parkschlössl in Spittal, 15.–20. Juni 2026. Als 360°-Rundgang im Archiv begehbar."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "aus-der-asche-empor",
+  "en": {
+   "title": "Aus der Asche empor – Sylvia Ofner · Spittal an der Drau",
+   "meta_description": "Soft sculptures by Sylvia Ofner sewn from old oriental carpets. Galerie im Schloss Porcia, Spittal, 7 November–19 December 2026. 360° tour from 19 December."
+  },
+  "de": {
+   "title": "Aus der Asche empor – Sylvia Ofner · Spittal an der Drau",
+   "meta_description": "Weiche Skulpturen von Sylvia Ofner aus alten Orientteppichen. Galerie im Schloss Porcia, Spittal, 7. November–19. Dezember 2026. 360°-Rundgang ab 19. Dezember."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "begegnungen-kunst-oeffnet-tueren",
+  "en": {
+   "title": "Begegnungen – Kunst öffnet Türen · Lebenshilfe Spittal",
+   "meta_description": "Exhibition by the Lebenshilfe Spittal on encounter and creative access. Parkschlössl, Spittal, 7–10 July 2026. Walk through it as a 360° tour in the archive."
+  },
+  "de": {
+   "title": "Begegnungen – Kunst öffnet Türen · Lebenshilfe Spittal",
+   "meta_description": "Ausstellung der Lebenshilfe Spittal über Begegnung und kreativen Zugang. Parkschlössl, Spittal, 7.–10. Juli 2026. Als 360°-Rundgang im Archiv begehbar."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "biodiversitaet-entdecken",
+  "en": {
+   "title": "Biodiversität entdecken · Living Studio, Klagenfurt",
+   "meta_description": "Animal rescue islands by Carinthian school classes in photographs and at stations. Living Studio, Klagenfurt, 30 May–6 September 2026. 360° tour in preparation."
+  },
+  "de": {
+   "title": "Biodiversität entdecken · Living Studio, Klagenfurt",
+   "meta_description": "Tier-Rettungsinseln Kärntner Schulklassen in Fotografien und an Stationen. Living Studio, Klagenfurt, 30. Mai–6. September 2026. 360°-Rundgang in Vorbereitung."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "blinddate-der-perspektiven",
+  "en": {
+   "title": "Blinddate der Perspektiven – Inés Urach and others",
+   "meta_description": "Paintings by Inés Urach, Nicoline von Heyl and Roswitha Bucher-Sakowski at the Galerie im Stiegenhaus, Seeboden, 14 September–10 November 2026."
+  },
+  "de": {
+   "title": "Blinddate der Perspektiven – Inés Urach u. a. · Seeboden",
+   "meta_description": "Malerei von Inés Urach, Nicoline von Heyl und Roswitha Bucher-Sakowski in der Galerie im Stiegenhaus, Seeboden, 14. September–10. November 2026."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "bv-flohmarkt-2026",
+  "en": {
+   "title": "BV Flohmarkt 2026 – Event · BV Galerie Kärnten, Klagenfurt",
+   "meta_description": "Art flea market of the BV Kärnten in Klagenfurt, 29 September–2 October 2026: painting, graphic art, small furniture and tableware. A sale, not an exhibition."
+  },
+  "de": {
+   "title": "BV Flohmarkt 2026 – Veranstaltung · BV Galerie Kärnten",
+   "meta_description": "Kunst-Flohmarkt des BV Kärnten in Klagenfurt, 29. September–2. Oktober 2026: Malerei, Grafik, Kleinmöbel, Geschirr. Ein Verkauf, keine Ausstellung."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "das-was-entsteht",
+  "en": {
+   "title": "Das, was entsteht – Santino Solace · Parkschlössl, Spittal",
+   "meta_description": "Comics, manga and webtoon by Santino Solace with invented characters and stories. Parkschlössl, Spittal, 8–18 September 2026. 360° tour in preparation."
+  },
+  "de": {
+   "title": "Das, was entsteht – Santino Solace · Parkschlössl, Spittal",
+   "meta_description": "Comic, Manga und Webtoon von Santino Solace mit eigenen Figuren und Geschichten. Parkschlössl, Spittal, 8.–18. September 2026. 360°-Rundgang in Vorbereitung."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "epische-gemaelde",
+  "en": {
+   "title": "Epische Gemälde – Ingrid Pröller · Galerie im Schloss Porcia",
+   "meta_description": "Large-format paintings by Ingrid Pröller on myth and cosmos. Galerie im Schloss Porcia, Spittal, 12 September–24 October 2026. 360° tour in preparation."
+  },
+  "de": {
+   "title": "Epische Gemälde – Ingrid Pröller · Galerie im Schloss Porcia",
+   "meta_description": "Großformatige Bilder von Ingrid Pröller zu Mythos und Kosmos. Galerie im Schloss Porcia, Spittal, 12. September–24. Oktober 2026. 360°-Rundgang in Vorbereitung."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "farbe-trifft-struktur",
+  "en": {
+   "title": "Farbe trifft Struktur – Herbert Meißlitzer · Parkschlössl",
+   "meta_description": "Colour and architectural structure in works by Herbert Meißlitzer. Parkschlössl, Spittal, 14–24 July 2026. Walk through it as a 360° tour in the archive."
+  },
+  "de": {
+   "title": "Farbe trifft Struktur – Herbert Meißlitzer · Parkschlössl",
+   "meta_description": "Farbe und architektonische Struktur in Arbeiten von Herbert Meißlitzer. Parkschlössl, Spittal, 14.–24. Juli 2026. Als 360°-Rundgang im Archiv begehbar."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "farben-im-park",
+  "en": {
+   "title": "Farben im Park – Sylvia Campidell, Judith Maria Kulle",
+   "meta_description": "Paintings by Sylvia Campidell and Judith Maria Kulle. Parkschlössl, Spittal an der Drau, 28 July–7 August 2026. Walk through it as a 360° tour in the archive."
+  },
+  "de": {
+   "title": "Farben im Park – Sylvia Campidell, Judith Maria Kulle",
+   "meta_description": "Malerei von Sylvia Campidell und Judith Maria Kulle. Parkschlössl, Spittal an der Drau, 28. Juli–7. August 2026. Als 360°-Rundgang im Archiv begehbar."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "gehen-und-sehen",
+  "en": {
+   "title": "Gehen & Sehen – Peter Kohlweiß · Parkschlössl, Spittal",
+   "meta_description": "Watercolours and drawings by Peter Kohlweiß of nature and architecture. Parkschlössl, Spittal an der Drau, 25 August–4 September 2026. 360° tour in preparation."
+  },
+  "de": {
+   "title": "Gehen & Sehen – Peter Kohlweiß · Parkschlössl, Spittal",
+   "meta_description": "Aquarelle und Zeichnungen von Peter Kohlweiß zu Natur und Architektur. Parkschlössl, Spittal, 25. August–4. September 2026. 360°-Rundgang in Vorbereitung."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "katharina-gruzei-hydrotopia",
+  "en": {
+   "title": "Katharina Gruzei – Hydrotopia · Living Studio, Klagenfurt",
+   "meta_description": "Photographs and video by Katharina Gruzei from a summer of extreme heat and water scarcity. Living Studio, Klagenfurt, 30 September–15 November 2026."
+  },
+  "de": {
+   "title": "Katharina Gruzei – Hydrotopia · Living Studio, Klagenfurt",
+   "meta_description": "Fotografien und Videos von Katharina Gruzei aus einem Sommer extremer Hitze und Wasserknappheit. Living Studio, Klagenfurt, 30. September–15. November 2026."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "mediterraneo-harald-scheicher-2026",
+  "en": {
+   "title": "Mediterraneo – Harald Scheicher · Galerie Palais Fugger",
+   "meta_description": "Oil paintings by Harald Scheicher from Mediterranean journeys, at the Galerie Palais Fugger in Klagenfurt for the Lange Nacht der Museen, 3 October 2026."
+  },
+  "de": {
+   "title": "Mediterraneo – Harald Scheicher · Galerie Palais Fugger",
+   "meta_description": "Ölbilder von Harald Scheicher von Reisen ans Mittelmeer, gezeigt in der Galerie Palais Fugger in Klagenfurt zur Langen Nacht der Museen am 3. Oktober 2026."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "schwach-unperfekt-ausgefranst-echt-2026",
+  "en": {
+   "title": "Schwach.Unperfekt.Ausgefranst.Echt – Inés Urach · Klagenfurt",
+   "meta_description": "Solo exhibition by Inés Urach: painting, mixed media and collage. Europahaus Klagenfurt, Lange Nacht der Museen, 3 October 2026. 360° tour in preparation."
+  },
+  "de": {
+   "title": "Schwach.Unperfekt.Ausgefranst.Echt – Inés Urach · Klagenfurt",
+   "meta_description": "Einzelausstellung von Inés Urach: Malerei, Mischtechnik, Collage. Europahaus Klagenfurt, Lange Nacht der Museen, 3. Oktober 2026. 360°-Rundgang in Vorbereitung."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "spannungsfelder-und-perspektiven-2026",
+  "en": {
+   "title": "Spannungsfelder und Perspektiven – Kunstverein Velden",
+   "meta_description": "Group exhibition by members of the Kunstverein Velden at the Europahaus Klagenfurt for the Lange Nacht der Museen, 3 October 2026. 360° tour in preparation."
+  },
+  "de": {
+   "title": "Spannungsfelder und Perspektiven – Kunstverein Velden",
+   "meta_description": "Gruppenausstellung von Mitgliedern des Kunstvereins Velden im Europahaus Klagenfurt, Lange Nacht der Museen, 3. Oktober 2026. 360°-Rundgang in Vorbereitung."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "trigeniale-26",
+  "en": {
+   "title": "Trigeniale 26 – Studiogalerie im Stadthaus Klagenfurt",
+   "meta_description": "Five artists from Carinthia, Friuli and Slovenia at the Studiogalerie im Stadthaus Klagenfurt, 15–29 October 2026. 360° tour from 29 October."
+  },
+  "de": {
+   "title": "Trigeniale 26 – Studiogalerie im Stadthaus Klagenfurt",
+   "meta_description": "Fünf Kunstschaffende aus Kärnten, Friaul und Slowenien in der Studiogalerie im Stadthaus Klagenfurt, 15.–29. Oktober 2026. 360°-Rundgang ab 29. Oktober."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "verwandlung-und-zustand",
+  "en": {
+   "title": "Verwandlung und Zustand – Nicoline von Heyl · Parkschlössl",
+   "meta_description": "Painting and mixed media by Nicoline von Heyl at the Parkschlössl in Spittal an der Drau, 23 June–3 July 2026. Walk through it as a 360° tour in the archive."
+  },
+  "de": {
+   "title": "Verwandlung und Zustand – Nicoline von Heyl · Parkschlössl",
+   "meta_description": "Malerei und Mischtechnik von Nicoline von Heyl im Parkschlössl in Spittal an der Drau, 23. Juni–3. Juli 2026. Als 360°-Rundgang im Archiv begehbar."
+  }
+ },
+ {
+  "collection": "exhibitions",
+  "slug": "walther-preiml-sehnsucht",
+  "en": {
+   "title": "Walther Preiml – Sehnsucht · stARTup gallery · PERMAPHEMERA",
+   "meta_description": "Woodcuts and frottages by Walther Preiml on longing. stARTup gallery, Kötschach-Mauthen, 3 October–31 December 2026; opened at the Lange Nacht der Museen."
+  },
+  "de": {
+   "title": "Walther Preiml – Sehnsucht · stARTup gallery · PERMAPHEMERA",
+   "meta_description": "Holzschnitte und Frottagen von Walther Preiml in der stARTup gallery, Kötschach-Mauthen, 3. Oktober–31. Dezember 2026, eröffnet zur Langen Nacht der Museen."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "alpen-adria-galerie-klagenfurt",
+  "en": {
+   "title": "Alpen-Adria-Galerie – Municipal gallery, Klagenfurt",
+   "meta_description": "Municipal exhibition space at Theaterplatz 3 in Klagenfurt, part of the Stadtgalerie Klagenfurt. In the archive: the exhibition Armin Guerino – Durch die Zeit."
+  },
+  "de": {
+   "title": "Alpen-Adria-Galerie – städtische Galerie, Klagenfurt",
+   "meta_description": "Städtischer Ausstellungsort am Theaterplatz 3 in Klagenfurt, Teil der Stadtgalerie Klagenfurt. Im Archiv: die Ausstellung Armin Guerino – Durch die Zeit."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "bv-galerie-klagenfurt",
+  "en": {
+   "title": "BV Galerie Kärnten, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Gallery of the Carinthian branch of the Berufsvereinigung bildender Künstler Österreichs, Feldkirchner Straße 31, Klagenfurt. In the archive: BV Flohmarkt 2026."
+  },
+  "de": {
+   "title": "BV Galerie Kärnten, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Galerie des Kärntner Landesverbands der Berufsvereinigung bildender Künstler Österreichs, Feldkirchner Straße 31, Klagenfurt. Im Archiv: BV Flohmarkt 2026."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "europahaus-klagenfurt",
+  "en": {
+   "title": "Europahaus Klagenfurt – Cultural centre · PERMAPHEMERA",
+   "meta_description": "Listed cultural centre from around 1830 at Reitschulgasse 4 in Klagenfurt, with two exhibition halls on the first floor. Its exhibitions are in the archive."
+  },
+  "de": {
+   "title": "Europahaus Klagenfurt – Kulturzentrum · PERMAPHEMERA",
+   "meta_description": "Denkmalgeschütztes Kulturzentrum von etwa 1830, Reitschulgasse 4, Klagenfurt, mit zwei Ausstellungssälen im ersten Stock. Das Archiv zeigt seine Ausstellungen."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "galerie-im-schloss-porcia-spittal-drau",
+  "en": {
+   "title": "Galerie im Schloss Porcia, Spittal an der Drau",
+   "meta_description": "Contemporary art gallery of the town of Spittal an der Drau, in the Salamancakeller of Schloss Porcia since 1980. Its exhibitions are in the archive."
+  },
+  "de": {
+   "title": "Galerie im Schloss Porcia, Spittal an der Drau",
+   "meta_description": "Galerie für zeitgenössische Kunst der Stadt Spittal an der Drau, seit 1980 im Salamancakeller von Schloss Porcia. Das Archiv zeigt ihre Ausstellungen."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "galerie-im-stiegenhaus-seeboden",
+  "en": {
+   "title": "Galerie im Stiegenhaus, Seeboden am Millstätter See",
+   "meta_description": "Gallery over four floors of the staircase in the Impuls Center, Seeboden, run by the association kultur.im.puls. In the archive: Blinddate der Perspektiven."
+  },
+  "de": {
+   "title": "Galerie im Stiegenhaus, Seeboden am Millstätter See",
+   "meta_description": "Galerie über vier Geschoße im Stiegenhaus des Impuls Centers in Seeboden, betrieben vom Verein kultur.im.puls. Im Archiv: Blinddate der Perspektiven."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "galerie-palais-fugger-klagenfurt",
+  "en": {
+   "title": "Galerie Palais Fugger – artist-led gallery, Klagenfurt",
+   "meta_description": "Private gallery in the Palais Fugger, Theaterplatz 5, Klagenfurt, centred on Harald Scheicher’s landscape painting. In the archive: Mediterraneo."
+  },
+  "de": {
+   "title": "Galerie Palais Fugger – Autorengalerie, Klagenfurt",
+   "meta_description": "Private Galerie im Palais Fugger, Theaterplatz 5, Klagenfurt, mit Schwerpunkt auf der Landschaftsmalerei Harald Scheichers. Im Archiv: Mediterraneo."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "living-studio-klagenfurt",
+  "en": {
+   "title": "Living Studio – exhibition space, Stadtgalerie Klagenfurt",
+   "meta_description": "Exhibition area within the Stadtgalerie Klagenfurt, Theatergasse 4, for young and experimental positions. In the archive: Katharina Gruzei – Hydrotopia."
+  },
+  "de": {
+   "title": "Living Studio – Ausstellungsraum der Stadtgalerie Klagenfurt",
+   "meta_description": "Ausstellungsbereich in der Stadtgalerie Klagenfurt, Theatergasse 4, für junge und experimentelle Positionen. Im Archiv: Katharina Gruzei – Hydrotopia."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "parkschloessl-spittal-drau",
+  "en": {
+   "title": "Parkschlössl – exhibition house, Spittal an der Drau",
+   "meta_description": "Exhibition house in the city park of Spittal an der Drau, Bahnhofstraße 1a, and pilot gallery of PERMAPHEMERA. Exhibitions in the archive, many as 360° tours."
+  },
+  "de": {
+   "title": "Parkschlössl – Ausstellungshaus, Spittal an der Drau",
+   "meta_description": "Ausstellungshaus im Stadtpark von Spittal an der Drau, Bahnhofstraße 1a, und Pilotgalerie von PERMAPHEMERA. Ausstellungen im Archiv, viele als 360°-Rundgang."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "stadtgalerie-klagenfurt",
+  "en": {
+   "title": "Stadtgalerie Klagenfurt – Municipal gallery · PERMAPHEMERA",
+   "meta_description": "The City of Klagenfurt’s municipal gallery at Theatergasse 4: four spaces for contemporary art, photography and new media. In the archive: ALL ABOUT NATURE."
+  },
+  "de": {
+   "title": "Stadtgalerie Klagenfurt – städtische Galerie · PERMAPHEMERA",
+   "meta_description": "Städtische Galerie von Klagenfurt in der Theatergasse 4: vier Räume für zeitgenössische Kunst, Fotografie und Neue Medien. Im Archiv: ALL ABOUT NATURE."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "startup-gallery-koetschach-mauthen",
+  "en": {
+   "title": "stARTup gallery – Private gallery, Kötschach-Mauthen",
+   "meta_description": "Privately run gallery at Kötschach 5 in Kötschach-Mauthen, showing artists from the Gail valley and Upper Carinthia. In the archive: Walther Preiml – Sehnsucht."
+  },
+  "de": {
+   "title": "stARTup gallery – Privatgalerie, Kötschach-Mauthen",
+   "meta_description": "Privat geführte Galerie in Kötschach 5, Kötschach-Mauthen, für Kunstschaffende aus Gailtal und Oberkärnten. Im Archiv: Walther Preiml – Sehnsucht."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "studiogalerie-klagenfurt",
+  "en": {
+   "title": "Studiogalerie im Stadthaus Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Municipal exhibition room in the Stadthaus, Theaterplatz 3, Klagenfurt, provided by the city to artists and associations. In the archive: Trigeniale 26."
+  },
+  "de": {
+   "title": "Studiogalerie im Stadthaus Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Städtischer Ausstellungsraum im ersten Stock des Stadthauses, Theaterplatz 3, Klagenfurt, für Kunstschaffende und Vereine. Im Archiv: Trigeniale 26."
+  }
+ },
+ {
+  "collection": "venues",
+  "slug": "theatergalerie-klagenfurt",
+  "en": {
+   "title": "Theatergalerie – exhibition room, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Exhibition room next to the Stadtgalerie Klagenfurt at Theatergasse 4, looked after by the Stadtgalerie, with longer exhibitions on the theatre. Free admission."
+  },
+  "de": {
+   "title": "Theatergalerie – Ausstellungsraum, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Ausstellungsraum neben der Stadtgalerie Klagenfurt in der Theatergasse 4, von ihr betreut, mit längerfristigen Ausstellungen rund um das Theater. Eintritt frei."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "austriatoon",
+  "en": {
+   "title": "Austriatoon – Comic and cartoon association, Spittal",
+   "meta_description": "Austrian association of comic artists, cartoonists and illustrators, involved in the Spittaler Comicfestival. Its exhibitions are in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "Austriatoon – Comic- und Cartoon-Verein, Spittal an der Drau",
+   "meta_description": "Österreichischer Verein für Comic und Cartoon; wirkt am Spittaler Comicfestival in Spittal an der Drau mit. Seine Ausstellungen sind im PERMAPHEMERA-Archiv."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "bewegung-in-kultur",
+  "en": {
+   "title": "bewegung / movimento / gibanje IN kultur – initiative",
+   "meta_description": "Cultural initiative in Klagenfurt that organises exhibitions with artists from Carinthia, Friuli and Slovenia. Its exhibitions are in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "bewegung / movimento / gibanje IN kultur – Kulturinitiative",
+   "meta_description": "Kulturinitiative in Klagenfurt für Ausstellungen mit Kunstschaffenden aus Kärnten, Friaul und Slowenien. Ihre Ausstellungen sind im PERMAPHEMERA-Archiv."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "bv-kaernten",
+  "en": {
+   "title": "BV Kärnten – state association, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Carinthian branch of the Berufsvereinigung bildender Künstler Österreichs, running the BV Galerie Kärnten. Its exhibitions are in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "BV Kärnten – Landesverband, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Kärntner Landesverband der Berufsvereinigung bildender Künstler Österreichs; betreibt die BV Galerie Kärnten. Seine Ausstellungen sind im PERMAPHEMERA-Archiv."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "climate-fund-klagenfurt",
+  "en": {
+   "title": "Climate Fund Klagenfurt – association, Klagenfurt",
+   "meta_description": "Association founded in 2025 that raises money for climate projects in the greater Klagenfurt area. Exhibitions it took part in are in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "Climate Fund Klagenfurt – Verein, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Verein, gegründet 2025, der Geld für Klimaprojekte im Großraum Klagenfurt sammelt. Ausstellungen mit seiner Beteiligung sind im PERMAPHEMERA-Archiv."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "kaernten-museum",
+  "en": {
+   "title": "kärnten.museum – state museum, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "State museum of Carinthia for cultural history and natural science in the Rudolfinum, Klagenfurt. Exhibitions it took part in are in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "kärnten.museum – Landesmuseum, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Kultur- und naturwissenschaftliches Landesmuseum für Kärnten im Rudolfinum in Klagenfurt. Ausstellungen mit seiner Beteiligung sind im PERMAPHEMERA-Archiv."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "kultur-im-puls",
+  "en": {
+   "title": "kultur.im.puls – association, Seeboden am Millstätter See",
+   "meta_description": "Association in Seeboden am Millstätter See, founded in 2009, that runs the Galerie im Stiegenhaus. Its exhibitions are in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "kultur.im.puls – Verein, Seeboden am Millstätter See",
+   "meta_description": "Verein in Seeboden am Millstätter See, gegründet 2009, der die Galerie im Stiegenhaus betreibt. Seine Ausstellungen sind im PERMAPHEMERA-Archiv."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "kunstverein-velden",
+  "en": {
+   "title": "Kunstverein Velden – association, Velden am Wörther See",
+   "meta_description": "Art association in Velden am Wörther See with more than 120 members: courses, painting days, group exhibitions. Its exhibitions are in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "Kunstverein Velden – Verein, Velden am Wörther See",
+   "meta_description": "Kunstverein in Velden am Wörther See mit mehr als 120 Mitgliedern: Kurse, Maltage, Gemeinschaftsausstellungen. Seine Ausstellungen sind im PERMAPHEMERA-Archiv."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "lebenshilfe-spittal",
+  "en": {
+   "title": "Lebenshilfe Spittal – institution, Spittal an der Drau",
+   "meta_description": "Support organisation for people with disabilities in Spittal; its art workshops exhibit at the Parkschlössl. Its exhibitions are in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "Lebenshilfe Spittal – Institution, Spittal an der Drau",
+   "meta_description": "Einrichtung für Menschen mit Behinderung in Spittal an der Drau; ihre Kunstwerkstätten stellen im Parkschlössl aus. Die Ausstellungen sind im Archiv."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "spittaler-comicfestival",
+  "en": {
+   "title": "Spittaler Comicfestival – initiative, Spittal an der Drau",
+   "meta_description": "Annual comic festival in Spittal an der Drau; in 2026 it brought the exhibition “Auf Linien zum Leben” to the Parkschlössl, now in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "Spittaler Comicfestival – Initiative, Spittal an der Drau",
+   "meta_description": "Jährliches Comicfestival in Spittal an der Drau; 2026 zeigte es „Auf Linien zum Leben“ im Parkschlössl. Seine Ausstellungen sind im PERMAPHEMERA-Archiv."
+  }
+ },
+ {
+  "collection": "organisations",
+  "slug": "universitaet-klagenfurt",
+  "en": {
+   "title": "Universität Klagenfurt – institution, Klagenfurt",
+   "meta_description": "University in Klagenfurt, founded in 1970, with four faculties and over 13,300 students. Exhibitions it took part in are in the PERMAPHEMERA archive."
+  },
+  "de": {
+   "title": "Universität Klagenfurt – Institution, Klagenfurt",
+   "meta_description": "Universität in Klagenfurt, gegründet 1970, mit vier Fakultäten und über 13.300 Studierenden. Ausstellungen mit ihrer Beteiligung sind im PERMAPHEMERA-Archiv."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "adi-schmoelzer",
+  "en": {
+   "title": "Adi Schmölzer – artist, Spittal an der Drau · PERMAPHEMERA",
+   "meta_description": "Adi Schmölzer is a painter and architect in Spittal an der Drau whose paintings mostly depict women in motion. In the archive: “All the magic”, Parkschlössl."
+  },
+  "de": {
+   "title": "Adi Schmölzer – Künstler, Spittal an der Drau · PERMAPHEMERA",
+   "meta_description": "Adi Schmölzer ist Maler und Architekt in Spittal an der Drau; seine Bilder zeigen meist Frauen in Bewegung. Im Archiv: „All the magic“ im Parkschlössl."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "alda-grudina",
+  "en": {
+   "title": "Alda Grudina – artist, Goriška Brda, Slovenia · PERMAPHEMERA",
+   "meta_description": "Alda Grudina is a painter from Goriška Brda, Slovenia, who paints figurative, colourful works from nature. In the archive: “Trigeniale 26”, Klagenfurt."
+  },
+  "de": {
+   "title": "Alda Grudina – Künstlerin, Goriška Brda, Slowenien",
+   "meta_description": "Alda Grudina aus Goriška Brda, Slowenien, malt nach der Natur und ist Präsidentin des Künstlervereins DABLO. Im Archiv: „Trigeniale 26“ in Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "alessandra-minin",
+  "en": {
+   "title": "Alessandra Minin – artist, Tavagnacco, Italy · PERMAPHEMERA",
+   "meta_description": "Alessandra Minin paints in Tavagnacco near Udine and organises exchange exhibitions with Carinthia and Slovenia. In the archive: “Trigeniale 26”, Klagenfurt."
+  },
+  "de": {
+   "title": "Alessandra Minin – Künstlerin, Tavagnacco, Italien",
+   "meta_description": "Alessandra Minin ist Malerin in Tavagnacco bei Udine und Vizepräsidentin des Gruppo artistico culturale Albrecht Dürer. Im Archiv: „Trigeniale 26“, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "alfred-scheikl",
+  "en": {
+   "title": "Alfred Scheikl – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Alfred Scheikl, painter and art teacher in Klagenfurt, chairs the Kunstverein Velden. Exhibition: Spannungsfelder und Perspektiven, Europahaus Klagenfurt."
+  },
+  "de": {
+   "title": "Alfred Scheikl – Künstler, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Alfred Scheikl, Maler und Kunstlehrer in Klagenfurt, ist Obmann des Kunstvereins Velden. Ausstellung: Spannungsfelder und Perspektiven, Europahaus Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "anton-mahringer",
+  "en": {
+   "title": "Anton Mahringer – artist (1902–1974) · PERMAPHEMERA",
+   "meta_description": "Anton Mahringer (1902–1974), painter of the Nötscher Kreis, mainly painted the landscape of the Gail Valley. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Anton Mahringer – Künstler (1902–1974) · PERMAPHEMERA",
+   "meta_description": "Anton Mahringer (1902–1974), Maler des Nötscher Kreises, malte vor allem die Landschaft des Gailtals. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "armin-guerino",
+  "en": {
+   "title": "Armin Guerino – artist, Vienna and Schloss Saager",
+   "meta_description": "Armin Guerino, born 1961 in Vienna, works in painting, printmaking and photography and on projects in public space. In the archive: Durch die Zeit, Klagenfurt."
+  },
+  "de": {
+   "title": "Armin Guerino – Künstler, Wien und Schloss Saager",
+   "meta_description": "Armin Guerino, 1961 in Wien geboren, arbeitet in Malerei, Grafik und Fotografie sowie im öffentlichen Raum. Im Archiv: Durch die Zeit, Alpen-Adria-Galerie."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "arnold-poeschl",
+  "en": {
+   "title": "Arnold Pöschl – artist, Klagenfurt and Vienna",
+   "meta_description": "Arnold Pöschl, born 1981 in Klagenfurt, is a photographer: portrait, food, commercial and documentary work. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Arnold Pöschl – Künstler, Klagenfurt und Wien",
+   "meta_description": "Arnold Pöschl, 1981 in Klagenfurt geboren, ist freier Fotograf: Porträt, Food, Werbung und Dokumentation. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "astrid-langer",
+  "en": {
+   "title": "Astrid Langer – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Astrid Langer, born 1978 in Klagenfurt, combines painting, caricature and comics. In the archive: ALL ABOUT NATURE at the Stadtgalerie Klagenfurt (2026)."
+  },
+  "de": {
+   "title": "Astrid Langer – Künstlerin, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Astrid Langer, 1978 in Klagenfurt geboren, ist Malerin, Karikaturistin und Comiczeichnerin. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "bernhard-tragut",
+  "en": {
+   "title": "Bernhard Tragut – artist, Vienna and Purgstall",
+   "meta_description": "Bernhard Tragut, born 1957 in Purgstall, is a sculptor and painter working in painted linden wood. In the archive: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Bernhard Tragut – Künstler, Wien und Purgstall",
+   "meta_description": "Bernhard Tragut, 1957 in Purgstall geboren, ist Bildhauer und Maler und arbeitet mit bemaltem Lindenholz. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "birgit-moertl",
+  "en": {
+   "title": "Birgit Mörtl – artist · PERMAPHEMERA",
+   "meta_description": "Birgit Mörtl is a photographer focusing on travel and portrait photography. In the archive: “African Heart” at the Parkschlössl, Spittal an der Drau."
+  },
+  "de": {
+   "title": "Birgit Mörtl – Künstlerin · PERMAPHEMERA",
+   "meta_description": "Birgit Mörtl ist Fotografin mit Schwerpunkt Reise- und Porträtfotografie. Im Archiv: ihre Ausstellung „African Heart“ im Parkschlössl in Spittal an der Drau."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "christine-de-pauli",
+  "en": {
+   "title": "Christine De Pauli – artist · PERMAPHEMERA",
+   "meta_description": "Christine De Pauli is listed as an artist in PERMAPHEMERA, an Austrian online archive that records temporary art exhibitions in small galleries as 360° tours."
+  },
+  "de": {
+   "title": "Christine De Pauli – Künstler:in · PERMAPHEMERA",
+   "meta_description": "Christine De Pauli ist als Künstler:in im Archiv PERMAPHEMERA verzeichnet, das temporäre Ausstellungen in kleinen Galerien als 360°-Rundgänge dokumentiert."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "christine-huss",
+  "en": {
+   "title": "Christine Huss – artist · PERMAPHEMERA",
+   "meta_description": "Christine Huss is an artist in the group exhibition ALL ABOUT NATURE – Zwischen Idylle, Krise und Hoffnung at the Stadtgalerie Klagenfurt in 2026."
+  },
+  "de": {
+   "title": "Christine Huss – Künstler:in · PERMAPHEMERA",
+   "meta_description": "Christine Huss ist in der Gruppenausstellung ALL ABOUT NATURE – Zwischen Idylle, Krise und Hoffnung in der Stadtgalerie Klagenfurt (2026) vertreten."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "daniel-hosenberg",
+  "en": {
+   "title": "Daniel Hosenberg – artist, Vienna · PERMAPHEMERA",
+   "meta_description": "Daniel Hosenberg, born 1985 in Carinthia, combines painting, photography and collage. In the archive: ALL ABOUT NATURE at the Stadtgalerie Klagenfurt (2026)."
+  },
+  "de": {
+   "title": "Daniel Hosenberg – Künstler, Wien · PERMAPHEMERA",
+   "meta_description": "Daniel Hosenberg, 1985 in Kärnten geboren, verbindet Malerei, Fotografie und Collage. Im Archiv: ALL ABOUT NATURE in der Stadtgalerie Klagenfurt (2026)."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "drago-druskovic",
+  "en": {
+   "title": "Drago Druškovič – artist, Salzburg and Carinthia",
+   "meta_description": "Drago Druškovič, born in Klagenfurt in 1950, is a painter and printmaker in Salzburg and Carinthia; he also works on book illustration and tapestry."
+  },
+  "de": {
+   "title": "Drago Druškovič – Künstler, Salzburg und Kärnten",
+   "meta_description": "Drago Druškovič, 1950 in Klagenfurt geboren, ist Maler und Grafiker, lebt in Salzburg und Kärnten und befasst sich auch mit Buchillustration und Tapisserie."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "edith-payer",
+  "en": {
+   "title": "Edith Payer – artist, Vienna and Redlschlag",
+   "meta_description": "Edith Payer, born 1975 in Wolfsberg, works with collections, installations, textiles and artist’s books. In the archive: ALL ABOUT NATURE, Klagenfurt (2026)."
+  },
+  "de": {
+   "title": "Edith Payer – Künstlerin, Wien und Redlschlag",
+   "meta_description": "Edith Payer, 1975 in Wolfsberg geboren, arbeitet mit Sammlungen, Installationen, Textilien und Künstlerinnenbüchern. Im Archiv: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "elisabeth-juan",
+  "en": {
+   "title": "Elisabeth Juan – board member of BV Kärnten, Klagenfurt",
+   "meta_description": "Elisabeth Juan is secretary on the board and a member of BV Kärnten, the Carinthian association of visual artists that runs the BV Galerie in Klagenfurt."
+  },
+  "de": {
+   "title": "Elisabeth Juan – Vorstand der BV Kärnten, Klagenfurt",
+   "meta_description": "Elisabeth Juan ist Schriftführerin im Vorstand der BV Kärnten, die in Klagenfurt die BV Galerie betreibt, und gehört dem Verband auch als Mitglied an."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "elisabeth-penker",
+  "en": {
+   "title": "Elisabeth Penker – artist · PERMAPHEMERA",
+   "meta_description": "Elisabeth Penker, born 1974, works with sculpture, sound compositions and painted photo collage. In the archive: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Elisabeth Penker – Künstlerin · PERMAPHEMERA",
+   "meta_description": "Elisabeth Penker, geboren 1974, arbeitet mit Skulptur, Klangkompositionen und übermalter Fotocollage. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "elisabeth-wedenig",
+  "en": {
+   "title": "Elisabeth Wedenig – artist, Glanegg · PERMAPHEMERA",
+   "meta_description": "Elisabeth Wedenig, born 1980 in St. Veit an der Glan, is a painter and draughtswoman. In the archive: ALL ABOUT NATURE at the Stadtgalerie Klagenfurt (2026)."
+  },
+  "de": {
+   "title": "Elisabeth Wedenig – Künstlerin, Glanegg · PERMAPHEMERA",
+   "meta_description": "Elisabeth Wedenig, 1980 in St. Veit an der Glan geboren, ist Malerin und Zeichnerin. Im Archiv: ALL ABOUT NATURE in der Stadtgalerie Klagenfurt (2026)."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "eva-asaad",
+  "en": {
+   "title": "Eva Asaad – artist and curator, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Eva Asaad, photo artist and curator in Klagenfurt, has run the photography competition “Wort im Bild” since 2011 and photographs exhibitions at the BV Galerie."
+  },
+  "de": {
+   "title": "Eva Asaad – Künstlerin und Kuratorin, Klagenfurt",
+   "meta_description": "Eva Asaad, Fotokünstlerin und Kuratorin in Klagenfurt, betreut seit 2011 den Fotowettbewerb „Wort im Bild“ und fotografiert Ausstellungen der BV Galerie."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "franz-grabmayr",
+  "en": {
+   "title": "Franz Grabmayr – artist (1927–2015) · PERMAPHEMERA",
+   "meta_description": "Franz Grabmayr (1927–2015), born in Obervellach, painted thickly layered material pictures. In the archive: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Franz Grabmayr – Künstler (1927–2015) · PERMAPHEMERA",
+   "meta_description": "Franz Grabmayr (1927–2015), geboren in Obervellach, malte pastose Materialbilder. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt (2026)."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "frauke-danzer",
+  "en": {
+   "title": "Frauke Danzer – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Frauke Danzer, a freelance artist since 1999, makes installations, objects and works on paper. In the archive: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Frauke Danzer – Künstlerin, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Frauke Danzer, seit 1999 freischaffende Künstlerin, gestaltet Installationen, Objekte und Papierarbeiten. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "gabriel-wartbichler",
+  "en": {
+   "title": "Gabriel Wartbichler – artist, Feldkirchen in Kärnten",
+   "meta_description": "Gabriel Wartbichler, born 1992 in Klagenfurt, is a sculptor working mainly in wood, often with found objects. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Gabriel Wartbichler – Künstler, Feldkirchen in Kärnten",
+   "meta_description": "Gabriel Wartbichler, 1992 in Klagenfurt geboren, ist Bildhauer und arbeitet vor allem mit Holz. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt (2026)."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "gabriele-ruff",
+  "en": {
+   "title": "Gabriele Ruff – curator and art historian · PERMAPHEMERA",
+   "meta_description": "Gabriele Ruff, an art historian and curator born in Graz, curated “Armin Guerino – Durch die Zeit” at the Alpen-Adria-Galerie in Klagenfurt in 2026."
+  },
+  "de": {
+   "title": "Gabriele Ruff – Kuratorin, Kunsthistorikerin · PERMAPHEMERA",
+   "meta_description": "Gabriele Ruff, Kunsthistorikerin und Kuratorin aus Graz, kuratierte 2026 die Ausstellung „Armin Guerino – Durch die Zeit“ in der Alpen-Adria-Galerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "gerhard-lepicnik",
+  "en": {
+   "title": "Gerhard Lepicnik – organiser, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Gerhard Lepicnik is a cultural organiser in Klagenfurt and main organiser of the Kulturinitiative bewegungINkultur. In the archive: “Trigeniale 26”."
+  },
+  "de": {
+   "title": "Gerhard Lepicnik – Organisator, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Gerhard Lepicnik ist Kulturorganisator in Klagenfurt und Hauptorganisator der Kulturinitiative bewegungINkultur. Im Archiv: die Ausstellung „Trigeniale 26“."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "gernot-fischer-kondratovitch",
+  "en": {
+   "title": "Gernot Fischer-Kondratovitch – artist, Vienna and Carinthia",
+   "meta_description": "Gernot Fischer-Kondratovitch, born 1968 in Villach, is a painter, filmmaker and musician. In the archive: ALL ABOUT NATURE, Stadtgalerie Klagenfurt (2026)."
+  },
+  "de": {
+   "title": "Gernot Fischer-Kondratovitch – Künstler, Wien und Kärnten",
+   "meta_description": "Gernot Fischer-Kondratovitch, 1968 in Villach geboren, ist Maler, Filmemacher und Musiker. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt (2026)."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "gudrun-lenk-wane",
+  "en": {
+   "title": "Gudrun Lenk-Wane – artist, Vienna · PERMAPHEMERA",
+   "meta_description": "Gudrun Lenk-Wane, born 1967 in Villach, is a visual artist and stage designer working with textiles and plastics. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Gudrun Lenk-Wane – Künstlerin, Wien · PERMAPHEMERA",
+   "meta_description": "Gudrun Lenk-Wane, 1967 in Villach geboren, ist bildende Künstlerin und Bühnenbildnerin. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt (2026)."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "gudrun-zikulnig",
+  "en": {
+   "title": "Gudrun Zikulnig – artist, Kühnsdorf · PERMAPHEMERA",
+   "meta_description": "Gudrun Zikulnig, a painter in Kühnsdorf, works in oil, acrylic and collage. Exhibition: Spannungsfelder und Perspektiven, Europahaus Klagenfurt."
+  },
+  "de": {
+   "title": "Gudrun Zikulnig – Künstlerin, Kühnsdorf · PERMAPHEMERA",
+   "meta_description": "Gudrun Zikulnig, Malerin in Kühnsdorf, arbeitet mit Öl, Acryl und Collage. Ausstellung: Spannungsfelder und Perspektiven, Europahaus Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "harald-scheicher",
+  "en": {
+   "title": "Harald Scheicher – artist, Völkermarkt · PERMAPHEMERA",
+   "meta_description": "Harald Scheicher is a painter and physician in Völkermarkt who paints in oil outdoors. In the archive: “Mediterraneo”, Galerie Palais Fugger, Klagenfurt."
+  },
+  "de": {
+   "title": "Harald Scheicher – Künstler, Völkermarkt · PERMAPHEMERA",
+   "meta_description": "Harald Scheicher ist Maler und Arzt in Völkermarkt und malt Ölbilder im Freien. Im Archiv: „Mediterraneo“ in der Galerie Palais Fugger, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "helmut-ditsch",
+  "en": {
+   "title": "Helmut Ditsch – Austrian-Argentine artist · PERMAPHEMERA",
+   "meta_description": "Helmut Ditsch, born 1962 in Buenos Aires, paints large-format nature subjects: mountains, glaciers and the sea. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Helmut Ditsch – österreichisch-argentinischer Künstler",
+   "meta_description": "Helmut Ditsch, 1962 in Buenos Aires geboren, malt großformatige Naturmotive wie Gebirge, Gletscher und Meer. Im Archiv: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "herbert-boeckl",
+  "en": {
+   "title": "Herbert Boeckl – artist (1894–1966) · PERMAPHEMERA",
+   "meta_description": "Herbert Boeckl (1894–1966), painter born in Klagenfurt, professor at the Academy of Fine Arts Vienna from 1935. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Herbert Boeckl – Künstler (1894–1966) · PERMAPHEMERA",
+   "meta_description": "Herbert Boeckl (1894–1966), Maler aus Klagenfurt, ab 1935 Professor an der Akademie der bildenden Künste Wien. Im Archiv: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "herbert-de-colle",
+  "en": {
+   "title": "Herbert de Colle – artist, born 1978 in Wolfsberg",
+   "meta_description": "Herbert de Colle is a conceptual artist working with signs and words from pop culture in posters and sculptures. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Herbert de Colle – Künstler, geboren 1978 in Wolfsberg",
+   "meta_description": "Herbert de Colle ist Konzeptkünstler und arbeitet mit Zeichen und Begriffen der Popkultur, in Plakaten und Skulpturen. Im Archiv: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "herbert-meisslitzer",
+  "en": {
+   "title": "Herbert Meißlitzer – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Herbert Meißlitzer, a painter in Klagenfurt, works in watercolour, acrylic and oil. In the archive: “Farbe trifft Struktur”, Parkschlössl, Spittal an der Drau."
+  },
+  "de": {
+   "title": "Herbert Meißlitzer – Künstler, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Herbert Meißlitzer, Maler in Klagenfurt, arbeitet seit 1991 in Aquarell, Acryl und Öl. Im Archiv: „Farbe trifft Struktur“ im Parkschlössl, Spittal an der Drau."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "ines-urach",
+  "en": {
+   "title": "Inés Urach – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Inés Urach, a painter with a studio in the Europahaus Klagenfurt, works abstractly with paper and paint. Exhibition: Blinddate der Perspektiven, Seeboden."
+  },
+  "de": {
+   "title": "Inés Urach – Künstlerin, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Inés Urach, Malerin mit Atelier im Europahaus Klagenfurt, arbeitet abstrakt mit Papier und Farbe. Ausstellung: Blinddate der Perspektiven, Seeboden."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "inge-vavra",
+  "en": {
+   "title": "Inge Vavra – artist, Vienna and Krumpendorf",
+   "meta_description": "Inge Vavra, born 1942 in Augsburg, is a painter and graphic artist with art-in-architecture projects in Carinthia. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Inge Vavra – Künstlerin, Wien und Krumpendorf",
+   "meta_description": "Inge Vavra, 1942 in Augsburg geboren, ist Malerin und Grafikerin und realisierte Kunst-am-Bau-Projekte in Kärnten. Im Archiv: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "ingrid-proeller",
+  "en": {
+   "title": "Ingrid Pröller – artist, Vienna · PERMAPHEMERA",
+   "meta_description": "Ingrid Pröller is a painter in Vienna working in oil and acrylic. In the archive: her exhibition “Epische Gemälde” at Schloss Porcia, Spittal an der Drau."
+  },
+  "de": {
+   "title": "Ingrid Pröller – Künstlerin, Wien · PERMAPHEMERA",
+   "meta_description": "Ingrid Pröller ist Malerin in Wien und malt in Öl und Acryl. Im Archiv: „Epische Gemälde“ in der Galerie im Schloss Porcia, Spittal an der Drau."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "jochen-traar",
+  "en": {
+   "title": "Jochen Traar – artist, Vienna and St. Veit im Jauntal",
+   "meta_description": "Jochen Traar, born 1960 in Essen, is a sculptor working with everyday objects, glass, neon and public space. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Jochen Traar – Künstler, Wien und St. Veit im Jauntal",
+   "meta_description": "Jochen Traar, 1960 in Essen geboren, ist Bildhauer und arbeitet mit Alltagsgegenständen, Glas und Neon. Im Archiv: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "joerg-auzinger",
+  "en": {
+   "title": "Jörg Auzinger – artist, Vienna and Styria · PERMAPHEMERA",
+   "meta_description": "Jörg Auzinger, born 1972 in Linz, is a media artist and photographer working with interactive installations. In the archive: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Jörg Auzinger – Künstler, Wien und Steiermark · PERMAPHEMERA",
+   "meta_description": "Jörg Auzinger, 1972 in Linz geboren, ist Medienkünstler und Fotograf und arbeitet mit interaktiven Installationen. Im Archiv: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "johannes-puch",
+  "en": {
+   "title": "Johannes Puch – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Johannes Puch, born 1974 in Klagenfurt, is a photographer with his own studio there. In the archive: ALL ABOUT NATURE at the Stadtgalerie Klagenfurt (2026)."
+  },
+  "de": {
+   "title": "Johannes Puch – Künstler, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Johannes Puch, 1974 in Klagenfurt geboren, ist Fotograf und betreibt dort sein Fotostudio. Im Archiv: ALL ABOUT NATURE, Stadtgalerie Klagenfurt (2026)."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "judith-lava",
+  "en": {
+   "title": "Judith Lava – artist, Klagenfurt and Vienna · PERMAPHEMERA",
+   "meta_description": "Judith Lava is a video and installation artist who lives in Klagenfurt and Vienna. Exhibition: ALL ABOUT NATURE, Stadtgalerie Klagenfurt, 2026."
+  },
+  "de": {
+   "title": "Judith Lava – Künstlerin, Klagenfurt und Wien · PERMAPHEMERA",
+   "meta_description": "Judith Lava ist Video- und Installationskünstlerin und lebt in Klagenfurt und Wien. Ausstellung: ALL ABOUT NATURE, Stadtgalerie Klagenfurt 2026."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "judith-maria-kulle",
+  "en": {
+   "title": "Judith Maria Kulle – artist · PERMAPHEMERA",
+   "meta_description": "Judith Maria Kulle is listed as an artist in PERMAPHEMERA, with the exhibition “Farben im Park” at the Parkschlössl in Spittal an der Drau (2026)."
+  },
+  "de": {
+   "title": "Judith Maria Kulle – Künstler:in · PERMAPHEMERA",
+   "meta_description": "Judith Maria Kulle ist im Archiv PERMAPHEMERA als Künstler:in verzeichnet, mit der Ausstellung „Farben im Park“ im Parkschlössl in Spittal an der Drau (2026)."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "karl-bauer",
+  "en": {
+   "title": "Karl Bauer (1905–1993) – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Karl Bauer (1905–1993), painter and graphic artist in Klagenfurt: oil landscapes, mosaics, book covers. Exhibition: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Karl Bauer (1905–1993) – Künstler, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Karl Bauer (1905–1993), Maler und Grafiker in Klagenfurt: Landschaften in Öl, Mosaiken, Bucheinbände. Ausstellung: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "karl-nackler",
+  "en": {
+   "title": "Karl Nackler – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Karl Nackler is a draughtsman in Klagenfurt who draws portraits and nudes in white chalk on black card. In the archive: “Trigeniale 26”, Klagenfurt."
+  },
+  "de": {
+   "title": "Karl Nackler – Künstler, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Karl Nackler ist Zeichner in Klagenfurt und zeichnet Porträts und Akte mit weißer Kreide auf schwarzem Karton. Im Archiv: „Trigeniale 26“, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "karl-vouk",
+  "en": {
+   "title": "Karl Vouk – artist · PERMAPHEMERA",
+   "meta_description": "Karl Vouk is listed as an artist in PERMAPHEMERA, an Austrian online archive that records temporary art exhibitions in small galleries as 360° tours."
+  },
+  "de": {
+   "title": "Karl Vouk – Künstler:in · PERMAPHEMERA",
+   "meta_description": "Karl Vouk ist als Künstler:in im Archiv PERMAPHEMERA verzeichnet, das temporäre Ausstellungen in kleinen Galerien als 360°-Rundgänge dokumentiert."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "karlheinz-simonitsch",
+  "en": {
+   "title": "Karlheinz Simonitsch (1953–2015) – artist, Klagenfurt",
+   "meta_description": "Karlheinz Simonitsch (1953–2015), a painter and glass artist with a studio in Klagenfurt, turned to sacred subjects and church interiors from the 1990s."
+  },
+  "de": {
+   "title": "Karlheinz Simonitsch (1953–2015) – Künstler, Klagenfurt",
+   "meta_description": "Karlheinz Simonitsch (1953–2015), Maler und Glaskünstler mit Atelier in Klagenfurt, wandte sich ab den 1990er-Jahren sakralen Themen und Kirchenräumen zu."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "katharina-gruzei",
+  "en": {
+   "title": "Katharina Gruzei – artist, Vienna and Linz · PERMAPHEMERA",
+   "meta_description": "Katharina Gruzei, born 1983 in Klagenfurt, works with photography, video, film, sound and installation. In the archive: Hydrotopia, Living Studio, Klagenfurt."
+  },
+  "de": {
+   "title": "Katharina Gruzei – Künstlerin, Wien und Linz · PERMAPHEMERA",
+   "meta_description": "Katharina Gruzei, 1983 in Klagenfurt geboren, arbeitet mit Fotografie, Video, Film, Sound und Installation. Im Archiv: Hydrotopia im Living Studio, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "katya-frei",
+  "en": {
+   "title": "Katya Frei – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Katya Frei, printmaker and draughtswoman in Klagenfurt: lithography, woodcut, etching. Exhibition: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Katya Frei – Künstlerin, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Katya Frei, Druckgrafikerin und Zeichnerin in Klagenfurt: Lithografie, Holzschnitt, Radierung. Ausstellung: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "klaus-zlattinger",
+  "en": {
+   "title": "Klaus Zlattinger – artist · PERMAPHEMERA",
+   "meta_description": "Klaus Zlattinger was an artist, art educator and gallerist; he died in December 2016. In 2026 an exhibition in Seeboden marks ten years since his death."
+  },
+  "de": {
+   "title": "Klaus Zlattinger – Künstler · PERMAPHEMERA",
+   "meta_description": "Klaus Zlattinger war Künstler, Kunstvermittler und Galerist und starb im Dezember 2016. 2026 erinnert eine Ausstellung in Seeboden an seinen zehnten Todestag."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "lilith-erian",
+  "en": {
+   "title": "Lilith Erian – artist exhibiting in Carinthia · PERMAPHEMERA",
+   "meta_description": "Lilith Erian is a visual artist working mainly with photography: landscape, portrait and travel. Exhibition: ALL ABOUT NATURE, Stadtgalerie Klagenfurt, 2026."
+  },
+  "de": {
+   "title": "Lilith Erian – Künstlerin, stellt in Kärnten aus",
+   "meta_description": "Lilith Erian ist Künstlerin und arbeitet vor allem mit Fotografie: Landschaft, Porträt, Reisen. Ausstellung: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "margaretha-bauer",
+  "en": {
+   "title": "Margaretha Bauer – artist, BV Kärnten board member",
+   "meta_description": "Margaretha Bauer is an artist, vice president and treasurer of BV Kärnten and head of the BV Galerie in Klagenfurt. She is a member of the Kunstverein Kärnten."
+  },
+  "de": {
+   "title": "Margaretha Bauer – Künstlerin, Vorstand der BV Kärnten",
+   "meta_description": "Margaretha Bauer ist Künstlerin, Vizepräsidentin und Kassierin der BV Kärnten und leitet die BV Galerie in Klagenfurt. Mitglied des Kunstvereins Kärnten."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "marko-lipus",
+  "en": {
+   "title": "Marko Lipuš – artist, Vienna and Frankfurt · PERMAPHEMERA",
+   "meta_description": "Marko Lipuš works with experimental photography and video and lives in Vienna and Frankfurt. Exhibition: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Marko Lipuš – Künstler, Wien und Frankfurt · PERMAPHEMERA",
+   "meta_description": "Marko Lipuš arbeitet mit experimenteller Fotografie und Video und lebt in Wien und Frankfurt. Ausstellung: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "markus-guschelbauer",
+  "en": {
+   "title": "Markus Guschelbauer – artist, Vienna · PERMAPHEMERA",
+   "meta_description": "Markus Guschelbauer, photographer in Vienna, stages interventions in the landscape and photographs them. Exhibition: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Markus Guschelbauer – Künstler, Wien · PERMAPHEMERA",
+   "meta_description": "Markus Guschelbauer, Fotograf in Wien, setzt Eingriffe in die Landschaft und fotografiert sie. Ausstellung: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "markus-orsini-rosenberg",
+  "en": {
+   "title": "Markus Orsini Rosenberg – artist, born 1961 in Vienna",
+   "meta_description": "Markus Orsini Rosenberg paints landscapes, parks and lakes in oil and has exhibited in Carinthia since the 1990s. Exhibition: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Markus Orsini Rosenberg – Künstler, geb. 1961 in Wien",
+   "meta_description": "Markus Orsini Rosenberg malt Landschaften, Parks und Seen in Öl und stellt seit den 1990er-Jahren in Kärnten aus. Ausstellung: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "marlies-rapetti",
+  "en": {
+   "title": "Marlies Rapetti – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Marlies Rapetti, born in Königsberg in 1939, lives in Klagenfurt and works with paper, textiles and installations. Exhibition: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Marlies Rapetti – Künstlerin, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Marlies Rapetti, 1939 in Königsberg geboren, lebt in Klagenfurt und arbeitet mit Papier, Textil und Installationen. Ausstellung: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "marlis-lepicnik",
+  "en": {
+   "title": "Marlis Lepicnik – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Marlis Lepicnik is a painter and draughtswoman in Klagenfurt who works mainly from the live model. In the archive: “Trigeniale 26”, Studiogalerie im Stadthaus."
+  },
+  "de": {
+   "title": "Marlis Lepicnik – Künstlerin, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Marlis Lepicnik ist Malerin und Zeichnerin in Klagenfurt und arbeitet meist nach dem lebenden Modell. Im Archiv: „Trigeniale 26“, Studiogalerie im Stadthaus."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "melitta-moschik",
+  "en": {
+   "title": "Melitta Moschik – artist, Klagenfurt, Graz and Vienna",
+   "meta_description": "Melitta Moschik links art, science and technology in computer graphics, media installations and metal sculpture. Exhibition: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Melitta Moschik – Künstlerin, Klagenfurt, Graz und Wien",
+   "meta_description": "Melitta Moschik verbindet Kunst, Wissenschaft und Technik in Computergrafik, Medieninstallation und Metallplastik. Ausstellung: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "michaela-fliedl",
+  "en": {
+   "title": "Michaela Fliedl – artist, BV Kärnten board member",
+   "meta_description": "Michaela Fliedl, a painter and object artist in Klagenfurt, won first prize in the Carinthian Art Award in 2009 and is auditor of BV Kärnten."
+  },
+  "de": {
+   "title": "Michaela Fliedl – Künstlerin, Vorstand der BV Kärnten",
+   "meta_description": "Michaela Fliedl, Malerin und Objektkünstlerin in Klagenfurt, erhielt 2009 den 1. Preis des Carinthian Art Award und ist Rechnungsprüferin der BV Kärnten."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "nicoline-von-heyl",
+  "en": {
+   "title": "Nicoline von Heyl – artist, Krumpendorf am Wörthersee",
+   "meta_description": "Nicoline von Heyl is a painter and art teacher in Krumpendorf am Wörthersee. In the archive: “Verwandlung und Zustand”, Parkschlössl, Spittal an der Drau."
+  },
+  "de": {
+   "title": "Nicoline von Heyl – Künstlerin, Krumpendorf am Wörthersee",
+   "meta_description": "Nicoline von Heyl ist Malerin und Kunstlehrerin in Krumpendorf am Wörthersee. Im Archiv: „Verwandlung und Zustand“ im Parkschlössl, Spittal an der Drau."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "ondina-altran",
+  "en": {
+   "title": "Ondina Altran – artist, Monfalcone, Italy · PERMAPHEMERA",
+   "meta_description": "Ondina Altran is a painter in Monfalcone, Italy, who draws landscapes in charcoal and works in mixed media. In the archive: “Trigeniale 26”, Klagenfurt."
+  },
+  "de": {
+   "title": "Ondina Altran – Künstlerin, Monfalcone, Italien",
+   "meta_description": "Ondina Altran ist Malerin in Monfalcone, Italien, und arbeitet mit Kohle und Mischtechnik, vor allem an Landschaften. Im Archiv: „Trigeniale 26“ in Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "otmar-eder",
+  "en": {
+   "title": "Otmar Eder – artist · PERMAPHEMERA",
+   "meta_description": "Otmar Eder is listed as an artist in PERMAPHEMERA, an Austrian online archive that records temporary art exhibitions in small galleries as 360° tours."
+  },
+  "de": {
+   "title": "Otmar Eder – Künstler:in · PERMAPHEMERA",
+   "meta_description": "Otmar Eder ist als Künstler:in im Archiv PERMAPHEMERA verzeichnet, das temporäre Ausstellungen in kleinen Galerien als 360°-Rundgänge dokumentiert."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "peter-kohlweiss",
+  "en": {
+   "title": "Peter Kohlweiß – artist · PERMAPHEMERA",
+   "meta_description": "Peter Kohlweiß has painted since 1982, mainly watercolours and drawings of nature and architecture. In the archive: “Gehen & Sehen”, Spittal an der Drau."
+  },
+  "de": {
+   "title": "Peter Kohlweiß – Künstler · PERMAPHEMERA",
+   "meta_description": "Peter Kohlweiß malt seit 1982 Aquarelle und zeichnet, vor allem Natur und Architektur. Im Archiv: „Gehen & Sehen“ im Parkschlössl, Spittal an der Drau."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "peter-krawagna",
+  "en": {
+   "title": "Peter Krawagna – artist, Krumpendorf am Wörthersee",
+   "meta_description": "Peter Krawagna, a painter born in Klagenfurt in 1937, reduces landscape motifs to a few areas of colour. Exhibition: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Peter Krawagna – Künstler, Krumpendorf am Wörthersee",
+   "meta_description": "Peter Krawagna, Maler, 1937 in Klagenfurt geboren, reduziert Landschaftsmotive auf wenige Farbflächen. Ausstellung: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "peter-tuerk",
+  "en": {
+   "title": "Peter Türk – board member of BV Kärnten, Klagenfurt",
+   "meta_description": "Peter Türk is president of BV Kärnten, the Carinthian branch of the Austrian professional association of visual artists, with its own gallery in Klagenfurt."
+  },
+  "de": {
+   "title": "Peter Türk – Vorstand der BV Kärnten, Klagenfurt",
+   "meta_description": "Peter Türk ist Präsident der BV Kärnten, des Kärntner Landesverbands der Berufsvereinigung der bildenden Künstler Österreichs, mit Galerie in Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "richard-klammer",
+  "en": {
+   "title": "Richard Klammer – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Richard Klammer, painter and musician in Klagenfurt, studied under Markus Prachensky in Vienna. Exhibition: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Richard Klammer – Künstler, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Richard Klammer, Maler und Musiker in Klagenfurt, studierte bei Markus Prachensky in Wien. Ausstellung: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "roswitha-bucher-sakowski",
+  "en": {
+   "title": "Roswitha Bucher-Sakowski – artist, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Roswitha Bucher-Sakowski is a painter in Klagenfurt and deputy head of the Freie Akademie. In the archive: “Blinddate der Perspektiven” in Seeboden."
+  },
+  "de": {
+   "title": "Roswitha Bucher-Sakowski – Künstlerin, Klagenfurt",
+   "meta_description": "Roswitha Bucher-Sakowski ist Malerin in Klagenfurt und stellvertretende Leiterin der Freien Akademie. Im Archiv: „Blinddate der Perspektiven“ in Seeboden."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "santino-solace",
+  "en": {
+   "title": "Santino Solace – artist, Spittal an der Drau · PERMAPHEMERA",
+   "meta_description": "Santino Solace is a comic artist and illustrator in Spittal an der Drau and founder of SolaceWorks. In the archive: “Das, was entsteht” at the Parkschlössl."
+  },
+  "de": {
+   "title": "Santino Solace – Künstler, Spittal an der Drau",
+   "meta_description": "Santino Solace ist Comiczeichner und Illustrator in Spittal an der Drau und Gründer von SolaceWorks. Im Archiv: „Das, was entsteht“ im Parkschlössl."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "schulklassen-aus-kaernten",
+  "en": {
+   "title": "Schulklassen aus Kärnten – 17 primary schools in Carinthia",
+   "meta_description": "Classes from 17 Carinthian primary schools built animal rescue islands from natural materials. In the archive: “Biodiversität entdecken”, Klagenfurt."
+  },
+  "de": {
+   "title": "Schulklassen aus Kärnten – 17 Volksschulen · PERMAPHEMERA",
+   "meta_description": "Klassen aus 17 Kärntner Volksschulen bauten Tier-Rettungsinseln aus Naturmaterialien. Im Archiv: „Biodiversität entdecken“ im Living Studio, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "siegfried-zellot",
+  "en": {
+   "title": "Siegfried Zellot – artist, Mallenitzen am Faaker See",
+   "meta_description": "Siegfried Zellot (Zesi), painter and printmaker, works in acrylic and oil. Exhibition: Spannungsfelder und Perspektiven, Europahaus Klagenfurt."
+  },
+  "de": {
+   "title": "Siegfried Zellot – Künstler, Mallenitzen am Faaker See",
+   "meta_description": "Siegfried Zellot (Zesi), Maler und Druckgrafiker, malt in Acryl und Öl. Ausstellung: Spannungsfelder und Perspektiven, Europahaus Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "sigrid-friedmann",
+  "en": {
+   "title": "Sigrid Friedmann – artist, born 1978 in Klagenfurt",
+   "meta_description": "Sigrid Friedmann is a media artist working with video, photography, light objects and installations. Exhibition: ALL ABOUT NATURE, Stadtgalerie Klagenfurt."
+  },
+  "de": {
+   "title": "Sigrid Friedmann – Künstlerin, geb. 1978 in Klagenfurt",
+   "meta_description": "Sigrid Friedmann ist Medienkünstlerin und arbeitet mit Video, Fotografie, Lichtobjekten und Rauminstallationen. Ausstellung: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "slava-mohl",
+  "en": {
+   "title": "Slava Mohl – artist, Deutsch Kaltenbrunn · PERMAPHEMERA",
+   "meta_description": "Slava Mohl, a painter with a studio in Deutsch Kaltenbrunn (Burgenland), works with pigment and chalk. Exhibition: Spannungsfelder und Perspektiven, Klagenfurt."
+  },
+  "de": {
+   "title": "Slava Mohl – Künstlerin, Deutsch Kaltenbrunn · PERMAPHEMERA",
+   "meta_description": "Slava Mohl, Malerin mit Atelier in Deutsch Kaltenbrunn (Burgenland), malt mit Pigment und Kreide. Ausstellung: Spannungsfelder und Perspektiven, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "sylvia-campidell",
+  "en": {
+   "title": "Sylvia Campidell – artist · PERMAPHEMERA",
+   "meta_description": "Sylvia Campidell is listed as an artist in PERMAPHEMERA, with “Spannungsfelder und Perspektiven” in Klagenfurt and “Farben im Park” in Spittal an der Drau."
+  },
+  "de": {
+   "title": "Sylvia Campidell – Künstler:in · PERMAPHEMERA",
+   "meta_description": "Sylvia Campidell ist im Archiv als Künstler:in verzeichnet, mit „Spannungsfelder und Perspektiven“ in Klagenfurt und „Farben im Park“ in Spittal an der Drau."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "sylvia-ofner",
+  "en": {
+   "title": "Sylvia Ofner – artist · PERMAPHEMERA",
+   "meta_description": "Sylvia Ofner, born in Klagenfurt, makes sculptures from used fabrics and carpets. In the archive: “Aus der Asche empor”, Schloss Porcia, Spittal an der Drau."
+  },
+  "de": {
+   "title": "Sylvia Ofner – Künstlerin · PERMAPHEMERA",
+   "meta_description": "Sylvia Ofner ist Textilkünstlerin und fertigt Skulpturen aus Alttextilien und alten Teppichen. Im Archiv: „Aus der Asche empor“, Spittal an der Drau."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "ulli-sturm",
+  "en": {
+   "title": "Ulli Sturm – curator, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Ulli Sturm is an art educator and curator in Klagenfurt and co-founder of the kunstbureau. She curated ALL ABOUT NATURE at the Stadtgalerie Klagenfurt (2026)."
+  },
+  "de": {
+   "title": "Ulli Sturm – Kuratorin, Klagenfurt · PERMAPHEMERA",
+   "meta_description": "Ulli Sturm ist Kunstvermittlerin und Kuratorin in Klagenfurt und Mitgründerin des kunstbureau. Sie kuratierte ALL ABOUT NATURE in der Stadtgalerie Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "uwe-bressnik",
+  "en": {
+   "title": "Uwe Bressnik – artist, Vienna · PERMAPHEMERA",
+   "meta_description": "Uwe Bressnik, born 1961 in Villach, links visual art and music in painting, graphics and record objects. In the archive: ALL ABOUT NATURE, Klagenfurt (2026)."
+  },
+  "de": {
+   "title": "Uwe Bressnik – Künstler, Wien · PERMAPHEMERA",
+   "meta_description": "Uwe Bressnik, 1961 in Villach geboren, verbindet bildende Kunst und Musik in Malerei, Grafik und Plattenobjekten. Im Archiv: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "walter-hoesel",
+  "en": {
+   "title": "Walter Hösel – curator and artist · PERMAPHEMERA",
+   "meta_description": "Walter Hösel initiated and organises the annual design experiments of ARS CARINTHIA – KUNST & HANDWERK in Klagenfurt; he is a curator and makes his own objects."
+  },
+  "de": {
+   "title": "Walter Hösel – Kurator und Künstler · PERMAPHEMERA",
+   "meta_description": "Walter Hösel, Kurator und Objektgestalter, organisiert die von ihm initiierten Gestaltungsexperimente von ARS CARINTHIA – KUNST & HANDWERK in Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "walther-preiml",
+  "en": {
+   "title": "Walther Preiml – artist, Kötschach-Mauthen · PERMAPHEMERA",
+   "meta_description": "Walther Preiml is a printmaker and songwriter in Kötschach-Mauthen who works mainly in woodcut. In the archive: “Sehnsucht” at the stARTup gallery."
+  },
+  "de": {
+   "title": "Walther Preiml – Künstler, Kötschach-Mauthen · PERMAPHEMERA",
+   "meta_description": "Walther Preiml ist Druckgrafiker und Liedermacher in Kötschach-Mauthen und arbeitet vor allem im Holzschnitt. Im Archiv: „Sehnsucht“ in der stARTup gallery."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "werner-reiterer",
+  "en": {
+   "title": "Werner Reiterer – artist, Vienna · PERMAPHEMERA",
+   "meta_description": "Werner Reiterer, born in Graz in 1964, lives in Vienna and works with drawing, sculpture, installation and mobiles. Exhibition: ALL ABOUT NATURE, Klagenfurt."
+  },
+  "de": {
+   "title": "Werner Reiterer – Künstler, Wien · PERMAPHEMERA",
+   "meta_description": "Werner Reiterer, 1964 in Graz geboren, lebt in Wien und arbeitet mit Zeichnung, Skulptur, Installation und Mobiles. Ausstellung: ALL ABOUT NATURE, Klagenfurt."
+  }
+ },
+ {
+  "collection": "persons",
+  "slug": "wolfgang-daborer",
+  "en": {
+   "title": "Wolfgang Daborer – artist · PERMAPHEMERA",
+   "meta_description": "Wolfgang Daborer is listed as an artist in PERMAPHEMERA, an Austrian online archive that records temporary art exhibitions in small galleries as 360° tours."
+  },
+  "de": {
+   "title": "Wolfgang Daborer – Künstler:in · PERMAPHEMERA",
+   "meta_description": "Wolfgang Daborer ist als Künstler:in im Archiv PERMAPHEMERA verzeichnet, das temporäre Ausstellungen in kleinen Galerien als 360°-Rundgänge dokumentiert."
+  }
+ }
+]

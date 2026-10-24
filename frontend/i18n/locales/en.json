@@ -4,7 +4,7 @@
     "skipToContent": "Skip to content",
     "headerTagline": "A Curated Archive of Exhibitions",
     "seoTitle": "PERMAPHEMERA · Exhibitions preserved as 360° tours",
-    "seoDescription": "A curated Austrian archive of 360 degree exhibition documentation.",
+    "seoDescription": "Archive of temporary art exhibitions in Austrian galleries: 360° tours, artists, venues and dates, kept accessible after each exhibition has closed.",
     "archiveLoading": "Loading the archive…",
     "archiveUnavailable": "The archive could not be loaded from {url}.",
     "errorExplanation": "The page you were looking for is not available. You can return to the archive from here.",
@@ -228,8 +228,8 @@
   },
   "galleries": {
     "partOf": "Part of {name}",
-    "seoTitle": "Galleries across Austria · PERMAPHEMERA",
-    "seoDescription": "Browse {count} small Austrian galleries, project rooms and independent exhibition spaces in the PERMAPHEMERA directory.",
+    "seoTitle": "Galleries in Austria · PERMAPHEMERA",
+    "seoDescription": "{count} galleries and exhibition venues in Austria in the PERMAPHEMERA archive, each with address, map position and the exhibitions recorded there.",
     "breadcrumb": "Galleries",
     "eyebrow": "Gallery index",
     "title": "Where the exhibitions",
@@ -300,8 +300,8 @@
     "organiserPersons": "Organiser | Organisers"
   },
   "exhibitionsDirectory": {
-    "seoTitle": "Exhibitions in the archive · PERMAPHEMERA",
-    "seoDescription": "Search exhibitions preserved as spatial records in the PERMAPHEMERA archive.",
+    "seoTitle": "Exhibitions in Austrian galleries · PERMAPHEMERA",
+    "seoDescription": "All exhibitions in the PERMAPHEMERA archive, current, upcoming and past, with artists, galleries, dates and 360° tours. Search by title, artist or town.",
     "breadcrumb": "Exhibitions",
     "eyebrow": "Exhibition index",
     "title": "The exhibitions",
@@ -322,19 +322,19 @@
         "title": "Current exhibitions",
         "empty": "No exhibition is open today.",
         "all": "All current exhibitions ({count})",
-        "seoDescription": "Exhibitions open today, recorded in the PERMAPHEMERA archive."
+        "seoDescription": "Exhibitions open today in Austrian galleries, recorded in the PERMAPHEMERA archive with artists, venues, opening hours and a 360° tour where available."
       },
       "upcoming": {
         "title": "Upcoming exhibitions",
         "empty": "No upcoming exhibition is recorded yet.",
         "all": "All upcoming exhibitions ({count})",
-        "seoDescription": "Exhibitions that open soon, recorded in the PERMAPHEMERA archive."
+        "seoDescription": "Exhibitions opening soon in Austrian galleries: titles, artists, venues, opening dates and vernissages, recorded in the PERMAPHEMERA archive in advance."
       },
       "past": {
         "title": "Past exhibitions",
         "empty": "No past exhibition is recorded yet.",
         "all": "All past exhibitions ({count})",
-        "seoDescription": "Exhibitions that have closed, preserved in the PERMAPHEMERA archive."
+        "seoDescription": "Exhibitions that have closed, preserved in the PERMAPHEMERA archive: walk through them as 360° tours and see the artists, galleries and dates of each."
       }
     },
     "groupCount": "{count} exhibition | {count} exhibitions",
@@ -346,7 +346,7 @@
   },
   "artists": {
     "seoTitle": "Artists in the archive · PERMAPHEMERA",
-    "seoDescription": "Browse artists, exhibition records, venues and years represented in the PERMAPHEMERA archive.",
+    "seoDescription": "Artists whose exhibitions PERMAPHEMERA has recorded, from A to Z, each with exhibitions, galleries and years and a page with biography and links.",
     "ledgerArtists": "Artists",
     "linkedRecords": "Linked records",
     "index": "Index",
@@ -372,8 +372,8 @@
     "closeFor": "Close exhibitions for {name}"
   },
   "about": {
-    "seoTitle": "About the Project · Spatial exhibition memories",
-    "seoDescription": "Why PERMAPHEMERA keeps temporary exhibitions open to walk through after they close, and builds an Austria-wide index of galleries and exhibition venues.",
+    "seoTitle": "About the project · PERMAPHEMERA",
+    "seoDescription": "Why PERMAPHEMERA records temporary exhibitions as 360° tours and builds an online index of Austrian galleries, exhibitions and artists that stays open.",
     "breadcrumb": "About the Project",
     "eyebrow": "Purpose & principles",
     "title": "What passes",
@@ -434,8 +434,8 @@
     "viewGalleries": "Discover galleries"
   },
   "howItWorksPage": {
-    "seoTitle": "How it works · From exhibition space to 360° record",
-    "seoDescription": "How PERMAPHEMERA captures selected exhibitions on site, connects them into spatial 360° records and preserves them with editorial context.",
+    "seoTitle": "How it works · PERMAPHEMERA",
+    "seoDescription": "How PERMAPHEMERA records an exhibition on site, joins the panoramas into a 360° tour and publishes it with the artists, dates and details of the gallery.",
     "breadcrumb": "How it works",
     "eyebrow": "From space to record",
     "title": "Rooms become",
@@ -487,7 +487,7 @@
   },
   "contactPage": {
     "seoTitle": "Contact · PERMAPHEMERA",
-    "seoDescription": "Contact PERMAPHEMERA with exhibition proposals, corrections, collaborations, research enquiries and accessibility feedback.",
+    "seoDescription": "Contact PERMAPHEMERA to propose an exhibition for a 360° recording, report a correction, ask about a cooperation or send feedback on accessibility.",
     "breadcrumb": "Contact",
     "eyebrow": "Contact & proposals",
     "title": "A space, an exhibition,",
@@ -563,7 +563,7 @@
     },
     "imprint": {
       "seoTitle": "Imprint · PERMAPHEMERA",
-      "seoDescription": "Provider identification, media owner and editorial responsibility for PERMAPHEMERA.",
+      "seoDescription": "Legal notice of PERMAPHEMERA: media owner and service provider, editorial direction, copyright and image credits, and the legal basis for this notice.",
       "breadcrumb": "Imprint",
       "eyebrow": "Responsibility & disclosure",
       "title": "Who stands behind",
@@ -607,8 +607,8 @@
       }
     },
     "privacy": {
-      "seoTitle": "Privacy Policy · PERMAPHEMERA",
-      "seoDescription": "Information about personal-data processing, hosting, consent choices, optional external media and your privacy rights.",
+      "seoTitle": "Privacy policy · PERMAPHEMERA",
+      "seoDescription": "How PERMAPHEMERA handles personal data: hosting at Hetzner, delivery via Cloudflare, cookieless statistics with Umami, contact, storage times and rights.",
       "breadcrumb": "Privacy Policy",
       "eyebrow": "Data & transparency",
       "title": "As little data as possible.",
@@ -722,8 +722,8 @@
       }
     },
     "terms": {
-      "seoTitle": "Terms of Use · PERMAPHEMERA",
-      "seoDescription": "Terms governing use of the freely accessible PERMAPHEMERA exhibition archive.",
+      "seoTitle": "Terms of use · PERMAPHEMERA",
+      "seoDescription": "Terms for using the freely accessible PERMAPHEMERA archive: viewing, research and linking, the rights of the many contributors, external links and law.",
       "breadcrumb": "Terms of Use",
       "eyebrow": "Access & responsibility",
       "title": "Open to explore.",
@@ -781,7 +781,7 @@
     },
     "accessibility": {
       "seoTitle": "Accessibility · PERMAPHEMERA",
-      "seoDescription": "Accessibility target, measures implemented, known limitations and contact details for accessibility feedback concerning PERMAPHEMERA.",
+      "seoDescription": "Accessibility of PERMAPHEMERA: structure, keyboard use and reduced motion, the limits of 360° tours, alternatives, and how to send us your feedback.",
       "breadcrumb": "Accessibility",
       "eyebrow": "Access & participation",
       "title": "Spaces should be",
@@ -885,7 +885,7 @@
   },
   "organisations": {
     "seoTitle": "Organisations and people · PERMAPHEMERA",
-    "seoDescription": "{count} organisations, the organisers and curators behind the exhibitions, and the sponsors of the PERMAPHEMERA archive.",
+    "seoDescription": "{count} associations, initiatives and institutions that run galleries or organise exhibitions, plus the organisers, curators and sponsors of the archive.",
     "breadcrumb": "Organisations",
     "eyebrow": "Organisation index",
     "title": "Who organises",
