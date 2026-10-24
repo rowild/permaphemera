@@ -23,10 +23,7 @@ const roleSentence = computed(() => {
   return (locale.value === 'de' ? titles : titles.map((title) => title.toLocaleLowerCase('en'))).join(', ')
 })
 
-useSeoMeta({
-  title: () => [person.value?.name, roleLine.value, 'PERMAPHEMERA'].filter(Boolean).join(' · '),
-  description: () => person.value?.lede ?? t('persons.seoDescription', { name: person.value?.name })
-})
+usePageSeo(`/persons/${slug}/`)
 </script>
 
 <template>

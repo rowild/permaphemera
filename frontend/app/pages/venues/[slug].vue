@@ -186,10 +186,7 @@ const venueLedgerItems = computed(() => [
   { label: t('venue.ledgerLabels.admission'), value: t('common.free') }
 ])
 
-useSeoMeta({
-  title: () => `${venue.value?.name}, ${venue.value?.city} · PERMAPHEMERA`,
-  description: () => venue.value?.lede ?? t('venue.seoDescription', { name: venue.value?.name, city: venue.value?.city })
-})
+usePageSeo(`/venues/${slug}/`)
 </script>
 
 <template>

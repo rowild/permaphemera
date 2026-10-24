@@ -29,10 +29,7 @@ const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const archiveToday = useArchiveToday()
 
-useSeoMeta({
-  title: 'PERMAPHEMERA',
-  description: () => t('site.seoDescription')
-})
+usePageSeo('/')
 
 // Only galleries with a real photo are previewed here; the full list lives on /venues/.
 const directoryVenues = computed<Venue[]>(() => venues.value.filter((venueRecord) => venueRecord.has_image).map((venueRecord) => ({

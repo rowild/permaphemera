@@ -54,10 +54,7 @@ const sections = computed<LegalSection[]>(() => [
   }
 ])
 
-useSeoMeta({
-  title: () => t('legal.imprint.seoTitle'),
-  description: () => t('legal.imprint.seoDescription')
-})
+usePageSeo('/imprint/')
 </script>
 
 <template>

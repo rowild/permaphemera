@@ -78,10 +78,7 @@ watch([gallerySearchQuery, selectedState], ([query, state]) => {
   })
 })
 
-useSeoMeta({
-  title: () => t('galleries.seoTitle'),
-  description: () => t('galleries.seoDescription', { count: venues.value.length })
-})
+usePageSeo('/venues/')
 </script>
 
 <template>

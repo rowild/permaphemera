@@ -75,10 +75,7 @@ const editorialSections = computed<EditorialSection[]>(() => [
   }
 ])
 
-useSeoMeta({
-  title: () => t('howItWorksPage.seoTitle'),
-  description: () => t('howItWorksPage.seoDescription')
-})
+usePageSeo('/how-it-works/')
 </script>
 
 <template>

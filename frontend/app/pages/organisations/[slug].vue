@@ -25,10 +25,7 @@ const hostnameOf = (url: string) => {
   }
 }
 
-useSeoMeta({
-  title: () => `${organisation.value?.title} · PERMAPHEMERA`,
-  description: () => organisation.value?.lede ?? organisation.value?.description ?? t('organisations.seoDescription', { count: organisations.value.length })
-})
+usePageSeo(`/organisations/${slug}/`)
 </script>
 
 <template>

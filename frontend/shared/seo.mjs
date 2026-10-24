@@ -96,7 +96,10 @@ export const readSeo = (record, locale) => {
   }
 }
 
+// `messages` is { de, en } as in the locale files (Node scripts, tests), or a translate function
+// (locale, key, params) => text | undefined (the running site, whose messages are precompiled).
 const message = (messages, locale, key, params = {}) => {
+  if (typeof messages === 'function') return messages(locale, key, params)
   let value = key.split('.').reduce((node, part) => node?.[part], messages[locale])
   if (typeof value !== 'string') return undefined
   if (value.includes(' | ')) {

@@ -101,10 +101,7 @@ watch([artistSearchQuery, selectedLetter], ([query, letter]) => {
   })
 })
 
-useSeoMeta({
-  title: () => t('artists.seoTitle'),
-  description: () => t('artists.seoDescription')
-})
+usePageSeo('/artists/')
 </script>
 
 <template>

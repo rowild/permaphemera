@@ -15,10 +15,7 @@ const localePath = useLocalePath()
 const exhibitions = computed(() => groupExhibitionsByTime(venueExhibitions.value, archiveToday.value)[props.group])
 const title = computed(() => t(`exhibitionsDirectory.groups.${props.group}.title`))
 
-useSeoMeta({
-  title: () => t('exhibitionsDirectory.groupSeoTitle', { title: title.value }),
-  description: () => t(`exhibitionsDirectory.groups.${props.group}.seoDescription`)
-})
+usePageSeo(() => `/exhibitions/${props.group}/`)
 </script>
 
 <template>

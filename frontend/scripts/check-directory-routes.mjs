@@ -221,6 +221,19 @@ for (const [pattern, what] of [
 // Admission comes from the record; an empty field means free admission.
 assert.match(exhibitionPage, /\{\{ exhibition\.admission \?\? \$t\('exhibition\.freeAdmission'\) \}\}/, 'The exhibition page must show the admission field, or "Free admission" when it is empty.')
 
+// SEO: every page applies its entry from shared/seo.mjs (the same one the deploy snapshots);
+// a page that set its own meta would contradict its snapshot.
+const { readdir } = await import('node:fs/promises')
+const pageFiles = (await readdir(new URL('../app/pages/', import.meta.url), { recursive: true })).filter((file) => file.endsWith('.vue'))
+for (const file of pageFiles) {
+  const source = await readText(`app/pages/${file}`)
+  assert.ok(/usePageSeo\(/.test(source) || /<ExhibitionGroupPage/.test(source), `app/pages/${file} must call usePageSeo().`)
+}
+for (const file of [...pageFiles.map((file) => `app/pages/${file}`), 'app/components/ExhibitionGroupPage.vue']) {
+  assert.doesNotMatch(await readText(file), /useSeoMeta\(/, `${file} must not set its own meta; usePageSeo() does.`)
+}
+assert.match(await readText('app/components/ExhibitionGroupPage.vue'), /usePageSeo\(/, 'The exhibition group pages must call usePageSeo().')
+
 console.log(`Directory routes are valid (${galleries.length} galleries across ${new Set(galleries.map((gallery) => archive.locations.find((location) => location.id === gallery.location)?.state)).size} states; ${exhibitions.length} exhibition records).`)
 }
 

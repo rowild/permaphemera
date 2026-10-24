@@ -38,6 +38,9 @@ export interface SeoRead {
   priority?: string
 }
 
+/** Locale files as objects, or a translate function (the running site precompiles its messages). */
+export type SeoMessages = { de: object, en: object } | ((locale: SeoLocale, key: string, params?: Record<string, unknown>) => string | undefined)
+
 export declare const SITE_URL: string
 export declare const SITE_NAME: string
 export declare const DEFAULT_SHARE_IMAGE: string
@@ -46,6 +49,6 @@ export declare function stripMarkup(value: unknown): string
 export declare function fitTitle(base: string, max?: number): string
 export declare function fitDescription(text: string, max?: number): string
 export declare function readSeo(record: object, locale: SeoLocale): SeoRead
-export declare function recordSeoEntries(archive: object, options: { assetBase: string, messages: { de: object, en: object } }): SeoEntry[]
-export declare function staticSeoEntries(messages: { de: object, en: object }, counts?: { venues?: number, organisations?: number }): SeoEntry[]
+export declare function recordSeoEntries(archive: object, options: { assetBase: string, messages: SeoMessages }): SeoEntry[]
+export declare function staticSeoEntries(messages: SeoMessages, counts?: { venues?: number, organisations?: number }): SeoEntry[]
 export declare function headFor(entry: SeoEntry): SeoHead

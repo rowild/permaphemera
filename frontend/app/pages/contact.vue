@@ -58,10 +58,7 @@ const editorialSections = computed<EditorialSection[]>(() => [
   }
 ])
 
-useSeoMeta({
-  title: () => t('contactPage.seoTitle'),
-  description: () => t('contactPage.seoDescription')
-})
+usePageSeo('/contact/')
 </script>
 
 <template>

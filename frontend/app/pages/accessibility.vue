@@ -71,10 +71,7 @@ const sections = computed<LegalSection[]>(() => [
   }
 ])
 
-useSeoMeta({
-  title: () => t('legal.accessibility.seoTitle'),
-  description: () => t('legal.accessibility.seoDescription')
-})
+usePageSeo('/accessibility/')
 </script>
 
 <template>

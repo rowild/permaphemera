@@ -86,10 +86,7 @@ watch(searchQuery, (query) => {
   })
 })
 
-useSeoMeta({
-  title: () => t('organisations.seoTitle'),
-  description: () => t('organisations.seoDescription', { count: registerOrganisations.value.length })
-})
+usePageSeo('/organisations/')
 </script>
 
 <template>

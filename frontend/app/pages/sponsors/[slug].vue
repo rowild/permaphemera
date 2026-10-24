@@ -14,10 +14,7 @@ if (!sponsor.value) {
 }
 const hasSupports = computed(() => Boolean(sponsor.value && (sponsor.value.exhibitions.length || sponsor.value.venues.length || sponsor.value.persons.length || sponsor.value.towns.length)))
 
-useSeoMeta({
-  title: () => `${sponsor.value?.title} · ${t('sponsorPages.eyebrow')} · PERMAPHEMERA`,
-  description: () => sponsor.value?.description ?? t('sponsorPages.seoDescription', { name: sponsor.value?.title })
-})
+usePageSeo(`/sponsors/${slug}/`)
 </script>
 
 <template>

@@ -147,6 +147,20 @@ describe('headFor', () => {
   })
 })
 
+describe('messages as a translate function (the running site precompiles its locale files)', () => {
+  it('reads every text through the function and passes the count', () => {
+    const calls: [string, string, Record<string, unknown> | undefined][] = []
+    const translate = (locale: string, key: string, params?: Record<string, unknown>) => {
+      calls.push([locale, key, params])
+      return key === 'galleries.seoDescription' ? `${params?.count} galleries` : key === 'galleries.seoTitle' ? 'Galleries · PERMAPHEMERA' : undefined
+    }
+    const venues = staticSeoEntries(translate, { venues: 13 }).find((item) => item.path === '/venues/' && item.locale === 'en')!
+    expect(venues.title).toBe('Galleries · PERMAPHEMERA')
+    expect(venues.description).toBe('13 galleries')
+    expect(calls.some(([locale, key, params]) => locale === 'en' && key === 'galleries.seoDescription' && params?.count === 13)).toBe(true)
+  })
+})
+
 describe('staticSeoEntries', () => {
   it('reads the page texts from the locale files and fills in counts', () => {
     const list = staticSeoEntries(messages, { venues: 13, organisations: 10 })

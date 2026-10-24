@@ -103,7 +103,9 @@ const legalPages = await Promise.all(
 assert.match(appShell, /<ArchiveCookieNotice\s*\/>/, 'The privacy notice must be mounted globally.')
 assert.match(appShell, /htmlAttrs/, 'The active locale must set the document language attributes.')
 assert.match(appShell, /localeProperties\.value\.language/, 'The document language must follow the active locale.')
-assert.match(landingPage, /site\.seoDescription/, 'The landing-page description must be localized.')
+// The landing page's title and description come from shared/seo.mjs, which reads them from the locale files.
+assert.match(landingPage, /usePageSeo\('\/'\)/, 'The landing page must apply its SEO entry.')
+assert.match(await readText('shared/seo.mjs'), /path: '\/', title: 'site\.seoTitle', description: 'site\.seoDescription'/, 'The landing-page title and description must be localized.')
 assert.match(landingPage, /:to="artistLetterRoute\(letter\)"/, 'Landing-page alphabet letters must open the filtered artist directory.')
 assert.match(landingPage, /<ArchiveAlphabetRail[\s\S]*?controls/, 'The landing-page alphabet must expose scroll controls.')
 assert.doesNotMatch(landingPage, /\[ alphabet-filter \][^"\n]*border-b/, 'The landing-page alphabet must not retain its lower divider line.')

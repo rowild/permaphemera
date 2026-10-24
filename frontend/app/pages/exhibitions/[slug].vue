@@ -58,10 +58,7 @@ const tourStatus = computed(() => {
   }
 })
 
-useSeoMeta({
-  title: () => `${exhibition.value?.title} · ${exhibition.value?.artist} · PERMAPHEMERA`,
-  description: () => exhibition.value?.summary
-})
+usePageSeo(`/exhibitions/${routeSlug}/`)
 </script>
 
 <template>

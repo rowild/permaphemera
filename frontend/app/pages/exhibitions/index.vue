@@ -63,10 +63,7 @@ watch(exhibitionSearchQuery, (query) => {
   })
 })
 
-useSeoMeta({
-  title: () => t('exhibitionsDirectory.seoTitle'),
-  description: () => t('exhibitionsDirectory.seoDescription')
-})
+usePageSeo('/exhibitions/')
 </script>
 
 <template>

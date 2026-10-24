@@ -56,10 +56,7 @@ const sections = computed<LegalSection[]>(() => [
   }
 ])
 
-useSeoMeta({
-  title: () => t('legal.terms.seoTitle'),
-  description: () => t('legal.terms.seoDescription')
-})
+usePageSeo('/terms/')
 </script>
 
 <template>

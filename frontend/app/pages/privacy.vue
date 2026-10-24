@@ -143,10 +143,7 @@ const sections = computed<LegalSection[]>(() => [
   }
 ])
 
-useSeoMeta({
-  title: () => t('legal.privacy.seoTitle'),
-  description: () => t('legal.privacy.seoDescription')
-})
+usePageSeo('/privacy/')
 </script>
 
 <template>
