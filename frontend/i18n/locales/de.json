@@ -299,7 +299,9 @@
     "curators": "Kurator:in | Kurator:innen",
     "organiserPersons": "Organisator:in | Organisator:innen",
     "seoDescription": "Ausstellung „{title}“, {details}.",
-    "seoDescriptionArtists": "Ausstellung „{title}“ mit {artists}, {details}."
+    "seoDescriptionArtists": "Ausstellung „{title}“ mit {artists}, {details}.",
+    "seoDescriptionEvent": "Veranstaltung „{title}“, {details}.",
+    "seoDescriptionEventArtists": "Veranstaltung „{title}“ mit {artists}, {details}."
   },
   "exhibitionsDirectory": {
     "seoTitle": "Ausstellungen in Galerien in Österreich · PERMAPHEMERA",

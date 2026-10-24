@@ -28,10 +28,14 @@ async function main() {
   // Every file field the site turns into a URL (FILE_FIELDS: images, PDFs, logos, photos)
   // must point at a file Directus actually serves.
   const { COLLECTIONS, FILE_FIELDS } = await import('../shared/archive-schema.mjs')
-  const { staleTourWording } = await import('../shared/seo.mjs')
+  const { SHAREABLE_TYPES, staleTourWording } = await import('../shared/seo.mjs')
   const fileUrls = []
+  const fileOwners = []
   for (const [key, collection] of Object.entries(COLLECTIONS)) {
-    for (const field of FILE_FIELDS[collection] ?? []) for (const record of a[key] ?? []) if (record[field]) fileUrls.push(record[field])
+    for (const field of FILE_FIELDS[collection] ?? []) for (const record of a[key] ?? []) if (record[field]) {
+      fileUrls.push(record[field])
+      fileOwners.push(`${key}/${record.slug ?? record.id}.${field}`)
+    }
   }
   // Directus rate-limits to ~50 requests per second, so ask in small batches and
   // retry a 429 once after the limiter's window has passed.
@@ -52,12 +56,12 @@ async function main() {
     return results
   }
   const fileChecks = await headAll(fileUrls.map((url) => url.split('/assets/')[1]))
-  // The share image chosen in a record's SEO section: link previews need a JPEG, PNG or WebP
-  // (Directus converts only those to the JPEG it sends; an SVG would go out as it is).
+  // The share image chosen in a record's SEO section must be a type Directus converts to the JPEG
+  // a link preview needs (SHAREABLE_TYPES in shared/seo.mjs); an SVG would go out as it is.
   const shareImages = [exhibitions, venues, persons, organisations, sponsors].flat().filter((record) => record.seo?.og_image)
   const shareChecks = await headAll(shareImages.map((record) => record.seo.og_image))
-  const badShare = shareChecks.map((check, index) => (check.ok && ['image/jpeg', 'image/png', 'image/webp'].includes(check.type) ? null : `${shareImages[index].slug} (${check.ok ? check.type : 'missing'})`)).filter(Boolean)
-  const untyped = fileChecks.filter((check) => check.type === 'application/octet-stream').map((check) => check.id)
+  const badShare = shareChecks.map((check, index) => (check.ok && SHAREABLE_TYPES.has(check.type) ? null : `${shareImages[index].slug} (${check.ok ? check.type : 'missing'})`)).filter(Boolean)
+  const untyped = fileChecks.map((check, index) => (check.type === 'application/octet-stream' ? fileOwners[index] : null)).filter(Boolean)
   const named = (label, list) => (list.length ? `${label}: ${list.join(', ')}` : label)
   // The exhibition groups are fixed pages under /exhibitions/; a record with such a slug would have no page.
   const reservedSlugs = exhibitions.filter((exhibition) => ['current', 'upcoming', 'past'].includes(exhibition.slug)).map((exhibition) => exhibition.slug)
@@ -191,7 +195,7 @@ async function main() {
     [`every file field points at a file Directus serves (${fileUrls.length} checked)`, fileChecks.every((check) => check.ok)],
     // A file uploaded without its type (e.g. MCP files import) is neither scaled nor converted by Directus.
     [named('every file has its type in Directus, none is application/octet-stream', untyped), untyped.length === 0],
-    [named(`every SEO share image exists and is a JPEG, PNG or WebP (${shareImages.length} checked)`, badShare), badShare.length === 0],
+    [named(`every SEO share image exists and is a JPEG, PNG, WebP, TIFF or AVIF (${shareImages.length} checked)`, badShare), badShare.length === 0],
     [named('no exhibition slug is current, upcoming or past (fixed pages)', reservedSlugs), reservedSlugs.length === 0],
     ['the file check covers person and organisation photos', [...persons, ...organisations].every((record) => !record.image || fileUrls.includes(record.image))]
   ]

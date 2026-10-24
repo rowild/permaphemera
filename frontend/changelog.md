@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.31 - 2026-10-24 15:08:40 CEST
+
+- Every page now has a search description. Where no text was written, it is built from the record: title, artists, dates, gallery and town. Events are called events.
+- Link previews: a page without its own picture names "PERMAPHEMERA" as the image text; gallery and organisation previews describe the photo or logo they actually show; SVG logos are never used as preview pictures.
+- Characters like the gender star (Künstler*innen) or "#3" stay in titles and descriptions.
+- Four files in Directus had no file type (two Europahaus photos, the BV Galerie photo, the BV flea-market invitation). They have it now, so Directus scales them: smaller pages and working link previews. `pnpm check:data` now fails on such files and on unsuitable share pictures.
+- A deploy without a new build removes the pages of records that were taken offline.
+- The deploy, `pnpm check:data` and `pnpm tour:publish` warn when an exhibition's search text still says "360° tour in preparation" or "from <date>" after that has changed.
+
 ## 0.0.30 - 2026-10-24 13:45:20 CEST
 
 - Every page has its own search-engine and link-preview information: title, description, share image, canonical address, links between the German and English version, and structured data for Google (exhibitions as events with gallery, dates and organisers; persons; organisations; galleries; breadcrumbs).

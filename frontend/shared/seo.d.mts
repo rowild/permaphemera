@@ -45,6 +45,7 @@ export declare const SITE_URL: string
 export declare const SITE_NAME: string
 export declare const DEFAULT_SHARE_IMAGE: string
 export declare const SNAPSHOT_ATTRIBUTE: string
+export declare const SHAREABLE_TYPES: ReadonlySet<string>
 export declare function localizedPath(path: string, locale: SeoLocale): string
 export declare function stripMarkup(value: unknown): string
 export declare function fitTitle(base: string, max?: number): string

@@ -2,7 +2,7 @@
 // The deploy's SEO snapshots (scripts/seo-snapshot.mjs): the SPA shell with one route's head tags,
 // the files they go to, and the sitemap. The tags come from headFor() in shared/seo.mjs, the same
 // function the running site uses, and carry data-seo-snapshot so the app can drop them.
-import { mkdir, readdir, rm, rmdir, stat, writeFile } from 'node:fs/promises'
+import { mkdir, readdir, rm, stat, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { SNAPSHOT_ATTRIBUTE, headFor, localizedPath } from '../../shared/seo.mjs'
 
@@ -104,6 +104,28 @@ export const staleSnapshots = (files, entries) => {
  */
 export const writeSnapshots = async (output, shell, entries) => {
   const problems = []
+  // Old snapshots go first: on a disk that ignores case (macOS), a slug whose case changed shares
+  // its folder with the new snapshot, which removing afterwards would delete.
+  const found = []
+  for (const prefix of ['', 'en/']) for (const section of RECORD_SECTIONS) {
+    for (const slug of await readdir(join(output, prefix, section)).catch(() => [])) {
+      const file = `${prefix}${section}/${slug}/index.html`
+      if (await stat(join(output, file)).then((info) => info.isFile(), () => false)) found.push(file)
+    }
+  }
+  const removed = []
+  for (const file of staleSnapshots(found, entries)) {
+    // The whole folder goes: left without index.html, nginx would answer 403 instead of serving
+    // the app. Only hidden files (.DS_Store) may go with it; anything else stops the deploy.
+    const folder = dirname(join(output, file))
+    const others = (await readdir(folder)).filter((name) => name !== 'index.html' && !name.startsWith('.'))
+    if (others.length) {
+      problems.push(`${dirname(file)}/: holds files besides its old snapshot (${others.join(', ')}); without index.html nginx would answer 403`)
+      continue
+    }
+    await rm(folder, { recursive: true })
+    removed.push(file)
+  }
   for (const entry of entries) {
     const file = snapshotFile(entry)
     if (!file) {
@@ -114,19 +136,6 @@ export const writeSnapshots = async (output, shell, entries) => {
     problems.push(...verifySnapshot(html, entry))
     await mkdir(dirname(join(output, file)), { recursive: true })
     await writeFile(join(output, file), html)
-  }
-  const found = []
-  for (const prefix of ['', 'en/']) for (const section of RECORD_SECTIONS) {
-    for (const slug of await readdir(join(output, prefix, section)).catch(() => [])) {
-      const file = `${prefix}${section}/${slug}/index.html`
-      if (await stat(join(output, file)).then((info) => info.isFile(), () => false)) found.push(file)
-    }
-  }
-  const removed = staleSnapshots(found, entries)
-  for (const file of removed) {
-    await rm(join(output, file))
-    // Only an empty folder goes: rmdir refuses one that still holds other files.
-    await rmdir(dirname(join(output, file))).catch(() => {})
   }
   return { problems, removed }
 }

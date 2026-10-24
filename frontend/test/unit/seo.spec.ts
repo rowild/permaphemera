@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import de from '../../i18n/locales/de.json'
 import en from '../../i18n/locales/en.json'
@@ -347,5 +348,48 @@ describe('staleTourWording (the SEO text still talks about a tour that is not in
 
   it('reports any promised tour when there will be none', () => {
     expect(staleTourWording(said('360° tour in preparation.', { tour_status: 'restricted' }), '2026-10-24')).toBe(true)
+  })
+})
+
+describe('review fixes', () => {
+  it('uses no lookbehind, which Safari before 16.4 cannot parse', () => {
+    const source = readFileSync(new URL('../../shared/seo.mjs', import.meta.url), 'utf8')
+    expect(source).not.toMatch(/\(\?<[!=]/)
+  })
+
+  it('drops HTML comments and keeps a # without a following space', () => {
+    expect(fitDescription('<!-- note --><!--[if gte mso 9]><xml></xml><![endif]--><p>Text</p>')).toBe('Text')
+    expect(fitDescription('#3 der Reihe')).toBe('#3 der Reihe')
+    expect(fitDescription('<p>#kunst ist</p>')).toBe('#kunst ist')
+    expect(fitDescription('## Titel\nText')).toBe('Titel Text')
+  })
+
+  it('describes the shared gallery photo with its own image text', () => {
+    const hero = { ...venue, hero_image: `${assetBase}/assets/img-hero`, hero_image_placeholder: false, hero_image_alt: 'Hero view', image_alt: 'Street view' }
+    const english = entry(entries({ venues: [hero] }), '/venues/studiogalerie-klagenfurt/', 'en')
+    expect(english.image).toBe(`${assetBase}/assets/img-hero${SHARE}`)
+    expect(english.imageAlt).toBe('Hero view')
+    const plain = entry(entries({ venues: [{ ...venue, image_alt: 'Street view' }] }), '/venues/studiogalerie-klagenfurt/', 'en')
+    expect(plain.imageAlt).toBe('Street view')
+  })
+
+  it('describes a shared organisation logo with the logo text', () => {
+    const logo = { ...organisation, logo: `${assetBase}/assets/logo-png`, logo_type: 'image/png', logo_alt: 'Logo text', image_alt: 'Photo text' }
+    expect(entry(entries({ organisations: [logo] }), '/organisations/bewegung-in-kultur/', 'en').imageAlt).toBe('Logo text')
+  })
+
+  it('calls an event an event', () => {
+    const event = { ...bare(exhibition, ['summary', 'description']), kind: 'event' }
+    const list = entries({ exhibitions: [event] })
+    expect(entry(list, '/exhibitions/trigeniale-26/', 'de').description).toContain('Veranstaltung „Trigeniale 26“ mit ')
+    expect(entry(list, '/exhibitions/trigeniale-26/', 'en').description).toContain('Event “Trigeniale 26” with ')
+    expect((entry(list, '/exhibitions/trigeniale-26/', 'en').jsonLd[0] as { '@type': string })['@type']).toBe('Event')
+  })
+
+  it('reads only the tour wording, not other uses of "Rundgang ab" or "in Vorbereitung"', () => {
+    const said = (meta: string) => ({ ...exhibition, tour: null, tour_status: 'restricted', tour_available_from: null, seo: { meta_description: meta }, translations: [] })
+    expect(staleTourWording(said('Galerienrundgang ab 18 Uhr, Katalog in Vorbereitung.'), '2026-10-24')).toBe(false)
+    expect(staleTourWording(said('360°-Rundgang ab 19. Dezember.'), '2026-10-24')).toBe(true)
+    expect(staleTourWording(said('360° tour in preparation.'), '2026-10-24')).toBe(true)
   })
 })

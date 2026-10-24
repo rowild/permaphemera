@@ -278,11 +278,11 @@ async function main() {
   log('Published locally. Next:')
   log(`  1. pnpm dev  →  open /exhibitions/${record.slug}/ (German) or /en/exhibitions/${record.slug}/ and click Start experience.`)
   log('  2. In Directus, check tour_status (available) and tour_available_from: the button shows only when both allow it.')
-  log('  3. In Directus, section SEO (de and en): the description must not say the tour is in preparation or comes later.')
+  log('  3. In Directus, section SEO (de and en): the description must not call the tour "in preparation" once it is open, nor name an opening day that has come.')
   log('  4. pnpm deploy:hetzner. The tour folder itself must still be deployed; it is not tracked in git.')
   const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Vienna' })
   if (staleTourWording({ ...record, tour: tourPath }, today)) {
-    log(`WARNING: the SEO text of "${record.slug}" still announces the tour. Update it (step 3) before you deploy.`)
+    log(`WARNING: the SEO text of "${record.slug}" no longer fits its tour fields. Check tour_status (step 2) and the SEO text (step 3) before you deploy.`)
   }
 }
 

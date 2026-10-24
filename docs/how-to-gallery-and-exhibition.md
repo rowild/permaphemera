@@ -279,11 +279,11 @@ Announcements start the summary with "Announcement:" and the description with
 Every page has a search title (at most 60 characters) and description (130–160 characters) in
 the `seo` field: English on the record and in its `en` translation, German in `de`. Write them
 for new records with `directus/scripts/write-seo.mjs` (format and rules in its header and in
-`directus/README.md`). Without them the site builds a plain text from the record: title,
-artists, dates, gallery and town.
+`directus/README.md`). Without them the site takes the summary or lede, then the description,
+and only when both are empty builds a plain text from title, artists, dates, gallery and town.
 
-- The share image (`og_image`) is optional. Choose a JPEG, PNG or WebP, never an SVG logo:
-  link previews cannot show SVG, and `pnpm check:data` fails on it.
+- The share image (`og_image`) is optional. Choose a JPEG, PNG or WebP (TIFF and AVIF work too),
+  never an SVG logo: link previews cannot show SVG, and `pnpm check:data` fails on it.
 - An exhibition's description names its tour state ("360° tour from 29 October", "360° tour in
   preparation"). **Update it in de and en whenever that state changes**: the date is reached,
   the tour is published (`pnpm tour:publish`), or `tour_status` changes. `pnpm check:data`,

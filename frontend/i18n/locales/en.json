@@ -299,7 +299,9 @@
     "curators": "Curator | Curators",
     "organiserPersons": "Organiser | Organisers",
     "seoDescription": "Exhibition “{title}”, {details}.",
-    "seoDescriptionArtists": "Exhibition “{title}” with {artists}, {details}."
+    "seoDescriptionArtists": "Exhibition “{title}” with {artists}, {details}.",
+    "seoDescriptionEvent": "Event “{title}”, {details}.",
+    "seoDescriptionEventArtists": "Event “{title}” with {artists}, {details}."
   },
   "exhibitionsDirectory": {
     "seoTitle": "Exhibitions in Austrian galleries · PERMAPHEMERA",

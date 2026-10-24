@@ -146,16 +146,32 @@ describe('writeSnapshots', () => {
 
   it('writes every entry, a hidden page too, and removes the snapshots of records that are gone', async () => {
     output = await mkdtemp(join(tmpdir(), 'seo-snapshot-'))
-    for (const file of ['exhibitions/gone/index.html', 'en/persons/gone/index.html', 'venues/kept/index.html', 'venues/kept/photo.jpg', '_nuxt/entry.js']) await put(file)
+    for (const file of ['exhibitions/gone/index.html', 'en/persons/gone/index.html', 'en/persons/gone/.DS_Store', '_nuxt/entry.js']) await put(file)
     const hidden = { ...base, locale: 'en' as const, canonical: base.alternates.en, noIndex: true }
     const result = await writeSnapshots(output, shell, [base, hidden])
     expect(result.problems).toEqual([])
     expect(await readFile(join(output, 'exhibitions/trigeniale-26/index.html'), 'utf8')).toContain('<title data-seo-snapshot>')
     expect(await readFile(join(output, 'en/exhibitions/trigeniale-26/index.html'), 'utf8')).toContain('content="noindex, follow"')
-    expect([...result.removed].sort()).toEqual(['en/persons/gone/index.html', 'exhibitions/gone/index.html', 'venues/kept/index.html'])
+    expect([...result.removed].sort()).toEqual(['en/persons/gone/index.html', 'exhibitions/gone/index.html'])
+    // A folder left without index.html would make nginx answer 403 instead of serving the app.
     expect(existsSync(join(output, 'exhibitions/gone'))).toBe(false)
-    expect(existsSync(join(output, 'venues/kept/photo.jpg'))).toBe(true)
+    expect(existsSync(join(output, 'en/persons/gone'))).toBe(false)
     expect(existsSync(join(output, '_nuxt/entry.js'))).toBe(true)
+  })
+
+  it('stops on an old record folder that holds other files, which would answer 403', async () => {
+    output = await mkdtemp(join(tmpdir(), 'seo-snapshot-'))
+    for (const file of ['venues/kept/index.html', 'venues/kept/photo.jpg']) await put(file)
+    const result = await writeSnapshots(output, shell, [base])
+    expect(result.problems).toEqual(['venues/kept/: holds files besides its old snapshot (photo.jpg); without index.html nginx would answer 403'])
+    expect(existsSync(join(output, 'venues/kept/photo.jpg'))).toBe(true)
+  })
+
+  it('keeps the new snapshot when only the case of a slug changed (macOS ignores case)', async () => {
+    output = await mkdtemp(join(tmpdir(), 'seo-snapshot-'))
+    await put('exhibitions/Trigeniale-26/index.html')
+    await writeSnapshots(output, shell, [base])
+    expect(await readFile(join(output, 'exhibitions/trigeniale-26/index.html'), 'utf8')).toContain('<title data-seo-snapshot>')
   })
 
   it('reports an entry whose path leaves the output folder and writes nothing for it', async () => {
