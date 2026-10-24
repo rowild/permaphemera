@@ -32,6 +32,7 @@
     "test:watch": "vitest",
     "deploy:hetzner": "bash scripts/deploy-hetzner.sh",
     "cache:purge": "node scripts/purge-cloudflare.mjs",
+    "seo:snapshot": "node scripts/seo-snapshot.mjs",
     "viewer:update": "node scripts/update-tour-viewer.mjs"
   },
   "dependencies": {

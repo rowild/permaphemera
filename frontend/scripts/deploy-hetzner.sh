@@ -78,6 +78,11 @@ fi
 
 [[ -f .output/public/index.html ]] || { echo ".output/public/index.html is missing" >&2; exit 1; }
 
+# One static HTML per route with its SEO head, plus sitemap.xml (docs/superpowers/specs/2026-10-24-seo-design.md).
+# Fresh on every deploy, also with --skip-build, so newly published records get theirs.
+echo "[deploy] SEO snapshots"
+node scripts/seo-snapshot.mjs
+
 echo "[deploy] rsync .output/public -> $HOST:$REMOTE_DIR (tours excluded)"
 rsync -az --delete --exclude '/media/tours/' -e "ssh -i $KEY -o BatchMode=yes" .output/public/ "$HOST:$REMOTE_DIR/"
 if [[ -d public/media/tours ]]; then
