@@ -229,6 +229,17 @@ Translated: `short_title`, `logo_alt`, `image_alt`, `image_caption`, `lede`, `ab
 `id`, `sort`, `organisation` (M2O, CASCADE), `venue` (M2O → venues), `relation` (dropdown `runs` | `seat` | `exhibits_at`), audit. No `status` since 2026-10-14: the row is shown (and publicly readable) when every record it connects is published.
 Translated: `title`. One row per link; a row can hang on several records (one venue page shared by two exhibitions). Added 2026-09-15.
 
+#### SEO field `seo` (since 2026-10-24)
+
+On `pp_exhibitions`, `pp_venues`, `pp_persons`, `pp_organisations`, `pp_sponsors` and their
+translation tables: a `json` field with the Directus Labs SEO plugin interface (`seo-interface`,
+display `seo-display`), in its own "SEO" section. Keys: `title`, `meta_description`, `og_image` (file
+id), `no_index`, `no_follow`, `sitemap.change_frequency`, `sitemap.priority`. The record holds the
+English title and description plus the share image, robots and sitemap settings for both languages;
+a translation entry holds only title and description for its language, and `en` equals the record
+(`check:data`). The site reads it through `frontend/shared/seo.mjs`; design in
+`docs/superpowers/specs/2026-10-24-seo-design.md`.
+
 #### Structural junctions
 
 `pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`, `pp_mm__exhibitions_websites`, `pp_mm__persons_websites`, `pp_mm__organisations_websites`, `pp_mm__venues_websites`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`.

@@ -12,7 +12,7 @@ const target = (name) => (systemCollection(name) ? name : col(name))
 // The template an M2M alias shows: `{{<fk>.<display columns>}}`.
 const viaTemplate = (fkField, entity) => entity.display.map((c) => `{{${fkField}.${c}}}`).join(' ')
 
-const strip = (f) => { const { relation, translated, ...clean } = f; return clean }
+const strip = (f) => { const { relation, translated, translationOptions, ...clean } = f; return clean }
 
 export function buildAll(overrides = {}) {
   const entities = clone(baseEntities)
@@ -147,6 +147,7 @@ export function buildAll(overrides = {}) {
       const copies = translated.map((f) => {
         const c = clone(strip(f))
         c.meta.note = `Translated field for ${name}.${f.field}`
+        if (f.translationOptions) c.meta.options = f.translationOptions
         delete c.meta.required; delete c.meta.group; delete c.meta.sort
         c.schema.is_nullable = true; delete c.schema.is_unique
         return c

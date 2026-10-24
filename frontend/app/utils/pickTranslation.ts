@@ -1,4 +1,4 @@
-import type { TranslationEntry } from '~/types/content'
+import type { SeoData, TranslationEntry } from '~/types/content'
 
 /**
  * Selects the translation for `locale`, falling back locale → en → first available.
@@ -12,11 +12,11 @@ import type { TranslationEntry } from '~/types/content'
 export const pickTranslation = <T extends { translations: TranslationEntry[] }>(
   record: T,
   locale: string
-): Record<string, string | string[]> => {
+): Record<string, string | string[] | SeoData> => {
   const byCode = (code: string) => record.translations.find((entry) => entry.languages_code === code)
   const chain = [byCode(locale), byCode('en'), record.translations[0]].filter(Boolean) as TranslationEntry[]
 
-  const merged: Record<string, string | string[]> = {}
+  const merged: Record<string, string | string[] | SeoData> = {}
   for (const entry of chain) {
     for (const [field, value] of Object.entries(entry)) {
       if (field === 'languages_code') continue

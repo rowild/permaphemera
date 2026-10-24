@@ -39,9 +39,23 @@ export type ContentStatus = 'draft' | 'published' | 'archived'
 
 export type VenueType = 'gallery' | 'museum' | 'kunsthalle' | 'art_cafe' | 'open_air' | 'forum'
 
+/**
+ * The `seo` JSON of the Directus Labs SEO plugin (directus/README.md "Extensions"). On a record: the
+ * English title and description plus share image, robots and sitemap for both languages; in a
+ * translation entry: title and description for that language only.
+ */
+export interface SeoData {
+  title?: string | null
+  meta_description?: string | null
+  og_image?: string | null
+  no_index?: boolean
+  no_follow?: boolean
+  sitemap?: { change_frequency?: string, priority?: string } | null
+}
+
 export interface TranslationEntry {
   languages_code: string
-  [field: string]: string | string[] | null
+  [field: string]: string | string[] | SeoData | null
 }
 
 /** pp_locations — the town. */
@@ -91,6 +105,8 @@ export interface VenueRecord {
   status: ContentStatus
   sort: number
   translations: TranslationEntry[]
+  /** Search engines and link previews; see SeoData. */
+  seo?: SeoData | null
 }
 
 /** pp_persons — people and collectives, each with a page at /persons/<slug>/. Links live in pp_websites. */
@@ -119,6 +135,8 @@ export interface PersonRecord {
   status: ContentStatus
   sort: number
   translations?: TranslationEntry[]
+  /** Search engines and link previews; see SeoData. */
+  seo?: SeoData | null
 }
 
 /** pp_roles — what a person can be: artist, curator, … */
@@ -181,6 +199,8 @@ export interface ExhibitionRecord {
   status: ContentStatus
   sort: number
   translations: TranslationEntry[]
+  /** Search engines and link previews; see SeoData. */
+  seo?: SeoData | null
 }
 
 /** pp_exhibition_statements — one person's words about one show. */
@@ -206,6 +226,8 @@ export interface SponsorRecord {
   status: ContentStatus
   sort: number
   translations: TranslationEntry[]
+  /** Search engines and link previews; see SeoData. */
+  seo?: SeoData | null
 }
 
 /** pp_navigations — one row per menu. */
@@ -279,6 +301,8 @@ export interface OrganisationRecord {
   status: ContentStatus
   sort: number
   translations: TranslationEntry[]
+  /** Search engines and link previews; see SeoData. */
+  seo?: SeoData | null
 }
 
 /** pp_organisation_memberships — one person in one function in one organisation. */

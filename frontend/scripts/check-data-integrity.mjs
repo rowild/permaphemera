@@ -158,6 +158,11 @@ async function main() {
     ['venues: English on the record equals the en entry', englishMirrors(venues, ['description', 'lede', 'about_html', 'image_caption', 'coordinate_label'])],
     ['exhibitions: English on the record equals the en entry', englishMirrors(exhibitions, ['title', 'summary', 'description', 'date_range', 'opening_hours', 'vernissage', 'admission', 'image_alt', 'medium'])],
     ['statements: English on the record equals the en entry', englishMirrors(statements, ['prompt', 'statement'])],
+    // SEO: the record's title and description are the English ones (the settings live only on the record).
+    ['seo: English title and description on the record equal the en entry', [exhibitions, venues, persons, organisations, a.sponsors].every((records) => records.every((record) => {
+      const entry = en(record)?.seo ?? null
+      return ['title', 'meta_description'].every((key) => norm(record.seo?.[key]) === norm(entry?.[key]))
+    }))],
     ['roles: English on the record equals the en entry', englishMirrors(roles, ['title'])],
     ['sponsors: English on the record equals the en entry', englishMirrors(sponsors, ['description'])],
     ['websites: English on the record equals the en entry', englishMirrors(websites, ['title'])],

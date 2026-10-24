@@ -90,6 +90,28 @@ test('translated fields exist on the host and in the translation table with the 
   assert.equal(field('pp_exhibition_participations', 'translations'), undefined)
 })
 
+test('seo: plugin field with all controls on the record, text only in the translation, in its own SEO section', () => {
+  const controls = (f) => ({ showOgImage: f.meta.options.showOgImage, showSearchControls: f.meta.options.showSearchControls, showSitemap: f.meta.options.showSitemap })
+  for (const key of ['exhibitions', 'venues', 'persons', 'organisations', 'sponsors']) {
+    const host = field(`pp_${key}`, 'seo')
+    assert.ok(host, `pp_${key}.seo`)
+    assert.equal(host.type, 'json')
+    assert.equal(host.meta.interface, 'seo-interface')
+    assert.equal(host.meta.display, 'seo-display')
+    assert.deepEqual(host.meta.special, ['cast-json'])
+    assert.deepEqual(controls(host), { showOgImage: true, showSearchControls: true, showSitemap: true }, `pp_${key}.seo controls`)
+    assert.equal(host.meta.group, 'ui_group_seo')
+    const group = field(`pp_${key}`, 'ui_group_seo')
+    // The accordion section folds by itself; a detail group inside it would repeat "SEO".
+    assert.equal(group.meta.interface, 'group-raw')
+    assert.equal(group.meta.group, 'ui_accordion_main')
+    const copy = field(`pp_translations__${key}`, 'seo')
+    assert.ok(copy, `pp_translations__${key}.seo`)
+    assert.equal(copy.meta.interface, 'seo-interface')
+    assert.deepEqual(controls(copy), { showOgImage: false, showSearchControls: false, showSitemap: false }, `pp_translations__${key}.seo controls`)
+  }
+})
+
 test('a child table has the host FK hidden and CASCADE, and the host gets the alias', () => {
   const rel = relations.find((r) => r.collection === 'pp_exhibition_statements' && r.field === 'exhibition')
   assert.equal(rel.related_collection, 'pp_exhibitions')

@@ -1,10 +1,10 @@
 // directus/scripts/schema.mjs
 // The PERMAPHEMERA schema as data. Names of junction tables, translation tables
 // and FK columns are never written here; naming.mjs derives them.
-import { bool, date, dropdown, file, float, m2o, markdown, richText, str, text } from './fields.mjs'
+import { bool, date, dropdown, file, float, m2o, markdown, richText, seo, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-10-15.2'
+export const SCHEMA_VERSION = '2026-10-24.1'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -61,6 +61,7 @@ export const entities = {
       richText('about_html', { translated: true, label: 'About', note: 'Paragraphs, bold, italic, lists. No links: add them under Links.' }),
       str('image_caption', { translated: true }),
       str('coordinate_label', { translated: true, note: 'Human-readable DMS readout.' }),
+      seo({ titleTemplate: '{{title}}', descriptionTemplate: '{{lede}}', translationDescriptionTemplate: '{{lede}}' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'slug', 'type', 'location', 'part_of', 'featured', 'archive_number']),
@@ -68,6 +69,7 @@ export const entities = {
       section('images', 'Images', ['image', 'image_alt', 'hero_image', 'hero_image_alt', 'image_caption']),
       section('relations', 'Relations', ['spaces', 'exhibitions', 'further_exhibitions', 'organisation_relations', 'persons', 'sponsors']),
       content(['lede', 'about_html', 'description']),
+      section('seo', 'SEO', ['seo']),
     ],
   },
 
@@ -89,6 +91,7 @@ export const entities = {
       str('image_caption', { translated: true, note: 'Credit line under the photo: "<what> · Foto: <holder>".' }),
       str('lede', { translated: true, note: 'One line under the name on the person page.' }),
       richText('about_html', { translated: true, label: 'Biography', note: 'Biography (paragraphs, bold, italic, lists); the last sentence names the source. No links: add them under Links.' }),
+      seo({ titleTemplate: '{{first_name}} {{last_name}}', descriptionTemplate: '{{lede}}', translationDescriptionTemplate: '{{lede}}' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'first_name', 'last_name', 'middle_initial', 'display_name', 'slug', 'is_collective', 'roles']),
@@ -97,6 +100,7 @@ export const entities = {
       section('text', 'Text', ['lede', 'about_html']),
       section('links', 'Links', ['websites']),
       section('relations', 'Relations', ['participations', 'memberships', 'venues', 'sponsors']),
+      section('seo', 'SEO', ['seo']),
     ],
   },
 
@@ -139,6 +143,7 @@ export const entities = {
       str('tour', { note: 'Root-relative folder of the exported 360° tour, e.g. /media/tours/<id>/. Empty while none is published.' }),
       dropdown('tour_status', ['available', 'restricted', 'unavailable'], { default: 'unavailable' }),
       date('tour_available_from', { note: 'Usually the last day of the exhibition (= end_date). Empty means at once.' }),
+      seo({ titleTemplate: '{{title}}', descriptionTemplate: '{{summary}}', translationTitleTemplate: '{{title}}', translationDescriptionTemplate: '{{summary}}' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'slug', 'kind', 'primary_venue']),
@@ -147,6 +152,7 @@ export const entities = {
       section('tour', 'Tour', ['tour', 'tour_status', 'tour_available_from']),
       section('relations', 'Relations', ['participations', 'organisers', 'statements', 'websites', 'further_venues', 'sponsors']),
       content(['summary', 'description']),
+      section('seo', 'SEO', ['seo']),
     ],
   },
 
@@ -214,6 +220,7 @@ export const entities = {
       str('lede', { translated: true, note: 'One-line teaser.' }),
       richText('about_html', { translated: true, label: 'About', note: 'Paragraphs, bold, italic, lists. No links: add them under Links.' }),
       text('description', { translated: true }),
+      seo({ titleTemplate: '{{title}}', descriptionTemplate: '{{lede}}', translationDescriptionTemplate: '{{lede}}' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'short_title', 'slug', 'kind']),
@@ -221,6 +228,7 @@ export const entities = {
       section('media', 'Media', ['logo', 'logo_alt', 'image', 'image_alt', 'image_caption']),
       section('relations', 'Relations', ['venue_relations', 'exhibitions', 'members', 'websites']),
       content(['lede', 'about_html', 'description']),
+      section('seo', 'SEO', ['seo']),
     ],
   },
 
@@ -264,11 +272,13 @@ export const entities = {
       str('website_url', { width: 'half' }),
       file('logo', { image: true }),
       text('description', { translated: true }),
+      seo({ titleTemplate: '{{title}}', descriptionTemplate: '{{description}}', translationDescriptionTemplate: '{{description}}' }),
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'slug', 'website_url', 'logo']),
       section('relations', 'Relations', ['venues', 'exhibitions', 'persons', 'locations']),
       content(['description']),
+      section('seo', 'SEO', ['seo']),
     ],
   },
 

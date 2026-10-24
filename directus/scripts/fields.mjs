@@ -98,6 +98,27 @@ export const jsonArray = (field, opts = {}) => withOpts(base(field, 'json',
   { interface: 'input-code', options: { language: 'json' }, special: ['cast-json'], width: 'full' },
   { is_nullable: true }), opts)
 
+// SEO through the Directus Labs SEO plugin (README "Extensions"). The record's field holds the
+// English title and description plus what counts for both languages (share image, robots,
+// sitemap); the translation copy holds only title and description for its language.
+export const seo = (opts = {}) => {
+  const payload = base('seo', 'json', {
+    interface: 'seo-interface', display: 'seo-display', special: ['cast-json'], width: 'full',
+    options: {
+      titleTemplate: opts.titleTemplate ?? null, descriptionTemplate: opts.descriptionTemplate ?? null,
+      showOgImage: true, showSearchControls: true, showSitemap: true, defaultChangeFrequency: 'monthly', defaultPriority: '0.5',
+    },
+    display_options: { showSearchPreview: true },
+    note: 'Search engines and link previews. Here: English text, share image, robots and sitemap for both languages. Translations: title and description per language.',
+  }, { is_nullable: true })
+  payload.translated = true
+  payload.translationOptions = {
+    titleTemplate: opts.translationTitleTemplate ?? null, descriptionTemplate: opts.translationDescriptionTemplate ?? null,
+    showOgImage: false, showSearchControls: false, showSitemap: false,
+  }
+  return payload
+}
+
 // M2O on an entity. `related` is the target key without prefix ('venues') or a
 // system collection ('directus_files'). `oneField` is the alias on the target.
 export const m2o = (field, related, opts = {}) => {
