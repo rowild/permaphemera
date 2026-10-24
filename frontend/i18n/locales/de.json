@@ -625,15 +625,18 @@
         },
         "hosting": {
           "eyebrow": "Technischer Betrieb",
-          "title": "Hosting und Server-Protokolle",
-          "p1": "Diese Website wird bei ALL-INKL.COM – Neue Medien Münnich in Deutschland gehostet. Beim Aufruf der Website verarbeitet der Webserver technisch erforderliche Zugriffsdaten, insbesondere IP-Adresse, Zeitpunkt, angeforderte Datei, Zugriffsstatus, übertragene Datenmenge, Herkunftsseite sowie Angaben zu Browser und Betriebssystem.",
-          "p2": "Die Verarbeitung dient der Auslieferung der Website, der Stabilität und der Abwehr von Angriffen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; das berechtigte Interesse liegt im sicheren und funktionsfähigen Betrieb des Angebots. Der Hostinganbieter wird im Rahmen der Auftragsverarbeitung eingesetzt.",
-          "p3": "Für die in seinen Datenschutzinformationen beschriebenen gewöhnlichen Logdateien nennt der Anbieter eine Löschung nach spätestens sieben Tagen. Eine längere Speicherung kann im Einzelfall erforderlich sein, etwa zur Aufklärung eines Angriffs. Nach Anbieterangaben werden Hostingdaten auf eigenen Servern in Deutschland gespeichert. Die für dieses Hostingpaket tatsächlich eingestellte Protokollierung und Aufbewahrungsdauer wird noch mit dem Anbieter geprüft.",
-          "providerLabel": "Auftragsverarbeiter",
-          "addressLabel": "Anschrift",
-          "retentionLabel": "Regelfrist",
-          "retentionValue": "Veröffentlichte Anbieterangabe: spätestens sieben Tage; konkrete Hosting-Einstellung noch zu prüfen",
-          "providerPrivacy": "Datenschutzinformationen von ALL-INKL.COM"
+          "title": "Hosting, Cloudflare und Server-Protokolle",
+          "p1": "Diese Website läuft auf einem Cloud-Server der Hetzner Online GmbH in Nürnberg, Deutschland. Auf demselben Server laufen das Redaktionssystem (Directus) und die Reichweitenmessung (Umami). Beim Aufruf der Website verarbeitet der Webserver technisch erforderliche Zugriffsdaten, insbesondere IP-Adresse, Zeitpunkt, angeforderte Datei, Zugriffsstatus, übertragene Datenmenge, Herkunftsseite sowie Angaben zu Browser und Betriebssystem.",
+          "p2": "Aufrufe von permaphemera.at laufen über das Netzwerk der Cloudflare, Inc., das die Website aus nahen Rechenzentren ausliefert, Kopien öffentlicher Dateien vorhält und den Server vor Angriffen schützt. Cloudflare verarbeitet dafür dieselben Zugriffsdaten und kann sie in den USA verarbeiten; Cloudflare ist nach dem EU-US-Datenschutzrahmen (Data Privacy Framework) zertifiziert. Rechtsgrundlage für Hosting und Auslieferung ist Art. 6 Abs. 1 lit. f DSGVO; das berechtigte Interesse liegt im sicheren und funktionsfähigen Betrieb des Angebots. Hetzner und Cloudflare werden im Rahmen der Auftragsverarbeitung eingesetzt.",
+          "p3": "Der Webserver legt seine Zugriffsprotokolle täglich neu an und löscht sie nach 14 Tagen. Eine längere Speicherung kann im Einzelfall erforderlich sein, etwa zur Aufklärung eines Angriffs.",
+          "providerLabel": "Hosting",
+          "locationLabel": "Serverstandort",
+          "locationValue": "Nürnberg, Deutschland",
+          "cdnLabel": "Auslieferung und Schutz",
+          "retentionLabel": "Server-Protokolle",
+          "retentionValue": "Löschung nach 14 Tagen",
+          "providerPrivacy": "Datenschutzerklärung von Hetzner",
+          "cdnPrivacy": "Datenschutzerklärung von Cloudflare"
         },
         "storage": {
           "eyebrow": "Endgerät",
@@ -695,8 +698,8 @@
         "recipients": {
           "eyebrow": "Empfänger",
           "title": "Weitergabe und Drittstaaten",
-          "p1": "Im laufenden technischen Betrieb erhält der Hostinganbieter Zugriff auf jene Daten, die für Hosting, Wartung und Sicherheit erforderlich sind. Nutzungsdaten für die Reichweitenmessung gehen an unsere selbst betriebene Umami-Instanz unter umami.project-backends.info; ein externer Analysedienst wird nicht eingesetzt. Eine weitere Weitergabe erfolgt nur, wenn sie gesetzlich vorgeschrieben, zur Rechtsdurchsetzung erforderlich oder ausdrücklich erlaubt ist.",
-          "p2": "Google Maps und YouTube sind derzeit inaktiv. Wird einer der Dienste später eingeführt und von Ihnen erlaubt, werden Daten wie unter „Optionale externe Medien“ beschrieben an Google übermittelt; dann gelten auch Googles Informationen zu internationalen Übermittlungen. Gewöhnliche externe Links übertragen Daten erst beim Öffnen ihres Ziels."
+          "p1": "Im laufenden technischen Betrieb erhalten Hetzner als Hostinganbieter und Cloudflare als Auslieferungsnetzwerk Zugriff auf jene Daten, die für Hosting, Auslieferung, Wartung und Sicherheit erforderlich sind. Nutzungsdaten für die Reichweitenmessung gehen an unsere selbst betriebene Umami-Instanz unter umami.project-backends.info; ein externer Analysedienst wird nicht eingesetzt. Eine weitere Weitergabe erfolgt nur, wenn sie gesetzlich vorgeschrieben, zur Rechtsdurchsetzung erforderlich oder ausdrücklich erlaubt ist.",
+          "p2": "Cloudflare kann Zugriffsdaten in den USA verarbeiten; Cloudflare stützt sich dabei auf seine Zertifizierung nach dem EU-US-Datenschutzrahmen und, falls diese entfällt, auf die EU-Standardvertragsklauseln. Google Maps und YouTube sind derzeit inaktiv. Wird einer der Dienste später eingeführt und von Ihnen erlaubt, werden Daten wie unter „Optionale externe Medien“ beschrieben an Google übermittelt; dann gelten auch Googles Informationen zu internationalen Übermittlungen. Gewöhnliche externe Links übertragen Daten erst beim Öffnen ihres Ziels."
         },
         "rights": {
           "eyebrow": "Ihre Rechte",

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.28 - 2026-10-24 11:33:31 CEST
+
+- On an exhibition page the artists now follow the organisers: Kurator:innen, Organisator:in, Veranstaltet von, then Künstler:innen.
+- The privacy policy names the real hosting: a Hetzner cloud server in Nuremberg (Germany) for the site, Directus and Umami, with Cloudflare in front for delivery and protection (EU–US Data Privacy Framework for possible transfers to the USA). Server logs are deleted after 14 days. ALL-INKL is gone from the page.
+
 ## 0.0.27 - 2026-10-24 11:00:36 CEST
 
 - The main menu reads Exhibitions · Artists · Galleries · Organisations. "About the Project" moved into the menu behind the star, as the first link under "Information".

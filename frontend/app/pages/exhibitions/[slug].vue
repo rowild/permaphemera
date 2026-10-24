@@ -128,10 +128,6 @@ useSeoMeta({
             <template #icon><CalendarCheck :size="18" aria-hidden="true" /></template>
             {{ exhibition.vernissage }}
           </ArchiveMetadataRow>
-          <ArchiveMetadataRow v-if="exhibition.artist" :label="$t('exhibition.artistParticipants')" variant="exhibition">
-            <template #icon><Users :size="18" aria-hidden="true" /></template>
-            <template v-for="(artist, index) in exhibition.artists" :key="artist.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${artist.slug}/`)">{{ artist.name }}</ArchiveTextLink></template>
-          </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.curators.length" :label="$t('exhibition.curators', exhibition.curators.length)" variant="exhibition">
             <template #icon><Users :size="18" aria-hidden="true" /></template>
             <template v-for="(curator, index) in exhibition.curators" :key="curator.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${curator.slug}/`)">{{ curator.name }}</ArchiveTextLink></template>
@@ -145,6 +141,10 @@ useSeoMeta({
             <template v-for="(organiser, index) in exhibition.organisers" :key="organiser.id">
               <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/organisations/${organiser.slug}/`)">{{ organiser.title }}</ArchiveTextLink>
             </template>
+          </ArchiveMetadataRow>
+          <ArchiveMetadataRow v-if="exhibition.artist" :label="$t('exhibition.artistParticipants')" variant="exhibition">
+            <template #icon><Users :size="18" aria-hidden="true" /></template>
+            <template v-for="(artist, index) in exhibition.artists" :key="artist.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${artist.slug}/`)">{{ artist.name }}</ArchiveTextLink></template>
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="artistsWithWebsite.length" :label="$t('exhibition.artistWebsite', artistsWithWebsite.length)" variant="exhibition">
             <template #icon><Globe :size="18" aria-hidden="true" /></template>

@@ -6,7 +6,7 @@ const { t } = useI18n()
 const recordItems = computed<LegalRecordItem[]>(() => [
   { label: t('legal.common.document'), value: t('legal.privacy.recordType') },
   { label: t('legal.common.controller'), value: 'Robert Wildling' },
-  { label: t('legal.common.hosting'), value: 'ALL-INKL.COM · Neue Medien Münnich' },
+  { label: t('legal.common.hosting'), value: 'Hetzner Online GmbH · Cloudflare, Inc.' },
   { label: t('legal.common.updated'), value: t('legal.privacy.updatedValue') }
 ])
 
@@ -33,12 +33,14 @@ const sections = computed<LegalSection[]>(() => [
       t('legal.privacy.sections.hosting.p3')
     ],
     details: [
-      { label: t('legal.privacy.sections.hosting.providerLabel'), value: 'ALL-INKL.COM · Neue Medien Münnich, Inhaber René Münnich' },
-      { label: t('legal.privacy.sections.hosting.addressLabel'), value: 'Hauptstraße 68, D-02742 Friedersdorf, Deutschland' },
+      { label: t('legal.privacy.sections.hosting.providerLabel'), value: 'Hetzner Online GmbH, Industriestraße 25, 91710 Gunzenhausen, Deutschland' },
+      { label: t('legal.privacy.sections.hosting.locationLabel'), value: t('legal.privacy.sections.hosting.locationValue') },
+      { label: t('legal.privacy.sections.hosting.cdnLabel'), value: 'Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA' },
       { label: t('legal.privacy.sections.hosting.retentionLabel'), value: t('legal.privacy.sections.hosting.retentionValue') }
     ],
     links: [
-      { label: t('legal.privacy.sections.hosting.providerPrivacy'), href: 'https://all-inkl.com/datenschutzinformationen/' }
+      { label: t('legal.privacy.sections.hosting.providerPrivacy'), href: 'https://www.hetzner.com/legal/privacy-policy/' },
+      { label: t('legal.privacy.sections.hosting.cdnPrivacy'), href: 'https://www.cloudflare.com/privacypolicy/' }
     ]
   },
   {

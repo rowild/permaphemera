@@ -625,15 +625,18 @@
         },
         "hosting": {
           "eyebrow": "Technical operation",
-          "title": "Hosting and server logs",
-          "p1": "This website is hosted in Germany by ALL-INKL.COM – Neue Medien Münnich. When the site is accessed, the web server processes technically necessary access data, particularly the IP address, time, requested file, access status, amount of data transferred, referring page, and browser and operating-system information.",
-          "p2": "This processing enables delivery, stability and protection against attacks. Its legal basis is Article 6(1)(f) GDPR; the legitimate interest is the secure and functional operation of the website. The hosting provider acts as a processor.",
-          "p3": "For the ordinary log files described in its published privacy information, the provider states a deletion period of no more than seven days. Longer storage may be required in individual cases, such as investigating an attack. The provider states that hosting data is stored on its own servers in Germany. The logging settings and retention period actually configured for this hosting package still need to be confirmed with the provider.",
-          "providerLabel": "Processor",
-          "addressLabel": "Address",
-          "retentionLabel": "Normal period",
-          "retentionValue": "Published provider statement: no more than seven days; actual hosting configuration still to be confirmed",
-          "providerPrivacy": "ALL-INKL.COM privacy information"
+          "title": "Hosting, Cloudflare and server logs",
+          "p1": "This website runs on a cloud server of Hetzner Online GmbH in Nuremberg, Germany. The content management system (Directus) and the audience measurement (Umami) run on the same server. When the site is accessed, the web server processes technically necessary access data, particularly the IP address, time, requested file, access status, amount of data transferred, referring page, and browser and operating-system information.",
+          "p2": "Requests to permaphemera.at pass through the network of Cloudflare, Inc., which delivers the site from nearby data centres, keeps copies of public files and protects the server against attacks. Cloudflare processes the same access data for this purpose and may process it in the USA; Cloudflare is certified under the EU–US Data Privacy Framework. The legal basis for hosting and delivery is Article 6(1)(f) GDPR; the legitimate interest is the secure and functional operation of the website. Hetzner and Cloudflare act as processors.",
+          "p3": "The web server rotates its access logs daily and deletes them after 14 days. Longer storage may be required in individual cases, such as investigating an attack.",
+          "providerLabel": "Hosting",
+          "locationLabel": "Server location",
+          "locationValue": "Nuremberg, Germany",
+          "cdnLabel": "Delivery and protection",
+          "retentionLabel": "Server logs",
+          "retentionValue": "Deleted after 14 days",
+          "providerPrivacy": "Hetzner privacy policy",
+          "cdnPrivacy": "Cloudflare privacy policy"
         },
         "storage": {
           "eyebrow": "Your device",
@@ -695,8 +698,8 @@
         "recipients": {
           "eyebrow": "Recipients",
           "title": "Disclosure and international transfers",
-          "p1": "During ordinary technical operation, the hosting provider receives access to the data required for hosting, maintenance and security. Usage data for audience measurement goes to our self-hosted Umami instance at umami.project-backends.info; no external analytics service is used. No further disclosure occurs unless required by law, necessary to establish or defend legal claims, or expressly permitted.",
-          "p2": "Google Maps and YouTube are currently inactive. If either service is introduced and you consent to it, data will be sent to Google as described under Optional external media; Google’s information about international transfers then applies. Ordinary external links transmit data only when their destination is opened."
+          "p1": "During ordinary technical operation, Hetzner as host and Cloudflare as delivery network receive access to the data required for hosting, delivery, maintenance and security. Usage data for audience measurement goes to our self-hosted Umami instance at umami.project-backends.info; no external analytics service is used. No further disclosure occurs unless required by law, necessary to establish or defend legal claims, or expressly permitted.",
+          "p2": "Cloudflare may process access data in the USA; Cloudflare relies on its certification under the EU–US Data Privacy Framework and, should it lapse, on the EU standard contractual clauses. Google Maps and YouTube are currently inactive. If either service is introduced and you consent to it, data will be sent to Google as described under Optional external media; Google’s information about international transfers then applies. Ordinary external links transmit data only when their destination is opened."
         },
         "rights": {
           "eyebrow": "Your rights",
