@@ -40,14 +40,14 @@ Live site: <https://permaphemera.at>.
 DJI Osmo 360 (15520×7760 equirectangular JPG, already stitched in camera)
    │
    ▼  drop into
-_360_GALLERIES_AND_TOURS/collection/<group>/<tour-id>/building_01/floor_01/room_01/{normal,high,low}/
+_360_GALLERIES_AND_TOURS/collection/_galleries/<venue>/<tour-id>/building_01/floor_01/room_01/{normal,high,low}/
    │
    ▼  run.sh (skill rowild-panorama-tour)  rename → check-heights → proof → grade → web   (= GRADING)
-   │     backups → _grading/originals/   graded JPG → _grading/masters/   8192 WebP → collection/
+   │     backups → <tour>/_grading/originals/   graded JPG → <tour>/_grading/masters/   8192 WebP → <tour>/
    │
    ▼  markers (same skill, MARKERS.md) → tour.json with links, hidden markers checked
    │
-   ▼  Tour Editor: library = collection/   → writes collection/<…>/<tour-id>/tour.json
+   ▼  Tour Editor: tour folder = collection/_galleries/<venue>/   → writes <tour-id>/tour.json
    │
    ▼  Tour Editor: Export (⌘E) → _360_GALLERIES_AND_TOURS/exported/<tour-id>/
    │
@@ -165,7 +165,7 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 | Folder | Purpose |
 |---|---|
 | `collection/` | The tours. Graded 8192 WebP (or master JPG for tiled tours) + `tour.json` + `poster.pdf`. Also a work area: raw shoots, brackets, phone photos, `_BU/` backups. |
-| `_grading/` | Data of the grading scripts (since 2026-10-20; before at the root): `originals/` (untouched camera files; "has a backup" marks a file as graded), `masters/` (graded JPEG q93 at native size; WebP and tiles are made from here), `versions/` (snapshots `YYYY-MM-DD-HHMM-<label>/`), `to_delete/` (superseded files, for manual removal), `verify-accepted.txt`, `move-log.txt`. The former `_pipeline/` folder was deleted on 2026-10-20. |
+| `<tour>/_grading/` | Inside each tour (since 2026-10-24; before, one `_grading/` at the project root): `originals/` (untouched camera files; "has a backup" marks a file as graded), `masters/` (graded JPEG q93 at native size; WebP and tiles are made from here), `versions/` (snapshots `YYYY-MM-DD-HHMM-<label>/{web,masters}/`), and when needed `verify-accepted.txt` and `move-log.txt`. A moved or renamed tour folder takes it along; the Tour Editor ignores it. The former `_pipeline/` folder was deleted on 2026-10-20. |
 | `_markers/` | Work folder and results of the marker steps, one folder per tour id: step results, check sheets, hidden-marker review, the tour's `meta.json`. The 2 GB feature cache `featcache/` exists only during a run. |
 | `exported/` | Tour Editor exports, flat by tour id. Input of `pnpm tour:publish`. |
 | `__MATERIAL/` | Material per gallery and artist, kept by hand. No script uses it. |
@@ -174,8 +174,9 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 - **Git, text files only** (since 2026-10-20): GitHub `rowild/permaphemera-tour-data`
   (private). `.gitignore` lets in only `*.json`, `*.txt`, `*.md` and `poster.pdf`: the
   `tour.json` files, `_markers/`, logs, `sources.txt`, posters (about 30 MB). Photos, masters,
-  originals, exports and snapshots are NOT in git; only Time Machine keeps them (its backup
-  disk must be connected). Save after a step that changes `tour.json` or marker results:
+  originals, exports and snapshots are NOT in git; the backup to the external drive keeps
+  them: `run.sh backup` of the skill (`BACKUP_TARGET`, on this Mac
+  `/Volumes/Work/_360_GALLERIES_AND_TOURS`; the drive must be connected). Save after a step that changes `tour.json` or marker results:
   `git -C ~/Desktop/_WWW/_360_GALLERIES_AND_TOURS add -A && git commit -m "<tour-id>: <what>" && git push`.
 - The scripts are NOT here: they live in the global skill `rowild-panorama-tour`
   (`~/.claude/skills/rowild-panorama-tour/scripts/`, since 2026-10-20). Its source is the
@@ -183,8 +184,8 @@ are uploaded with `directus/scripts/upload-files.mjs`.
   private) with all `rowild-*` skills; its `setup.sh` links them into `~/.claude/skills/`
   and `~/.agents/skills/` (Codex) and writes the paths file `~/.config/rowild-skills/paths.env`.
   Edit skills in the repo, then commit and push.
-- `_grading/masters/` and `_grading/originals/` mirror the `collection/` paths. If you move a
-  tour inside `collection/`, move its masters and originals folders too.
+- A tour's masters and originals are in its own `_grading/` (since 2026-10-24), so moving or
+  renaming a tour folder inside `collection/` takes them along.
 - This folder was called `_tours/` and sat inside the Tour Editor repo until
   2026-09-29.
 
@@ -258,11 +259,12 @@ old folder names and paths, `TOUR=` examples) were corrected that day in all
   `tour_available_from` has passed. `pnpm tour:publish` sets only `tour`.
 - `_MacAPP TOUR-VIEWER/docs/tutorials/pdf/Tour-Editor-Handbook-Tutorial-03-Website.pdf`
   is older than the updated HTML tutorial.
-- Some tours were graded ad hoc (logs: `collection/*/_originals/grading-claude-2026-09-22.txt`),
-  with backups inside the tour folder, not in `_grading/originals/`.
+- The Kindergalerie tour was graded ad hoc on 2026-09-22 (log:
+  `<tour>/_grading/grading-claude-2026-09-22.txt`); its originals are in its
+  `_grading/originals/` since 2026-10-24.
 - `dobratsch-aussichtsplatform-2026-08-16`: its `tour.json` id is
-  `Dobratsch_Aussichtsplatform_2026-08-16` (matches `_grading/masters/`, not its
-  `collection/` folder).
+  `Dobratsch_Aussichtsplatform_2026-08-16` (the name of its folder in the former project-level
+  `_grading/masters/`, not its tour folder).
 
 ---
 
