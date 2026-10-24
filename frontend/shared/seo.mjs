@@ -178,7 +178,9 @@ const entry = ({ path, locale, record, generated, description, image, imageAlt, 
 }
 
 /** One entry per published exhibition, gallery, person, organisation and sponsor page, in both languages. */
-export const recordSeoEntries = (archive, { assetBase, messages }) => {
+/** With `path`, only that page's entries are built (a page needs one; the deploy needs all). */
+export const recordSeoEntries = (archive, { assetBase, messages, path: only }) => {
+  const skip = (path) => only !== undefined && path !== only
   const locations = new Map((archive.locations ?? []).filter(published).map((location) => [location.id, location]))
   const venues = new Map((archive.venues ?? []).filter((venue) => published(venue) && locations.has(venue.location)).map((venue) => [venue.id, venue]))
   const persons = new Map((archive.persons ?? []).filter(published).map((person) => [person.id, person]))
@@ -188,6 +190,8 @@ export const recordSeoEntries = (archive, { assetBase, messages }) => {
   const list = []
 
   for (const exhibition of (archive.exhibitions ?? []).filter(published)) {
+    const path = `/exhibitions/${exhibition.slug}/`
+    if (skip(path)) continue
     const venue = venues.get(exhibition.primary_venue)
     if (!venue || !realImage(exhibition, 'image')) continue
     const location = locations.get(venue.location)
@@ -199,7 +203,6 @@ export const recordSeoEntries = (archive, { assetBase, messages }) => {
       .filter((row) => row.exhibition === exhibition.id && organisations.has(row.organisation))
       .sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
       .map((row) => organisations.get(row.organisation))
-    const path = `/exhibitions/${exhibition.slug}/`
     for (const locale of LOCALES) {
       const title = textOf(exhibition, locale, 'title') ?? exhibition.title
       const names = artists.map(personName)
@@ -241,8 +244,9 @@ export const recordSeoEntries = (archive, { assetBase, messages }) => {
   }
 
   for (const venue of venues.values()) {
-    const location = locations.get(venue.location)
     const path = `/venues/${venue.slug}/`
+    if (skip(path)) continue
+    const location = locations.get(venue.location)
     const image = realImage(venue, 'hero_image') ?? realImage(venue, 'image')
     const sameAs = [present(venue.website_url), ...linksOf(archive, 'venuesWebsites', 'venues_id', venue.id)].filter(Boolean)
     for (const locale of LOCALES) {
@@ -262,6 +266,7 @@ export const recordSeoEntries = (archive, { assetBase, messages }) => {
 
   for (const person of persons.values()) {
     const path = `/persons/${person.slug}/`
+    if (skip(path)) continue
     const name = personName(person)
     const personRoles = (archive.personRoles ?? []).filter((row) => row.persons_id === person.id).map((row) => roles.get(row.roles_id)).filter(Boolean)
     const isArtist = personRoles.some((role) => role.slug === 'artist')
@@ -292,6 +297,7 @@ export const recordSeoEntries = (archive, { assetBase, messages }) => {
 
   for (const organisation of organisations.values()) {
     const path = `/organisations/${organisation.slug}/`
+    if (skip(path)) continue
     const town = locations.get(organisation.location)?.title
     const sameAs = linksOf(archive, 'organisationsWebsites', 'organisations_id', organisation.id)
     const image = realImage(organisation, 'image') ?? realImage(organisation, 'logo')
@@ -319,6 +325,7 @@ export const recordSeoEntries = (archive, { assetBase, messages }) => {
 
   for (const sponsor of (archive.sponsors ?? []).filter(published)) {
     const path = `/sponsors/${sponsor.slug}/`
+    if (skip(path)) continue
     const image = realImage(sponsor, 'logo')
     for (const locale of LOCALES) {
       const description = textOf(sponsor, locale, 'description') ?? message(messages, locale, 'sponsorPages.seoDescription', { name: sponsor.title })

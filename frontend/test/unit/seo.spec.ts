@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import de from '../../i18n/locales/de.json'
 import en from '../../i18n/locales/en.json'
+import { resolveExhibitions } from '~/utils/resolveExhibitions'
+import { resolveVenues } from '~/utils/resolveVenues'
 import { SITE_URL, fitDescription, fitTitle, headFor, localizedPath, readSeo, recordSeoEntries, staticSeoEntries } from '../../shared/seo.mjs'
 
 const messages = { de, en }
@@ -172,5 +174,38 @@ describe('staticSeoEntries', () => {
       '/', '/exhibitions/', '/exhibitions/current/', '/exhibitions/upcoming/', '/exhibitions/past/', '/artists/', '/venues/', '/organisations/',
       '/about/', '/how-it-works/', '/contact/', '/imprint/', '/privacy/', '/terms/', '/accessibility/'
     ])
+  })
+})
+
+describe('pages: the SEO module and the site agree', () => {
+  // The site decides in its resolvers which exhibitions and galleries have a page; the SEO module
+  // repeats that rule for the snapshots. A snapshot for a page the site 404s would be a soft 404.
+  it('gives an entry to exactly the exhibitions and galleries the site resolves', () => {
+    const venues = [venue, { ...venue, id: 'v-draft', slug: 'draft-gallery', status: 'draft' }, { ...venue, id: 'v-no-town', slug: 'no-town', location: 'gone' }]
+    const exhibitions = [
+      exhibition,
+      { ...exhibition, id: 'e-placeholder', slug: 'placeholder', image_placeholder: true },
+      { ...exhibition, id: 'e-no-image', slug: 'no-image', image: null },
+      { ...exhibition, id: 'e-draft', slug: 'draft-exhibition', status: 'draft' },
+      { ...exhibition, id: 'e-draft-venue', slug: 'at-draft-gallery', primary_venue: 'v-draft' },
+      { ...exhibition, id: 'e-no-town', slug: 'at-gallery-without-town', primary_venue: 'v-no-town' }
+    ]
+    const english = entries({ venues, exhibitions }).filter((item) => item.locale === 'en')
+    const seoPaths = (prefix: string) => english.filter((item) => item.path.startsWith(prefix)).map((item) => item.path).sort()
+    const siteExhibitions = resolveExhibitions(exhibitions as never, venues as never, [location] as never, [], [], [role] as never, 'en').map((item) => `/exhibitions/${item.slug}/`).sort()
+    const siteVenues = resolveVenues([location] as never, venues as never, 'en').map((item) => `/venues/${item.slug}/`).sort()
+    expect(seoPaths('/exhibitions/')).toEqual(siteExhibitions)
+    expect(seoPaths('/venues/')).toEqual(siteVenues)
+    expect(siteExhibitions).toEqual(['/exhibitions/trigeniale-26/'])
+  })
+})
+
+describe('one page at a time', () => {
+  it('builds only the entries of the requested path, without touching the other records', () => {
+    let reads = 0
+    const counted = { ...minin, get lede () { reads += 1; return 'Painter.' } }
+    const only = recordSeoEntries(archive({ persons: [counted, nackler] }), { assetBase, messages, path: '/persons/karl-nackler/' })
+    expect(only.map((item) => `${item.locale} ${item.path}`)).toEqual(['de /persons/karl-nackler/', 'en /persons/karl-nackler/'])
+    expect(reads).toBe(0)
   })
 })

@@ -26,7 +26,41 @@ export const renderSnapshot = (shellHtml, entry) => {
     .replace(/<html(\s[^>]*)?>/, (match, attrs = '') => `<html${attrs.replace(/\s+lang="[^"]*"/, '')} lang="${entry.locale}">`)
     .replace(/<title>[\s\S]*?<\/title>/, '')
     .replace(/<meta name="description"[^>]*>/, '')
-    .replace('</head>', `${tags}</head>`)
+    // A function, not a string: editors' text may contain $' or $&, which a string replacement expands.
+    .replace('</head>', () => `${tags}</head>`)
+}
+
+const count = (html, pattern) => (html.match(pattern) ?? []).length
+
+/** Problems of one written snapshot: exactly one title and description, and its canonical. */
+export const verifySnapshot = (html, entry) => {
+  const where = `${entry.path} (${entry.locale})`
+  const problems = []
+  const titles = count(html, /<title[\s>]/g)
+  const descriptions = count(html, /<meta[^>]*\sname="description"/g)
+  if (titles !== 1) problems.push(`${where}: ${titles} titles`)
+  if (descriptions !== 1) problems.push(`${where}: ${descriptions} descriptions`)
+  if (!html.includes(`rel="canonical" href="${escapeHtml(entry.canonical)}"`)) problems.push(`${where}: no canonical`)
+  return problems
+}
+
+/** Problems of the sitemap against the entries: missing or extra addresses, a route listed twice. */
+export const sitemapProblems = (xml, entries) => {
+  const unescape = (value) => value.replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&')
+  const listed = new Set([...xml.matchAll(/<loc>([^<]*)<\/loc>/g)].map((match) => unescape(match[1])))
+  const expected = new Set(entries.filter((entry) => !entry.noIndex).map((entry) => entry.canonical))
+  const seen = new Set()
+  const twice = entries.filter((entry) => {
+    const key = `${entry.locale} ${entry.path}`
+    if (seen.has(key)) return true
+    seen.add(key)
+    return false
+  })
+  return [
+    ...[...expected].filter((url) => !listed.has(url)).map((url) => `sitemap.xml lacks ${url}`),
+    ...[...listed].filter((url) => !expected.has(url)).map((url) => `sitemap.xml has extra ${url}`),
+    ...twice.map((entry) => `route listed twice: ${entry.locale} ${entry.path}`)
+  ]
 }
 
 /** Every indexable address with its language alternates (sitemaps.org with xhtml:link). */

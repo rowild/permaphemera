@@ -28,7 +28,7 @@ export function usePageSeo(path: MaybeRefOrGetter<string>) {
     const fixed = staticSeoEntries(messages, counts).find((item) => item.path === target && item.locale === code)
     if (fixed) return fixed
     if (!ready.value) return undefined
-    return recordSeoEntries(archive.value, { assetBase, messages }).find((item) => item.path === target && item.locale === code)
+    return recordSeoEntries(archive.value, { assetBase, messages, path: target }).find((item) => item.locale === code)
   })
 
   useHead(() => {

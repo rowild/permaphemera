@@ -7,7 +7,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { directusUrl, loadArchiveFromDirectus, runCheck } from './lib/archive-source.mjs'
-import { renderSitemap, renderSnapshot } from './lib/seo-snapshot.mjs'
+import { renderSitemap, renderSnapshot, sitemapProblems, verifySnapshot } from './lib/seo-snapshot.mjs'
 import { localizedPath, recordSeoEntries, staticSeoEntries } from '../shared/seo.mjs'
 
 const root = resolve(import.meta.dirname, '..')
@@ -28,12 +28,24 @@ await runCheck(async () => {
   }
   const entries = [...staticSeoEntries(messages, counts), ...recordSeoEntries(archive, { assetBase: directusUrl, messages })]
 
+  // The spec's check: every route gets a snapshot with one title, one description and its
+  // canonical, and the sitemap lists exactly the indexable routes. Any problem stops the deploy.
+  const problems = []
   for (const entry of entries) {
     const file = resolve(output, `.${localizedPath(entry.path, entry.locale)}index.html`)
+    if (!file.startsWith(`${output}/`)) { problems.push(`${entry.path}: leaves .output/public`); continue }
+    const html = renderSnapshot(shell, entry)
+    problems.push(...verifySnapshot(html, entry))
     await mkdir(dirname(file), { recursive: true })
-    await writeFile(file, renderSnapshot(shell, entry))
+    await writeFile(file, html)
   }
-  await writeFile(resolve(output, 'sitemap.xml'), renderSitemap(entries))
+  const sitemap = renderSitemap(entries)
+  problems.push(...sitemapProblems(sitemap, entries))
+  if (problems.length) {
+    console.error(`[seo] ${problems.length} problems:\n  ${problems.join('\n  ')}`)
+    process.exit(1)
+  }
+  await writeFile(resolve(output, 'sitemap.xml'), sitemap)
 
   const indexed = entries.filter((entry) => !entry.noIndex).length
   console.log(`[seo] ${entries.length} snapshots written, ${indexed} addresses in sitemap.xml (assets from ${directusUrl})`)

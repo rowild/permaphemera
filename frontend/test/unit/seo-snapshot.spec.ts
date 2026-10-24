@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { renderSitemap, renderSnapshot } from '../../scripts/lib/seo-snapshot.mjs'
+import { renderSitemap, renderSnapshot, sitemapProblems, verifySnapshot } from '../../scripts/lib/seo-snapshot.mjs'
 import type { SeoEntry } from '../../shared/seo.mjs'
 
 const shell = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>PERMAPHEMERA</title><meta name="description" content="A curated archive."><meta name="theme-color" content="#efe5d2"></head><body><div id="__nuxt"></div></body></html>'
@@ -37,6 +37,13 @@ describe('renderSnapshot', () => {
     expect(ld.match(/<\/script>/g)).toHaveLength(1)
   })
 
+  it('keeps dollar signs literal instead of reading them as replacement patterns', () => {
+    const html = renderSnapshot(shell, { ...base, title: "Price $' and $& and $$" })
+    expect(html).toContain("<title data-seo-snapshot>Price $' and $&amp; and $$</title>")
+    expect(html.match(/<div id="__nuxt">/g)).toHaveLength(1)
+    expect(html.match(/<\/head>/g)).toHaveLength(1)
+  })
+
   it('writes robots only for a hidden page', () => {
     expect(renderSnapshot(shell, base)).not.toContain('name="robots"')
     expect(renderSnapshot(shell, { ...base, noIndex: true })).toContain('<meta data-seo-snapshot name="robots" content="noindex, follow">')
@@ -58,5 +65,36 @@ describe('renderSitemap', () => {
     expect(xml).toContain('<changefreq>monthly</changefreq>')
     expect(xml).toContain('<priority>0.7</priority>')
     expect(xml).not.toContain('/persons/hidden/')
+  })
+})
+
+describe('verifySnapshot', () => {
+  it('accepts a rendered snapshot', () => {
+    expect(verifySnapshot(renderSnapshot(shell, base), base)).toEqual([])
+  })
+
+  it('reports a shell the renderer could not fill', () => {
+    expect(verifySnapshot(renderSnapshot('<html><body></body></html>', base), base)).toEqual([
+      '/exhibitions/trigeniale-26/ (de): 0 titles',
+      '/exhibitions/trigeniale-26/ (de): 0 descriptions',
+      '/exhibitions/trigeniale-26/ (de): no canonical'
+    ])
+  })
+})
+
+describe('sitemapProblems', () => {
+  const english = { ...base, locale: 'en' as const, canonical: base.alternates.en }
+
+  it('accepts a sitemap with exactly the indexable addresses', () => {
+    expect(sitemapProblems(renderSitemap([base, english]), [base, english])).toEqual([])
+  })
+
+  it('reports missing and extra addresses and a route listed twice', () => {
+    const xml = renderSitemap([base])
+    expect(sitemapProblems(xml, [base, english, base])).toEqual([
+      'sitemap.xml lacks https://permaphemera.at/en/exhibitions/trigeniale-26/',
+      'route listed twice: de /exhibitions/trigeniale-26/'
+    ])
+    expect(sitemapProblems(renderSitemap([base, english]), [base])).toEqual(['sitemap.xml has extra https://permaphemera.at/en/exhibitions/trigeniale-26/'])
   })
 })

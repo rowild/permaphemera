@@ -49,6 +49,6 @@ export declare function stripMarkup(value: unknown): string
 export declare function fitTitle(base: string, max?: number): string
 export declare function fitDescription(text: string, max?: number): string
 export declare function readSeo(record: object, locale: SeoLocale): SeoRead
-export declare function recordSeoEntries(archive: object, options: { assetBase: string, messages: SeoMessages }): SeoEntry[]
+export declare function recordSeoEntries(archive: object, options: { assetBase: string, messages: SeoMessages, path?: string }): SeoEntry[]
 export declare function staticSeoEntries(messages: SeoMessages, counts?: { venues?: number, organisations?: number }): SeoEntry[]
 export declare function headFor(entry: SeoEntry): SeoHead
