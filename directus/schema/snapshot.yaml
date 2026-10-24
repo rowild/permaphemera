@@ -3703,7 +3703,9 @@ fields:
       group: ui_group_tour
       hidden: false
       interface: datetime
-      note: Usually the day after the exhibition closes. Empty means at once.
+      note: >-
+        Usually the last day of the exhibition (= end_date). Empty means at
+        once.
       options: null
       readonly: false
       required: false
@@ -4327,6 +4329,86 @@ fields:
       data_type: varchar
       default_value: null
       max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_exhibitions
+    field: ui_group_seo
+    type: alias
+    meta:
+      collection: pp_exhibitions
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_seo
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: SEO
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_exhibitions
+    field: seo
+    type: json
+    meta:
+      collection: pp_exhibitions
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: ui_group_seo
+      hidden: false
+      interface: seo-interface
+      note: >-
+        Search engines and link previews. Here: English text, share image,
+        robots and sitemap for both languages. Translations: title and
+        description per language.
+      options:
+        defaultChangeFrequency: monthly
+        defaultPriority: '0.5'
+        descriptionTemplate: '{{summary}}'
+        showOgImage: true
+        showSearchControls: true
+        showSitemap: true
+        titleTemplate: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_exhibitions
+      data_type: json
+      default_value: null
+      max_length: null
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -10856,6 +10938,86 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_organisations
+    field: ui_group_seo
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_seo
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: SEO
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: seo
+    type: json
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: ui_group_seo
+      hidden: false
+      interface: seo-interface
+      note: >-
+        Search engines and link previews. Here: English text, share image,
+        robots and sitemap for both languages. Translations: title and
+        description per language.
+      options:
+        defaultChangeFrequency: monthly
+        defaultPriority: '0.5'
+        descriptionTemplate: '{{lede}}'
+        showOgImage: true
+        showSearchControls: true
+        showSitemap: true
+        titleTemplate: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_organisations
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_persons
     field: ui_accordion_main
     type: alias
@@ -12144,6 +12306,86 @@ fields:
       name: about_html
       table: pp_persons
       data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_persons
+    field: ui_group_seo
+    type: alias
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_seo
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: SEO
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_persons
+    field: seo
+    type: json
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: ui_group_seo
+      hidden: false
+      interface: seo-interface
+      note: >-
+        Search engines and link previews. Here: English text, share image,
+        robots and sitemap for both languages. Translations: title and
+        description per language.
+      options:
+        defaultChangeFrequency: monthly
+        defaultPriority: '0.5'
+        descriptionTemplate: '{{lede}}'
+        showOgImage: true
+        showSearchControls: true
+        showSitemap: true
+        titleTemplate: '{{first_name}} {{last_name}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_persons
+      data_type: json
       default_value: null
       max_length: null
       numeric_precision: null
@@ -13572,6 +13814,86 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_sponsors
+    field: ui_group_seo
+    type: alias
+    meta:
+      collection: pp_sponsors
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_seo
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: SEO
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_sponsors
+    field: seo
+    type: json
+    meta:
+      collection: pp_sponsors
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: ui_group_seo
+      hidden: false
+      interface: seo-interface
+      note: >-
+        Search engines and link previews. Here: English text, share image,
+        robots and sitemap for both languages. Translations: title and
+        description per language.
+      options:
+        defaultChangeFrequency: monthly
+        defaultPriority: '0.5'
+        descriptionTemplate: '{{description}}'
+        showOgImage: true
+        showSearchControls: true
+        showSitemap: true
+        titleTemplate: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_sponsors
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_translations__exhibition_statements
     field: id
     type: integer
@@ -14262,6 +14584,53 @@ fields:
       data_type: varchar
       default_value: null
       max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__exhibitions
+    field: seo
+    type: json
+    meta:
+      collection: pp_translations__exhibitions
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: null
+      hidden: false
+      interface: seo-interface
+      note: Translated field for pp_exhibitions.seo
+      options:
+        descriptionTemplate: '{{summary}}'
+        showOgImage: false
+        showSearchControls: false
+        showSitemap: false
+        titleTemplate: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 13
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_translations__exhibitions
+      data_type: json
+      default_value: null
+      max_length: null
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -15194,6 +15563,53 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_translations__organisations
+    field: seo
+    type: json
+    meta:
+      collection: pp_translations__organisations
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: null
+      hidden: false
+      interface: seo-interface
+      note: Translated field for pp_organisations.seo
+      options:
+        descriptionTemplate: '{{lede}}'
+        showOgImage: false
+        showSearchControls: false
+        showSitemap: false
+        titleTemplate: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 11
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_translations__organisations
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_translations__persons
     field: id
     type: integer
@@ -15521,6 +15937,53 @@ fields:
       name: about_html
       table: pp_translations__persons
       data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__persons
+    field: seo
+    type: json
+    meta:
+      collection: pp_translations__persons
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: null
+      hidden: false
+      interface: seo-interface
+      note: Translated field for pp_persons.seo
+      options:
+        descriptionTemplate: '{{lede}}'
+        showOgImage: false
+        showSearchControls: false
+        showSitemap: false
+        titleTemplate: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 9
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_translations__persons
+      data_type: json
       default_value: null
       max_length: null
       numeric_precision: null
@@ -15867,6 +16330,53 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_translations__sponsors
+    field: seo
+    type: json
+    meta:
+      collection: pp_translations__sponsors
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: null
+      hidden: false
+      interface: seo-interface
+      note: Translated field for pp_sponsors.seo
+      options:
+        descriptionTemplate: '{{description}}'
+        showOgImage: false
+        showSearchControls: false
+        showSitemap: false
+        titleTemplate: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_translations__sponsors
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_translations__venues
     field: id
     type: integer
@@ -16193,6 +16703,53 @@ fields:
       name: about_html
       table: pp_translations__venues
       data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__venues
+    field: seo
+    type: json
+    meta:
+      collection: pp_translations__venues
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: null
+      hidden: false
+      interface: seo-interface
+      note: Translated field for pp_venues.seo
+      options:
+        descriptionTemplate: '{{lede}}'
+        showOgImage: false
+        showSearchControls: false
+        showSitemap: false
+        titleTemplate: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 9
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_translations__venues
+      data_type: json
       default_value: null
       max_length: null
       numeric_precision: null
@@ -17960,6 +18517,86 @@ fields:
       name: about_html
       table: pp_venues
       data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_venues
+    field: ui_group_seo
+    type: alias
+    meta:
+      collection: pp_venues
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_seo
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: SEO
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_venues
+    field: seo
+    type: json
+    meta:
+      collection: pp_venues
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: ui_group_seo
+      hidden: false
+      interface: seo-interface
+      note: >-
+        Search engines and link previews. Here: English text, share image,
+        robots and sitemap for both languages. Translations: title and
+        description per language.
+      options:
+        defaultChangeFrequency: monthly
+        defaultPriority: '0.5'
+        descriptionTemplate: '{{lede}}'
+        showOgImage: true
+        showSearchControls: true
+        showSitemap: true
+        titleTemplate: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_venues
+      data_type: json
       default_value: null
       max_length: null
       numeric_precision: null
