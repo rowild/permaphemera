@@ -4,3 +4,4 @@ database/*
 uploads/*
 !uploads/.gitkeep
 .DS_Store
+extensions/.registry/

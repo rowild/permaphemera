@@ -80,6 +80,20 @@ The export directory is not distributed through git either; get it from whoever 
 
 Every file in Directus is readable without a token (the public rule limits which fields come back — see `scripts/permissions.mjs`); since 2026-10-14 only published records, their translations, and relation rows whose ends are all published are public (`scripts/public-rules.mjs`; drafts and archived records never leave Directus). Earlier: archived records and their translations were hidden from public reads. A folder that needs to stay private (an unpublished document, a draft asset) needs its own permission policy — that is an owner decision for when it is needed, not something this setup builds in advance.
 
+## Extensions
+
+- **SEO plugin** `@directus-labs/seo-plugin` (marketplace id `6d5e25af-4c3e-4c81-8a42-d7b6f66c9703`,
+  1.1.1, interface `seo-interface`, display `seo-display`). Its manifest still says host `^10.10.0`;
+  it was installed and tried on the local 11.17.4 on 2026-10-24 (form, previews, length bars,
+  list display, no console errors) before it went live. Install it through the API, which writes
+  into `extensions/.registry/` (git-ignored; the registry is the source):
+  `GET /extensions/registry/extension/<id>` → `versions[0].id`, then
+  `POST /extensions/registry/install` with `{ extension, version }` and the admin token.
+  Production has no `EXTENSIONS_AUTO_RELOAD`: restart the container afterwards.
+  The `seo` fields (schema.mjs) use options `showOgImage`, `showSearchControls`, `showSitemap`,
+  `titleTemplate`, `descriptionTemplate`; the stored JSON keys are `title`, `meta_description`,
+  `og_image`, `no_index`, `no_follow`, `sitemap.change_frequency`, `sitemap.priority`.
+
 ## Folders
 
 | Folder        | Purpose                          | In git |
