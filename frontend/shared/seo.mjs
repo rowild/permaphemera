@@ -287,11 +287,12 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only }) =
     const image = realImage(venue, 'hero_image') ?? realImage(venue, 'image')
     const hero = shareable(venue, 'hero_image')
     const share = hero ?? shareable(venue, 'image')
-    // The image text of the photo that is shared; image_alt fits the hero only when both are one file.
-    const shareAlt = hero ? present(venue.hero_image_alt) ?? (venue.hero_image === venue.image ? venue.image_alt : undefined) : venue.image_alt
     const sameAs = [present(venue.website_url), ...linksOf(archive, 'venuesWebsites', 'venues_id', venue.id)].filter(Boolean)
     for (const locale of LOCALES) {
       const type = VENUE_TYPES[venue.type]?.[locale]
+      const imageAlt = textOf(venue, locale, 'image_alt')
+      // The image text of the photo that is shared; image_alt fits the hero only when both are one file.
+      const shareAlt = hero ? textOf(venue, locale, 'hero_image_alt') ?? (venue.hero_image === venue.image ? imageAlt : undefined) : imageAlt
       const description = textOf(venue, locale, 'lede') ?? textOf(venue, locale, 'description') ?? textOf(venue, locale, 'about_html')
         ?? message(messages, locale, 'venue.seoDescription', { name: venue.title, city: location.title })
       list.push(entry({

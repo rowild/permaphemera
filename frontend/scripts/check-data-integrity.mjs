@@ -172,7 +172,7 @@ async function main() {
     ['persons: English on the record equals the en entry', englishMirrors(persons, ['based_in', 'image_alt', 'image_caption', 'lede', 'about_html'])],
 
     ['locations: English on the record equals the en entry', englishMirrors(locations, ['description'])],
-    ['venues: English on the record equals the en entry', englishMirrors(venues, ['description', 'lede', 'about_html', 'image_caption', 'coordinate_label'])],
+    ['venues: English on the record equals the en entry', englishMirrors(venues, ['description', 'lede', 'about_html', 'image_alt', 'hero_image_alt', 'image_caption', 'coordinate_label'])],
     ['exhibitions: English on the record equals the en entry', englishMirrors(exhibitions, ['title', 'summary', 'description', 'date_range', 'opening_hours', 'vernissage', 'admission', 'image_alt', 'medium'])],
     ['statements: English on the record equals the en entry', englishMirrors(statements, ['prompt', 'statement'])],
     // SEO: the record's title and description are the English ones (the settings live only on the record).

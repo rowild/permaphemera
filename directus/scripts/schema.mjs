@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, m2o, markdown, richText, seo, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-10-24.1'
+export const SCHEMA_VERSION = '2026-10-24.2'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -51,9 +51,9 @@ export const entities = {
       float('latitude', { note: 'Optional exact building pin.' }),
       float('longitude'),
       file('image', { image: true }),
-      str('image_alt', { width: 'half' }),
+      str('image_alt', { width: 'half', translated: true }),
       file('hero_image', { image: true }),
-      str('hero_image_alt', { width: 'half' }),
+      str('hero_image_alt', { width: 'half', translated: true }),
       str('archive_number', { width: 'half', note: 'Two-digit display number, e.g. 01.' }),
       bool('featured', { note: 'Curated landing-page highlight.' }),
       text('description', { translated: true }),

@@ -373,6 +373,12 @@ describe('review fixes', () => {
     expect(plain.imageAlt).toBe('Street view')
   })
 
+  it('describes the shared gallery photo in the page language', () => {
+    const german = { ...venue, image_alt: 'Street view', translations: [...venue.translations.map((item) => (item.languages_code === 'de' ? { ...item, image_alt: 'Straßenansicht' } : { ...item, image_alt: 'Street view' }))] }
+    expect(entry(entries({ venues: [german] }), '/venues/studiogalerie-klagenfurt/', 'de').imageAlt).toBe('Straßenansicht')
+    expect(entry(entries({ venues: [german] }), '/venues/studiogalerie-klagenfurt/', 'en').imageAlt).toBe('Street view')
+  })
+
   it('describes a shared organisation logo with the logo text', () => {
     const logo = { ...organisation, logo: `${assetBase}/assets/logo-png`, logo_type: 'image/png', logo_alt: 'Logo text', image_alt: 'Photo text' }
     expect(entry(entries({ organisations: [logo] }), '/organisations/bewegung-in-kultur/', 'en').imageAlt).toBe('Logo text')

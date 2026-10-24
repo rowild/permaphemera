@@ -51,6 +51,15 @@ describe('resolveVenues', () => {
     expect([real.has_image, placeholder.has_image, none.has_image]).toEqual([true, false, false])
   })
 
+  it('takes the picture texts of the page language, else the English ones of the record', () => {
+    const texts = {
+      ...venue, image_alt: 'Street view', hero_image: '/h.webp', hero_image_alt: 'Hall view',
+      translations: [{ languages_code: 'en', description: 'English text', image_alt: 'Street view', hero_image_alt: 'Hall view' }, { languages_code: 'de', image_alt: 'Straßenansicht', hero_image_alt: 'Blick in den Saal' }]
+    }
+    expect(resolveVenues(locations, [texts], 'de')[0]).toMatchObject({ image_alt: 'Straßenansicht', hero_image_alt: 'Blick in den Saal' })
+    expect(resolveVenues(locations, [{ ...texts, translations: texts.translations.slice(0, 1) }], 'de')[0]).toMatchObject({ image_alt: 'Street view', hero_image_alt: 'Hall view' })
+  })
+
   it('maps title to the component-facing name', () => {
     expect(resolveVenues(locations, [venue], 'en')[0].name).toBe('Neue Galerie Graz')
   })

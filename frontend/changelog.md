@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.32 - 2026-10-24 15:45:30 CEST
+
+- The picture texts of the galleries exist in German and English now. The German gallery pages, the gallery cards and the link previews use the German text (12 galleries, written by hand).
+
 ## 0.0.31 - 2026-10-24 15:08:40 CEST
 
 - Every page now has a search description. Where no text was written, it is built from the record: title, artists, dates, gallery and town. Events are called events.

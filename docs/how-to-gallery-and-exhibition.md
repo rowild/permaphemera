@@ -192,12 +192,12 @@ published venue in a draft town does not show).
 | `coordinate_label` | DMS: `46° 47′ 52″ N · 13° 29′ 45″ E` |
 | `website_url` | the venue's own website only. None, or offline? Leave it empty. |
 | `websites` | further links, usually social profiles (Instagram, Facebook), as `pp_websites` rows with `kind: social`, in order. The venue page shows at most 3 links: `website_url` first, then these. Without own website the first social profile leads. |
-| `image`, `hero_image` | the Commons photo; `image_alt`, `hero_image_alt` in English |
+| `image`, `hero_image` | the Commons photo; `image_alt`, `hero_image_alt` in English (also in the `en` translation, German in `de`) |
 | `image_caption` | `<what> · Foto: <Author> (<Licence>)` |
 | `lede` | one line |
 | `about_html` | WYSIWYG text, 1–2 paragraphs: building, history, who runs it, opening hours. Paragraphs, bold, italic and lists only; no links (they go into link records). Via the API write HTML: `<p>…</p><p>…</p>` |
 | `description` | one sentence |
-| `translations` | `en` and `de` with `lede`, `about_html`, `description`, `image_caption`, `coordinate_label` |
+| `translations` | `en` and `de` with `lede`, `about_html`, `description`, `image_alt`, `hero_image_alt`, `image_caption`, `coordinate_label` |
 
 The plain fields hold the **English** text and must equal the `en` translation word for word
 (`pnpm check:data` tests this).
