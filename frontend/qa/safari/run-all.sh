@@ -4,7 +4,8 @@
 # iOS Simulators (one at a time) → summary.md + gallery.html.
 #
 #   pnpm qa:safari                      (live site)
-#   QA_TARGET=http://localhost:3000 pnpm qa:safari   (a local `pnpm preview`)
+#   QA_TARGET=http://localhost:3000 QA_DIRECTUS=https://permaphemera.project-backends.info pnpm qa:safari
+#                                       (a local `pnpm preview`; QA_DIRECTUS = its Directus)
 #   QA_IOS=27 pnpm qa:safari            (only some iOS versions)
 set -u
 cd "$(dirname "$0")/../.."

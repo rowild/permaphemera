@@ -48,6 +48,18 @@ works" page ("ergänzen das räumliche Dokument"), the contact page ("räumliche
 locale files hold "Dokument…" 37 times (de) and "document…" 30 times (en); check each one
 (a PDF invitation may stay a document).
 
+## Safari kit run (separate task)
+
+Added 2026-10-25. Run only when the owner asks; never part of a release or a deploy.
+
+The full kit (`pnpm qa:safari`, see `frontend/qa/safari/README.md`) takes about an hour and
+boots iOS Simulators. Run it on the live site (default target). Changes shipped since the last
+run (2026-10-23, release 0.0.26) that it should cover:
+
+- 0.0.35: card inset 24 px above 700 px; shadow room in the phone sliders; tile shadow
+  `0 1px 2px`; the real Cormorant 400 italic; bold at 500; the ResizeObserver fix on /venues/.
+  Checked on 2026-10-24 with Playwright WebKit and Chromium only (no Simulator, no Mac Safari).
+
 ## ❗ IMPORTANT — Newsletter implementation (after the texts)
 
 Added 2026-10-24. Priority: important. Next after the texts.

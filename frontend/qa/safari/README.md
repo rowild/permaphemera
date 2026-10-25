@@ -55,7 +55,10 @@ Results land in `qa/safari/results/<run>/` (git-ignored).
 
 Every driver takes `--only start,venue` (route keys in `config.mjs`). Test a
 local build instead of the live site: `pnpm generate && pnpm preview`, then
-`QA_TARGET=http://localhost:3000 pnpm qa:safari`.
+`QA_TARGET=http://localhost:3000 QA_DIRECTUS=https://permaphemera.project-backends.info pnpm qa:safari`.
+A local build reads the hosted Directus directly, and Directus answers CORS only
+for the site's own origin; `QA_DIRECTUS` lets the relay serve it as `/cms`, as the
+live site does. Without it every page of a local run stays empty.
 
 ### Hover
 

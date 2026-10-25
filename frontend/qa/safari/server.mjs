@@ -13,7 +13,7 @@ import { createServer } from 'node:http'
 import { appendFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { networkInterfaces } from 'node:os'
 import { resolve } from 'node:path'
-import { PORT, QA_DIR, RESULTS_DIR, ROUTES, TARGET, probeConfig } from './config.mjs'
+import { DIRECTUS, PORT, QA_DIR, RESULTS_DIR, ROUTES, TARGET, probeConfig } from './config.mjs'
 
 const lan = process.argv.includes('--lan')
 const runId = process.env.QA_RUN_ID || new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-')
@@ -59,7 +59,10 @@ function indexPage(host) {
 async function relay(req, res) {
   const host = req.headers.host
   const local = `http://${host}`
-  const url = new URL(req.url, TARGET)
+  // /cms/… is the Directus the pages read (DIRECTUS); everything else is the site.
+  const url = req.url === '/cms' || req.url.startsWith('/cms/')
+    ? new URL(`${DIRECTUS}${req.url.slice('/cms'.length)}`)
+    : new URL(req.url, TARGET)
   const headers = {}
   for (const [k, v] of Object.entries(req.headers)) {
     if (!['host', 'connection', 'accept-encoding', 'origin', 'referer'].includes(k)) headers[k] = v
@@ -84,7 +87,7 @@ async function relay(req, res) {
   let buf = Buffer.from(await upstream.arrayBuffer())
   if ((upstream.headers.get('content-type') || '').includes('text/html')) {
     const html = buf.toString('utf8')
-      .split(`${TARGET}/cms`).join(`${local}/cms`)
+      .split(DIRECTUS).join(`${local}/cms`)
       .replace(/<head>/i, '<head><script src="/__qa/probe.js"></script>')
     buf = Buffer.from(html)
     out['cache-control'] = 'no-store'

@@ -14,6 +14,13 @@ export const PORT = Number(process.env.QA_PORT || 4800)
  *  (`pnpm generate && pnpm preview`, then QA_TARGET=http://localhost:3000). */
 export const TARGET = (process.env.QA_TARGET || 'https://permaphemera.at').replace(/\/$/, '')
 
+/** The Directus the target's pages read (their NUXT_PUBLIC_DIRECTUS_URL). The
+ *  relay serves it as /cms, because Directus answers CORS only for the site's
+ *  own origin. The live site uses <site>/cms; a local build reads the hosted
+ *  Directus directly, so a local run needs
+ *  QA_DIRECTUS=https://permaphemera.project-backends.info. */
+export const DIRECTUS = (process.env.QA_DIRECTUS || `${TARGET}/cms`).replace(/\/$/, '')
+
 /** The pages every runner visits. `tasks` picks the probe's checks:
  *  fonts, gradients, cards, tour (open the 360° modal once). */
 export const ROUTES = [
