@@ -246,7 +246,7 @@ Galerie Porcia) gets no organisation record; name it in `about_html`. A person t
 | Field | Rule |
 |---|---|
 | `title` | as on the invitation; Stadtgalerie style `Artist – Title`, else the title |
-| `slug` | title slug (`epische-gemaelde`), add artist/venue/year if needed |
+| `slug` | title slug (`epische-gemaelde`), short. The field is unique: Directus refuses a taken slug. Then add the gallery (`trigeniale-26-studiogalerie-klagenfurt`), then the year if still needed; never a number (owner, 2026-10-24). Add the artist when the title alone is unclear |
 | `kind` | `exhibition` or `event` |
 | `primary_venue` | venue id; travelling exhibitions add `further_venues` |
 | `start_date` / `end_date` | first and last **public** day of the run. The vernissage evening goes into `vernissage`, not into `start_date`. One-night presentations: same date twice. |
@@ -265,7 +265,7 @@ Galerie Porcia) gets no organisation record; name it in `about_html`. A person t
 
 | Situation | `tour_status` | `tour_available_from` | Text |
 |---|---|---|---|
-| Photographed or will be photographed | `available` | the last day, = `end_date` (since 2026-10-21; before, the day after) | Before that date the site shows the date. Add to summary: "The 360° tour will be available here from <date>." |
+| Photographed or will be photographed | `available` | ask the owner: EMPTY = the button shows at once (as soon as `tour` is linked), or a DATE = from that day, e.g. the last day (`end_date`) | Before a date the site shows it. No tour sentence in `summary`: the page says it itself, and a written date goes stale (2026-10-25) |
 | Photographed, date passed, files not yet published | `available` | as above | Site shows "being prepared". Text: "PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here." |
 | Tour published | `available` | as above | `pnpm tour:publish <id>` sets `tour` (see `PROJECT_INFO.md` §3) |
 | Not photographed | `unavailable` | empty | no tour sentence |
