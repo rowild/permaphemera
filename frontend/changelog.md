@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.37 - 2026-10-25 06:26:02 CET
+
+- No visible change on the site. The backlog now records the owner's rules for the coming text work (explanations instead of instructions, no "Sie"/"you" where possible).
+
 ## 0.0.36 - 2026-10-25 06:10:46 CET
 
 - Start page: the section with the newest exhibitions is called "Zuletzt eröffnet" / "Recently opened" instead of "Temporäre Begegnungen. Bleibende Spuren." / "Temporary encounters. Lasting traces.". The text below it says what the section holds and that a 360° tour keeps an exhibition visible room by room after it has closed, instead of "Ausgewählte Ausstellungen, bewahrt als räumliche Dokumente."

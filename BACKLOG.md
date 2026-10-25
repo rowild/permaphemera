@@ -15,8 +15,10 @@ Rules (owner):
 
 - It is a website, not a story book: people must find content and know what it is about.
 - No personal pronouns ("wir", "uns", "unser" / "we", "us", "our"), except where a person or
-  the team speaks on purpose ("about us", imprint). Important. Whether "Sie" / "you" is also
-  meant is not clarified yet.
+  the team speaks on purpose ("about us", imprint). Important.
+- Explanations, not instructions. Avoid "Sie" / "you" wherever possible: "Suchen Sie nach
+  Titel, Künstler:in, …" becomes "Nach Titel, Künstler:in, … suchen". Buttons and field labels
+  ("Suchen", "Search") stay as they are.
 - An exhibition is an exhibition, a 360° tour is a 360° tour: never a "document",
   "Dokument", "Dokumentation", "spatial record" or similar.
 - Say "exhibition" / "Ausstellung", never "show".
@@ -36,7 +38,10 @@ exhibitions we hold on to."; since 2026-10-25 it says "Ausstellungen, die festge
 / "Exhibitions that are captured". Better than before, not yet the best.
 
 Known next: the locale files still hold "wir/uns/unser…" 10 times (de) and "we/us/our" 12
-times (en); keep them only on pages where a person speaks on purpose. Then
+times (en); keep them only on pages where a person speaks on purpose. "Sie/Ihr/Ihnen" appears
+about 49 times (de, on 14 pages, some of them "sie" = "they" at a sentence start) and
+"you/your" 32 times (en, mostly privacy, legal and contact). Ask the owner before changing the
+privacy and legal texts. Then
 `fallbackLede` ("temporäre Begegnungen, versammelt in einer erinnerten
 architektonischen Hülle"), the footer tagline ("360°-Ausstellungsdokumentationen"), the "How it
 works" page ("ergänzen das räumliche Dokument"), the contact page ("räumliche Dokumentationen"). The
