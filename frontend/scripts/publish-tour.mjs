@@ -11,7 +11,9 @@
 // window (2026-10-25), which uploads BETWEEN copying and linking so that no
 // Start button points at files the server does not have yet:
 //   --candidates-json      writes nothing; prints one JSON line (linked record,
-//                          suggested slug, candidates) and logs to stderr
+//                          suggested slug, candidates, and "writable": whether
+//                          a DIRECTUS_TOKEN is set, so the editor can stop
+//                          BEFORE a minutes-long upload) and logs to stderr
 //   --copy-only            copy + check:public, no Directus
 //   --link-only [--exhibition <slug>] [--show-now]
 //                          Directus only; the copy must already be here.
@@ -284,6 +286,7 @@ async function main() {
       linked: linked ? summary(linked) : null,
       suggested: suggestion?.slug ?? null,
       candidates: candidates.map(summary),
+      writable: Boolean(directusToken),
     }))
     return
   }

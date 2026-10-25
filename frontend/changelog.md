@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.39 - 2026-10-25 11:20:00 CET
+
+- No visible change on the site. `pnpm tour:publish --candidates-json` also says whether a Directus key is set (`writable`), so the Tour Editor's publish window stops before the upload instead of after it when the tour could not be linked.
+
 ## 0.0.38 - 2026-10-25 10:40:00 CET
 
 - No visible change on the site. `pnpm tour:publish` can now be driven by the Tour Editor's new "Publish to website…" window: `--candidates-json` lists the exhibitions without a tour (and the linked one) as one JSON line and writes nothing; `--copy-only` copies the export without touching Directus; `--link-only [--exhibition <slug>] [--show-now]` only links, after the upload, and can switch the Start button on. The interactive routine in the terminal works as before.
