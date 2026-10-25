@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.35 - 2026-10-25 05:51:43 CET
+
+- Cards have more room inside on screens wider than 700 px: the text sits 24 px from the paper edge on all four sides, also below or beside the picture (before: 16 px). This holds for exhibition and gallery cards alike; phones keep 16 px, and the large highlighted exhibition keeps 32 px.
+- Start page: the wheel now waits until the page below the hero is built, and only then starts. Before, both started in the same moment, and the faded loading arrows could stutter once.
+- When one request to the archive fails (for example on a weak phone connection), the site asks again twice, after 0.6 and 1.5 seconds, before it shows "The archive could not be loaded".
+- From the Safari review (the same in every browser, most visible on the iPhone):
+  - The card shadows in the phone sliders no longer end in a straight line.
+  - The small icon tiles on the cards have the same soft shadow in Safari as in Chrome.
+  - Italic text (quotes, picture captions, the artist letter tiles) uses the real Cormorant italic instead of a slanted copy of the upright letters.
+  - Bold words on the About page and in biographies use weight 500. Before, the browser faked a heavier bold, and Safari set it wider, so lines could break differently.
+  - The gallery page on phones no longer measures its featured picture in an endless loop (60+ errors per visit, and needless work).
+
 ## 0.0.34 - 2026-10-24 18:56:22 CEST
 
 - The note on exhibitions and events whose tour may not be shown no longer says "wir"/"we": "Aus urheberrechtlichen Gründen darf von dieser Ausstellung kein 360°-Rundgang gezeigt werden." / "For copyright reasons, no 360° tour of this exhibition may be shown."

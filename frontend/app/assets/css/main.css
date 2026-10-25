@@ -1,6 +1,8 @@
 @import "@fontsource/cormorant-garamond/300.css";
 @import "@fontsource/cormorant-garamond/400.css";
 @import "@fontsource/cormorant-garamond/500.css";
+/* Quotes, captions and the artist letter tiles are italic; without the real face every browser fakes it, Safari differently. */
+@import "@fontsource/cormorant-garamond/400-italic.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @source inline("prose prose-invert not-prose");
@@ -102,8 +104,9 @@
   /* Mobile slider cards: current exhibitions 4/5 of the screen width, all others 2/3 (`w-slide-feature`, `w-slide`). */
   --container-slide-feature: 80vw;
   --container-slide: calc(100vw * 2 / 3);
-  /* A card's icon tile rests on the paper like a pressable stamp; it lifts on hover (`drop-shadow-tile`, `drop-shadow-tile-lift`). */
-  --drop-shadow-tile: 0 1px 1.5px rgb(75 52 29 / 0.3);
+  /* A card's icon tile rests on the paper like a pressable stamp; it lifts on hover (`drop-shadow-tile`, `drop-shadow-tile-lift`).
+     Whole pixels only: Safari rounds a shadow's offset and blur (1.5px drew as 1px, a harder line than in Chrome). */
+  --drop-shadow-tile: 0 1px 2px rgb(75 52 29 / 0.3);
   --drop-shadow-tile-lift: 0 3px 4px rgb(75 52 29 / 0.26);
 }
 

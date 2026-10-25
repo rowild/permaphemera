@@ -60,9 +60,12 @@ watch(total, () => nextTick(measure))
 <template>
   <!-- Full screen width, whatever the parent's side padding: the cards run to the screen edge. -->
   <div class="[ exhibition-slide-track ] relative left-1/2 w-screen -translate-x-1/2">
+    <!-- A scrolling row cuts what leaves its box: the bottom padding holds the
+         cards' whole shadow (about 24px below the card), the negative margin
+         gives the extra 12px back, so the counter keeps its place. -->
     <ul
       ref="track"
-      class="archive-slide-track flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pt-1 pb-3"
+      class="archive-slide-track flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pt-1 pb-6 -mb-3"
       :class="total > 1 ? (props.size === 'feature' ? 'after:w-1/5 after:shrink-0' : 'after:w-1/3 after:shrink-0') : ''"
       role="list"
       @scroll.passive="onScroll"

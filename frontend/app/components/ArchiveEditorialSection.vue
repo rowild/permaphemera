@@ -51,7 +51,7 @@ const paragraphParts = (paragraph: string) => {
         class="mt-0 mb-6 font-display text-lg leading-relaxed text-archive-body last:mb-0 compact:mb-5 compact:text-base"
       >
         <template v-for="(part, partIndex) in paragraphParts(paragraph)" :key="`${part.text}-${partIndex}`">
-          <strong v-if="part.emphasized" class="font-semibold text-archive-ink">{{ part.text }}</strong>
+          <strong v-if="part.emphasized" class="font-medium text-archive-ink">{{ part.text }}</strong>
           <template v-else>{{ part.text }}</template>
         </template>
       </p>

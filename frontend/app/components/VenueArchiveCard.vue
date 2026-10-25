@@ -45,7 +45,7 @@ const localePath = useLocalePath()
       />
     </span>
     <div
-      class="[ venue-card-body ] relative z-3 flex flex-auto flex-col p-4"
+      class="[ venue-card-body ] relative z-3 flex flex-auto flex-col p-6 compact:p-4"
     >
       <h3 class="m-0 font-display text-h4 leading-[1.08] font-medium compact:text-base">{{ props.venue.name }}</h3>
       <p class="mt-[0.2rem] mb-5 flex-auto text-archive-muted compact:mb-1 compact:text-xs">{{ props.venue.city }}</p>

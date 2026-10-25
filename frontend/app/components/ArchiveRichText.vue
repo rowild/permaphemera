@@ -12,7 +12,7 @@ const safeHtml = computed(() => sanitizeRichText(props.html))
 
 <template>
   <div
-    class="[ archive-rich-text ] prose max-w-176 text-button leading-[1.58] text-archive-body prose-p:text-archive-body prose-li:text-archive-body prose-strong:text-archive-ink compact:text-base compact:leading-normal"
+    class="[ archive-rich-text ] prose max-w-176 text-button leading-[1.58] text-archive-body prose-p:text-archive-body prose-li:text-archive-body prose-strong:font-medium prose-strong:text-archive-ink compact:text-base compact:leading-normal"
     v-html="safeHtml"
   />
 </template>

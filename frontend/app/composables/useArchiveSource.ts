@@ -7,6 +7,7 @@ import { loadArchive } from '~/utils/loadArchive'
  * useState('archive'), the single store useArchiveSnapshot() reads. Called in
  * app.vue without waiting: the start page (page meta `archiveOptional`) renders
  * at once and fills in when the data arrives; every other page waits for it.
+ * loadArchive asks a failed request again twice before `error` is set.
  */
 export function useArchiveSource() {
   const config = useRuntimeConfig()

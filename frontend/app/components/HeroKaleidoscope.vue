@@ -19,7 +19,7 @@ const props = defineProps<{
   itemPool?: KaleidoscopeExhibitionItem[]
   /** True while the archive is still on its way: the wheel waits, faded arrows run. */
   pending?: boolean
-  /** True while the hero text is still setting itself: the blades wait for it. */
+  /** True while the page is not ready for the wheel (hero text setting, page below being built): GPU uploads and blades wait. */
   holdIntro?: boolean
 }>()
 const { t } = useI18n()
@@ -1234,9 +1234,20 @@ const PENDING_LEAD = 3
 const PENDING_ROUND_SECONDS = 1.25
 const PENDING_STAGGER = PENDING_ROUND_SECONDS / orbitSegments.length
 const PENDING_DRAW_SECONDS = PENDING_STAGGER * PENDING_LEAD
-// TEST ONLY (2026-10-22): `?wheel-delay` in the address holds the image loading
-// back by 1.5 s (`?wheel-delay=5`: 5 s), so the faded arrows can be watched.
-// Remove once the hand-over is approved.
+// Test switch `?wheel-delay` (since 2026-10-22, kept on purpose; owner,
+// 2026-10-24): it holds the wheel back, so the faded loading arrows and their
+// hand-over to the real intro can be watched on a fast connection. Use it again
+// whenever the hero, the header or the start page layout changes.
+//
+//   /?wheel-delay        waits 1.5 s
+//   /?wheel-delay=5      waits 5 s (up to 30; 0 turns it off; not a number: 1.5 s)
+//   /en/?wheel-delay=3   works on every language of the start page, also live
+//
+// What it does: the faded arrows start even when the archive is already
+// there, and the wheel waits the given time after the archive has arrived
+// before it loads its first image. Everything else runs as usual: the text
+// intro, the page below the hero and the loading dial. Without the switch,
+// this costs nothing. Full notes: docs/superpowers/specs/2026-08-11-hero-kaleidoscope-preloader-design.md, "Test switch".
 const wheelTestDelaySeconds = (() => {
   const value = new URLSearchParams(window.location.search).get('wheel-delay')
   if (value === null) return 0
@@ -1313,8 +1324,9 @@ function waitForArchive() {
   })
 }
 
-// The blades start only once the hero text has set itself (`holdIntro`), so
-// the two entrances do not compete; the faded arrows keep running meanwhile.
+// The blades start only once the page releases them (`holdIntro`: the start
+// page waits for the hero text and for the page below the hero), so the
+// entrances do not compete; the faded arrows keep running meanwhile.
 function startIntroWhenReleased(delay: number) {
   if (!props.holdIntro) {
     createIntroTimeline(delay)
@@ -1443,8 +1455,8 @@ onMounted(async () => {
     if (isActive) markSliceReady(index)
   }
 
-  // Upload the images to the GPU only after the hero text has set itself
-  // (`holdIntro`), one per frame. Each upload costs 50–75 ms of main thread;
+  // Upload the images to the GPU only after the hero text has set itself and
+  // the page below the hero is built (`holdIntro`), one per frame. Each upload costs 50–75 ms of main thread;
   // left to the first render, all twelve went up at once (a 440 ms freeze), and
   // even one per frame made the letters stutter (measured 2026-10-22).
   await waitForIntroRelease()

@@ -207,7 +207,7 @@ Rules:
 
 ### 6.1 Typeface
 
-The current project uses **Cormorant Garamond** locally through `@fontsource`, with weights 300, 400, and 500.
+The current project uses **Cormorant Garamond** locally through `@fontsource`, with weights 300, 400, and 500, and the 400 italic (since 2026-10-24). A style without its own face is faked by the browser, and Safari fakes it differently from Chrome (wider bold, other line breaks): use only these four faces, and give bold text (`strong`, rich text included) weight 500.
 
 ```css
 --font-display: "Cormorant Garamond", "EB Garamond",

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { loadArchive } from '~/utils/loadArchive'
+import { loadArchive, retryPauseMs } from '~/utils/loadArchive'
 import type { ArchiveClient } from '~/utils/directusClient'
 
 const fake = (tables: Record<string, unknown[]>, calls: string[] = []): ArchiveClient => ({
@@ -58,6 +58,46 @@ describe('loadArchive', () => {
 
   it('names the collection when a request fails', async () => {
     const { pp_roles: _drop, ...broken } = minimal
-    await expect(loadArchive(fake(broken))).rejects.toThrow(/pp_roles: 404/)
+    await expect(loadArchive(fake(broken), { pause: noPause })).rejects.toThrow(/pp_roles: 404/)
+  })
+
+  it('asks again for a request that failed, and only for that one', async () => {
+    const calls: string[] = []
+    const pauses: number[] = []
+    const snapshot = await loadArchive(flaky(minimal, 'pp_roles', 2, calls), { pause: async (attempt) => { pauses.push(attempt) } })
+    expect(snapshot.roles).toEqual([])
+    expect(calls.filter((call) => call.startsWith('pp_roles?'))).toHaveLength(3)
+    expect(calls).toHaveLength(26 + 2)
+    expect(pauses).toEqual([1, 2])
+  })
+
+  it('gives up after two more tries', async () => {
+    const calls: string[] = []
+    await expect(loadArchive(flaky(minimal, 'pp_roles', 3, calls), { pause: noPause })).rejects.toThrow(/pp_roles: 503/)
+    expect(calls.filter((call) => call.startsWith('pp_roles?'))).toHaveLength(3)
+  })
+
+  it('pauses longer before each further try', async () => {
+    expect(retryPauseMs(1)).toBeGreaterThan(0)
+    expect(retryPauseMs(2)).toBeGreaterThan(retryPauseMs(1))
   })
 })
+
+const noPause = async () => {}
+
+// Fails the first `failures` requests for one collection with a 503, then answers.
+const flaky = (tables: Record<string, unknown[]>, collection: string, failures: number, calls: string[]): ArchiveClient => {
+  const client = fake(tables, calls)
+  let failed = 0
+  return {
+    ...client,
+    async items(name, query) {
+      if (name === collection && failed < failures) {
+        failed += 1
+        calls.push(`${name}?${new URLSearchParams(query ?? {}).toString()}`)
+        throw new Error(`${name}: 503 Service Unavailable`)
+      }
+      return client.items(name, query)
+    }
+  }
+}

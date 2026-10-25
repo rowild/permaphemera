@@ -270,3 +270,29 @@ format change would only touch the path strings in `app/pages/index.vue`.
 - The header takes part in the intro (`ArchiveHeader intro`), at the same time as the hero text. The temple mark and the logo set themselves first, letter by letter. The headline starts 0.45 s later, while the logo is still setting. Meanwhile the header fills from left to right: the tagline, the menu rising letter by letter (the dots between the links pop in), the language switch, and the menu star spinning in (a 3D turn on its vertical axis, fading in). The wheel starts when header and hero text are both finished.
 - The logo has its own broken letter: the H in the middle leans 10° (`BRAND_STUCK_LETTER`). On the start page it starts upright and falls last, after the hero's stuck letters, once the wheel is built. On every other page, and in the footer, it already leans.
 - Everything the intro shows is hidden before the first paint. The menu links arrive with the archive, often after the intro has started, so the whole menu is hidden and its letters are taken only at the menu's turn; they share one 0.7 s window in every language. Links that arrive after their turn simply appear. Measured: no header part is visible before its turn.
+
+## Changes 2026-10-24
+
+- The wheel also waits for the page below the hero (`wheelReleased` in `app/pages/index.vue`, passed as `holdIntro`). The order is now: hero text and header set themselves, the page below the hero is built (one section per frame), then the wheel uploads its images to the GPU and turns in. Before, the page below and the GPU uploads started in the same frame, which made one frame of about 70 ms, and the faded arrows could stutter. The images still download as soon as the archive is there, during the text intro; only the uploads and the blades wait. A scroll, tap, click or key builds the page below at once, so it never holds the wheel back for long.
+
+## Test switch `?wheel-delay`
+
+Kept on purpose (owner, 2026-10-24). It makes the waiting state of the wheel visible on a fast connection, where the archive and the images arrive too quickly to watch. Use it whenever the hero, the header, the intro or the start page layout changes.
+
+| Address | Effect |
+|---|---|
+| `/?wheel-delay` | waits 1.5 s |
+| `/?wheel-delay=5` | waits 5 s; up to 30 s |
+| `/?wheel-delay=0` | off (a negative value too) |
+| `/?wheel-delay=abc` | not a number: 1.5 s |
+| `/en/?wheel-delay=3` | the English start page, 3 s |
+
+What it does (`wheelTestDelaySeconds` in `HeroKaleidoscope.vue`):
+
+1. The faded orbit arrows start at once, even when the archive is already there.
+2. The wheel waits for the archive, then the given time, and only then starts to load its first image.
+3. Everything else runs as usual: the header and hero text intro, the page below the hero, the loading dial (it shows when the images take longer than 180 ms to arrive), the GPU uploads, the hand-over from the faded arrows to the real ones, and the falling letters.
+
+What to watch: the faded arrows circle without a jump; when the real intro starts, each faded arrow finishes its run until it is empty and the real arrows draw over them; nothing flashes; the stuck letters fall only after the wheel is built.
+
+It works on the dev server, on a local build and on permaphemera.at. Without the parameter it costs nothing: the code reads the address once, when the wheel mounts. It is the only test switch in the site, so a search for `wheel-delay` finds every place.

@@ -137,7 +137,8 @@ const artistLetterRoute = (letter: string) => ({
 // logo is still setting, the intro text follows in quicker letters, then the
 // buttons. Meanwhile the header fills from left to right: the tagline, the
 // menu rising letter by letter, the language switch, and the menu star
-// spinning in. The wheel waits for all of it (`heroTextDone`). Only once the
+// spinning in. The wheel waits for all of it (`heroTextDone`), and for the
+// page below the hero (`wheelReleased`). Only once the
 // wheel is built, a letter here and there lets go and falls crooked
 // (ArchiveLetters marks which; the logo's H falls last). Everything the intro
 // shows is hidden here, before the first paint. Reduced motion: the hero
@@ -233,17 +234,26 @@ onMounted(playPageIntro)
 // middle of the text, whatever the connection. A scroll, wheel, tap, click or
 // key, or an address with a #target, builds everything at once, so nobody
 // reaches an empty page.
+// The wheel waits for it (`wheelReleased`): built in the same frames as the
+// wheel's GPU uploads, it made one frame of about 70 ms (2026-10-22), and the
+// faded arrows could stutter. Now the text sets, the page below is built, and
+// only then the wheel uploads its images and turns in. `belowHeroBuilt` is set
+// after the frame that drew the last section, never in it, also when a visitor
+// action built everything at once.
 const BELOW_HERO_SECTIONS = 6
 const belowHeroStep = ref(0)
+const belowHeroBuilt = ref(false)
+const wheelReleased = computed(() => heroTextDone.value && belowHeroBuilt.value)
 const visitorActed = ref(false)
 let buildingBelowHero = false
 async function buildBelowHero() {
   if (buildingBelowHero) return
   buildingBelowHero = true
-  while (belowHeroStep.value < BELOW_HERO_SECTIONS) {
-    belowHeroStep.value = visitorActed.value ? BELOW_HERO_SECTIONS : belowHeroStep.value + 1
+  do {
+    belowHeroStep.value = visitorActed.value ? BELOW_HERO_SECTIONS : Math.min(belowHeroStep.value + 1, BELOW_HERO_SECTIONS)
     await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
-  }
+  } while (belowHeroStep.value < BELOW_HERO_SECTIONS)
+  belowHeroBuilt.value = true
 }
 watch([archiveReady, heroTextDone, visitorActed], ([ready, textDone, acted]) => {
   if (!ready) return
@@ -459,7 +469,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           :items="heroExhibitionItems.slice(0, HERO_BLADE_COUNT)"
           :item-pool="heroExhibitionItems"
           :pending="!archiveReady"
-          :hold-intro="!heroTextDone"
+          :hold-intro="!wheelReleased"
           @animation-state-change="handleKaleidoscopeAnimationState"
           @controls-reveal="revealWheelControls"
           @intro-complete="dropStuckLetters"

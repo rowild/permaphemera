@@ -1,6 +1,6 @@
 # Exhibition card rules — design
 
-Status: **built** (2026-10-22) for all four layouts, `stacked`, `side`, `slide` and `hero`. The owner's decisions are in §5. One rule is a trial: the title weight (§5.4). When the rules have held for a while, this file becomes `docs/STYLE_GUIDE.md` §14.3a.
+Status: **built** (2026-10-22) for all four layouts, `stacked`, `side`, `slide` and `hero`. The owner's decisions are in §5. The title weight trial (§5.4) ended on 2026-10-24: 400 stays. On 2026-10-24 the inset grew to 24 px above 700 px (§3.3). When the rules have held for a while, this file becomes `docs/STYLE_GUIDE.md` §14.3a.
 
 Source: an impeccable layout + typography assessment of the live site (390 px and 1440 px, measured with computed styles), 2026-10-21.
 
@@ -61,8 +61,8 @@ Every line box is 16, 20, 24 or 32 px, so every slot height stays on the 4 px gr
 
 ### 3.3 Spacing (4 px base)
 
-- **Inset (owner, 2026-10-22):** the same on all four sides, at every size: 16 px from the paper edge (24 px from the card box, because the frame clips 8 px). Below an image, the text starts 16 px under it. Beside an image (`side` on desktop), the text starts 16 px after it. The same rule holds for the gallery cards (`VenueArchiveCard`, and `GalleryDirectoryCard` on phones). The hero card has 32 px on its three free sides (16 px on phones).
-- **Corner rule:** for the bottom row, (side − 4)² + (bottom − 4)² must be at least 16². The inset gives 24/24, which passes.
+- **Inset (owner, 2026-10-22; desktop value 2026-10-24):** the same on all four sides: 24 px from the paper edge above 700 px, 16 px on phones (32 px and 24 px from the card box, because the frame clips 8 px). Below an image, the text starts the same distance under it; beside an image (`side` above 1280 px), the same distance after it. The same rule holds for the gallery cards (`VenueArchiveCard`, `GalleryDirectoryCard`). The `slide` cards exist on phones only, so they always have 16 px. The hero card has 32 px on its three free sides (16 px on phones).
+- **Corner rule:** for the bottom row, (side − 4)² + (bottom − 4)² must be at least 16². The inset gives 24/24 on phones and 32/32 above 700 px, which passes.
 - **Gaps:**
   - title → artist: 4
   - artist → facts: 8 (S), 12 (M), 16 (L)
@@ -122,7 +122,7 @@ Every line box is 16, 20, 24 or 32 px, so every slot height stays on the 4 px gr
 1. **Date:** in the meta lines (place, then date), not in a red caps line at the top.
 2. **Long artist lists:** cut with "…"; the full list shows in the tooltip, like the title.
 3. **Actions:** two icon tiles below the text (§3.7); no button on the image, no card-wide link.
-4. **Title weight:** 400 as a trial. Check it again and maybe go back to 500.
+4. **Title weight:** 400 as a trial; checked on 2026-10-24, 400 stays.
 5. **"(Lange Nacht der Museen)":** still part of the date text in Directus. Moving it into its own field is open (a data change). Until then, cards below L show the short date without it.
-6. **Inset:** the same on all four sides, 16 px from the paper edge, on every card and at every size (§3.3). It replaces the S/M/L paddings.
+6. **Inset:** the same on all four sides, 16 px from the paper edge, on every card and at every size (§3.3). It replaces the S/M/L paddings. Changed on 2026-10-24: 24 px above 700 px, on every card, like the large gallery cards; 16 px on phones.
 7. **Tiles as controls:** 30 px, shadow, corner arrow, tooltip, and a rule above the action row (§3.7).

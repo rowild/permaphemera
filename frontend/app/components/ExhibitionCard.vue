@@ -151,13 +151,14 @@ const textClass = {
   slide: 'shrink-0',
   hero: 'archive-record-overlay relative z-2'
 }
-// One inset on all four sides, at every size: 24px from the card box, so 16px
-// from the paper edge (the frame clips 8px), and 16px below the image. Beside
-// the image (`side` on desktop) the text starts 16px after it. The hero has
-// its own, larger inset, also the same on its three free sides.
+// One inset on all four sides: 24px from the paper edge above 700px, 16px on
+// phones (the frame clips 8px, so 32px and 24px from the card box). The text
+// starts the same distance below the image, or after it (`side` above
+// 1280px). The slider cards exist on phones only. The hero has its own,
+// larger inset, also the same on its three free sides.
 const copyClass = {
-  stacked: 'px-6 pt-4 pb-6',
-  side: 'py-6 pr-6 pl-4 tablet:pt-4 tablet:pl-6',
+  stacked: 'px-8 pt-6 pb-8 compact:px-6 compact:pt-4 compact:pb-6',
+  side: 'py-8 pr-8 pl-6 tablet:pt-6 tablet:pl-8 compact:px-6 compact:pt-4 compact:pb-6',
   slide: 'px-6 pt-4 pb-6',
   hero: 'px-10 pt-16 pb-10 compact:px-6 compact:pt-10 compact:pb-6'
 }

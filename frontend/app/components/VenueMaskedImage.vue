@@ -22,20 +22,21 @@ const maskPathD = computed(() => {
     : createVenueMediaPath(width.value, height.value)
 })
 
-const updateSize = () => {
-  const rect = svgRef.value?.getBoundingClientRect()
-
-  if (!rect) {
+// The layout size, never getBoundingClientRect(): the gallery cards tilt the
+// image, and the tilted box is larger. Where the height follows the viewBox
+// (the featured gallery card on phones), the larger box grew the viewBox, the
+// viewBox grew the image, and the observer fired again in an endless loop.
+// The observer's first report comes before the first paint.
+const updateSize = ([entry]: ResizeObserverEntry[]) => {
+  if (!entry) {
     return
   }
 
-  width.value = Math.max(1, rect.width)
-  height.value = Math.max(1, rect.height)
+  width.value = Math.max(1, entry.contentRect.width)
+  height.value = Math.max(1, entry.contentRect.height)
 }
 
 onMounted(() => {
-  updateSize()
-
   if (!svgRef.value) {
     return
   }
