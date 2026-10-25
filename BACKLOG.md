@@ -7,17 +7,41 @@ Work that is agreed but parked for later. Newest first.
 Added 2026-10-25. Priority: urgent, before the newsletter.
 
 Rewrite the site's texts so that they inform. Remove the metaphors and the empty, AI-sounding
-phrases. Example from the start page (`landing` texts in `frontend/i18n/locales/de.json`, line
-99 and 101, and the same in `en.json`):
+phrases. A heading says what the section shows; the text below it says what a visitor can do
+or find there. Go through every page, German and English, the locale files and the fixed texts
+in Directus, and the SEO texts (`*.seoTitle`, `*.seoDescription`).
 
-> Temporäre Begegnungen. Bleibende Spuren.
-> Ausgewählte Ausstellungen, bewahrt als räumliche Dokumente.
+Rules (owner):
 
-Another example: `fallbackLede` in `en.json` ("temporary encounters gathered within a
-remembered architectural shell"). A heading says what the section shows; the text below it
-says what a visitor can do or find there. Go through every page, German and English, the
-locale files and the fixed texts in Directus, and the SEO texts (`*.seoTitle`,
-`*.seoDescription`).
+- It is a website, not a story book: people must find content and know what it is about.
+- No personal pronouns ("wir", "uns", "unser" / "we", "us", "our"), except where a person or
+  the team speaks on purpose ("about us", imprint). Important. Whether "Sie" / "you" is also
+  meant is not clarified yet.
+- An exhibition is an exhibition, a 360° tour is a 360° tour: never a "document",
+  "Dokument", "Dokumentation", "spatial record" or similar.
+- Say "exhibition" / "Ausstellung", never "show".
+- An eyebrow and a title never say the same thing.
+- A header is one word or one short phrase, like a chapter title. Avoid the two-part slogan
+  pattern ("Zuletzt eröffnet, jetzt im Archiv.", "Temporäre Begegnungen. Bleibende
+  Spuren."): it reads as AI text and gets boring when every header has it. This is a hint,
+  not a law: a comma is fine where the phrase needs it. The goal is a good, natural text.
+
+Done on 2026-10-25, as the first example: the start page section above the selected
+exhibitions (`landing.exhibitions`). It said "Temporäre Begegnungen. Bleibende Spuren.
+Ausgewählte Ausstellungen, bewahrt als räumliche Dokumente." The header is now "Zuletzt
+eröffnet", and the text below says what the 360° tours offer.
+
+Interim: the header of /exhibitions/ said "Die Ausstellungen, die wir festhalten." / "The
+exhibitions we hold on to."; since 2026-10-25 it says "Ausstellungen, die festgehalten werden"
+/ "Exhibitions that are captured". Better than before, not yet the best.
+
+Known next: the locale files still hold "wir/uns/unser…" 10 times (de) and "we/us/our" 12
+times (en); keep them only on pages where a person speaks on purpose. Then
+`fallbackLede` ("temporäre Begegnungen, versammelt in einer erinnerten
+architektonischen Hülle"), the footer tagline ("360°-Ausstellungsdokumentationen"), the "How it
+works" page ("ergänzen das räumliche Dokument"), the contact page ("räumliche Dokumentationen"). The
+locale files hold "Dokument…" 37 times (de) and "document…" 30 times (en); check each one
+(a PDF invitation may stay a document).
 
 ## ❗ IMPORTANT — Newsletter implementation (after the texts)
 

@@ -96,9 +96,9 @@
     },
     "exhibitions": {
       "eyebrow": "Ausstellungen",
-      "title": "Temporäre Begegnungen.",
-      "accent": "Bleibende Spuren.",
-      "intro": "Ausgewählte Ausstellungen, bewahrt als räumliche Dokumente.",
+      "title": "Zuletzt",
+      "accent": "eröffnet",
+      "intro": "Die neuesten Ausstellungen aus Galerien in Österreich. Wo es einen 360°-Rundgang gibt, bleibt die Ausstellung auch nach ihrem Ende Raum für Raum zu sehen, mit den Werken so, wie sie gehängt waren.",
       "searchLabel": "Ausstellungen durchsuchen",
       "searchPlaceholder": "Ausstellungen suchen…"
     },
@@ -311,8 +311,8 @@
     "seoDescription": "Alle Ausstellungen im PERMAPHEMERA-Archiv, aktuell, kommend und vergangen, mit Künstler:innen, Galerien, Daten und 360°-Rundgängen. Suche nach Titel und Ort.",
     "breadcrumb": "Ausstellungen",
     "eyebrow": "Ausstellungsindex",
-    "title": "Die Ausstellungen,",
-    "accent": "die wir festhalten.",
+    "title": "Ausstellungen,",
+    "accent": "die festgehalten werden",
     "intro": "Suchen Sie nach Titel, Künstler:in, Galerie, Stadt, Datum, Medium und der Sprache jedes Eintrags.",
     "ledgerRecords": "Einträge",
     "ledgerVenues": "Aktive Galerien",

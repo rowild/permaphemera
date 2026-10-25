@@ -96,9 +96,9 @@
     },
     "exhibitions": {
       "eyebrow": "Exhibitions",
-      "title": "Temporary encounters.",
-      "accent": "Lasting traces.",
-      "intro": "Selected exhibitions preserved as spatial records.",
+      "title": "Recently",
+      "accent": "opened",
+      "intro": "The latest exhibitions from galleries in Austria. Where there is a 360° tour, the exhibition can still be seen room by room after it has closed, with the works as they were hung.",
       "searchLabel": "Search exhibitions",
       "searchPlaceholder": "Search exhibitions…"
     },
@@ -311,8 +311,8 @@
     "seoDescription": "All exhibitions in the PERMAPHEMERA archive, current, upcoming and past, with artists, galleries, dates and 360° tours. Search by title, artist or town.",
     "breadcrumb": "Exhibitions",
     "eyebrow": "Exhibition index",
-    "title": "The exhibitions",
-    "accent": "we hold on to.",
+    "title": "Exhibitions",
+    "accent": "that are captured",
     "intro": "Search across title, artist, gallery, city, date, medium and the language of each record.",
     "ledgerRecords": "Records",
     "ledgerVenues": "Active galleries",

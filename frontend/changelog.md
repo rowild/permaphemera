@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.36 - 2026-10-25 06:10:46 CET
+
+- Start page: the section with the newest exhibitions is called "Zuletzt eröffnet" / "Recently opened" instead of "Temporäre Begegnungen. Bleibende Spuren." / "Temporary encounters. Lasting traces.". The text below it says what the section holds and that a 360° tour keeps an exhibition visible room by room after it has closed, instead of "Ausgewählte Ausstellungen, bewahrt als räumliche Dokumente."
+- Exhibitions page: the header says "Ausstellungen, die festgehalten werden" / "Exhibitions that are captured" instead of "Die Ausstellungen, die wir festhalten." / "The exhibitions we hold on to." (the site no longer speaks as "wir"/"we" there).
+
 ## 0.0.35 - 2026-10-25 05:51:43 CET
 
 - Cards have more room inside on screens wider than 700 px: the text sits 24 px from the paper edge on all four sides, also below or beside the picture (before: 16 px). This holds for exhibition and gallery cards alike; phones keep 16 px, and the large highlighted exhibition keeps 32 px.
