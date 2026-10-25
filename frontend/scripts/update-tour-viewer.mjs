@@ -7,19 +7,25 @@
 //   pnpm viewer:update -- --no-build   copy the editor's existing dist/ only
 //   pnpm viewer:update -- --from <dir> the editor project lives elsewhere
 //
+// The editor project is --from, else TOUR_EDITOR_REPO, else TOUR_EDITOR_REPO
+// in ~/.config/rowild-skills/paths.env (the Tour Editor's Settings → Folders
+// tab writes it), else ../../_MacAPP TOUR-VIEWER beside this repository.
+//
 // It stops before commit and deploy on purpose.
 import { spawnSync } from 'node:child_process'
 import { copyFile, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { readProjectPaths } from './lib/project-paths.mjs'
 import { buildModuleSource, viewerBuildId } from './lib/tour-viewer-build.mjs'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const args = process.argv.slice(2)
 const fromIndex = args.indexOf('--from')
+const configuredEditor = process.env.TOUR_EDITOR_REPO || (await readProjectPaths()).TOUR_EDITOR_REPO
 const editorRoot = fromIndex >= 0 && args[fromIndex + 1]
   ? resolve(args[fromIndex + 1])
-  : resolve(projectRoot, '../../_MacAPP TOUR-VIEWER')
+  : resolve(configuredEditor || resolve(projectRoot, '../../_MacAPP TOUR-VIEWER'))
 const targetDir = join(projectRoot, 'public', 'media', 'tour-viewer')
 const files = ['tour-viewer.js', 'tour-viewer.css']
 

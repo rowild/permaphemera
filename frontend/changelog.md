@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.38 - 2026-10-25 10:40:00 CET
+
+- No visible change on the site. `pnpm tour:publish` can now be driven by the Tour Editor's new "Publish to website…" window: `--candidates-json` lists the exhibitions without a tour (and the linked one) as one JSON line and writes nothing; `--copy-only` copies the export without touching Directus; `--link-only [--exhibition <slug>] [--show-now]` only links, after the upload, and can switch the Start button on. The interactive routine in the terminal works as before.
+- `pnpm tour:publish` and `pnpm viewer:update` find the tours folder and the editor project through `~/.config/rowild-skills/paths.env`, the file the Tour Editor's Settings → Folders tab edits. A moved project is re-pointed there once, instead of in every script.
+
 ## 0.0.37 - 2026-10-25 06:26:02 CET
 
 - No visible change on the site. The backlog now records the owner's rules for the coming text work (explanations instead of instructions, no "Sie"/"you" where possible).

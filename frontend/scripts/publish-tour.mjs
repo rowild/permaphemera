@@ -7,13 +7,24 @@
 //   pnpm tour:publish <tour id> --dry-run           show the plan, write nothing
 //   pnpm tour:publish <tour id> --from <dir>        read the export from elsewhere
 //
+// Three non-interactive modes for the Tour Editor's "Publish to website…"
+// window (2026-10-25), which uploads BETWEEN copying and linking so that no
+// Start button points at files the server does not have yet:
+//   --candidates-json      writes nothing; prints one JSON line (linked record,
+//                          suggested slug, candidates) and logs to stderr
+//   --copy-only            copy + check:public, no Directus
+//   --link-only [--exhibition <slug>] [--show-now]
+//                          Directus only; the copy must already be here.
+//                          --show-now also sets tour_status "available" and
+//                          clears tour_available_from
+//
 // The tour id is the folder the editor wrote on export (Tutorial No. 2). With
 // no --exhibition and no existing link, the script lists the records that
 // still have no tour, suggests the closest match from tour.json's meta block,
-// and asks for a number. The default export folder is
-// ../_360_GALLERIES_AND_TOURS/exported/, the tour content folder beside this
-// repository (it was the editor project's _tours/exported/ until 2026-09-29);
-// TOUR_EXPORT_DIR or --from override it.
+// and asks for a number. The export folder is --from, else TOUR_EXPORT_DIR,
+// else $PANORAMA_PROJECT/exported from ~/.config/rowild-skills/paths.env (the
+// file the editor's Settings → Folders tab writes), else
+// ../_360_GALLERIES_AND_TOURS/exported/ beside this repository.
 
 import { spawn } from 'node:child_process'
 import { cp, readdir, readFile, rm, stat } from 'node:fs/promises'
@@ -21,6 +32,8 @@ import { basename, dirname, join, relative, resolve } from 'node:path'
 import { createInterface } from 'node:readline/promises'
 import { fileURLToPath } from 'node:url'
 import { directusPatch, directusToken, loadArchiveFromDirectus } from './lib/archive-source.mjs'
+import { readProjectPaths } from './lib/project-paths.mjs'
+import { parseArguments, recordSummary } from './lib/publish-tour-options.mjs'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const toursDirectory = join(projectRoot, 'public', 'media', 'tours')
@@ -28,42 +41,16 @@ const defaultExportDirectory = resolve(projectRoot, '..', '..', '_360_GALLERIES_
 
 const SAFE_ID = /^[a-z0-9][a-z0-9._-]*$/iu
 
+// In --candidates-json mode stdout carries the JSON line alone; logs go to stderr.
+let quiet = false
+
 function log(message) {
-  console.log(`[tour] ${message}`)
+  (quiet ? console.error : console.log)(`[tour] ${message}`)
 }
 
 function fail(message) {
   console.error(`[tour] ${message}`)
   process.exit(1)
-}
-
-function parseArguments(argv) {
-  const options = { tourId: null, exhibition: null, from: null, dryRun: false }
-
-  for (let index = 0; index < argv.length; index += 1) {
-    const argument = argv[index]
-
-    if (argument === '--dry-run') {
-      options.dryRun = true
-    }
-    else if (argument === '--exhibition' || argument === '--from') {
-      const value = argv[index + 1]
-      if (!value || value.startsWith('--')) fail(`${argument} needs a value.`)
-      options[argument.slice(2)] = value
-      index += 1
-    }
-    else if (argument.startsWith('--')) {
-      fail(`Unknown option ${argument}.`)
-    }
-    else if (options.tourId) {
-      fail(`Only one tour id can be published at a time (got ${options.tourId} and ${argument}).`)
-    }
-    else {
-      options.tourId = argument
-    }
-  }
-
-  return options
 }
 
 const readJson = async (path) => JSON.parse(await readFile(path, 'utf8'))
@@ -199,15 +186,83 @@ function runCheck(script) {
   })
 }
 
+async function mirror(source, target) {
+  // Mirror, not merge: a panorama the editor dropped must not survive here.
+  if (await exists(target)) await rm(target, { recursive: true, force: true })
+  await cp(source, target, {
+    recursive: true,
+    filter: (path) => !basename(path).startsWith('.')
+  })
+}
+
+async function copyOnly(source, target) {
+  if (!(await exists(join(source, 'tour.json')))) {
+    fail(`No exported tour at ${source} (no tour.json there). Export it from the editor first, or pass --from <dir>.`)
+  }
+  const size = await measure(source)
+  log(`Copying ${size.files} files (${megabytes(size.bytes)}) from ${source}`)
+  log(`to ${relative(projectRoot, target)}/ — nothing is linked in Directus yet.`)
+  await mirror(source, target)
+  await runCheck('check-public-namespace.mjs')
+  log('Copied.')
+}
+
+async function linkOnly(options, target, tourPath) {
+  if (!(await exists(join(target, 'tour.json')))) {
+    fail(`${relative(projectRoot, target)}/ holds no tour.json. Copy the tour first (--copy-only) and upload it.`)
+  }
+  const { exhibitions } = await loadCatalogue()
+  const linked = exhibitions.find((record) => record.tour === tourPath)
+  const showNow = options.showNow ? { tour_status: 'available', tour_available_from: null } : {}
+  let record = linked
+  let patch = showNow
+
+  if (linked) {
+    if (options.exhibition && options.exhibition !== linked.slug) {
+      fail(`${options.tourId} is already linked to "${linked.slug}", not "${options.exhibition}". Set that record's "tour" to null in Directus first if it should move.`)
+    }
+    log(`${options.tourId} is already linked to "${linked.slug}".`)
+  }
+  else {
+    if (!options.exhibition) fail('--link-only needs --exhibition <slug> for a tour that is not linked yet.')
+    record = exhibitions.find((item) => item.slug === options.exhibition)
+    if (!record) fail(`No exhibition has the slug "${options.exhibition}".`)
+    if (record.tour) fail(`"${record.slug}" already has the tour ${record.tour}. Unlink it in Directus first if that is intended.`)
+    patch = { tour: tourPath, ...showNow }
+  }
+
+  if (!Object.keys(patch).length) {
+    log('Nothing to change in Directus.')
+    return
+  }
+  if (!directusToken) fail('DIRECTUS_TOKEN is not set in frontend/.env; the tour link needs write access')
+  await directusPatch(`/items/pp_exhibitions/${record.id}`, patch, directusToken)
+  if (patch.tour) log(`Linked: "${record.slug}" → ${tourPath}`)
+  if (options.showNow) log(`Start button on: "${record.slug}" is available now.`)
+  await runCheck('check-public-namespace.mjs')
+}
+
 async function main() {
-  const options = parseArguments(process.argv.slice(2))
-  if (!options.tourId) fail('Usage: pnpm tour:publish <tour id> [--exhibition <slug>] [--from <dir>] [--dry-run]')
+  let options
+  try {
+    options = parseArguments(process.argv.slice(2))
+  }
+  catch (error) {
+    fail(error.message)
+  }
+  quiet = options.mode === 'candidates'
+  if (!options.tourId) fail('Usage: pnpm tour:publish <tour id> [--exhibition <slug>] [--from <dir>] [--dry-run] [--candidates-json | --copy-only | --link-only [--show-now]]')
   if (!SAFE_ID.test(options.tourId)) fail(`"${options.tourId}" is not a tour id: letters, digits, dot, dash and underscore only, no slashes.`)
 
-  const exportDirectory = resolve(options.from ?? process.env.TOUR_EXPORT_DIR ?? defaultExportDirectory)
+  const projectPaths = await readProjectPaths()
+  const configuredExports = projectPaths.PANORAMA_PROJECT ? join(projectPaths.PANORAMA_PROJECT, 'exported') : null
+  const exportDirectory = resolve(options.from ?? process.env.TOUR_EXPORT_DIR ?? configuredExports ?? defaultExportDirectory)
   const source = join(exportDirectory, options.tourId)
   const target = join(toursDirectory, options.tourId)
   const tourPath = `/media/tours/${options.tourId}/`
+
+  if (options.mode === 'copy') return copyOnly(source, target)
+  if (options.mode === 'link') return linkOnly(options, target, tourPath)
 
   if (!(await exists(join(source, 'tour.json')))) {
     fail(`No exported tour at ${source} (no tour.json there). Export it from the editor first, or pass --from <dir>.`)
@@ -220,6 +275,18 @@ async function main() {
   const { exhibitions, artistNames } = await loadCatalogue()
   const linked = exhibitions.find((record) => record.tour === tourPath)
   let record = linked
+
+  if (options.mode === 'candidates') {
+    const candidates = linked ? [] : exhibitions.filter((item) => !item.tour)
+    const suggestion = linked ? null : suggestRecord(candidates, tour.meta, artistNames)
+    const summary = (item) => recordSummary(item, recordTitle(item))
+    console.log(JSON.stringify({
+      linked: linked ? summary(linked) : null,
+      suggested: suggestion?.slug ?? null,
+      candidates: candidates.map(summary),
+    }))
+    return
+  }
 
   if (linked) {
     if (options.exhibition && options.exhibition !== linked.slug) {
@@ -259,12 +326,7 @@ async function main() {
   // missing token would otherwise only surface from directusPatch() after the copy below.
   if (!linked && !directusToken) fail('DIRECTUS_TOKEN is not set in frontend/.env; the tour link needs write access')
 
-  // Mirror, not merge: a panorama the editor dropped must not survive here.
-  if (replacing) await rm(target, { recursive: true, force: true })
-  await cp(source, target, {
-    recursive: true,
-    filter: (path) => !basename(path).startsWith('.')
-  })
+  await mirror(source, target)
 
   if (!linked) {
     await directusPatch(`/items/pp_exhibitions/${record.id}`, { tour: tourPath }, directusToken)
