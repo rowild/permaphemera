@@ -141,7 +141,7 @@ const checks = [
   ['landing hero lede is centered with a balanced compact measure', /<p class="[^"]*compact:mx-auto[^"]*compact:max-w-64[^"]*compact:text-center/.test(landingPage)],
   ['compact kaleidoscope uses the approved larger size while retaining side gutters', heroKaleidoscope.includes('compact:w-[min(86vw,20rem,44svh)]')],
   ['tablet kaleidoscope is constrained separately for landscape and portrait', heroKaleidoscope.includes('tablet-landscape:w-[min(42vw,31rem,66svh)]') && heroKaleidoscope.includes('tablet-portrait:w-[min(74vw,31rem,44svh)]')],
-  ['landing hero actions share one centered intrinsic-width compact row', /\[ hero-copy \][\s\S]*?compact:flex-nowrap compact:justify-center/.test(landingPage) && (landingPage.match(/compact:w-fit compact:flex-none/g) ?? []).length >= 2 && landingPage.includes('landing.hero.exploreCompact') && landingPage.includes('landing.hero.details')],
+  ['landing hero actions share one centered intrinsic-width compact row', /\[ hero-copy \][\s\S]*?compact:flex-nowrap compact:justify-center/.test(landingPage) && (landingPage.match(/compact:w-fit compact:flex-none/g) ?? []).length >= 2 && landingPage.includes('landing.hero.allExhibitionsCompact') && landingPage.includes('landing.hero.details')],
   ['landing venue cards form a compact two-column grid', /\[ venue-grid \][^\"]*compact:grid-cols-2/.test(landingPage)],
   ['featured venue card rejoins the compact card grid', venueArchiveCard.includes('compact:col-span-1') && venueArchiveCard.includes('compact:row-auto') && (venueArchiveCard.match(/compact:h-32/g) ?? []).length >= 2],
   ['featured venue divider is hidden only on compact screens', /v-if="props\.featured"[^>]*class="[^\"]*\[ venue-card-divider \][^\"]*compact:hidden/.test(venueArchiveCard)],
@@ -157,13 +157,13 @@ const checks = [
   ['exhibition card titles keep two reserved lines that break long words', /line-clamp-2 min-h-10[^']*@card-m:min-h-12/.test(exhibitionCard) && exhibitionCard.includes('wrap-break-word hyphens-auto')],
   ['both artist alphabets use one-line draggable rails', landingPage.includes('<ArchiveAlphabetRail') && artistPage.includes('<ArchiveAlphabetRail') && archiveAlphabetRail.includes('flex-nowrap') && archiveAlphabetRail.includes('overflow-x-auto') && archiveAlphabetRail.includes('@pointermove="handlePointerMove"') && archiveAlphabetRail.includes('scrollLeft = scrollStartX - distance') && !landingPage.includes('[ alphabet-filter ] my-8 flex flex-wrap') && !artistPage.includes('[ artist-alphabet-filter ] mt-8 mb-0 flex flex-wrap')],
   ['landing artist sidebar becomes the three-column fact ledger throughout tablet and mobile', /<ArchiveFactLedger[\s\S]*?class="hidden tablet:grid"/.test(landingPage) && /\[ archive-sidebar \][^\"]*tablet:border-t-0/.test(landingPage) && landingPage.includes("{ label: $t('landing.sidebar.preserved')") && landingPage.includes('<div class="tablet:hidden">')],
-  ['sample record action leaves explicit tablet and compact space above its image', landingPage.includes("$t('landing.method.sample')") && landingPage.includes('tablet:mb-16') && landingPage.includes('compact:mx-auto') && landingPage.includes('compact:mb-10')],
+  ['the open-a-tour action leaves explicit tablet and compact space above its image', landingPage.includes("$t('landing.method.openTour')") && landingPage.includes('tablet:mb-16') && landingPage.includes('compact:mx-auto') && landingPage.includes('compact:mb-10')],
   ['compact method steps use the requested positive translation', /\[ method-steps \][^\"]*compact:translate-y-1\.5/.test(landingPage)],
   ['compact method details breathe after the step table and quote', /\[ method-details \][^\"]*compact:mt-8/.test(landingPage) && /\[ method-quote \][^\"]*compact:mb-4/.test(landingPage)],
   ['compact method facts use shortened dividers', archiveMethodFact.includes('compact:after:hidden') && archiveMethodFact.includes('[ method-fact-divider-compact ]') && archiveMethodFact.includes('h-12 w-px')],
   ['compact method stamp occupies a centered row with bottom space', /\[ method-archive-stamp \][^\"]*compact:mx-auto[^\"]*compact:mb-8/.test(landingPage)],
   ['routed pages no longer use oversized compact section padding', !routedPages.includes('compact:py-12') && !routedPages.includes('compact:px-5')],
-  ['search placeholders are deliberately short and localized', ['artists.searchPlaceholder', 'landing.venues.searchPlaceholder', 'landing.exhibitions.searchPlaceholder', 'landing.artists.searchPlaceholder', 'venue.searchPlaceholder'].every((key) => routedPages.includes(key))]
+  ['search placeholders are deliberately short and localized', ['artists.searchPlaceholder', 'venue.searchPlaceholder'].every((key) => routedPages.includes(key))]
 ]
 
 const failures = checks.filter(([, passed]) => !passed)

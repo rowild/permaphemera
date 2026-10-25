@@ -338,6 +338,24 @@ export interface ExhibitionOrganiserRecord {
 }
 
 /** Everything the site reads, fetched once from Directus in the JSON item shape. */
+/** pp_quotes — a short quote for the start page; one published quote shows at random. */
+export interface QuoteRecord {
+  id: string
+  status: ContentStatus
+  sort: number | null
+  line_1: string
+  line_2: string | null
+  /** The last word or words, shown in red after line 2. */
+  accent: string | null
+  /** Who said it; empty for the archive's own quotes. */
+  source: string | null
+  /** 1–10; how often, compared with the other quotes (5 is normal). */
+  weight: number | null
+  visible_from: string | null
+  visible_until: string | null
+  translations: TranslationEntry[]
+}
+
 export interface ArchiveSnapshot {
   locations: LocationRecord[]
   venues: VenueRecord[]
@@ -365,4 +383,5 @@ export interface ArchiveSnapshot {
   exhibitionOrganisers: ExhibitionOrganiserRecord[]
   organisationsWebsites: JunctionRow[]
   venuesWebsites: JunctionRow[]
+  quotes: QuoteRecord[]
 }

@@ -19,14 +19,15 @@ const minimal = {
   pp_mm__persons_venues: [], pp_mm__persons_sponsors: [], pp_mm__locations_sponsors: [], pp_mm__sponsors_venues: [],
   pp_websites: [], pp_mm__exhibitions_websites: [], pp_mm__persons_websites: [],
   pp_organisations: [{ id: 'o1', slug: 'o', logo: 'f4', translations: [] }], pp_organisation_memberships: [], pp_organisation_venue_relations: [],
-  pp_exhibition_organisers: [], pp_mm__organisations_websites: [], pp_mm__venues_websites: []
+  pp_exhibition_organisers: [], pp_mm__organisations_websites: [], pp_mm__venues_websites: [], pp_quotes: []
 }
 
 describe('loadArchive', () => {
-  it('fetches all 26 collections with translations where they exist and no limit', async () => {
+  it('fetches all 27 collections with translations where they exist and no limit', async () => {
     const calls: string[] = []
     await loadArchive(fake(minimal, calls))
-    expect(calls).toHaveLength(26)
+    expect(calls).toHaveLength(27)
+    expect(calls).toContain('pp_quotes?fields=*%2Ctranslations.*&limit=-1&sort=sort')
     expect(calls).toContain('pp_organisations?fields=*%2Ctranslations.*%2Clogo.id%2Clogo.filename_download%2Clogo.type%2Cimage.id%2Cimage.filename_download%2Cimage.type&limit=-1&sort=sort')
     expect(calls).toContain('pp_organisation_memberships?fields=*%2Ctranslations.*&limit=-1&sort=sort')
     expect(calls).toContain('pp_venues?fields=*%2Ctranslations.*%2Cimage.id%2Cimage.filename_download%2Cimage.type%2Chero_image.id%2Chero_image.filename_download%2Chero_image.type&limit=-1&sort=sort')
@@ -67,7 +68,7 @@ describe('loadArchive', () => {
     const snapshot = await loadArchive(flaky(minimal, 'pp_roles', 2, calls), { pause: async (attempt) => { pauses.push(attempt) } })
     expect(snapshot.roles).toEqual([])
     expect(calls.filter((call) => call.startsWith('pp_roles?'))).toHaveLength(3)
-    expect(calls).toHaveLength(26 + 2)
+    expect(calls).toHaveLength(27 + 2)
     expect(pauses).toEqual([1, 2])
   })
 

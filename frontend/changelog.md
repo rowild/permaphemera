@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.40 - 2026-10-25 16:24:08 CET
+
+- New start page texts, decided section by section with the owner. The hero line "Vergängliche Welten. Dauerhaft bewahrt." stays; below it: "PERMAPHEMERA dokumentiert Ausstellungen in österreichischen Galerien als digitale 360°-Rundgänge, die ab dem letzten Tag der Laufzeit online verfügbar sind." The sections are called "Galerien in Österreich" (above it "Räume" instead of "Orte", which are the towns), "Zuletzt eröffnet", "Von A bis Z" and "So entsteht ein 360°-Rundgang". The invitations below the headers ("Entdecken Sie …") are gone; the method section explains why a 360° tour shows more than photos that frame a single view, and its three steps say what really happens. The side column says "Ausstellungen im Archiv", "Galerien" and "Städte und Orte". No "ausgewählt" or "Kuration" any more: the scope is "Galerien und Ausstellungsorte in ganz Österreich".
+- The start page has no search fields any more (galleries, exhibitions, artists); the index pages keep theirs, and the artists' alphabet stays.
+- The first hero button says "Alle Ausstellungen" and opens the exhibitions page; "Einen Rundgang öffnen" in the method section opens a random open 360° tour; "Alle Galerien" in the side column opens the galleries page.
+- The quote in the method section comes from Directus now (new collection "Quotes"): one of 15 quotes at random on every visit, weighted, hidden when draft or archived, optionally limited to dates and with a source line. New quotes can be added in Directus at any time.
+
 ## 0.0.39 - 2026-10-25 11:20:00 CET
 
 - No visible change on the site. `pnpm tour:publish --candidates-json` also says whether a Directus key is set (`writable`), so the Tour Editor's publish window stops before the upload instead of after it when the tour could not be linked.

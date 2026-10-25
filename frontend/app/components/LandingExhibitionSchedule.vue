@@ -44,9 +44,6 @@ const columnGroups = computed(() => groups.value
         <h2 id="current-upcoming-title" class="m-0 max-w-144 pb-1 font-display text-h2 font-normal leading-[1.08] compact:pb-0.5 compact:text-3xl compact:leading-[1.12]">
           {{ $t('landing.schedule.titleBefore') }} <span class="text-archive-red">{{ $t('landing.schedule.titleAccent') }}</span> {{ $t('landing.schedule.titleAfter') }}
         </h2>
-        <p class="mt-3 mb-0 max-w-112 text-button text-archive-muted compact:hidden">
-          {{ $t('landing.schedule.intro') }}
-        </p>
         <ArchiveTextLink class="mt-5 compact:hidden" :to="localePath('/exhibitions/')">
           {{ $t('landing.schedule.viewAll') }}
           <ArchiveArrow />

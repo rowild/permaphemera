@@ -706,6 +706,39 @@ collections:
       versioning: false
     schema:
       name: pp_persons
+  - collection: pp_quotes
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: closed
+      collection: pp_quotes
+      color: '#a6523c'
+      display_template: '{{line_1}} {{line_2}} {{accent}}'
+      group: pp_archive
+      hidden: false
+      icon: format_quote
+      item_duplication_fields: null
+      note: >-
+        Short quotes for the start page. On every visit the site shows one
+        published quote at random; weight makes a quote come up more or less
+        often; visible from/until limit it to dates. Draft or archived: never
+        shown. Internal notes go into the comments of a quote, which are never
+        public.
+      preview_url: null
+      singleton: false
+      sort: 10
+      sort_field: null
+      translations:
+        - language: en-US
+          plural: Quotes
+          singular: Quote
+          translation: Quotes
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: pp_quotes
   - collection: pp_roles
     meta:
       accountability: all
@@ -946,6 +979,32 @@ collections:
       versioning: false
     schema:
       name: pp_translations__persons
+  - collection: pp_translations__quotes
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_translations__quotes
+      color: '#a6523c'
+      display_template: null
+      group: pp_quotes
+      hidden: true
+      icon: translate
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Quotes · Translations
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_translations__quotes
   - collection: pp_translations__roles
     meta:
       accountability: all
@@ -3582,8 +3641,12 @@ fields:
       hidden: false
       interface: datetime
       note: >-
-        Usually the last day of the exhibition (= end_date). Empty means at
-        once.
+        From which day the 360° tour button shows on the website. EMPTY = at
+        once: the button shows as soon as "tour" is linked and "Tour status" is
+        "available". A DATE = until that day the page only says "360° tour from
+        <date>"; from that day on the button shows. Example: the last day of the
+        exhibition (= end_date), to hold the tour back while the exhibition
+        runs.
       options: null
       readonly: false
       required: false
@@ -12155,6 +12218,780 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_quotes
+    field: ui_accordion_main
+    type: alias
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_main
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+        start: first
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Main
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_quotes
+    field: ui_accordion_translations
+    type: alias
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_translations
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Translations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_quotes
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_quotes
+    field: ui_group_title
+    type: alias
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_title
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Quote
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_quotes
+    field: ui_group_display
+    type: alias
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_display
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Display
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_quotes
+    field: status
+    type: string
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - background: var(--theme--primary)
+            foreground: '#FFFFFF'
+            text: $t:published
+            value: published
+          - background: '#D3DAE4'
+            foreground: '#18222F'
+            text: $t:draft
+            value: draft
+          - background: var(--theme--warning)
+            foreground: '#FFFFFF'
+            text: $t:archived
+            value: archived
+        showAsDot: true
+      field: status
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: status
+      table: pp_quotes
+      data_type: varchar
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: line_1
+    type: string
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: line_1
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: First line of the quote.
+      options:
+        trim: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: line_1
+      table: pp_quotes
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: line_2
+    type: string
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: line_2
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: Second line, without its red end.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: line_2
+      table: pp_quotes
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: accent
+    type: string
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: accent
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: 'The last word or words, shown in red after line 2. Empty: no red part.'
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: accent
+      table: pp_quotes
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: source
+    type: string
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: source
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: >-
+        Optional: who said it, e.g. an artist. Shown in small letters below the
+        quote. Empty for the archive's own quotes.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: source
+      table: pp_quotes
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: weight
+    type: integer
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: weight
+      group: ui_group_display
+      hidden: false
+      interface: input
+      note: >-
+        How often, compared with the other quotes: 1 rare, 5 normal, 10 twice as
+        often as 5.
+      options:
+        max: 10
+        min: 1
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: weight
+      table: pp_quotes
+      data_type: integer
+      default_value: 5
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: visible_from
+    type: date
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: visible_from
+      group: ui_group_display
+      hidden: false
+      interface: datetime
+      note: 'Optional: first day the quote may show.'
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: visible_from
+      table: pp_quotes
+      data_type: date
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: visible_until
+    type: date
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: visible_until
+      group: ui_group_display
+      hidden: false
+      interface: datetime
+      note: 'Optional: last day the quote may show.'
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: visible_until
+      table: pp_quotes
+      data_type: date
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: translations
+    type: alias
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: translations
+      group: ui_accordion_translations
+      hidden: false
+      interface: translations
+      note: null
+      options:
+        defaultLanguage: en
+        defaultOpenSplitView: true
+        languageField: name
+        userLanguage: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - translations
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_quotes
+    field: id
+    type: uuid
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_quotes
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: sort
+    type: integer
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_quotes
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: user_created
+    type: string
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_quotes
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_quotes
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_quotes
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_quotes
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_quotes
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_quotes
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_quotes
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_quotes
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_roles
     field: ui_accordion_main
     type: alias
@@ -15742,6 +16579,296 @@ fields:
       data_type: json
       default_value: null
       max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__quotes
+    field: id
+    type: integer
+    meta:
+      collection: pp_translations__quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_translations__quotes
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__quotes
+    field: quotes_id
+    type: string
+    meta:
+      collection: pp_translations__quotes
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{line_1}} {{line_2}} {{accent}}'
+      field: quotes_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{line_1}} {{line_2}} {{accent}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: quotes_id
+      table: pp_translations__quotes
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_quotes
+      foreign_key_column: id
+  - collection: pp_translations__quotes
+    field: languages_code
+    type: string
+    meta:
+      collection: pp_translations__quotes
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: languages_code
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: languages_code
+      table: pp_translations__quotes
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: languages
+      foreign_key_column: code
+  - collection: pp_translations__quotes
+    field: line_1
+    type: string
+    meta:
+      collection: pp_translations__quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: line_1
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_quotes.line_1
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: line_1
+      table: pp_translations__quotes
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__quotes
+    field: line_2
+    type: string
+    meta:
+      collection: pp_translations__quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: line_2
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_quotes.line_2
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: line_2
+      table: pp_translations__quotes
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__quotes
+    field: accent
+    type: string
+    meta:
+      collection: pp_translations__quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: accent
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_quotes.accent
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: accent
+      table: pp_translations__quotes
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__quotes
+    field: source
+    type: string
+    meta:
+      collection: pp_translations__quotes
+      conditions: null
+      display: null
+      display_options: null
+      field: source
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_quotes.source
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: source
+      table: pp_translations__quotes
+      data_type: varchar
+      default_value: null
+      max_length: 255
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -20528,6 +21655,48 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
+  - collection: pp_quotes
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_quotes
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_quotes
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_quotes
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_quotes
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_quotes
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
   - collection: pp_roles
     field: user_created
     related_collection: directus_users
@@ -20921,6 +22090,48 @@ relations:
       sort_field: null
     schema:
       table: pp_translations__persons
+      column: languages_code
+      foreign_key_table: languages
+      foreign_key_column: code
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__quotes
+    field: quotes_id
+    related_collection: pp_quotes
+    meta:
+      junction_field: languages_code
+      many_collection: pp_translations__quotes
+      many_field: quotes_id
+      one_allowed_collections: null
+      one_collection: pp_quotes
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: translations
+      sort_field: null
+    schema:
+      table: pp_translations__quotes
+      column: quotes_id
+      foreign_key_table: pp_quotes
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__quotes
+    field: languages_code
+    related_collection: languages
+    meta:
+      junction_field: quotes_id
+      many_collection: pp_translations__quotes
+      many_field: languages_code
+      one_allowed_collections: null
+      one_collection: languages
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_translations__quotes
       column: languages_code
       foreign_key_table: languages
       foreign_key_column: code

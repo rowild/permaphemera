@@ -83,6 +83,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_navigations` | main | `pp_archive` | no |
 | `pp_websites` | main | `pp_archive` | no |
 | `pp_organisations` | main | `pp_archive` | no |
+| `pp_quotes` | main | `pp_archive` | no |
 | `pp_exhibition_organisers` | child of exhibitions | `pp_exhibitions` | yes |
 | `pp_organisation_memberships` | child of organisations | `pp_organisations` | yes |
 | `pp_organisation_venue_relations` | child of organisations | `pp_organisations` | yes |
@@ -110,6 +111,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_translations__websites` | structural | `pp_websites` | yes |
 | `pp_translations__organisations` | structural | `pp_organisations` | yes |
 | `pp_translations__organisation_memberships` | structural | `pp_organisation_memberships` | yes |
+| `pp_translations__quotes` | structural | `pp_quotes` | yes |
 | `pp_translations__persons` | structural | `pp_persons` | yes |
 | `pp_meta` | installer state, singleton | root | yes |
 
@@ -210,6 +212,11 @@ Translated: `title`. Route paths are locale-neutral; the frontend passes them th
 #### `pp_websites`
 
 `id`, `status`, `sort`, `title` (English link text, e.g. "Exhibition page at stadtgalerie.net"), `url` (absolute), `kind` (dropdown `website` | `exhibition_page` | `press` | `document` | `social`, allow other), `translations`, `exhibitions`, `persons`, `organisations` (m2m), audit.
+
+#### `pp_quotes` (2026-10-25)
+
+`id`, `status`, `sort`, `line_1` (English, required), `line_2`, `accent` (the last word or words of line 2, shown in red), `source` (who said it; empty for the archive's own quotes), `weight` (integer 1–10, default 5), `visible_from`, `visible_until` (dates, both optional), `translations`, audit.
+Translated: `line_1`, `line_2`, `accent`, `source`. The start page's method section shows one published quote whose dates include today, picked at random on every visit and weighted by `weight` (`frontend/app/utils/quotes.ts`). Draft or archived: never shown. Internal notes go into the Directus comments of a quote, not into a field, because every field of a public collection is publicly readable.
 
 #### `pp_organisations`
 

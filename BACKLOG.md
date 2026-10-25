@@ -28,14 +28,22 @@ Rules (owner):
   Spuren."): it reads as AI text and gets boring when every header has it. This is a hint,
   not a law: a comma is fine where the phrase needs it. The goal is a good, natural text.
 
-Done on 2026-10-25, as the first example: the start page section above the selected
-exhibitions (`landing.exhibitions`). It said "Temporäre Begegnungen. Bleibende Spuren.
-Ausgewählte Ausstellungen, bewahrt als räumliche Dokumente." The header is now "Zuletzt
-eröffnet", and the text below says what the 360° tours offer.
+Done on 2026-10-25: the whole start page, section by section with the owner
+(`docs/text-audit/start-page.md`). The rules now live in `docs/text-rules.md` (the owner's
+rules, a word list, the method after impeccable "clarify", the audit workflow). Next pages: the
+header and footer (global), About, How it works, the index pages, contact.
 
 Interim: the header of /exhibitions/ said "Die Ausstellungen, die wir festhalten." / "The
 exhibitions we hold on to."; since 2026-10-25 it says "Ausstellungen, die festgehalten werden"
 / "Exhibitions that are captured". Better than before, not yet the best.
+
+Value-free (owner, 2026-10-25): no "kuratiert", "ausgewählt", "Kuration" / "curated",
+"selected", "curation" about exhibitions, galleries or the archive. Still found in: the header
+line on every page (`site.headerTagline` "Ein kuratiertes Archiv von Ausstellungen"), the
+footer (`footer.tagline`, `footer.curated`), About (`about.body.p3`, `p6`), How it works
+(`howItWorksPage.intro`, `sections.selection` "Das 360°-Archiv ist kuratiert."), contact
+(`contactPage.sections.selection`). The selection section of How it works describes a
+selection that the owner does not make; it needs new content, not new words.
 
 Known next: the locale files still hold "wir/uns/unser…" 10 times (de) and "we/us/our" 12
 times (en); keep them only on pages where a person speaks on purpose. "Sie/Ihr/Ihnen" appears

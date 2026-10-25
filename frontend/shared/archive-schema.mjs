@@ -10,7 +10,7 @@
 // in archive-schema.d.ts for the frontend's TypeScript code.
 
 /** Collections with a translations table get `translations.*`; the rest only `*`. */
-export const TRANSLATED = new Set(['pp_locations', 'pp_venues', 'pp_roles', 'pp_exhibitions', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigation_items', 'pp_websites', 'pp_organisations', 'pp_organisation_memberships', 'pp_persons'])
+export const TRANSLATED = new Set(['pp_locations', 'pp_venues', 'pp_roles', 'pp_exhibitions', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigation_items', 'pp_websites', 'pp_organisations', 'pp_organisation_memberships', 'pp_persons', 'pp_quotes'])
 
 /** File fields per collection: Directus returns file ids; the site needs URLs. */
 export const FILE_FIELDS = {
@@ -48,7 +48,8 @@ export const COLLECTIONS = {
   organisationVenueRelations: 'pp_organisation_venue_relations',
   exhibitionOrganisers: 'pp_exhibition_organisers',
   organisationsWebsites: 'pp_mm__organisations_websites',
-  venuesWebsites: 'pp_mm__venues_websites'
+  venuesWebsites: 'pp_mm__venues_websites',
+  quotes: 'pp_quotes'
 }
 
 /** A file field holds an id, or `{ id, filename_download }` when the query expands it. */

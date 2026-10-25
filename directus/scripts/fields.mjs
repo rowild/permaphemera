@@ -69,7 +69,8 @@ export const richText = (field, opts = {}) => {
 }
 
 export const integer = (field, opts = {}) => withOpts(base(field, 'integer',
-  { interface: 'input', width: opts.width ?? 'half' }, { is_nullable: true }), opts)
+  { interface: 'input', width: opts.width ?? 'half', options: opts.min !== undefined || opts.max !== undefined ? { min: opts.min ?? null, max: opts.max ?? null } : null },
+  { is_nullable: opts.default === undefined, default_value: opts.default ?? null }), opts)
 
 export const float = (field, opts = {}) => withOpts(base(field, 'float',
   { interface: 'input', width: 'half' }, { is_nullable: true }), opts)

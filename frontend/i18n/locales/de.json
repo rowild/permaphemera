@@ -64,9 +64,9 @@
       "line1Accent": "Welten.",
       "line2": "Dauerhaft",
       "line2Accent": "bewahrt.",
-      "lede": "Ein kuratiertes Archiv temporärer Ausstellungen und räumlicher Erinnerungen.",
-      "explore": "Das Archiv erkunden",
-      "exploreCompact": "Archiv erkunden",
+      "lede": "PERMAPHEMERA dokumentiert Ausstellungen in österreichischen Galerien als digitale 360°-Rundgänge, die ab dem letzten Tag der Laufzeit online verfügbar sind.",
+      "allExhibitions": "Alle Ausstellungen",
+      "allExhibitionsCompact": "Ausstellungen",
       "details": "Details",
       "kaleidoscopeAria": "Kaleidoskop-Navigation",
       "rotateCounterclockwise": "Kaleidoskop gegen den Uhrzeigersinn drehen",
@@ -83,42 +83,32 @@
       "loadingTitle": "Ausstellungsbild wird geladen",
       "loadingCounter": "{current} von {total}",
       "loadingProgress": "{loaded} von {total} Ausstellungen geladen",
-      "continue": "Weiter zu den Orten",
+      "continue": "Weiter zu den Galerien",
       "continueSchedule": "Weiter zu aktuellen und kommenden Ausstellungen"
     },
     "venues": {
-      "eyebrow": "Orte",
-      "title": "Galerien in ganz",
-      "accent": "Österreich.",
-      "intro": "Entdecken Sie Ausstellungsräume und Archive im ganzen Land.",
-      "searchLabel": "Orte durchsuchen",
-      "searchPlaceholder": "Galerien suchen…"
+      "eyebrow": "Räume",
+      "title": "Galerien in",
+      "accent": "Österreich"
     },
     "exhibitions": {
       "eyebrow": "Ausstellungen",
       "title": "Zuletzt",
-      "accent": "eröffnet",
-      "intro": "Die neuesten Ausstellungen aus Galerien in Österreich. Wo es einen 360°-Rundgang gibt, bleibt die Ausstellung auch nach ihrem Ende Raum für Raum zu sehen, mit den Werken so, wie sie gehängt waren.",
-      "searchLabel": "Ausstellungen durchsuchen",
-      "searchPlaceholder": "Ausstellungen suchen…"
+      "accent": "eröffnet"
     },
     "schedule": {
       "eyebrow": "Programm",
       "titleBefore": "Aktuelle /",
       "titleAccent": "kommende",
       "titleAfter": "Ausstellungen",
-      "intro": "Entdecken Sie, was jetzt zu sehen ist und welche Ausstellungen als Nächstes ins Archiv kommen.",
       "current": "Aktuelle Ausstellungen",
       "upcoming": "Kommende Ausstellungen",
       "viewAll": "Alle Ausstellungen ansehen"
     },
     "artists": {
       "eyebrow": "Künstler:innen",
-      "title": "Künstler:innen im",
-      "accent": "Archiv.",
-      "intro": "Entdecken Sie Positionen, die in temporären Ausstellungen dokumentiert wurden.",
-      "searchLabel": "Künstler:innen durchsuchen",
-      "searchPlaceholder": "Künstler:innen suchen…",
+      "title": "Von A bis",
+      "accent": "Z",
       "alphabetAria": "Alphabetischer Künstler:innenfilter",
       "alphabetControlsAria": "Scrollsteuerung des Künstler:innenalphabets",
       "scrollLeft": "Im Künstler:innenalphabet nach links scrollen",
@@ -128,44 +118,41 @@
       "showMore": "Weitere Künstler:innen anzeigen"
     },
     "sidebar": {
-      "preserved": "Bewahrte Ausstellungen",
-      "venues": "Orte",
-      "cities": "Städte",
-      "viewAll": "Alle Orte anzeigen",
+      "preserved": "Ausstellungen im Archiv",
+      "venues": "Galerien",
+      "cities": "Städte und Orte",
+      "viewAll": "Alle Galerien",
       "records": "Einträge",
       "directory": "Verzeichnis"
     },
     "method": {
       "eyebrow": "Die Archivmethode",
-      "title": "Eine Ausstellung, bewahrt im",
-      "accent": "Raum.",
-      "intro": "Wir erfassen, was sich nicht aufbewahren lässt: Atmosphäre, Anordnung und Bewegung durch den Raum.",
-      "sample": "Beispieleintrag erkunden",
-      "quoteBefore": "Keine Replik.",
-      "quoteMiddle": "Ein Dokument der",
-      "quoteAccent": "Präsenz.",
+      "title": "So entsteht ein",
+      "accent": "360°-Rundgang",
+      "intro": "Mit 360°-Kameras lassen sich die Atmosphäre eines Raumes, die Anordnung der Werke und die Blickachsen zwischen ihnen genauer einfangen und nachvollziehbarer festhalten als mit Fotos, die nur einen Ausschnitt zeigen. Ein Foto zeigt ein Werk; ein Rundgang zeigt auch, was daneben hängt, was gegenüber steht und wohin der Blick von dort weiterwandert.",
+      "openTour": "Einen Rundgang öffnen",
       "imageAlt": "Geschichtete Archivpapiere rahmen einen Museumsrundgang mit verbundenen Navigationspunkten",
       "steps": {
         "captured": {
-          "title": "Erfasst",
-          "text": "Panoramen, Perspektiven und Details werden vor Ort sorgfältig und präzise aufgenommen."
+          "title": "Aufgenommen",
+          "text": "Während die Ausstellung läuft, werden ihre Räume mit einer 360°-Kamera fotografiert, von mehreren Standpunkten aus."
         },
         "connected": {
           "title": "Verbunden",
-          "text": "Blickpunkte werden verknüpft, um den räumlichen Verlauf der Ausstellung nachzuzeichnen."
+          "text": "Die Standpunkte werden Raum für Raum zu einem Rundgang verknüpft."
         },
         "preserved": {
-          "title": "Bewahrt",
-          "text": "Das Erlebnis bleibt lange nach dem Ende der Ausstellung navigierbar."
+          "title": "Online",
+          "text": "Der Rundgang erscheint auf dieser Website, mit Angaben zu Galerie, Laufzeit und Beteiligten."
         }
       },
       "facts": {
         "technology": "Technologie",
-        "capture": "360°-Erfassung",
-        "mapping": "& räumliche Kartierung",
-        "curation": "Kuration",
-        "selected": "Ausgewählte Ausstellungen",
-        "austria": "In ganz Österreich",
+        "capture": "360°-Fotografie",
+        "mapping": "verbundene Standpunkte",
+        "scope": "Umfang",
+        "galleries": "Galerien und Ausstellungsorte",
+        "austria": "in ganz Österreich",
         "status": "Status",
         "pilot": "Pilotarchiv",
         "development": "In Entwicklung"

@@ -1,10 +1,10 @@
 // directus/scripts/schema.mjs
 // The PERMAPHEMERA schema as data. Names of junction tables, translation tables
 // and FK columns are never written here; naming.mjs derives them.
-import { bool, date, dropdown, file, float, m2o, markdown, richText, seo, str, text } from './fields.mjs'
+import { bool, date, dropdown, file, float, integer, m2o, markdown, richText, seo, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-10-24.2'
+export const SCHEMA_VERSION = '2026-10-25.1'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -326,6 +326,25 @@ export const entities = {
       dropdown('target', ['_self', '_blank'], { default: '_self' }),
     ],
     layout: { flat: ['status', 'navigation', 'parent', 'key', 'title', 'kind', 'path', 'url', 'target', 'children'] },
+  },
+
+  quotes: {
+    kind: 'main', icon: 'format_quote', sort: 10, labels: ['Quotes', 'Quote', 'Quotes'],
+    display: ['line_1'], displayTemplate: '{{line_1}} {{line_2}} {{accent}}',
+    note: 'Short quotes for the start page. On every visit the site shows one published quote at random; weight makes a quote come up more or less often; visible from/until limit it to dates. Draft or archived: never shown. Internal notes go into the comments of a quote, which are never public.',
+    fields: [
+      str('line_1', { required: true, translated: true, note: 'First line of the quote.' }),
+      str('line_2', { translated: true, note: 'Second line, without its red end.' }),
+      str('accent', { translated: true, width: 'half', note: 'The last word or words, shown in red after line 2. Empty: no red part.' }),
+      str('source', { translated: true, width: 'half', note: 'Optional: who said it, e.g. an artist. Shown in small letters below the quote. Empty for the archive\'s own quotes.' }),
+      integer('weight', { default: 5, min: 1, max: 10, note: 'How often, compared with the other quotes: 1 rare, 5 normal, 10 twice as often as 5.' }),
+      date('visible_from', { note: 'Optional: first day the quote may show.' }),
+      date('visible_until', { note: 'Optional: last day the quote may show.' }),
+    ],
+    layout: [
+      section('title', 'Quote', ['status', 'line_1', 'line_2', 'accent', 'source']),
+      section('display', 'Display', ['weight', 'visible_from', 'visible_until']),
+    ],
   },
 }
 

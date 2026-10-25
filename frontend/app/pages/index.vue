@@ -8,6 +8,8 @@ import { MAX_SCHEDULE_SLIDES_PER_GROUP, selectExhibitionSchedule, selectFeatured
 import { buildHeroItems, HERO_BLADE_COUNT, selectOpenedExhibitions } from '~/utils/heroItems'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
+import { pickQuote, resolveQuotes } from '~/utils/quotes'
+import { resolveTourAccess } from '~/utils/tourAccess'
 
 // `directoryVenues` below doesn't hand out the full resolved records — it
 // rebuilds a smaller landing-page card projection with a `location_id` field
@@ -54,10 +56,8 @@ const LANDING_VENUE_COUNT = 5
 const archiveOrder = (left: Venue, right: Venue) =>
   (left.archive_number || '').localeCompare(right.archive_number || '', undefined, { numeric: true }) || left.name.localeCompare(right.name)
 const orderedOtherVenues = computed(() => [...otherVenues.value].sort(archiveOrder))
-const venueStackVenue = computed(() => venueSearchQuery.value.trim() ? undefined : orderedOtherVenues.value[LANDING_VENUE_COUNT])
-const regularVenues = computed(() => venueSearchQuery.value.trim()
-  ? otherVenues.value
-  : orderedOtherVenues.value.slice(0, LANDING_VENUE_COUNT))
+const venueStackVenue = computed(() => orderedOtherVenues.value[LANDING_VENUE_COUNT])
+const regularVenues = computed(() => orderedOtherVenues.value.slice(0, LANDING_VENUE_COUNT))
 const orderedExhibitions = computed(() => [...venueExhibitions.value]
   .sort((left, right) => right.start_date.localeCompare(left.start_date)
     || right.end_date.localeCompare(left.end_date)
@@ -107,9 +107,6 @@ const kaleidoscopeRef = ref<{
 const kaleidoscopeAnimating = ref(true)
 const wheelControlsRevealed = ref(false)
 const wheelControlsRef = ref<HTMLElement | null>(null)
-const venueSearchQuery = ref('')
-const exhibitionSearchQuery = ref('')
-const artistSearchQuery = ref('')
 const openLandingArtistSlug = ref('')
 const preservedExhibitionCount = computed(() => venueExhibitions.value.length)
 // The towns of the published galleries, the one with the most galleries first,
@@ -126,10 +123,7 @@ const sidebarCities = computed(() => {
 const availableArtistLetters = computed(() => new Set(directoryArtists.value.map((artist) => artist.letter)))
 const artistLetterRoute = (letter: string) => ({
   path: localePath('/artists/'),
-  query: {
-    ...(artistSearchQuery.value.trim() ? { q: artistSearchQuery.value.trim() } : {}),
-    letter
-  }
+  query: { letter }
 })
 
 // Start page intro, header and hero together. The logo sets itself first,
@@ -365,63 +359,49 @@ const methodSteps = computed(() => [
   }
 ])
 
+// The quote beside the facts: one published quote from Directus (pp_quotes), picked at random
+// and weighted on every visit (app/utils/quotes.ts). A language switch keeps the same quote.
+// Nothing is stored in the browser, so a reload may bring the same quote again.
+const archiveSnapshot = useArchiveSnapshot()
+const methodQuotes = computed(() => resolveQuotes(archiveSnapshot.value.quotes, locale.value, archiveToday.value))
+const methodQuoteId = ref<string | null>(null)
+watch(methodQuotes, (quotes) => {
+  if (quotes.some((quote) => quote.id === methodQuoteId.value)) return
+  methodQuoteId.value = pickQuote(quotes)?.id ?? null
+}, { immediate: true })
+const methodQuote = computed(() => methodQuotes.value.find((quote) => quote.id === methodQuoteId.value))
+
 const methodFacts = computed(() => [
   { label: t('landing.method.facts.technology'), lines: [t('landing.method.facts.capture'), t('landing.method.facts.mapping')] },
-  { label: t('landing.method.facts.curation'), lines: [t('landing.method.facts.selected'), t('landing.method.facts.austria')] },
+  { label: t('landing.method.facts.scope'), lines: [t('landing.method.facts.galleries'), t('landing.method.facts.austria')] },
   { label: t('landing.method.facts.status'), lines: [t('landing.method.facts.pilot'), t('landing.method.facts.development')] }
 ])
 
-const artistsByLetter = computed(() => {
-  const query = artistSearchQuery.value.trim().toLocaleLowerCase()
-
-  return artistGroupOrder
-    .map((letter) => ({
-      letter,
-      artists: directoryArtists.value
-        .filter((artist) => {
-          if (artist.letter !== letter) {
-            return false
-          }
-
-          return !query || [
-            artist.name,
-            artist.displayName,
-            artist.location,
-            artist.years,
-            ...artist.records.flatMap((record) => [record.title, record.venue, record.city])
-          ]
-            .some((value) => value.toLocaleLowerCase().includes(query))
-        })
-        .sort((left, right) => left.displayName.localeCompare(right.displayName))
-    }))
-    .filter((group) => group.artists.length)
-})
+const artistsByLetter = computed(() => artistGroupOrder
+  .map((letter) => ({
+    letter,
+    artists: directoryArtists.value
+      .filter((artist) => artist.letter === letter)
+      .sort((left, right) => left.displayName.localeCompare(right.displayName))
+  }))
+  .filter((group) => group.artists.length))
 
 const toggleLandingArtistDetails = (slug: string) => {
   openLandingArtistSlug.value = openLandingArtistSlug.value === slug ? '' : slug
 }
 
-watch(artistSearchQuery, () => {
-  openLandingArtistSlug.value = ''
-})
-
-const venueMatchesSearch = (venue: Venue) => {
-  const query = venueSearchQuery.value.trim().toLocaleLowerCase()
-
-  return !query || [venue.name, venue.city, venue.address]
-    .some((value) => value.toLocaleLowerCase().includes(query))
-}
-
-const exhibitionMatchesSearch = (exhibition: Exhibition) => {
-  const query = exhibitionSearchQuery.value.trim().toLocaleLowerCase()
-
-  return !query || [
-    exhibition.title,
-    exhibition.artist,
-    exhibition.venue,
-    exhibition.city,
-    exhibition.date_range
-  ].some((value) => value.toLocaleLowerCase().includes(query))
+// "Einen Rundgang öffnen" opens one of the open 360° tours at random, in the
+// same viewer as the wheel; openTour must run straight from the click.
+const { opening: tourOpening, openTour } = useTourViewer()
+const openTourUrls = computed(() => venueExhibitions.value.flatMap((exhibition) => {
+  if (!exhibition.tour_status) return []
+  const access = resolveTourAccess({ tour: exhibition.tour, tour_status: exhibition.tour_status, tour_available_from: exhibition.tour_available_from ?? null }, archiveToday.value)
+  return access.kind === 'open' ? [access.url] : []
+}))
+const openRandomTour = (event: MouseEvent) => {
+  const urls = openTourUrls.value
+  if (!urls.length) return
+  openTour(urls[Math.floor(Math.random() * urls.length)]!, event.currentTarget as HTMLElement)
 }
 
 </script>
@@ -450,10 +430,10 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
         </h1>
         <p class="mx-0 mt-[1.55rem] mb-[2.2rem] max-w-116 font-display text-lede leading-tight font-normal text-archive-muted tablet-landscape:mt-4 tablet-landscape:mb-6 tablet-landscape:text-base tablet-portrait:mx-auto tablet-portrait:mt-3 tablet-portrait:mb-4 tablet-portrait:max-w-lg tablet-portrait:text-center tablet-portrait:text-base tablet-portrait:leading-snug compact:mx-auto compact:mt-3 compact:mb-4 compact:max-w-64 compact:text-center compact:text-sm" data-hero-lede><ArchiveLetters :text="$t('landing.hero.lede')" /></p>
         <div class="flex flex-wrap items-center gap-[1.3rem] tablet-landscape:gap-3 tablet-portrait:w-full tablet-portrait:flex-nowrap tablet-portrait:justify-center tablet-portrait:gap-2 compact:w-full compact:flex-nowrap compact:justify-center compact:gap-2">
-          <ArchiveButton class="tablet-landscape:px-3 tablet-portrait:w-fit tablet-portrait:flex-none tablet-portrait:min-w-0 tablet-portrait:px-2 compact:w-fit compact:flex-none compact:min-w-0 compact:px-2" href="#venues" data-hero-button>
+          <ArchiveButton class="tablet-landscape:px-3 tablet-portrait:w-fit tablet-portrait:flex-none tablet-portrait:min-w-0 tablet-portrait:px-2 compact:w-fit compact:flex-none compact:min-w-0 compact:px-2" :to="localePath('/exhibitions/')" data-hero-button>
             <span class="[ button-icon ] svg-icon svg-icon-archive inline-block size-[1.45rem] flex-none bg-current" aria-hidden="true" />
-            <span class="tablet-portrait:hidden compact:hidden">{{ $t('landing.hero.explore') }}</span>
-            <span class="hidden tablet-portrait:inline compact:inline">{{ $t('landing.hero.exploreCompact') }}</span>
+            <span class="tablet-portrait:hidden compact:hidden">{{ $t('landing.hero.allExhibitions') }}</span>
+            <span class="hidden tablet-portrait:inline compact:inline">{{ $t('landing.hero.allExhibitionsCompact') }}</span>
           </ArchiveButton>
           <ArchiveButton class="min-w-[10.2rem] tablet-landscape:min-w-0 tablet-landscape:px-3 tablet-portrait:w-fit tablet-portrait:flex-none tablet-portrait:min-w-0 tablet-portrait:px-2 compact:w-fit compact:flex-none compact:min-w-0 compact:px-2" variant="secondary" href="#method" data-hero-button>
             <Landmark :size="22" />
@@ -522,20 +502,10 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
           <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.venues.eyebrow') }}</p>
           <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.venues.title') }} <span class="text-archive-red">{{ $t('landing.venues.accent') }}</span></h2>
-          <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.venues.intro') }}</p>
         </div>
-
-        <ArchiveSearchForm
-          v-model="venueSearchQuery"
-          class="[ venue-search ]"
-          id="venue-search"
-          :label="$t('landing.venues.searchLabel')"
-          :placeholder="$t('landing.venues.searchPlaceholder')"
-        />
 
         <div class="[ venue-grid ] relative grid grid-cols-[minmax(24rem,1.55fr)_repeat(3,minmax(12rem,1fr))] items-stretch gap-[1.4rem] pb-[3.4rem] tablet:grid-cols-2 tablet:pb-0 compact:grid-cols-2 compact:gap-3">
           <VenueArchiveCard
-            v-show="venueMatchesSearch(featuredVenue)"
             :venue="featuredVenue"
             featured
           />
@@ -543,12 +513,11 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           <VenueArchiveCard
             v-for="venue in regularVenues"
             :key="venue.id"
-            v-show="venueMatchesSearch(venue)"
             :venue="venue"
           />
 
           <ArchivePaperStack
-            v-if="venueStackVenue && !venueSearchQuery"
+            v-if="venueStackVenue"
             stack-id="venue-discovery"
             :items="venueStackItems"
             :label="$t('common.more')"
@@ -564,21 +533,11 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
           <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.exhibitions.eyebrow') }}</p>
           <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></h2>
-          <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.exhibitions.intro') }}</p>
         </div>
-
-        <ArchiveSearchForm
-          v-model="exhibitionSearchQuery"
-          class="[ exhibition-search ]"
-          id="exhibition-search"
-          :label="$t('landing.exhibitions.searchLabel')"
-          :placeholder="$t('landing.exhibitions.searchPlaceholder')"
-        />
 
         <div class="[ exhibition-layout ] grid grid-cols-[minmax(28rem,1.35fr)_minmax(23rem,0.85fr)] gap-8 tablet:grid-cols-1 compact:grid-cols-2 compact:gap-3">
           <ExhibitionCard
             class="[ featured-exhibition ] tablet:col-span-full"
-            v-show="exhibitionMatchesSearch(featuredExhibition)"
             :exhibition="featuredExhibition"
             layout="hero"
           />
@@ -587,7 +546,6 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
             <ExhibitionCard
               v-for="exhibition in sideExhibitions"
               :key="exhibition.id"
-              v-show="exhibitionMatchesSearch(exhibition)"
               :exhibition="exhibition"
               layout="side"
             />
@@ -602,16 +560,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
             <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.artists.eyebrow') }}</p>
             <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.artists.title') }} <span class="text-archive-red">{{ $t('landing.artists.accent') }}</span></h2>
-            <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.artists.intro') }}</p>
           </div>
-
-          <ArchiveSearchForm
-            v-model="artistSearchQuery"
-            class="[ artist-search ]"
-            id="artist-search"
-            :label="$t('landing.artists.searchLabel')"
-            :placeholder="$t('landing.artists.searchPlaceholder')"
-          />
 
           <ArchiveAlphabetRail
             class="[ alphabet-filter ] mt-8 mb-0 gap-[clamp(0.55rem,1.2vw,1.35rem)] compact:mt-4 compact:gap-3"
@@ -666,7 +615,7 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
             <ul class="[ archive-sidebar-locations ] m-0 mb-6 grid list-none gap-[0.45rem] p-0">
               <li v-for="city in sidebarCities" :key="city">{{ city }}</li>
             </ul>
-            <a class="[ archive-sidebar-link ] flex items-center gap-2 font-display text-button text-archive-red" href="#venues">{{ $t('landing.sidebar.viewAll') }} <ArchiveArrow class="w-[1.65rem]" /></a>
+            <NuxtLink class="[ archive-sidebar-link ] flex items-center gap-2 font-display text-button text-archive-red" :to="localePath('/venues/')">{{ $t('landing.sidebar.viewAll') }} <ArchiveArrow class="w-[1.65rem]" /></NuxtLink>
             <ArchivePaperStack
               stack-id="artist-directory"
               :items="artistStackItems"
@@ -690,8 +639,8 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
           <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.method.eyebrow') }}</p>
           <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.method.title') }} <span class="text-archive-red">{{ $t('landing.method.accent') }}</span></h2>
           <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.method.intro') }}</p>
-          <ArchiveButton class="mt-8 mb-0 w-fit tablet:mb-16 compact:mx-auto compact:mt-5 compact:mb-10 compact:flex" href="#exhibitions">
-            {{ $t('landing.method.sample') }}
+          <ArchiveButton v-if="openTourUrls.length" class="mt-8 mb-0 w-fit tablet:mb-16 compact:mx-auto compact:mt-5 compact:mb-10 compact:flex" :disabled="tourOpening" @click="openRandomTour">
+            {{ $t('landing.method.openTour') }}
             <ArchiveArrow />
           </ArchiveButton>
         </div>
@@ -714,10 +663,18 @@ const exhibitionMatchesSearch = (exhibition: Exhibition) => {
         </div>
 
         <div class="[ method-details ] col-span-full grid grid-cols-[minmax(18rem,1.15fr)_minmax(38rem,2.25fr)_8rem] items-center gap-[clamp(2rem,4vw,4.5rem)] px-11 pt-5 tablet:grid-cols-[minmax(16rem,0.8fr)_minmax(32rem,2fr)_6.5rem] tablet:gap-6 tablet:px-6 compact:mt-8 compact:grid-cols-1 compact:gap-4 compact:px-2 compact:pt-4">
-          <blockquote class="[ method-quote ] m-0 grid grid-cols-[3rem_1fr] items-start gap-4 compact:mb-4">
-            <img class="h-auto w-[2.6rem]" src="/media/images/landing/method/details/quote-mark.png" alt="" aria-hidden="true" />
-            <p class="m-0 font-display text-h4 leading-[1.18] text-archive-copy italic">{{ $t('landing.method.quoteBefore') }}<br />{{ $t('landing.method.quoteMiddle') }} <em class="font-normal text-archive-red">{{ $t('landing.method.quoteAccent') }}</em></p>
-          </blockquote>
+          <!-- The cell stays without a quote, so the facts keep their column. -->
+          <figure class="[ method-quote ] m-0 grid grid-cols-[3rem_1fr] items-start gap-4 compact:mb-4">
+            <template v-if="methodQuote">
+              <img class="h-auto w-[2.6rem]" src="/media/images/landing/method/details/quote-mark.png" alt="" aria-hidden="true" />
+              <div>
+                <blockquote class="m-0">
+                  <p class="m-0 font-display text-h4 leading-[1.18] text-archive-copy italic">{{ methodQuote.line1 }}<template v-if="methodQuote.line2 || methodQuote.accent"><br />{{ methodQuote.line2 }} <em v-if="methodQuote.accent" class="font-normal text-archive-red">{{ methodQuote.accent }}</em></template></p>
+                </blockquote>
+                <figcaption v-if="methodQuote.source" class="mt-3 block text-xs tracking-[0.08em] text-archive-red uppercase">{{ methodQuote.source }}</figcaption>
+              </div>
+            </template>
+          </figure>
 
           <dl class="[ method-facts ] m-0 grid grid-cols-3 compact:grid-cols-3 compact:gap-0">
             <ArchiveMethodFact

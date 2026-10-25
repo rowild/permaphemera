@@ -64,9 +64,9 @@
       "line1Accent": "worlds.",
       "line2": "Permanently",
       "line2Accent": "preserved.",
-      "lede": "A curated archive of temporary exhibitions and spatial memories.",
-      "explore": "Explore the archive",
-      "exploreCompact": "Explore archive",
+      "lede": "PERMAPHEMERA documents exhibitions in Austrian galleries as digital 360° tours, available online from the last day of each run.",
+      "allExhibitions": "All exhibitions",
+      "allExhibitionsCompact": "Exhibitions",
       "details": "Details",
       "kaleidoscopeAria": "Kaleidoscope navigation",
       "rotateCounterclockwise": "Rotate kaleidoscope counterclockwise",
@@ -83,42 +83,32 @@
       "loadingTitle": "Loading Exhibition Image",
       "loadingCounter": "{current} of {total}",
       "loadingProgress": "{loaded} of {total} exhibitions loaded",
-      "continue": "Continue to venues",
+      "continue": "Continue to galleries",
       "continueSchedule": "Continue to current and upcoming exhibitions"
     },
     "venues": {
-      "eyebrow": "Venues",
-      "title": "Galleries across",
-      "accent": "Austria.",
-      "intro": "Explore exhibition spaces and archives across the country.",
-      "searchLabel": "Search venues",
-      "searchPlaceholder": "Search galleries…"
+      "eyebrow": "Spaces",
+      "title": "Galleries in",
+      "accent": "Austria"
     },
     "exhibitions": {
       "eyebrow": "Exhibitions",
       "title": "Recently",
-      "accent": "opened",
-      "intro": "The latest exhibitions from galleries in Austria. Where there is a 360° tour, the exhibition can still be seen room by room after it has closed, with the works as they were hung.",
-      "searchLabel": "Search exhibitions",
-      "searchPlaceholder": "Search exhibitions…"
+      "accent": "opened"
     },
     "schedule": {
       "eyebrow": "Programme",
       "titleBefore": "Current /",
-      "titleAccent": "Upcoming",
+      "titleAccent": "upcoming",
       "titleAfter": "exhibitions",
-      "intro": "See what is open now and the next exhibitions entering the archive.",
       "current": "Current",
       "upcoming": "Upcoming",
       "viewAll": "View all exhibitions"
     },
     "artists": {
       "eyebrow": "Artists",
-      "title": "Artists in the",
-      "accent": "archive.",
-      "intro": "Browse practices documented across temporary exhibitions.",
-      "searchLabel": "Search artists",
-      "searchPlaceholder": "Search artists…",
+      "title": "From A to",
+      "accent": "Z",
       "alphabetAria": "Artist alphabet filter",
       "alphabetControlsAria": "Artist alphabet scroll controls",
       "scrollLeft": "Scroll the artist alphabet left",
@@ -128,44 +118,41 @@
       "showMore": "Show more artists"
     },
     "sidebar": {
-      "preserved": "Exhibitions preserved",
-      "venues": "Venues",
-      "cities": "Cities",
-      "viewAll": "View all venues",
+      "preserved": "Exhibitions in the archive",
+      "venues": "Galleries",
+      "cities": "Cities and towns",
+      "viewAll": "All galleries",
       "records": "Records",
       "directory": "Directory"
     },
     "method": {
       "eyebrow": "The archive method",
-      "title": "An exhibition, retained in",
-      "accent": "space.",
-      "intro": "We capture what cannot be kept: atmosphere, arrangement and movement through space.",
-      "sample": "Explore a sample record",
-      "quoteBefore": "Not a replica.",
-      "quoteMiddle": "A record of",
-      "quoteAccent": "presence.",
+      "title": "How a 360° tour",
+      "accent": "is made",
+      "intro": "360° cameras capture the atmosphere of a room, the arrangement of the works and the sight lines between them more fully and more traceably than photographs that frame a single view. A photograph shows one work; a tour also shows what hangs beside it, what faces it, and where the eye travels next.",
+      "openTour": "Open a tour",
       "imageAlt": "Layered archival papers framing a museum tour with connected navigation points",
       "steps": {
         "captured": {
-          "title": "Captured",
-          "text": "Panoramas, perspectives, and details are recorded on site with care and precision."
+          "title": "Recorded",
+          "text": "While the exhibition is on, its rooms are photographed with a 360° camera from several viewpoints."
         },
         "connected": {
           "title": "Connected",
-          "text": "Viewpoints are linked to recreate how the exhibition unfolded in space."
+          "text": "Room by room, the viewpoints are linked into a tour."
         },
         "preserved": {
-          "title": "Preserved",
-          "text": "The experience remains navigable long after the exhibition has ended."
+          "title": "Online",
+          "text": "The tour appears on this website with the gallery, dates and people involved."
         }
       },
       "facts": {
         "technology": "Technology",
-        "capture": "360° Capture",
-        "mapping": "& Spatial Mapping",
-        "curation": "Curation",
-        "selected": "Selected Exhibitions",
-        "austria": "Across Austria",
+        "capture": "360° photography",
+        "mapping": "connected viewpoints",
+        "scope": "Scope",
+        "galleries": "Galleries and exhibition venues",
+        "austria": "across Austria",
         "status": "Status",
         "pilot": "Pilot Archive",
         "development": "In Development"

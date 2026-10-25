@@ -17,15 +17,15 @@ test('every collection name passes the conventions regex', () => {
   }
 })
 
-test('the expected 39 prefixed collections exist', () => {
+test('the expected 41 prefixed collections exist', () => {
   const names = collections.map((c) => c.collection).filter((n) => n.startsWith('pp_')).sort()
   assert.deepEqual(names, [
     'pp_archive', 'pp_exhibition_organisers', 'pp_exhibition_participations', 'pp_exhibition_statements', 'pp_exhibitions', 'pp_locations',
     'pp_meta', 'pp_mm__exhibitions_sponsors', 'pp_mm__exhibitions_venues', 'pp_mm__exhibitions_websites', 'pp_mm__locations_sponsors',
     'pp_mm__organisations_websites', 'pp_mm__persons_roles', 'pp_mm__persons_sponsors', 'pp_mm__persons_venues', 'pp_mm__persons_websites', 'pp_mm__sponsors_venues', 'pp_mm__venues_websites',
-    'pp_navigation_items', 'pp_navigations', 'pp_organisation_memberships', 'pp_organisation_venue_relations', 'pp_organisations', 'pp_persons', 'pp_roles', 'pp_sponsors',
+    'pp_navigation_items', 'pp_navigations', 'pp_organisation_memberships', 'pp_organisation_venue_relations', 'pp_organisations', 'pp_persons', 'pp_quotes', 'pp_roles', 'pp_sponsors',
     'pp_translations__exhibition_statements', 'pp_translations__exhibitions', 'pp_translations__locations',
-    'pp_translations__navigation_items', 'pp_translations__organisation_memberships', 'pp_translations__organisations', 'pp_translations__persons', 'pp_translations__roles', 'pp_translations__sponsors', 'pp_translations__venues', 'pp_translations__websites',
+    'pp_translations__navigation_items', 'pp_translations__organisation_memberships', 'pp_translations__organisations', 'pp_translations__persons', 'pp_translations__quotes', 'pp_translations__roles', 'pp_translations__sponsors', 'pp_translations__venues', 'pp_translations__websites',
     'pp_venues', 'pp_websites',
   ])
 })
