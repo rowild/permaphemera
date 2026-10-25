@@ -19,6 +19,13 @@ Steps:
    tiles, container queries (`@container`, Safari 16+) and `Intl.DateTimeFormat.formatRange`.
 4. Record the Safari step in the `rowild-checklist-qa-for-permaphemera-frontend` skill.
 
+Status 2026-10-23 (branch `test/safari-review`): steps 2–4 done. The kit is
+`frontend/qa/safari/` (`pnpm qa:safari`): Playwright WebKit (plain `playwright`, not
+`@playwright/test`) at 1440 px and iPhone size, this Mac's real Safari, iOS 27 and 26
+Simulators, a static check for Safari 18 / 26 / 27. First results and next steps:
+`frontend/qa/safari/FINDINGS-2026-10-23.md`. Still open: the owner's list (step 1), a real
+iPhone, Safari 18 and Mac Safari 27 at runtime, and the hero wheel's touch preview.
+
 ## Frontend: retry the archive load before the error page
 
 Found 2026-10-22.
