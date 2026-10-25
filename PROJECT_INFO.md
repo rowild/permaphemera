@@ -164,20 +164,21 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 
 | Folder | Purpose |
 |---|---|
-| `collection/` | The tours. Graded 8192 WebP (or master JPG for tiled tours) + `tour.json` + `poster.pdf`. Also a work area: raw shoots, brackets, phone photos, `_BU/` backups. |
-| `<tour>/_grading/` | Inside each tour (since 2026-10-24; before, one `_grading/` at the project root): `originals/` (untouched camera files; "has a backup" marks a file as graded), `masters/` (graded JPEG q93 at native size; WebP and tiles are made from here), `versions/` (snapshots `YYYY-MM-DD-HHMM-<label>/{web,masters}/`), and when needed `verify-accepted.txt` and `move-log.txt`. A moved or renamed tour folder takes it along; the Tour Editor ignores it. The former `_pipeline/` folder was deleted on 2026-10-20. |
-| `_markers/` | Work folder and results of the marker steps, one folder per tour id: step results, check sheets, hidden-marker review, the tour's `meta.json`. The 2 GB feature cache `featcache/` exists only during a run. |
+| `collection/` | The tours. Until the last step the master JPG as working image, then the 8192 WebP (or, for tiled tours, the master JPG + its tiles) + `tour.json` + `poster.pdf`. Also a work area: raw shoots, brackets, phone photos, `_BU/` backups. |
+| `<tour>/_grading/` | Inside each tour (since 2026-10-24; before, one `_grading/` at the project root): `originals/` (untouched camera files; "has a backup" marks a file as graded), `masters/` (native size: the camera file unless the owner asked for grading, then graded JPEG q93; WebP and tiles are made from here), `versions/` (snapshots `YYYY-MM-DD-HHMM-<label>/{web,masters}/`), and when needed `verify-accepted.txt` and `move-log.txt`. A moved or renamed tour folder takes it along; the Tour Editor ignores it. The former `_pipeline/` folder was deleted on 2026-10-20. |
+| `<tour>/_markers/` | Inside each tour (since 2026-10-25; before, one `_markers/<tour-id>/` per tour at the project root): work folder and results of the marker steps: step results, check sheets, hidden-marker review, the tour's `meta.json`. The feature cache `featcache/` (about 12 MB per photo) exists only during a run. A moved tour takes it along; the Tour Editor ignores it. |
 | `exported/` | Tour Editor exports, flat by tour id. Input of `pnpm tour:publish`. |
 | `__MATERIAL/` | Material per gallery and artist, kept by hand. No script uses it. |
 | `_experiments/` | Finished tests, no script uses them: `2026-10-03-wb-probe-stadtgalerie/` (white-balance experiment), `2026-10-19-flicker-probe-palais-fugger/` (lamp-flicker analysis and the 24 repaired Fugger photos, not yet in the tour; see its `README.md`). |
 
 - **Git, text files only** (since 2026-10-20): GitHub `rowild/permaphemera-tour-data`
-  (private). `.gitignore` lets in only `*.json`, `*.txt`, `*.md` and `poster.pdf`: the
-  `tour.json` files, `_markers/`, logs, `sources.txt`, posters (about 30 MB). Photos, masters,
+  (private). `.gitignore` lets in only `*.json`, `*.txt`, `*.md`, `poster.pdf` and the marker logs: the
+  `tour.json` files, the tours' `_markers/`, logs, `sources.txt`, posters (about 30 MB). Photos, masters,
   originals, exports and snapshots are NOT in git; the backup to the external drive keeps
   them: `run.sh backup` of the skill (`BACKUP_TARGET`, on this Mac
-  `/Volumes/Work/_360_GALLERIES_AND_TOURS`; the drive must be connected). Save after a step that changes `tour.json` or marker results:
-  `git -C ~/Desktop/_WWW/_360_GALLERIES_AND_TOURS add -A && git commit -m "<tour-id>: <what>" && git push`.
+  `/Volumes/Work/_360_GALLERIES_AND_TOURS`; the drive must be connected). Save after a step that changes `tour.json` or marker results, for ONE tour (other tours may
+  hold someone's open work): `TOUR=<path below collection/> ./run.sh save "<step>"` (skill
+  `rowild-panorama-tour`).
 - The scripts are NOT here: they live in the global skill `rowild-panorama-tour`
   (`~/.claude/skills/rowild-panorama-tour/scripts/`, since 2026-10-20). Its source is the
   git repo `~/Desktop/_WWW/__SKILLS-DEV/rowild-skills` (GitHub `rowild/rowild-skills`,
