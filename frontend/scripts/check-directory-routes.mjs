@@ -190,6 +190,14 @@ const [personPage, sponsorPage, organisationPage] = await Promise.all([
 ])
 assert.match(personPage, /createError\(\{ statusCode: 404/, 'An unknown person slug must show the 404 page.')
 assert.match(sponsorPage, /createError\(\{ statusCode: 404/, 'An unknown sponsor slug must show the 404 page.')
+// The site renders in the browser only: a 404 thrown without `fatal: true` never reaches the
+// error page there, and the page stays empty (exhibitions and venues did, until 2026-10-26).
+for (const [name, file] of [['exhibition', 'exhibitions'], ['venue', 'venues'], ['person', 'persons'], ['sponsor', 'sponsors'], ['organisation', 'organisations']]) {
+  const page = await readText(`app/pages/${file}/[slug].vue`)
+  assert.match(page, /createError\(\{ statusCode: 404, statusMessage: [^}]*, fatal: true \}\)/, `An unknown ${name} slug must throw a fatal 404, or the browser shows an empty page.`)
+  // After the 404 in setup the template must render nothing; reading the missing record would crash before the error page.
+  assert.match(page, /<template>\s*(<!--[\s\S]*?-->\s*)?<main v-if="/, `The ${name} page must guard its template with v-if on the record.`)
+}
 // A portrait keeps its upright frame at every width (a wide frame would crop the head);
 // the fallback exhibition image, usually landscape, gets the wide frame.
 assert.match(personPage, /person\.image\.fromExhibition \? 'aspect-\[1\.28\]' : 'aspect-\[0\.8\]/, 'The person photo frame must follow the image source.')

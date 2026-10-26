@@ -11,9 +11,12 @@ const localePath = useLocalePath()
 const routeSlug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
 const exhibition = computed(() => {
   const record = venueExhibitions.value.find((item) => item.slug === routeSlug)
-  if (!record) throw createError({ statusCode: 404, statusMessage: t('exhibition.notFound') })
+  if (!record) throw createError({ statusCode: 404, statusMessage: t('exhibition.notFound'), fatal: true })
   return record
 })
+// Evaluated once here, so an unknown slug throws during setup. `fatal` lets the browser show the
+// 404 page; without it the error only reached the console and the page stayed empty.
+void exhibition.value
 
 const gallery = computed(() => venues.value.find((item) => item.slug === exhibition.value?.venue_slug))
 const galleryName = computed(() => gallery.value?.name ?? exhibition.value.venue)
@@ -62,7 +65,9 @@ usePageSeo(`/exhibitions/${routeSlug}/`)
 </script>
 
 <template>
-  <main class="[ site-shell ] [ exhibition-detail-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
+  <!-- An unknown slug throws the 404 in setup; the page must then render nothing, or it reads the
+       missing record and the error page never appears (like the person and sponsor pages). -->
+  <main v-if="exhibition" class="[ site-shell ] [ exhibition-detail-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
     <ArchivePageChrome />
     <ArchiveHeader active="exhibitions" />
 

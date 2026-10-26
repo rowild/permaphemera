@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.42 - 2026-10-26 08:45:36 CET
+
+- An address of an exhibition or gallery that does not exist (for example `/exhibitions/gibt-es-nicht/`) shows the 404 page again ("Ausstellungseintrag nicht gefunden", "Galerie nicht gefunden") instead of an empty page. The two pages now raise the error the way the person, sponsor and organisation pages do, and draw nothing of the missing record. A check guards all five detail pages.
+
 ## 0.0.41 - 2026-10-26 08:33:04 CET
 
 - New texts in the header and footer of every page, after the owner's rules: the line above the logo says "Ein Archiv von Ausstellungen in Österreich" (no longer "kuratiert"); the footer says "Ausstellungen in österreichischen Galerien, festgehalten als 360°-Rundgänge." and "Ein unabhängiges Projekt aus Österreich."; its first menu group is called "Archiv" instead of "Entdecken" (changed in Directus).

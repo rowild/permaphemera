@@ -33,7 +33,7 @@ const venueDossier = computed(() => venues.value.find((item) => item.slug === sl
 const venue = computed<Venue>(() => {
   const record = venueRecord.value
   if (!record) {
-    throw createError({ statusCode: 404, statusMessage: t('venue.notFound') })
+    throw createError({ statusCode: 404, statusMessage: t('venue.notFound'), fatal: true })
   }
 
   const dossier = venueDossier.value
@@ -190,7 +190,9 @@ usePageSeo(`/venues/${slug}/`)
 </script>
 
 <template>
-  <main class="[ site-shell ] [ venue-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
+  <!-- An unknown slug throws the 404 in setup; the page must then render nothing, or it reads the
+       missing record and the error page never appears (like the person and sponsor pages). -->
+  <main v-if="venue" class="[ site-shell ] [ venue-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
     <ArchivePageChrome />
     <ArchiveHeader active="galleries" />
 
