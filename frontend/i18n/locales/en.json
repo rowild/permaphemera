@@ -2,12 +2,12 @@
   "site": {
     "homeAria": "PERMAPHEMERA home",
     "skipToContent": "Skip to content",
-    "headerTagline": "A Curated Archive of Exhibitions",
+    "headerTagline": "An Archive of Exhibitions in Austria",
     "seoTitle": "PERMAPHEMERA · Exhibitions preserved as 360° tours",
     "seoDescription": "Archive of temporary art exhibitions in Austrian galleries: 360° tours, artists, venues and dates, kept accessible after each exhibition has closed.",
     "archiveLoading": "Loading the archive…",
     "archiveUnavailable": "The archive could not be loaded from {url}.",
-    "errorExplanation": "The page you were looking for is not available. You can return to the archive from here.",
+    "errorExplanation": "The page you were looking for is not available.",
     "errorHome": "Back to the archive"
   },
   "navigation": {
@@ -857,7 +857,7 @@
     "onlinePreparing": "360° tour in preparation"
   },
   "footer": {
-    "tagline": "A curated Austrian archive of 360-degree exhibition documentation.",
+    "tagline": "Exhibitions in Austrian galleries, captured as 360° tours.",
     "supporters": "Supporters & partners",
     "title": "Supported by institutions that care for",
     "accent": "cultural memory.",
@@ -867,14 +867,14 @@
     "navigation": "Archive navigation",
     "navigationAria": "Footer navigation",
     "closeNavigation": "Close footer navigation",
-    "exploreAria": "Footer explore navigation",
+    "exploreAria": "Footer archive navigation",
     "informationAria": "Footer information navigation",
     "legalAria": "Footer legal navigation",
     "sealAlt": "Permanently preserved, temporarily enduring",
     "copyright": "All rights reserved.",
-    "curated": "Curated independently in Austria.",
+    "curated": "An independent project from Austria.",
     "callTitle": "Room for institutions that care for",
-    "callText": "PERMAPHEMERA is built with partners who value what would otherwise disappear. This row is kept for their names: supporters, sponsors and partner institutions. Yours could be the first.",
+    "callText": "This row is kept for the names of supporters, sponsors and partner institutions. The first place is still open.",
     "callLink": "Get in touch"
   },
   "organisations": {

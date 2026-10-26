@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.41 - 2026-10-26 08:33:04 CET
+
+- New texts in the header and footer of every page, after the owner's rules: the line above the logo says "Ein Archiv von Ausstellungen in Österreich" (no longer "kuratiert"); the footer says "Ausstellungen in österreichischen Galerien, festgehalten als 360°-Rundgänge." and "Ein unabhängiges Projekt aus Österreich."; its first menu group is called "Archiv" instead of "Entdecken" (changed in Directus).
+- The supporters row in the footer says plainly that it is kept for the names of supporters, sponsors and partner institutions and that the first place is still open. What support is for follows in December or January.
+- The error page says only "Die gesuchte Seite ist nicht verfügbar." above its button back to the archive.
+
 ## 0.0.40 - 2026-10-25 16:24:08 CET
 
 - New start page texts, decided section by section with the owner. The hero line "Vergängliche Welten. Dauerhaft bewahrt." stays; below it: "PERMAPHEMERA dokumentiert Ausstellungen in österreichischen Galerien als digitale 360°-Rundgänge, die ab dem letzten Tag der Laufzeit online verfügbar sind." The sections are called "Galerien in Österreich" (above it "Räume" instead of "Orte", which are the towns), "Zuletzt eröffnet", "Von A bis Z" and "So entsteht ein 360°-Rundgang". The invitations below the headers ("Entdecken Sie …") are gone; the method section explains why a 360° tour shows more than photos that frame a single view, and its three steps say what really happens. The side column says "Ausstellungen im Archiv", "Galerien" and "Städte und Orte". No "ausgewählt" or "Kuration" any more: the scope is "Galerien und Ausstellungsorte in ganz Österreich".

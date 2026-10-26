@@ -29,9 +29,10 @@ Rules (owner):
   not a law: a comma is fine where the phrase needs it. The goal is a good, natural text.
 
 Done on 2026-10-25: the whole start page, section by section with the owner
-(`docs/text-audit/start-page.md`). The rules now live in `docs/text-rules.md` (the owner's
-rules, a word list, the method after impeccable "clarify", the audit workflow). Next pages: the
-header and footer (global), About, How it works, the index pages, contact.
+(`docs/text-audit/start-page.md`). Done on 2026-10-26: the header and footer of every page,
+and the error page (`docs/text-audit/header-footer.md`). The rules now live in `docs/text-rules.md` (the owner's
+rules, a word list, the method after impeccable "clarify", the audit workflow). Next pages:
+About, How it works, the index pages, contact.
 
 Interim: the header of /exhibitions/ said "Die Ausstellungen, die wir festhalten." / "The
 exhibitions we hold on to."; since 2026-10-25 it says "Ausstellungen, die festgehalten werden"
@@ -67,6 +68,14 @@ run (2026-10-23, release 0.0.26) that it should cover:
 - 0.0.35: card inset 24 px above 700 px; shadow room in the phone sliders; tile shadow
   `0 1px 2px`; the real Cormorant 400 italic; bold at 500; the ResizeObserver fix on /venues/.
   Checked on 2026-10-24 with Playwright WebKit and Chromium only (no Simulator, no Mac Safari).
+
+## Footer: what support is for (December 2026 / January 2027)
+
+Added 2026-10-26. The owner decides in December or January what support pays for and how it
+works. Then revisit the supporters part of the footer (`footer.callTitle`, `footer.callText`,
+`footer.callLink`; `docs/text-audit/header-footer.md`) and say it there. Until then the text
+stays as it is: "Diese Zeile ist für die Namen von Fördernden, Sponsor:innen und
+Partnerinstitutionen reserviert. Der erste Platz ist noch frei."
 
 ## ❗ IMPORTANT — Newsletter implementation (after the texts)
 
