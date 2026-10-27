@@ -18,7 +18,7 @@
 > cp "$SRC" "/Users/robertwildling/Desktop/_WWW/_MacAPP TOUR-VIEWER/PROJECT_INFO.md"
 > ```
 >
-> Last checked against the code and the live Directus: **2026-10-14**.
+> Last checked against the code and the live Directus: **2026-10-26**.
 
 ---
 
@@ -30,7 +30,7 @@ Live site: <https://permaphemera.at>.
 
 | Folder (all under `/Users/robertwildling/Desktop/_WWW/`) | What it is | Git |
 |---|---|---|
-| `_360_GALLERIES_AND_TOURS/` | **The pixels.** Camera files, the grading pipeline, graded masters, the tour folders, and the exports. | no |
+| `_360_GALLERIES_AND_TOURS/` | **The pixels.** Camera files, the grading pipeline, graded masters, the tour folders, and the exports. | text files only (GitHub `rowild/permaphemera-tour-data`) |
 | `_MacAPP TOUR-VIEWER/` | **The Tour Editor** (Tauri Mac app, `Tour Editor.app`) that turns a folder of panoramas into a tour (`tour.json`). Also the **web viewer** (Photo Sphere Viewer 5) that the website embeds. | yes |
 | `_WEBSITE PERMAPHEMERA/` | **The website** (`frontend/`, Nuxt 4, static) and the **Directus CMS** setup (`directus/`). Also a separate side site `galerien-oesterreich/`. | yes |
 
@@ -50,6 +50,8 @@ _360_GALLERIES_AND_TOURS/collection/_galleries/<venue>/<tour-id>/building_01/flo
    ▼  Tour Editor: tour folder = collection/_galleries/<venue>/   → writes <tour-id>/tour.json
    │
    ▼  Tour Editor: Export (⌘E) → _360_GALLERIES_AND_TOURS/exported/<tour-id>/
+   │     or File → Publish to website…: this step and the two below in one window,
+   │     plus save + backup; it links the tour only after the upload (Handbook Tutorial No. 4)
    │
    ▼  _WEBSITE PERMAPHEMERA/frontend:  pnpm tour:publish <tour-id>
    │     copies → frontend/public/media/tours/<tour-id>/
@@ -77,12 +79,12 @@ The only link between the two is the text field `pp_exhibitions.tour`.
 | Question | Answer |
 |---|---|
 | **Where do I grade images?** | `run.sh` in the global skill `rowild-panorama-tour` (`~/.claude/skills/rowild-panorama-tour/scripts/`). Fuse brackets first with the global skill `rowild-photo-fuse`. See §3 step 4. |
-| **Where do I add or update a gallery (venue), a town, an artist or an exhibition?** | In **Directus** (production): `pp_venues`, `pp_locations`, `pp_persons`, `pp_exhibitions`. Follow the step-by-step how-to **`_WEBSITE PERMAPHEMERA/docs/how-to-gallery-and-exhibition.md`** (global Claude skill `rowild-create-or-update-gallery-or-exhibition-in-permaphemera`). The sources for each gallery are in `_360_GALLERIES_AND_TOURS/collection/<venue-folder>/sources.txt` and its PDFs. See §4. |
-| **Where do I start a new 360° tour (a new shoot)?** | `_360_GALLERIES_AND_TOURS/collection/<group>/<tour-id>/building_01/floor_01/room_01/normal/`. See §3 step 2. |
+| **Where do I add or update a gallery (venue), a town, an artist or an exhibition?** | In **Directus** (production): `pp_venues`, `pp_locations`, `pp_persons`, `pp_exhibitions`. Follow the step-by-step how-to **`_WEBSITE PERMAPHEMERA/docs/how-to-gallery-and-exhibition.md`** (global Claude skill `rowild-create-or-update-gallery-or-exhibition-in-permaphemera`). The sources for each gallery are in `_360_GALLERIES_AND_TOURS/collection/<group>/<venue-folder>/sources.txt` and its PDFs. See §4. |
+| **Where do I start a new 360° tour (a new shoot)?** | `_360_GALLERIES_AND_TOURS/collection/<group>/<venue>/<tour-id>/building_01/floor_01/room_01/normal/`. See §3 step 2. |
 | **Where do I build the tour (links, hotspots, texts)?** | `Tour Editor.app` (in `_MacAPP TOUR-VIEWER/`). See §3 steps 5–6 (markers are made by script first). |
-| **Where do I upload finalised tours?** | Export from the Tour Editor to `_360_GALLERIES_AND_TOURS/exported/`. Then in `_WEBSITE PERMAPHEMERA/frontend/`: `pnpm tour:publish <tour-id>`, then `pnpm deploy:hetzner`. See §3 steps 7–8. |
+| **Where do I upload finalised tours?** | Export from the Tour Editor to `_360_GALLERIES_AND_TOURS/exported/`. Then in `_WEBSITE PERMAPHEMERA/frontend/`: `pnpm tour:publish <tour-id>`, then `pnpm deploy:hetzner`. Or in the Tour Editor: File → Publish to website… (or the tour's Export tab), which does these steps plus the save and the backup in one window (Handbook Tutorial No. 4). See §3 steps 7–8. |
 | **Where do I change the database schema (new fields)?** | `_WEBSITE PERMAPHEMERA/directus/scripts/schema.mjs` plus the other files that root `AGENTS.md` lists. Never only in the admin app. |
-| **Where does the viewer JS on the website come from?** | `_MacAPP TOUR-VIEWER`: `pnpm build:all` → copy `dist/tour-viewer.js` and `dist/tour-viewer.css` to `_WEBSITE PERMAPHEMERA/frontend/public/media/tour-viewer/`. |
+| **Where does the viewer JS on the website come from?** | `_MacAPP TOUR-VIEWER`. In `_WEBSITE PERMAPHEMERA/frontend/`, `pnpm viewer:update` runs its `pnpm build:all`, copies `dist/tour-viewer.js` and `dist/tour-viewer.css` to `public/media/tour-viewer/` and writes their fingerprint (`app/utils/tourViewerBuild.ts`); then commit and `pnpm deploy:hetzner`. Or in the Tour Editor: File → Update viewer on website… does all of it. |
 
 ---
 
@@ -98,16 +100,19 @@ section is only the overview.
 |---|---|---|---|
 | 0 | Exhibition record in Directus (production) | Directus | `rowild-create-or-update-gallery-or-exhibition-in-permaphemera` |
 | 1 | Fuse brackets (bracket shoots only; never `punch` tour photos) | the shoot folder | `rowild-photo-fuse` |
-| 2 | Photos in place, tour id `YYYY-MM-DD-<title>`, `poster.pdf` | `_360_GALLERIES_AND_TOURS/collection/` | `rowild-panorama-tour` (NAMING.md) |
+| 2 | Photos in place, tour id `YYYY-MM-DD-<gallery>-<title>`, `poster.pdf` | `_360_GALLERIES_AND_TOURS/collection/` | `rowild-panorama-tour` (NAMING.md) |
 | 3 | `rename` + `check-heights` | `run.sh` in the skill | `rowild-panorama-tour` (NAMING.md) |
 | 4 | `proof`, `grade`, `web` (`sky` outdoors), `verify` | `run.sh` in the skill | `rowild-panorama-tour` (GRADING.md) |
 | 5 | Markers + hidden markers | `scripts/markers/` in the skill | `rowild-panorama-tour` (MARKERS.md) |
 | 6 | Check and save (⌘S) in the Tour Editor | `_MacAPP TOUR-VIEWER` | `rowild-panorama-tour` (SKILL.md) |
 | 7 | Export (⌘E) to `exported/<tour-id>/` | Tour Editor | `rowild-panorama-tour` (SKILL.md) |
-| 8 | `pnpm tour:publish` + `pnpm deploy:hetzner` | `_WEBSITE PERMAPHEMERA/frontend/` | `rowild-panorama-tour` (SKILL.md) |
+| 8 | `pnpm tour:publish` + `pnpm deploy:hetzner` (or steps 7–8 in one go: File → Publish to website…, which also saves and backs up) | `_WEBSITE PERMAPHEMERA/frontend/` | `rowild-panorama-tour` (SKILL.md) |
 
 The Tour Editor does **no** grading. It only reads images, writes `tour.json`, cuts tiles
-and exports. It never talks to Directus or any server (on purpose).
+and exports. It makes no network calls of its own (on purpose). Only File → Publish to
+website… and File → Update viewer on website… (desktop app) run the website's and the
+skill's own scripts (`tour:publish`, `deploy:hetzner`, `viewer:update`, `run.sh`; see
+`src-tauri/src/publish.rs`), and those talk to Directus and the web host.
 
 ---
 
@@ -165,7 +170,7 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 | Folder | Purpose |
 |---|---|
 | `collection/` | The tours. Until the last step the master JPG as working image, then the 8192 WebP (or, for tiled tours, the master JPG + its tiles) + `tour.json` + `poster.pdf`. Also a work area: raw shoots, brackets, phone photos, `_BU/` backups. |
-| `<tour>/_grading/` | Inside each tour (since 2026-10-24; before, one `_grading/` at the project root): `originals/` (untouched camera files; "has a backup" marks a file as graded), `masters/` (native size: the camera file unless the owner asked for grading, then graded JPEG q93; WebP and tiles are made from here), `versions/` (snapshots `YYYY-MM-DD-HHMM-<label>/{web,masters}/`), and when needed `verify-accepted.txt` and `move-log.txt`. A moved or renamed tour folder takes it along; the Tour Editor ignores it. The former `_pipeline/` folder was deleted on 2026-10-20. |
+| `<tour>/_grading/` | Inside each tour (since 2026-10-24; before, one `_grading/` at the project root): `originals/` (untouched camera files; "has a backup" marks a file as graded), `masters/` (native size: the camera file unless the owner asked for grading, then graded JPEG q93; WebP and tiles are made from here), `versions/` (snapshots `YYYY-MM-DD-HHMM-<label>/{web,masters}/`), `proof/` and `sky-proof/` (the contact sheets of `run.sh proof` / `sky-proof`, since 2026-10-26; before, on the Desktop; `run.sh web` removes them), and when needed `verify-accepted.txt` and `move-log.txt`. A moved or renamed tour folder takes it along; the Tour Editor ignores it. The former `_pipeline/` folder was deleted on 2026-10-20. |
 | `<tour>/_markers/` | Inside each tour (since 2026-10-25; before, one `_markers/<tour-id>/` per tour at the project root): work folder and results of the marker steps: step results, check sheets, hidden-marker review, the tour's `meta.json`. The feature cache `featcache/` (about 12 MB per photo) exists only during a run. A moved tour takes it along; the Tour Editor ignores it. |
 | `exported/` | Tour Editor exports, flat by tour id. Input of `pnpm tour:publish`. |
 | `__MATERIAL/` | Material per gallery and artist, kept by hand. No script uses it. |
@@ -201,7 +206,11 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 - Tiling: Rust `src-tauri/src/tiles.rs` or the JS/WASM worker
   `src/editor/tiles/tile.worker.js`.
 - No hardcoded paths to the 360 folder. The library and export folders are
-  picked in the app and remembered per machine.
+  picked in the app and remembered per machine. The project folders (the 360
+  folder, this app, the website, the tour scripts, the backup) are in
+  `~/.config/rowild-skills/paths.env`, which the skill's scripts and the
+  website's `tour:publish` / `viewer:update` read too; Settings → Folders
+  shows and edits it.
 - Commands (pnpm): `dev`, `build`, `build:all` (+ widget), `desktop:dev`,
   `desktop:build` (copies the app to `Tour Editor.app`), `test`, `typecheck`,
   `verify` (the full gate; every change ends with it).
@@ -248,7 +257,7 @@ Authorization header in `~/.claude.json`).
 
 ---
 
-## 7. Traps (known on 2026-10-14)
+## 7. Traps (checked on 2026-10-26)
 
 The stale docs found on 2026-10-14 (old deploy command, retired JSON data,
 old folder names and paths, `TOUR=` examples) were corrected that day in all
@@ -257,41 +266,44 @@ old folder names and paths, `TOUR=` examples) were corrected that day in all
 - `pnpm deploy` still exists in `frontend/package.json`. It uploads to the old
   all-inkl host, not to permaphemera.at. Use **`pnpm deploy:hetzner`**.
 - A tour button shows only when `tour_status` is `available` **and**
-  `tour_available_from` has passed. `pnpm tour:publish` sets only `tour`.
-- `_MacAPP TOUR-VIEWER/docs/tutorials/pdf/Tour-Editor-Handbook-Tutorial-03-Website.pdf`
-  is older than the updated HTML tutorial.
-- The Kindergalerie tour was graded ad hoc on 2026-09-22 (log:
-  `<tour>/_grading/grading-claude-2026-09-22.txt`); its originals are in its
-  `_grading/originals/` since 2026-10-24.
+  `tour_available_from` has passed. `pnpm tour:publish` sets only `tour`
+  (except `--link-only --show-now`, which the Publish window uses for "Show now").
+- The Kindergalerie tour is no longer in `collection/`: it sits in
+  `__MATERIAL/kindergalerie_klagenfurt/`. It was graded ad hoc on 2026-09-22 (log:
+  `__MATERIAL/kindergalerie_klagenfurt/_grading/grading-claude-2026-09-22.txt`); its
+  originals are in that `_grading/originals/`.
 - `dobratsch-aussichtsplatform-2026-08-16`: its `tour.json` id is
   `Dobratsch_Aussichtsplatform_2026-08-16` (the name of its folder in the former project-level
   `_grading/masters/`, not its tour folder).
 
 ---
 
-## 8. State on 2026-10-14 (a snapshot; check before you trust it)
+## 8. State on 2026-10-26 (a snapshot; check before you trust it)
 
-- **Live with a tour** (Directus `tour` set, files on the server), all at
-  Parkschlössl Spittal/Drau:
-  `2026-06-01-…-adi-schmoelzer`, `2026-06-15-…-comic-festival`,
-  `2026-06-22-…-nicoline-von-heyl`, `2026-07-06-…-lebenshilfe-spittal-drau`,
-  `2026-07-13-…-herbert-meisslitzer`,
-  `2026-07-30-…-sylvia-campidell-und-judith-maria-kulle`,
-  `2026-08-10-…-moertl-birgit`.
-- **Exported, not published:** `alpen_adria_galerie_klagenfurt_2026`,
-  `kindergalerie_klagenfurt_2026` (+ a `-copy`).
-- **In `collection/` with `tour.json`, not exported:**
-  `parkschloessl_2026/2026-08-24-…-peter-kohlweiss`,
-  `parkschloessl_2026/2026-09-07-…-santino-solace`,
-  `stadtgalerie_klagenfurt_2026`, `dobratsch/…aussichtsplatform…`.
-- **Raw or in progress:** `living_studio_klagenfurt_2026`, `europahaus_klagenfurt`,
-  `galerie_porcia/…`, `mamas-party-2026-08-29`, most `dobratsch/` walks.
-  `galerie_palais_fugger/` and `startupgalerie/` hold only source links.
-- Directus: 25 exhibitions (13 published, 12 draft), 46 venues (7 published,
-  39 draft).
-- Added as drafts on 2026-10-14: venues Galerie im Schloss Porcia (Spittal),
-  Galerie Palais Fugger (Klagenfurt), stARTup gallery (Kötschach-Mauthen, new
-  town); exhibitions "Schwach.Unperfekt.Ausgefranst.Echt" (Inés Urach,
-  Europahaus), "Epische Gemälde" (Ingrid Pröller, Porcia), "Mediterraneo"
-  (Harald Scheicher, Palais Fugger), "Walther Preiml – Sehnsucht" (stARTup),
-  Drago Druškovič (Alpen-Adria-Galerie), Karlheinz Simonitsch (Living Studio).
+- **Live with a tour** (Directus `tour` set, `tour_status` `available`, files on
+  the server), 11 tours:
+  - Parkschlössl Spittal/Drau: `2026-06-01-…-adi-schmoelzer`,
+    `2026-06-15-…-comic-festival`, `2026-06-22-…-nicoline-von-heyl`,
+    `2026-07-06-…-lebenshilfe-spittal-drau`, `2026-07-13-…-herbert-meisslitzer`,
+    `2026-07-30-…-sylvia-campidell-und-judith-maria-kulle`,
+    `2026-08-10-…-moertl-birgit`, `2026-09-07-…-santino-solace`.
+  - Europahaus Klagenfurt: `2026-10-03-…-ines-urach-schwach-unperfekt-ausgefranst-echt`,
+    `2026-10-03-…-kunstverein-velden-spannungsfelder-und-perspektiven`.
+  - Studiogalerie Klagenfurt: `2026-10-15-…-trigeniale-26`.
+- **Exported, not published:** `2026-04-13-wagner-reloaded` (Theatergalerie),
+  `2026-10-03-walther-preiml-sehnsucht` (stARTup).
+- **In `collection/` with `tour.json`, not exported:** in `_galleries/`:
+  `alpen_adria_galerie_klagenfurt/2026-06-24-mighty-woman` and
+  `/2026-09-22-durch-die-zeit`, `living_studio_klagenfurt/2026-09-30-hydrotopia`,
+  `parkschloessl_spittal/2026-08-24-…-peter-kohlweiss`,
+  `stadtgalerie_klagenfurt/2026-05-29-all-about-nature`; `_others/mamas-party-2026-08-29`;
+  `_outdoors/dobratsch/dobratsch-aussichtsplatform-2026-08-16` and `/dobratsch-sonnenwege`.
+- **Photos, no `tour.json` yet:** `galerie_im_stiegenhaus/2026-09-14-…`,
+  `galerie_palais_fugger/2026-10-03-mediterraneo`,
+  `galerie_porcia/2026-09-11-ingrid-proeller-epische-gemaelde`,
+  `living_studio_klagenfurt/2026-05-30-biodiversitaet-entdecken`,
+  `wallnerhaus_kleblach-lind/2026-05-28-…`, the other five `dobratsch/` walks.
+  The remaining tour folders (coming shows, `bv_klagenfurt/`, `_museums/`) hold no
+  photos yet.
+- Directus: 30 exhibitions (27 published, 3 draft), 44 venues (12 published,
+  32 draft).
