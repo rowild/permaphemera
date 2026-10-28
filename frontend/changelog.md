@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.43 - 2026-10-28 14:41:57 CET
+
+- Uploading a tour no longer touches every other tour. `pnpm deploy:hetzner` has three new modes: `--site-only` (the site without any tour, for a tour viewer update), `--tours a,b` (the site and only the named tours, for publishing one tour) and `--tours a,b --no-site` (only the named tours). `--plan` shows what a command would do without doing it. The plain command works as before.
+- Every tour copied into the site now carries a small `fingerprint.json`. `pnpm tour:status` compares it with the live site and says, tour by tour, whether an upload is needed: new, changed, up to date, or live but not tracked yet. The Tour Editor uses this for its upload list.
+
 ## 0.0.42 - 2026-10-26 08:45:36 CET
 
 - An address of an exhibition or gallery that does not exist (for example `/exhibitions/gibt-es-nicht/`) shows the 404 page again ("Ausstellungseintrag nicht gefunden", "Galerie nicht gefunden") instead of an empty page. The two pages now raise the error the way the person, sponsor and organisation pages do, and draw nothing of the missing record. A check guards all five detail pages.
