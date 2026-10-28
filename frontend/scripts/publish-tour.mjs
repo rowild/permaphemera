@@ -35,6 +35,7 @@ import { createInterface } from 'node:readline/promises'
 import { fileURLToPath } from 'node:url'
 import { directusPatch, directusToken, loadArchiveFromDirectus } from './lib/archive-source.mjs'
 import { readProjectPaths } from './lib/project-paths.mjs'
+import { ensureFingerprint } from './lib/tour-fingerprint.mjs'
 import { parseArguments, recordSummary } from './lib/publish-tour-options.mjs'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -189,6 +190,10 @@ function runCheck(script) {
 }
 
 async function mirror(source, target) {
+  // The export carries its fingerprint (made now when missing or stale), so
+  // the copy here and then the live one carry it too: that is how the Tour
+  // Editor's upload list tells changed tours from current ones (2026-10-29).
+  await ensureFingerprint(source)
   // Mirror, not merge: a panorama the editor dropped must not survive here.
   if (await exists(target)) await rm(target, { recursive: true, force: true })
   await cp(source, target, {

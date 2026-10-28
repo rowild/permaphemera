@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.0.42",
+  "version": "0.0.43",
   "type": "module",
   "private": true,
   "packageManager": "pnpm@11.20.0",
@@ -36,6 +36,7 @@
     "qa:safari:webkit": "node qa/safari/drivers/webkit.mjs",
     "test": "vitest run",
     "tour:publish": "node scripts/publish-tour.mjs",
+    "tour:status": "node scripts/tour-status.mjs",
     "test:watch": "vitest",
     "deploy:hetzner": "bash scripts/deploy-hetzner.sh",
     "cache:purge": "node scripts/purge-cloudflare.mjs",
