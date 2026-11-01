@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.44 - 2026-11-01 20:44:00 CET
+
+- The exhibition preview on a gallery page shows its image and text again: the first exhibition on load, the others on hover, focus or tap. Since 0.0.23 the frame stayed empty, because the preview card had only a minimum height and its image collapsed to a height of zero. A check guards the set height now.
+
 ## 0.0.43 - 2026-10-28 14:41:57 CET
 
 - Uploading a tour no longer touches every other tour. `pnpm deploy:hetzner` has three new modes: `--site-only` (the site without any tour, for a tour viewer update), `--tours a,b` (the site and only the named tours, for publishing one tour) and `--tours a,b --no-site` (only the named tours). `--plan` shows what a command would do without doing it. The plain command works as before.

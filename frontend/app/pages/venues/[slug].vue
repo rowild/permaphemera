@@ -320,7 +320,7 @@ usePageSeo(`/venues/${slug}/`)
           </ol>
 
           <aside v-if="previewExhibition" class="[ venue-preview-column ] sticky top-32 min-w-0 medium:relative medium:top-0 medium:row-start-1" :aria-label="$t('venue.previewAria')">
-            <ExhibitionFrameCard class="[ venue-active-preview ] archive-venue-active-preview block min-h-[clamp(31rem,42vw,40rem)] w-full medium:min-h-124 compact:min-h-80" surface-class="bg-archive-night">
+            <ExhibitionFrameCard class="[ venue-active-preview ] archive-venue-active-preview block h-[clamp(31rem,42vw,40rem)] w-full medium:h-124 compact:h-80" surface-class="bg-archive-night">
               <Transition name="archive-venue-preview-image">
                 <img
                   :key="previewExhibition.id"

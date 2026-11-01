@@ -23,6 +23,16 @@ const checks = [
   [
     'the facts ledger aligns with the heading rather than the eyebrow',
     /<ArchiveFactLedger class="[^"]*mt-9[^"]*tablet:mt-0/.test(venuePage)
+  ],
+  [
+    'the preview card has a set height: all its content is absolute, so with only a min-height the image collapses to 0',
+    (() => {
+      const previewClass = venuePage.match(/\[ venue-active-preview \][^"\n]*/)?.[0] ?? ''
+      return /(^|\s)h-\[/.test(previewClass)
+        && /(^|\s)medium:h-/.test(previewClass)
+        && /(^|\s)compact:h-/.test(previewClass)
+        && !/min-h-/.test(previewClass)
+    })()
   ]
 ]
 
