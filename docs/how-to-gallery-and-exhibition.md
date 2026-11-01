@@ -170,8 +170,8 @@ Look at every image before you upload it (open a small preview).
 
 ## 4. Town (`pp_locations`), only if missing
 
-`title` (official name), `slug` (`koetschach-mauthen`), `postal_code`, `state` `Carinthia`,
-`country` `Austria`, `latitude` / `longitude` (town centre, 4 decimals), `description` and
+`title` (official name), `slug` (`koetschach-mauthen`), `postal_code`, `state` in English
+(`Carinthia`, `Styria`; the site translates it through `states` in the locale files), `country` `Austria`, `latitude` / `longitude` (town centre, 4 decimals), `description` and
 `translations` en + de (one sentence). Status `draft`; publish it together with its venue (a
 published venue in a draft town does not show).
 
@@ -186,7 +186,7 @@ published venue in a draft town does not show).
 | `type` | `gallery`, `museum`, `kunsthalle`, `art_cafe`, `open_air`, `forum` (a cultural centre like the Europahaus is `forum`) |
 | `location` | town id |
 | `part_of` | parent venue for a space run by another venue (Alpen-Adria-Galerie → Stadtgalerie) |
-| `archive_number` | next free two-digit number (read the highest first; 36 was the last on 2026-10-14) |
+| `archive_number` | next free two-digit number (read the highest first; 41 was the last on 2026-11-01) |
 | `address` | `Street No, PLZ Town, Austria` |
 | `latitude`, `longitude` | the building (OpenStreetMap / Denkmalliste), 5 decimals |
 | `coordinate_label` | DMS: `46° 47′ 52″ N · 13° 29′ 45″ E` |
@@ -358,6 +358,21 @@ Update the record field **and** its `en` translation together.
    soon as the records they connect are published.
 
 ---
+
+## Lessons from 2026-11-01
+
+Four venues in one run; the worked example is `plans/2026-11-01__four-new-galleries/` (worklog,
+manifest, record script, SEO file), the procedure the skill `rowild-new-gallery-creation`.
+
+- A venue from the owner's list may exist already as an old draft (Galerie Freihausgasse): complete it.
+- Look in `_360_GALLERIES_AND_TOURS/collection/_galleries/` before you set the tour fields, and
+  before you look for an image: the owner's own 360° photos decide the tour, and a straight view
+  from one is an exhibition image with no third-party rights (Atemzüge).
+- A castle, a municipal office or a social organisation that exhibits is `type: forum`.
+- Never use a press photo that shows clients of a social organisation or other private people.
+  Look through all photos of a report: one of 26 showed only the works.
+- Unnamed artists of an organisation are one collective person (`is_collective`, `display_name`).
+- Check a weekday against its date. "Thursday, Oct. 27" was a Tuesday.
 
 ## Lessons from 2026-10-14
 

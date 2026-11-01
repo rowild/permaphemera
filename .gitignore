@@ -44,3 +44,5 @@ _Material/
 _Plans/designs/
 *.af
 .serena/
+# Plan images: the uploaded copies are in Directus
+plans/*/images/

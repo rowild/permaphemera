@@ -5,9 +5,12 @@ import { fileURLToPath } from 'node:url'
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const readProjectFile = (path) => readFile(resolve(projectRoot, path), 'utf8')
 
-const [ledgerRow, venuePage] = await Promise.all([
+const [ledgerRow, venuePage, venueIndex, directoryCard, de] = await Promise.all([
   readProjectFile('app/components/VenueExhibitionLedgerRow.vue'),
-  readProjectFile('app/pages/venues/[slug].vue')
+  readProjectFile('app/pages/venues/[slug].vue'),
+  readProjectFile('app/pages/venues/index.vue'),
+  readProjectFile('app/components/GalleryDirectoryCard.vue'),
+  readProjectFile('i18n/locales/de.json')
 ])
 
 const checks = [
@@ -33,6 +36,12 @@ const checks = [
         && /(^|\s)compact:h-/.test(previewClass)
         && !/min-h-/.test(previewClass)
     })()
+  ],
+  [
+    'federal states show in the current language (stored in English)',
+    venueIndex.includes('{{ stateName(state) }}')
+      && directoryCard.includes('{{ stateName(props.venue.state) }}')
+      && JSON.parse(de).states?.Styria === 'Steiermark'
   ]
 ]
 

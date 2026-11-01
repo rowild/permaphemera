@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.45 - 2026-11-01 21:50:00 CET
+
+- The German gallery page says "Kärnten" instead of "Carinthia", on the cards and in the filter, and a search for "Kärnten" finds the galleries. All nine federal states are named in both languages, ready for the first gallery in Styria.
+
 ## 0.0.44 - 2026-11-01 20:44:00 CET
 
 - The exhibition preview on a gallery page shows its image and text again: the first exhibition on load, the others on hover, focus or tap. Since 0.0.23 the frame stayed empty, because the preview card had only a minimum height and its image collapsed to a height of zero. A check guards the set height now.

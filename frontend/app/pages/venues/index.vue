@@ -8,6 +8,7 @@ const localePath = useLocalePath()
 const gallerySearchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
 const selectedState = ref(typeof route.query.state === 'string' ? route.query.state : '')
 const normalize = (value: string) => value.trim().toLocaleLowerCase()
+const stateName = useStateName()
 
 const states = computed(() => [...new Set(venues.value.map((venue) => venue.state))]
   .sort((left, right) => left.localeCompare(right)))
@@ -34,7 +35,7 @@ const filteredVenues = computed(() => {
       venue.name,
       venue.city_name,
       venue.postal_code,
-      venue.state,
+      stateName(venue.state),
       venue.country,
       venue.address,
       venue.description ?? ''
@@ -112,7 +113,7 @@ usePageSeo('/venues/')
 
           <ArchiveAlphabetRail class="[ gallery-state-filter ] mt-7 gap-5 pb-4 compact:mt-4 compact:gap-4 compact:pb-3" :label="$t('galleries.stateFilterAria')">
             <button class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="!selectedState" @click="selectedState = ''">{{ $t('common.all') }} <small class="ml-1 text-xs">{{ venues.length }}</small></button>
-            <button v-for="state in states" :key="state" class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="selectedState === state" @click="selectedState = selectedState === state ? '' : state">{{ state }} <small class="ml-1 text-xs">{{ stateCounts.get(state) }}</small></button>
+            <button v-for="state in states" :key="state" class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="selectedState === state" @click="selectedState = selectedState === state ? '' : state">{{ stateName(state) }} <small class="ml-1 text-xs">{{ stateCounts.get(state) }}</small></button>
           </ArchiveAlphabetRail>
         </div>
 

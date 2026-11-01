@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<{
   recordCount: 0,
   featured: false
 })
+const stateName = useStateName()
 
 const active = ref(false)
 const localePath = useLocalePath()
@@ -70,7 +71,7 @@ const cornerStyle = computed<CSSProperties>(() => ({
           aria-hidden="true"
         />
         <p class="relative m-0 flex items-center gap-2 text-xs tracking-widest text-archive-red uppercase compact:text-3xs">
-          <span>{{ props.venue.state }}</span>
+          <span>{{ stateName(props.venue.state) }}</span>
           <span aria-hidden="true">·</span>
           <span>{{ props.venue.postal_code }}</span>
         </p>

@@ -23,6 +23,8 @@ Cross-cutting design specs (Directus + frontend together) live in `docs/superpow
 - `_Material/` and `_BU/` are git-ignored source material. Do not add code there.
 - The `rowild-checklist-qa-for-permaphemera-frontend` skill (until 2026-10-20 `frontend-qa-checklist`) lives in `.claude/skills/`. Use it before shipping frontend UI changes.
 - Adding or updating a gallery (venue), town, artist or exhibition in Directus: follow `docs/how-to-gallery-and-exhibition.md` (global skill `rowild-create-or-update-gallery-or-exhibition-in-permaphemera` in `~/.claude/skills/`, until 2026-10-20 the project skill `gallery-exhibition`).
+- Adding several new galleries from a list of links: global skill `rowild-new-gallery-creation`.
+- `/away <task>` (`.claude/commands/away.md`): the owner is away; work to the end without questions, delete nothing.
 - The `fin-patch` skill is global (`~/.claude/skills/fin-patch/`) and works from any folder.
 - Agreed work parked for later lives in `BACKLOG.md` at the root.
 - Every text visitors read (locale files, fixed and SEO texts in Directus) follows `docs/text-rules.md`: the owner's rules, a word list and the method for changing a text.

@@ -1,4 +1,15 @@
 {
+  "states": {
+    "Burgenland": "Burgenland",
+    "Carinthia": "Carinthia",
+    "Lower Austria": "Lower Austria",
+    "Salzburg": "Salzburg",
+    "Styria": "Styria",
+    "Tyrol": "Tyrol",
+    "Upper Austria": "Upper Austria",
+    "Vienna": "Vienna",
+    "Vorarlberg": "Vorarlberg"
+  },
   "site": {
     "homeAria": "PERMAPHEMERA home",
     "skipToContent": "Skip to content",
