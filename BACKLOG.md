@@ -2,6 +2,43 @@
 
 Work that is agreed but parked for later. Newest first.
 
+## Tags: what kind of exhibition it was
+
+Added 2026-11-03 by the owner. Not started.
+
+Each exhibition gets tags that say what kind of exhibition it was, so visitors can filter the
+archive (for example all sculpture, all photography). Tags describe; they never rate (value-free,
+`docs/text-rules.md` §1.7). German and English for every tag.
+
+Ideas for the first tag list (owner to choose, add, remove):
+
+- **Medium / technique:** Malerei / painting · Zeichnung / drawing · Grafik, Druckgrafik /
+  printmaking · Fotografie / photography · Skulptur, Plastik / sculpture · Installation /
+  installation · Objektkunst / objects · Textilkunst / textile art · Keramik / ceramics ·
+  Video, Medienkunst / video and media art · Digitale Kunst / digital art · Mischtechnik /
+  mixed media · Kunsthandwerk, Design / craft and design · Architektur / architecture ·
+  Comic, Illustration / comics and illustration · Künstlerbuch / artists' books ·
+  Street Art / street art
+- **Theme:** Natur, Umwelt / nature and environment · Landschaft / landscape · Mensch, Porträt /
+  people and portraits · Körper / the body · Abstraktion / abstraction · Mythos, Religion /
+  myth and religion · Geschichte, Erinnerung / history and memory · Gesellschaft, Politik /
+  society and politics · Stadt, Raum / city and space · Wissenschaft, Kosmos / science and
+  the cosmos
+- **Format:** Einzelausstellung / solo exhibition · Gruppenausstellung / group exhibition ·
+  Retrospektive / retrospective · Mitgliederausstellung / members' exhibition ·
+  Grenzüberschreitend, Alpe-Adria / cross-border · Inklusive Kunst / inclusive art ·
+  Kinder und Jugend / children and young people · Lange Nacht der Museen · Kunstpreis,
+  Wettbewerb / award and competition
+
+Open questions for the owner: one flat list or groups (medium, theme, format)? Who sets the
+tags (owner only, or from the invitation by an AI, then checked)? How does it relate to the
+existing free-text `medium` field and to `kind` (exhibition / event)?
+
+Technical sketch: a `pp_tags` collection (name and slug, `translations`, a `group`), many-to-many
+with `pp_exhibitions`; filter chips on /exhibitions/, a tag line on the exhibition page and the
+cards. Schema change by the root `AGENTS.md` rule (`schema.mjs`, `archive-schema.mjs`,
+`content.ts`, `_Plans/exhibitions-plan.md` §2).
+
 ## 🚨 URGENT — Improve the site texts: no metaphors, no AI slop
 
 Added 2026-10-25. Priority: urgent, before the newsletter.

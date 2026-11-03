@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.46 - 2026-11-03 12:40:57 CET
+
+- The line above the title of an exhibition page no longer says "Treten Sie ein · 360°-Rundgang" on every page. It now says what is there: "360°-Rundgang der archivierten Ausstellung" when the tour is open, "Archivierte Ausstellung · 360°-Rundgang in Vorbereitung" when a tour is planned or being prepared, and "Archivierte Ausstellung" when there is no tour. Events say "Veranstaltung"; English says "360° tour of the archived exhibition", "Archived exhibition · 360° tour in preparation" and "Archived exhibition". A long line breaks only at the "·".
+- Four exhibitions (Epische Gemälde, Aus der Asche empor, BV ART-EX 26, DIALOG) lost a hand-written sentence with the tour date in their texts (changed in Directus). On Epische Gemälde it still promised the tour "from 24 October" right above "in preparation".
+
 ## 0.0.45 - 2026-11-01 21:50:00 CET
 
 - The German gallery page says "Kärnten" instead of "Carinthia", on the cards and in the filter, and a search for "Kärnten" finds the galleries. All nine federal states are named in both languages, ready for the first gallery in Styria.

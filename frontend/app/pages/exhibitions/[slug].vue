@@ -43,9 +43,20 @@ const hostnameOf = (url: string) => {
 // the details. Only an open record gets a button; every other state is a
 // sentence, never a disabled control.
 // Events (a sale, a festival night) are worded as events, exhibitions as exhibitions.
-const kindText = (key: 'recordEyebrow' | 'aboutTitle' | 'aboutAccent' | 'restricted' | 'unavailable') => t(exhibition.value?.kind === 'event' ? `exhibition.event.${key}` : `exhibition.${key}`)
+const kindText = (key: 'recordEyebrow' | 'aboutTitle' | 'aboutAccent' | 'restricted' | 'unavailable' | 'spatialEyebrowOpen' | 'spatialEyebrowPreparing' | 'spatialEyebrowNoTour') => t(exhibition.value?.kind === 'event' ? `exhibition.event.${key}` : `exhibition.${key}`)
 const tourAccess = computed(() => resolveTourAccess(exhibition.value))
 const releaseDateFormatter = computed(() => new Intl.DateTimeFormat(locale.value, { day: 'numeric', month: 'long', year: 'numeric' }))
+// The eyebrow above the title names the tour only where there is or will be one; "restricted"
+// and "unavailable" records promise nothing.
+const spatialEyebrow = computed(() => {
+  switch (tourAccess.value.kind) {
+    case 'open': return kindText('spatialEyebrowOpen')
+    case 'scheduled':
+    case 'preparing': return kindText('spatialEyebrowPreparing')
+    default: return kindText('spatialEyebrowNoTour')
+  }
+})
+const spatialEyebrowParts = computed(() => spatialEyebrow.value.split(' · '))
 const tourStatus = computed(() => {
   const access = tourAccess.value
   switch (access.kind) {
@@ -78,7 +89,10 @@ usePageSeo(`/exhibitions/${routeSlug}/`)
           <ArchiveBreadcrumb class="text-archive-footer-copy/72">
             <ArchiveTextLink :to="localePath('/exhibitions/')" surface="night">{{ $t('navigation.exhibitions') }}</ArchiveTextLink><span aria-hidden="true">/</span><ArchiveTextLink :to="galleryPath" surface="night">{{ galleryName }}</ArchiveTextLink><span aria-hidden="true">/</span><span class="text-archive-night-heading">{{ exhibition.title }}</span>
           </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.spatialEyebrow') }}</p>
+          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">
+            <!-- A long eyebrow wraps only at its "·", never inside "360°-Rundgang in Vorbereitung". -->
+            <span><template v-for="(part, index) in spatialEyebrowParts" :key="part"><template v-if="index">&nbsp;· </template><span :class="{ 'whitespace-nowrap': spatialEyebrowParts.length > 1 }">{{ part }}</span></template></span>
+          </p>
           <h1 id="exhibition-title" class="m-0 font-display text-h1 font-light leading-[0.92] text-archive-night-heading compact:text-5xl compact:leading-none">{{ exhibition.title }}</h1>
           <p class="[ exhibition-hero-artist ] mt-[0.8rem] mb-0 text-title text-archive-ochre compact:mt-2 compact:text-lg"><template v-for="(artist, index) in exhibition.artists" :key="artist.id"><template v-if="index"> &amp; </template><ArchiveTextLink :to="localePath(`/persons/${artist.slug}/`)" surface="night">{{ artist.name }}</ArchiveTextLink></template></p>
           <p v-if="exhibition.summary" class="[ exhibition-hero-summary ] mt-[1.4rem] mb-0 max-w-136 text-lg leading-[1.52] text-archive-footer-copy/86 compact:mt-3 compact:text-base compact:leading-normal">{{ exhibition.summary }}</p>
