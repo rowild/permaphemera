@@ -265,8 +265,8 @@ Galerie Porcia) gets no organisation record; name it in `about_html`. A person t
 
 | Situation | `tour_status` | `tour_available_from` | Text |
 |---|---|---|---|
-| Photographed or will be photographed | `available` | ask the owner: EMPTY = the button shows at once (as soon as `tour` is linked), or a DATE = from that day, e.g. the last day (`end_date`) | Before a date the site shows it. No tour sentence in `summary`: the page says it itself, and a written date goes stale (2026-10-25) |
-| Photographed, date passed, files not yet published | `available` | as above | Site shows "being prepared". Text: "PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here." |
+| Photographed or will be photographed | `available` | ask the owner: EMPTY = the button shows at once (as soon as `tour` is linked), or a DATE = from that day, e.g. the last day (`end_date`) | Before a date the site shows it ("360° tour from 19 December 2026"). No tour sentence in `summary` or `description`: the page says it itself, and a written date goes stale (2026-10-25; four stale sentences removed 2026-11-03) |
+| Photographed, date passed, files not yet published | `available` | as above | The site shows "360° tour in preparation" / "360°-Rundgang in Vorbereitung" by itself (page, cards, SEO), until `tour` is linked. Write nothing in the texts |
 | Tour published | `available` | as above | `pnpm tour:publish <id>` sets `tour` (see `PROJECT_INFO.md` §3) |
 | Not photographed | `unavailable` | empty | no tour sentence |
 | Rights holder forbids it | `restricted` | empty | |
