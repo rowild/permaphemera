@@ -1,0 +1,11 @@
+[
+  { "collection": "venues", "slug": "art-hotel-spielberg",
+    "en": { "title": "Art Hotel Spielberg, Styria", "meta_description": "Hotel with 46 rooms and a seminar room at Lilienweg 7 in Spielberg, in the Murtal district of Styria, open all year and run by MFST GmbH of Knittelfeld." },
+    "de": { "title": "Art Hotel Spielberg, Steiermark", "meta_description": "Hotel mit 46 Zimmern und Seminarraum im Lilienweg 7 in Spielberg im Bezirk Murtal, Steiermark, ganzjährig geöffnet, betrieben von der MFST GmbH aus Knittelfeld." } },
+  { "collection": "venues", "slug": "ideenreich-knittelfeld",
+    "en": { "title": "Ideenreich, Knittelfeld", "meta_description": "Inclusive shop and workshop of the Lebenshilfe Region Knittelfeld at Hauptplatz 17: wood and clay products, and a place for art and culture events." },
+    "de": { "title": "Ideenreich, Knittelfeld", "meta_description": "Inklusives Verkaufslokal mit Werkstatt der Lebenshilfe Region Knittelfeld am Hauptplatz 17: Holz- und Tonprodukte, auch Ort für Kunst und Kultur." } },
+  { "collection": "persons", "slug": "severin-kroen",
+    "en": { "title": "Séverin Krön, painter and gallery head", "meta_description": "Séverin Krön, born 1964 near Paris, painter of “Art permutable” pictures, has led the Galerie im Schloss Porcia in Spittal an der Drau since 2022." },
+    "de": { "title": "Séverin Krön, Maler und Galerieleiter", "meta_description": "Séverin Krön, 1964 bei Paris geboren, Maler versetzbarer Bilder („Art permutable“), leitet seit 2022 die Galerie im Schloss Porcia in Spittal an der Drau." } }
+]

@@ -46,3 +46,5 @@ _Plans/designs/
 .serena/
 # Plan images: the uploaded copies are in Directus
 plans/*/images/
+# Plan source pages: downloaded web pages and PDFs, third-party content
+plans/*/pages/

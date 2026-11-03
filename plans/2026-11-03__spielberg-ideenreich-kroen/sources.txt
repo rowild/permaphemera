@@ -1,0 +1,64 @@
+--- NEUE GALERIEN / AUSSTELUNGSORTE ---
+
+- Art Hotel Spielberg, Steiermark
+
+https://www.arthotel-spielberg.at/
+
+
+- Lebenshilfe Knittelfeld, Ideenreich
+
+https://www.lebenshilfe-knittelfeld.at/
+
+
+--- NEUE KÜNSTLER / PERSONEN
+
+- Séverin Krön (Kurator der Galerie Porcia)
+
+https://www.meinbezirk.at/tag/severin-kr%C3%B6n
+https://www.spittal-drau.at/politik/detailansicht?tx_sicaddress_sicaddress%5Baction%5D=show&tx_sicaddress_sicaddress%5Baddress%5D=89&tx_sicaddress_sicaddress%5Bcontroller%5D=Address&cHash=d03425912d020d8d9eaf0504cdd7c5c0
+https://menschlichkeit.jetzt/bilder-malen-severin-kroen/
+https://www.kuenstlerstadt-gmuend.at/programm/severin-kron
+https://www.artmajeur.com/severin-kroen/de
+https://www.instagram.com/severin.kron/
+https://www.linkedin.com/in/severin-kroen/
+https://www.zugaenglichekunst.at/severin-kron-kunst-oder-spiel/
+https://www.youtube.com/channel/UC09uCVSCgehz7HnPjf_VjbA
+
+
+
+--- IGNORE ---
+
+Any information found below "IGNORE" is already in the Directus Database, so ignore it.
+
+
+- Galerie Freihausgasse Villach
+
+https://villach.at/stadt-erleben/kultur/galerie-freihausgasse
+https://villach.at/stadt-erleben/kultur/galerie-freihausgasse/aktuelle-ausstellung
+
+
+- Galerie im Dinzlschloss
+
+https://villach.at/stadt-erleben/kultur/dinzlschloss
+https://villach.at/stadt-erleben/kultur/dinzlschloss/dinzlschloss-aktuelle-ausstellung
+
+
+- Wallnerhaus - Kleblach-Lind
+
+https://www.kleblach-lind.at/NATURBETRACHTUNG_UND_SELBSTBILDNIS_Ausstellung_im_Wallnerhaus_Lind_im_Drautal
+https://kaernten.orf.at/v2/tv/stories/2765893/
+https://www.meinbezirk.at/tag/wallnerhaus
+https://de.wikipedia.org/wiki/Liste_der_denkmalgesch%C3%BCtzten_Objekte_in_Kleblach-Lind
+https://mapcarta.com/de/W370580521
+https://radio-osttirol.at/aktuelles-oberkaernten/chronik/ausstellung-im-wallnerhaus
+
+
+- Lebenshilfe Knittelfeld
+
+https://www.lebenshilfe-knittelfeld.at/
+https://www.kleinezeitung.at/artikel/41406246/lebenshilfe-knittelfeld-praesentiert-neuen-kunstkalender-und-wein
+https://www.instagram.com/p/DfEktBqjWYQ/?img_index=12
+https://www.facebook.com/meinbezirk.murtal.murau/posts/kunstkalender-hoffnung-und-frieden-in-knittelfeld-vorgestellt-starke-bilder-star/2027387748491777/
+https://ideenreich-knittelfeld.at/
+https://lebenshilfe.at/aktuelles/veranstaltungen/lebenshilfe-vernissage-2026/
+https://lebenshilfe.at/wer-wir-sind/lebenshilfe-bundeslaender/
