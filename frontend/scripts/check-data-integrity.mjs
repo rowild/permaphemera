@@ -1,5 +1,5 @@
 async function main() {
-  const { loadArchiveFromDirectus, directusUrl } = await import('./lib/archive-source.mjs')
+  const { loadArchiveFromDirectus, directusUrl, directusGet, directusToken } = await import('./lib/archive-source.mjs')
   const a = await loadArchiveFromDirectus()
 
   const locations = a.locations, venues = a.venues, persons = a.persons, roles = a.roles, personRoles = a.personRoles
@@ -12,6 +12,33 @@ async function main() {
   const locationIds = ids(locations), venueIds = ids(venues), personIds = ids(persons), roleIds = ids(roles)
   const exhibitionIds = ids(exhibitions), navigationIds = ids(navigations), itemIds = ids(navigationItems), websiteIds = ids(websites), organisationIds = ids(organisations)
   const roleArtist = roles.find((role) => role.slug === 'artist')?.id
+
+  // Status lives on records, not on the rows that link them (owner rule): a link row may point at
+  // a draft, which the site then leaves out (Ideenreich, the Comicfestival, 2026-11-04). The public
+  // API returns published records only, so an id missing there is asked again with the token:
+  // a draft passes, an id that exists nowhere still fails. Without a token every check stays strict.
+  const linkEnds = [
+    [participations, 'exhibition', 'pp_exhibitions', exhibitionIds], [participations, 'person', 'pp_persons', personIds],
+    [personRoles, 'persons_id', 'pp_persons', personIds],
+    [memberships, 'organisation', 'pp_organisations', organisationIds], [memberships, 'person', 'pp_persons', personIds],
+    [venueRelations, 'organisation', 'pp_organisations', organisationIds], [venueRelations, 'venue', 'pp_venues', venueIds],
+    [organisers, 'organisation', 'pp_organisations', organisationIds], [organisers, 'exhibition', 'pp_exhibitions', exhibitionIds],
+    [a.organisationsWebsites, 'organisations_id', 'pp_organisations', organisationIds], [a.organisationsWebsites, 'websites_id', 'pp_websites', websiteIds],
+    [a.venuesWebsites, 'venues_id', 'pp_venues', venueIds], [a.venuesWebsites, 'websites_id', 'pp_websites', websiteIds],
+    [a.exhibitionsWebsites, 'exhibitions_id', 'pp_exhibitions', exhibitionIds], [a.exhibitionsWebsites, 'websites_id', 'pp_websites', websiteIds],
+    [a.personsWebsites, 'persons_id', 'pp_persons', personIds], [a.personsWebsites, 'websites_id', 'pp_websites', websiteIds]
+  ]
+  const unpublished = new Map()
+  for (const [rows, column, collection, published] of linkEnds) for (const row of rows) {
+    if (row[column] && !published.has(row[column])) unpublished.set(collection, new Set([...(unpublished.get(collection) ?? []), row[column]]))
+  }
+  const drafts = new Set()
+  if (directusToken) for (const [collection, missing] of unpublished) {
+    const filter = encodeURIComponent(JSON.stringify({ id: { _in: [...missing] } }))
+    for (const record of await directusGet(`/items/${collection}?fields=id&limit=-1&filter=${filter}`, { token: directusToken })) drafts.add(record.id)
+  }
+  /** The row's end is published, or a draft the site leaves out. */
+  const exists = (published, id) => published.has(id) || drafts.has(id)
 
   const uniqueBy = (records, key) => new Set(records.map((record) => record[key])).size === records.length
   const en = (record) => (record.translations ?? []).find((entry) => entry.languages_code === 'en')
@@ -115,12 +142,12 @@ async function main() {
     ['venue.location all resolve', venues.every((venue) => locationIds.has(venue.location))],
     ['venue.part_of points at another venue or is empty', venues.every((venue) => venue.part_of === null || (venue.part_of !== venue.id && venueIds.has(venue.part_of)))],
     ['exhibition.primary_venue all resolve', exhibitions.every((exhibition) => venueIds.has(exhibition.primary_venue))],
-    ['participation.exhibition all resolve', participations.every((row) => exhibitionIds.has(row.exhibition))],
-    ['participation.person all resolve', participations.every((row) => personIds.has(row.person))],
+    ['participation.exhibition all resolve', participations.every((row) => exists(exhibitionIds, row.exhibition))],
+    ['participation.person all resolve', participations.every((row) => exists(personIds, row.person))],
     ['participation.role all resolve', participations.every((row) => roleIds.has(row.role))],
     ['participation role is one of the person\'s roles', participations.every((row) => rolesOf(row.person).has(row.role))],
     ['every person has at least one role', persons.every((person) => rolesOf(person.id).size > 0)],
-    ['person-role rows resolve both ends', personRoles.every((row) => personIds.has(row.persons_id) && roleIds.has(row.roles_id))],
+    ['person-role rows resolve both ends', personRoles.every((row) => exists(personIds, row.persons_id) && roleIds.has(row.roles_id))],
     // An exhibition is credited to artists, or an event is credited to the organisation that put it on.
     ['every exhibition has an artist participation or an organiser/presenter', exhibitions.every((exhibition) =>
       participations.some((row) => row.exhibition === exhibition.id && row.role === roleArtist)
@@ -134,14 +161,14 @@ async function main() {
     ['organisation.location resolves or is empty', organisations.every((organisation) => organisation.location === null || locationIds.has(organisation.location))],
     ['every organisation has an en translation', everyHasEnglish(organisations)],
     ['organisation English mirrors its en entry', englishMirrors(organisations, ['short_title', 'logo_alt', 'lede', 'about_html', 'description'])],
-    ['membership rows resolve both ends', memberships.every((row) => organisationIds.has(row.organisation) && personIds.has(row.person))],
+    ['membership rows resolve both ends', memberships.every((row) => exists(organisationIds, row.organisation) && exists(personIds, row.person))],
     ['membership English mirrors its en entry', englishMirrors(memberships, ['function'])],
-    ['venue relation rows resolve both ends', venueRelations.every((row) => organisationIds.has(row.organisation) && venueIds.has(row.venue))],
+    ['venue relation rows resolve both ends', venueRelations.every((row) => exists(organisationIds, row.organisation) && exists(venueIds, row.venue))],
     ['venue relation is runs, seat or exhibits_at', venueRelations.every((row) => ['runs', 'seat', 'exhibits_at'].includes(row.relation))],
-    ['organiser rows resolve both ends', organisers.every((row) => organisationIds.has(row.organisation) && exhibitionIds.has(row.exhibition))],
+    ['organiser rows resolve both ends', organisers.every((row) => exists(organisationIds, row.organisation) && exists(exhibitionIds, row.exhibition))],
     ['organiser role is known', organisers.every((row) => ['organiser', 'presenter', 'cooperation', 'supporter'].includes(row.role))],
-    ['organisation-website rows resolve both ends', a.organisationsWebsites.every((row) => organisationIds.has(row.organisations_id) && websiteIds.has(row.websites_id))],
-    ['venue-website rows resolve both ends', a.venuesWebsites.every((row) => venueIds.has(row.venues_id) && websiteIds.has(row.websites_id))],
+    ['organisation-website rows resolve both ends', a.organisationsWebsites.every((row) => exists(organisationIds, row.organisations_id) && exists(websiteIds, row.websites_id))],
+    ['venue-website rows resolve both ends', a.venuesWebsites.every((row) => exists(venueIds, row.venues_id) && exists(websiteIds, row.websites_id))],
     ['statement.exhibition all resolve', statements.every((row) => exhibitionIds.has(row.exhibition))],
     ['statement.person all resolve', statements.every((row) => personIds.has(row.person))],
     ['every statement is by a participant of that exhibition', statements.every((row) =>
@@ -150,8 +177,8 @@ async function main() {
     ['participation ids unique', uniqueBy(participations, 'id')],
     ['empty junctions are arrays', junctions.every(Array.isArray)],
     ['website urls are absolute', websites.every((site) => /^https?:\/\//.test(site.url))],
-    ['exhibition-website rows resolve both ends', a.exhibitionsWebsites.every((row) => exhibitionIds.has(row.exhibitions_id) && websiteIds.has(row.websites_id))],
-    ['person-website rows resolve both ends', a.personsWebsites.every((row) => personIds.has(row.persons_id) && websiteIds.has(row.websites_id))],
+    ['exhibition-website rows resolve both ends', a.exhibitionsWebsites.every((row) => exists(exhibitionIds, row.exhibitions_id) && exists(websiteIds, row.websites_id))],
+    ['person-website rows resolve both ends', a.personsWebsites.every((row) => exists(personIds, row.persons_id) && exists(websiteIds, row.websites_id))],
 
     ['navigation item.navigation all resolve', navigationItems.every((item) => navigationIds.has(item.navigation))],
     ['navigation item.parent resolves and stays in the same navigation', navigationItems.every((item) => {

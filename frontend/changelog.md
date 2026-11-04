@@ -3,6 +3,8 @@
 ## 0.0.63 - 2026-11-04 20:48:35 CET
 
 - "Aktuelle Ausstellungen" and "Organisationen" no longer sit right on the divider line under the search: the same space as above the line (28 px, 16 px on phones), as on the other index pages. The space was lost in 0.0.52, when the repeated count line was hidden.
+- A gallery, organisation or other record set to draft no longer stops the upload when a link still points to it: the link is hidden on the site, as intended. A link to a record that exists nowhere still stops it.
+- The Lebenshilfe Knittelfeld page links its shop „Ideenreich“ in the text.
 
 ## 0.0.62 - 2026-11-04 19:53:50 CET
 

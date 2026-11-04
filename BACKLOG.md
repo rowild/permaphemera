@@ -54,6 +54,98 @@ Open questions for the owner: which images matter most (artworks, exhibition pho
 Is a watermark acceptable? Do galleries and artists need to know about these rules (for
 example on `/how-it-works/` or in the terms)?
 
+## Events: a new collection for festivals and similar events
+
+Added 2026-11-04 by the owner. Not started.
+
+**Why.** Some records are neither a gallery nor an organisation, but an event: something that
+takes place at a set time, often every year, and shows one or more exhibitions. The archive has
+no place for them, so they were entered as organisations. The owner's words: "Austriatoon
+organises a festival that is called 'Comicfestival', but that is neither an organisation nor a
+gallery. It is an event, and for events we do not have a table yet."
+
+**Today (2026-11-04).**
+
+- `pp_organisations` "Spittaler Comicfestival" (`spittaler-comicfestival`, id `185a515d-…`,
+  kind `initiative`): the owner sets it to draft. Its texts (lede, description, `about_html`,
+  SEO, de and en) are the event's texts and must move, not get lost.
+- Rows that point to it (they stay; a draft end is hidden on the site, and since 0.0.63
+  `check:data` accepts a link row to a draft):
+  - `pp_exhibition_organisers`: "Auf Linien zum Leben" (`auf-linien-zum-leben`), role
+    `organiser`. Austriatoon stays on it as `presenter`.
+  - `pp_organisation_venue_relations`: `exhibits_at` Parkschlössl.
+  - `pp_mm__news_organisations`: two news articles ("Spittal an der Drau, the first partner",
+    "The summer at the Parkschlössl").
+- The news text "Der Sommer im Parkschlössl" linked `/organisations/spittaler-comicfestival/`;
+  the link was removed on 2026-11-04 (the words stay). Link it to the event page again.
+- The 360° tour of "Auf Linien zum Leben" is in `media/tours/2026-06-15-parkschloessl-spittal-comic-festival/`.
+- A second case: the **ORF Lange Nacht der Museen** (3 October 2026). Four exhibitions name it
+  only as text in `date_range` or `vernissage` (`mediterraneo-harald-scheicher-2026`,
+  `schwach-unperfekt-ausgefranst-echt-2026`, `spannungsfelder-und-perspektiven-2026`,
+  `walther-preiml-sehnsucht`), and the texts of the Kunstverein Velden, the Europahaus Klagenfurt
+  and the stARTup gallery mention it. The skill for new data already knows "a Lange Nacht der
+  Museen presentation".
+- Maybe also: the pop-up gallery in Knittelfeld where the art calendar "Hoffnung und Frieden"
+  was presented (owner to decide; it may simply be a place).
+
+**Proposal (to agree with the owner before building).**
+
+1. **Schema** (`directus/scripts/schema.mjs` and every file root `AGENTS.md` lists for a schema
+   change; never only in the admin app):
+   - `pp_events`: `status`, `title`, `slug`, `kind` (`festival`, `long_night`, `presentation`,
+     `fair`, …), `location` (M2O `pp_locations`, the town; empty for a nation-wide event like the
+     Lange Nacht), `recurring` (yearly or once), `lede`, `description`, `about_html`, `image` +
+     `image_alt` + `image_caption`, `website_url`, `seo`, `translations` (de/en, the English
+     mirrored on the record, as on every collection).
+   - `pp_event_editions` (one row per year or edition): `event` (M2O), `edition_number` (the
+     "seventh" Comicfestival), `year`, `start_date`, `end_date`, `title_suffix` or theme,
+     `translations`. Alternative: no editions table, one `pp_events` record per year; simpler,
+     but the yearly series then has no page of its own. Owner decides.
+   - Exhibitions belong to an edition: `pp_exhibitions.event_edition` (M2O; an exhibition is part
+     of at most one event) or a junction `pp_mm__exhibitions_events` if one exhibition can be
+     part of two events. Proposal: the M2O.
+   - `pp_event_organisers` like `pp_exhibition_organisers`: `event`, `organisation`, `role`
+     (`organiser`, `presenter`, `cooperation`, `supporter`), `sort`. Austriatoon becomes the
+     organiser of the Comicfestival here.
+   - Junctions like the others: `pp_mm__events_venues` (places of an edition without an
+     exhibition record), `pp_mm__events_websites`, `pp_mm__news_events`, maybe
+     `pp_mm__events_sponsors`.
+   - No status on the junction rows (owner rule: status on records, not relations).
+2. **Data move** (production Directus, as drafts first, the owner publishes):
+   - New event "Spittaler Comicfestival" with the texts of the organisation record; edition 7
+     (2026) with "Auf Linien zum Leben"; organiser Austriatoon; place Parkschlössl; the two news
+     links. Link the news text to `/events/spittaler-comicfestival/` again.
+   - Then the old organisation record: delete it, or keep it as draft (owner decides; nothing
+     may point to it then).
+   - New event "ORF Lange Nacht der Museen", edition 2026 (3 October) with the four exhibitions.
+3. **Website** (frontend; components first, test first, as `frontend/AGENTS.md` says):
+   - Data: `COLLECTIONS` and `fieldsQuery` in `shared/archive-schema.mjs`, the loader, a
+     `resolveEvents` util with unit tests; drafts drop out as everywhere.
+   - Page `/events/<slug>/` (and `/en/events/<slug>/`): hero with the shared hero components,
+     the text, the editions newest first, each with its exhibition cards (`ExhibitionCardGrid`),
+     the organisers, places and links. SEO in `shared/seo.mjs`, sitemap, SEO snapshot.
+   - Where events show up: on an exhibition page ("Teil des Spittaler Comicfestivals 2026" /
+     "Part of …", linked); on an organisation page (the events it organises); on a gallery page
+     (the events held there); news link chips; the search on the exhibitions page can also find
+     the event name.
+   - An index page `/events/` and a menu item: only if the owner wants them (few events now).
+   - Texts follow `docs/text-rules.md` (value-free, no "wir", no "Sie").
+4. **Checks:** `check:data` gets the event rules (slugs unique, en translation, every edition
+   resolves its event, edition dates inside each other, organiser rows resolve); e2e test for
+   the event page and the "part of" link on an exhibition page.
+5. **Skills and docs:** the two data skills (`rowild-new-gallery-creation`,
+   `rowild-create-or-update-gallery-or-exhibition-in-permaphemera`) and
+   `docs/how-to-gallery-and-exhibition.md` learn to create an event instead of an organisation
+   for a festival; `PROJECT_INFO.md` if the workflow changes.
+
+**Questions for the owner (before building).**
+
+- Editions table, or one record per year?
+- An events index page and a menu item, or only event pages linked from exhibitions?
+- Is the Lange Nacht der Museen an event in this sense (one night, many places, nation-wide)?
+- The pop-up gallery in Knittelfeld: an event or a place?
+- The old organisation record "Spittaler Comicfestival": delete or keep as draft?
+
 ## Question: does PERMAPHEMERA need visitor accounts?
 
 Added 2026-11-04 by the owner, as a question only. Not started.
