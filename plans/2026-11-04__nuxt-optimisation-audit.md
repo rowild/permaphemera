@@ -98,7 +98,7 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
    the duplicate `venueDossier` lookup (`venues/[slug].vue:23-27`, dead fallbacks).
 4. **DONE** **`ArchiveBreadcrumb` with `items`**, 16 hand-written crumb lines. Drift: the root crumb is
    missing on venue, organisation and exhibition detail pages; no `aria-current`.
-5. **`ArchiveEyebrow` DONE (30 copies, no visual change except the artist modal's drifted one)** (~35 copies, 5 variants) and **`ArchiveSectionHeading`** (eyebrow + h2 +
+5. **`ArchiveEyebrow` DONE (30 copies, no visual change except the artist modal's drifted one)** (~35 copies, 5 variants) and **`ArchiveSectionHeading` DONE 0.0.60 (24 copies; majority line height 0.98; two in-block sub-headings and the modal title keep their own)** (eyebrow + h2 +
    accent + intro, ~18 copies, high drift in leading, size and margins).
 6. **DONE as `ArchiveRecordTitle` + `ArchiveRecordFigure` (the grids stay per page: different pictures, on purpose)** **`ArchiveRecordHero` + `ArchiveRecordFigure`**: the detail-page hero of venue, organisation,
    person, sponsor (4 copies, high drift in grid and padding; figure 3 copies).

@@ -104,7 +104,7 @@ definePageMeta({ navActive: 'organisations' })
           <div v-else class="[ organisation-directory-blocks ] grid gap-[clamp(3rem,5vw,5rem)]">
             <section v-if="filteredOrganisations.length" class="[ organisation-list ]" aria-labelledby="organisation-list-title">
               <div class="[ section-heading ] relative z-1 mb-4">
-                <h2 id="organisation-list-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('organisations.listTitle') }} <span class="text-archive-red">{{ filteredOrganisations.length }}</span></h2>
+                <ArchiveSectionHeading id="organisation-list-title" class="max-w-232">{{ $t('organisations.listTitle') }} <span class="text-archive-red">{{ filteredOrganisations.length }}</span></ArchiveSectionHeading>
                 <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('organisations.listIntro') }}</p>
               </div>
               <div class="[ organisation-directory-list ] max-w-232 border-t border-archive-rule-warm/22">
@@ -118,7 +118,7 @@ definePageMeta({ navActive: 'organisations' })
 
             <section v-if="filteredOrganisers.length || filteredCurators.length" class="[ people-list ]" aria-labelledby="people-list-title">
               <div class="[ section-heading ] relative z-1 mb-4">
-                <h2 id="people-list-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('organisations.peopleTitle') }} <span class="text-archive-red">{{ filteredOrganisers.length + filteredCurators.length }}</span></h2>
+                <ArchiveSectionHeading id="people-list-title" class="max-w-232">{{ $t('organisations.peopleTitle') }} <span class="text-archive-red">{{ filteredOrganisers.length + filteredCurators.length }}</span></ArchiveSectionHeading>
                 <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('organisations.peopleIntro') }}</p>
               </div>
               <div class="[ people-list-groups ] grid grid-cols-2 items-start gap-[clamp(2rem,5vw,5rem)] tablet:grid-cols-1">
@@ -139,7 +139,7 @@ definePageMeta({ navActive: 'organisations' })
 
             <section v-if="filteredSponsors.length" class="[ sponsor-list ]" aria-labelledby="sponsor-list-title">
               <div class="[ section-heading ] relative z-1 mb-4">
-                <h2 id="sponsor-list-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('organisations.sponsorsTitle') }} <span class="text-archive-red">{{ filteredSponsors.length }}</span></h2>
+                <ArchiveSectionHeading id="sponsor-list-title" class="max-w-232">{{ $t('organisations.sponsorsTitle') }} <span class="text-archive-red">{{ filteredSponsors.length }}</span></ArchiveSectionHeading>
                 <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('organisations.sponsorsIntro') }}</p>
               </div>
               <div class="[ sponsor-directory-list ] max-w-232 border-t border-archive-rule-warm/22">

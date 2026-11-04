@@ -41,7 +41,7 @@ usePageSeo('/news/')
         <div class="[ news-years ] mx-auto grid max-w-band gap-[clamp(2.5rem,4vw,4rem)] px-gutter pt-8 compact:px-4 compact:pt-4">
           <p v-if="!news.length" class="m-0 text-title text-archive-ink">{{ $t('newsPage.empty') }}</p>
           <section v-for="group in years" :key="group.year" :aria-labelledby="`news-year-${group.year}`">
-            <h2 :id="`news-year-${group.year}`" class="m-0 mb-2 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ group.year }}</h2>
+            <ArchiveSectionHeading :id="`news-year-${group.year}`" class="mb-2">{{ group.year }}</ArchiveSectionHeading>
             <ol class="m-0 max-w-232 list-none divide-y divide-archive-rule-warm/22 p-0">
               <li v-for="item in group.items" :key="item.id"><NewsEntry :news="item" layout="row" /></li>
             </ol>

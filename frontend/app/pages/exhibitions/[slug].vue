@@ -96,7 +96,7 @@ definePageMeta({ navActive: 'exhibitions' })
       <section id="exhibition-details" class="[ exhibition-details ] [ section-band ] relative mx-auto grid max-w-band scroll-mt-[6.4rem] grid-cols-[minmax(30rem,1.2fr)_minmax(23rem,0.8fr)] gap-x-[clamp(3rem,7vw,7rem)] gap-y-12 px-gutter py-[clamp(3rem,5vw,5rem)] outline-none tablet:grid-cols-1 compact:gap-y-8 compact:px-4 compact:py-5" aria-labelledby="exhibition-details-title" tabindex="-1">
         <div class="[ exhibition-details-prose ]">
           <ArchiveEyebrow>{{ kindText('recordEyebrow') }}</ArchiveEyebrow>
-          <h2 id="exhibition-details-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ kindText('aboutTitle') }} <span class="text-archive-red">{{ kindText('aboutAccent') }}</span></h2>
+          <ArchiveSectionHeading id="exhibition-details-title" size="lg">{{ kindText('aboutTitle') }} <span class="text-archive-red">{{ kindText('aboutAccent') }}</span></ArchiveSectionHeading>
           <p v-if="exhibition.description" class="[ exhibition-details-description ] mt-6 mb-0 max-w-3xl text-lg leading-[1.65] text-archive-body compact:mt-3 compact:text-base compact:leading-normal">{{ exhibition.description }}</p>
 
           <section v-if="exhibition.statements.length" class="[ exhibition-statements ] mt-12 max-w-3xl compact:mt-8" :aria-label="$t('exhibition.statementsTitle', exhibition.artists.length)">
@@ -166,7 +166,7 @@ definePageMeta({ navActive: 'exhibitions' })
       <section v-if="relatedExhibitions.length" class="[ exhibition-related ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="related-title">
         <div class="[ section-heading ] relative z-1 mb-10 compact:mb-5">
           <ArchiveEyebrow ornament="section">{{ $t('exhibition.relatedEyebrow') }}</ArchiveEyebrow>
-          <h2 id="related-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccent') }}</span></h2>
+          <ArchiveSectionHeading id="related-title" class="max-w-232">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccent') }}</span></ArchiveSectionHeading>
         </div>
         <ExhibitionCardGrid class="[ exhibition-related-grid ]" :items="relatedExhibitions.map((exhibition) => ({ exhibition }))" />
       </section>

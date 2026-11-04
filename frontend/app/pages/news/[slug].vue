@@ -39,7 +39,7 @@ usePageSeo(`/news/${slug}/`)
 
       <section v-if="hasRecords" class="[ news-article-records ] [ section-band ] mx-auto max-w-band px-gutter pb-[clamp(2rem,4vw,3rem)] compact:px-4" aria-labelledby="news-article-records-title">
         <ArchiveInsetDivider class="mb-8" />
-        <h2 id="news-article-records-title" class="m-0 mb-6 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('newsPage.inArticle') }}</h2>
+        <ArchiveSectionHeading id="news-article-records-title" class="mb-6">{{ $t('newsPage.inArticle') }}</ArchiveSectionHeading>
 
         <template v-if="article.exhibitions.length">
           <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.exhibitions') }}</ArchiveGroupLabel>

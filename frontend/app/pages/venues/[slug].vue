@@ -226,7 +226,7 @@ definePageMeta({ navActive: 'galleries' })
         <div class="[ venue-exhibitions-intro ] mb-12 grid grid-cols-[minmax(0,1fr)_minmax(20rem,0.55fr)] items-start gap-[clamp(2.5rem,6vw,6rem)] tablet:grid-cols-1 compact:mb-5 compact:gap-4">
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-3">
             <ArchiveEyebrow>{{ $t('venue.ledger') }}</ArchiveEyebrow>
-            <h2 id="venue-exhibitions-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ $t(ledgerCountKey, exhibitions.length) }}. <span class="text-archive-red">{{ $t('venue.changingSpace') }}</span></h2>
+            <ArchiveSectionHeading id="venue-exhibitions-title" size="lg">{{ $t(ledgerCountKey, exhibitions.length) }}. <span class="text-archive-red">{{ $t('venue.changingSpace') }}</span></ArchiveSectionHeading>
             <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('venue.searchIntro') }}</p>
           </div>
           <ArchiveFactLedger class="mt-9 tablet:mt-0" :items="venueLedgerItems" />
@@ -299,7 +299,7 @@ definePageMeta({ navActive: 'galleries' })
         </div>
         <div class="[ venue-about-copy ]">
           <ArchiveEyebrow>{{ $t('venue.venueEyebrow') }}</ArchiveEyebrow>
-          <h2 id="venue-about-title" class="mb-[1.85rem] text-h2-lg font-light leading-[0.98] compact:mb-4 compact:text-4xl">{{ $t('venue.venueTitle') }} <span class="text-archive-red">{{ $t('venue.venueAccent') }}</span></h2>
+          <ArchiveSectionHeading id="venue-about-title" size="lg" class="mb-[1.85rem] compact:mb-4">{{ $t('venue.venueTitle') }} <span class="text-archive-red">{{ $t('venue.venueAccent') }}</span></ArchiveSectionHeading>
           <ArchiveRichText v-if="venue.aboutHtml" class="max-w-180" :html="venue.aboutHtml" />
           <template v-else>
             <p v-for="paragraph in [$t('venue.fallbackAbout1', { name: venue.name, city: venue.city }), $t('venue.fallbackAbout2')]" :key="paragraph" class="max-w-180 text-button leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ paragraph }}</p>

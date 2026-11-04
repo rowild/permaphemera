@@ -492,7 +492,7 @@ const openRandomTour = (event: MouseEvent) => {
       <section v-if="belowHeroStep >= 2" id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
           <ArchiveEyebrow ornament="section">{{ $t('landing.venues.eyebrow') }}</ArchiveEyebrow>
-          <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.venues.title') }} <span class="text-archive-red">{{ $t('landing.venues.accent') }}</span></h2>
+          <ArchiveSectionHeading class="max-w-232">{{ $t('landing.venues.title') }} <span class="text-archive-red">{{ $t('landing.venues.accent') }}</span></ArchiveSectionHeading>
         </div>
 
         <div class="[ venue-grid ] relative grid grid-cols-[minmax(24rem,1.55fr)_repeat(3,minmax(12rem,1fr))] items-stretch gap-[1.4rem] pb-[3.4rem] tablet:grid-cols-2 tablet:pb-0 compact:grid-cols-2 compact:gap-3">
@@ -523,7 +523,7 @@ const openRandomTour = (event: MouseEvent) => {
       <section v-if="belowHeroStep >= 3" id="exhibitions" class="[ exhibitions-section ] [ section-band ] relative isolate mx-auto max-w-band overflow-hidden px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
           <ArchiveEyebrow ornament="section">{{ $t('landing.exhibitions.eyebrow') }}</ArchiveEyebrow>
-          <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></h2>
+          <ArchiveSectionHeading class="max-w-232">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></ArchiveSectionHeading>
         </div>
 
         <div class="[ exhibition-layout ] grid grid-cols-[minmax(28rem,1.35fr)_minmax(23rem,0.85fr)] gap-8 tablet:grid-cols-1 compact:grid-cols-2 compact:gap-3">
@@ -550,7 +550,7 @@ const openRandomTour = (event: MouseEvent) => {
         <div class="[ artists-main ] min-w-0">
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
             <ArchiveEyebrow ornament="section">{{ $t('landing.artists.eyebrow') }}</ArchiveEyebrow>
-            <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.artists.title') }} <span class="text-archive-red">{{ $t('landing.artists.accent') }}</span></h2>
+            <ArchiveSectionHeading class="max-w-232">{{ $t('landing.artists.title') }} <span class="text-archive-red">{{ $t('landing.artists.accent') }}</span></ArchiveSectionHeading>
           </div>
 
           <ArchiveAlphabetRail
@@ -612,7 +612,7 @@ const openRandomTour = (event: MouseEvent) => {
       <section v-if="belowHeroStep >= 5" id="method" class="[ method-section ] [ section-band ] relative mx-auto grid max-w-band grid-cols-[minmax(20rem,0.58fr)_minmax(36rem,1.42fr)] gap-x-[clamp(2.5rem,4vw,4.5rem)] gap-y-0 px-gutter py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:px-4 compact:py-5">
         <div class="[ method-copy ] relative z-1">
           <ArchiveEyebrow ornament="section">{{ $t('landing.method.eyebrow') }}</ArchiveEyebrow>
-          <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.method.title') }} <span class="text-archive-red">{{ $t('landing.method.accent') }}</span></h2>
+          <ArchiveSectionHeading class="max-w-232">{{ $t('landing.method.title') }} <span class="text-archive-red">{{ $t('landing.method.accent') }}</span></ArchiveSectionHeading>
           <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.method.intro') }}</p>
           <ArchiveButton v-if="openTourUrls.length" class="mt-8 mb-0 w-fit tablet:mb-16 compact:mx-auto compact:mt-5 compact:mb-10 compact:flex" :disabled="tourOpening" @click="openRandomTour">
             {{ $t('landing.method.openTour') }}

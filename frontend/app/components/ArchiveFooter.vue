@@ -106,7 +106,7 @@ onBeforeUnmount(() => {
   <footer class="[ site-footer ] archive-footer-surface relative isolate mt-8 overflow-hidden px-gutter pt-[clamp(3.5rem,5vw,5rem)] pb-[2.3rem] text-archive-footer-copy compact:mt-2 compact:px-4 compact:pt-6 compact:pb-5">
     <section class="[ supporters ] relative z-1 mx-auto max-w-none">
       <ArchiveEyebrow ornament="section" tone="gold">{{ $t('footer.supporters') }}</ArchiveEyebrow>
-      <h2 class="m-0 max-w-208 font-display text-h2-lg font-normal leading-[0.98] tracking-normal text-archive-night-heading compact:text-3xl">{{ $t(sponsors.length ? 'footer.title' : 'footer.callTitle') }} <span class="text-archive-ochre">{{ $t('footer.accent') }}</span></h2>
+      <ArchiveSectionHeading size="lg" class="max-w-208 text-archive-night-heading">{{ $t(sponsors.length ? 'footer.title' : 'footer.callTitle') }} <span class="text-archive-ochre">{{ $t('footer.accent') }}</span></ArchiveSectionHeading>
       <p v-if="!sponsors.length" class="[ sponsor-call ] mt-6 mb-[3.2rem] max-w-176 text-lg leading-[1.55] text-archive-footer-copy compact:mt-4 compact:mb-6 compact:text-base compact:leading-normal">
         {{ $t('footer.callText') }}
         <ArchiveTextLink class="ml-1" surface="night" :to="localePath('/contact/')">{{ $t('footer.callLink') }} <ArchiveArrow /></ArchiveTextLink>

@@ -75,7 +75,7 @@ usePageSeo(`/persons/${slug}/`)
       <section v-if="person.records.length" class="[ person-records ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="person-records-title">
         <div class="[ section-heading ] mb-10 compact:mb-5">
           <ArchiveEyebrow ornament="section">{{ $t('persons.recordsEyebrow') }}</ArchiveEyebrow>
-          <h2 id="person-records-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('persons.recordsTitle', { name: person.name }) }}</h2>
+          <ArchiveSectionHeading id="person-records-title" class="max-w-232">{{ $t('persons.recordsTitle', { name: person.name }) }}</ArchiveSectionHeading>
         </div>
         <ExhibitionCardGrid class="[ person-records-grid ]" :items="person.records.map((record) => ({ exhibition: record.exhibition, label: roleLabel(record.role), key: `${record.exhibition.id}-${record.role}` }))" />
       </section>

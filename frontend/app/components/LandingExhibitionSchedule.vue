@@ -57,9 +57,9 @@ const columnGroups = computed(() => groups.value
         <ArchiveEyebrow ornament="section">
           {{ $t('landing.schedule.eyebrow') }}
         </ArchiveEyebrow>
-        <h2 id="current-upcoming-title" class="m-0 max-w-144 pb-1 font-display text-h2 font-normal leading-[1.08] compact:pb-0.5 compact:text-3xl compact:leading-[1.12]">
+        <ArchiveSectionHeading id="current-upcoming-title" class="max-w-144">
           {{ $t('landing.schedule.titleBefore') }} <span class="text-archive-red">{{ $t('landing.schedule.titleAccent') }}</span> {{ $t('landing.schedule.titleAfter') }}
-        </h2>
+        </ArchiveSectionHeading>
         </div>
         <ArchiveTextLink class="compact:hidden" :class="hasNews ? '' : 'mt-5'" :to="localePath('/exhibitions/')">
           {{ $t('landing.schedule.viewAll') }}

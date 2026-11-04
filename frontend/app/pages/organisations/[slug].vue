@@ -70,7 +70,7 @@ definePageMeta({ navActive: 'organisations' })
       <section v-if="organisation.records.length" class="[ organisation-records ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="organisation-records-title">
         <div class="[ section-heading ] mb-10 compact:mb-5">
           <ArchiveEyebrow ornament="section">{{ $t('organisations.recordsEyebrow') }}</ArchiveEyebrow>
-          <h2 id="organisation-records-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('organisations.recordsTitle', organisation.records.length) }} <span class="text-archive-red">{{ $t('organisations.recordsAccent') }}</span></h2>
+          <ArchiveSectionHeading id="organisation-records-title" class="max-w-232">{{ $t('organisations.recordsTitle', organisation.records.length) }} <span class="text-archive-red">{{ $t('organisations.recordsAccent') }}</span></ArchiveSectionHeading>
         </div>
         <ExhibitionCardGrid class="[ organisation-records-grid ]" :items="organisation.records.map((record) => ({ exhibition: record.exhibition, label: $t(`organisations.roles.${record.role}`), key: record.id }))" />
       </section>

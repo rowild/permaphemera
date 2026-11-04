@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.60 - 2026-11-04 23:30:00 CET
+
+- Section headings share one line height per size (the one most sections already had). Six headings that were set looser now match: the closing bands of about, how it works and contact, the process heading, "Jetzt und demnächst" and the start page's news column (5–9 px shorter on desktop).
+
 ## 0.0.59 - 2026-11-04 23:00:00 CET
 
 - No visible change: the method steps, the gallery card ornament and the page band width and gutter (now theme tokens) each live in one place.

@@ -81,9 +81,9 @@ usePageSeo('/how-it-works/')
             <p class="m-0 mb-3 font-display text-eyebrow font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">
               {{ $t('howItWorksPage.processEyebrow') }}
             </p>
-            <h2 id="how-it-works-process-title" class="m-0 max-w-192 pb-1 font-display text-h2 font-normal leading-[1.04] compact:pb-0.5 compact:text-3xl compact:leading-tight">
+            <ArchiveSectionHeading id="how-it-works-process-title" class="max-w-192">
               {{ $t('howItWorksPage.processTitle') }} <span class="text-archive-red">{{ $t('howItWorksPage.processAccent') }}</span>
-            </h2>
+            </ArchiveSectionHeading>
             <p class="mt-4 mb-0 max-w-180 font-display text-lg leading-relaxed text-archive-body compact:mt-3 compact:text-base">
               {{ $t('howItWorksPage.processIntro') }}
             </p>

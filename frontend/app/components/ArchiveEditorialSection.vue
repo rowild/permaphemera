@@ -37,9 +37,9 @@ const paragraphParts = (paragraph: string) => {
       <p v-if="props.eyebrow" class="m-0 mb-3 font-display text-eyebrow font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">
         {{ props.eyebrow }}
       </p>
-      <h2 :id="`${props.id}-title`" class="m-0 pb-1 font-display text-h3 font-normal leading-[1.12] compact:pb-0.5 compact:text-2xl compact:leading-tight">
+      <ArchiveSectionHeading :id="`${props.id}-title`" size="sm">
         {{ props.title }} <span v-if="props.accent" class="text-archive-red">{{ props.accent }}</span>
-      </h2>
+      </ArchiveSectionHeading>
     </header>
 
     <div class="[ archive-editorial-copy ] max-w-180">
