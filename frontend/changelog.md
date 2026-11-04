@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.54 - 2026-11-04 19:30:00 CET
+
+- Breadcrumbs follow one pattern on every page: they start at the start page (exhibition, gallery and organisation pages lacked it) and end with the current page, which screen readers announce as such.
+- Search and filters on the index and gallery pages: clearing search and filter together always clears both; an unknown federal state or letter in a link shows everything instead of an empty list.
+- Detail pages share one record lookup and 404 (no visible change).
+
 ## 0.0.53 - 2026-11-04 18:45:00 CET
 
 - The header stays at the top while a page scrolls and shrinks to a slim bar on solid paper (the tagline folds away, brand, logo and menu get smaller; desktop 102 → 64 px, tablet 96 → 56 px, phone 64 → 48 px). Near the top it grows back. Before, it scrolled away, because the page frame clipped it.
