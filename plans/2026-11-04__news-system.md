@@ -1,7 +1,8 @@
 # News system ("Aktuelles" / "News")
 
-Written 2026-11-04. Status: mockups approved by the owner on 2026-11-04 (with fewer divider
-lines: only a line between list items). Desktop split: 3/4 + 1/4. Nothing is built yet.
+Written 2026-11-04. Status: **built on 2026-11-04** (release 0.0.48), not yet deployed. Mockups
+approved by the owner the same day (fewer divider lines: only a line between list items;
+desktop split 3/4 + 1/4). Changes during the build are marked "Build:".
 
 Items marked **(owner)** are the owner's decisions. Items marked **(Claude's call)** are
 proposals the owner can change while reading.
@@ -154,9 +155,9 @@ URLs follow the site's pattern (English paths, German without prefix):
     taller than the news list. The news list is therefore `sticky`: it stays in view while the
     page scrolls past the cards.
   - Mobile (`start-mobile.jpg`): its own section before the sponsors.
-- Like the other sections it waits for `belowHeroStep` and `useArchiveReady()`. On mobile, the
-  extra section before `ArchiveFooter` (the sponsor strip is part of it) raises
-  `BELOW_HERO_SECTIONS` (today 6) by one.
+- Like the other sections it waits for `belowHeroStep` and `useArchiveReady()`. Build: the mobile
+  section renders with the method section's step (`belowHeroStep >= 5`), so
+  `BELOW_HERO_SECTIONS` stays 6. Without any article the row looks exactly as before.
 - A mockup comes first and goes to the owner before the code (the start page follows approved
   mockups, `frontend/AGENTS.md`).
 
@@ -181,7 +182,7 @@ New collection `pp_news` (kind `main`, follows `directus/scripts/schema.mjs`):
 | `image` | file, optional | |
 | `image_alt` | string, translated | |
 | `summary` | string, translated | One line for the lists, the start page and SEO. |
-| `body` | markdown, translated | The article. |
+| `description` | markdown, translated | The article. Build: named `description`, not `body`, because the Directus builder requires the content section to end with `description` (as in every other collection). |
 | `seo` | seo | like the other collections |
 
 Links to other records: one junction per collection, the same pattern as the existing
@@ -262,6 +263,9 @@ writes the state and says "Baseline set".
 
 ### 7.4 What the owner must give before step 7 is built
 
+- Build: the settings file is `/srv/sites/permaphemera.at/news-report-data/mail.env` with
+  `SMTP_URL` (for example `smtps://<all-inkl mail server>:465`), `SMTP_USER`, `SMTP_PASS`,
+  `NEWS_REPORT_FROM`, `NEWS_REPORT_TO`. The deploy creates the folder; the owner writes the file.
 - **(owner, 2026-11-04)** Sender: `webmaster@rowild.at` (an all-inkl mailbox; may change
   later). Receiver: `robertwildling@gmail.com`. Both are settings in the server file, not in
   code, so a change needs no deploy.

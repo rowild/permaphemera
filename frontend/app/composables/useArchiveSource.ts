@@ -49,7 +49,13 @@ const EMPTY_ARCHIVE: ArchiveSnapshot = {
   exhibitionOrganisers: [],
   organisationsWebsites: [],
   venuesWebsites: [],
-  quotes: []
+  quotes: [],
+  news: [],
+  exhibitionsNews: [],
+  newsVenues: [],
+  newsPersons: [],
+  newsOrganisations: [],
+  newsSponsors: []
 }
 
 /** The archive, empty until it has arrived. Read it inside `computed` so it fills in. */

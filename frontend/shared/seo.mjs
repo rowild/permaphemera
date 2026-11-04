@@ -244,7 +244,7 @@ const entry = ({ path, locale, record, generated, description, suffix, image, im
   }
 }
 
-/** One entry per published exhibition, gallery, person, organisation and sponsor page, in both languages. */
+/** One entry per published exhibition, gallery, person, organisation, sponsor and news page, in both languages. */
 /** With `path`, only that page's entries are built (a page needs one; the deploy needs all). */
 /** `today` (YYYY-MM-DD) decides the tour sentence of exhibitions; default: today in Vienna. */
 export const recordSeoEntries = (archive, { assetBase, messages, path: only, today = viennaToday() }) => {
@@ -424,6 +424,36 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only, tod
     }
   }
 
+  // News: own image, else the image of the first linked published exhibition, else the site image.
+  const exhibitionsById = new Map((archive.exhibitions ?? []).filter(published).map((exhibition) => [exhibition.id, exhibition]))
+  for (const article of (archive.news ?? []).filter(published)) {
+    const path = `/news/${article.slug}/`
+    if (skip(path)) continue
+    const firstExhibition = (archive.exhibitionsNews ?? [])
+      .filter((row) => row.news_id === article.id)
+      .sort((a, b) => a.sort - b.sort)
+      .map((row) => exhibitionsById.get(row.exhibitions_id))
+      .find((exhibition) => exhibition && shareable(exhibition, 'image'))
+    const share = shareable(article, 'image') ?? (firstExhibition && shareable(firstExhibition, 'image'))
+    for (const locale of LOCALES) {
+      const title = textOf(article, locale, 'title') ?? article.title
+      const description = textOf(article, locale, 'summary') ?? textOf(article, locale, 'description') ?? title
+      list.push(entry({
+        path, locale, record: article,
+        generated: generatedTitle([`${title} · ${message(messages, locale, 'newsPage.breadcrumb') ?? 'News'}`, title]),
+        description, image: share, imageAlt: textOf(article, locale, 'image_alt') ?? title, ogType: 'article', changeFrequency: 'yearly', priority: '0.5',
+        jsonLd: (url) => [
+          {
+            '@context': 'https://schema.org', '@type': 'NewsArticle', headline: title, url, datePublished: article.published_on, inLanguage: locale,
+            ...(share ? { image: shareImage(share, assetBase) } : {}),
+            publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL }
+          },
+          breadcrumbs([home(locale), { name: message(messages, locale, 'newsPage.breadcrumb'), url: absolute('/news/', locale) }, { name: title, url }])
+        ]
+      }, assetBase))
+    }
+  }
+
   return list
 }
 
@@ -436,6 +466,7 @@ const STATIC_PAGES = [
   { path: '/artists/', title: 'artists.seoTitle', description: 'artists.seoDescription', changeFrequency: 'weekly', priority: '0.8' },
   { path: '/venues/', title: 'galleries.seoTitle', description: 'galleries.seoDescription', count: 'venues', changeFrequency: 'weekly', priority: '0.8' },
   { path: '/organisations/', title: 'organisations.seoTitle', description: 'organisations.seoDescription', count: 'organisations', changeFrequency: 'weekly', priority: '0.6' },
+  { path: '/news/', title: 'newsPage.seoTitle', description: 'newsPage.seoDescription', changeFrequency: 'weekly', priority: '0.6' },
   { path: '/about/', title: 'about.seoTitle', description: 'about.seoDescription', changeFrequency: 'monthly', priority: '0.6' },
   { path: '/how-it-works/', title: 'howItWorksPage.seoTitle', description: 'howItWorksPage.seoDescription', changeFrequency: 'monthly', priority: '0.5' },
   { path: '/contact/', title: 'contactPage.seoTitle', description: 'contactPage.seoDescription', changeFrequency: 'yearly', priority: '0.4' },

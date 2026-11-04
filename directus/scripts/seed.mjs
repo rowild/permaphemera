@@ -72,9 +72,12 @@ await item(footer, 'artists', 'Artists', 'Künstler:innen', { path: '/artists/',
 await item(footer, 'galleries', 'Galleries', 'Galerien', { path: '/venues/', parent: explore, sort: 3 })
 await item(footer, 'organisations', 'Organisations', 'Vereine', { path: '/organisations/', parent: explore, sort: 4, status: 'draft' })
 
-await item(footer, 'about', 'About the Project', 'Über das Projekt', { path: '/about/', parent: information, sort: 1 })
-await item(footer, 'how-it-works', 'How it works', 'Wie es funktioniert', { path: '/how-it-works/', parent: information, sort: 2 })
-await item(footer, 'contact', 'Contact', 'Kontakt', { path: '/contact/', parent: information, sort: 3 })
+// News (2026-11-04): a draft until the first article is published; the owner publishes it then.
+// The header's menu popup shows this group, so the entry appears there and in the footer.
+await item(footer, 'news', 'News', 'Aktuelles', { path: '/news/', parent: information, sort: 1, status: 'draft' })
+await item(footer, 'about', 'About the Project', 'Über das Projekt', { path: '/about/', parent: information, sort: 2 })
+await item(footer, 'how-it-works', 'How it works', 'Wie es funktioniert', { path: '/how-it-works/', parent: information, sort: 3 })
+await item(footer, 'contact', 'Contact', 'Kontakt', { path: '/contact/', parent: information, sort: 4 })
 
 await item(footer, 'imprint', 'Imprint', 'Impressum', { path: '/imprint/', parent: legal, sort: 1 })
 await item(footer, 'privacy', 'Privacy Policy', 'Datenschutzerklärung', { path: '/privacy/', parent: legal, sort: 2 })

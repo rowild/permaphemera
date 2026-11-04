@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { MAX_SCHEDULE_EXHIBITIONS_PER_GROUP } from '~/utils/exhibitionSchedule'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
+import type { ResolvedNews } from '~/utils/resolveNews'
 
 // Desktop: current and upcoming exhibitions in two columns of up to three
 // cards. Mobile: one slider per group, current exhibitions in the larger cards.
-const props = defineProps<{
+// With news (since 2026-11-04): the heading moves above the row, the latest news take the right
+// quarter (tablet: third) and stay in view; on mobile the start page shows them further down.
+const props = withDefaults(defineProps<{
   current: ResolvedExhibition[]
   upcoming: ResolvedExhibition[]
-}>()
+  news?: ResolvedNews[]
+}>(), {
+  news: () => []
+})
 const localePath = useLocalePath()
 const { t } = useI18n()
 
@@ -25,6 +31,7 @@ const groups = computed(() => [
     current: false
   }
 ].filter((group) => group.items.length))
+const hasNews = computed(() => props.news.length > 0)
 const columnGroups = computed(() => groups.value
   .map((group) => ({ ...group, items: group.items.slice(0, MAX_SCHEDULE_EXHIBITIONS_PER_GROUP) })))
 </script>
@@ -36,15 +43,25 @@ const columnGroups = computed(() => groups.value
     class="[ current-upcoming-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5"
     aria-labelledby="current-upcoming-title"
   >
-    <div class="[ current-upcoming-layout ] grid grid-cols-[minmax(18rem,0.55fr)_minmax(0,1.45fr)] gap-[clamp(2.5rem,5vw,5rem)] tablet:grid-cols-1 tablet:gap-8 compact:gap-5">
-      <header class="[ current-upcoming-heading ] self-start">
+    <div
+      class="[ current-upcoming-layout ] grid tablet:gap-8 compact:grid-cols-1 compact:gap-5"
+      :class="hasNews
+        ? 'grid-cols-[minmax(0,3fr)_minmax(0,1fr)] gap-x-[clamp(2rem,4vw,4rem)] gap-y-8 tablet:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]'
+        : 'grid-cols-[minmax(18rem,0.55fr)_minmax(0,1.45fr)] gap-[clamp(2.5rem,5vw,5rem)] tablet:grid-cols-1'"
+    >
+      <header
+        class="[ current-upcoming-heading ] self-start"
+        :class="hasNews ? 'col-span-full flex flex-wrap items-end justify-between gap-x-10 gap-y-3' : ''"
+      >
+        <div>
         <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">
           {{ $t('landing.schedule.eyebrow') }}
         </p>
         <h2 id="current-upcoming-title" class="m-0 max-w-144 pb-1 font-display text-h2 font-normal leading-[1.08] compact:pb-0.5 compact:text-3xl compact:leading-[1.12]">
           {{ $t('landing.schedule.titleBefore') }} <span class="text-archive-red">{{ $t('landing.schedule.titleAccent') }}</span> {{ $t('landing.schedule.titleAfter') }}
         </h2>
-        <ArchiveTextLink class="mt-5 compact:hidden" :to="localePath('/exhibitions/')">
+        </div>
+        <ArchiveTextLink class="compact:hidden" :class="hasNews ? '' : 'mt-5'" :to="localePath('/exhibitions/')">
           {{ $t('landing.schedule.viewAll') }}
           <ArchiveArrow />
         </ArchiveTextLink>
@@ -52,7 +69,7 @@ const columnGroups = computed(() => groups.value
 
       <div
         class="[ schedule-groups ] grid gap-6 compact:hidden"
-        :class="columnGroups.length > 1 ? 'grid-cols-2' : 'grid-cols-1'"
+        :class="[columnGroups.length > 1 ? 'grid-cols-2' : 'grid-cols-1', hasNews ? 'tablet:grid-cols-1' : '']"
       >
         <section v-for="group in columnGroups" :key="group.id" class="[ schedule-group ] min-w-0" :aria-labelledby="`schedule-${group.id}-title`">
           <div class="mb-4 flex items-baseline gap-4">
@@ -91,6 +108,8 @@ const columnGroups = computed(() => groups.value
           <ArchiveArrow />
         </ArchiveTextLink>
       </div>
+
+      <LandingNewsList v-if="hasNews" class="compact:hidden" :news="props.news" />
     </div>
     <ArchiveExhibitionsDivider />
   </section>

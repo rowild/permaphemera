@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, integer, m2o, markdown, richText, seo, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-10-25.1'
+export const SCHEMA_VERSION = '2026-11-04.1'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -67,7 +67,7 @@ export const entities = {
       section('title', 'Title', ['status', 'title', 'slug', 'type', 'location', 'part_of', 'featured', 'archive_number']),
       section('address', 'Address', ['address', 'website_url', 'websites', 'latitude', 'longitude', 'coordinate_label']),
       section('images', 'Images', ['image', 'image_alt', 'hero_image', 'hero_image_alt', 'image_caption']),
-      section('relations', 'Relations', ['spaces', 'exhibitions', 'further_exhibitions', 'organisation_relations', 'persons', 'sponsors']),
+      section('relations', 'Relations', ['spaces', 'exhibitions', 'further_exhibitions', 'organisation_relations', 'persons', 'sponsors', 'news']),
       content(['lede', 'about_html', 'description']),
       section('seo', 'SEO', ['seo']),
     ],
@@ -99,7 +99,7 @@ export const entities = {
       section('media', 'Photo', ['image', 'image_alt', 'image_caption']),
       section('text', 'Text', ['lede', 'about_html']),
       section('links', 'Links', ['websites']),
-      section('relations', 'Relations', ['participations', 'memberships', 'venues', 'sponsors']),
+      section('relations', 'Relations', ['participations', 'memberships', 'venues', 'sponsors', 'news']),
       section('seo', 'SEO', ['seo']),
     ],
   },
@@ -150,7 +150,7 @@ export const entities = {
       section('dates', 'Dates', ['start_date', 'end_date', 'is_permanent', 'date_range', 'opening_hours', 'vernissage', 'admission']),
       section('media', 'Media', ['image', 'image_alt', 'source_pdf', 'medium']),
       section('tour', 'Tour', ['tour', 'tour_status', 'tour_available_from']),
-      section('relations', 'Relations', ['participations', 'organisers', 'statements', 'websites', 'further_venues', 'sponsors']),
+      section('relations', 'Relations', ['participations', 'organisers', 'statements', 'websites', 'further_venues', 'sponsors', 'news']),
       content(['summary', 'description']),
       section('seo', 'SEO', ['seo']),
     ],
@@ -226,7 +226,7 @@ export const entities = {
       section('title', 'Title', ['status', 'title', 'short_title', 'slug', 'kind']),
       section('seat', 'Seat', ['address', 'location', 'founded']),
       section('media', 'Media', ['logo', 'logo_alt', 'image', 'image_alt', 'image_caption']),
-      section('relations', 'Relations', ['venue_relations', 'exhibitions', 'members', 'websites']),
+      section('relations', 'Relations', ['venue_relations', 'exhibitions', 'members', 'websites', 'news']),
       content(['lede', 'about_html', 'description']),
       section('seo', 'SEO', ['seo']),
     ],
@@ -276,7 +276,7 @@ export const entities = {
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'slug', 'website_url', 'logo']),
-      section('relations', 'Relations', ['venues', 'exhibitions', 'persons', 'locations']),
+      section('relations', 'Relations', ['venues', 'exhibitions', 'persons', 'locations', 'news']),
       content(['description']),
       section('seo', 'SEO', ['seo']),
     ],
@@ -346,6 +346,29 @@ export const entities = {
       section('display', 'Display', ['weight', 'visible_from', 'visible_until']),
     ],
   },
+  news: {
+    kind: 'main', icon: 'newspaper', sort: 11, labels: ['News', 'News article', 'News'],
+    display: ['title'], displayTemplate: '{{published_on}} · {{title}}',
+    note: 'News articles ("Aktuelles"). Written on the owner\'s command, published by the owner. The status alone decides if an article is public; published_on is only the date the site shows and sorts by. Links to galleries, exhibitions, persons, organisations and sponsors are shown under the article.',
+    fields: [
+      str('title', { required: true, translated: true }),
+      str('slug', { required: true, unique: true, slug: true, width: 'half' }),
+      date('published_on', { required: true, width: 'half', note: 'Shown on the site and used for the order (newest first). Does not publish anything by itself.' }),
+      dropdown('topic', ['welcome', 'support', 'opening', 'closing', 'site'], { default: 'welcome', width: 'half', note: 'welcome: new galleries, organisers, artists (never exhibitions) · support: sponsors · opening: an exhibition opens soon · closing: an exhibition closes soon, the 360° tour follows · site: news about the website.' }),
+      file('image', { image: true, note: 'Optional. Without an image the site uses the image of the first linked exhibition or gallery.' }),
+      str('image_alt', { width: 'half', translated: true }),
+      str('summary', { translated: true, note: 'One line for the lists, the start page and SEO.' }),
+      markdown('description', { translated: true, note: 'The article text. Follows docs/text-rules.md.' }),
+      seo({ titleTemplate: '{{title}}', descriptionTemplate: '{{summary}}', translationTitleTemplate: '{{title}}', translationDescriptionTemplate: '{{summary}}' }),
+    ],
+    layout: [
+      section('title', 'Title', ['status', 'title', 'slug', 'published_on', 'topic']),
+      section('media', 'Media', ['image', 'image_alt']),
+      section('relations', 'Linked records', ['exhibitions', 'venues', 'persons', 'organisations', 'sponsors']),
+      content(['summary', 'description']),
+      section('seo', 'SEO', ['seo']),
+    ],
+  },
 }
 
 // Many-to-many links. Table names come from mmTable(a, b); FK columns from fk().
@@ -362,5 +385,10 @@ export const junctions = [
   { a: 'exhibitions', b: 'websites', aliasA: 'websites', aliasB: 'exhibitions', owner: 'websites', sortedFrom: 'exhibitions', note: 'External links of an exhibition: its page on the venue site, press sheets, documents.' },
   { a: 'persons', b: 'websites', aliasA: 'websites', aliasB: 'persons', owner: 'websites', sortedFrom: 'persons', note: 'The links of a person. Replaced the single website_url column on 2026-09-15.' },
   { a: 'organisations', b: 'websites', aliasA: 'websites', aliasB: 'organisations', owner: 'websites', sortedFrom: 'organisations', note: 'The links of an organisation.' },
+  { a: 'exhibitions', b: 'news', aliasA: 'news', aliasB: 'exhibitions', owner: 'news', sortedFrom: 'news', note: 'Exhibitions a news article is about.' },
+  { a: 'news', b: 'venues', aliasA: 'venues', aliasB: 'news', owner: 'news', sortedFrom: 'news', note: 'Galleries a news article is about.' },
+  { a: 'news', b: 'persons', aliasA: 'persons', aliasB: 'news', owner: 'news', sortedFrom: 'news', note: 'Persons a news article is about.' },
+  { a: 'news', b: 'organisations', aliasA: 'organisations', aliasB: 'news', owner: 'news', sortedFrom: 'news', note: 'Organisations a news article is about.' },
+  { a: 'news', b: 'sponsors', aliasA: 'sponsors', aliasB: 'news', owner: 'news', sortedFrom: 'news', note: 'Sponsors a news article is about.' },
   { a: 'venues', b: 'websites', aliasA: 'websites', aliasB: 'venues', owner: 'websites', sortedFrom: 'venues', note: 'Further links of a venue, usually its social profiles. website_url stays the main link; the site shows at most three links.' },
 ]

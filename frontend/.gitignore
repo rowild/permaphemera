@@ -43,3 +43,5 @@ test-results/
 # Subagent-driven-development scratch workspace
 .superpowers/
 public/media/tours/
+# The local state of the monthly news report (pnpm news:report)
+.news-report-state.json

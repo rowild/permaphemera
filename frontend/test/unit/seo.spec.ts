@@ -174,8 +174,31 @@ describe('staticSeoEntries', () => {
     expect(list.find((item) => item.path === '/exhibitions/current/' && item.locale === 'en')!.title).toContain('Current')
     expect(list.filter((item) => item.locale === 'de').map((item) => item.path)).toEqual([
       '/', '/exhibitions/', '/exhibitions/current/', '/exhibitions/upcoming/', '/exhibitions/past/', '/artists/', '/venues/', '/organisations/',
-      '/about/', '/how-it-works/', '/contact/', '/imprint/', '/privacy/', '/terms/', '/accessibility/'
+      '/news/', '/about/', '/how-it-works/', '/contact/', '/imprint/', '/privacy/', '/terms/', '/accessibility/'
     ])
+  })
+})
+
+describe('news articles', () => {
+  const article = (slug: string, status: string, extra = {}) => ({
+    id: slug, slug, status, title: `Title ${slug}`, published_on: '2026-11-03', topic: 'welcome', image: null, summary: 'One line.',
+    translations: [{ languages_code: 'de', title: `Titel ${slug}`, summary: 'Eine Zeile.' }], ...extra
+  })
+  const archive = {
+    news: [article('a', 'published'), article('b', 'draft')],
+    exhibitions: [{ id: 'e1', slug: 'e1', status: 'published', title: 'E1', image: 'https://cms/assets/e1', image_type: 'image/jpeg' }],
+    exhibitionsNews: [{ id: 1, exhibitions_id: 'e1', news_id: 'a', sort: 0 }]
+  }
+
+  it('gives published articles a NewsArticle entry in both languages, drafts none', () => {
+    const list = recordSeoEntries(archive, { assetBase: 'https://cms', messages, path: undefined }).filter((item) => item.path.startsWith('/news/'))
+    expect(list.map((item) => `${item.locale}${item.path}`)).toEqual(['de/news/a/', 'en/news/a/'])
+    const de = list.find((item) => item.locale === 'de')!
+    expect(de.title).toContain('Titel a')
+    expect(de.description).toBe('Eine Zeile.')
+    expect(de.image).toContain('https://cms/assets/e1')
+    expect(JSON.stringify(de.jsonLd)).toContain('"@type":"NewsArticle"')
+    expect(JSON.stringify(de.jsonLd)).toContain('"datePublished":"2026-11-03"')
   })
 })
 

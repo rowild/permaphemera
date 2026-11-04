@@ -1010,5 +1010,39 @@
     "previous": "Previous page",
     "next": "Next page",
     "page": "Page {page}"
+  },
+  "newsPage": {
+    "seoTitle": "News · PERMAPHEMERA",
+    "seoDescription": "New galleries, artists and supporters in the archive, openings, exhibitions shortly before their 360° tour, and news about the website.",
+    "breadcrumb": "News",
+    "eyebrow": "Announcements",
+    "title": "News",
+    "intro": "New galleries, artists and supporters, openings, exhibitions shortly before their 360° tour, and news about the website.",
+    "filterAria": "Filter news by topic",
+    "all": "All",
+    "empty": "No news yet.",
+    "listAria": "News",
+    "notFound": "News article not found",
+    "inArticle": "In this article",
+    "groups": {
+      "exhibitions": "Exhibitions",
+      "venues": "Galleries",
+      "persons": "People",
+      "organisations": "Organisations",
+      "sponsors": "Sponsors"
+    },
+    "pagerAria": "More news",
+    "newer": "Newer article",
+    "older": "Older article",
+    "allNews": "All news",
+    "latest": "News",
+    "latestEyebrow": "Announcements",
+    "topics": {
+      "welcome": "New in the archive",
+      "support": "Support",
+      "opening": "Opening",
+      "closing": "Tour to follow",
+      "site": "Website"
+    }
   }
 }

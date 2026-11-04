@@ -29,6 +29,7 @@ HOST="${HETZNER_HOST:-rowild@138.199.205.241}"
 KEY="${HETZNER_KEY:-$HOME/.ssh/id_hetzner}"
 REMOTE_DIR="${HETZNER_REMOTE_DIR:-/srv/sites/permaphemera.at/html}"
 SEO_REFRESH_DIR="$(dirname "$REMOTE_DIR")/seo-refresh"
+NEWS_REPORT_DIR="$(dirname "$REMOTE_DIR")/news-report"
 export NUXT_PUBLIC_DIRECTUS_URL="${NUXT_PUBLIC_DIRECTUS_URL_PROD:-https://permaphemera.at/cms}"
 
 SKIP_BUILD=0
@@ -176,6 +177,18 @@ if [[ "$SITE" == 1 ]]; then
   cp scripts/server/seo-refresh.sh "$bundle/seo-refresh.sh"
   rsync -az --delete -e "ssh -i $KEY -o BatchMode=yes" "$bundle/" "$HOST:$SEO_REFRESH_DIR/"
   ssh -i "$KEY" -o BatchMode=yes "$HOST" "crontab -l 2>/dev/null | grep -qF '$SEO_REFRESH_DIR/seo-refresh.sh' || { crontab -l 2>/dev/null; echo '15 0 * * * sh $SEO_REFRESH_DIR/seo-refresh.sh'; } | crontab -"
+  # The monthly news report for the owner (scripts/server/news-report.sh): code next to the site,
+  # settings and state in news-report-data/ (never touched by a deploy), cron on the 1st at 08:00.
+  echo "[deploy] monthly news report: code to $NEWS_REPORT_DIR, cron 1st of the month 08:00"
+  bundle=.output/news-report
+  rm -rf "$bundle" && mkdir -p "$bundle"
+  for file in scripts/news-report.mjs scripts/lib/news-report.mjs scripts/lib/archive-source.mjs \
+    shared/seo.mjs shared/archive-schema.mjs shared/tour-access.mjs; do
+    mkdir -p "$bundle/$(dirname "$file")" && cp "$file" "$bundle/$file"
+  done
+  cp scripts/server/news-report.sh "$bundle/news-report.sh"
+  rsync -az --delete -e "ssh -i $KEY -o BatchMode=yes" "$bundle/" "$HOST:$NEWS_REPORT_DIR/"
+  ssh -i "$KEY" -o BatchMode=yes "$HOST" "mkdir -p '$NEWS_REPORT_DIR-data' && chmod 700 '$NEWS_REPORT_DIR-data' && crontab -l 2>/dev/null | grep -qF '$NEWS_REPORT_DIR/news-report.sh' || { crontab -l 2>/dev/null; echo '0 8 1 * * sh $NEWS_REPORT_DIR/news-report.sh'; } | crontab -"
   # The job only logs; say here when its last night went wrong.
   last_run="$(ssh -i "$KEY" -o BatchMode=yes "$HOST" "tail -n 20 '$(dirname "$REMOTE_DIR")/seo-refresh.log' 2>/dev/null | awk '/^== [0-9]/ { block = \"\" } { block = block \$0 \"\\n\" } END { printf \"%s\", block }'")"
   if grep -qE 'failed|problems' <<<"$last_run"; then

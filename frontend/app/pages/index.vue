@@ -25,7 +25,7 @@ type Exhibition = ResolvedExhibition
 // at once, the wheel's arrows run faded, everything below waits for the data.
 definePageMeta({ archiveOptional: true })
 
-const { venues, venueExhibitions, artistDirectory: directoryArtists } = useArchiveData()
+const { venues, venueExhibitions, artistDirectory: directoryArtists, news } = useArchiveData()
 const archiveReady = useArchiveReady()
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
@@ -80,6 +80,10 @@ const exhibitionSchedule = computed(() => selectExhibitionSchedule(venueExhibiti
 const currentExhibitions = computed(() => exhibitionSchedule.value.current)
 const upcomingExhibitions = computed(() => exhibitionSchedule.value.upcoming)
 const hasTimelyExhibitions = computed(() => currentExhibitions.value.length > 0 || upcomingExhibitions.value.length > 0)
+// The latest news: up to five beside the current and upcoming exhibitions, three on mobile,
+// where they sit as their own section before the sponsors (or in the row's place without it).
+const latestNews = computed(() => news.value.slice(0, 5))
+const latestNewsMobile = computed(() => news.value.slice(0, 3))
 const firstLandingSectionTarget = computed(() => hasTimelyExhibitions.value ? '#current-upcoming' : '#venues')
 // The fan links only to open 360° experiences; galleries fill it up to twelve blades for now.
 const heroExhibitionItems = computed<KaleidoscopeExhibitionItem[]>(() => buildHeroItems(
@@ -496,7 +500,9 @@ const openRandomTour = (event: MouseEvent) => {
         v-if="belowHeroStep >= 1"
         :current="currentExhibitions"
         :upcoming="upcomingExhibitions"
+        :news="latestNews"
       />
+      <LandingNewsList v-if="belowHeroStep >= 1 && latestNews.length && !hasTimelyExhibitions" class="compact:hidden" :news="latestNews" variant="section" />
 
       <section v-if="belowHeroStep >= 2" id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
@@ -692,6 +698,8 @@ const openRandomTour = (event: MouseEvent) => {
           />
         </div>
       </section>
+
+      <LandingNewsList v-if="belowHeroStep >= 5 && latestNewsMobile.length" class="hidden compact:block" :news="latestNewsMobile" variant="section" />
 
       <ArchiveFooter v-if="belowHeroStep >= 6" />
     </template>

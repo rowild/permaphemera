@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.48 - 2026-11-04 13:00:00 CET
+
+- News ("Aktuelles"): an overview at `/news/` (newest first, by year, filter by topic) and a page per article at `/news/<slug>/` with the date and topic, the text, an image and the galleries, exhibitions, persons, organisations and sponsors it is about. Topics: new in the archive, support, opening, tour to follow, website.
+- The start page shows the latest five articles in the right quarter of the row of current and upcoming exhibitions (tablet: a third), where they stay in view while the cards scroll past; on mobile the latest three sit before the sponsors. Without an article the start page looks as before.
+- Directus: the collection `pp_news` with links to exhibitions, galleries, persons, organisations and sponsors; a menu entry "Aktuelles" in the footer group "Information" (and so in the header's menu), still a draft until the first article is published.
+- A monthly report for the owner (`pnpm news:report`, on the server on the 1st at 08:00 by e-mail once the mail settings are in place) lists what closes, opens or goes online within three weeks and what is new since the last report.
+
 ## 0.0.47 - 2026-11-04 11:35:00 CET
 
 - AI protection for the images and texts. `robots.txt` shuts out 22 AI training and dataset crawlers (among them GPTBot, ClaudeBot, CCBot, Google-Extended, Applebot-Extended, Meta, Bytespider, img2dataset); AI search agents may read the pages but not `/cms/assets/` (images) or `/media/` (images, 360° tours). Search engines are not affected.

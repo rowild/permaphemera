@@ -84,6 +84,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_websites` | main | `pp_archive` | no |
 | `pp_organisations` | main | `pp_archive` | no |
 | `pp_quotes` | main | `pp_archive` | no |
+| `pp_news` | main | `pp_archive` | no |
 | `pp_exhibition_organisers` | child of exhibitions | `pp_exhibitions` | yes |
 | `pp_organisation_memberships` | child of organisations | `pp_organisations` | yes |
 | `pp_organisation_venue_relations` | child of organisations | `pp_organisations` | yes |
@@ -101,6 +102,11 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_mm__persons_websites` | structural | `pp_websites` | yes |
 | `pp_mm__organisations_websites` | structural | `pp_websites` | yes |
 | `pp_mm__venues_websites` | structural | `pp_websites` | yes |
+| `pp_mm__exhibitions_news` | structural | `pp_news` | yes |
+| `pp_mm__news_venues` | structural | `pp_news` | yes |
+| `pp_mm__news_persons` | structural | `pp_news` | yes |
+| `pp_mm__news_organisations` | structural | `pp_news` | yes |
+| `pp_mm__news_sponsors` | structural | `pp_news` | yes |
 | `pp_translations__exhibitions` | structural | `pp_exhibitions` | yes |
 | `pp_translations__venues` | structural | `pp_venues` | yes |
 | `pp_translations__locations` | structural | `pp_locations` | yes |
@@ -113,9 +119,10 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_translations__organisation_memberships` | structural | `pp_organisation_memberships` | yes |
 | `pp_translations__quotes` | structural | `pp_quotes` | yes |
 | `pp_translations__persons` | structural | `pp_persons` | yes |
+| `pp_translations__news` | structural | `pp_news` | yes |
 | `pp_meta` | installer state, singleton | root | yes |
 
-38 prefixed collections, 39 with the `pp_archive` folder (2026-10-14). `pp_navigations`, `pp_exhibition_organisers`, `pp_exhibition_participations` and `pp_organisation_venue_relations` have no translation table. The organisations family was added on 2026-09-23 (design: `docs/superpowers/specs/2026-09-23-organisations-design.md`).
+48 `pp_` entries with the `pp_archive` folder and `pp_meta` (2026-11-04, after `pp_news`, its translations and five junctions; `directus/scripts/build.test.mjs` pins the list). `pp_navigations`, `pp_exhibition_organisers`, `pp_exhibition_participations` and `pp_organisation_venue_relations` have no translation table. The organisations family was added on 2026-09-23 (design: `docs/superpowers/specs/2026-09-23-organisations-design.md`).
 
 ### Relation map
 
@@ -145,6 +152,7 @@ Every line is one relation. The naming rule (conventions §2 rule 12) makes an M
 | exhibition | organisation | child `pp_exhibition_organisers` | the organisation behind the record, with `role` (organiser, presenter, cooperation, supporter); aliases `organisers` on exhibitions, `exhibitions` on organisations |
 | organisation | person | child `pp_organisation_memberships` | one person in one function (translated) in one organisation; aliases `members` / `memberships` |
 | organisation | venue | child `pp_organisation_venue_relations` | `relation`: runs, seat, exhibits_at (guest on the venue's invitation); aliases `venue_relations` / `organisation_relations` |
+| news | exhibition, venue, person, organisation, sponsor | M2M | `pp_mm__exhibitions_news`, `pp_mm__news_venues`, `pp_mm__news_persons`, `pp_mm__news_organisations`, `pp_mm__news_sponsors` | what a news article is about; shown under the article; aliases `exhibitions`, `venues`, `persons`, `organisations`, `sponsors` on news, `news` on the others (2026-11-04) |
 | navigation item | navigation | M2O, child | `pp_navigation_items.navigation` | which menu |
 | navigation item | navigation item | M2O, self | `pp_navigation_items.parent` | group nesting |
 
@@ -213,6 +221,11 @@ Translated: `title`. Route paths are locale-neutral; the frontend passes them th
 
 `id`, `status`, `sort`, `title` (English link text, e.g. "Exhibition page at stadtgalerie.net"), `url` (absolute), `kind` (dropdown `website` | `exhibition_page` | `press` | `document` | `social`, allow other), `translations`, `exhibitions`, `persons`, `organisations` (m2m), audit.
 
+#### `pp_news` (2026-11-04)
+
+`id`, `status`, `sort`, `title` (English, required), `slug` (unique), `published_on` (date, required: the date the site shows and sorts by, newest first; it does not publish anything, the status alone does), `topic` (dropdown `welcome` | `support` | `opening` | `closing` | `site`), `image` (file, optional), `image_alt`, `summary` (one line for lists, start page, SEO), `description` (markdown: paragraphs, bold, italic, lists), `seo`, `translations`, the five link aliases, audit.
+Translated: `title`, `image_alt`, `summary`, `description`, `seo`. Pages `/news/` and `/news/<slug>/`; the latest five sit beside the current and upcoming exhibitions on the start page. Without an own image an article shows the image of its first linked exhibition, else of its first gallery with a photo. Plan: `plans/2026-11-04__news-system.md`; how to write one: `docs/how-to-news.md`.
+
 #### `pp_quotes` (2026-10-25)
 
 `id`, `status`, `sort`, `line_1` (English, required), `line_2`, `accent` (the last word or words of line 2, shown in red), `source` (who said it; empty for the archive's own quotes), `weight` (integer 1–10, default 5), `visible_from`, `visible_until` (dates, both optional), `translations`, audit.
@@ -238,7 +251,7 @@ Translated: `title`. One row per link; a row can hang on several records (one ve
 
 #### SEO field `seo` (since 2026-10-24)
 
-On `pp_exhibitions`, `pp_venues`, `pp_persons`, `pp_organisations`, `pp_sponsors` and their
+On `pp_exhibitions`, `pp_venues`, `pp_persons`, `pp_organisations`, `pp_sponsors`, `pp_news` and their
 translation tables: a `json` field with the Directus Labs SEO plugin interface (`seo-interface`,
 display `seo-display`), in its own "SEO" section. Keys: `title`, `meta_description`, `og_image` (file
 id), `no_index`, `no_follow`, `sitemap.change_frequency`, `sitemap.priority`. The record holds the

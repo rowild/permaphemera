@@ -10,7 +10,7 @@
 // in archive-schema.d.ts for the frontend's TypeScript code.
 
 /** Collections with a translations table get `translations.*`; the rest only `*`. */
-export const TRANSLATED = new Set(['pp_locations', 'pp_venues', 'pp_roles', 'pp_exhibitions', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigation_items', 'pp_websites', 'pp_organisations', 'pp_organisation_memberships', 'pp_persons', 'pp_quotes'])
+export const TRANSLATED = new Set(['pp_locations', 'pp_venues', 'pp_roles', 'pp_exhibitions', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigation_items', 'pp_websites', 'pp_organisations', 'pp_organisation_memberships', 'pp_persons', 'pp_quotes', 'pp_news'])
 
 /** File fields per collection: Directus returns file ids; the site needs URLs. */
 export const FILE_FIELDS = {
@@ -18,7 +18,8 @@ export const FILE_FIELDS = {
   pp_exhibitions: ['image', 'source_pdf'],
   pp_sponsors: ['logo'],
   pp_organisations: ['logo', 'image'],
-  pp_persons: ['image']
+  pp_persons: ['image'],
+  pp_news: ['image']
 }
 
 /** ArchiveSnapshot key -> Directus collection name, one entry per collection the site reads. */
@@ -49,7 +50,13 @@ export const COLLECTIONS = {
   exhibitionOrganisers: 'pp_exhibition_organisers',
   organisationsWebsites: 'pp_mm__organisations_websites',
   venuesWebsites: 'pp_mm__venues_websites',
-  quotes: 'pp_quotes'
+  quotes: 'pp_quotes',
+  news: 'pp_news',
+  exhibitionsNews: 'pp_mm__exhibitions_news',
+  newsVenues: 'pp_mm__news_venues',
+  newsPersons: 'pp_mm__news_persons',
+  newsOrganisations: 'pp_mm__news_organisations',
+  newsSponsors: 'pp_mm__news_sponsors'
 }
 
 /** A file field holds an id, or `{ id, filename_download }` when the query expands it. */

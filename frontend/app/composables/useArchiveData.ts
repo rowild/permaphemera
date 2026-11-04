@@ -1,6 +1,7 @@
 import { buildArtistDirectory } from '~/utils/artistDirectory'
 import { isVisible } from '~/utils/contentStatus'
 import { resolveExhibitions } from '~/utils/resolveExhibitions'
+import { resolveNews } from '~/utils/resolveNews'
 import { resolveOrganisations } from '~/utils/resolveOrganisations'
 import { resolvePersons } from '~/utils/resolvePersons'
 import { resolveSponsors } from '~/utils/resolveSponsors'
@@ -87,6 +88,22 @@ export function useArchiveData() {
     locale: locale.value
   }))
 
+  // Published news articles, newest first, with their published linked records.
+  const newsForLocale = computed(() => resolveNews({
+    news: archive.value.news,
+    exhibitions: exhibitionsForLocale.value,
+    venues: venuesForLocale.value,
+    persons: personsForLocale.value,
+    organisations: organisationsForLocale.value,
+    sponsors: sponsorPagesForLocale.value,
+    exhibitionsNews: archive.value.exhibitionsNews,
+    newsVenues: archive.value.newsVenues,
+    newsPersons: archive.value.newsPersons,
+    newsOrganisations: archive.value.newsOrganisations,
+    newsSponsors: archive.value.newsSponsors,
+    locale: locale.value
+  }))
+
   return {
     venues: venuesForLocale,
     venueExhibitions: exhibitionsForLocale,
@@ -94,6 +111,7 @@ export function useArchiveData() {
     organisations: organisationsForLocale,
     artistDirectory,
     persons: personsForLocale,
-    sponsorPages: sponsorPagesForLocale
+    sponsorPages: sponsorPagesForLocale,
+    news: newsForLocale
   }
 }

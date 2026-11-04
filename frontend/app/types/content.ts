@@ -356,6 +356,30 @@ export interface QuoteRecord {
   translations: TranslationEntry[]
 }
 
+/** What a news article is about; fixed list, shown as the eyebrow with the date. */
+export type NewsTopic = 'welcome' | 'support' | 'opening' | 'closing' | 'site'
+
+/** pp_news — one news article ("Aktuelles"). The status alone decides if it is public. */
+export interface NewsRecord {
+  id: string
+  slug: string
+  status: ContentStatus
+  sort: number | null
+  title: string
+  /** YYYY-MM-DD; shown on the site and the sort key (newest first). */
+  published_on: string
+  topic: NewsTopic
+  image: string | null
+  image_alt: string | null
+  /** One line for the lists, the start page and SEO. */
+  summary: string | null
+  /** The article text (markdown: paragraphs, bold, italic, lists). */
+  description: string | null
+  translations: TranslationEntry[]
+  /** Search engines and link previews; see SeoData. */
+  seo?: SeoData | null
+}
+
 export interface ArchiveSnapshot {
   locations: LocationRecord[]
   venues: VenueRecord[]
@@ -384,4 +408,10 @@ export interface ArchiveSnapshot {
   organisationsWebsites: JunctionRow[]
   venuesWebsites: JunctionRow[]
   quotes: QuoteRecord[]
+  news: NewsRecord[]
+  exhibitionsNews: JunctionRow[]
+  newsVenues: JunctionRow[]
+  newsPersons: JunctionRow[]
+  newsOrganisations: JunctionRow[]
+  newsSponsors: JunctionRow[]
 }

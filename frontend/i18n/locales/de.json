@@ -1010,5 +1010,39 @@
     "previous": "Vorherige Seite",
     "next": "Nächste Seite",
     "page": "Seite {page}"
+  },
+  "newsPage": {
+    "seoTitle": "Aktuelles · PERMAPHEMERA",
+    "seoDescription": "Neue Galerien, Künstler:innen und Förderungen im Archiv, Eröffnungen, Ausstellungen kurz vor dem 360°-Rundgang und Neues auf der Website.",
+    "breadcrumb": "Aktuelles",
+    "eyebrow": "Meldungen",
+    "title": "Aktuelles",
+    "intro": "Neue Galerien, Künstler:innen und Förderungen, Eröffnungen, Ausstellungen kurz vor dem 360°-Rundgang und Neues auf der Website.",
+    "filterAria": "Meldungen nach Thema filtern",
+    "all": "Alle",
+    "empty": "Noch keine Meldungen.",
+    "listAria": "Meldungen",
+    "notFound": "Meldung nicht gefunden",
+    "inArticle": "Im Artikel",
+    "groups": {
+      "exhibitions": "Ausstellungen",
+      "venues": "Galerien",
+      "persons": "Personen",
+      "organisations": "Organisationen",
+      "sponsors": "Sponsoren"
+    },
+    "pagerAria": "Weitere Meldungen",
+    "newer": "Neuere Meldung",
+    "older": "Ältere Meldung",
+    "allNews": "Alle Meldungen",
+    "latest": "Aktuelles",
+    "latestEyebrow": "Meldungen",
+    "topics": {
+      "welcome": "Neu im Archiv",
+      "support": "Förderung",
+      "opening": "Eröffnung",
+      "closing": "Rundgang folgt",
+      "site": "Website"
+    }
   }
 }
