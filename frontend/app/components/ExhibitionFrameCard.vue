@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, useId } from 'vue'
 import { createVenueInnerFramePath } from '../utils/venueFrameGeometry'
 
 // The cut-corner paper frame around one exhibition card. The surface is in

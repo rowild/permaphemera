@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import type { CSSProperties } from 'vue'
 
 // A tooltip that lives in <body>, so no card clip-path, overflow-hidden or

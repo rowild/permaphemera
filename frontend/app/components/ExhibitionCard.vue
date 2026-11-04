@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { formatArchiveDate } from '~/utils/archiveDate'
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { resolveTourAccess } from '~/utils/tourAccess'
 

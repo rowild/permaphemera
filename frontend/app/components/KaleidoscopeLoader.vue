@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { toRomanNumeral } from '~/utils/romanNumerals'
 
 // The loading legend in the centre of the wheel: what is loading, which image

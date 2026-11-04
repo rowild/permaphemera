@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, useId } from 'vue'
 import {
   createVenueFramePath,
   createVenueInnerFramePath,
