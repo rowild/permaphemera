@@ -15,7 +15,6 @@ const galleryName = computed(() => gallery.value?.name ?? exhibition.value.venue
 const archiveToday = useArchiveToday()
 // Only past exhibitions with an open 360° tour, so every card leads to an experience.
 const relatedExhibitions = computed(() => selectRelatedExhibitions(venueExhibitions.value, exhibition.value, archiveToday.value))
-const galleryPath = computed(() => localePath(`/venues/${exhibition.value?.venue_slug}/`))
 // One label for the organisations row: the shared role when all agree, else the generic word.
 const organiserLabel = computed(() => {
   const roles = new Set(exhibition.value.organisers.map((organiser) => organiser.role))
@@ -72,9 +71,7 @@ definePageMeta({ navActive: 'exhibitions' })
       <section class="[ exhibition-hero ] archive-exhibition-experience relative grid min-h-[calc(100vh-6.4rem)] grid-cols-[minmax(0,1.05fr)_minmax(30rem,0.95fr)] overflow-hidden bg-archive-night text-archive-footer-copy tablet:grid-cols-1 tablet:min-h-auto" aria-labelledby="exhibition-title">
         <div class="[ exhibition-hero-image ] min-h-0 bg-cover bg-center brightness-50 saturate-72 tablet:min-h-100 compact:min-h-76" :style="{ backgroundImage: `url('${heroImage}')` }" aria-hidden="true" />
         <div class="[ exhibition-hero-copy ] archive-exhibition-experience-copy relative z-2 flex flex-col justify-center p-[clamp(3rem,6vw,6rem)] compact:bg-archive-night compact:px-4 compact:py-8">
-          <ArchiveBreadcrumb class="text-archive-footer-copy/72">
-            <ArchiveTextLink :to="localePath('/exhibitions/')" surface="night">{{ $t('navigation.exhibitions') }}</ArchiveTextLink><span aria-hidden="true">/</span><ArchiveTextLink :to="galleryPath" surface="night">{{ galleryName }}</ArchiveTextLink><span aria-hidden="true">/</span><span class="text-archive-night-heading">{{ exhibition.title }}</span>
-          </ArchiveBreadcrumb>
+          <ArchiveBreadcrumb class="text-archive-footer-copy/72" surface="night" :items="[{ label: $t('navigation.exhibitions'), to: '/exhibitions/' }, { label: galleryName, to: `/venues/${exhibition.venue_slug}/` }, { label: exhibition.title }]" />
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">
             <!-- A long eyebrow wraps only at its "·", never inside "360°-Rundgang in Vorbereitung". -->
             <span><template v-for="(part, index) in spatialEyebrowParts" :key="part"><template v-if="index">&nbsp;· </template><span :class="{ 'whitespace-nowrap': spatialEyebrowParts.length > 1 }">{{ part }}</span></template></span>

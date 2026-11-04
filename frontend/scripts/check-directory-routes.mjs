@@ -103,11 +103,12 @@ for (const gallery of galleries) {
 
 assert.match(galleriesIndex, /<ArchiveSearchForm/, 'The galleries index must use the shared search form.')
 assert.match(galleriesIndex, /<GalleryDirectoryCard[\s\S]*v-for=/, 'The galleries index must render reusable gallery cards.')
-assert.match(galleriesIndex, /route\.query\.state/, 'The gallery state filter must be URL-backed.')
+assert.match(galleriesIndex, /useQueryParam\('state'/, 'The gallery state filter must be URL-backed (useQueryParam).')
 assert.match(galleryCard, /<VenueMaskedImage/, 'Gallery cards must use the shared generated media mask.')
 assert.match(galleryCard, /<VenueCardFrame/, 'Gallery cards must use the shared generated cut-corner frame.')
-assert.match(galleryDetail, /venues\.value\.find/, 'Gallery detail routes must resolve the canonical venues collection.')
-assert.match(galleryDetail, /venueDossier/, 'Gallery detail routes must layer optional rich venue dossier data.')
+// The record lookup and 404 are useRecordBySlug (test/nuxt/useRecordBySlug.spec.ts); the old
+// "dossier" was the same record looked up twice and is gone.
+assert.match(galleryDetail, /useRecordBySlug\(venues, 'venue\.notFound'\)/, 'Gallery detail routes must resolve the canonical venues collection.')
 
 assert(exhibitions.length > 0, 'The exhibitions directory needs routed exhibition records.')
 assert.match(exhibitionsIndex, /<ArchiveSearchForm/, 'The exhibitions index must use the shared search form.')
@@ -156,14 +157,14 @@ assert.equal(germanMessages.cards.enterExhibition, 'Ausstellung besuchen', 'The 
 assert.equal(englishMessages.cards.aboutExhibition, 'About the Exhibition', 'An exhibition without an open tour must not promise a visit.')
 assert.equal(germanMessages.cards.aboutExhibition, 'Zur Ausstellung', 'An exhibition without an open tour must not promise a visit (German).')
 assert.doesNotMatch(exhibitionCard, /openRecord/, 'Exhibition cards must not retain the old open-record action keys.')
-assert.match(exhibitionDetail, /localePath\('\/exhibitions\/'\)/, 'Exhibition detail breadcrumbs must return to the exhibition index.')
-assert.match(exhibitionDetail, /galleryPath/, 'Exhibition detail routes must derive their owning gallery route.')
+assert.match(exhibitionDetail, /<ArchiveBreadcrumb[^>]*to: '\/exhibitions\/'/, 'Exhibition detail breadcrumbs must return to the exhibition index.')
+assert.match(exhibitionDetail, /to: `\/venues\/\$\{exhibition\.venue_slug\}\/`/, 'Exhibition detail routes must derive their owning gallery route.')
 
 // Organisations: a register with one row per body and a page per organisation.
 assert.match(organisationsIndex, /<ArchiveSearchForm/, 'The organisations index must use the shared search form.')
 assert.match(organisationsIndex, /<OrganisationDirectoryEntry[\s\S]*v-for=/, 'The organisations index must render reusable entries.')
 assert.match(organisationsIndex, /definePageMeta\(\{ navActive: 'organisations' \}\)/, 'The organisations index must mark its menu item (page meta navActive, layouts/default.vue).')
-assert.match(organisationDetail, /organisations\.value\.find/, 'Organisation pages must resolve the canonical organisations collection.')
+assert.match(organisationDetail, /useRecordBySlug\(organisations, 'organisations\.notFound'\)/, 'Organisation pages must resolve the canonical organisations collection.')
 assert.match(organisationDetail, /<ExhibitionCard/, 'Organisation pages must reuse the one exhibition card for their records.')
 assert.match(organisationEntry, /props\.organisation\.title/, 'Organisation entries show the title verbatim.')
 assert.doesNotMatch(organisationEntry, /formatArtistName|split\(/, 'Organisation names are never split or inverted.')
@@ -184,18 +185,18 @@ for (const navigation of [header, footerMenu]) {
 
 // Person and sponsor pages: an unknown slug shows the 404 page. Organisation pages show the
 // photo and link every member to their person page.
-const [personPage, sponsorPage, organisationPage] = await Promise.all([
+const [personPage, organisationPage] = await Promise.all([
   readText('app/pages/persons/[slug].vue'),
-  readText('app/pages/sponsors/[slug].vue'),
   readText('app/pages/organisations/[slug].vue')
 ])
-assert.match(personPage, /createError\(\{ statusCode: 404/, 'An unknown person slug must show the 404 page.')
-assert.match(sponsorPage, /createError\(\{ statusCode: 404/, 'An unknown sponsor slug must show the 404 page.')
 // The site renders in the browser only: a 404 thrown without `fatal: true` never reaches the
 // error page there, and the page stays empty (exhibitions and venues did, until 2026-10-26).
-for (const [name, file] of [['exhibition', 'exhibitions'], ['venue', 'venues'], ['person', 'persons'], ['sponsor', 'sponsors'], ['organisation', 'organisations']]) {
+// Every detail page finds its record through useRecordBySlug, which throws the fatal 404
+// (behaviour: test/nuxt/useRecordBySlug.spec.ts).
+assert.match(await readText('app/composables/useRecordBySlug.ts'), /createError\(\{ statusCode: 404, statusMessage: [^}]*, fatal: true \}\)/, 'useRecordBySlug must throw a fatal 404, or the browser shows an empty page.')
+for (const [name, file] of [['exhibition', 'exhibitions'], ['venue', 'venues'], ['person', 'persons'], ['sponsor', 'sponsors'], ['organisation', 'organisations'], ['news', 'news']]) {
   const page = await readText(`app/pages/${file}/[slug].vue`)
-  assert.match(page, /createError\(\{ statusCode: 404, statusMessage: [^}]*, fatal: true \}\)/, `An unknown ${name} slug must throw a fatal 404, or the browser shows an empty page.`)
+  assert.match(page, /useRecordBySlug\(/, `An unknown ${name} slug must show the 404 page (useRecordBySlug).`)
   // After the 404 in setup the template must render nothing; reading the missing record would crash before the error page.
   assert.match(page, /<template>\s*<(div|main) v-if="/, `The ${name} page must guard its template with v-if on the record.`)
 }

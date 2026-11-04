@@ -18,15 +18,12 @@ const props = withDefaults(defineProps<{
   ledgerOnMobile: false
 })
 
-const localePath = useLocalePath()
 </script>
 
 <template>
   <section class="[ directory-hero ] [ section-band ] relative mx-auto grid min-h-120 max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] items-start gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:min-h-0 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-4" :aria-labelledby="props.titleId">
     <div class="[ directory-hero-heading ]">
-      <ArchiveBreadcrumb>
-        <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ props.breadcrumb }}</span>
-      </ArchiveBreadcrumb>
+      <ArchiveBreadcrumb :items="[{ label: props.breadcrumb }]" />
       <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs" :class="{ 'archive-routed-eyebrow-facts': props.facts }">
         <template v-if="props.facts"><span class="compact:hidden">{{ props.eyebrow }}</span><span class="hidden compact:inline">{{ props.facts }}</span></template>
         <template v-else>{{ props.eyebrow }}</template>

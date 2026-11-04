@@ -83,9 +83,7 @@ usePageSeo('/how-it-works/')
 
       <section class="[ how-it-works-intro ] [ section-band ] relative mx-auto grid min-h-144 max-w-[105rem] grid-cols-[minmax(0,0.88fr)_minmax(28rem,1.12fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 tablet:gap-10 compact:gap-6 compact:px-4 compact:py-4" aria-labelledby="how-it-works-page-title">
         <header class="[ how-it-works-heading ] tablet:row-start-2">
-          <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('howItWorksPage.breadcrumb') }}</span>
-          </ArchiveBreadcrumb>
+          <ArchiveBreadcrumb :items="[{ label: $t('howItWorksPage.breadcrumb') }]" />
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">
             {{ $t('howItWorksPage.eyebrow') }}
           </p>

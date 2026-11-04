@@ -29,9 +29,7 @@ definePageMeta({ navActive: 'organisations' })
 
       <section class="[ organisation-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(24rem,1.1fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="organisation-title">
         <div class="[ organisation-hero-copy ] relative z-2">
-          <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/organisations/')">{{ $t('organisations.breadcrumb') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ organisation.title }}</span>
-          </ArchiveBreadcrumb>
+          <ArchiveBreadcrumb :items="[{ label: $t('organisations.breadcrumb'), to: '/organisations/' }, { label: organisation.title }]" />
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ kindLabel }}</p>
           <h1 id="organisation-title" class="[ organisation-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">
             {{ organisation.title }}

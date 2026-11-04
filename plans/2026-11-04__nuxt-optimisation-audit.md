@@ -96,7 +96,7 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
 3. **DONE** **Record lookup by slug + 404, 6 copies, two styles** (`exhibitions/[slug].vue:12-19` throws
    inside a computed, others `if (!x) throw`). → `useRecordBySlug(list, notFoundKey)`. Also drop
    the duplicate `venueDossier` lookup (`venues/[slug].vue:23-27`, dead fallbacks).
-4. **`ArchiveBreadcrumb` with `items`**, 16 hand-written crumb lines. Drift: the root crumb is
+4. **DONE** **`ArchiveBreadcrumb` with `items`**, 16 hand-written crumb lines. Drift: the root crumb is
    missing on venue, organisation and exhibition detail pages; no `aria-current`.
 5. **`ArchiveEyebrow`** (~35 copies, 5 variants) and **`ArchiveSectionHeading`** (eyebrow + h2 +
    accent + intro, ~18 copies, high drift in leading, size and margins).

@@ -166,9 +166,7 @@ definePageMeta({ navActive: 'galleries' })
         aria-labelledby="venue-title"
       >
         <div class="[ venue-hero-copy ] relative z-2 tablet:row-start-2">
-          <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/venues/')">{{ $t('navigation.galleries') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ venue.name }}</span>
-          </ArchiveBreadcrumb>
+          <ArchiveBreadcrumb :items="[{ label: $t('navigation.galleries'), to: '/venues/' }, { label: venue.name }]" />
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.archiveVenue') }}</p>
           <h1 id="venue-title" class="[ venue-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">
             {{ venue.name }}

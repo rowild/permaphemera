@@ -66,9 +66,7 @@ usePageSeo('/contact/')
 
       <section class="[ contact-page-intro ] [ section-band ] relative mx-auto grid min-h-128 max-w-[105rem] grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-4" aria-labelledby="contact-page-title">
         <header class="[ contact-page-heading ]">
-          <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('contactPage.breadcrumb') }}</span>
-          </ArchiveBreadcrumb>
+          <ArchiveBreadcrumb :items="[{ label: $t('contactPage.breadcrumb') }]" />
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">
             {{ $t('contactPage.eyebrow') }}
           </p>

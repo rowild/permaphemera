@@ -5,14 +5,11 @@ import { fileURLToPath } from 'node:url'
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const readProjectFile = (path) => readFile(resolve(projectRoot, path), 'utf8')
 
-const [component, breadcrumb, venuePage, venueIndex, exhibitionPage, exhibitionIndex, artistsPage, artistGroup, directoryHero] = await Promise.all([
+const [component, breadcrumb, venuePage, exhibitionPage, artistGroup, directoryHero] = await Promise.all([
   readProjectFile('app/components/ArchiveTextLink.vue'),
   readProjectFile('app/components/ArchiveBreadcrumb.vue'),
   readProjectFile('app/pages/venues/[slug].vue'),
-  readProjectFile('app/pages/venues/index.vue'),
   readProjectFile('app/pages/exhibitions/[slug].vue'),
-  readProjectFile('app/pages/exhibitions/index.vue'),
-  readProjectFile('app/pages/artists/index.vue'),
   readProjectFile('app/components/ArtistDirectoryGroup.vue'),
   readProjectFile('app/components/ArchiveDirectoryHero.vue')
 ])
@@ -23,7 +20,8 @@ const checks = [
   ['paper underlines strengthen on hover and focus', /paper: '[^']*after:opacity-50[^']*group-hover\/archive-text-link:after:opacity-100[^']*group-focus-visible\/archive-text-link:after:opacity-100'/.test(component)],
   ['night underlines become archive red on hover and focus', component.includes('group-hover/archive-text-link:after:bg-archive-red') && component.includes('group-focus-visible/archive-text-link:after:bg-archive-red')],
   ['external-link icons move diagonally', /external: '[^']*translate-x-0\.5[^']*-translate-y-0\.5'/.test(component)],
-  ['breadcrumbs delegate link styling to the shared component', !breadcrumb.includes('[&_a]') && directoryHero.includes('<ArchiveTextLink :to="localePath(\'/\')">') && [artistsPage, venueIndex, exhibitionIndex].every((page) => page.includes('<ArchiveDirectoryHero')) && /<ArchiveTextLink :to="localePath\('\/exhibitions\/'\)"( surface="night")?>/.test(exhibitionPage) && venuePage.includes('<ArchiveTextLink :to="localePath(\'/venues/\')">')],
+    // Breadcrumbs are ArchiveBreadcrumb with `items` (behaviour: test/nuxt/ArchiveBreadcrumb.spec.ts); its links are ArchiveTextLink.
+  ['breadcrumbs delegate link styling to the shared component', !breadcrumb.includes('[&_a]') && breadcrumb.includes('<ArchiveTextLink') && [directoryHero, exhibitionPage, venuePage].every((page) => /<ArchiveBreadcrumb[^>]*:items=/.test(page))],
   ['paper action links use the shared component', venuePage.includes('icon-motion="external"') && exhibitionPage.includes('icon-motion="external"')],
   ['the image-overlay action uses the night variant', /<ArchiveTextLink[^>]*surface="night"/.test(venuePage)],
   ['directory continuation links use the shared component', /<ArchiveTextLink[\s\S]*artists\.showMoreUnder/.test(artistGroup)]
