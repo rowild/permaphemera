@@ -25,12 +25,7 @@ const props = defineProps<{
           <ArchiveEyebrow>
             {{ props.eyebrow }}
           </ArchiveEyebrow>
-          <h1 :id="`${props.sections[0]?.id ?? 'legal'}-page-title`" class="m-0 max-w-216 pb-2 font-display text-hero font-light leading-[0.98] tablet:text-h1-steep compact:pb-1 compact:text-5xl compact:leading-[1.04]">
-            {{ props.title }} <span class="text-archive-red">{{ props.accent }}</span>
-          </h1>
-          <p class="mt-5 mb-0 max-w-152 text-lg leading-relaxed text-archive-body compact:mt-4 compact:text-base">
-            {{ props.intro }}
-          </p>
+          <ArchivePageTitle :title-id="`${props.sections[0]?.id ?? 'legal'}-page-title`" :title="props.title" :accent="props.accent" :intro="props.intro" />
         </header>
 
         <aside class="[ legal-record ] self-center border-y border-archive-rule-warm/28 py-5 tablet:max-w-180 compact:py-4" :aria-label="props.recordAria">

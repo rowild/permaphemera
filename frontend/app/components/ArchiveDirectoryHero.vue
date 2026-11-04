@@ -28,8 +28,7 @@ const props = withDefaults(defineProps<{
         <template v-if="props.facts"><span class="compact:hidden">{{ props.eyebrow }}</span><span class="hidden compact:inline">{{ props.facts }}</span></template>
         <template v-else>{{ props.eyebrow }}</template>
       </ArchiveEyebrow>
-      <h1 :id="props.titleId" class="m-0 max-w-232 font-display text-hero font-light leading-[0.92] tablet:text-h1-steep compact:text-5xl compact:leading-none">{{ props.title }} <span class="text-archive-red">{{ props.accent }}</span></h1>
-      <p class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ props.intro }}</p>
+      <ArchivePageTitle :title-id="props.titleId" :title="props.title" :accent="props.accent" :intro="props.intro" />
     </div>
 
     <ArchiveFactLedger class="[ directory-hero-ledger ] self-end" :class="{ 'compact:hidden': !props.ledgerOnMobile }" :items="props.ledger" desktop-layout="stacked" />

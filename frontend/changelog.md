@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.56 - 2026-11-04 20:40:00 CET
+
+- One type scale for every page hero (owner decision B): the text pages (about, how it works, contact, the legal pages) and the news overview now set their title and intro like the index pages.
+
 ## 0.0.55 - 2026-11-04 20:15:00 CET
 
 - The hero wheel on the start page draws only while it is on screen (before: every frame, also when the page was scrolled far down) — less battery and processor load on phones.

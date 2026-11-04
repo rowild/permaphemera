@@ -70,12 +70,7 @@ definePageMeta({ navActive: 'about' })
           <ArchiveEyebrow>
             {{ $t('about.eyebrow') }}
           </ArchiveEyebrow>
-          <h1 id="about-page-title" class="m-0 max-w-216 pb-2 font-display text-hero font-light leading-[0.98] tablet:text-h1-steep compact:pb-1 compact:text-5xl compact:leading-[1.04]">
-            {{ $t('about.title') }} <span class="text-archive-red">{{ $t('about.accent') }}</span>
-          </h1>
-          <p class="mt-5 mb-0 max-w-152 text-lg leading-relaxed text-archive-body compact:mt-4 compact:text-base">
-            {{ $t('about.intro') }}
-          </p>
+          <ArchivePageTitle title-id="about-page-title" :title="$t('about.title')" :accent="$t('about.accent')" :intro="$t('about.intro')" />
         </div>
 
         <figure class="[ about-page-figure ] relative m-0 tablet:row-start-1">

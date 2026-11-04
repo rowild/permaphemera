@@ -102,7 +102,7 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
    accent + intro, ~18 copies, high drift in leading, size and margins).
 6. **`ArchiveRecordHero` + `ArchiveRecordFigure`**: the detail-page hero of venue, organisation,
    person, sponsor (4 copies, high drift in grid and padding; figure 3 copies).
-7. **`ArchiveEditorialHero`** (about, how-it-works, contact, legal; 4 copies) and
+7. **Hero type scale DONE 0.0.56 (`ArchivePageTitle`, decision B); the editorial hero frame itself is still open** **`ArchiveEditorialHero`** (about, how-it-works, contact, legal; 4 copies) and
    **`ArchiveActionBand`** (3 copies). Today there are three hero type scales (directory,
    editorial, news). **Owner decision B.**
 8. **Directory body:** `ArchiveDirectoryStatus` (5), `ArchiveEmptyState` (8; some buttons miss

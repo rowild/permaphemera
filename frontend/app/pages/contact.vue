@@ -70,12 +70,7 @@ usePageSeo('/contact/')
           <ArchiveEyebrow>
             {{ $t('contactPage.eyebrow') }}
           </ArchiveEyebrow>
-          <h1 id="contact-page-title" class="m-0 max-w-216 pb-2 font-display text-hero font-light leading-[0.98] tablet:text-h1-steep compact:pb-1 compact:text-5xl compact:leading-[1.04]">
-            {{ $t('contactPage.title') }} <span class="text-archive-red">{{ $t('contactPage.accent') }}</span>
-          </h1>
-          <p class="mt-5 mb-0 max-w-152 text-lg leading-relaxed text-archive-body compact:mt-4 compact:text-base">
-            {{ $t('contactPage.intro') }}
-          </p>
+          <ArchivePageTitle title-id="contact-page-title" :title="$t('contactPage.title')" :accent="$t('contactPage.accent')" :intro="$t('contactPage.intro')" />
         </header>
 
         <ArchiveContactRecord

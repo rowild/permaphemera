@@ -87,12 +87,7 @@ usePageSeo('/how-it-works/')
           <ArchiveEyebrow>
             {{ $t('howItWorksPage.eyebrow') }}
           </ArchiveEyebrow>
-          <h1 id="how-it-works-page-title" class="m-0 max-w-216 pb-2 font-display text-hero font-light leading-[0.98] tablet:text-h1-steep compact:pb-1 compact:text-5xl compact:leading-[1.04]">
-            {{ $t('howItWorksPage.title') }} <span class="text-archive-red">{{ $t('howItWorksPage.accent') }}</span>
-          </h1>
-          <p class="mt-5 mb-0 max-w-152 text-lg leading-relaxed text-archive-body compact:mt-4 compact:text-base">
-            {{ $t('howItWorksPage.intro') }}
-          </p>
+          <ArchivePageTitle title-id="how-it-works-page-title" :title="$t('howItWorksPage.title')" :accent="$t('howItWorksPage.accent')" :intro="$t('howItWorksPage.intro')" />
         </header>
 
         <figure class="[ how-it-works-figure ] relative m-0 tablet:row-start-1">
