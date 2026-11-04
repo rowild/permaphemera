@@ -5,19 +5,10 @@ import {
 import { selectRelatedExhibitions } from '~/utils/relatedExhibitions'
 import { resolveTourAccess } from '~/utils/tourAccess'
 
-const route = useRoute()
 const { venues, venueExhibitions } = useArchiveData()
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
-const routeSlug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
-const exhibition = computed(() => {
-  const record = venueExhibitions.value.find((item) => item.slug === routeSlug)
-  if (!record) throw createError({ statusCode: 404, statusMessage: t('exhibition.notFound'), fatal: true })
-  return record
-})
-// Evaluated once here, so an unknown slug throws during setup. `fatal` lets the browser show the
-// 404 page; without it the error only reached the console and the page stayed empty.
-void exhibition.value
+const { slug: routeSlug, record: exhibition } = useRecordBySlug(venueExhibitions, 'exhibition.notFound')
 
 const gallery = computed(() => venues.value.find((item) => item.slug === exhibition.value?.venue_slug))
 const galleryName = computed(() => gallery.value?.name ?? exhibition.value.venue)

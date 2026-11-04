@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { Building2, CalendarDays, ExternalLink, MapPin, Users } from '@lucide/vue'
 
-const route = useRoute()
 const { organisations } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-const slug = String(route.params.slug ?? '')
-const organisation = computed(() => organisations.value.find((item) => item.slug === slug))
-if (!organisation.value) {
-  throw createError({ statusCode: 404, statusMessage: t('organisations.notFound'), fatal: true })
-}
+const { slug, record: organisation } = useRecordBySlug(organisations, 'organisations.notFound')
 
 const kindLabel = computed(() => t(`organisations.kinds.${organisation.value!.kind}`, organisation.value!.kind))
 // Venues grouped by how the organisation relates to them: runs, seat, exhibits at.

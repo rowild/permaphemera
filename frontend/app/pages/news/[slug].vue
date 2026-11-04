@@ -2,17 +2,12 @@
 import { newsMarkdownToHtml } from '~/utils/newsMarkdown'
 import { formatNewsDate } from '~/utils/resolveNews'
 
-const route = useRoute()
 const { news } = useArchiveData()
-const { t, locale } = useI18n()
+const { locale } = useI18n()
 const localePath = useLocalePath()
 
-const slug = String(route.params.slug ?? '')
-const index = computed(() => news.value.findIndex((item) => item.slug === slug))
-const article = computed(() => news.value[index.value])
-if (!article.value) {
-  throw createError({ statusCode: 404, statusMessage: t('newsPage.notFound'), fatal: true })
-}
+const { slug, record: article } = useRecordBySlug(news, 'newsPage.notFound')
+const index = computed(() => news.value.indexOf(article.value))
 // The list is newest first: the newer article comes before this one.
 const newer = computed(() => (index.value > 0 ? news.value[index.value - 1] : undefined))
 const older = computed(() => news.value[index.value + 1])

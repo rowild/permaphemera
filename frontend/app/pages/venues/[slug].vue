@@ -15,31 +15,15 @@ interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'a
   location_id: string
 }
 
-const route = useRoute()
 const { venueExhibitions, venues } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
-const slug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
-const venueRecord = computed(() => venues.value.find((item) => item.slug === slug))
-// ResolvedVenue carries no `location_id` (it's already the resolved venue,
-// not the raw record) — `venueDossier` re-finds the same record from the
-// same `venues` collection `venueRecord` already matched by slug.
-const venueDossier = computed(() => venues.value.find((item) => item.slug === slug))
-// Throwing inside the computed (rather than returning undefined and guarding
-// afterward) lets TypeScript see `venue.value` as always-`Venue` from here on
-// — including in the template, which a separate post-hoc `if (!venue.value)`
-// guard does not narrow for. Evaluation is still forced eagerly below via
-// `void venue.value`, preserving the original synchronous 404-on-setup timing.
+const { slug, record: venueRecord } = useRecordBySlug(venues, 'venue.notFound')
+// The page's view of the gallery (ResolvedVenue plus the fields this page names differently).
 const venue = computed<Venue>(() => {
   const record = venueRecord.value
-  if (!record) {
-    throw createError({ statusCode: 404, statusMessage: t('venue.notFound'), fatal: true })
-  }
-
-  const dossier = venueDossier.value
-
   return {
-    id: dossier?.id ?? `venue-${record.id}`,
+    id: record.id,
     slug: record.slug,
     location_id: record.id,
     name: record.name,
@@ -47,24 +31,22 @@ const venue = computed<Venue>(() => {
     address: record.address,
     latitude: record.latitude,
     longitude: record.longitude,
-    website_url: dossier?.website_url || record.website_url,
+    website_url: record.website_url,
     links: record.links,
     image: record.image,
     featured: record.featured,
     archive_number: record.archive_number,
-    hero_image: dossier?.hero_image ?? record.image,
-    hero_image_alt: dossier?.hero_image_alt ?? record.image_alt,
-    lede: dossier?.lede ?? record.description,
-    image_caption: dossier?.image_caption,
-    coordinate_label: dossier?.coordinate_label,
-    aboutHtml: dossier?.aboutHtml,
+    hero_image: record.hero_image ?? record.image,
+    hero_image_alt: record.hero_image_alt ?? record.image_alt,
+    lede: record.lede ?? record.description,
+    image_caption: record.image_caption,
+    coordinate_label: record.coordinate_label,
+    aboutHtml: record.aboutHtml,
     part_of: record.part_of,
     spaces: record.spaces,
     organisations: record.organisations
   }
 })
-
-void venue.value
 
 const exhibitions = computed(() => venueExhibitions.value.filter((item) => item.venue_slug === venue.value?.slug))
 // Word the ledger after what the venue holds: exhibitions, events, or a mix of both.

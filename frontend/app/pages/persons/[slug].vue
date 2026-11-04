@@ -2,16 +2,11 @@
 import { Building2, CalendarDays, ExternalLink, Landmark, MapPin } from '@lucide/vue'
 import { linkLabel } from '~/utils/externalLinks'
 
-const route = useRoute()
 const { persons } = useArchiveData()
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
-const slug = String(route.params.slug ?? '')
-const person = computed(() => persons.value.find((item) => item.slug === slug))
-if (!person.value) {
-  throw createError({ statusCode: 404, statusMessage: t('persons.notFound'), fatal: true })
-}
+const { slug, record: person } = useRecordBySlug(persons, 'persons.notFound')
 // An artist's page belongs to "Künstler:innen" in the menu; other persons to no item.
 if (person.value.isArtist) useNavActive('artists')
 

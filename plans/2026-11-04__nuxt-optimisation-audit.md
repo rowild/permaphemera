@@ -89,11 +89,11 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
    frame: `<header>`/`<footer>` sit inside `<main>` (no banner/contentinfo landmark), and the
    header's `sticky top-0` does nothing (inside `overflow:hidden`). `navActive` via
    `definePageMeta`; start page `layout: false` (intro, `belowHeroStep`). **Owner decision A.**
-2. **Search ↔ URL query, 5 copies** (`exhibitions/index.vue:51-64`, `venues/index.vue:62-80`,
+2. **DONE (d6fbcea)** **Search ↔ URL query, 5 copies** (`exhibitions/index.vue:51-64`, `venues/index.vue:62-80`,
    `organisations/index.vue:74-87`, `artists/index.vue:81-102`, `venues/[slug].vue:145-158`;
    `normalize` 5×). → `useQueryParam(name, { validate })` + `utils/search.ts`
    (`normalize`, `matchesQuery`).
-3. **Record lookup by slug + 404, 6 copies, two styles** (`exhibitions/[slug].vue:12-19` throws
+3. **DONE** **Record lookup by slug + 404, 6 copies, two styles** (`exhibitions/[slug].vue:12-19` throws
    inside a computed, others `if (!x) throw`). → `useRecordBySlug(list, notFoundKey)`. Also drop
    the duplicate `venueDossier` lookup (`venues/[slug].vue:23-27`, dead fallbacks).
 4. **`ArchiveBreadcrumb` with `items`**, 16 hand-written crumb lines. Drift: the root crumb is

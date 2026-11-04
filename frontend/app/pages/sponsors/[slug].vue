@@ -2,16 +2,10 @@
 import { ExternalLink } from '@lucide/vue'
 import { hostnameOf } from '~/utils/externalLinks'
 
-const route = useRoute()
 const { sponsorPages } = useArchiveData()
-const { t } = useI18n()
 const localePath = useLocalePath()
 
-const slug = String(route.params.slug ?? '')
-const sponsor = computed(() => sponsorPages.value.find((item) => item.slug === slug))
-if (!sponsor.value) {
-  throw createError({ statusCode: 404, statusMessage: t('sponsorPages.notFound'), fatal: true })
-}
+const { slug, record: sponsor } = useRecordBySlug(sponsorPages, 'sponsorPages.notFound')
 const hasSupports = computed(() => Boolean(sponsor.value && (sponsor.value.exhibitions.length || sponsor.value.venues.length || sponsor.value.persons.length || sponsor.value.towns.length)))
 
 usePageSeo(`/sponsors/${slug}/`)
