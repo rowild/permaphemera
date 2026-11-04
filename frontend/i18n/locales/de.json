@@ -18,6 +18,7 @@
     "seoDescription": "Archiv temporärer Kunstausstellungen in österreichischen Galerien: 360°-Rundgänge, Künstler:innen, Orte und Daten, auch nach dem Ende jeder Ausstellung.",
     "archiveLoading": "Das Archiv wird geladen …",
     "archiveUnavailable": "Das Archiv konnte nicht von {url} geladen werden.",
+    "errorNotFound": "Seite nicht gefunden",
     "errorExplanation": "Die gesuchte Seite ist nicht verfügbar.",
     "errorHome": "Zurück zum Archiv"
   },

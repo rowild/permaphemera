@@ -43,7 +43,7 @@ const labels = computed(() => exhibitionLinkLabels(props.exhibition, archiveToda
       </button>
       <NuxtLink
         class="[ venue-list-link ] flex items-center justify-center text-archive-red focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-archive-red"
-        :to="localePath(`/exhibitions/${props.exhibition.slug}`)"
+        :to="localePath(`/exhibitions/${props.exhibition.slug}/`)"
         :aria-label="$t(labels.openFor, { title: props.exhibition.title })"
       >
         <span class="sr-only">{{ $t(labels.open) }}</span>

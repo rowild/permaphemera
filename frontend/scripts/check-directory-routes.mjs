@@ -236,7 +236,9 @@ const { readdir } = await import('node:fs/promises')
 const pageFiles = (await readdir(new URL('../app/pages/', import.meta.url), { recursive: true })).filter((file) => file.endsWith('.vue'))
 for (const file of pageFiles) {
   const source = await readText(`app/pages/${file}`)
-  assert.ok(/usePageSeo\(/.test(source) || /<ExhibitionGroupPage/.test(source), `app/pages/${file} must call usePageSeo().`)
+  // A page that only redirects (definePageMeta redirect) or only answers 404 ([...slug].vue)
+  // never renders, so it has no SEO entry.
+  assert.ok(/usePageSeo\(/.test(source) || /<ExhibitionGroupPage/.test(source) || /definePageMeta\(\{\s*redirect:/.test(source) || file === '[...slug].vue', `app/pages/${file} must call usePageSeo().`)
 }
 for (const file of [...pageFiles.map((file) => `app/pages/${file}`), 'app/components/ExhibitionGroupPage.vue']) {
   assert.doesNotMatch(await readText(file), /useSeoMeta\(/, `${file} must not set its own meta; usePageSeo() does.`)

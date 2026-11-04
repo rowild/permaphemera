@@ -19,9 +19,9 @@ export default defineNuxtConfig({
   devServer: {
     port: 4991
   },
-  routeRules: {
-    '/locations': { redirect: { to: '/venues', statusCode: 301 } },
-    '/locations/**': { redirect: { to: '/venues/**', statusCode: 301 } }
+  // Canonical addresses end with "/" (shared/seo.mjs): every link gets it, also one written without.
+  experimental: {
+    defaults: { nuxtLink: { trailingSlash: 'append' } }
   },
   css: ['~/assets/css/main.css'],
   i18n: {
@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'de',
     strategy: 'prefix_except_default',
+    trailingSlash: true,
     langDir: 'locales',
     detectBrowserLanguage: {
       useCookie: true,

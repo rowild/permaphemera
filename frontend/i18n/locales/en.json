@@ -18,6 +18,7 @@
     "seoDescription": "Archive of temporary art exhibitions in Austrian galleries: 360° tours, artists, venues and dates, kept accessible after each exhibition has closed.",
     "archiveLoading": "Loading the archive…",
     "archiveUnavailable": "The archive could not be loaded from {url}.",
+    "errorNotFound": "Page not found",
     "errorExplanation": "The page you were looking for is not available.",
     "errorHome": "Back to the archive"
   },

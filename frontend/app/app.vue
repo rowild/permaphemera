@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { localeProperties, t } = useI18n()
+const { t } = useI18n()
 const route = useRoute()
 
 // The archive loads in the background. A page whose meta says `archiveOptional`
@@ -9,12 +9,7 @@ watch(error, (value) => {
   if (value) showError(createError({ statusCode: 503, statusMessage: t('site.archiveUnavailable', { url: directusUrl }), fatal: true }))
 }, { immediate: true })
 
-useHead(() => ({
-  htmlAttrs: {
-    lang: localeProperties.value.language ?? localeProperties.value.code,
-    dir: localeProperties.value.dir ?? 'ltr'
-  }
-}))
+useDocumentLang()
 </script>
 
 <template>

@@ -334,7 +334,7 @@ usePageSeo(`/venues/${slug}/`)
                 <p class="[ venue-preview-date ] mt-0 mb-[0.4rem] text-xs tracking-[0.08em] text-archive-ochre uppercase"><time :datetime="previewExhibition.start_date">{{ previewExhibition.date_range }}</time></p>
                 <h3 class="[ venue-preview-title ] m-0 max-w-152 text-h2-sm leading-[0.95] font-light">{{ previewExhibition.title }}</h3>
                 <p class="[ artist-name ] mt-[0.4rem] mb-[1.15rem] font-display text-lg text-archive-ochre">{{ previewExhibition.artist }}</p>
-                <ArchiveTextLink class="[ venue-preview-link ] gap-[0.65rem]" surface="night" :to="localePath(`/exhibitions/${previewExhibition.slug}`)">
+                <ArchiveTextLink class="[ venue-preview-link ] gap-[0.65rem]" surface="night" :to="localePath(`/exhibitions/${previewExhibition.slug}/`)">
                   {{ previewLabels ? $t(previewLabels.open) : '' }}
                   <template #icon><ArchiveArrow class="w-[1.65rem]" /></template>
                 </ArchiveTextLink>

@@ -71,6 +71,10 @@ Directus container on the same origin, so institutional networks never see a sec
   carries `X-Robots-Tag: noai, noimageai` and `tdm-reservation: 1` (`add_header … always` in
   `location /cms/` and `location /`; `/_nuxt/` has its own `add_header` and holds only code).
   Backup of the config before that change: `permaphemera.at.bak-2026-11-04-ai` next to it.
+  Since 2026-11-04 old gallery links `/locations/` and `/locations/<slug>/` (also under
+  `/en/`) answer `301` to `/venues/…/` (two `location ~ ^(/en)?/locations…` blocks before
+  `location /`; the browser app does the same in `pages/locations/[...slug].vue`). Backup:
+  `permaphemera.at.bak-2026-11-04-locations`.
 - Monthly news report (since 2026-11-04, `frontend/scripts/server/news-report.sh`): code in
   `/srv/sites/permaphemera.at/news-report/` (replaced by every deploy), settings and state in
   `/srv/sites/permaphemera.at/news-report-data/` (`mail.env`: `SMTP_URL`

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.50 - 2026-11-04 16:40:00 CET
+
+- The four index pages (exhibitions, galleries, organisations, artists) share one hero: the breadcrumb sits at the same height on every page, the text below takes the room it needs, and the hero is at least 480px high on desktop and tablet (organisations was lower).
+- Unknown addresses show the site's own "Seite nicht gefunden" / "Page not found" in the language of the address, with the page language set, and lead back to the start page of that language (before: an English framework message and always the German start page).
+- Old gallery links `/locations/…` arrive at the gallery again, in the browser and with a real 301 from the server (before: "Galerie nicht gefunden").
+- Every internal link ends with "/", as the canonical addresses do (two links to exhibition pages did not).
+- Directus: every relation list shows the status dot (published or draft) of the record in each row.
+- Tests: components, composables and pages are tested inside a real Nuxt app (`@nuxt/test-utils`, `test/nuxt/`); the owner's rule "components first, test first" is in `frontend/AGENTS.md`.
+
 ## 0.0.49 - 2026-11-04 13:20:00 CET
 
 - News articles can link inside their text: to a page of the site (`[text](/exhibitions/…/)`, in the current language, without reloading the page) or to an https address (opens in a new tab). Every other link stays plain text; scripts and attributes never pass.
