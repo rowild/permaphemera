@@ -141,6 +141,8 @@ Every line is one relation. The naming rule (conventions §2 rule 12) makes an M
 | statement | exhibition | M2O, child | `pp_exhibition_statements.exhibition` | dies with the exhibition |
 | statement | person | M2O | `pp_exhibition_statements.person` | who said it |
 | person | venue | M2M | `pp_mm__persons_venues` | the venue represents or works with the person; aliases `venues` / `persons`; `relation` (`curator`, `head`, empty) names the curator and the head on the gallery page (2026-11-04) |
+| exhibition | event edition | M2O | `pp_exhibitions.event_edition` → `pp_event_editions` | the edition (year) of an event (festival, Lange Nacht der Museen) the exhibition is part of; alias `exhibitions` on the edition (2026-11-04) |
+| event | edition, organisation, website, news | O2M / M2M | `pp_event_editions` (event, year, edition_number, dates; no status), `pp_event_organisers` (organisation, role), `pp_mm__events_websites`, `pp_mm__events_news` | `pp_events` (title, slug, kind festival/long_night, location, texts de/en, image, website_url, seo): plans/2026-11-04__events-collection.md (2026-11-04) |
 | sponsor | venue | M2M | `pp_mm__sponsors_venues` | aliases `venues` / `sponsors` |
 | sponsor | exhibition | M2M | `pp_mm__exhibitions_sponsors` | aliases `exhibitions` / `sponsors` |
 | sponsor | person | M2M | `pp_mm__persons_sponsors` | aliases `persons` / `sponsors` |

@@ -52,6 +52,97 @@ collections:
           translation: PERMAPHEMERA
       unarchive_value: null
       versioning: false
+  - collection: pp_event_editions
+    meta:
+      accountability: all
+      archive_app_filter: false
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_event_editions
+      color: '#a6523c'
+      display_template: '{{event.title}} {{year}}'
+      group: pp_events
+      hidden: true
+      icon: event_repeat
+      item_duplication_fields: null
+      note: >-
+        One year (or one round) of an event, with its dates. The exhibitions of
+        that year point here.
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: sort
+      translations:
+        - language: en-US
+          plural: Event Editions
+          singular: Event Edition
+          translation: Event Editions
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_event_editions
+  - collection: pp_event_organisers
+    meta:
+      accountability: all
+      archive_app_filter: false
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_event_organisers
+      color: '#a6523c'
+      display_template: '{{organisation.title}} · {{role}}'
+      group: pp_events
+      hidden: true
+      icon: groups
+      item_duplication_fields: null
+      note: >-
+        The organisation behind an event, in one role (like the organisers of an
+        exhibition).
+      preview_url: null
+      singleton: false
+      sort: 2
+      sort_field: sort
+      translations:
+        - language: en-US
+          plural: Event Organisers
+          singular: Event Organiser
+          translation: Event Organisers
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_event_organisers
+  - collection: pp_events
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: closed
+      collection: pp_events
+      color: '#a6523c'
+      display_template: '{{title}}'
+      group: pp_archive
+      hidden: false
+      icon: celebration
+      item_duplication_fields: null
+      note: >-
+        Festivals and similar events with one or more exhibitions, usually every
+        year. One record per event; each year is an edition. The exhibitions
+        belong to an edition.
+      preview_url: null
+      singleton: false
+      sort: 12
+      sort_field: null
+      translations:
+        - language: en-US
+          plural: Events
+          singular: Event
+          translation: Events
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: pp_events
   - collection: pp_exhibition_organisers
     meta:
       accountability: all
@@ -229,6 +320,58 @@ collections:
       versioning: false
     schema:
       name: pp_meta
+  - collection: pp_mm__events_news
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__events_news
+      color: '#a6523c'
+      display_template: null
+      group: pp_news
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: Events a news article is about.
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Events ↔ News
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__events_news
+  - collection: pp_mm__events_websites
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__events_websites
+      color: '#a6523c'
+      display_template: null
+      group: pp_websites
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: The links of an event.
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Events ↔ Websites
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__events_websites
   - collection: pp_mm__exhibitions_news
     meta:
       accountability: all
@@ -246,7 +389,7 @@ collections:
       note: Exhibitions a news article is about.
       preview_url: null
       singleton: false
-      sort: 1
+      sort: 2
       sort_field: null
       translations:
         - language: en-US
@@ -328,7 +471,7 @@ collections:
         sheets, documents.
       preview_url: null
       singleton: false
-      sort: 1
+      sort: 2
       sort_field: null
       translations:
         - language: en-US
@@ -380,7 +523,7 @@ collections:
       note: Organisations a news article is about.
       preview_url: null
       singleton: false
-      sort: 2
+      sort: 3
       sort_field: null
       translations:
         - language: en-US
@@ -406,7 +549,7 @@ collections:
       note: Persons a news article is about.
       preview_url: null
       singleton: false
-      sort: 3
+      sort: 4
       sort_field: null
       translations:
         - language: en-US
@@ -432,7 +575,7 @@ collections:
       note: Sponsors a news article is about.
       preview_url: null
       singleton: false
-      sort: 4
+      sort: 5
       sort_field: null
       translations:
         - language: en-US
@@ -458,7 +601,7 @@ collections:
       note: Galleries a news article is about.
       preview_url: null
       singleton: false
-      sort: 5
+      sort: 6
       sort_field: null
       translations:
         - language: en-US
@@ -484,7 +627,7 @@ collections:
       note: The links of an organisation.
       preview_url: null
       singleton: false
-      sort: 2
+      sort: 3
       sort_field: null
       translations:
         - language: en-US
@@ -592,7 +735,7 @@ collections:
         2026-09-15.
       preview_url: null
       singleton: false
-      sort: 3
+      sort: 4
       sort_field: null
       translations:
         - language: en-US
@@ -646,7 +789,7 @@ collections:
         the main link; the site shows at most three links.
       preview_url: null
       singleton: false
-      sort: 4
+      sort: 5
       sort_field: null
       translations:
         - language: en-US
@@ -960,6 +1103,32 @@ collections:
       versioning: false
     schema:
       name: pp_sponsors
+  - collection: pp_translations__events
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_translations__events
+      color: '#a6523c'
+      display_template: null
+      group: pp_events
+      hidden: true
+      icon: translate
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 3
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Events · Translations
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_translations__events
   - collection: pp_translations__exhibition_statements
     meta:
       accountability: all
@@ -1081,7 +1250,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 6
+      sort: 7
       sort_field: null
       translations:
         - language: en-US
@@ -1289,7 +1458,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 5
+      sort: 6
       sort_field: null
       translations:
         - language: en-US
@@ -1476,6 +1645,2133 @@ fields:
       is_nullable: true
       is_unique: false
       is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_editions
+    field: event
+    type: string
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: event
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 1
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: event
+      table: pp_event_editions
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_events
+      foreign_key_column: id
+  - collection: pp_event_editions
+    field: year
+    type: integer
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: null
+      display_options: null
+      field: year
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: year
+      table: pp_event_editions
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_editions
+    field: edition_number
+    type: integer
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: null
+      display_options: null
+      field: edition_number
+      group: null
+      hidden: false
+      interface: input
+      note: >-
+        The count the event itself uses ("7." Comicfestival). Empty when it does
+        not count.
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: edition_number
+      table: pp_event_editions
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_editions
+    field: start_date
+    type: date
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: null
+      display_options: null
+      field: start_date
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: start_date
+      table: pp_event_editions
+      data_type: date
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_editions
+    field: end_date
+    type: date
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: null
+      display_options: null
+      field: end_date
+      group: null
+      hidden: false
+      interface: datetime
+      note: The same day as start_date for a one-night event.
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: end_date
+      table: pp_event_editions
+      data_type: date
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_editions
+    field: exhibitions
+    type: alias
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{status}} {{title}}'
+      field: exhibitions
+      group: null
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{status}} {{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_event_editions
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_event_editions
+    field: id
+    type: uuid
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_event_editions
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_editions
+    field: sort
+    type: integer
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_event_editions
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_editions
+    field: user_created
+    type: string
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_event_editions
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_event_editions
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_event_editions
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_editions
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_event_editions
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_event_editions
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_event_editions
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_event_editions
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_organisers
+    field: event
+    type: string
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: event
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 1
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: event
+      table: pp_event_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_events
+      foreign_key_column: id
+  - collection: pp_event_organisers
+    field: organisation
+    type: string
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: organisation
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: organisation
+      table: pp_event_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+  - collection: pp_event_organisers
+    field: role
+    type: string
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: labels
+      display_options: null
+      field: role
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: >-
+        organiser: puts it on. presenter: shows it as its own programme.
+        cooperation: co-produced. supporter: backed it.
+      options:
+        allowOther: false
+        choices:
+          - text: organiser
+            value: organiser
+          - text: presenter
+            value: presenter
+          - text: cooperation
+            value: cooperation
+          - text: supporter
+            value: supporter
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: role
+      table: pp_event_organisers
+      data_type: varchar
+      default_value: organiser
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_organisers
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_event_organisers
+    field: id
+    type: uuid
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_event_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_organisers
+    field: sort
+    type: integer
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_event_organisers
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_organisers
+    field: user_created
+    type: string
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_event_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_event_organisers
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_event_organisers
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_event_organisers
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_event_organisers
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_event_organisers
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_event_organisers
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_event_organisers
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: ui_accordion_main
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_main
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+        start: first
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Main
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: ui_accordion_translations
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_translations
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Translations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: ui_group_title
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_title
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Title
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: ui_group_media
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_media
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Media
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: ui_group_relations
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_relations
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Relations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: ui_group_content
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_content
+      group: ui_accordion_main
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: open
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Content
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: ui_group_seo
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_seo
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: SEO
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: status
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - background: var(--theme--primary)
+            foreground: '#FFFFFF'
+            text: $t:published
+            value: published
+          - background: '#D3DAE4'
+            foreground: '#18222F'
+            text: $t:draft
+            value: draft
+          - background: var(--theme--warning)
+            foreground: '#FFFFFF'
+            text: $t:archived
+            value: archived
+        showAsDot: true
+      field: status
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: status
+      table: pp_events
+      data_type: varchar
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: title
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: >-
+        The name, verbatim: "Spittaler Comicfestival", "ORF Lange Nacht der
+        Museen".
+      options:
+        trim: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: pp_events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: slug
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: slug
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: null
+      options:
+        slug: true
+        trim: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: slug
+      table: pp_events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: kind
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: labels
+      display_options: null
+      field: kind
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: >-
+        festival: a festival over days or weeks. long_night: one night in many
+        places. Drives wording only.
+      options:
+        allowOther: true
+        choices:
+          - text: festival
+            value: festival
+          - text: long_night
+            value: long_night
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: kind
+      table: pp_events
+      data_type: varchar
+      default_value: festival
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: location
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: location
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown-m2o
+      note: >-
+        The town. Empty for an event across the country (Lange Nacht der
+        Museen).
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: location
+      table: pp_events
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_locations
+      foreign_key_column: id
+  - collection: pp_events
+    field: website_url
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: website_url
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: The event's own website.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: website_url
+      table: pp_events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: image
+    type: uuid
+    meta:
+      collection: pp_events
+      conditions: null
+      display: image
+      display_options: null
+      field: image
+      group: ui_group_media
+      hidden: false
+      interface: file-image
+      note: A poster or photo of the event. Credit goes into image_caption.
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image
+      table: pp_events
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_files
+      foreign_key_column: id
+  - collection: pp_events
+    field: image_alt
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: image_alt
+      group: ui_group_media
+      hidden: false
+      interface: input
+      note: null
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image_alt
+      table: pp_events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: image_caption
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: image_caption
+      group: ui_group_media
+      hidden: false
+      interface: input
+      note: Credit line under the picture.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: image_caption
+      table: pp_events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: editions
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{event.status}} {{event.title}} {{year}} · {{edition_number}}'
+      field: editions
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{event.status}} {{event.title}} {{year}} · {{edition_number}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: organisers
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{organisation.status}} {{organisation.title}} · {{role}}'
+      field: organisers
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{organisation.status}} {{organisation.title}} · {{role}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: websites
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{websites_id.status}} {{websites_id.title}}'
+      field: websites
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{websites_id.status}} {{websites_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: news
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      field: news
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: lede
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: lede
+      group: ui_group_content
+      hidden: false
+      interface: input
+      note: One-line teaser under the title.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lede
+      table: pp_events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: about_html
+    type: text
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: about_html
+      group: ui_group_content
+      hidden: false
+      interface: input-rich-text-html
+      note: 'Paragraphs, bold, italic, lists. No links: add them under Links.'
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations:
+        - language: en-US
+          translation: About
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about_html
+      table: pp_events
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: description
+    type: text
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: description
+      group: ui_group_content
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: description
+      table: pp_events
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: seo
+    type: json
+    meta:
+      collection: pp_events
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: ui_group_seo
+      hidden: false
+      interface: seo-interface
+      note: >-
+        Search engines and link previews. Here: English text, share image,
+        robots and sitemap for both languages. Translations: title and
+        description per language.
+      options:
+        defaultChangeFrequency: monthly
+        defaultPriority: '0.5'
+        descriptionTemplate: '{{lede}}'
+        showOgImage: true
+        showSearchControls: true
+        showSitemap: true
+        titleTemplate: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_events
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: translations
+    type: alias
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: translations
+      group: ui_accordion_translations
+      hidden: false
+      interface: translations
+      note: null
+      options:
+        defaultLanguage: en
+        defaultOpenSplitView: true
+        languageField: name
+        userLanguage: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - translations
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_events
+    field: id
+    type: uuid
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_events
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: sort
+    type: integer
+    meta:
+      collection: pp_events
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_events
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: user_created
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_events
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_events
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_events
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_events
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_events
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_events
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_events
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_events
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_events
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_events
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
       is_primary_key: false
       is_generated: false
       generation_expression: null
@@ -4580,6 +6876,51 @@ fields:
       validation: null
       validation_message: null
       width: full
+  - collection: pp_exhibitions
+    field: event_edition
+    type: string
+    meta:
+      collection: pp_exhibitions
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{event.title}} {{year}}'
+      field: event_edition
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown-m2o
+      note: >-
+        The edition of an event (festival, Lange Nacht der Museen) this
+        exhibition is part of. Empty for most exhibitions.
+      options:
+        template: '{{event.title}} {{year}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: event_edition
+      table: pp_exhibitions
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_event_editions
+      foreign_key_column: id
   - collection: pp_locations
     field: ui_accordion_main
     type: alias
@@ -5527,6 +7868,32 @@ fields:
       validation: null
       validation_message: null
       width: full
+  - collection: pp_locations
+    field: events
+    type: alias
+    meta:
+      collection: pp_locations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{status}} {{title}}'
+      field: events
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{status}} {{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - o2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_meta
     field: id
     type: uuid
@@ -5636,6 +8003,338 @@ fields:
       name: applied_at
       table: pp_meta
       data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__events_news
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__events_news
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__events_news
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__events_news
+    field: events_id
+    type: string
+    meta:
+      collection: pp_mm__events_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: events_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: events_id
+      table: pp_mm__events_news
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_events
+      foreign_key_column: id
+  - collection: pp_mm__events_news
+    field: news_id
+    type: string
+    meta:
+      collection: pp_mm__events_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{published_on}} · {{title}}'
+      field: news_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{published_on}} · {{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: news_id
+      table: pp_mm__events_news
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_news
+      foreign_key_column: id
+  - collection: pp_mm__events_news
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__events_news
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__events_news
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__events_websites
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__events_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__events_websites
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__events_websites
+    field: events_id
+    type: string
+    meta:
+      collection: pp_mm__events_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: events_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: events_id
+      table: pp_mm__events_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_events
+      foreign_key_column: id
+  - collection: pp_mm__events_websites
+    field: websites_id
+    type: string
+    meta:
+      collection: pp_mm__events_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: websites_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: websites_id
+      table: pp_mm__events_websites
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+  - collection: pp_mm__events_websites
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__events_websites
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__events_websites
+      data_type: integer
       default_value: null
       max_length: null
       numeric_precision: null
@@ -10759,6 +13458,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_news
+    field: events
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{events_id.status}} {{events_id.title}}'
+      field: events
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{events_id.status}} {{events_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_organisation_memberships
     field: organisation
     type: string
@@ -13061,6 +15786,32 @@ fields:
       sort: 5
       special:
         - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_organisations
+    field: events
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{event.status}} {{event.title}} · {{role}}'
+      field: events
+      group: ui_group_relations
+      hidden: false
+      interface: list-o2m
+      note: null
+      options:
+        template: '{{event.status}} {{event.title}} · {{role}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - o2m
       translations: null
       validation: null
       validation_message: null
@@ -16775,6 +19526,392 @@ fields:
       validation: null
       validation_message: null
       width: full
+  - collection: pp_translations__events
+    field: id
+    type: integer
+    meta:
+      collection: pp_translations__events
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_translations__events
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__events
+    field: events_id
+    type: string
+    meta:
+      collection: pp_translations__events
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: events_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: events_id
+      table: pp_translations__events
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_events
+      foreign_key_column: id
+  - collection: pp_translations__events
+    field: languages_code
+    type: string
+    meta:
+      collection: pp_translations__events
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: languages_code
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: languages_code
+      table: pp_translations__events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: languages
+      foreign_key_column: code
+  - collection: pp_translations__events
+    field: image_alt
+    type: string
+    meta:
+      collection: pp_translations__events
+      conditions: null
+      display: null
+      display_options: null
+      field: image_alt
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_events.image_alt
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image_alt
+      table: pp_translations__events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__events
+    field: image_caption
+    type: string
+    meta:
+      collection: pp_translations__events
+      conditions: null
+      display: null
+      display_options: null
+      field: image_caption
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_events.image_caption
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: image_caption
+      table: pp_translations__events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__events
+    field: lede
+    type: string
+    meta:
+      collection: pp_translations__events
+      conditions: null
+      display: null
+      display_options: null
+      field: lede
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_events.lede
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lede
+      table: pp_translations__events
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__events
+    field: about_html
+    type: text
+    meta:
+      collection: pp_translations__events
+      conditions: null
+      display: null
+      display_options: null
+      field: about_html
+      group: null
+      hidden: false
+      interface: input-rich-text-html
+      note: Translated field for pp_events.about_html
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations:
+        - language: en-US
+          translation: About
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: about_html
+      table: pp_translations__events
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__events
+    field: description
+    type: text
+    meta:
+      collection: pp_translations__events
+      conditions: null
+      display: null
+      display_options: null
+      field: description
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: Translated field for pp_events.description
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 8
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: description
+      table: pp_translations__events
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__events
+    field: seo
+    type: json
+    meta:
+      collection: pp_translations__events
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: null
+      hidden: false
+      interface: seo-interface
+      note: Translated field for pp_events.seo
+      options:
+        descriptionTemplate: '{{lede}}'
+        showOgImage: false
+        showSearchControls: false
+        showSitemap: false
+        titleTemplate: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 9
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_translations__events
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_translations__exhibition_statements
     field: id
     type: integer
@@ -22955,6 +26092,32 @@ fields:
       validation: null
       validation_message: null
       width: full
+  - collection: pp_websites
+    field: events
+    type: alias
+    meta:
+      collection: pp_websites
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{events_id.status}} {{events_id.title}}'
+      field: events
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{events_id.status}} {{events_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
 systemFields:
   - collection: directus_activity
     field: timestamp
@@ -22969,6 +26132,237 @@ systemFields:
     schema:
       is_indexed: true
 relations:
+  - collection: pp_event_editions
+    field: event
+    related_collection: pp_events
+    meta:
+      junction_field: null
+      many_collection: pp_event_editions
+      many_field: event
+      one_allowed_collections: null
+      one_collection: pp_events
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: editions
+      sort_field: sort
+    schema:
+      table: pp_event_editions
+      column: event
+      foreign_key_table: pp_events
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_event_editions
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_event_editions
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_event_editions
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_event_editions
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_event_editions
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_event_editions
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_event_organisers
+    field: event
+    related_collection: pp_events
+    meta:
+      junction_field: null
+      many_collection: pp_event_organisers
+      many_field: event
+      one_allowed_collections: null
+      one_collection: pp_events
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: organisers
+      sort_field: sort
+    schema:
+      table: pp_event_organisers
+      column: event
+      foreign_key_table: pp_events
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_event_organisers
+    field: organisation
+    related_collection: pp_organisations
+    meta:
+      junction_field: null
+      many_collection: pp_event_organisers
+      many_field: organisation
+      one_allowed_collections: null
+      one_collection: pp_organisations
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: events
+      sort_field: null
+    schema:
+      table: pp_event_organisers
+      column: organisation
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_event_organisers
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_event_organisers
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_event_organisers
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_event_organisers
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_event_organisers
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_event_organisers
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_events
+    field: location
+    related_collection: pp_locations
+    meta:
+      junction_field: null
+      many_collection: pp_events
+      many_field: location
+      one_allowed_collections: null
+      one_collection: pp_locations
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: events
+      sort_field: null
+    schema:
+      table: pp_events
+      column: location
+      foreign_key_table: pp_locations
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_events
+    field: image
+    related_collection: directus_files
+    meta:
+      junction_field: null
+      many_collection: pp_events
+      many_field: image
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_events
+      column: image
+      foreign_key_table: directus_files
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_events
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_events
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_events
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_events
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_events
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_events
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
   - collection: pp_exhibition_organisers
     field: exhibition
     related_collection: pp_exhibitions
@@ -23347,6 +26741,27 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
+  - collection: pp_exhibitions
+    field: event_edition
+    related_collection: pp_event_editions
+    meta:
+      junction_field: null
+      many_collection: pp_exhibitions
+      many_field: event_edition
+      one_allowed_collections: null
+      one_collection: pp_event_editions
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: exhibitions
+      sort_field: null
+    schema:
+      table: pp_exhibitions
+      column: event_edition
+      foreign_key_table: pp_event_editions
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
   - collection: pp_locations
     field: user_created
     related_collection: directus_users
@@ -23389,6 +26804,90 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
+  - collection: pp_mm__events_news
+    field: events_id
+    related_collection: pp_events
+    meta:
+      junction_field: news_id
+      many_collection: pp_mm__events_news
+      many_field: events_id
+      one_allowed_collections: null
+      one_collection: pp_events
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: news
+      sort_field: null
+    schema:
+      table: pp_mm__events_news
+      column: events_id
+      foreign_key_table: pp_events
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__events_news
+    field: news_id
+    related_collection: pp_news
+    meta:
+      junction_field: events_id
+      many_collection: pp_mm__events_news
+      many_field: news_id
+      one_allowed_collections: null
+      one_collection: pp_news
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: events
+      sort_field: sort
+    schema:
+      table: pp_mm__events_news
+      column: news_id
+      foreign_key_table: pp_news
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__events_websites
+    field: events_id
+    related_collection: pp_events
+    meta:
+      junction_field: websites_id
+      many_collection: pp_mm__events_websites
+      many_field: events_id
+      one_allowed_collections: null
+      one_collection: pp_events
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: websites
+      sort_field: sort
+    schema:
+      table: pp_mm__events_websites
+      column: events_id
+      foreign_key_table: pp_events
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__events_websites
+    field: websites_id
+    related_collection: pp_websites
+    meta:
+      junction_field: events_id
+      many_collection: pp_mm__events_websites
+      many_field: websites_id
+      one_allowed_collections: null
+      one_collection: pp_websites
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: events
+      sort_field: null
+    schema:
+      table: pp_mm__events_websites
+      column: websites_id
+      foreign_key_table: pp_websites
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
   - collection: pp_mm__exhibitions_news
     field: exhibitions_id
     related_collection: pp_exhibitions
@@ -24733,6 +28232,48 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
+  - collection: pp_translations__events
+    field: events_id
+    related_collection: pp_events
+    meta:
+      junction_field: languages_code
+      many_collection: pp_translations__events
+      many_field: events_id
+      one_allowed_collections: null
+      one_collection: pp_events
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: translations
+      sort_field: null
+    schema:
+      table: pp_translations__events
+      column: events_id
+      foreign_key_table: pp_events
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__events
+    field: languages_code
+    related_collection: languages
+    meta:
+      junction_field: events_id
+      many_collection: pp_translations__events
+      many_field: languages_code
+      one_allowed_collections: null
+      one_collection: languages
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_translations__events
+      column: languages_code
+      foreign_key_table: languages
+      foreign_key_column: code
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
   - collection: pp_translations__exhibition_statements
     field: exhibition_statements_id
     related_collection: pp_exhibition_statements

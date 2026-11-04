@@ -2,14 +2,16 @@
 import { directusImageUrl } from '~/utils/archiveAsset'
 import { formatArchiveDate } from '~/utils/archiveDate'
 import {
-  CalendarCheck, CalendarDays, Clock3, ExternalLink, FileText, Hourglass, Info, Link2, MapPin, Palette, Ticket, Users, Landmark } from '@lucide/vue'
+  CalendarCheck, CalendarDays, CalendarRange, Clock3, ExternalLink, FileText, Hourglass, Info, Link2, MapPin, Palette, Ticket, Users, Landmark } from '@lucide/vue'
 import { selectRelatedExhibitions } from '~/utils/relatedExhibitions'
 import { resolveTourAccess } from '~/utils/tourAccess'
 
-const { venues, venueExhibitions } = useArchiveData()
+const { venues, venueExhibitions, eventOfExhibition } = useArchiveData()
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const { slug: routeSlug, record: exhibition } = useRecordBySlug(venueExhibitions, 'exhibition.notFound')
+// The event this exhibition is part of (a festival, the Lange Nacht der Museen), with its year.
+const partOf = computed(() => (exhibition.value ? eventOfExhibition.value.get(exhibition.value.id) : undefined))
 
 const gallery = computed(() => venues.value.find((item) => item.slug === exhibition.value?.venue_slug))
 const galleryName = computed(() => gallery.value?.name ?? exhibition.value.venue)
@@ -113,6 +115,10 @@ definePageMeta({ navActive: 'exhibitions' })
           <ArchiveMetadataRow v-if="exhibition.date_range" :label="$t('exhibition.dates')" variant="exhibition">
             <template #icon><CalendarDays :size="18" aria-hidden="true" /></template>
             {{ exhibition.date_range }}
+          </ArchiveMetadataRow>
+          <ArchiveMetadataRow v-if="partOf" :label="$t('events.partOf')" variant="exhibition">
+            <template #icon><CalendarRange :size="18" aria-hidden="true" /></template>
+            <ArchiveLinkList :items="[{ label: `${partOf.title} ${partOf.year}`, to: `/events/${partOf.slug}/` }]" />
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.opening_hours" :label="$t('exhibition.openingHours')" variant="exhibition">
             <template #icon><Clock3 :size="18" aria-hidden="true" /></template>

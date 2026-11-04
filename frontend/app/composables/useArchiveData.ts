@@ -1,5 +1,6 @@
 import { buildArtistDirectory } from '~/utils/artistDirectory'
 import { isVisible } from '~/utils/contentStatus'
+import { eventByExhibition, resolveEvents } from '~/utils/resolveEvents'
 import { resolveExhibitions } from '~/utils/resolveExhibitions'
 import { resolveNews } from '~/utils/resolveNews'
 import { resolveOrganisations } from '~/utils/resolveOrganisations'
@@ -101,6 +102,20 @@ function buildArchiveData() {
     locale: locale.value
   }))
 
+  // Festivals and museum nights with their editions and exhibitions (plans/2026-11-04__events-collection.md).
+  const eventsForLocale = computed(() => resolveEvents({
+    events: archive.value.events,
+    editions: archive.value.eventEditions,
+    organisers: archive.value.eventOrganisers,
+    organisations: archive.value.organisations,
+    locations: archive.value.locations,
+    exhibitions: archive.value.exhibitions,
+    websites: archive.value.websites,
+    eventsWebsites: archive.value.eventsWebsites,
+    locale: locale.value
+  }))
+  const eventOfExhibition = computed(() => eventByExhibition(eventsForLocale.value))
+
   // Published news articles, newest first, with their published linked records.
   const newsForLocale = computed(() => resolveNews({
     news: archive.value.news,
@@ -114,6 +129,8 @@ function buildArchiveData() {
     newsPersons: archive.value.newsPersons,
     newsOrganisations: archive.value.newsOrganisations,
     newsSponsors: archive.value.newsSponsors,
+    events: eventsForLocale.value,
+    eventsNews: archive.value.eventsNews,
     locale: locale.value
   }))
 
@@ -125,6 +142,8 @@ function buildArchiveData() {
     artistDirectory,
     persons: personsForLocale,
     sponsorPages: sponsorPagesForLocale,
-    news: newsForLocale
+    news: newsForLocale,
+    events: eventsForLocale,
+    eventOfExhibition
   }
 }

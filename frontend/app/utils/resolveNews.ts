@@ -1,3 +1,4 @@
+import type { ResolvedEvent } from '~/utils/resolveEvents'
 import { linkedRecords } from '~/utils/junction'
 import type { JunctionRow, NewsRecord, NewsTopic } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
@@ -29,6 +30,7 @@ export interface ResolvedNews {
   persons: ResolvedPerson[]
   organisations: ResolvedOrganisation[]
   sponsors: ResolvedSponsor[]
+  events: ResolvedEvent[]
 }
 
 export interface NewsSources {
@@ -43,6 +45,8 @@ export interface NewsSources {
   newsPersons: JunctionRow[]
   newsOrganisations: JunctionRow[]
   newsSponsors: JunctionRow[]
+  events: ResolvedEvent[]
+  eventsNews: JunctionRow[]
   locale: string
 }
 
@@ -53,7 +57,7 @@ const text = (value: unknown): string | undefined => (typeof value === 'string' 
 export const resolveNews = (s: NewsSources): ResolvedNews[] => {
   // The resolved lists hold published records only, so a link to a draft simply finds nothing.
   const byId = <T extends { id: string }>(records: T[]) => new Map(records.map((record) => [record.id, record]))
-  const [exhibitionById, venueById, personById, organisationById, sponsorById] = [byId(s.exhibitions), byId(s.venues), byId(s.persons), byId(s.organisations), byId(s.sponsors)]
+  const [exhibitionById, venueById, personById, organisationById, sponsorById, eventById] = [byId(s.exhibitions), byId(s.venues), byId(s.persons), byId(s.organisations), byId(s.sponsors), byId(s.events)]
   return s.news
   .filter(isVisible)
   .map((record) => {
@@ -82,7 +86,8 @@ export const resolveNews = (s: NewsSources): ResolvedNews[] => {
       venues,
       persons: linkedRecords(s.newsPersons, 'news_id', record.id, 'persons_id', personById),
       organisations: linkedRecords(s.newsOrganisations, 'news_id', record.id, 'organisations_id', organisationById),
-      sponsors: linkedRecords(s.newsSponsors, 'news_id', record.id, 'sponsors_id', sponsorById)
+      sponsors: linkedRecords(s.newsSponsors, 'news_id', record.id, 'sponsors_id', sponsorById),
+      events: linkedRecords(s.eventsNews, 'news_id', record.id, 'events_id', eventById)
     }
   })
   .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title))

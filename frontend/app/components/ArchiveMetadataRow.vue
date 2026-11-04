@@ -31,7 +31,7 @@ const iconClasses: Record<MetadataRowVariant, string> = {
   <div class="[ archive-metadata-row ]" :class="rowClasses[variant]">
     <dt :class="termClasses[variant]">
       <span :class="iconClasses[variant]"><slot name="icon" /></span>
-      <span class="[ metadata-label ]">{{ label }}</span>
+      <span class="[ metadata-label ] min-w-0 hyphens-auto wrap-break-word">{{ label }}</span>
     </dt>
     <dd :class="valueClasses[variant]"><slot /></dd>
   </div>

@@ -17,15 +17,15 @@ test('every collection name passes the conventions regex', () => {
   }
 })
 
-test('the expected 48 prefixed collections exist', () => {
+test('the expected 54 prefixed collections exist', () => {
   const names = collections.map((c) => c.collection).filter((n) => n.startsWith('pp_')).sort()
   assert.deepEqual(names, [
-    'pp_archive', 'pp_exhibition_organisers', 'pp_exhibition_participations', 'pp_exhibition_statements', 'pp_exhibitions', 'pp_locations',
-    'pp_meta', 'pp_mm__exhibitions_news', 'pp_mm__exhibitions_sponsors', 'pp_mm__exhibitions_venues', 'pp_mm__exhibitions_websites', 'pp_mm__locations_sponsors',
+    'pp_archive', 'pp_event_editions', 'pp_event_organisers', 'pp_events', 'pp_exhibition_organisers', 'pp_exhibition_participations', 'pp_exhibition_statements', 'pp_exhibitions', 'pp_locations',
+    'pp_meta', 'pp_mm__events_news', 'pp_mm__events_websites', 'pp_mm__exhibitions_news', 'pp_mm__exhibitions_sponsors', 'pp_mm__exhibitions_venues', 'pp_mm__exhibitions_websites', 'pp_mm__locations_sponsors',
     'pp_mm__news_organisations', 'pp_mm__news_persons', 'pp_mm__news_sponsors', 'pp_mm__news_venues',
     'pp_mm__organisations_websites', 'pp_mm__persons_roles', 'pp_mm__persons_sponsors', 'pp_mm__persons_venues', 'pp_mm__persons_websites', 'pp_mm__sponsors_venues', 'pp_mm__venues_websites',
     'pp_navigation_items', 'pp_navigations', 'pp_news', 'pp_organisation_memberships', 'pp_organisation_venue_relations', 'pp_organisations', 'pp_persons', 'pp_quotes', 'pp_roles', 'pp_sponsors',
-    'pp_translations__exhibition_statements', 'pp_translations__exhibitions', 'pp_translations__locations',
+    'pp_translations__events', 'pp_translations__exhibition_statements', 'pp_translations__exhibitions', 'pp_translations__locations',
     'pp_translations__navigation_items', 'pp_translations__news', 'pp_translations__organisation_memberships', 'pp_translations__organisations', 'pp_translations__persons', 'pp_translations__quotes', 'pp_translations__roles', 'pp_translations__sponsors', 'pp_translations__venues', 'pp_translations__websites',
     'pp_venues', 'pp_websites',
   ])
@@ -206,4 +206,32 @@ test('the person–venue link carries an optional relation: curator or head', ()
   assert.deepEqual(relation.meta.options.choices.map((choice) => choice.value), ['curator', 'head'])
   assert.equal(relation.schema.is_nullable, true)
   assert.equal(field('pp_mm__persons_sponsors', 'relation'), undefined)
+})
+
+// Events (plans/2026-11-04__events-collection.md): an event with its own page, one edition per
+// year, exhibitions belong to an edition, organisations put the event on.
+test('an event has its texts, kind, town, picture and SEO, the texts in both languages', () => {
+  for (const f of ['status', 'title', 'slug', 'kind', 'location', 'lede', 'description', 'about_html', 'image', 'image_alt', 'image_caption', 'website_url', 'seo', 'translations']) assert.ok(field('pp_events', f), `pp_events.${f}`)
+  assert.deepEqual(field('pp_events', 'kind').meta.options.choices.map((choice) => choice.value), ['festival', 'long_night'])
+  for (const f of ['lede', 'description', 'about_html', 'image_alt', 'image_caption']) assert.ok(field('pp_translations__events', f), `pp_translations__events.${f}`)
+  assert.equal(field('pp_translations__events', 'slug'), undefined)
+})
+
+test('an edition is one year of an event, without a status of its own', () => {
+  for (const f of ['event', 'edition_number', 'year', 'start_date', 'end_date', 'sort']) assert.ok(field('pp_event_editions', f), `pp_event_editions.${f}`)
+  assert.equal(field('pp_event_editions', 'status'), undefined)
+  assert.equal(field('pp_event_editions', 'year').meta.required, true)
+  assert.ok(relations.find((r) => r.collection === 'pp_event_editions' && r.field === 'event' && r.related_collection === 'pp_events' && r.meta.one_field === 'editions'))
+})
+
+test('an exhibition can belong to one edition of an event', () => {
+  assert.ok(field('pp_exhibitions', 'event_edition'))
+  assert.ok(relations.find((r) => r.collection === 'pp_exhibitions' && r.field === 'event_edition' && r.related_collection === 'pp_event_editions' && r.meta.one_field === 'exhibitions'))
+})
+
+test('organisations put an event on in a role; links and news reach events', () => {
+  assert.ok(relations.find((r) => r.collection === 'pp_event_organisers' && r.field === 'organisation' && r.related_collection === 'pp_organisations'))
+  assert.deepEqual(field('pp_event_organisers', 'role').meta.options.choices.map((choice) => choice.value), ['organiser', 'presenter', 'cooperation', 'supporter'])
+  assert.equal(field('pp_event_organisers', 'status'), undefined)
+  for (const name of ['pp_mm__events_news', 'pp_mm__events_websites']) assert.ok(byName[name], name)
 })

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.65 - 2026-11-04 23:17:12 CET
+
+- New: **Veranstaltungen** (events). Festivals and museum nights get their own pages with each year's edition and its exhibitions: the Spittaler Comicfestival (7th edition, 2026, organised by Austriatoon) and the ORF Lange Nacht der Museen (3 October 2026, four exhibitions). An index at /events/ and the menu item "Veranstaltungen".
+- An exhibition that is part of an event says so ("Teil von Spittaler Comicfestival 2026"); organisation pages list their events, news articles their linked events.
+- The Spittaler Comicfestival is no longer listed as an organisation.
+- Person, organisation and event pages: the breadcrumb runs across the top; the picture or the about text starts level with the eyebrow.
+- Long labels in the fact lists are divided by hyphenation instead of running into their values ("Veranstal-tungen").
+- Behind the scenes: a restore from a backup now restores every table (organisations, news and six link tables were left out before).
+
 ## 0.0.64 - 2026-11-04 21:19:50 CET
 
 - A gallery page names its curator ("Kurator:in") and its head ("Leitung"), under "Betrieben von": Séverin Krön at the Galerie im Schloss Porcia, Margaretha Bauer at the BV Galerie. Other persons tied to a gallery (a represented artist, a photographer) stay on their own pages only.

@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, integer, m2o, markdown, richText, seo, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-11-04.2'
+export const SCHEMA_VERSION = '2026-11-04.3'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -31,7 +31,7 @@ export const entities = {
     layout: [
       section('title', 'Title', ['status', 'title', 'slug']),
       section('address', 'Address', ['postal_code', 'state', 'country', 'latitude', 'longitude']),
-      section('relations', 'Relations', ['venues', 'organisations', 'sponsors']),
+      section('relations', 'Relations', ['venues', 'organisations', 'events', 'sponsors']),
       content(['description']),
     ],
   },
@@ -127,6 +127,7 @@ export const entities = {
       str('slug', { required: true, unique: true, slug: true, width: 'half' }),
       dropdown('kind', ['exhibition', 'event'], { default: 'exhibition', width: 'half', note: 'What the record is. An event (a sale, a festival night) gets event wording on the site; an exhibition gets exhibition wording.' }),
       m2o('primary_venue', 'venues', { oneField: 'exhibitions', oneTemplate: '{{title}}' }),
+      m2o('event_edition', 'event_editions', { template: '{{event.title}} {{year}}', oneField: 'exhibitions', oneTemplate: '{{title}}', note: 'The edition of an event (festival, Lange Nacht der Museen) this exhibition is part of. Empty for most exhibitions.' }),
       date('start_date', { required: true }),
       date('end_date', { required: true }),
       bool('is_permanent'),
@@ -146,7 +147,7 @@ export const entities = {
       seo({ titleTemplate: '{{title}}', descriptionTemplate: '{{summary}}', translationTitleTemplate: '{{title}}', translationDescriptionTemplate: '{{summary}}' }),
     ],
     layout: [
-      section('title', 'Title', ['status', 'title', 'slug', 'kind', 'primary_venue']),
+      section('title', 'Title', ['status', 'title', 'slug', 'kind', 'primary_venue', 'event_edition']),
       section('dates', 'Dates', ['start_date', 'end_date', 'is_permanent', 'date_range', 'opening_hours', 'vernissage', 'admission']),
       section('media', 'Media', ['image', 'image_alt', 'source_pdf', 'medium']),
       section('tour', 'Tour', ['tour', 'tour_status', 'tour_available_from']),
@@ -226,7 +227,7 @@ export const entities = {
       section('title', 'Title', ['status', 'title', 'short_title', 'slug', 'kind']),
       section('seat', 'Seat', ['address', 'location', 'founded']),
       section('media', 'Media', ['logo', 'logo_alt', 'image', 'image_alt', 'image_caption']),
-      section('relations', 'Relations', ['venue_relations', 'exhibitions', 'members', 'websites', 'news']),
+      section('relations', 'Relations', ['venue_relations', 'exhibitions', 'events', 'members', 'websites', 'news']),
       content(['lede', 'about_html', 'description']),
       section('seo', 'SEO', ['seo']),
     ],
@@ -262,6 +263,69 @@ export const entities = {
     layout: { flat: ['organisation', 'venue', 'relation'] },
   },
 
+  // Events (plans/2026-11-04__events-collection.md): something that takes place at a set time,
+  // usually every year, and shows one or more exhibitions: a festival, the Lange Nacht der Museen.
+  // Not an organisation (the organisations that put it on are its organisers) and not a gallery.
+  events: {
+    kind: 'main', icon: 'celebration', sort: 12, labels: ['Events', 'Event', 'Events'],
+    display: ['title'], displayTemplate: '{{title}}',
+    note: 'Festivals and similar events with one or more exhibitions, usually every year. One record per event; each year is an edition. The exhibitions belong to an edition.',
+    fields: [
+      str('title', { required: true, note: 'The name, verbatim: "Spittaler Comicfestival", "ORF Lange Nacht der Museen".' }),
+      str('slug', { required: true, unique: true, slug: true, width: 'half' }),
+      dropdown('kind', ['festival', 'long_night'], { default: 'festival', allowOther: true, width: 'half', note: 'festival: a festival over days or weeks. long_night: one night in many places. Drives wording only.' }),
+      m2o('location', 'locations', { oneField: 'events', oneTemplate: '{{title}}', note: 'The town. Empty for an event across the country (Lange Nacht der Museen).' }),
+      str('website_url', { width: 'half', note: 'The event\'s own website.' }),
+      file('image', { image: true, note: 'A poster or photo of the event. Credit goes into image_caption.' }),
+      str('image_alt', { width: 'half', translated: true }),
+      str('image_caption', { translated: true, note: 'Credit line under the picture.' }),
+      str('lede', { translated: true, note: 'One-line teaser under the title.' }),
+      richText('about_html', { translated: true, label: 'About', note: 'Paragraphs, bold, italic, lists. No links: add them under Links.' }),
+      text('description', { translated: true }),
+      seo({ titleTemplate: '{{title}}', descriptionTemplate: '{{lede}}', translationDescriptionTemplate: '{{lede}}' }),
+    ],
+    layout: [
+      section('title', 'Title', ['status', 'title', 'slug', 'kind', 'location', 'website_url']),
+      section('media', 'Media', ['image', 'image_alt', 'image_caption']),
+      section('relations', 'Relations', ['editions', 'organisers', 'websites', 'news']),
+      content(['lede', 'about_html', 'description']),
+      section('seo', 'SEO', ['seo']),
+    ],
+  },
+
+  event_editions: {
+    // An edition has no status: it is shown when its event is published.
+    statusless: true,
+    kind: 'child', host: 'events', hostField: 'event', hostAlias: 'editions',
+    // Starts with the event, so the list shows the event's status dot (an edition has none).
+    hostAliasTemplate: '{{event.title}} {{year}} · {{edition_number}}',
+    icon: 'event_repeat', sort: 1, labels: ['Event Editions', 'Event Edition', 'Event Editions'],
+    display: ['event', 'year'], displayTemplate: '{{event.title}} {{year}}',
+    note: 'One year (or one round) of an event, with its dates. The exhibitions of that year point here.',
+    fields: [
+      integer('edition_number', { width: 'half', note: 'The count the event itself uses ("7." Comicfestival). Empty when it does not count.' }),
+      integer('year', { required: true, width: 'half' }),
+      date('start_date', { width: 'half' }),
+      date('end_date', { width: 'half', note: 'The same day as start_date for a one-night event.' }),
+    ],
+    layout: { flat: ['event', 'year', 'edition_number', 'start_date', 'end_date', 'exhibitions'] },
+  },
+
+  event_organisers: {
+    // A relation row has no status: it is shown when every record it connects is published.
+    statusless: true,
+    kind: 'child', host: 'events', hostField: 'event', hostAlias: 'organisers',
+    hostAliasTemplate: '{{organisation.title}} · {{role}}',
+    icon: 'groups', sort: 2, labels: ['Event Organisers', 'Event Organiser', 'Event Organisers'],
+    display: ['organisation', 'role'], displayTemplate: '{{organisation.title}} · {{role}}',
+    note: 'The organisation behind an event, in one role (like the organisers of an exhibition).',
+    fields: [
+      m2o('organisation', 'organisations', { template: '{{title}}', oneField: 'events', oneTemplate: '{{event.title}} · {{role}}' }),
+      dropdown('role', ['organiser', 'presenter', 'cooperation', 'supporter'], { default: 'organiser', note: 'organiser: puts it on. presenter: shows it as its own programme. cooperation: co-produced. supporter: backed it.' }),
+    ],
+    layout: { flat: ['event', 'organisation', 'role'] },
+  },
+
   sponsors: {
     kind: 'main', icon: 'handshake', sort: 5, labels: ['Sponsors', 'Sponsor', 'Sponsors'],
     display: ['title'], displayTemplate: '{{title}}',
@@ -293,7 +357,7 @@ export const entities = {
     ],
     layout: [
       section('title', 'Title', ['status', 'title', 'url', 'kind']),
-      section('relations', 'Relations', ['exhibitions', 'persons', 'organisations', 'venues']),
+      section('relations', 'Relations', ['exhibitions', 'persons', 'organisations', 'venues', 'events']),
     ],
   },
 
@@ -364,7 +428,7 @@ export const entities = {
     layout: [
       section('title', 'Title', ['status', 'title', 'slug', 'published_on', 'topic']),
       section('media', 'Media', ['image', 'image_alt']),
-      section('relations', 'Linked records', ['exhibitions', 'venues', 'persons', 'organisations', 'sponsors']),
+      section('relations', 'Linked records', ['exhibitions', 'venues', 'persons', 'organisations', 'events', 'sponsors']),
       content(['summary', 'description']),
       section('seo', 'SEO', ['seo']),
     ],
@@ -394,5 +458,7 @@ export const junctions = [
   { a: 'news', b: 'persons', aliasA: 'persons', aliasB: 'news', owner: 'news', sortedFrom: 'news', note: 'Persons a news article is about.' },
   { a: 'news', b: 'organisations', aliasA: 'organisations', aliasB: 'news', owner: 'news', sortedFrom: 'news', note: 'Organisations a news article is about.' },
   { a: 'news', b: 'sponsors', aliasA: 'sponsors', aliasB: 'news', owner: 'news', sortedFrom: 'news', note: 'Sponsors a news article is about.' },
+  { a: 'events', b: 'websites', aliasA: 'websites', aliasB: 'events', owner: 'websites', sortedFrom: 'events', note: 'The links of an event.' },
+  { a: 'events', b: 'news', aliasA: 'news', aliasB: 'events', owner: 'news', sortedFrom: 'news', note: 'Events a news article is about.' },
   { a: 'venues', b: 'websites', aliasA: 'websites', aliasB: 'venues', owner: 'websites', sortedFrom: 'venues', note: 'Further links of a venue, usually its social profiles. website_url stays the main link; the site shows at most three links.' },
 ]

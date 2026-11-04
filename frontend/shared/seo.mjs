@@ -244,7 +244,7 @@ const entry = ({ path, locale, record, generated, description, suffix, image, im
   }
 }
 
-/** One entry per published exhibition, gallery, person, organisation, sponsor and news page, in both languages. */
+/** One entry per published exhibition, gallery, person, organisation, event, sponsor and news page, in both languages. */
 /** With `path`, only that page's entries are built (a page needs one; the deploy needs all). */
 /** `today` (YYYY-MM-DD) decides the tour sentence of exhibitions; default: today in Vienna. */
 export const recordSeoEntries = (archive, { assetBase, messages, path: only, today = viennaToday() }) => {
@@ -405,6 +405,38 @@ export const recordSeoEntries = (archive, { assetBase, messages, path: only, tod
     }
   }
 
+  // Events (plans/2026-11-04__events-collection.md): a festival or a museum night with its editions.
+  for (const event of (archive.events ?? []).filter(published)) {
+    const path = `/events/${event.slug}/`
+    if (skip(path)) continue
+    const town = locations.get(event.location)?.title
+    const sameAs = [...(present(event.website_url) ? [event.website_url] : []), ...linksOf(archive, 'eventsWebsites', 'events_id', event.id)]
+    const image = realImage(event, 'image')
+    const share = shareable(event, 'image')
+    const years = (archive.eventEditions ?? []).filter((edition) => edition.event === event.id).map((edition) => edition.year).sort()
+    for (const locale of LOCALES) {
+      const kind = message(messages, locale, `events.kinds.${event.kind}`)
+      const description = textOf(event, locale, 'lede') ?? textOf(event, locale, 'description') ?? textOf(event, locale, 'about_html')
+        ?? message(messages, locale, 'events.recordSeoDescription', { name: event.title })
+      list.push(entry({
+        path, locale, record: event,
+        generated: generatedTitle([kind && town && `${event.title} · ${kind}, ${town}`, kind && `${event.title} · ${kind}`, event.title]),
+        description, image: share, imageAlt: textOf(event, locale, 'image_alt') ?? event.title, ogType: 'website', changeFrequency: 'monthly', priority: '0.5',
+        jsonLd: (url) => [
+          {
+            '@context': 'https://schema.org', '@type': 'EventSeries', name: event.title, url,
+            ...(image ? { image } : {}),
+            description: fitDescription(description ?? '', 300),
+            ...(years.length ? { startDate: String(years[0]) } : {}),
+            ...(town ? { location: { '@type': 'Place', name: town, address: { '@type': 'PostalAddress', addressLocality: town, addressCountry: 'AT' } } } : {}),
+            ...(sameAs.length ? { sameAs } : {})
+          },
+          breadcrumbs([home(locale), { name: message(messages, locale, 'events.breadcrumb'), url: absolute('/events/', locale) }, { name: event.title, url }])
+        ]
+      }, assetBase))
+    }
+  }
+
   for (const sponsor of (archive.sponsors ?? []).filter(published)) {
     const path = `/sponsors/${sponsor.slug}/`
     if (skip(path)) continue
@@ -466,6 +498,7 @@ const STATIC_PAGES = [
   { path: '/artists/', title: 'artists.seoTitle', description: 'artists.seoDescription', changeFrequency: 'weekly', priority: '0.8' },
   { path: '/venues/', title: 'galleries.seoTitle', description: 'galleries.seoDescription', count: 'venues', changeFrequency: 'weekly', priority: '0.8' },
   { path: '/organisations/', title: 'organisations.seoTitle', description: 'organisations.seoDescription', count: 'organisations', changeFrequency: 'weekly', priority: '0.6' },
+  { path: '/events/', title: 'events.seoTitle', description: 'events.seoDescription', count: 'events', changeFrequency: 'monthly', priority: '0.6' },
   { path: '/news/', title: 'newsPage.seoTitle', description: 'newsPage.seoDescription', changeFrequency: 'weekly', priority: '0.6' },
   { path: '/about/', title: 'about.seoTitle', description: 'about.seoDescription', changeFrequency: 'monthly', priority: '0.6' },
   { path: '/how-it-works/', title: 'howItWorksPage.seoTitle', description: 'howItWorksPage.seoDescription', changeFrequency: 'monthly', priority: '0.5' },
@@ -495,7 +528,8 @@ export const staticSeoEntries = (messages, counts = {}) => STATIC_PAGES.flatMap(
 /** The numbers in the fixed pages' texts ("13 galleries…"): published records only. */
 export const seoCounts = (archive) => ({
   venues: (archive.venues ?? []).filter(published).length,
-  organisations: (archive.organisations ?? []).filter(published).length
+  organisations: (archive.organisations ?? []).filter(published).length,
+  events: (archive.events ?? []).filter(published).length
 })
 
 /** The entry of one page for the running site: a fixed page at once, a record page once the archive is loaded. */

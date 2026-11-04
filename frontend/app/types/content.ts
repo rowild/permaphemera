@@ -175,6 +175,8 @@ export interface ExhibitionRecord {
   slug: string
   kind: ExhibitionKind
   primary_venue: string
+  /** The edition of an event this exhibition is part of (pp_event_editions.id), if any. */
+  event_edition?: string | null
   start_date: string
   end_date: string
   is_permanent: boolean
@@ -339,6 +341,50 @@ export interface ExhibitionOrganiserRecord {
   sort: number
 }
 
+/** pp_events — a festival or similar event, usually every year (plans/2026-11-04__events-collection.md). */
+export type EventKind = 'festival' | 'long_night'
+
+export interface EventRecord {
+  id: string
+  slug: string
+  title: string
+  kind: EventKind
+  /** The town (pp_locations.id); empty for an event across the country. */
+  location: string | null
+  website_url: string | null
+  image?: string | null
+  image_alt?: string | null
+  image_caption?: string | null
+  lede: string | null
+  /** HTML from the WYSIWYG field. */
+  about_html: string | null
+  description: string | null
+  status: ContentStatus
+  sort: number
+  translations: TranslationEntry[]
+  seo?: SeoData | null
+}
+
+/** pp_event_editions — one year of an event; no status of its own (shown with its event). */
+export interface EventEditionRecord {
+  id: string
+  event: string
+  edition_number: number | null
+  year: number
+  start_date: string | null
+  end_date: string | null
+  sort: number
+}
+
+/** pp_event_organisers — the organisation behind an event, in one role. */
+export interface EventOrganiserRecord {
+  id: string
+  event: string
+  organisation: string
+  role: ExhibitionOrganiserRole
+  sort: number
+}
+
 /** Everything the site reads, fetched once from Directus in the JSON item shape. */
 /** pp_quotes — a short quote for the start page; one published quote shows at random. */
 export interface QuoteRecord {
@@ -416,4 +462,9 @@ export interface ArchiveSnapshot {
   newsPersons: JunctionRow[]
   newsOrganisations: JunctionRow[]
   newsSponsors: JunctionRow[]
+  events: EventRecord[]
+  eventEditions: EventEditionRecord[]
+  eventOrganisers: EventOrganiserRecord[]
+  eventsWebsites: JunctionRow[]
+  eventsNews: JunctionRow[]
 }

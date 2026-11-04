@@ -961,6 +961,42 @@
     "sponsorsTitle": "Sponsors",
     "sponsorsIntro": "Companies and institutions that support PERMAPHEMERA. Each page shows the records they support."
   },
+  "events": {
+    "breadcrumb": "Events",
+    "seoTitle": "Events: festivals and museum nights · PERMAPHEMERA",
+    "seoDescription": "{count} events in the PERMAPHEMERA archive: festivals and museum nights in Austria, each edition with its exhibitions.",
+    "eyebrow": "Event index",
+    "title": "Events and their",
+    "accent": "exhibitions.",
+    "intro": "Festivals and museum nights that show one or more exhibitions, each edition with its exhibitions in the archive.",
+    "ledgerEvents": "Events",
+    "ledgerEditions": "Editions",
+    "ledgerExhibitions": "Exhibitions",
+    "kinds": {
+      "festival": "Festival",
+      "long_night": "Museum night"
+    },
+    "open": "Open event",
+    "openFor": "Open event: {name}",
+    "editionCount": "{count} edition | {count} editions",
+    "exhibitionCount": "{count} exhibition | {count} exhibitions",
+    "edition": "Edition {number} · {year}",
+    "editionNumber": "Edition {number}",
+    "editionYear": "Edition {year}",
+    "editions": "Editions",
+    "acrossAustria": "All of Austria",
+    "links": "Link | Links",
+    "aboutEyebrow": "About the event",
+    "exhibitionsTitle": "Exhibitions {year}",
+    "noExhibitions": "No exhibition of {name} is in the archive yet.",
+    "fallbackLede": "{kind} in the PERMAPHEMERA archive.",
+    "recordSeoDescription": "{name} in the PERMAPHEMERA archive: its editions and their exhibitions.",
+    "notFound": "Event not found",
+    "partOf": "Part of",
+    "organised": "Events",
+    "directory": "Event directory",
+    "eventCount": "{count} event | {count} events"
+  },
   "persons": {
     "notFound": "Person not found",
     "seoDescription": "{name} in the PERMAPHEMERA archive: exhibitions, roles, links and biography.",
@@ -1030,7 +1066,8 @@
       "venues": "Galleries",
       "persons": "People",
       "organisations": "Organisations",
-      "sponsors": "Sponsors"
+      "sponsors": "Sponsors",
+      "events": "Events"
     },
     "pagerAria": "More news",
     "newer": "Newer article",

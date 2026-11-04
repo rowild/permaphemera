@@ -961,6 +961,42 @@
     "sponsorsTitle": "Sponsoren",
     "sponsorsIntro": "Unternehmen und Institutionen, die PERMAPHEMERA unterstützen. Jede Seite zeigt die unterstützten Einträge."
   },
+  "events": {
+    "breadcrumb": "Veranstaltungen",
+    "seoTitle": "Veranstaltungen: Festivals und Museumsnächte · PERMAPHEMERA",
+    "seoDescription": "{count} Veranstaltungen im PERMAPHEMERA-Archiv: Festivals und Museumsnächte in Österreich, jede Ausgabe mit ihren Ausstellungen.",
+    "eyebrow": "Veranstaltungsindex",
+    "title": "Veranstaltungen und ihre",
+    "accent": "Ausstellungen.",
+    "intro": "Festivals und Museumsnächte, die eine oder mehrere Ausstellungen zeigen, jede Ausgabe mit ihren Ausstellungen im Archiv.",
+    "ledgerEvents": "Veranstaltungen",
+    "ledgerEditions": "Ausgaben",
+    "ledgerExhibitions": "Ausstellungen",
+    "kinds": {
+      "festival": "Festival",
+      "long_night": "Museumsnacht"
+    },
+    "open": "Veranstaltung öffnen",
+    "openFor": "Veranstaltung öffnen: {name}",
+    "editionCount": "{count} Ausgabe | {count} Ausgaben",
+    "exhibitionCount": "{count} Ausstellung | {count} Ausstellungen",
+    "edition": "{number}. Ausgabe · {year}",
+    "editionNumber": "{number}. Ausgabe",
+    "editionYear": "Ausgabe {year}",
+    "editions": "Ausgaben",
+    "acrossAustria": "Ganz Österreich",
+    "links": "Link | Links",
+    "aboutEyebrow": "Über die Veranstaltung",
+    "exhibitionsTitle": "Ausstellungen {year}",
+    "noExhibitions": "Von {name} ist noch keine Ausstellung im Archiv.",
+    "fallbackLede": "{kind} im PERMAPHEMERA-Archiv.",
+    "recordSeoDescription": "{name} im PERMAPHEMERA-Archiv: die Ausgaben mit ihren Ausstellungen.",
+    "notFound": "Veranstaltung nicht gefunden",
+    "partOf": "Teil von",
+    "organised": "Veranstaltungen",
+    "directory": "Veranstaltungsverzeichnis",
+    "eventCount": "{count} Veranstaltung | {count} Veranstaltungen"
+  },
   "persons": {
     "notFound": "Person nicht gefunden",
     "seoDescription": "{name} im PERMAPHEMERA-Archiv: Ausstellungen, Rollen, Links und Biografie.",
@@ -1030,7 +1066,8 @@
       "venues": "Galerien",
       "persons": "Personen",
       "organisations": "Organisationen",
-      "sponsors": "Sponsoren"
+      "sponsors": "Sponsoren",
+      "events": "Veranstaltungen"
     },
     "pagerAria": "Weitere Meldungen",
     "newer": "Neuere Meldung",

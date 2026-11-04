@@ -12,7 +12,7 @@ const index = computed(() => news.value.indexOf(article.value))
 const newer = computed(() => (index.value > 0 ? news.value[index.value - 1] : undefined))
 const older = computed(() => news.value[index.value + 1])
 const bodyHtml = computed(() => newsMarkdownToHtml(article.value?.description, (path) => localePath(path)))
-const hasRecords = computed(() => Boolean(article.value && (article.value.exhibitions.length || article.value.venues.length || article.value.persons.length || article.value.organisations.length || article.value.sponsors.length)))
+const hasRecords = computed(() => Boolean(article.value && (article.value.exhibitions.length || article.value.venues.length || article.value.persons.length || article.value.organisations.length || article.value.events.length || article.value.sponsors.length)))
 
 usePageSeo(`/news/${slug}/`)
 </script>
@@ -55,7 +55,7 @@ usePageSeo(`/news/${slug}/`)
           </div>
         </template>
 
-        <div v-if="article.persons.length || article.organisations.length || article.sponsors.length" class="grid grid-cols-3 gap-[clamp(2rem,4vw,4rem)] tablet:grid-cols-1">
+        <div v-if="article.persons.length || article.organisations.length || article.events.length || article.sponsors.length" class="grid grid-cols-3 gap-[clamp(2rem,4vw,4rem)] tablet:grid-cols-1">
           <section v-if="article.persons.length">
             <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.persons') }}</ArchiveGroupLabel>
             <PersonDirectoryEntry v-for="person in article.persons" :key="person.id" :person="person" :roles="person.roles.map((role) => role.slug)" />
@@ -63,6 +63,10 @@ usePageSeo(`/news/${slug}/`)
           <section v-if="article.organisations.length">
             <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.organisations') }}</ArchiveGroupLabel>
             <OrganisationDirectoryEntry v-for="organisation in article.organisations" :key="organisation.id" :organisation="organisation" />
+          </section>
+          <section v-if="article.events.length">
+            <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.events') }}</ArchiveGroupLabel>
+            <EventDirectoryEntry v-for="event in article.events" :key="event.id" :event="event" />
           </section>
           <section v-if="article.sponsors.length">
             <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.sponsors') }}</ArchiveGroupLabel>

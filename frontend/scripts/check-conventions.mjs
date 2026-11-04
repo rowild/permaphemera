@@ -25,7 +25,7 @@ for (const file of [...pages, ...components]) check(`${file} sets no meta of its
 // A browser-only app: an unknown slug must throw a *fatal* 404 during setup, and the page must
 // render nothing until its record exists.
 check('useRecordBySlug throws a fatal 404', /createError\(\{ statusCode: 404, statusMessage: [^}]*, fatal: true \}\)/.test(source['app/composables/useRecordBySlug.ts']))
-for (const name of ['exhibitions', 'venues', 'persons', 'organisations', 'sponsors', 'news']) {
+for (const name of ['exhibitions', 'venues', 'persons', 'organisations', 'sponsors', 'news', 'events']) {
   const text = source[`app/pages/${name}/[slug].vue`]
   check(`${name}/[slug].vue finds its record with useRecordBySlug`, /useRecordBySlug\(/.test(text))
   check(`${name}/[slug].vue guards its template with v-if on the record`, /<template>\s*<(div|main) v-if="/.test(text))

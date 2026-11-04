@@ -174,7 +174,7 @@ describe('staticSeoEntries', () => {
     expect(list.find((item) => item.path === '/exhibitions/current/' && item.locale === 'en')!.title).toContain('Current')
     expect(list.filter((item) => item.locale === 'de').map((item) => item.path)).toEqual([
       '/', '/exhibitions/', '/exhibitions/current/', '/exhibitions/upcoming/', '/exhibitions/past/', '/artists/', '/venues/', '/organisations/',
-      '/news/', '/about/', '/how-it-works/', '/contact/', '/imprint/', '/privacy/', '/terms/', '/accessibility/'
+      '/events/', '/news/', '/about/', '/how-it-works/', '/contact/', '/imprint/', '/privacy/', '/terms/', '/accessibility/'
     ])
   })
 })
@@ -449,5 +449,31 @@ describe('mentionsTour (a stored text leaves the tour sentence to the site)', ()
 
   it('ignores other tours and other preparations', () => {
     expect(mentionsTour('Galerienrundgang ab 18 Uhr, Katalog in Vorbereitung.')).toBe(false)
+  })
+})
+
+// Events (plans/2026-11-04__events-collection.md): one page per published event.
+describe('events', () => {
+  const event = {
+    id: 'ev', slug: 'spittaler-comicfestival', title: 'Spittaler Comicfestival', kind: 'festival', location: 'loc', image: null, website_url: null,
+    lede: 'The comic festival.', seo: null, status: 'published',
+    translations: [{ languages_code: 'en', lede: 'The comic festival.' }, { languages_code: 'de', lede: 'Das Comicfestival.' }]
+  }
+  const withEvents = (events: unknown[]) => entries({ events, eventEditions: [{ id: 'ed', event: 'ev', year: 2026, edition_number: 7, sort: 1 }] })
+
+  it('gives each published event a page in both languages, with its kind and town in the title', () => {
+    const list = withEvents([event, { ...event, id: 'draft', slug: 'draft-event', status: 'draft' }])
+    const german = entry(list, '/events/spittaler-comicfestival/', 'de')
+    expect(german.title).toContain('Spittaler Comicfestival')
+    expect(german.title).toContain('Festival')
+    expect(german.description).toContain('Das Comicfestival.')
+    expect(entry(list, '/events/spittaler-comicfestival/', 'en').canonical).toBe(`${SITE_URL}/en/events/spittaler-comicfestival/`)
+    expect(list.some((item) => item.path === '/events/draft-event/')).toBe(false)
+  })
+
+  it('describes the event as a series of events with breadcrumbs through the events index', () => {
+    const json = JSON.stringify(entry(withEvents([event]), '/events/spittaler-comicfestival/', 'de').jsonLd)
+    expect(json).toContain('"@type":"EventSeries"')
+    expect(json).toContain(`${SITE_URL}/events/`)
   })
 })

@@ -4,8 +4,13 @@ For people and AI agents. Written 2026-10-14 from a real run (Europahaus, Galeri
 Schloss Porcia, Galerie Palais Fugger, stARTup gallery, Stadtgalerie programme).
 Data model background: `_Plans/exhibitions-plan.md` §2. Project map: `PROJECT_INFO.md`.
 
-Words: say **exhibition** (German *Ausstellung*), never "show". A sale or festival night is
-`kind: event`.
+Words: say **exhibition** (German *Ausstellung*), never "show". A single special record that is
+not an exhibition (a sale like the BV Flohmarkt) is `kind: event` ("Veranstaltungseintrag").
+A **festival or museum night** that shows exhibitions (Spittaler Comicfestival, ORF Lange Nacht
+der Museen) is an **event** in `pp_events` ("Veranstaltung"), never an organisation: one record per
+event, one `pp_event_editions` row per year, and each exhibition of that year points to it with
+`event_edition`. The organisations that put the event on go into `pp_event_organisers`
+(plans/2026-11-04__events-collection.md).
 
 ---
 
@@ -222,8 +227,9 @@ not shown on the gallery page. Set it only when a source says so; the person als
 `collective`, `company`, `initiative`), `location`, `address`, `founded`, `lede`, `about_html` (WYSIWYG),
 `description`, `image` + `image_alt` + `image_caption` (photo, see §3), translations. Link it to the exhibition in `pp_exhibition_organisers` with
 `role`: `organiser` (put it on), `presenter` (shows it as its own programme), `cooperation`,
-`supporter`. Do not add umbrella events (ORF Lange Nacht) or a frame without organising role
-(Triennale IV Kärnten) as organisers; name them in the text and add their link.
+`supporter`. Never add an umbrella event (ORF Lange Nacht, a festival) as an organiser: set the
+exhibition's `event_edition` instead (see "Words" above). A frame without an organising role
+(Triennale IV Kärnten) is not an organiser either; name it in the text and add its link.
 
 ---
 

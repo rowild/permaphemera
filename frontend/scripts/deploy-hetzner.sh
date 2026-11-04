@@ -10,11 +10,22 @@
 #   pnpm run deploy:hetzner -- --tours a,b --no-site
 #                                                only these tours, then the cache purge
 #                                                (the Tour Editor's upload list)
+#   pnpm run deploy:hetzner -- --viewer-only     only public/media/tour-viewer/, then the cache
+#                                                purge (the Tour Editor's Update viewer): no
+#                                                build, no tests, no site code, no tour
 #   pnpm run deploy:hetzner -- … --plan          print what would happen; change nothing
 #   pnpm run deploy:hetzner -- … --skip-verify   build without the tests and checks first,
 #                                                and upload without the browser tests
 #                                                (an emergency only; they run by default
 #                                                before every site upload since 2026-11-04)
+#
+# --viewer-only (2026-11-04): the viewer is two static files the site loads at
+# /media/tour-viewer/tour-viewer.js?v=<fingerprint>. nginx ignores the ?v=, so the
+# new files answer the old address at once, and the purge empties Cloudflare's copy.
+# The site keeps the fingerprint of its last build until the next site upload, so a
+# browser that loaded the viewer in the last 4 hours (max-age=14400) keeps its copy
+# until then. The files are committed first (the Tour Editor does that), so the next
+# site upload sends the same files and puts the new fingerprint in place.
 #
 # The three modes exist since 2026-10-29: a viewer update or one published tour
 # used to check and push every tour copy here, one connection per tour — slow
@@ -43,6 +54,7 @@ SITE=1              # build, site rsync, SEO; --no-site skips it
 TOURS_MODE=all      # all | none (--site-only) | list (--tours a,b)
 TOUR_IDS=()
 PLAN=0
+VIEWER_ONLY=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --skip-build) SKIP_BUILD=1 ;;
@@ -56,11 +68,29 @@ while [[ $# -gt 0 ]]; do
       IFS=',' read -r -a TOUR_IDS <<<"$1"
       TOURS_MODE=list ;;
     --plan) PLAN=1 ;;
+    --viewer-only) VIEWER_ONLY=1 ;;
     --) ;; # pnpm may pass its separator through
     *) echo "Unknown option $1" >&2; exit 1 ;;
   esac
   shift
 done
+
+if [[ "$VIEWER_ONLY" == 1 ]]; then
+  [[ "$TOURS_MODE" == all && "$SITE" == 1 && "$SKIP_BUILD" == 0 && "$TOURS_DRY_RUN" == 0 ]] \
+    || { echo "--viewer-only stands alone: it uploads the viewer files and nothing else" >&2; exit 1; }
+  for name in tour-viewer.js tour-viewer.css; do
+    [[ -s "public/media/tour-viewer/$name" ]] || { echo "public/media/tour-viewer/$name is missing" >&2; exit 1; }
+  done
+  if [[ "$PLAN" == 1 ]]; then
+    echo "[deploy] plan — viewer: public/media/tour-viewer/ only; site and tours left as they are"
+    exit 0
+  fi
+  echo "[deploy] rsync public/media/tour-viewer -> $HOST:$REMOTE_DIR/media/tour-viewer (site and tours left as they are)"
+  rsync -az --delete-after --itemize-changes -e "ssh -i $KEY -o BatchMode=yes" public/media/tour-viewer/ "$HOST:$REMOTE_DIR/media/tour-viewer/"
+  node scripts/purge-cloudflare.mjs
+  echo "[deploy] done"
+  exit 0
+fi
 
 if [[ "$TOURS_MODE" == none && "$SITE" == 0 ]]; then
   echo "--site-only and --no-site together would upload nothing" >&2; exit 1

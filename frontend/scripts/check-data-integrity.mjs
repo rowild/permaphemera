@@ -10,7 +10,7 @@ async function main() {
 
   const ids = (records) => new Set(records.map((record) => record.id))
   const locationIds = ids(locations), venueIds = ids(venues), personIds = ids(persons), roleIds = ids(roles)
-  const exhibitionIds = ids(exhibitions), navigationIds = ids(navigations), itemIds = ids(navigationItems), websiteIds = ids(websites), organisationIds = ids(organisations)
+  const exhibitionIds = ids(exhibitions), navigationIds = ids(navigations), itemIds = ids(navigationItems), websiteIds = ids(websites), organisationIds = ids(organisations), eventIds = ids(a.events)
   const roleArtist = roles.find((role) => role.slug === 'artist')?.id
 
   // Status lives on records, not on the rows that link them (owner rule): a link row may point at
@@ -26,7 +26,9 @@ async function main() {
     [a.organisationsWebsites, 'organisations_id', 'pp_organisations', organisationIds], [a.organisationsWebsites, 'websites_id', 'pp_websites', websiteIds],
     [a.venuesWebsites, 'venues_id', 'pp_venues', venueIds], [a.venuesWebsites, 'websites_id', 'pp_websites', websiteIds],
     [a.exhibitionsWebsites, 'exhibitions_id', 'pp_exhibitions', exhibitionIds], [a.exhibitionsWebsites, 'websites_id', 'pp_websites', websiteIds],
-    [a.personsWebsites, 'persons_id', 'pp_persons', personIds], [a.personsWebsites, 'websites_id', 'pp_websites', websiteIds]
+    [a.personsWebsites, 'persons_id', 'pp_persons', personIds], [a.personsWebsites, 'websites_id', 'pp_websites', websiteIds],
+    [a.eventEditions, 'event', 'pp_events', eventIds], [a.eventOrganisers, 'event', 'pp_events', eventIds], [a.eventOrganisers, 'organisation', 'pp_organisations', organisationIds],
+    [a.eventsWebsites, 'events_id', 'pp_events', eventIds], [a.eventsWebsites, 'websites_id', 'pp_websites', websiteIds]
   ]
   const unpublished = new Map()
   for (const [rows, column, collection, published] of linkEnds) for (const row of rows) {
@@ -167,6 +169,17 @@ async function main() {
     ['venue relation is runs, seat or exhibits_at', venueRelations.every((row) => ['runs', 'seat', 'exhibits_at'].includes(row.relation))],
     ['organiser rows resolve both ends', organisers.every((row) => exists(organisationIds, row.organisation) && exists(exhibitionIds, row.exhibition))],
     ['organiser role is known', organisers.every((row) => ['organiser', 'presenter', 'cooperation', 'supporter'].includes(row.role))],
+    // Events (plans/2026-11-04__events-collection.md).
+    ['event slugs unique', uniqueBy(a.events, 'slug')],
+    ['every event has an en translation', everyHasEnglish(a.events)],
+    ['events: English on the record equals the en entry', englishMirrors(a.events, ['lede', 'description', 'about_html', 'image_alt', 'image_caption'])],
+    ['event kind is festival or long_night', a.events.every((event) => ['festival', 'long_night'].includes(event.kind))],
+    ['event.location resolves or is empty', a.events.every((event) => event.location === null || locationIds.has(event.location))],
+    ['every edition resolves its event, at most one per year', a.eventEditions.every((edition) => exists(eventIds, edition.event)) && uniqueBy(a.eventEditions.map((edition) => ({ key: `${edition.event}-${edition.year}` })), 'key')],
+    ['an edition ends on or after its start', a.eventEditions.every((edition) => !edition.start_date || !edition.end_date || edition.end_date >= edition.start_date)],
+    ['exhibition.event_edition resolves or is empty', exhibitions.every((exhibition) => !exhibition.event_edition || a.eventEditions.some((edition) => edition.id === exhibition.event_edition))],
+    ['event organiser rows resolve both ends, role known', a.eventOrganisers.every((row) => exists(eventIds, row.event) && exists(organisationIds, row.organisation) && ['organiser', 'presenter', 'cooperation', 'supporter'].includes(row.role))],
+    ['event-website rows resolve both ends', a.eventsWebsites.every((row) => exists(eventIds, row.events_id) && exists(websiteIds, row.websites_id))],
     ['person-venue relation is curator, head or empty', a.personsVenues.every((row) => [null, undefined, 'curator', 'head'].includes(row.relation))],
     ['organisation-website rows resolve both ends', a.organisationsWebsites.every((row) => exists(organisationIds, row.organisations_id) && exists(websiteIds, row.websites_id))],
     ['venue-website rows resolve both ends', a.venuesWebsites.every((row) => exists(venueIds, row.venues_id) && exists(websiteIds, row.websites_id))],
@@ -205,7 +218,7 @@ async function main() {
     // hidden entry is allowed; every visible one must have a header active state.
     ['every visible main navigation key has a header active state', navigationItems
       .filter((item) => item.navigation === navigations.find((nav) => nav.key === 'main')?.id && item.parent === null)
-      .every((item) => ['about', 'artists', 'exhibitions', 'galleries', 'organisations'].includes(item.key))],
+      .every((item) => ['about', 'artists', 'exhibitions', 'galleries', 'organisations', 'events'].includes(item.key))],
 
     ['every venue has a known type', venues.every((venue) =>
       ['gallery', 'museum', 'kunsthalle', 'art_cafe', 'open_air', 'forum'].includes(venue.type))],

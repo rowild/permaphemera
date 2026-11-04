@@ -56,7 +56,7 @@ example on `/how-it-works/` or in the terms)?
 
 ## Events: a new collection for festivals and similar events
 
-Added 2026-11-04 by the owner. Not started.
+Added 2026-11-04 by the owner. **Done 2026-11-04, release 0.0.65** (`plans/2026-11-04__events-collection.md`). Kept below as the record of the decisions.
 
 **Why.** Some records are neither a gallery nor an organisation, but an event: something that
 takes place at a set time, often every year, and shows one or more exhibitions. The archive has

@@ -7,6 +7,7 @@ import { dirname, join, resolve } from 'node:path'
 import { loadEnv, login } from './lib.mjs'
 import { uploadFile } from './files.mjs'
 import { FILE_FIELDS } from '../../frontend/shared/archive-schema.mjs'
+import { IMPORT_ORDER } from './import-order.mjs'
 
 const args = process.argv.slice(2)
 const fromIndex = args.indexOf('--from')
@@ -36,11 +37,6 @@ for (const lang of languageRows) {
   console.log(`+ language ${lang.code}`)
 }
 
-// Dependency order. Entities first, then junctions.
-const ORDER = ['pp_locations', 'pp_venues', 'pp_persons', 'pp_roles', 'pp_websites', 'pp_mm__persons_roles', 'pp_exhibitions',
-  'pp_exhibition_participations', 'pp_exhibition_statements', 'pp_sponsors', 'pp_navigations', 'pp_navigation_items',
-  'pp_mm__exhibitions_venues', 'pp_mm__exhibitions_sponsors', 'pp_mm__persons_venues', 'pp_mm__persons_sponsors',
-  'pp_mm__locations_sponsors', 'pp_mm__sponsors_venues', 'pp_mm__exhibitions_websites', 'pp_mm__persons_websites']
 
 const uploaded = new Map() // path or id → file id
 async function fileIdFor(value) {
@@ -106,7 +102,7 @@ async function exists(collection, record) {
 }
 
 const totals = {}
-for (const collection of ORDER) {
+for (const collection of IMPORT_ORDER) {
   const path = join(source, `${collection}.json`)
   if (!existsSync(path)) { console.log(`- ${collection} (no file)`); continue }
   const rows = parentFirst(read(collection))
