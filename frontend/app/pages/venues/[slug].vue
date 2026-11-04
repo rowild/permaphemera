@@ -188,7 +188,6 @@ const venueLinksLabel = computed(() => venue.value.links.length === 1 && venue.v
   : t('venue.links', venue.value.links.length))
 const seasonYears = computed(() => [...new Set(exhibitions.value.map((exhibition) => exhibition.start_date.slice(0, 4)))].join(' · '))
 const venueLedgerItems = computed(() => [
-  { label: t('venue.ledgerLabels.records'), value: String(exhibitions.value.length).padStart(2, '0') },
   { label: t('venue.ledgerLabels.season'), value: seasonYears.value || t('common.pending') },
   { label: t('venue.ledgerLabels.admission'), value: t('common.free') }
 ])
@@ -290,7 +289,7 @@ usePageSeo(`/venues/${slug}/`)
       <section id="venue-exhibitions" class="[ venue-exhibitions ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(4rem,7vw,7rem)] pb-[clamp(3rem,5vw,5rem)] compact:px-4 compact:pt-5 compact:pb-5" aria-labelledby="venue-exhibitions-title">
         <div class="[ venue-exhibitions-intro ] mb-12 grid grid-cols-[minmax(0,1fr)_minmax(20rem,0.55fr)] items-start gap-[clamp(2.5rem,6vw,6rem)] tablet:grid-cols-1 compact:mb-5 compact:gap-4">
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-3">
-            <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.ledger', { season: seasonYears || $t('venue.recordsPending') }) }}</p>
+            <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.ledger') }}</p>
             <h2 id="venue-exhibitions-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ $t(ledgerCountKey, exhibitions.length) }}. <span class="text-archive-red">{{ $t('venue.changingSpace') }}</span></h2>
             <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('venue.searchIntro') }}</p>
           </div>
@@ -305,10 +304,7 @@ usePageSeo(`/venues/${slug}/`)
           :placeholder="$t('venue.searchPlaceholder')"
         />
 
-        <div class="[ venue-search-status ] mb-8 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:mb-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-          <p class="m-0" role="status" aria-live="polite">{{ $t('venue.showing', { visible: filteredExhibitions.length, total: exhibitions.length }) }}</p>
-          <button v-if="venueSearchQuery" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="venueSearchQuery = ''">{{ $t('venue.clearSearch') }}</button>
-        </div>
+        <ArchiveDirectoryStatus class="[ venue-search-status ] mb-8 compact:mb-4" :text="$t('venue.showing', { visible: filteredExhibitions.length, total: exhibitions.length })" :clear-label="venueSearchQuery ? $t('venue.clearSearch') : undefined" @clear="venueSearchQuery = ''" />
 
         <div v-if="!filteredExhibitions.length" class="[ venue-search-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
           <p class="m-0 text-title text-archive-ink">{{ venueSearchQuery ? $t('venue.noMatches', { query: venueSearchQuery }) : $t('venue.noRecords', { name: venue.name }) }}</p>

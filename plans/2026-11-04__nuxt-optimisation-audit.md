@@ -179,7 +179,7 @@ Untested logic, by risk: **high** `useTourViewer` (fullscreen before any await, 
 **medium** `useArchiveData`/`useArchiveSource`, `ExhibitionCard`, `ArchiveAlphabetRail`;
 **low** `externalLinks`, `venueFrameGeometry`, `seededLayout`.
 
-## Phase 6 — repeated text and text-rule breaks (owner, 2026-11-04)
+## Phase 6 — repeated text and text-rule breaks (owner, 2026-11-04) — DONE, release 0.0.52 (`ArchiveDirectoryStatus` for the status lines; also About p3/p6/p8 and the contact selection section, same rule)
 
 Rule: a number shows once per page; a "x von y" status line shows only while a search or a
 filter is active. **Exceptions the owner keeps:** the gallery state filter (more states will

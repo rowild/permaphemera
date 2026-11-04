@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.52 - 2026-11-04 18:10:00 CET
+
+- A count shows once per page: the line "22 Ausstellungseinträge im Archiv", "12 von 12 Galerien …" and "19 von 19 Einträgen" shows only while a search or filter is active (the artists line and a gallery's "9 von 9" stay). The gallery page names its year once and drops the repeated record count from its ledger.
+- The exhibition page shows its short text and its tour notice once; artists and their websites share one row (the website as a small link icon next to the name).
+- The start page's programme heading is "Jetzt und demnächst" / "Now and soon" instead of repeating the two group names.
+- "Im Archiv" no longer appears twice in a heading pair (person and exhibition pages).
+- Texts follow the text rules: no "Sie" in search intros, the preview notice and the contact page; "So funktioniert's" speaks of tours, never documents; the archive does not select or curate (how-it-works, about, contact, organisations).
+
 ## 0.0.51 - 2026-11-04 17:30:00 CET
 
 - Images load at the size the layout needs, as WebP, instead of the full original: the start page drops from about 16 MB to 1.3 MB of images, the galleries page from 18 MB to 0.7 MB, a detail page to about 0.3 MB (measured at 1440 px, 2× screen). The hero wheel and the cards ask for the same address, so a photo shown twice loads once; the gallery preview preloads exactly the file it then shows.

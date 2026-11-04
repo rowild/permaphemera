@@ -98,10 +98,7 @@ usePageSeo('/exhibitions/')
         <ArchiveInsetDivider class="mt-8 compact:mt-4" />
 
         <div class="[ exhibitions-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-3">
-          <div class="[ exhibitions-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-            <p class="m-0" role="status" aria-live="polite">{{ searching ? $t('exhibitionsDirectory.statusSearch', { visible: filteredExhibitions.length, total: venueExhibitions.length }) : $t('exhibitionsDirectory.statusAll', { total: venueExhibitions.length }) }}</p>
-            <button v-if="exhibitionSearchQuery" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.clearSearch') }}</button>
-          </div>
+          <ArchiveDirectoryStatus class="[ exhibitions-directory-status ] my-7 compact:my-4" :show="searching" :text="$t('exhibitionsDirectory.statusSearch', { visible: filteredExhibitions.length, total: venueExhibitions.length })" :clear-label="$t('exhibitionsDirectory.clearSearch')" @clear="exhibitionSearchQuery = ''" />
 
           <!-- A search shows one flat list of every match, newest first, in pages. -->
           <template v-if="searching">

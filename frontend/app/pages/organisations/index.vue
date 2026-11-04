@@ -121,10 +121,7 @@ usePageSeo('/organisations/')
         <ArchiveInsetDivider class="mt-7 compact:mt-4" />
 
         <div class="[ organisation-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
-          <div class="[ organisation-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-            <p class="m-0" role="status" aria-live="polite">{{ $t('organisations.status', { visible: visibleEntries, total: totalEntries }) }}</p>
-            <button v-if="searchQuery" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="searchQuery = ''">{{ $t('organisations.clearSearch') }}</button>
-          </div>
+          <ArchiveDirectoryStatus class="[ organisation-directory-status ] my-7 compact:my-4" :show="Boolean(searchQuery)" :text="$t('organisations.status', { visible: visibleEntries, total: totalEntries })" :clear-label="$t('organisations.clearSearch')" @clear="searchQuery = ''" />
 
           <div v-if="!visibleEntries" class="[ organisation-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
             <p class="m-0 text-title text-archive-ink">{{ $t('organisations.noMatches') }}</p>

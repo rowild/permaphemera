@@ -119,10 +119,7 @@ usePageSeo('/venues/')
         <ArchiveInsetDivider />
 
         <div class="[ gallery-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-3">
-          <div class="[ gallery-directory-status ] my-7 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:my-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-            <p class="m-0" role="status" aria-live="polite">{{ $t('galleries.status', { visible: filteredVenues.length, total: venues.length }) }}</p>
-            <button v-if="gallerySearchQuery || selectedState" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="clearFilters">{{ $t('galleries.clearFilters') }}</button>
-          </div>
+          <ArchiveDirectoryStatus class="[ gallery-directory-status ] my-7 compact:my-4" :show="Boolean(gallerySearchQuery || selectedState)" :text="$t('galleries.status', { visible: filteredVenues.length, total: venues.length })" :clear-label="$t('galleries.clearFilters')" @clear="clearFilters" />
 
           <div v-if="!filteredVenues.length" class="[ gallery-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
             <p class="m-0 text-title text-archive-ink">{{ $t('galleries.noMatches') }}</p>

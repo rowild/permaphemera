@@ -151,10 +151,7 @@ usePageSeo('/artists/')
         <ArchiveInsetDivider />
 
         <div class="[ artist-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-3">
-          <div class="[ artist-directory-status ] mt-8 mb-8 flex min-h-8 items-center justify-between gap-4 text-eyebrow text-archive-muted compact:mt-3 compact:mb-4 compact:min-h-0 compact:gap-2 compact:text-xs">
-            <p class="m-0" role="status" aria-live="polite">{{ $t('artists.status', { visible: visibleArtistCount, total: filteredArtists.length, kind: $t(artistSearchQuery ? 'artists.kindMatching' : 'artists.kindAll') }) }}</p>
-            <button v-if="artistSearchQuery || selectedLetter" class="border-0 bg-transparent p-0 text-archive-red underline underline-offset-4" type="button" @click="clearFilters">{{ $t('artists.clearFilters') }}</button>
-          </div>
+          <ArchiveDirectoryStatus class="[ artist-directory-status ] mt-8 mb-8 compact:mt-3 compact:mb-4" :text="$t('artists.status', { visible: visibleArtistCount, total: filteredArtists.length, kind: $t(artistSearchQuery ? 'artists.kindMatching' : 'artists.kindAll') })" :clear-label="artistSearchQuery || selectedLetter ? $t('artists.clearFilters') : undefined" @clear="clearFilters" />
 
           <div v-if="!artistsByLetter.length" class="[ artist-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
             <p class="m-0 text-title text-archive-ink">{{ $t('artists.noMatches') }}</p>

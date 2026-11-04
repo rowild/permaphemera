@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { directusImageUrl } from '~/utils/archiveAsset'
 import {
-  CalendarCheck, CalendarDays, Clock3, FileText, Globe, Hourglass, Info, Link2, MapPin, Palette, Ticket, Users, Landmark } from '@lucide/vue'
+  CalendarCheck, CalendarDays, Clock3, ExternalLink, FileText, Hourglass, Info, Link2, MapPin, Palette, Ticket, Users, Landmark } from '@lucide/vue'
 import { selectRelatedExhibitions } from '~/utils/relatedExhibitions'
 import { resolveTourAccess } from '~/utils/tourAccess'
 
@@ -30,14 +30,6 @@ const organiserLabel = computed(() => {
   const roles = new Set(exhibition.value.organisers.map((organiser) => organiser.role))
   return roles.size === 1 ? t(`exhibition.organiserLabels.${[...roles][0]}`) : t('exhibition.organiserLabels.mixed')
 })
-const artistsWithWebsite = computed(() => exhibition.value.artists.filter((artist) => artist.website_url))
-const hostnameOf = (url: string) => {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '')
-  } catch {
-    return url
-  }
-}
 
 // The 360° record is the page's reason to exist, so its availability is
 // decided once here and rendered identically at the top and at the end of
@@ -119,8 +111,7 @@ usePageSeo(`/exhibitions/${routeSlug}/`)
         <div class="[ exhibition-details-prose ]">
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ kindText('recordEyebrow') }}</p>
           <h2 id="exhibition-details-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ kindText('aboutTitle') }} <span class="text-archive-red">{{ kindText('aboutAccent') }}</span></h2>
-          <p v-if="exhibition.summary" class="[ exhibition-details-summary ] mt-6 mb-0 max-w-3xl text-lg leading-[1.65] text-archive-body compact:mt-4 compact:text-base compact:leading-normal">{{ exhibition.summary }}</p>
-          <p v-if="exhibition.description" class="[ exhibition-details-description ] mt-5 mb-0 max-w-3xl text-lg leading-[1.65] text-archive-body compact:mt-3 compact:text-base compact:leading-normal">{{ exhibition.description }}</p>
+          <p v-if="exhibition.description" class="[ exhibition-details-description ] mt-6 mb-0 max-w-3xl text-lg leading-[1.65] text-archive-body compact:mt-3 compact:text-base compact:leading-normal">{{ exhibition.description }}</p>
 
           <section v-if="exhibition.statements.length" class="[ exhibition-statements ] mt-12 max-w-3xl compact:mt-8" :aria-label="$t('exhibition.statementsTitle', exhibition.artists.length)">
             <h3 class="m-0 mb-6 font-display text-h3-sm font-normal compact:mb-4 compact:text-2xl">{{ $t('exhibition.statementsTitle', exhibition.artists.length) }}</h3>
@@ -165,13 +156,7 @@ usePageSeo(`/exhibitions/${routeSlug}/`)
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.artist" :label="$t('exhibition.artistParticipants')" variant="exhibition">
             <template #icon><Users :size="18" aria-hidden="true" /></template>
-            <template v-for="(artist, index) in exhibition.artists" :key="artist.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${artist.slug}/`)">{{ artist.name }}</ArchiveTextLink></template>
-          </ArchiveMetadataRow>
-          <ArchiveMetadataRow v-if="artistsWithWebsite.length" :label="$t('exhibition.artistWebsite', artistsWithWebsite.length)" variant="exhibition">
-            <template #icon><Globe :size="18" aria-hidden="true" /></template>
-            <template v-for="(artist, index) in artistsWithWebsite" :key="artist.id">
-              <template v-if="index">, </template><ArchiveTextLink :href="artist.website_url" target="_blank" rel="noreferrer" icon-motion="external">{{ exhibition.artists.length > 1 ? artist.name : hostnameOf(artist.website_url!) }}</ArchiveTextLink>
-            </template>
+            <template v-for="(artist, index) in exhibition.artists" :key="artist.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${artist.slug}/`)">{{ artist.name }}</ArchiveTextLink><ArchiveTextLink v-if="artist.website_url" class="ml-1 align-middle" :href="artist.website_url" target="_blank" rel="noreferrer" icon-motion="external"><span class="sr-only">{{ $t('exhibition.artistWebsiteOf', { name: artist.name }) }}</span><template #icon><ExternalLink :size="14" aria-hidden="true" /></template></ArchiveTextLink></template>
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.websites.length" :label="$t('exhibition.links', exhibition.websites.length)" variant="exhibition">
             <template #icon><Link2 :size="18" aria-hidden="true" /></template>
@@ -195,10 +180,6 @@ usePageSeo(`/exhibitions/${routeSlug}/`)
             <template #icon><FileText :size="18" aria-hidden="true" /></template>
           </ArchiveTextLink>
           <ExhibitionExperience v-if="tourAccess.kind === 'open'" class="ml-auto compact:ml-0" :tour-url="tourAccess.url" />
-          <p v-else-if="tourStatus" class="[ exhibition-tour-status ] m-0 ml-auto flex max-w-136 items-start gap-3 text-button text-archive-ink compact:ml-0 compact:text-sm">
-            <component :is="tourStatus.icon" class="mt-[0.2em] shrink-0 text-archive-red" :size="20" aria-hidden="true" />
-            <span>{{ tourStatus.text }}</span>
-          </p>
         </div>
       </section>
 
