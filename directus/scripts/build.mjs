@@ -12,6 +12,14 @@ const target = (name) => (systemCollection(name) ? name : col(name))
 // The template an M2M alias shows: `{{<fk>.<display columns>}}`.
 const viaTemplate = (fkField, entity) => entity.display.map((c) => `{{${fkField}.${c}}}`).join(' ')
 
+// Every relation list starts with the status dot of the record a row is about: its own status, or,
+// for a statusless relation row, the status of the first record its template names.
+export const withStatus = (template, entity) => {
+  if (!entity.statusless) return `{{status}} ${template}`
+  const first = /{{(\w+)\./.exec(template)?.[1]
+  return first ? `{{${first}.status}} ${template}` : template
+}
+
 const strip = (f) => { const { relation, translated, translationOptions, ...clean } = f; return clean }
 
 export function buildAll(overrides = {}) {
@@ -47,14 +55,14 @@ export function buildAll(overrides = {}) {
       if (!f.relation?.oneField) continue
       const targetEntity = entities[f.relation.related]
       if (!targetEntity) throw new Error(`${e.key}.${f.field}: unknown related entity ${f.relation.related}`)
-      targetEntity.aliases.push(o2mAlias(f.relation.oneField, f.relation.oneTemplate ?? e.displayTemplate))
+      targetEntity.aliases.push(o2mAlias(f.relation.oneField, withStatus(f.relation.oneTemplate ?? e.displayTemplate, e)))
     }
   }
   // M2M aliases from junctions.
   for (const j of junctions) {
     const [A, B] = [entities[j.a], entities[j.b]]
-    A.aliases.push(m2mAlias(j.aliasA, viaTemplate(fk(j.b), B)))
-    B.aliases.push(m2mAlias(j.aliasB, viaTemplate(fk(j.a), A)))
+    A.aliases.push(m2mAlias(j.aliasA, `{{${fk(j.b)}.status}} ${viaTemplate(fk(j.b), B)}`))
+    B.aliases.push(m2mAlias(j.aliasB, `{{${fk(j.a)}.status}} ${viaTemplate(fk(j.a), A)}`))
   }
 
   // ---- entities -----------------------------------------------------------

@@ -61,6 +61,9 @@
   "devDependencies": {
     "@mdn/browser-compat-data": "^8.1.6",
     "@tailwindcss/typography": "^0.5.20",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vue/test-utils": "^2.5.1",
+    "happy-dom": "^21.0.4",
     "playwright": "1.63.0",
     "postcss": "^8.5.31",
     "serve": "^14.2.6",

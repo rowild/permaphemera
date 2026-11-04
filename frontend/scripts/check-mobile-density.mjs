@@ -31,7 +31,8 @@ const [
   archiveScrollCue,
   archiveLegalPage,
   legalEditorialSection,
-  mainCss
+  mainCss,
+  directoryHero
 ] = await Promise.all([
   readProjectFile('app/components/ArchiveSearchForm.vue'),
   readProjectFile('app/components/ArchiveFactLedger.vue'),
@@ -56,7 +57,8 @@ const [
   readProjectFile('app/components/ArchiveScrollCue.vue'),
   readProjectFile('app/components/ArchiveLegalPage.vue'),
   readProjectFile('app/components/LegalEditorialSection.vue'),
-  readProjectFile('app/assets/css/main.css')
+  readProjectFile('app/assets/css/main.css'),
+  readProjectFile('app/components/ArchiveDirectoryHero.vue')
 ])
 
 const archive = await loadArchiveFromDirectus()
@@ -69,9 +71,10 @@ const mainNavKeys = new Set(navigationItems.filter((item) => item.navigation ===
 // Since 2026-10-24 "about" is no longer a primary link: the popup shows it as the
 // first child of the information group. ArchiveHeader.vue still filters primary
 // keys out of the popup, so a link moved back into the main menu never shows twice.
+// Since 2026-11-04 "news" comes first and "about" second (plans/2026-11-04__news-system.md).
 const informationGroupId = navigationItems.find((item) => item.navigation === footerNavigationId && item.parent === null && item.key === 'information')?.id
 const aboutLeadsInformationGroup = navigationItems
-  .filter((item) => item.parent === informationGroupId)
+  .filter((item) => item.parent === informationGroupId && item.key !== 'news')
   .sort((a, b) => a.sort - b.sort)[0]?.key === 'about'
 const headerMenuBeforeRule = [...mainCss.matchAll(/\.archive-header-menu-surface::before \{([\s\S]*?)\n\}/g)].at(-1)?.[1] ?? ''
 const headerMenuAfterRule = [...mainCss.matchAll(/\.archive-header-menu-surface::after \{([\s\S]*?)\n\}/g)].at(-1)?.[1] ?? ''
@@ -88,10 +91,10 @@ const checks = [
   ['mobile search action is a compact icon button', searchForm.includes('compact:size-12') && /<Search class="hidden[^\"]*compact:block/.test(searchForm)],
   ['mobile search hides long button copy and arrow', searchForm.includes('compact:sr-only') && /<ArchiveArrow[^>]*compact:hidden/.test(searchForm)],
   ['secondary three-fact ledgers stay in one multiline row below desktop', factLedger.includes("'grid-cols-3'") && factLedger.includes("'tablet:text-balance tablet:whitespace-normal'") && !factLedger.includes('tablet:truncate') && factLedger.includes('compact:px-1') && factLedger.includes('compact:py-2')],
-  ['artist ledger stays stacked through tablet and becomes a row only on mobile', factLedger.includes("desktopLayout?: 'row' | 'stacked'") && factLedger.includes("'grid-cols-1 compact:grid-cols-3'") && factLedger.includes('compact:border-t-0 compact:border-l') && artistPage.includes('desktop-layout="stacked"')],
-  ['artist introduction retains its text and sidebar composition through tablet', /\[ artists-page-intro \][^\"]*tablet:grid-cols-\[minmax\(0,1fr\)_16rem\][^\"]*compact:grid-cols-1/.test(artistPage) && /id="artists-page-title" class="[^"]*tablet:text-h1-steep/.test(artistPage) && /class="[^"]*tablet:text-base[^"]*">\{\{ \$t\('artists\.intro'\)/.test(artistPage)],
-  ['artist and venue introductions share the compact ledger', artistPage.includes('<ArchiveFactLedger') && venuePage.includes('<ArchiveFactLedger')],
-  ['artist search follows the introduction with no divider or section heading between them', /<ArchiveFactLedger[^>]*desktop-layout="stacked"[^>]*\/>\s*<\/section>\s*<section id="artist-directory"[^>]*>\s*<div[^>]*>\s*<ArchiveSearchForm/.test(artistPage)],
+  ['artist ledger stays stacked through tablet and becomes a row only on mobile', factLedger.includes("desktopLayout?: 'row' | 'stacked'") && factLedger.includes("'grid-cols-1 compact:grid-cols-3'") && factLedger.includes('compact:border-t-0 compact:border-l') && artistPage.includes('ledger-on-mobile') && directoryHero.includes('desktop-layout="stacked"')],
+  ['artist introduction retains its text and sidebar composition through tablet', artistPage.includes('<ArchiveDirectoryHero') && /\[ directory-hero \][^"]*tablet:grid-cols-\[minmax\(0,1fr\)_16rem\][^"]*compact:grid-cols-1/.test(directoryHero) && /:id="props\.titleId" class="[^"]*tablet:text-h1-steep/.test(directoryHero) && /class="[^"]*tablet:text-base[^"]*">\{\{ props\.intro \}\}/.test(directoryHero)],
+  ['artist and venue introductions share the compact ledger', artistPage.includes('<ArchiveDirectoryHero') && directoryHero.includes('<ArchiveFactLedger') && venuePage.includes('<ArchiveFactLedger')],
+  ['artist search follows the introduction with no divider or section heading between them', /<ArchiveDirectoryHero[^>]*ledger-on-mobile\s*\/>\s*<section id="artist-directory"[^>]*>\s*<div[^>]*>\s*<ArchiveSearchForm/.test(artistPage)],
   ['artist lists remain two columns on compact screens', artistPage.includes('compact:columns-2') && landingPage.includes('compact:columns-2')],
   ['artist rows use compact type and height', artistEntry.includes('compact:min-h-8') && /artist-name-link \][^"]*compact:text-base/.test(artistEntry)],
   ['metadata labels and values remain horizontal on mobile', metadataRow.includes('compact:grid-cols-[6.5rem_minmax(0,1fr)]')],
@@ -113,7 +116,7 @@ const checks = [
   ['the header keeps one language dropdown immediately left of the always-available menu', (archiveHeader.match(/<ArchiveLanguageSwitch/g) ?? []).length === 1 && /<ArchiveLanguageSwitch[^>]*>[\s\S]*?<button[\s\S]*?\[ mobile-menu \]/.test(archiveHeader) && !archiveHeader.includes('[ mobile-nav-language ]') && /\[ mobile-menu \][^\"]*inline-flex/.test(archiveHeader) && !/\[ mobile-menu \][^\"]*hidden/.test(archiveHeader)],
   ['desktop brand, temple mark, and primary menu share one baseline with compact separators', /\[ site-header \][^\"]*items-baseline/.test(archiveHeader) && /\[ brand \][^\"]*items-baseline/.test(archiveHeader) && /\[ brand-mark \][^\"]*self-baseline/.test(archiveHeader) && /\[ desktop-nav \][^\"]*self-baseline/.test(archiveHeader) && archiveHeader.includes('[ desktop-nav-divider ]') && archiveHeader.includes('/media/svg/frames/sponsor-strip-frame.svg')],
   ['tablet hamburger aligns its right edge with the shared header gutter', /\[ header-actions \][^\"]*justify-self-end/.test(archiveHeader) && /\[ mobile-menu \][^\"]*w-11[^\"]*justify-end/.test(archiveHeader)],
-  ['the header renders its links from the navigation data; About leads the popup information group, and the popup never repeats a primary link', archiveHeader.includes('useSiteNavigation()') && /\[ mobile-nav-primary \][^\"]*hidden tablet:grid/.test(archiveHeader) && archiveHeader.includes("['information', 'legal']") && !/localePath\('\/(?:about|how-it-works|contact|imprint|privacy|terms|accessibility)\/'\)/.test(archiveHeader) && !mainNavKeys.has('about') && aboutLeadsInformationGroup && archiveHeader.includes('mainKeys.has(')],
+  ['the header renders its links from the navigation data; About leads the popup information group after News, and the popup never repeats a primary link', archiveHeader.includes('useSiteNavigation()') && /\[ mobile-nav-primary \][^\"]*hidden tablet:grid/.test(archiveHeader) && archiveHeader.includes("['information', 'legal']") && !/localePath\('\/(?:about|how-it-works|contact|imprint|privacy|terms|accessibility)\/'\)/.test(archiveHeader) && !mainNavKeys.has('about') && aboutLeadsInformationGroup && archiveHeader.includes('mainKeys.has(')],
   ['header popup is absolutely anchored below the header instead of enlarging its grid', /\[ mobile-nav \][^\"]*archive-header-menu-frame[^\"]*absolute[^\"]*top-\[calc\(100%-0\.2rem\)\]/.test(archiveHeader)],
   ['header menu paint order stays framed parchment then ornaments then links', archiveHeader.includes('<ArchiveTooltipFrame') && /\.archive-header-menu-surface::before,[\s\S]*?z-index: 0;/.test(mainCss) && /\.archive-header-menu-surface > \* \{[\s\S]*?z-index: 1;/.test(mainCss) && !/\[ mobile-nav-(?:primary|secondary) \][^\"]*bg-/.test(archiveHeader)],
   ['header menu ornaments form one left-center drafting cluster', headerMenuBeforeRule.includes('top: 50%;') && headerMenuBeforeRule.includes('left: -1.5rem;') && headerMenuBeforeRule.includes('transform: translateY(-50%);') && headerMenuAfterRule.includes('top: 50%;') && headerMenuAfterRule.includes('left: 5.5rem;') && headerMenuAfterRule.includes('transform: translateY(-50%);')],

@@ -114,10 +114,11 @@ assert.match(exhibitionsIndex, /<ArchiveSearchForm/, 'The exhibitions index must
 assert.match(exhibitionsIndex, /right\.start_date\.localeCompare\(left\.start_date\)/, 'Exhibition search results must be ordered by newest start date first.')
 assert.doesNotMatch(exhibitionsIndex, /left\.featured\s*\?\s*-1\s*:\s*1/, 'Featured status must not override the chronological exhibition order.')
 // One header per index page, as on the artists page: heading left, fact ledger right, the search below.
-for (const [name, page] of [['exhibitions', exhibitionsIndex], ['galleries', galleriesIndex]]) {
-  assert.equal((page.match(/<h1 /g) ?? []).length, 1, `The ${name} index must have one header.`)
-  assert.doesNotMatch(page, /<h2 /, `The ${name} index must not repeat its header above the search.`)
-  assert.match(page, /<ArchiveFactLedger[^>]*desktop-layout="stacked"[\s\S]*<ArchiveSearchForm/, `The ${name} index must put its fact ledger beside the heading, above the search.`)
+// The header is the shared ArchiveDirectoryHero (its own test: test/components/ArchiveDirectoryHero.spec.ts).
+for (const [name, page] of [['exhibitions', exhibitionsIndex], ['galleries', galleriesIndex], ['organisations', organisationsIndex]]) {
+  assert.equal((page.match(/<ArchiveDirectoryHero/g) ?? []).length, 1, `The ${name} index must have one header, the shared ArchiveDirectoryHero.`)
+  assert.doesNotMatch(page.slice(0, page.indexOf('<ArchiveSearchForm')), /<h[12] /, `The ${name} index must not repeat its header above the search.`)
+  assert.match(page, /<ArchiveDirectoryHero[\s\S]*<ArchiveSearchForm/, `The ${name} index must put its header above the search.`)
 }
 // Without a search the index shows the three time groups, current first, then upcoming beside
 // past; a search shows one flat list in pages. Each group links to its own page.

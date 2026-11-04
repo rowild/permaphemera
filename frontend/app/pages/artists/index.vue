@@ -110,18 +110,17 @@ usePageSeo('/artists/')
     <ArchiveHeader active="artists" />
 
     <div id="main-content">
-      <section class="[ artists-page-intro ] [ section-band ] relative mx-auto grid min-h-120 max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] items-end gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:min-h-0 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-4" aria-labelledby="artists-page-title">
-        <div class="[ artists-page-heading ]">
-          <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('artists.breadcrumb') }}</span>
-          </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('artists.eyebrow') }}</p>
-          <h1 id="artists-page-title" class="m-0 max-w-232 font-display text-hero font-light leading-[0.92] tablet:text-h1-steep compact:text-5xl compact:leading-none">{{ $t('artists.title') }} <span class="text-archive-red">{{ $t('artists.accent') }}</span></h1>
-          <p class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ $t('artists.intro') }}</p>
-        </div>
-
-        <ArchiveFactLedger class="[ artists-page-ledger ]" :items="artistLedgerItems" desktop-layout="stacked" />
-      </section>
+      <ArchiveDirectoryHero
+        class="[ artists-page-intro ]"
+        title-id="artists-page-title"
+        :breadcrumb="$t('artists.breadcrumb')"
+        :eyebrow="$t('artists.eyebrow')"
+        :title="$t('artists.title')"
+        :accent="$t('artists.accent')"
+        :intro="$t('artists.intro')"
+        :ledger="artistLedgerItems"
+        ledger-on-mobile
+      />
 
       <section id="artist-directory" class="[ artist-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('artists.directory')">
         <div class="[ artist-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">

@@ -88,18 +88,17 @@ usePageSeo('/venues/')
     <ArchiveHeader active="galleries" />
 
     <div id="main-content">
-      <section class="[ galleries-page-intro ] [ section-band ] relative mx-auto grid min-h-120 max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] items-end gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:min-h-0 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-4" aria-labelledby="galleries-page-title">
-        <div class="[ galleries-page-heading ]">
-          <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('galleries.breadcrumb') }}</span>
-          </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow archive-routed-eyebrow-facts m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs"><span class="compact:hidden">{{ $t('galleries.eyebrow') }}</span><span class="hidden compact:inline">{{ galleryFacts }}</span></p>
-          <h1 id="galleries-page-title" class="m-0 max-w-232 font-display text-hero font-light leading-[0.92] tablet:text-h1-steep compact:text-5xl compact:leading-none">{{ $t('galleries.title') }} <span class="text-archive-red">{{ $t('galleries.accent') }}</span></h1>
-          <p class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ $t('galleries.intro') }}</p>
-        </div>
-
-        <ArchiveFactLedger class="[ galleries-page-ledger ] compact:hidden" :items="galleryLedgerItems" desktop-layout="stacked" />
-      </section>
+      <ArchiveDirectoryHero
+        class="[ galleries-page-intro ]"
+        title-id="galleries-page-title"
+        :breadcrumb="$t('galleries.breadcrumb')"
+        :eyebrow="$t('galleries.eyebrow')"
+        :facts="galleryFacts"
+        :title="$t('galleries.title')"
+        :accent="$t('galleries.accent')"
+        :intro="$t('galleries.intro')"
+        :ledger="galleryLedgerItems"
+      />
 
       <section id="gallery-directory" class="[ gallery-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('galleries.directory')">
         <div class="[ gallery-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">

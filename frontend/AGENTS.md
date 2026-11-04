@@ -8,6 +8,10 @@ The primary active plan is `../_Plans/exhibitions-plan.md`. Treat `../_Plans/ori
 
 The `rowild-checklist-qa-for-permaphemera-frontend` skill (until 2026-10-20 `frontend-qa-checklist`) referenced below lives in `../.claude/skills/` at the repository root, because Claude Code is run from the root workspace directory rather than from `frontend/`. The `fin-patch` skill is installed globally in `~/.claude/skills/fin-patch/` and works in any repository from any directory.
 
+## Build it the Nuxt way: components first, test first (owner's rule, 2026-11-04)
+
+This is a Nuxt app, so use what Nuxt and Vue give before writing anything by hand. Markup, logic or a style group that appears in a second place moves into one shared piece at once: a component in `app/components/`, a composable in `app/composables/`, a layout in `app/layouts/`, a utility in `app/utils/`. Never copy a block from one page into another; copies drift (the four index heroes did: Organisations lost its 480px and the breadcrumbs sat at four heights, fixed with `ArchiveDirectoryHero`). Prefer Nuxt's own features (layouts, auto-imports, `useHead`/`useSeoMeta`, route rules, lazy components, `<NuxtLink>`, `useState`) over hand-rolled equivalents. Work test first (superpowers TDD): a new or changed component gets a test in `test/components/` (`@vue/test-utils` with happy-dom; `test/components/setup.ts` stands in for Nuxt), a utility in `test/unit/`, written and seen failing before the code. When duplication is found, it is a defect to fix, never a "historical reason" to explain.
+
 ## Design Source Of Truth
 
 Current website design inputs live in `../_Plans/designs/landing-page/`.

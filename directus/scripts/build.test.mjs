@@ -136,7 +136,18 @@ test('junction relations: alphabetical FKs, CASCADE, aliases on both ends, sort 
   assert.equal(toVenues.meta.sort_field, null)
   assert.equal(toVenues.schema.on_delete, 'CASCADE')
   assert.equal(field('pp_exhibitions', 'further_venues').meta.special[0], 'm2m')
-  assert.equal(field('pp_venues', 'further_exhibitions').meta.options.template, '{{exhibitions_id.title}}')
+  assert.equal(field('pp_venues', 'further_exhibitions').meta.options.template, '{{exhibitions_id.status}} {{exhibitions_id.title}}')
+})
+
+test('every relation list starts with the status dot of the record a row is about', () => {
+  assert.equal(field('pp_navigations', 'items').meta.options.template, '{{status}} {{title}}')
+  assert.equal(field('pp_navigation_items', 'children').meta.display_options.template, '{{status}} {{title}}')
+  assert.equal(field('pp_persons', 'participations').meta.options.template, '{{exhibition.status}} {{exhibition.title}} · {{role.title}}')
+  assert.equal(field('pp_exhibitions', 'statements').meta.options.template, '{{status}} {{person.first_name}} {{person.last_name}}: {{prompt}}')
+  for (const c of collections) for (const f of c.fields ?? []) {
+    if (!['list-o2m', 'list-m2m'].includes(f.meta?.interface)) continue
+    assert.match(f.meta.options.template, /^{{(\w+\.)?status}} /, `${c.collection}.${f.field}`)
+  }
 })
 
 test('no relation uses NO ACTION and audit relations are SET NULL', () => {

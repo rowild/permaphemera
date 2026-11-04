@@ -95,18 +95,17 @@ usePageSeo('/organisations/')
     <ArchiveHeader active="organisations" />
 
     <div id="main-content">
-      <section class="[ organisations-page-intro ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] items-end gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-4" aria-labelledby="organisations-page-title">
-        <div class="[ organisations-page-heading ]">
-          <ArchiveBreadcrumb>
-            <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><span>{{ $t('organisations.breadcrumb') }}</span>
-          </ArchiveBreadcrumb>
-          <p class="[ eyebrow ] archive-routed-eyebrow archive-routed-eyebrow-facts m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs"><span class="compact:hidden">{{ $t('organisations.eyebrow') }}</span><span class="hidden compact:inline">{{ organisationFacts }}</span></p>
-          <h1 id="organisations-page-title" class="m-0 max-w-232 font-display text-hero font-light leading-[0.92] tablet:text-h1-steep compact:text-5xl compact:leading-none">{{ $t('organisations.title') }} <span class="text-archive-red">{{ $t('organisations.accent') }}</span></h1>
-          <p class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ $t('organisations.intro') }}</p>
-        </div>
-
-        <ArchiveFactLedger class="[ organisations-page-ledger ] compact:hidden" :items="ledgerItems" desktop-layout="stacked" />
-      </section>
+      <ArchiveDirectoryHero
+        class="[ organisations-page-intro ]"
+        title-id="organisations-page-title"
+        :breadcrumb="$t('organisations.breadcrumb')"
+        :eyebrow="$t('organisations.eyebrow')"
+        :facts="organisationFacts"
+        :title="$t('organisations.title')"
+        :accent="$t('organisations.accent')"
+        :intro="$t('organisations.intro')"
+        :ledger="ledgerItems"
+      />
 
       <section id="organisation-directory" class="[ organisation-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('organisations.directory')">
         <div class="[ organisation-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
