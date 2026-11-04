@@ -2,30 +2,25 @@
 import { splitArtistCredit } from '~/utils/artistNames'
 
 const route = useRoute()
-const router = useRouter()
 const { artistDirectory: directoryArtists } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
 // Change this one value to alter the size of every all-letters preview group.
 const artistsPerLetterPreview = 5
-const normalize = (value: string) => value.trim().toLocaleLowerCase()
 const artistLedgerItems = computed(() => [
   { label: t('artists.ledgerArtists'), value: directoryArtists.value.length },
   { label: t('artists.linkedRecords'), value: directoryArtists.value.reduce((total, artist) => total + artist.records.length, 0) },
   { label: t('artists.index'), value: t('artists.surnameIndex') }
 ])
 const availableLetters = computed(() => new Set(directoryArtists.value.map((artist) => artist.letter)))
-const routeQuery = typeof route.query.q === 'string' ? route.query.q : ''
-const routeLetter = typeof route.query.letter === 'string' && availableLetters.value.has(route.query.letter.toLocaleUpperCase())
-  ? route.query.letter.toLocaleUpperCase()
-  : ''
-const artistSearchQuery = ref(routeQuery)
-const selectedLetter = ref(routeLetter)
+const artistSearchQuery = useQueryParam('q')
+// A letter without artists (an old or mistyped link) shows all letters.
+const selectedLetter = useQueryParam('letter', { validate: (letter) => (availableLetters.value.has(letter.toLocaleUpperCase()) ? letter.toLocaleUpperCase() : '') })
 const openArtistSlug = ref('')
 
 const filteredArtists = computed(() => {
-  const queries = splitArtistCredit(artistSearchQuery.value).map(normalize)
+  const queries = splitArtistCredit(artistSearchQuery.value).map(normalizeSearch)
 
   return directoryArtists.value.filter((artist) => {
     if (selectedLetter.value && artist.letter !== selectedLetter.value) return false
@@ -37,7 +32,7 @@ const filteredArtists = computed(() => {
       artist.location,
       artist.years,
       ...artist.records.flatMap((record) => [record.title, record.venue, record.city])
-    ].map(normalize)
+    ].map(normalizeSearch)
 
     return queries.some((query) => searchableValues.some((value) => value.includes(query)))
   })
@@ -78,28 +73,8 @@ const clearFilters = () => {
   openArtistSlug.value = ''
 }
 
-watch(() => route.query, (query) => {
-  artistSearchQuery.value = typeof query.q === 'string' ? query.q : ''
-  selectedLetter.value = typeof query.letter === 'string' && availableLetters.value.has(query.letter.toLocaleUpperCase())
-    ? query.letter.toLocaleUpperCase()
-    : ''
-  openArtistSlug.value = ''
-})
-
-watch([artistSearchQuery, selectedLetter], ([query, letter]) => {
-  const nextQuery = query.trim()
-  const currentQuery = typeof route.query.q === 'string' ? route.query.q : ''
-  const currentLetter = typeof route.query.letter === 'string' ? route.query.letter : ''
-  if (currentQuery === nextQuery && currentLetter === letter) return
-
-  void router.replace({
-    path: localePath('/artists/'),
-    query: {
-      ...(nextQuery ? { q: nextQuery } : {}),
-      ...(letter ? { letter } : {})
-    }
-  })
-})
+// A new search or letter closes an open exhibition list.
+watch(() => route.query, () => { openArtistSlug.value = '' })
 
 usePageSeo('/artists/')
 definePageMeta({ navActive: 'artists' })

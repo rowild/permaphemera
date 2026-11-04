@@ -1,33 +1,29 @@
 <script setup lang="ts">
-const route = useRoute()
-const router = useRouter()
 const { venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const archiveToday = useArchiveToday()
 
-const exhibitionSearchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
-const normalize = (value: string) => value.trim().toLocaleLowerCase()
+const exhibitionSearchQuery = useQueryParam('q')
 const orderedExhibitions = computed(() => [...venueExhibitions.value].sort((left, right) => {
   return right.start_date.localeCompare(left.start_date)
     || right.end_date.localeCompare(left.end_date)
     || left.title.localeCompare(right.title)
 }))
-const searching = computed(() => Boolean(normalize(exhibitionSearchQuery.value)))
+const searching = computed(() => Boolean(normalizeSearch(exhibitionSearchQuery.value)))
 const filteredExhibitions = computed(() => {
-  const query = normalize(exhibitionSearchQuery.value)
-  if (!query) return orderedExhibitions.value
+  if (!searching.value) return orderedExhibitions.value
 
-  return orderedExhibitions.value.filter((exhibition) => [
+  return orderedExhibitions.value.filter((exhibition) => matchesSearch(exhibitionSearchQuery.value, [
     exhibition.title,
     exhibition.artist,
     exhibition.venue,
     exhibition.city,
     exhibition.date_range,
     exhibition.summary,
-    exhibition.description ?? '',
-    exhibition.medium ?? ''
-  ].some((value) => normalize(value).includes(query)))
+    exhibition.description,
+    exhibition.medium
+  ]))
 })
 const exhibitionYears = computed(() => [...new Set(venueExhibitions.value.map((exhibition) => exhibition.start_date.slice(0, 4)))].sort((left, right) => right.localeCompare(left)))
 const exhibitionVenues = computed(() => new Set(venueExhibitions.value.map((exhibition) => exhibition.venue_slug)).size)
@@ -47,21 +43,6 @@ const SLIDES = { current: 5, upcoming: 5, past: 10 } as const
 const sliderGroups = computed(() => (['current', 'upcoming', 'past'] as const)
   .map((id) => ({ id, items: timeGroups.value[id], size: id === 'current' ? 'feature' as const : 'regular' as const }))
   .filter((group) => group.items.length))
-
-watch(() => route.query.q, (query) => {
-  exhibitionSearchQuery.value = typeof query === 'string' ? query : ''
-})
-
-watch(exhibitionSearchQuery, (query) => {
-  const nextQuery = query.trim()
-  const currentQuery = typeof route.query.q === 'string' ? route.query.q : ''
-  if (nextQuery === currentQuery) return
-
-  void router.replace({
-    path: localePath('/exhibitions/'),
-    query: nextQuery ? { q: nextQuery } : {}
-  })
-})
 
 usePageSeo('/exhibitions/')
 definePageMeta({ navActive: 'exhibitions' })

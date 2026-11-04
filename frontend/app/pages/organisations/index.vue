@@ -4,11 +4,8 @@ import type { ResolvedOrganisation } from '~/utils/resolveOrganisations'
 import type { ResolvedPerson } from '~/utils/resolvePersons'
 import type { ResolvedSponsor } from '~/utils/resolveSponsors'
 
-const route = useRoute()
-const router = useRouter()
 const { organisations, persons, sponsorPages } = useArchiveData()
 const { t } = useI18n()
-const localePath = useLocalePath()
 
 // Who organises: the organisations that run a gallery, stand behind an exhibition or are a
 // group; the people who organise (board members included) and who curate; the sponsors.
@@ -17,12 +14,8 @@ const organisers = computed(() => personsInRoles(persons.value, ORGANISER_ROLES)
 const curators = computed(() => personsInRoles(persons.value, CURATOR_ROLES))
 const peopleCount = computed(() => new Set([...organisers.value, ...curators.value].map((person) => person.id)).size)
 
-const searchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
-const normalize = (value: string) => value.trim().toLocaleLowerCase()
-const matches = (values: (string | undefined)[]) => {
-  const query = normalize(searchQuery.value)
-  return !query || values.some((value) => value && normalize(value).includes(query))
-}
+const searchQuery = useQueryParam('q')
+const matches = (values: (string | undefined)[]) => matchesSearch(searchQuery.value, values)
 const organisationText = (organisation: ResolvedOrganisation) => [
   organisation.title,
   organisation.short_title,
@@ -70,21 +63,6 @@ const organisationFacts = computed(() => [
   t('organisations.factPeople', peopleCount.value),
   t('organisations.factRecords', recordCount.value)
 ].map((fact) => fact.replaceAll(' ', ' ')).join(' · '))
-
-watch(() => route.query.q, (query) => {
-  searchQuery.value = typeof query === 'string' ? query : ''
-})
-
-watch(searchQuery, (query) => {
-  const nextQuery = query.trim()
-  const currentQuery = typeof route.query.q === 'string' ? route.query.q : ''
-  if (nextQuery === currentQuery) return
-
-  void router.replace({
-    path: localePath('/organisations/'),
-    query: nextQuery ? { q: nextQuery } : {}
-  })
-})
 
 usePageSeo('/organisations/')
 definePageMeta({ navActive: 'organisations' })

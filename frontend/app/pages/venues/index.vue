@@ -1,17 +1,14 @@
 <script setup lang="ts">
-const route = useRoute()
-const router = useRouter()
 const { venues, venueExhibitions } = useArchiveData()
 const { t } = useI18n()
-const localePath = useLocalePath()
 
-const gallerySearchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
-const selectedState = ref(typeof route.query.state === 'string' ? route.query.state : '')
-const normalize = (value: string) => value.trim().toLocaleLowerCase()
 const stateName = useStateName()
 
 const states = computed(() => [...new Set(venues.value.map((venue) => venue.state))]
   .sort((left, right) => left.localeCompare(right)))
+const gallerySearchQuery = useQueryParam('q')
+// An unknown ?state= (an old or mistyped link) shows all galleries.
+const selectedState = useQueryParam('state', { validate: (state) => (states.value.includes(state) ? state : '') })
 const stateCounts = computed(() => new Map(states.value.map((state) => [
   state,
   venues.value.filter((venue) => venue.state === state).length
@@ -24,24 +21,18 @@ const orderedVenues = computed(() => [...venues.value].sort((left, right) => {
   if (Boolean(left.featured) !== Boolean(right.featured)) return left.featured ? -1 : 1
   return left.name.localeCompare(right.name)
 }))
-const filteredVenues = computed(() => {
-  const query = normalize(gallerySearchQuery.value)
-
-  return orderedVenues.value.filter((venue) => {
-    if (selectedState.value && venue.state !== selectedState.value) return false
-    if (!query) return true
-
-    return [
+const filteredVenues = computed(() => orderedVenues.value.filter((venue) => {
+  if (selectedState.value && venue.state !== selectedState.value) return false
+  return matchesSearch(gallerySearchQuery.value, [
       venue.name,
       venue.city_name,
       venue.postal_code,
       stateName(venue.state),
       venue.country,
       venue.address,
-      venue.description ?? ''
-    ].some((value) => normalize(value).includes(query))
-  })
-})
+      venue.description
+  ])
+}))
 const galleryLedgerItems = computed(() => [
   { label: t('galleries.ledgerGalleries'), value: venues.value.length },
   { label: t('galleries.ledgerStates'), value: states.value.length },
@@ -58,26 +49,6 @@ const clearFilters = () => {
   gallerySearchQuery.value = ''
   selectedState.value = ''
 }
-
-watch(() => route.query, (query) => {
-  gallerySearchQuery.value = typeof query.q === 'string' ? query.q : ''
-  selectedState.value = typeof query.state === 'string' && states.value.includes(query.state) ? query.state : ''
-})
-
-watch([gallerySearchQuery, selectedState], ([query, state]) => {
-  const nextQuery = query.trim()
-  const currentQuery = typeof route.query.q === 'string' ? route.query.q : ''
-  const currentState = typeof route.query.state === 'string' ? route.query.state : ''
-  if (nextQuery === currentQuery && state === currentState) return
-
-  void router.replace({
-    path: localePath('/venues/'),
-    query: {
-      ...(nextQuery ? { q: nextQuery } : {}),
-      ...(state ? { state } : {})
-    }
-  })
-})
 
 usePageSeo('/venues/')
 definePageMeta({ navActive: 'galleries' })

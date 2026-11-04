@@ -16,7 +16,6 @@ interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'a
 }
 
 const route = useRoute()
-const router = useRouter()
 const { venueExhibitions, venues } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
@@ -74,20 +73,14 @@ const ledgerCountKey = computed(() => {
   if (kinds.size === 1 && kinds.has('event')) return 'venue.eventCount'
   return kinds.size > 1 ? 'venue.recordCount' : 'venue.exhibitionCount'
 })
-const venueSearchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
-const filteredExhibitions = computed(() => {
-  const query = venueSearchQuery.value.trim().toLocaleLowerCase()
-
-  if (!query) return exhibitions.value
-
-  return exhibitions.value.filter((exhibition) => [
-    exhibition.title,
-    exhibition.artist,
-    exhibition.date_range,
-    exhibition.summary,
-    exhibition.medium ?? ''
-  ].some((value) => value.toLocaleLowerCase().includes(query)))
-})
+const venueSearchQuery = useQueryParam('q')
+const filteredExhibitions = computed(() => exhibitions.value.filter((exhibition) => matchesSearch(venueSearchQuery.value, [
+  exhibition.title,
+  exhibition.artist,
+  exhibition.date_range,
+  exhibition.summary,
+  exhibition.medium
+])))
 const selectedExhibition = ref<ResolvedExhibition | null>(exhibitions.value[0] ?? null)
 const previewExhibition = ref<ResolvedExhibition | null>(exhibitions.value[0] ?? null)
 const archiveToday = useArchiveToday()
@@ -148,21 +141,6 @@ watch(filteredExhibitions, (matches) => {
 watch(exhibitions, (records) => {
   selectedExhibition.value = records.find((item) => item.id === selectedExhibition.value?.id) ?? records[0] ?? null
   previewExhibition.value = records.find((item) => item.id === previewExhibition.value?.id) ?? selectedExhibition.value
-})
-
-watch(() => route.query.q, (query) => {
-  venueSearchQuery.value = typeof query === 'string' ? query : ''
-})
-
-watch(venueSearchQuery, (query) => {
-  const nextQuery = query.trim()
-  const currentQuery = typeof route.query.q === 'string' ? route.query.q : ''
-  if (currentQuery === nextQuery) return
-
-  void router.replace({
-    path: route.path,
-    query: nextQuery ? { q: nextQuery } : {}
-  })
 })
 
 onMounted(() => {
