@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SITE_OWNER } from '~/utils/siteOwner'
 const { t } = useI18n()
 const localePath = useLocalePath()
 
@@ -11,15 +12,15 @@ interface EditorialSection {
   items?: string[]
 }
 
-const emailHref = 'mailto:office@rowild.at'
-const phoneHref = 'tel:+436766089613'
+const emailHref = SITE_OWNER.emailHref
+const phoneHref = SITE_OWNER.phoneHref
 
 const contactRecordItems = computed(() => [
   { label: t('contactPage.record.project'), value: 'PERMAPHEMERA' },
-  { label: t('contactPage.record.responsible'), value: 'Robert Wildling' },
+  { label: t('contactPage.record.responsible'), value: SITE_OWNER.name },
   { label: t('contactPage.record.address'), value: t('contactPage.record.addressValue') },
-  { label: t('contactPage.record.email'), value: 'office@rowild.at', href: emailHref },
-  { label: t('contactPage.record.phone'), value: '+43 676 6089613', href: phoneHref }
+  { label: t('contactPage.record.email'), value: SITE_OWNER.email, href: emailHref },
+  { label: t('contactPage.record.phone'), value: SITE_OWNER.phone, href: phoneHref }
 ])
 
 const editorialSections = computed<EditorialSection[]>(() => [

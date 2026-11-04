@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SITE_OWNER } from '~/utils/siteOwner'
 import type { LegalRecordItem, LegalSection } from '~/types/legal'
 
 const { t } = useI18n()
@@ -54,9 +55,9 @@ const sections = computed<LegalSection[]>(() => [
     title: t('legal.accessibility.sections.feedback.title'),
     paragraphs: [t('legal.accessibility.sections.feedback.p1'), t('legal.accessibility.sections.feedback.p2')],
     details: [
-      { label: t('legal.common.contact'), value: 'Robert Wildling' },
-      { label: t('legal.common.email'), value: 'office@rowild.at', href: 'mailto:office@rowild.at' },
-      { label: t('legal.common.phone'), value: '+43 676 6089613', href: 'tel:+436766089613' }
+      { label: t('legal.common.contact'), value: SITE_OWNER.name },
+      { label: t('legal.common.email'), value: SITE_OWNER.email, href: SITE_OWNER.emailHref },
+      { label: t('legal.common.phone'), value: SITE_OWNER.phone, href: SITE_OWNER.phoneHref }
     ]
   },
   {

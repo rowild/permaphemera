@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SITE_OWNER } from '~/utils/siteOwner'
 import type { LegalRecordItem, LegalSection } from '~/types/legal'
 
 const { t } = useI18n()
@@ -6,7 +7,7 @@ const { t } = useI18n()
 const recordItems = computed<LegalRecordItem[]>(() => [
   { label: t('legal.common.document'), value: t('legal.terms.recordType') },
   { label: t('legal.common.project'), value: 'PERMAPHEMERA' },
-  { label: t('legal.common.operator'), value: 'Robert Wildling' },
+  { label: t('legal.common.operator'), value: SITE_OWNER.name },
   { label: t('legal.common.updated'), value: t('legal.common.updatedValue') }
 ])
 

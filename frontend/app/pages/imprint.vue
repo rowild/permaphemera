@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SITE_OWNER } from '~/utils/siteOwner'
 import type { LegalRecordItem, LegalSection } from '~/types/legal'
 
 const { t } = useI18n()
@@ -6,7 +7,7 @@ const { t } = useI18n()
 const recordItems = computed<LegalRecordItem[]>(() => [
   { label: t('legal.common.document'), value: t('legal.imprint.recordType') },
   { label: t('legal.common.project'), value: 'PERMAPHEMERA' },
-  { label: t('legal.common.responsible'), value: 'Robert Wildling' },
+  { label: t('legal.common.responsible'), value: SITE_OWNER.name },
   { label: t('legal.common.updated'), value: t('legal.common.updatedValue') }
 ])
 
@@ -18,10 +19,10 @@ const sections = computed<LegalSection[]>(() => [
     paragraphs: [t('legal.imprint.sections.provider.p1')],
     details: [
       { label: t('legal.imprint.sections.provider.roleLabel'), value: t('legal.imprint.sections.provider.roleValue') },
-      { label: t('legal.common.name'), value: 'Robert Wildling' },
-      { label: t('legal.common.address'), value: 'Göllnergasse 19/30, A-1030 Wien, Österreich' },
-      { label: t('legal.common.email'), value: 'office@rowild.at', href: 'mailto:office@rowild.at' },
-      { label: t('legal.common.phone'), value: '+43 676 6089613', href: 'tel:+436766089613' }
+      { label: t('legal.common.name'), value: SITE_OWNER.name },
+      { label: t('legal.common.address'), value: t('contactPage.record.addressValue') },
+      { label: t('legal.common.email'), value: SITE_OWNER.email, href: SITE_OWNER.emailHref },
+      { label: t('legal.common.phone'), value: SITE_OWNER.phone, href: SITE_OWNER.phoneHref }
     ]
   },
   {
