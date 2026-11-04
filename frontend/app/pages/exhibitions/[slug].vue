@@ -72,10 +72,10 @@ definePageMeta({ navActive: 'exhibitions' })
         <div class="[ exhibition-hero-image ] min-h-0 bg-cover bg-center brightness-50 saturate-72 tablet:min-h-100 compact:min-h-76" :style="{ backgroundImage: `url('${heroImage}')` }" aria-hidden="true" />
         <div class="[ exhibition-hero-copy ] archive-exhibition-experience-copy relative z-2 flex flex-col justify-center p-[clamp(3rem,6vw,6rem)] compact:bg-archive-night compact:px-4 compact:py-8">
           <ArchiveBreadcrumb class="text-archive-footer-copy/72" surface="night" :items="[{ label: $t('navigation.exhibitions'), to: '/exhibitions/' }, { label: galleryName, to: `/venues/${exhibition.venue_slug}/` }, { label: exhibition.title }]" />
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-ochre uppercase compact:mb-2 compact:text-xs">
+          <ArchiveEyebrow tone="gold">
             <!-- A long eyebrow wraps only at its "·", never inside "360°-Rundgang in Vorbereitung". -->
             <span><template v-for="(part, index) in spatialEyebrowParts" :key="part"><template v-if="index">&nbsp;· </template><span :class="{ 'whitespace-nowrap': spatialEyebrowParts.length > 1 }">{{ part }}</span></template></span>
-          </p>
+          </ArchiveEyebrow>
           <h1 id="exhibition-title" class="m-0 font-display text-h1 font-light leading-[0.92] text-archive-night-heading compact:text-5xl compact:leading-none">{{ exhibition.title }}</h1>
           <p class="[ exhibition-hero-artist ] mt-[0.8rem] mb-0 text-title text-archive-ochre compact:mt-2 compact:text-lg"><template v-for="(artist, index) in exhibition.artists" :key="artist.id"><template v-if="index"> &amp; </template><ArchiveTextLink :to="localePath(`/persons/${artist.slug}/`)" surface="night">{{ artist.name }}</ArchiveTextLink></template></p>
           <p v-if="exhibition.summary" class="[ exhibition-hero-summary ] mt-[1.4rem] mb-0 max-w-136 text-lg leading-[1.52] text-archive-footer-copy/86 compact:mt-3 compact:text-base compact:leading-normal">{{ exhibition.summary }}</p>
@@ -95,7 +95,7 @@ definePageMeta({ navActive: 'exhibitions' })
 
       <section id="exhibition-details" class="[ exhibition-details ] [ section-band ] relative mx-auto grid max-w-[105rem] scroll-mt-[6.4rem] grid-cols-[minmax(30rem,1.2fr)_minmax(23rem,0.8fr)] gap-x-[clamp(3rem,7vw,7rem)] gap-y-12 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] outline-none tablet:grid-cols-1 compact:gap-y-8 compact:px-4 compact:py-5" aria-labelledby="exhibition-details-title" tabindex="-1">
         <div class="[ exhibition-details-prose ]">
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ kindText('recordEyebrow') }}</p>
+          <ArchiveEyebrow>{{ kindText('recordEyebrow') }}</ArchiveEyebrow>
           <h2 id="exhibition-details-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ kindText('aboutTitle') }} <span class="text-archive-red">{{ kindText('aboutAccent') }}</span></h2>
           <p v-if="exhibition.description" class="[ exhibition-details-description ] mt-6 mb-0 max-w-3xl text-lg leading-[1.65] text-archive-body compact:mt-3 compact:text-base compact:leading-normal">{{ exhibition.description }}</p>
 
@@ -173,7 +173,7 @@ definePageMeta({ navActive: 'exhibitions' })
 
       <section v-if="relatedExhibitions.length" class="[ exhibition-related ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="related-title">
         <div class="[ section-heading ] relative z-1 mb-10 compact:mb-5">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('exhibition.relatedEyebrow') }}</p>
+          <ArchiveEyebrow ornament="section">{{ $t('exhibition.relatedEyebrow') }}</ArchiveEyebrow>
           <h2 id="related-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccent') }}</span></h2>
         </div>
         <div class="[ exhibition-related-grid ] grid grid-cols-3 gap-6 compact:grid-cols-1">

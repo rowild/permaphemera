@@ -22,9 +22,9 @@ const props = defineProps<{
       <section class="[ legal-page-intro ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1.12fr)_minmax(20rem,0.88fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-4" :aria-labelledby="`${props.sections[0]?.id ?? 'legal'}-page-title`">
         <header class="[ legal-page-heading ]">
           <ArchiveBreadcrumb :items="[{ label: props.breadcrumb }]" />
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">
+          <ArchiveEyebrow>
             {{ props.eyebrow }}
-          </p>
+          </ArchiveEyebrow>
           <h1 :id="`${props.sections[0]?.id ?? 'legal'}-page-title`" class="m-0 max-w-216 pb-2 font-display text-hero font-light leading-[0.98] tablet:text-h1-steep compact:pb-1 compact:text-5xl compact:leading-[1.04]">
             {{ props.title }} <span class="text-archive-red">{{ props.accent }}</span>
           </h1>

@@ -17,7 +17,7 @@ usePageSeo(`/sponsors/${slug}/`)
       <section class="[ sponsor-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(16rem,0.6fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="sponsor-title">
         <div class="[ sponsor-hero-copy ] relative z-2">
           <ArchiveBreadcrumb :items="[{ label: sponsor.title }]" />
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('sponsorPages.eyebrow') }}</p>
+          <ArchiveEyebrow>{{ $t('sponsorPages.eyebrow') }}</ArchiveEyebrow>
           <h1 id="sponsor-title" class="m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">{{ sponsor.title }}</h1>
           <p v-if="sponsor.description" class="my-0 mt-[1.6rem] mb-[1.85rem] max-w-136 text-lede leading-[1.42] text-archive-body compact:mt-4 compact:mb-4 compact:text-base compact:leading-normal">{{ sponsor.description }}</p>
           <dl class="m-0">

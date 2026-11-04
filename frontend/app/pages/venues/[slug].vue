@@ -167,7 +167,7 @@ definePageMeta({ navActive: 'galleries' })
       >
         <div class="[ venue-hero-copy ] relative z-2 tablet:row-start-2">
           <ArchiveBreadcrumb :items="[{ label: $t('navigation.galleries'), to: '/venues/' }, { label: venue.name }]" />
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.archiveVenue') }}</p>
+          <ArchiveEyebrow>{{ $t('venue.archiveVenue') }}</ArchiveEyebrow>
           <h1 id="venue-title" class="[ venue-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">
             {{ venue.name }}
             <span class="mt-3 block max-w-116 text-city leading-[1.02] text-archive-red">{{ venue.city }}</span>
@@ -245,7 +245,7 @@ definePageMeta({ navActive: 'galleries' })
       <section id="venue-exhibitions" class="[ venue-exhibitions ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(4rem,7vw,7rem)] pb-[clamp(3rem,5vw,5rem)] compact:px-4 compact:pt-5 compact:pb-5" aria-labelledby="venue-exhibitions-title">
         <div class="[ venue-exhibitions-intro ] mb-12 grid grid-cols-[minmax(0,1fr)_minmax(20rem,0.55fr)] items-start gap-[clamp(2.5rem,6vw,6rem)] tablet:grid-cols-1 compact:mb-5 compact:gap-4">
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-3">
-            <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.ledger') }}</p>
+            <ArchiveEyebrow>{{ $t('venue.ledger') }}</ArchiveEyebrow>
             <h2 id="venue-exhibitions-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ $t(ledgerCountKey, exhibitions.length) }}. <span class="text-archive-red">{{ $t('venue.changingSpace') }}</span></h2>
             <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('venue.searchIntro') }}</p>
           </div>
@@ -321,7 +321,7 @@ definePageMeta({ navActive: 'galleries' })
           <img class="w-42 -rotate-4 opacity-48" src="/media/images/landing/footer/permanently-preserved-stamp.png" alt="" >
         </div>
         <div class="[ venue-about-copy ]">
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.venueEyebrow') }}</p>
+          <ArchiveEyebrow>{{ $t('venue.venueEyebrow') }}</ArchiveEyebrow>
           <h2 id="venue-about-title" class="mb-[1.85rem] text-h2-lg font-light leading-[0.98] compact:mb-4 compact:text-4xl">{{ $t('venue.venueTitle') }} <span class="text-archive-red">{{ $t('venue.venueAccent') }}</span></h2>
           <ArchiveRichText v-if="venue.aboutHtml" class="max-w-180" :html="venue.aboutHtml" />
           <template v-else>

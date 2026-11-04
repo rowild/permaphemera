@@ -54,9 +54,9 @@ const columnGroups = computed(() => groups.value
         :class="hasNews ? 'col-span-full flex flex-wrap items-end justify-between gap-x-10 gap-y-3' : ''"
       >
         <div>
-        <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">
+        <ArchiveEyebrow ornament="section">
           {{ $t('landing.schedule.eyebrow') }}
-        </p>
+        </ArchiveEyebrow>
         <h2 id="current-upcoming-title" class="m-0 max-w-144 pb-1 font-display text-h2 font-normal leading-[1.08] compact:pb-0.5 compact:text-3xl compact:leading-[1.12]">
           {{ $t('landing.schedule.titleBefore') }} <span class="text-archive-red">{{ $t('landing.schedule.titleAccent') }}</span> {{ $t('landing.schedule.titleAfter') }}
         </h2>

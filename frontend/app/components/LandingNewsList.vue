@@ -36,7 +36,7 @@ const headingId = computed(() => `news-latest-${props.variant}-title`)
     class="[ news-latest-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5"
     :aria-labelledby="headingId"
   >
-    <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('newsPage.latestEyebrow') }}</p>
+    <ArchiveEyebrow ornament="section">{{ $t('newsPage.latestEyebrow') }}</ArchiveEyebrow>
     <h2 :id="headingId" class="m-0 font-display text-h2 font-normal leading-[0.98] compact:text-3xl compact:leading-[1.12]">{{ $t('newsPage.latest') }}</h2>
     <ol class="m-0 mt-4 max-w-232 list-none divide-y divide-archive-rule-warm/22 p-0">
       <li v-for="item in props.news" :key="item.id"><NewsEntry :news="item" /></li>

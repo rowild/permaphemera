@@ -24,10 +24,10 @@ const props = withDefaults(defineProps<{
   <section class="[ directory-hero ] [ section-band ] relative mx-auto grid min-h-120 max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] items-start gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:min-h-0 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-4" :aria-labelledby="props.titleId">
     <div class="[ directory-hero-heading ]">
       <ArchiveBreadcrumb :items="[{ label: props.breadcrumb }]" />
-      <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs" :class="{ 'archive-routed-eyebrow-facts': props.facts }">
+      <ArchiveEyebrow :class="{ 'archive-routed-eyebrow-facts': props.facts }">
         <template v-if="props.facts"><span class="compact:hidden">{{ props.eyebrow }}</span><span class="hidden compact:inline">{{ props.facts }}</span></template>
         <template v-else>{{ props.eyebrow }}</template>
-      </p>
+      </ArchiveEyebrow>
       <h1 :id="props.titleId" class="m-0 max-w-232 font-display text-hero font-light leading-[0.92] tablet:text-h1-steep compact:text-5xl compact:leading-none">{{ props.title }} <span class="text-archive-red">{{ props.accent }}</span></h1>
       <p class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ props.intro }}</p>
     </div>

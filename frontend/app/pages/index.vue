@@ -510,7 +510,7 @@ const openRandomTour = (event: MouseEvent) => {
 
       <section v-if="belowHeroStep >= 2" id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.venues.eyebrow') }}</p>
+          <ArchiveEyebrow ornament="section">{{ $t('landing.venues.eyebrow') }}</ArchiveEyebrow>
           <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.venues.title') }} <span class="text-archive-red">{{ $t('landing.venues.accent') }}</span></h2>
         </div>
 
@@ -541,7 +541,7 @@ const openRandomTour = (event: MouseEvent) => {
 
       <section v-if="belowHeroStep >= 3" id="exhibitions" class="[ exhibitions-section ] [ section-band ] relative isolate mx-auto max-w-[105rem] overflow-hidden px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.exhibitions.eyebrow') }}</p>
+          <ArchiveEyebrow ornament="section">{{ $t('landing.exhibitions.eyebrow') }}</ArchiveEyebrow>
           <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></h2>
         </div>
 
@@ -568,7 +568,7 @@ const openRandomTour = (event: MouseEvent) => {
       <section v-if="belowHeroStep >= 4" id="artists" class="[ artists-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] gap-[clamp(2rem,5vw,4.5rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-5 compact:px-4 compact:py-5">
         <div class="[ artists-main ] min-w-0">
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
-            <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.artists.eyebrow') }}</p>
+            <ArchiveEyebrow ornament="section">{{ $t('landing.artists.eyebrow') }}</ArchiveEyebrow>
             <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.artists.title') }} <span class="text-archive-red">{{ $t('landing.artists.accent') }}</span></h2>
           </div>
 
@@ -619,9 +619,9 @@ const openRandomTour = (event: MouseEvent) => {
             ]"
           />
           <div class="tablet:hidden">
-            <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.preserved') }}</p>
+            <ArchiveEyebrow ornament="none">{{ $t('landing.sidebar.preserved') }}</ArchiveEyebrow>
             <strong class="[ archive-sidebar-count ] mt-[0.4rem] mb-10 block font-display text-title font-normal">{{ preservedExhibitionCount }}</strong>
-            <p class="[ eyebrow ] m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase">{{ $t('landing.sidebar.cities') }}</p>
+            <ArchiveEyebrow ornament="none">{{ $t('landing.sidebar.cities') }}</ArchiveEyebrow>
             <ul class="[ archive-sidebar-locations ] m-0 mb-6 grid list-none gap-[0.45rem] p-0">
               <li v-for="city in sidebarCities" :key="city">{{ city }}</li>
             </ul>
@@ -646,7 +646,7 @@ const openRandomTour = (event: MouseEvent) => {
 
       <section v-if="belowHeroStep >= 5" id="method" class="[ method-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(20rem,0.58fr)_minmax(36rem,1.42fr)] gap-x-[clamp(2.5rem,4vw,4.5rem)] gap-y-0 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:px-4 compact:py-5">
         <div class="[ method-copy ] relative z-1">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('landing.method.eyebrow') }}</p>
+          <ArchiveEyebrow ornament="section">{{ $t('landing.method.eyebrow') }}</ArchiveEyebrow>
           <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.method.title') }} <span class="text-archive-red">{{ $t('landing.method.accent') }}</span></h2>
           <p class="mt-[0.85rem] mb-0 max-w-216 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('landing.method.intro') }}</p>
           <ArchiveButton v-if="openTourUrls.length" class="mt-8 mb-0 w-fit tablet:mb-16 compact:mx-auto compact:mt-5 compact:mb-10 compact:flex" :disabled="tourOpening" @click="openRandomTour">

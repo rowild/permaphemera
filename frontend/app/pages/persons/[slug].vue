@@ -29,7 +29,7 @@ usePageSeo(`/persons/${slug}/`)
       <section class="[ person-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(24rem,1.1fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="person-title">
         <div class="[ person-hero-copy ] relative z-2">
           <ArchiveBreadcrumb :items="person.isArtist ? [{ label: $t('artists.breadcrumb'), to: '/artists/' }, { label: person.name }] : [{ label: person.name }]" />
-          <p v-if="roleLine" class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ roleLine }}</p>
+          <ArchiveEyebrow v-if="roleLine">{{ roleLine }}</ArchiveEyebrow>
           <h1 id="person-title" class="[ person-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">{{ person.name }}</h1>
           <p class="[ person-hero-lede ] my-0 mt-[1.6rem] mb-[1.85rem] max-w-136 text-lede leading-[1.42] text-archive-body compact:mt-4 compact:mb-4 compact:text-base compact:leading-normal">{{ person.lede ?? $t(person.roles.length ? 'persons.fallbackLede' : 'persons.fallbackLedeNoRole', { name: person.name, roles: roleSentence }) }}</p>
 
@@ -90,7 +90,7 @@ usePageSeo(`/persons/${slug}/`)
 
       <section v-if="person.records.length" class="[ person-records ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="person-records-title">
         <div class="[ section-heading ] mb-10 compact:mb-5">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('persons.recordsEyebrow') }}</p>
+          <ArchiveEyebrow ornament="section">{{ $t('persons.recordsEyebrow') }}</ArchiveEyebrow>
           <h2 id="person-records-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('persons.recordsTitle', { name: person.name }) }}</h2>
         </div>
         <div class="[ person-records-grid ] grid grid-cols-3 gap-6 tablet:grid-cols-2 compact:grid-cols-1">

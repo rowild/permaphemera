@@ -30,7 +30,7 @@ definePageMeta({ navActive: 'organisations' })
       <section class="[ organisation-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(24rem,1.1fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="organisation-title">
         <div class="[ organisation-hero-copy ] relative z-2">
           <ArchiveBreadcrumb :items="[{ label: $t('organisations.breadcrumb'), to: '/organisations/' }, { label: organisation.title }]" />
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ kindLabel }}</p>
+          <ArchiveEyebrow>{{ kindLabel }}</ArchiveEyebrow>
           <h1 id="organisation-title" class="[ organisation-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">
             {{ organisation.title }}
             <span v-if="organisation.city" class="mt-3 block max-w-116 text-city leading-[1.02] text-archive-red">{{ organisation.city }}</span>
@@ -69,7 +69,7 @@ definePageMeta({ navActive: 'organisations' })
               {{ organisation.image_caption }}
             </figcaption>
           </figure>
-          <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('organisations.aboutEyebrow') }}</p>
+          <ArchiveEyebrow>{{ $t('organisations.aboutEyebrow') }}</ArchiveEyebrow>
           <ArchiveRichText v-if="organisation.aboutHtml" :html="organisation.aboutHtml" />
           <p v-else class="max-w-176 text-button leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ organisation.description ?? $t('organisations.fallbackAbout', { name: organisation.title }) }}</p>
 
@@ -89,7 +89,7 @@ definePageMeta({ navActive: 'organisations' })
 
       <section v-if="organisation.records.length" class="[ organisation-records ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="organisation-records-title">
         <div class="[ section-heading ] mb-10 compact:mb-5">
-          <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('organisations.recordsEyebrow') }}</p>
+          <ArchiveEyebrow ornament="section">{{ $t('organisations.recordsEyebrow') }}</ArchiveEyebrow>
           <h2 id="organisation-records-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('organisations.recordsTitle', organisation.records.length) }} <span class="text-archive-red">{{ $t('organisations.recordsAccent') }}</span></h2>
         </div>
         <div class="[ organisation-records-grid ] grid grid-cols-3 gap-6 tablet:grid-cols-2 compact:grid-cols-1">

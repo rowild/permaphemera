@@ -104,7 +104,7 @@ onBeforeUnmount(restoreBodyScroll)
             </button>
 
             <header class="pr-12 compact:pr-9">
-              <p class="[ eyebrow ] archive-section-eyebrow m-0 mb-3 inline-flex items-center gap-[0.7rem] font-display text-sm font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('artists.linkedExhibitions') }}</p>
+              <ArchiveEyebrow ornament="section">{{ $t('artists.linkedExhibitions') }}</ArchiveEyebrow>
               <h2 :id="`${props.modalId}-title`" class="m-0 font-display text-h2-steep font-normal leading-none compact:text-3xl">
                 <NuxtLink class="text-archive-ink no-underline hover:text-archive-red focus-visible:text-archive-red" :to="localePath(`/persons/${props.artist.slug}/`)">{{ props.displayName }}</NuxtLink>
               </h2>

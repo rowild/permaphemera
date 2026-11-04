@@ -27,7 +27,7 @@ usePageSeo('/news/')
 
       <section class="[ news-page-intro ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] compact:px-4 compact:pt-6 compact:pb-4" aria-labelledby="news-page-title">
         <ArchiveBreadcrumb :items="[{ label: $t('newsPage.breadcrumb') }]" />
-        <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('newsPage.eyebrow') }}</p>
+        <ArchiveEyebrow>{{ $t('newsPage.eyebrow') }}</ArchiveEyebrow>
         <h1 id="news-page-title" class="m-0 max-w-232 font-display text-hero font-light leading-[0.92] tablet:text-h1-steep compact:text-5xl compact:leading-none">{{ $t('newsPage.title') }}</h1>
         <p class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ $t('newsPage.intro') }}</p>
       </section>

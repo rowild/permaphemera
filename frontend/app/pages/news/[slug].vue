@@ -23,7 +23,7 @@ usePageSeo(`/news/${slug}/`)
     <article aria-labelledby="news-article-title">
       <header class="[ news-article-intro ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] compact:px-4 compact:pt-6 compact:pb-4">
         <ArchiveBreadcrumb :items="[{ label: $t('newsPage.breadcrumb'), to: '/news/' }, { label: article.title }]" />
-        <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs"><time :datetime="article.date">{{ formatNewsDate(article.date, locale) }}</time> · {{ $t(`newsPage.topics.${article.topic}`) }}</p>
+        <ArchiveEyebrow><time :datetime="article.date">{{ formatNewsDate(article.date, locale) }}</time> · {{ $t(`newsPage.topics.${article.topic}`) }}</ArchiveEyebrow>
         <h1 id="news-article-title" class="m-0 max-w-232 font-display text-h1-steep font-light leading-[0.98] compact:text-4xl compact:leading-[1.05]">{{ article.title }}</h1>
         <p v-if="article.summary" class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ article.summary }}</p>
       </header>
