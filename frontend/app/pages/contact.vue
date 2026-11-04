@@ -66,11 +66,7 @@ usePageSeo('/contact/')
           <ArchivePageTitle title-id="contact-page-title" :title="$t('contactPage.title')" :accent="$t('contactPage.accent')" :intro="$t('contactPage.intro')" />
 
           <template #aside>
-        <ArchiveContactRecord
-          :label="$t('contactPage.record.label')"
-          :record-aria="$t('contactPage.record.aria')"
-          :items="contactRecordItems"
-        />
+        <ArchiveFactRecord :label="$t('contactPage.record.label')" :record-aria="$t('contactPage.record.aria')" :items="contactRecordItems" address stamp />
 
           </template>
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.58 - 2026-11-04 22:30:00 CET
+
+- On phones the fact boxes of the contact and legal pages put each label above its value; long labels ("Verantwortlich", "Kontaktperson") ran into the value before.
+- English dates on exhibition cards are written in British order ("19 Dec 2026"), as everywhere else.
+- The A–Z letters on the artists page have the larger tap target of the start page.
+- The English legal pages give the address in English ("Vienna, Austria").
+- Small alignments from merging copies: the legal pages' sections are spaced like the about page, the related exhibitions grid has two columns on tablets, the organisations page's group headings match the others.
+- Shared components instead of copies (no other visible change): link lists, card grids, statements, group headings, artist letter groups, the fact box, the owner's contact data, the date format.
+
 ## 0.0.57 - 2026-11-04 21:20:00 CET
 
 - Contact and the legal pages share one hero layout (title beside the fact box); the legal pages' fact box is a little wider, as on the contact page.

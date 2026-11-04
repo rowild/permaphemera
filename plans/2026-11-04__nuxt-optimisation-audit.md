@@ -109,7 +109,7 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
    `p-0`), `ArchiveDirectoryBody` (controls → divider → results, 5; divider margin and gutter
    drift). `news/index.vue:32-39` hand-rolls `ArchiveDirectoryHero` → ledger optional, use it.
    The hero `facts` joiner (3 copies, one with a literal NBSP) moves into the hero.
-9. **Smaller extractions:** `ArchiveLinkList` (comma-joined links, 17), `ExhibitionCardGrid` (5),
+9. **Mostly DONE 0.0.58 (link list, card grid, letter link + ALPHABET, statement, group label, artist group merge, editorial section merge, fact record merge, divider, siteOwner, archiveDate, EditorialSection type; open: hover/ornament composables, method steps, ArchiveTextLink as=button)** **Smaller extractions:** `ArchiveLinkList` (comma-joined links, 17), `ExhibitionCardGrid` (5),
    `ArchiveRailItem` + shared `ALPHABET`/`artistLetterRoute` (artists letters lack the landing
    page's 44 px tap target), `ArchiveStatement` (2), `ArchiveGroupLabel` (8),
    `ExhibitionTourStatus` (2 in one page), `ArchiveMethodSteps` (2), merge `LandingArtistGroup`

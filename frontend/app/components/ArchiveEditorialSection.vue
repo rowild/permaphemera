@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import type { EditorialSection } from '~/types/editorial'
 const props = withDefaults(defineProps<EditorialSection>(), {
+  eyebrow: undefined,
+  accent: undefined,
+  paragraphs: () => [],
   items: () => [],
-  emphasizedTerms: () => []
+  emphasizedTerms: () => [],
+  details: () => [],
+  links: () => []
 })
 
 const escapedTerms = computed(() => props.emphasizedTerms
@@ -29,11 +34,11 @@ const paragraphParts = (paragraph: string) => {
 <template>
   <section :id="props.id" class="[ archive-editorial-section ] grid scroll-mt-32 grid-cols-[minmax(14rem,0.58fr)_minmax(0,1.42fr)] gap-[clamp(2.5rem,7vw,7rem)] py-[clamp(2.8rem,5vw,4.8rem)] tablet:grid-cols-[minmax(12rem,0.5fr)_minmax(0,1.5fr)] tablet:gap-8 compact:scroll-mt-20 compact:grid-cols-1 compact:gap-4 compact:py-5" :aria-labelledby="`${props.id}-title`">
     <header class="[ archive-editorial-heading ] self-start compact:max-w-96">
-      <p class="m-0 mb-3 font-display text-eyebrow font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">
+      <p v-if="props.eyebrow" class="m-0 mb-3 font-display text-eyebrow font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">
         {{ props.eyebrow }}
       </p>
       <h2 :id="`${props.id}-title`" class="m-0 pb-1 font-display text-h3 font-normal leading-[1.12] compact:pb-0.5 compact:text-2xl compact:leading-tight">
-        {{ props.title }} <span class="text-archive-red">{{ props.accent }}</span>
+        {{ props.title }} <span v-if="props.accent" class="text-archive-red">{{ props.accent }}</span>
       </h2>
     </header>
 
@@ -54,6 +59,22 @@ const paragraphParts = (paragraph: string) => {
           {{ item }}
         </li>
       </ul>
+
+      <dl v-if="props.details.length" class="[ editorial-detail-list ] mt-6 grid gap-2 compact:mt-5">
+        <div v-for="detail in props.details" :key="`${detail.label}-${detail.value}`" class="grid grid-cols-[minmax(10rem,0.48fr)_minmax(0,1.52fr)] items-baseline gap-5 compact:grid-cols-1 compact:items-stretch compact:gap-1">
+          <dt class="font-display text-xs font-medium tracking-widest text-archive-red uppercase">{{ detail.label }}</dt>
+          <dd class="m-0 font-display text-base leading-snug text-archive-copy">
+            <ArchiveTextLink v-if="detail.href" :href="detail.href">{{ detail.value }}</ArchiveTextLink>
+            <template v-else>{{ detail.value }}</template>
+          </dd>
+        </div>
+      </dl>
+
+      <div v-if="props.links.length" class="[ editorial-source-links ] mt-6 flex flex-wrap gap-x-6 gap-y-3 compact:mt-5">
+        <ArchiveTextLink v-for="link in props.links" :key="link.href" :href="link.href" target="_blank" rel="noopener noreferrer" icon-motion="external">
+          {{ link.label }} <span aria-hidden="true">↗</span>
+        </ArchiveTextLink>
+      </div>
     </div>
   </section>
 </template>
