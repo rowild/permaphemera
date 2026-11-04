@@ -28,7 +28,7 @@ const sections = computed<LegalSection[]>(() => [
     eyebrow: t('legal.terms.sections.use.eyebrow'),
     title: t('legal.terms.sections.use.title'),
     paragraphs: [t('legal.terms.sections.use.p1')],
-    items: [t('legal.terms.sections.use.personal'), t('legal.terms.sections.use.noReuse'), t('legal.terms.sections.use.noInterference')]
+    items: [t('legal.terms.sections.use.personal'), t('legal.terms.sections.use.noReuse'), t('legal.terms.sections.use.noAi'), t('legal.terms.sections.use.noInterference')]
   },
   {
     id: 'rights-and-credits',

@@ -2,6 +2,137 @@
 
 Work that is agreed but parked for later. Newest first.
 
+## 🚨 PRIORITY — Protect the images from AI systems
+
+Added 2026-11-04 by the owner. Priority: very important, at the top of the backlog.
+
+Started 2026-11-04 (`plans/2026-11-04__ai-image-protection.md`): steps 1, 3 and 4 below are in
+the repository (robots.txt, TDM reservation, meta tags, terms). Next: nginx headers and the
+Cloudflare settings (plan, steps 5 and 6), then steps 5 to 7 below.
+
+Goal: AI systems must not take the images of this website (exhibition photos, artworks, the
+360° tours) to train models or to copy them.
+
+Honest limit: a public website cannot stop every copy. What can be done is: say "no" in every
+form that the AI companies read, block the crawlers that ignore it, and make mass download
+hard. In the EU, a machine-readable "no" counts in law: text and data mining for commercial use
+is allowed only when the rights holder has not reserved it in a machine-readable form (DSM
+directive 2019/790, art. 4; in Austria § 42h UrhG). The EU AI Act requires model providers to
+respect this reservation.
+
+Today: `frontend/public/robots.txt` allows every crawler (`Disallow:` empty). Nothing is blocked.
+
+Steps (ideas, cheapest first):
+
+1. **robots.txt:** disallow the known AI crawlers (for example GPTBot, ClaudeBot, anthropic-ai,
+   CCBot, Google-Extended, Applebot-Extended, PerplexityBot, Bytespider, meta-externalagent),
+   but keep Googlebot and Bingbot, so search still works. The list changes; check it again
+   before building.
+2. **Cloudflare:** the site already runs through Cloudflare. Turn on its AI crawler blocking
+   (the "block AI bots" setting / AI crawl control) and its bot rules. This also stops crawlers
+   that ignore robots.txt.
+3. **Machine-readable reservation (TDM):** the `tdm-reservation` header or meta tag (TDMRep) on
+   every page and image, and a `/.well-known/tdmrep.json`. Optional: the `noai, noimageai`
+   robots meta tag (not a standard, but some services read it).
+4. **Terms of use:** a clear sentence that text and data mining and AI training are reserved
+   (§ 42h UrhG). The terms already forbid "automatisierte Massenauslese"
+   (`legal.terms…noReuse`). The same sentence says "360°-Dokumentationen", which breaks
+   `docs/text-rules.md` §1.1; fix it in the same change.
+5. **Image metadata:** write the rights holder and "data mining: prohibited" into the IPTC/XMP
+   data of the images that Directus delivers.
+6. **Smaller images, no originals:** the public site gets only the sizes it shows, never the
+   original file (Directus asset transformations; block `/cms/assets/<id>` without a size
+   preset). Rate limits on `/cms/assets/` and `/media/tours/` against mass download.
+7. **Hotlink protection** for images and tour tiles (Cloudflare), so other sites cannot embed
+   them.
+8. Later, to weigh: a visible watermark on download sizes; tools like Glaze or Nightshade for
+   artworks (they change the image for AI models; they can also change how it looks, and they
+   are the artists' decision, not the archive's).
+
+Open questions for the owner: which images matter most (artworks, exhibition photos, tours)?
+Is a watermark acceptable? Do galleries and artists need to know about these rules (for
+example on `/how-it-works/` or in the terms)?
+
+## Question: does PERMAPHEMERA need visitor accounts?
+
+Added 2026-11-04 by the owner, as a question only. Not started.
+
+Open question for the owner: is there a task that only an account can do? Possible uses, to
+weigh against the cost (passwords, password reset, GDPR requests, deletion, support, a new
+privacy section):
+
+- Favourites or a "visited" list of exhibitions and galleries.
+- Ratings that count once per person (see "Ratings" below).
+- Newsletter settings (a newsletter provider usually handles this without a site account).
+- A different kind of account: a login for galleries, so a gallery can send its own exhibitions
+  as drafts. This could be worth more than visitor accounts.
+
+Until a task needs it: no accounts.
+
+## Ratings for exhibitions (5 stars)
+
+Added 2026-11-04 by the owner. Not started.
+
+Idea: visitors rate exhibitions with 1 to 5 stars, so there is a statistic of the most liked
+exhibitions. Visitors are very welcome to rate (owner).
+
+No conflict with "value-free" (owner, 2026-11-04): `docs/text-rules.md` §1.7 means that the
+archive itself does not judge which gallery or exhibition belongs (only the usual limits:
+human rights, religion, politics). A rating is the visitors' voice, not the archive's. The
+archive's own texts stay value-free; the stars are shown as what visitors gave.
+
+To work out in detail before building (owner): protection against bullies, fake votes and
+attacks.
+
+Bullies and unfair votes (ideas):
+
+- Stars only, no free-text comments. No text means no insults to moderate.
+- Show an average only after a minimum number of votes (for example 10), so two angry votes
+  cannot pull an exhibition down.
+- Watch for bursts: many low votes for one exhibition in a short time are held back and shown
+  to the owner, not counted at once.
+- The owner can remove votes or reset an exhibition's rating in Directus.
+- Optional: votes only for exhibitions whose 360° tour is online, so the voter could see it.
+
+Also useful: Umami already counts page views and time on page per exhibition and tour
+(cookieless). It shows interest without any rating function and can sit next to the stars in
+the statistic.
+
+Protection without accounts (good enough, not perfect):
+
+- One vote per exhibition per browser (a flag in the browser's storage). Easy to get round,
+  but stops most double votes.
+- Votes go to a small endpoint on the Hetzner server, not to the public Directus API (which
+  must stay read-only for the public).
+- The server keeps no raw IP address. It keeps a hash of IP + exhibition with a salt that
+  changes every day, and allows one vote per hash per day.
+- Rate limit per IP at nginx and at Cloudflare, so a script cannot send thousands of votes.
+- Cloudflare Turnstile (a check without cookies and without puzzles) on the vote.
+
+Only accounts stop double votes for sure (see "visitor accounts"). Privacy policy needs a new
+section either way.
+
+## Geo search: exhibitions and galleries near the visitor
+
+Added 2026-11-04 by the owner. Not started.
+
+Idea: the site finds where the visitor is and lists the galleries and the current exhibitions
+nearby, nearest first.
+
+What exists: every town (`pp_locations`) has `latitude` and `longitude` (town centre), and every
+gallery has a town. So a radius search by town works without new data. For more precise
+distances, galleries could get their own coordinates later.
+
+How (sketch):
+
+- The browser asks the visitor for permission (Geolocation API). The position stays in the
+  browser; the site computes the distances there and sends the position to no server. Then the
+  privacy policy needs only a short note.
+- Without permission: the visitor picks a town or a federal state, or types a postcode.
+- List: galleries within a radius (for example 25, 50, 100 km, selectable) and their current
+  and upcoming exhibitions, nearest first. Optional: a map.
+- Place: a filter on /venues/ and /exhibitions/current/, or a button "In der Nähe" / "Nearby".
+
 ## Tags: what kind of exhibition it was
 
 Added 2026-11-03 by the owner. Not started.

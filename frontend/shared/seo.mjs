@@ -499,7 +499,9 @@ export const headFor = (item) => {
     { name: 'twitter:description', content: item.description },
     { name: 'twitter:image', content: item.image }
   ]
-  if (item.noIndex || item.noFollow) meta.push({ name: 'robots', content: `${item.noIndex ? 'noindex' : 'index'}, ${item.noFollow ? 'nofollow' : 'follow'}` })
+  // A page's own robots tag replaces the shell's (same name), so it repeats the AI reservation
+  // `noai, noimageai` of nuxt.config.ts (2026-11-04).
+  if (item.noIndex || item.noFollow) meta.push({ name: 'robots', content: `${item.noIndex ? 'noindex' : 'index'}, ${item.noFollow ? 'nofollow' : 'follow'}, noai, noimageai` })
   return {
     title: item.title,
     meta,

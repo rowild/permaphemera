@@ -147,7 +147,7 @@ describe('headFor', () => {
     expect(head.link.filter((link) => link.rel === 'alternate').map((link) => link.hreflang)).toEqual(['de', 'en', 'x-default'])
     expect(head.link.find((link) => link.rel === 'canonical')?.href).toBe(german.canonical)
     const hidden = headFor({ ...german, noIndex: true, noFollow: true })
-    expect(hidden.meta.find((tag) => tag.name === 'robots')?.content).toBe('noindex, nofollow')
+    expect(hidden.meta.find((tag) => tag.name === 'robots')?.content).toBe('noindex, nofollow, noai, noimageai')
   })
 })
 

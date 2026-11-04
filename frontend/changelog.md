@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.47 - 2026-11-04 11:35:00 CET
+
+- AI protection for the images and texts. `robots.txt` shuts out 22 AI training and dataset crawlers (among them GPTBot, ClaudeBot, CCBot, Google-Extended, Applebot-Extended, Meta, Bytespider, img2dataset); AI search agents may read the pages but not `/cms/assets/` (images) or `/media/` (images, 360° tours). Search engines are not affected.
+- Text and data mining is reserved in machine-readable form (§ 42h Abs. 6 UrhG): `/.well-known/tdmrep.json`, a `tdm-reservation` meta tag and `robots: noai, noimageai` on every page. The server sends the same as headers on every page and image (nginx).
+- Terms of use: a new rule reserves text and data mining, also for AI training. The rule against copying says "360°-Rundgänge" instead of "360°-Dokumentationen".
+- The default page description no longer says "curated … documentation"; it is the site description.
+
 ## 0.0.46 - 2026-11-03 12:40:57 CET
 
 - The line above the title of an exhibition page no longer says "Treten Sie ein · 360°-Rundgang" on every page. It now says what is there: "360°-Rundgang der archivierten Ausstellung" when the tour is open, "Archivierte Ausstellung · 360°-Rundgang in Vorbereitung" when a tour is planned or being prepared, and "Archivierte Ausstellung" when there is no tour. Events say "Veranstaltung"; English says "360° tour of the archived exhibition", "Archived exhibition · 360° tour in preparation" and "Archived exhibition". A long line breaks only at the "·".

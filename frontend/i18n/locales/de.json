@@ -760,7 +760,8 @@
           "title": "Betrachten, recherchieren und verlinken",
           "p1": "PERMAPHEMERA darf im vorgesehenen Funktionsumfang zu privaten, wissenschaftlichen, journalistischen und nichtkommerziellen Informationszwecken genutzt werden. Dabei sind Rechte, Würde und Namensnennung aller Beteiligten zu respektieren.",
           "personal": "Das Ansehen und Verlinken öffentlich zugänglicher Seiten ist gestattet.",
-          "noReuse": "Eine eigenständige Vervielfältigung, Weiterveröffentlichung, Bearbeitung, automatisierte Massenauslese oder kommerzielle Nutzung von Texten, Bildern und 360°-Dokumentationen ist ohne Erlaubnis nicht gestattet.",
+          "noReuse": "Eine eigenständige Vervielfältigung, Weiterveröffentlichung, Bearbeitung, automatisierte Massenauslese oder kommerzielle Nutzung von Texten, Bildern und 360°-Rundgängen ist ohne Erlaubnis nicht gestattet.",
+          "noAi": "Text und Data Mining ist vorbehalten (§ 42h Abs. 6 UrhG), auch zum Training von KI-Systemen. Texte, Bilder und 360°-Rundgänge dürfen ohne Erlaubnis nicht für KI-Training, Bilddatensätze oder das Erzeugen ähnlicher Werke ausgelesen werden. Der Vorbehalt steht auch in maschinenlesbarer Form in robots.txt und /.well-known/tdmrep.json.",
           "noInterference": "Sicherheitsmechanismen dürfen nicht umgangen und Betrieb, Verfügbarkeit oder Integrität der Website nicht beeinträchtigt werden."
         },
         "rights": {

@@ -46,8 +46,13 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'description',
-          content: 'A curated Austrian archive of 360 degree exhibition documentation.'
+          content: 'Archive of temporary art exhibitions in Austrian galleries: 360° tours, artists, venues and dates, kept accessible after each exhibition has closed.'
         },
+        // AI protection (2026-11-04): text and data mining is reserved (§ 42h Abs. 6 UrhG,
+        // TDMRep; also /.well-known/tdmrep.json and robots.txt). `noai, noimageai` is no
+        // standard, but dataset tools such as img2dataset honour it; search engines ignore it.
+        { name: 'tdm-reservation', content: '1' },
+        { name: 'robots', content: 'noai, noimageai' },
         {
           name: 'theme-color',
           content: '#efe5d2'

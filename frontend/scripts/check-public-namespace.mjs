@@ -25,6 +25,11 @@ const ROOT_ALLOWED_FILES = new Set([
   '.htaccess'
 ])
 
+// public/.well-known/ holds files that standards fix at that URL (tdmrep.json, the
+// machine-readable text-and-data-mining reservation, since 2026-11-04). No route
+// starts with a dot, so it can never shadow one.
+const ROOT_ALLOWED_DIRECTORIES = new Set(['media', '.well-known'])
+
 // macOS Finder metadata. Gitignored and outside anyone's control, so it
 // must not be able to fail this check on a developer's own machine.
 const IGNORED_ENTRIES = new Set(['.DS_Store'])
@@ -36,7 +41,7 @@ async function run() {
   const rootDirectories = rootEntries.filter((entry) => entry.isDirectory())
   const rootFiles = rootEntries.filter((entry) => entry.isFile())
 
-  const strayDirectories = rootDirectories.filter((entry) => entry.name !== 'media').map((entry) => entry.name)
+  const strayDirectories = rootDirectories.filter((entry) => !ROOT_ALLOWED_DIRECTORIES.has(entry.name)).map((entry) => entry.name)
   const strayFiles = rootFiles.filter((entry) => !ROOT_ALLOWED_FILES.has(entry.name)).map((entry) => entry.name)
 
   // A tour path names a folder, not a file: the viewer fetches `<tour>tour.json`
@@ -54,7 +59,7 @@ async function run() {
     || !existsSync(resolve(publicDir, `.${target}`)))
 
   const checks = [
-    ['public/ contains exactly one directory, named media', rootDirectories.length === 1 && rootDirectories[0]?.name === 'media'],
+    ['public/ contains the media directory', rootDirectories.some((entry) => entry.name === 'media')],
     ['public/ root has no stray directories', strayDirectories.length === 0],
     ['every public/ root file is on the allowlist', strayFiles.length === 0],
     [`every tour path in Directus resolves under public/ (${tourReferences.length} checked)`, brokenTourReferences.length === 0]
@@ -85,7 +90,7 @@ async function run() {
 
     process.exitCode = 1
   } else {
-    console.log(`Public namespace OK: public/ root holds only media/ plus root-mandated files, and ${tourReferences.length} tour paths resolve.`)
+    console.log(`Public namespace OK: public/ root holds only media/, .well-known/ and root-mandated files, and ${tourReferences.length} tour paths resolve.`)
   }
 }
 

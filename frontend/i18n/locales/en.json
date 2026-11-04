@@ -760,7 +760,8 @@
           "title": "View, research and link",
           "p1": "PERMAPHEMERA may be used through its intended functions for private, academic, journalistic and non-commercial information. The rights, dignity and attribution of everyone involved must be respected.",
           "personal": "Viewing and linking to publicly accessible pages is permitted.",
-          "noReuse": "Independent reproduction, republication, adaptation, automated bulk extraction or commercial use of texts, images and 360° documentation is not permitted without authorisation.",
+          "noReuse": "Independent reproduction, republication, adaptation, automated bulk extraction or commercial use of texts, images and 360° tours is not permitted without authorisation.",
+          "noAi": "Text and data mining is reserved (§ 42h(6) Austrian Copyright Act; Art. 4(3) Directive (EU) 2019/790), including for training AI systems. Texts, images and 360° tours may not be extracted for AI training, image datasets or the generation of similar works without permission. The reservation is also stated in machine-readable form in robots.txt and /.well-known/tdmrep.json.",
           "noInterference": "Security mechanisms must not be circumvented, nor may the operation, availability or integrity of the website be impaired."
         },
         "rights": {

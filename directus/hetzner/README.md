@@ -67,6 +67,10 @@ Directus container on the same origin, so institutional networks never see a sec
   redirects; port 443 serves `/srv/sites/permaphemera.at/html`, proxies `/cms/` →
   `127.0.0.1:8060/` (prefix stripped), caches `/_nuxt/` for a year, and falls back to
   `/200.html` for the SPA. `www` redirects to the apex.
+  Since 2026-11-04 (AI protection, `plans/2026-11-04__ai-image-protection.md`) every response
+  carries `X-Robots-Tag: noai, noimageai` and `tdm-reservation: 1` (`add_header … always` in
+  `location /cms/` and `location /`; `/_nuxt/` has its own `add_header` and holds only code).
+  Backup of the config before that change: `permaphemera.at.bak-2026-11-04-ai` next to it.
 - Certificate: Let's Encrypt via `certbot certonly --webroot -w /var/www/letsencrypt`,
   cert name `permaphemera.at`. Renewal runs by certbot's timer through port 80.
   (The Cloudflare token on the host only covers project-backends.info, so DNS-01 is not

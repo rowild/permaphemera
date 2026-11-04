@@ -52,7 +52,7 @@ describe('renderSnapshot', () => {
 
   it('writes robots only for a hidden page', () => {
     expect(renderSnapshot(shell, base)).not.toContain('name="robots"')
-    expect(renderSnapshot(shell, { ...base, noIndex: true })).toContain('<meta data-seo-snapshot name="robots" content="noindex, follow">')
+    expect(renderSnapshot(shell, { ...base, noIndex: true })).toContain('<meta data-seo-snapshot name="robots" content="noindex, follow, noai, noimageai">')
   })
 })
 
@@ -151,7 +151,7 @@ describe('writeSnapshots', () => {
     const result = await writeSnapshots(output, shell, [base, hidden])
     expect(result.problems).toEqual([])
     expect(await readFile(join(output, 'exhibitions/trigeniale-26/index.html'), 'utf8')).toContain('<title data-seo-snapshot>')
-    expect(await readFile(join(output, 'en/exhibitions/trigeniale-26/index.html'), 'utf8')).toContain('content="noindex, follow"')
+    expect(await readFile(join(output, 'en/exhibitions/trigeniale-26/index.html'), 'utf8')).toContain('content="noindex, follow, noai, noimageai"')
     expect([...result.removed].sort()).toEqual(['en/persons/gone/index.html', 'exhibitions/gone/index.html'])
     // A folder left without index.html would make nginx answer 403 instead of serving the app.
     expect(existsSync(join(output, 'exhibitions/gone'))).toBe(false)
