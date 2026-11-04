@@ -1,16 +1,9 @@
 <script setup lang="ts">
+import type { EditorialSection } from '~/types/editorial'
 import { SITE_OWNER } from '~/utils/siteOwner'
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-interface EditorialSection {
-  id: string
-  eyebrow: string
-  title: string
-  accent: string
-  paragraphs: string[]
-  items?: string[]
-}
 
 const emailHref = SITE_OWNER.emailHref
 const phoneHref = SITE_OWNER.phoneHref

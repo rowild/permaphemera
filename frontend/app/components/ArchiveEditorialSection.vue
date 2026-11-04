@@ -1,13 +1,6 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
-  id: string
-  eyebrow: string
-  title: string
-  accent: string
-  paragraphs: string[]
-  items?: string[]
-  emphasizedTerms?: string[]
-}>(), {
+import type { EditorialSection } from '~/types/editorial'
+const props = withDefaults(defineProps<EditorialSection>(), {
   items: () => [],
   emphasizedTerms: () => []
 })

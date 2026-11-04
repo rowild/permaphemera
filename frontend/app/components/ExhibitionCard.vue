@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { formatArchiveDate } from '~/utils/archiveDate'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { resolveTourAccess } from '~/utils/tourAccess'
@@ -58,11 +59,8 @@ const tourAccess = computed(() => props.exhibition.tour_status
 const tourNote = computed(() => {
   const access = tourAccess.value
   if (access.kind === 'scheduled') {
-    // No-break spaces keep the date on one line when the note wraps.
-    const date = new Intl.DateTimeFormat(locale.value, { day: 'numeric', month: 'short', year: 'numeric' })
-      .format(new Date(`${access.date}T12:00:00`))
-      .replaceAll(' ', ' ')
-    return t('cards.onlineFrom', { date })
+    // On one line when the note wraps.
+    return t('cards.onlineFrom', { date: formatArchiveDate(access.date, locale.value, { month: 'short', noBreak: true }) })
   }
   return access.kind === 'preparing' ? t('cards.onlinePreparing') : ''
 })

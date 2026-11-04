@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { formatNewsDate, type ResolvedNews } from '~/utils/resolveNews'
+import { formatArchiveDate } from '~/utils/archiveDate'
+import type { ResolvedNews } from '~/utils/resolveNews'
 
 // One news article in a list. `compact`: date and title (start page). `row`: date and topic,
 // title, summary and a small image (the /news/ overview).
@@ -12,7 +13,7 @@ const props = withDefaults(defineProps<{
 
 const { locale } = useI18n()
 const localePath = useLocalePath()
-const date = computed(() => formatNewsDate(props.news.date, locale.value))
+const date = computed(() => formatArchiveDate(props.news.date, locale.value))
 </script>
 
 <template>

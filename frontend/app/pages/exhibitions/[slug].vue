@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { directusImageUrl } from '~/utils/archiveAsset'
+import { formatArchiveDate } from '~/utils/archiveDate'
 import {
   CalendarCheck, CalendarDays, Clock3, ExternalLink, FileText, Hourglass, Info, Link2, MapPin, Palette, Ticket, Users, Landmark } from '@lucide/vue'
 import { selectRelatedExhibitions } from '~/utils/relatedExhibitions'
@@ -28,7 +29,6 @@ const organiserLabel = computed(() => {
 // Events (a sale, a festival night) are worded as events, exhibitions as exhibitions.
 const kindText = (key: 'recordEyebrow' | 'aboutTitle' | 'aboutAccent' | 'restricted' | 'unavailable' | 'spatialEyebrowOpen' | 'spatialEyebrowPreparing' | 'spatialEyebrowNoTour') => t(exhibition.value?.kind === 'event' ? `exhibition.event.${key}` : `exhibition.${key}`)
 const tourAccess = computed(() => resolveTourAccess(exhibition.value))
-const releaseDateFormatter = computed(() => new Intl.DateTimeFormat(locale.value, { day: 'numeric', month: 'long', year: 'numeric' }))
 // The eyebrow above the title names the tour only where there is or will be one; "restricted"
 // and "unavailable" records promise nothing.
 const spatialEyebrow = computed(() => {
@@ -47,7 +47,7 @@ const tourStatus = computed(() => {
     case 'scheduled': return {
       icon: CalendarCheck,
       date: access.date,
-      text: t('exhibition.availableFrom', { date: releaseDateFormatter.value.format(new Date(`${access.date}T12:00:00`)) })
+      text: t('exhibition.availableFrom', { date: formatArchiveDate(access.date, locale.value) })
     }
     case 'preparing': return { icon: Hourglass, text: t('exhibition.inPreparation') }
     case 'restricted': return { icon: Info, text: kindText('restricted') }

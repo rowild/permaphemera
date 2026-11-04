@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { newsMarkdownToHtml } from '~/utils/newsMarkdown'
-import { formatNewsDate } from '~/utils/resolveNews'
+import { formatArchiveDate } from '~/utils/archiveDate'
 
 const { news } = useArchiveData()
 const { locale } = useI18n()
@@ -23,7 +23,7 @@ usePageSeo(`/news/${slug}/`)
     <article aria-labelledby="news-article-title">
       <header class="[ news-article-intro ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] compact:px-4 compact:pt-6 compact:pb-4">
         <ArchiveBreadcrumb :items="[{ label: $t('newsPage.breadcrumb'), to: '/news/' }, { label: article.title }]" />
-        <ArchiveEyebrow><time :datetime="article.date">{{ formatNewsDate(article.date, locale) }}</time> · {{ $t(`newsPage.topics.${article.topic}`) }}</ArchiveEyebrow>
+        <ArchiveEyebrow><time :datetime="article.date">{{ formatArchiveDate(article.date, locale) }}</time> · {{ $t(`newsPage.topics.${article.topic}`) }}</ArchiveEyebrow>
         <h1 id="news-article-title" class="m-0 max-w-232 font-display text-h1-steep font-light leading-[0.98] compact:text-4xl compact:leading-[1.05]">{{ article.title }}</h1>
         <p v-if="article.summary" class="mt-[1.4rem] mb-0 max-w-180 text-lg leading-[1.55] text-archive-body tablet:text-base tablet:leading-[1.45] compact:mt-4 compact:leading-normal">{{ article.summary }}</p>
       </header>

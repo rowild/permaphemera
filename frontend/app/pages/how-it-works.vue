@@ -1,14 +1,8 @@
 <script setup lang="ts">
+import type { EditorialSection } from '~/types/editorial'
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-interface EditorialSection {
-  id: string
-  eyebrow: string
-  title: string
-  accent: string
-  paragraphs: string[]
-}
 
 const methodSteps = computed(() => [
   {

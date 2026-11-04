@@ -294,7 +294,7 @@ definePageMeta({ navActive: 'galleries' })
         </div>
       </section>
 
-      <img class="[ venue-section-divider ] pointer-events-none mx-auto block w-[min(46rem,84vw)] opacity-62" src="/media/svg/dividers/exhibitions-section-divider.svg" alt="" aria-hidden="true" >
+      <ArchiveExhibitionsDivider class="[ venue-section-divider ]" :spaced="false" />
 
       <section
         class="[ venue-about ] [ section-band ] relative mx-auto mt-8 grid max-w-[105rem] grid-cols-[11rem_minmax(0,1.15fr)_minmax(18rem,0.85fr)] items-start gap-[clamp(2rem,5vw,5rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:mt-4 compact:gap-6 compact:px-4 compact:py-5"

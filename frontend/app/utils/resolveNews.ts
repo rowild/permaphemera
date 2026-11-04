@@ -92,8 +92,3 @@ export const resolveNews = (s: NewsSources): ResolvedNews[] => s.news
     }
   })
   .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title))
-
-/** The date of an article as the site shows it: "3. November 2026" / "3 November 2026". */
-export const formatNewsDate = (date: string, locale: string): string =>
-  new Intl.DateTimeFormat(locale === 'en' ? 'en-GB' : 'de-AT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Vienna' })
-    .format(new Date(`${date}T12:00:00Z`))
