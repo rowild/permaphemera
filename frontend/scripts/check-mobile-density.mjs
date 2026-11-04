@@ -32,7 +32,8 @@ const [
   archiveLegalPage,
   legalEditorialSection,
   mainCss,
-  directoryHero
+  directoryHero,
+  pageTitle
 ] = await Promise.all([
   readProjectFile('app/components/ArchiveSearchForm.vue'),
   readProjectFile('app/components/ArchiveFactLedger.vue'),
@@ -58,7 +59,8 @@ const [
   readProjectFile('app/components/ArchiveLegalPage.vue'),
   readProjectFile('app/components/LegalEditorialSection.vue'),
   readProjectFile('app/assets/css/main.css'),
-  readProjectFile('app/components/ArchiveDirectoryHero.vue')
+  readProjectFile('app/components/ArchiveDirectoryHero.vue'),
+  readProjectFile('app/components/ArchivePageTitle.vue')
 ])
 
 const archive = await loadArchiveFromDirectus()
@@ -92,7 +94,7 @@ const checks = [
   ['mobile search hides long button copy and arrow', searchForm.includes('compact:sr-only') && /<ArchiveArrow[^>]*compact:hidden/.test(searchForm)],
   ['secondary three-fact ledgers stay in one multiline row below desktop', factLedger.includes("'grid-cols-3'") && factLedger.includes("'tablet:text-balance tablet:whitespace-normal'") && !factLedger.includes('tablet:truncate') && factLedger.includes('compact:px-1') && factLedger.includes('compact:py-2')],
   ['artist ledger stays stacked through tablet and becomes a row only on mobile', factLedger.includes("desktopLayout?: 'row' | 'stacked'") && factLedger.includes("'grid-cols-1 compact:grid-cols-3'") && factLedger.includes('compact:border-t-0 compact:border-l') && artistPage.includes('ledger-on-mobile') && directoryHero.includes('desktop-layout="stacked"')],
-  ['artist introduction retains its text and sidebar composition through tablet', artistPage.includes('<ArchiveDirectoryHero') && /\[ directory-hero \][^"]*tablet:grid-cols-\[minmax\(0,1fr\)_16rem\][^"]*compact:grid-cols-1/.test(directoryHero) && /:id="props\.titleId" class="[^"]*tablet:text-h1-steep/.test(directoryHero) && /class="[^"]*tablet:text-base[^"]*">\{\{ props\.intro \}\}/.test(directoryHero)],
+  ['artist introduction retains its text and sidebar composition through tablet', artistPage.includes('<ArchiveDirectoryHero') && /\[ directory-hero \][^"]*tablet:grid-cols-\[minmax\(0,1fr\)_16rem\][^"]*compact:grid-cols-1/.test(directoryHero) && directoryHero.includes('<ArchivePageTitle') && /:id="props\.titleId" class="[^"]*tablet:text-h1-steep/.test(pageTitle) && /class="[^"]*tablet:text-base[^"]*">\{\{ props\.intro \}\}/.test(pageTitle)],
   ['artist and venue introductions share the compact ledger', artistPage.includes('<ArchiveDirectoryHero') && directoryHero.includes('<ArchiveFactLedger') && venuePage.includes('<ArchiveFactLedger')],
   ['artist search follows the introduction with no divider or section heading between them', /<ArchiveDirectoryHero[^>]*ledger-on-mobile\s*\/>\s*<section id="artist-directory"[^>]*>\s*<div[^>]*>\s*<ArchiveSearchForm/.test(artistPage)],
   ['artist lists remain two columns on compact screens', artistPage.includes('compact:columns-2') && landingPage.includes('compact:columns-2')],
