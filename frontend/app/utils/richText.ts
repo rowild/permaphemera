@@ -52,10 +52,15 @@ export const sanitizeRichText = (html: string, options: RichTextOptions = {}): s
   return escaped.replace(/<p>(?:\s|&nbsp;|<br>)*<\/p>/g, '').trim()
 }
 
+const showsText = (safe: string) => Boolean(safe.replace(/<[^>]+>|&nbsp;/g, '').trim())
+
 /** True when the HTML still shows some text after sanitising. */
 export const hasRichText = (html?: string | null, options: RichTextOptions = {}): boolean =>
-  Boolean(html && sanitizeRichText(html, options).replace(/<[^>]+>|&nbsp;/g, '').trim())
+  Boolean(html && showsText(sanitizeRichText(html, options)))
 
-/** Sanitised HTML, or undefined when nothing visible is left (so pages can show their fallback). */
-export const toRichHtml = (html?: string | null, options: RichTextOptions = {}): string | undefined =>
-  (hasRichText(html, options) ? sanitizeRichText(html!, options) : undefined)
+/** Sanitised HTML (once), or undefined when nothing visible is left (so pages can show their fallback). */
+export const toRichHtml = (html?: string | null, options: RichTextOptions = {}): string | undefined => {
+  if (!html) return undefined
+  const safe = sanitizeRichText(html, options)
+  return showsText(safe) ? safe : undefined
+}
