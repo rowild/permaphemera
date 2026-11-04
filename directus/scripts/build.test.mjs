@@ -197,3 +197,13 @@ test('the payloads carry no builder-only keys', () => {
     assert.equal('translated' in f, false, `${c.collection}.${f.field}`)
   }
 })
+
+// Owner, 2026-11-04: a gallery page names its curator and its head, like "Betrieben von" for an
+// organisation. The person–venue link says which of the two a person is; empty = another tie.
+test('the person–venue link carries an optional relation: curator or head', () => {
+  const relation = field('pp_mm__persons_venues', 'relation')
+  assert.ok(relation, 'pp_mm__persons_venues.relation')
+  assert.deepEqual(relation.meta.options.choices.map((choice) => choice.value), ['curator', 'head'])
+  assert.equal(relation.schema.is_nullable, true)
+  assert.equal(field('pp_mm__persons_sponsors', 'relation'), undefined)
+})

@@ -195,7 +195,7 @@ published venue in a draft town does not show).
 | `image`, `hero_image` | the Commons photo; `image_alt`, `hero_image_alt` in English (also in the `en` translation, German in `de`) |
 | `image_caption` | `<what> · Foto: <Author> (<Licence>)` |
 | `lede` | one line |
-| `about_html` | WYSIWYG text, 1–2 paragraphs: building, history, who runs it, opening hours. Paragraphs, bold, italic and lists only; no links (they go into link records). Via the API write HTML: `<p>…</p><p>…</p>` |
+| `about_html` | WYSIWYG text, 1–2 paragraphs: building, history, who runs it, opening hours. Paragraphs, bold, italic and lists only; no links (they go into link records), unless the owner asks for one in the text (e.g. the shop „Ideenreich“ in Lebenshilfe Knittelfeld, 2026-11-04). Via the API write HTML: `<p>…</p><p>…</p>` |
 | `description` | one sentence |
 | `translations` | `en` and `de` with `lede`, `about_html`, `description`, `image_alt`, `hero_image_alt`, `image_caption`, `coordinate_label` |
 
@@ -206,6 +206,13 @@ Who runs the venue: a Verein or institution → `pp_organisation_venue_relations
 (`runs` / `seat` / `exhibits_at`). A city department running its own gallery (Stadtgalerie,
 Galerie Porcia) gets no organisation record; name it in `about_html`. A person the venue represents
 (e.g. Harald Scheicher at the Galerie Palais Fugger) → `pp_mm__persons_venues`.
+
+The curator and the head of a venue (owner, 2026-11-04): a `pp_mm__persons_venues` row with
+`relation` = `curator` ("Kurator:in" on the gallery page, e.g. Séverin Krön at the Galerie Porcia)
+or `head` ("Leitung", e.g. Margaretha Bauer at the BV Galerie), shown like "Betrieben von". Any
+other tie (a represented artist, a photographer of the exhibitions) leaves `relation` empty and is
+not shown on the gallery page. Set it only when a source says so; the person also gets the role
+`curator` when they curate.
 
 ---
 

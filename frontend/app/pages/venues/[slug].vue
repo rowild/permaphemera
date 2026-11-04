@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { directusImageSet } from '~/utils/archiveAsset'
-import { Building2, CalendarDays, Compass, ExternalLink, Landmark, LayoutGrid, MapPin } from '@lucide/vue'
+import { Building2, CalendarDays, Compass, ExternalLink, Landmark, LayoutGrid, MapPin, UserRound } from '@lucide/vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { exhibitionLinkLabels } from '~/utils/exhibitionLinkLabels'
 import { linkLabel } from '~/utils/externalLinks'
@@ -11,7 +11,7 @@ import type { ResolvedVenue } from '~/utils/resolveVenues'
 // ResolvedVenue doesn't carry (kept from the pre-flip shape; read only in
 // this file's own template, never passed to a child component). This local
 // type describes exactly what gets constructed.
-interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'links' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'aboutHtml' | 'part_of' | 'spaces' | 'organisations'> {
+interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'latitude' | 'longitude' | 'website_url' | 'links' | 'image' | 'featured' | 'archive_number' | 'hero_image' | 'hero_image_alt' | 'lede' | 'image_caption' | 'coordinate_label' | 'aboutHtml' | 'part_of' | 'spaces' | 'organisations' | 'persons'> {
   location_id: string
 }
 
@@ -44,7 +44,8 @@ const venue = computed<Venue>(() => {
     aboutHtml: record.aboutHtml,
     part_of: record.part_of,
     spaces: record.spaces,
-    organisations: record.organisations
+    organisations: record.organisations,
+    persons: record.persons
   }
 })
 
@@ -142,6 +143,10 @@ const venueMapUrl = computed(() => {
 const organisationGroups = computed(() => (['runs', 'seat', 'exhibits_at'] as const)
   .map((relation) => ({ relation, organisations: (venue.value?.organisations ?? []).filter((organisation) => organisation.relation === relation) }))
   .filter((group) => group.organisations.length))
+// The curator and the head of the house (owner, 2026-11-04), after the organisations that run it.
+const personGroups = computed(() => (['curator', 'head'] as const)
+  .map((relation) => ({ relation, persons: (venue.value?.persons ?? []).filter((person) => person.relation === relation) }))
+  .filter((group) => group.persons.length))
 // One own website reads "Website"; anything else (several links, or a social profile only) reads "Links".
 const venueLinksLabel = computed(() => venue.value.links.length === 1 && venue.value.links[0]!.kind === 'website'
   ? t('venue.website')
@@ -186,6 +191,10 @@ definePageMeta({ navActive: 'galleries' })
             <ArchiveMetadataRow v-for="group in organisationGroups" :key="group.relation" :label="$t(`venue.organisationRelations.${group.relation}`)" variant="venue">
               <template #icon><Landmark :size="18" aria-hidden="true" /></template>
               <ArchiveLinkList :items="group.organisations.map((organisation) => ({ label: organisation.title, to: `/organisations/${organisation.slug}/` }))" />
+            </ArchiveMetadataRow>
+            <ArchiveMetadataRow v-for="group in personGroups" :key="group.relation" :label="$t(`venue.personRelations.${group.relation}`, group.persons.length)" variant="venue">
+              <template #icon><UserRound :size="18" aria-hidden="true" /></template>
+              <ArchiveLinkList :items="group.persons.map((person) => ({ label: person.name, to: `/persons/${person.slug}/` }))" />
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="venue.latitude !== undefined && venue.longitude !== undefined" :label="$t('venue.coordinates')" variant="venue">
               <template #icon><Compass :size="18" aria-hidden="true" /></template>

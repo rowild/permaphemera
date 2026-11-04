@@ -92,6 +92,41 @@ describe('resolveVenues', () => {
     expect(resolved.aboutHtml).toBe('<p>First paragraph.</p><p>Second paragraph.</p>')
   })
 
+  // Owner, 2026-11-04: the gallery page names its curator and its head, like "Betrieben von".
+  describe('persons', () => {
+    const person = (id: string, slug: string, first_name: string, last_name: string, status = 'published') =>
+      ({ id, slug, first_name, last_name, middle_initial: null, status }) as never
+    const persons = [
+      person('p-kroen', 'severin-kroen', 'Séverin', 'Krön'),
+      person('p-bauer', 'margaretha-bauer', 'Margaretha', 'Bauer'),
+      person('p-asaad', 'eva-asaad', 'Eva', 'Asaad'),
+      person('p-draft', 'draft-person', 'Draft', 'Person', 'draft')
+    ]
+    const rows = [
+      { id: 1, persons_id: 'p-bauer', venues_id: 'venue-neue-galerie-graz', sort: 2, relation: 'head' },
+      { id: 2, persons_id: 'p-kroen', venues_id: 'venue-neue-galerie-graz', sort: 1, relation: 'curator' },
+      { id: 3, persons_id: 'p-asaad', venues_id: 'venue-neue-galerie-graz', sort: 3, relation: null },
+      { id: 4, persons_id: 'p-draft', venues_id: 'venue-neue-galerie-graz', sort: 4, relation: 'curator' }
+    ] as never[]
+    const personsOf = () => resolveVenues(locations, [venue], 'en', [], [], [], [], persons, rows)[0].persons
+
+    it('lists the curator and the head with their names and pages, in the link order', () => {
+      expect(personsOf()).toEqual([
+        { slug: 'severin-kroen', name: 'Séverin Krön', relation: 'curator' },
+        { slug: 'margaretha-bauer', name: 'Margaretha Bauer', relation: 'head' }
+      ])
+    })
+
+    it('leaves out a link without a relation (another tie) and a person who is not published', () => {
+      expect(personsOf().map((entry) => entry.slug)).not.toContain('eva-asaad')
+      expect(personsOf().map((entry) => entry.slug)).not.toContain('draft-person')
+    })
+
+    it('has no persons when nothing is given', () => {
+      expect(resolveVenues(locations, [venue], 'en')[0].persons).toEqual([])
+    })
+  })
+
   describe('links', () => {
     const site = (id: string, url: string, kind: string, title: string, status = 'published' as const) =>
       ({ id, url, kind, title, status, sort: 0, translations: [] })

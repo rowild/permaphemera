@@ -87,3 +87,17 @@ for (const path of ['/about/', '/how-it-works/', '/exhibitions/', '/venues/']) {
     expect(heavy).toEqual([])
   })
 }
+
+// Owner, 2026-11-04: a gallery page names its curator and its head, like "Betrieben von".
+test('a gallery page names its curator and its head, and no other person tied to it', async ({ page }) => {
+  await page.goto('/venues/galerie-im-schloss-porcia-spittal-drau/')
+  const facts = page.locator('dl.venue-contact-list')
+  const curator = facts.locator('div', { has: page.locator('dt', { hasText: /^Kurator:in$/ }) })
+  await expect(curator.getByRole('link', { name: 'Séverin Krön' })).toHaveAttribute('href', '/persons/severin-kroen/')
+
+  await page.goto('/venues/bv-galerie-klagenfurt/')
+  const head = facts.locator('div', { has: page.locator('dt', { hasText: /^Leitung$/ }) })
+  await expect(head.getByRole('link', { name: 'Margaretha Bauer' })).toHaveAttribute('href', '/persons/margaretha-bauer/')
+  // Eva Asaad photographs the gallery's exhibitions: a tie, but neither curator nor head.
+  await expect(facts.getByRole('link', { name: 'Eva Asaad' })).toHaveCount(0)
+})

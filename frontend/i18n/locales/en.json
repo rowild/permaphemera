@@ -220,6 +220,10 @@
       "runs": "Run by",
       "seat": "Seat of",
       "exhibits_at": "Guest exhibitors"
+    },
+    "personRelations": {
+      "curator": "Curator | Curators",
+      "head": "Director | Directors"
     }
   },
   "galleries": {

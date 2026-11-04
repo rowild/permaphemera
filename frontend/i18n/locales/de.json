@@ -220,6 +220,10 @@
       "runs": "Betrieben von",
       "seat": "Sitz von",
       "exhibits_at": "Gastaussteller"
+    },
+    "personRelations": {
+      "curator": "Kurator:in | Kurator:innen",
+      "head": "Leitung | Leitung"
     }
   },
   "galleries": {

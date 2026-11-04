@@ -1,9 +1,10 @@
 import { toRichHtml } from '~/utils/richText'
-import type { JunctionRow, LocationRecord, OrganisationRecord, OrganisationVenueRelation, OrganisationVenueRelationRecord, VenueRecord, WebsiteRecord } from '~/types/content'
+import type { JunctionRow, LocationRecord, OrganisationRecord, OrganisationVenueRelation, OrganisationVenueRelationRecord, PersonRecord, PersonVenueRelation, VenueRecord, WebsiteRecord } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { hostnameOf, linksThrough } from '~/utils/externalLinks'
 import { pickTranslation } from '~/utils/pickTranslation'
 import type { ResolvedLink } from '~/utils/resolveExhibitions'
+import { displayPersonName } from '~/utils/resolveExhibitions'
 
 /** A venue page shows its own website plus further links (social profiles), three at most. */
 const MAX_VENUE_LINKS = 3
@@ -21,6 +22,15 @@ export interface VenueOrganisationLink {
   relation: OrganisationVenueRelation
 }
 
+/** A person the gallery names on its page: its curator or its head (owner, 2026-11-04). */
+export interface VenuePersonLink {
+  slug: string
+  name: string
+  relation: PersonVenueRelation
+}
+
+const PERSON_RELATIONS: readonly string[] = ['curator', 'head'] satisfies PersonVenueRelation[]
+
 export interface ResolvedVenue {
   id: string
   slug: string
@@ -30,6 +40,8 @@ export interface ResolvedVenue {
   /** Visible venues that name this one as their parent. */
   spaces: VenueRef[]
   organisations: VenueOrganisationLink[]
+  /** Curator and head, in the link order; other ties between a person and the venue are left out. */
+  persons: VenuePersonLink[]
   type: string
   address: string
   website_url?: string
@@ -67,8 +79,18 @@ export const resolveVenues = (
   venueRelations: OrganisationVenueRelationRecord[] = [],
   organisations: OrganisationRecord[] = [],
   websites: WebsiteRecord[] = [],
-  venuesWebsites: JunctionRow[] = []
+  venuesWebsites: JunctionRow[] = [],
+  persons: PersonRecord[] = [],
+  personsVenues: JunctionRow[] = []
 ): ResolvedVenue[] => {
+  const personById = new Map(persons.filter(isVisible).map((person) => [person.id, person]))
+  const personsOf = (venueId: string): VenuePersonLink[] => personsVenues
+    .filter((row) => row.venues_id === venueId && PERSON_RELATIONS.includes(String(row.relation)))
+    .sort((a, b) => a.sort - b.sort)
+    .flatMap((row) => {
+      const person = personById.get(String(row.persons_id))
+      return person ? [{ slug: person.slug, name: displayPersonName(person), relation: row.relation as PersonVenueRelation }] : []
+    })
   const locationById = new Map(locations.filter(isVisible).map((location) => [location.id, location]))
   const websiteById = new Map(websites.filter(isVisible).map((site) => [site.id, site]))
   const organisationById = new Map(organisations.filter(isVisible).map((organisation) => [organisation.id, organisation]))
@@ -102,6 +124,7 @@ export const resolveVenues = (
       part_of: venue.part_of ? refById.get(venue.part_of) : undefined,
       spaces: visible.filter((candidate) => candidate.part_of === venue.id).map((candidate) => refById.get(candidate.id)!),
       organisations: organisationsByVenue.get(venue.id) ?? [],
+      persons: personsOf(venue.id),
       type: venue.type,
       address: venue.address,
       website_url: venue.website_url ?? undefined,

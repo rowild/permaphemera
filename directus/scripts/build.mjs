@@ -177,7 +177,7 @@ export function buildAll(overrides = {}) {
     const fkA = m2o(fk(first), first, { hidden: true, required: true, onDelete: 'CASCADE', template: entities[first].displayTemplate })
     const fkB = m2o(fk(second), second, { hidden: true, required: true, onDelete: 'CASCADE', template: entities[second].displayTemplate })
     const s = sortField()
-    collections.push({ collection: name, schema: {}, fields: [intPk(), strip(fkA), strip(fkB), s].map((f, i) => { f.meta.sort = i + 1; return f }),
+    collections.push({ collection: name, schema: {}, fields: [intPk(), strip(fkA), strip(fkB), s, ...(j.fields ?? [])].map((f, i) => { f.meta.sort = i + 1; return f }),
       meta: { icon: 'import_export', color: COLOR, hidden: true, collapse: 'open', group: col(j.owner), display_template: null, accountability: 'all',
         note: j.note ?? `Junction: ${j.a} ↔ ${j.b} for ${col(j.a)}.${j.aliasA} m2m`,
         translations: label(`${entities[j.a].labels[0]} ↔ ${entities[j.b].labels[0]}`) } })

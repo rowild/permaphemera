@@ -167,6 +167,7 @@ async function main() {
     ['venue relation is runs, seat or exhibits_at', venueRelations.every((row) => ['runs', 'seat', 'exhibits_at'].includes(row.relation))],
     ['organiser rows resolve both ends', organisers.every((row) => exists(organisationIds, row.organisation) && exists(exhibitionIds, row.exhibition))],
     ['organiser role is known', organisers.every((row) => ['organiser', 'presenter', 'cooperation', 'supporter'].includes(row.role))],
+    ['person-venue relation is curator, head or empty', a.personsVenues.every((row) => [null, undefined, 'curator', 'head'].includes(row.relation))],
     ['organisation-website rows resolve both ends', a.organisationsWebsites.every((row) => exists(organisationIds, row.organisations_id) && exists(websiteIds, row.websites_id))],
     ['venue-website rows resolve both ends', a.venuesWebsites.every((row) => exists(venueIds, row.venues_id) && exists(websiteIds, row.websites_id))],
     ['statement.exhibition all resolve', statements.every((row) => exhibitionIds.has(row.exhibition))],

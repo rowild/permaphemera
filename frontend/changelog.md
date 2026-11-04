@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.64 - 2026-11-04 21:19:50 CET
+
+- A gallery page names its curator ("Kurator:in") and its head ("Leitung"), under "Betrieben von": Séverin Krön at the Galerie im Schloss Porcia, Margaretha Bauer at the BV Galerie. Other persons tied to a gallery (a represented artist, a photographer) stay on their own pages only.
+
 ## 0.0.63 - 2026-11-04 20:48:35 CET
 
 - "Aktuelle Ausstellungen" and "Organisationen" no longer sit right on the divider line under the search: the same space as above the line (28 px, 16 px on phones), as on the other index pages. The space was lost in 0.0.52, when the repeated count line was hidden.

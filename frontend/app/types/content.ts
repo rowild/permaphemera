@@ -316,6 +316,8 @@ export interface OrganisationMembershipRecord {
 }
 
 export type OrganisationVenueRelation = 'runs' | 'seat' | 'exhibits_at'
+/** pp_mm__persons_venues.relation: what a person is to a gallery; empty = another tie, not shown there. */
+export type PersonVenueRelation = 'curator' | 'head'
 
 /** pp_organisation_venue_relations — how an organisation relates to a building. */
 export interface OrganisationVenueRelationRecord {

@@ -229,6 +229,32 @@ collections:
       versioning: false
     schema:
       name: pp_meta
+  - collection: pp_mm__exhibitions_news
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__exhibitions_news
+      color: '#a6523c'
+      display_template: null
+      group: pp_news
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: Exhibitions a news article is about.
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: Exhibitions ↔ News
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__exhibitions_news
   - collection: pp_mm__exhibitions_sponsors
     meta:
       accountability: all
@@ -337,6 +363,110 @@ collections:
       versioning: false
     schema:
       name: pp_mm__locations_sponsors
+  - collection: pp_mm__news_organisations
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__news_organisations
+      color: '#a6523c'
+      display_template: null
+      group: pp_news
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: Organisations a news article is about.
+      preview_url: null
+      singleton: false
+      sort: 2
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: News ↔ Organisations
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__news_organisations
+  - collection: pp_mm__news_persons
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__news_persons
+      color: '#a6523c'
+      display_template: null
+      group: pp_news
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: Persons a news article is about.
+      preview_url: null
+      singleton: false
+      sort: 3
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: News ↔ Persons
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__news_persons
+  - collection: pp_mm__news_sponsors
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__news_sponsors
+      color: '#a6523c'
+      display_template: null
+      group: pp_news
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: Sponsors a news article is about.
+      preview_url: null
+      singleton: false
+      sort: 4
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: News ↔ Sponsors
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__news_sponsors
+  - collection: pp_mm__news_venues
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_mm__news_venues
+      color: '#a6523c'
+      display_template: null
+      group: pp_news
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: Galleries a news article is about.
+      preview_url: null
+      singleton: false
+      sort: 5
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: News ↔ Venues
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_mm__news_venues
   - collection: pp_mm__organisations_websites
     meta:
       accountability: all
@@ -583,6 +713,39 @@ collections:
       versioning: false
     schema:
       name: pp_navigations
+  - collection: pp_news
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: closed
+      collection: pp_news
+      color: '#a6523c'
+      display_template: '{{published_on}} · {{title}}'
+      group: pp_archive
+      hidden: false
+      icon: newspaper
+      item_duplication_fields: null
+      note: >-
+        News articles ("Aktuelles"). Written on the owner's command, published
+        by the owner. The status alone decides if an article is public;
+        published_on is only the date the site shows and sorts by. Links to
+        galleries, exhibitions, persons, organisations and sponsors are shown
+        under the article.
+      preview_url: null
+      singleton: false
+      sort: 11
+      sort_field: null
+      translations:
+        - language: en-US
+          plural: News
+          singular: News article
+          translation: News
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: pp_news
   - collection: pp_organisation_memberships
     meta:
       accountability: all
@@ -901,6 +1064,32 @@ collections:
       versioning: false
     schema:
       name: pp_translations__navigation_items
+  - collection: pp_translations__news
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: pp_translations__news
+      color: '#a6523c'
+      display_template: null
+      group: pp_news
+      hidden: true
+      icon: translate
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 6
+      sort_field: null
+      translations:
+        - language: en-US
+          translation: News · Translations
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: pp_translations__news
   - collection: pp_translations__organisation_memberships
     meta:
       accountability: all
@@ -3682,14 +3871,18 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{person.first_name}} {{person.last_name}} · {{role.title}}'
+        template: >-
+          {{person.status}} {{person.first_name}} {{person.last_name}} ·
+          {{role.title}}
       field: participations
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{person.first_name}} {{person.last_name}} · {{role.title}}'
+        template: >-
+          {{person.status}} {{person.first_name}} {{person.last_name}} ·
+          {{role.title}}
       readonly: false
       required: false
       searchable: true
@@ -3708,14 +3901,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{person.first_name}} {{person.last_name}}: {{prompt}}'
+        template: '{{status}} {{person.first_name}} {{person.last_name}}: {{prompt}}'
       field: statements
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{person.first_name}} {{person.last_name}}: {{prompt}}'
+        template: '{{status}} {{person.first_name}} {{person.last_name}}: {{prompt}}'
       readonly: false
       required: false
       searchable: true
@@ -3734,14 +3927,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{venues_id.title}}'
+        template: '{{venues_id.status}} {{venues_id.title}}'
       field: further_venues
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{venues_id.title}}'
+        template: '{{venues_id.status}} {{venues_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -3760,14 +3953,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{sponsors_id.title}}'
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
       field: sponsors
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{sponsors_id.title}}'
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -4146,14 +4339,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{websites_id.title}}'
+        template: '{{websites_id.status}} {{websites_id.title}}'
       field: websites
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{websites_id.title}}'
+        template: '{{websites_id.status}} {{websites_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -4220,14 +4413,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{organisation.title}} · {{role}}'
+        template: '{{organisation.status}} {{organisation.title}} · {{role}}'
       field: organisers
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{organisation.title}} · {{role}}'
+        template: '{{organisation.status}} {{organisation.title}} · {{role}}'
       readonly: false
       required: false
       searchable: true
@@ -4361,6 +4554,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_exhibitions
+    field: news
+    type: alias
+    meta:
+      collection: pp_exhibitions
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      field: news
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_locations
     field: ui_accordion_main
     type: alias
@@ -4919,14 +5138,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       field: venues
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       readonly: false
       required: false
       searchable: true
@@ -4945,14 +5164,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{sponsors_id.title}}'
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
       field: sponsors
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{sponsors_id.title}}'
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -5290,14 +5509,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       field: organisations
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       readonly: false
       required: false
       searchable: true
@@ -5417,6 +5636,172 @@ fields:
       name: applied_at
       table: pp_meta
       data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__exhibitions_news
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__exhibitions_news
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__exhibitions_news
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__exhibitions_news
+    field: exhibitions_id
+    type: string
+    meta:
+      collection: pp_mm__exhibitions_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: exhibitions_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: exhibitions_id
+      table: pp_mm__exhibitions_news
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_exhibitions
+      foreign_key_column: id
+  - collection: pp_mm__exhibitions_news
+    field: news_id
+    type: string
+    meta:
+      collection: pp_mm__exhibitions_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{published_on}} · {{title}}'
+      field: news_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{published_on}} · {{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: news_id
+      table: pp_mm__exhibitions_news
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_news
+      foreign_key_column: id
+  - collection: pp_mm__exhibitions_news
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__exhibitions_news
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__exhibitions_news
+      data_type: integer
       default_value: null
       max_length: null
       numeric_precision: null
@@ -6094,6 +6479,670 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_mm__news_organisations
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__news_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__news_organisations
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__news_organisations
+    field: news_id
+    type: string
+    meta:
+      collection: pp_mm__news_organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{published_on}} · {{title}}'
+      field: news_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{published_on}} · {{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: news_id
+      table: pp_mm__news_organisations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_news
+      foreign_key_column: id
+  - collection: pp_mm__news_organisations
+    field: organisations_id
+    type: string
+    meta:
+      collection: pp_mm__news_organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: organisations_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: organisations_id
+      table: pp_mm__news_organisations
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+  - collection: pp_mm__news_organisations
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__news_organisations
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__news_organisations
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__news_persons
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__news_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__news_persons
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__news_persons
+    field: news_id
+    type: string
+    meta:
+      collection: pp_mm__news_persons
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{published_on}} · {{title}}'
+      field: news_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{published_on}} · {{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: news_id
+      table: pp_mm__news_persons
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_news
+      foreign_key_column: id
+  - collection: pp_mm__news_persons
+    field: persons_id
+    type: string
+    meta:
+      collection: pp_mm__news_persons
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{first_name}} {{last_name}}'
+      field: persons_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{first_name}} {{last_name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: persons_id
+      table: pp_mm__news_persons
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_persons
+      foreign_key_column: id
+  - collection: pp_mm__news_persons
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__news_persons
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__news_persons
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__news_sponsors
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__news_sponsors
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__news_sponsors
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__news_sponsors
+    field: news_id
+    type: string
+    meta:
+      collection: pp_mm__news_sponsors
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{published_on}} · {{title}}'
+      field: news_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{published_on}} · {{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: news_id
+      table: pp_mm__news_sponsors
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_news
+      foreign_key_column: id
+  - collection: pp_mm__news_sponsors
+    field: sponsors_id
+    type: string
+    meta:
+      collection: pp_mm__news_sponsors
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: sponsors_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sponsors_id
+      table: pp_mm__news_sponsors
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_sponsors
+      foreign_key_column: id
+  - collection: pp_mm__news_sponsors
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__news_sponsors
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__news_sponsors
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__news_venues
+    field: id
+    type: integer
+    meta:
+      collection: pp_mm__news_venues
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_mm__news_venues
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__news_venues
+    field: news_id
+    type: string
+    meta:
+      collection: pp_mm__news_venues
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{published_on}} · {{title}}'
+      field: news_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{published_on}} · {{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: news_id
+      table: pp_mm__news_venues
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_news
+      foreign_key_column: id
+  - collection: pp_mm__news_venues
+    field: venues_id
+    type: string
+    meta:
+      collection: pp_mm__news_venues
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: venues_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: venues_id
+      table: pp_mm__news_venues
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_venues
+      foreign_key_column: id
+  - collection: pp_mm__news_venues
+    field: sort
+    type: integer
+    meta:
+      collection: pp_mm__news_venues
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_mm__news_venues
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pp_mm__organisations_websites
     field: id
     type: integer
@@ -6747,6 +7796,54 @@ fields:
       data_type: integer
       default_value: null
       max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_mm__persons_venues
+    field: relation
+    type: string
+    meta:
+      collection: pp_mm__persons_venues
+      conditions: null
+      display: labels
+      display_options: null
+      field: relation
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: >-
+        curator: curates the house's programme. head: leads the house. Empty:
+        another tie (member, photographer, …); not shown on the gallery page.
+      options:
+        allowOther: false
+        choices:
+          - text: curator
+            value: curator
+          - text: head
+            value: head
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: relation
+      table: pp_mm__persons_venues
+      data_type: varchar
+      default_value: null
+      max_length: 255
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -7671,14 +8768,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       field: children
       group: null
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       readonly: false
       required: false
       searchable: true
@@ -8292,14 +9389,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       field: items
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       readonly: false
       required: false
       searchable: true
@@ -8547,6 +9644,1107 @@ fields:
     schema:
       name: date_updated
       table: pp_navigations
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: ui_accordion_main
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_main
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+        start: first
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Main
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: ui_accordion_translations
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_accordion_translations
+      group: null
+      hidden: false
+      interface: group-accordion
+      note: null
+      options:
+        fillWidth: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Translations
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: ui_group_system
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_system
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: closed
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: System
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: ui_group_title
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_title
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Title
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: ui_group_media
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_media
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Media
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: ui_group_relations
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_relations
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Linked records
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: ui_group_content
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_content
+      group: ui_accordion_main
+      hidden: false
+      interface: group-detail
+      note: null
+      options:
+        start: open
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: Content
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: ui_group_seo
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: ui_group_seo
+      group: ui_accordion_main
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - alias
+        - no-data
+        - group
+      translations:
+        - language: en-US
+          translation: SEO
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: status
+    type: string
+    meta:
+      collection: pp_news
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - background: var(--theme--primary)
+            foreground: '#FFFFFF'
+            text: $t:published
+            value: published
+          - background: '#D3DAE4'
+            foreground: '#18222F'
+            text: $t:draft
+            value: draft
+          - background: var(--theme--warning)
+            foreground: '#FFFFFF'
+            text: $t:archived
+            value: archived
+        showAsDot: true
+      field: status
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:draft
+            value: draft
+          - text: $t:archived
+            value: archived
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: status
+      table: pp_news
+      data_type: varchar
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: title
+    type: string
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: null
+      options:
+        trim: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: pp_news
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: slug
+    type: string
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: slug
+      group: ui_group_title
+      hidden: false
+      interface: input
+      note: null
+      options:
+        slug: true
+        trim: true
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: slug
+      table: pp_news
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: published_on
+    type: date
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: published_on
+      group: ui_group_title
+      hidden: false
+      interface: datetime
+      note: >-
+        Shown on the site and used for the order (newest first). Does not
+        publish anything by itself.
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: published_on
+      table: pp_news
+      data_type: date
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: topic
+    type: string
+    meta:
+      collection: pp_news
+      conditions: null
+      display: labels
+      display_options: null
+      field: topic
+      group: ui_group_title
+      hidden: false
+      interface: select-dropdown
+      note: >-
+        welcome: new galleries, organisers, artists (never exhibitions) ·
+        support: sponsors · opening: an exhibition opens soon · closing: an
+        exhibition closes soon, the 360° tour follows · site: news about the
+        website.
+      options:
+        allowOther: false
+        choices:
+          - text: welcome
+            value: welcome
+          - text: support
+            value: support
+          - text: opening
+            value: opening
+          - text: closing
+            value: closing
+          - text: site
+            value: site
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: topic
+      table: pp_news
+      data_type: varchar
+      default_value: welcome
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: image
+    type: uuid
+    meta:
+      collection: pp_news
+      conditions: null
+      display: image
+      display_options: null
+      field: image
+      group: ui_group_media
+      hidden: false
+      interface: file-image
+      note: >-
+        Optional. Without an image the site uses the image of the first linked
+        exhibition or gallery.
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image
+      table: pp_news
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_files
+      foreign_key_column: id
+  - collection: pp_news
+    field: image_alt
+    type: string
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: image_alt
+      group: ui_group_media
+      hidden: false
+      interface: input
+      note: null
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image_alt
+      table: pp_news
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: exhibitions
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{exhibitions_id.status}} {{exhibitions_id.title}}'
+      field: exhibitions
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{exhibitions_id.status}} {{exhibitions_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: venues
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{venues_id.status}} {{venues_id.title}}'
+      field: venues
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{venues_id.status}} {{venues_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: persons
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
+      field: persons
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: organisations
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{organisations_id.status}} {{organisations_id.title}}'
+      field: organisations
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{organisations_id.status}} {{organisations_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: sponsors
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
+      field: sponsors
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: summary
+    type: string
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: summary
+      group: ui_group_content
+      hidden: false
+      interface: input
+      note: One line for the lists, the start page and SEO.
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: summary
+      table: pp_news
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: description
+    type: text
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: description
+      group: ui_group_content
+      hidden: false
+      interface: input-rich-text-md
+      note: The article text. Follows docs/text-rules.md.
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: description
+      table: pp_news
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: seo
+    type: json
+    meta:
+      collection: pp_news
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: ui_group_seo
+      hidden: false
+      interface: seo-interface
+      note: >-
+        Search engines and link previews. Here: English text, share image,
+        robots and sitemap for both languages. Translations: title and
+        description per language.
+      options:
+        defaultChangeFrequency: monthly
+        defaultPriority: '0.5'
+        descriptionTemplate: '{{summary}}'
+        showOgImage: true
+        showSearchControls: true
+        showSitemap: true
+        titleTemplate: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_news
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: translations
+    type: alias
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: translations
+      group: ui_accordion_translations
+      hidden: false
+      interface: translations
+      note: null
+      options:
+        defaultLanguage: en
+        defaultOpenSplitView: true
+        languageField: name
+        userLanguage: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - translations
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: pp_news
+    field: id
+    type: uuid
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_news
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: sort
+    type: integer
+    meta:
+      collection: pp_news
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: ui_group_system
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: sort
+      table: pp_news
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: user_created
+    type: string
+    meta:
+      collection: pp_news
+      conditions: null
+      display: user
+      display_options: null
+      field: user_created
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_created
+      table: pp_news
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_news
+    field: date_created
+    type: timestamp
+    meta:
+      collection: pp_news
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - date-created
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: pp_news
+      data_type: datetime
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_news
+    field: user_updated
+    type: string
+    meta:
+      collection: pp_news
+      conditions: null
+      display: user
+      display_options: null
+      field: user_updated
+      group: ui_group_system
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{avatar}} {{first_name}} {{last_name}}'
+      readonly: true
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - user-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: user_updated
+      table: pp_news
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: pp_news
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: pp_news
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: ui_group_system
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-updated
+        - cast-timestamp
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: pp_news
       data_type: datetime
       default_value: null
       max_length: null
@@ -10128,14 +12326,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{venue.title}} · {{relation}}'
+        template: '{{venue.status}} {{venue.title}} · {{relation}}'
       field: venue_relations
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{venue.title}} · {{relation}}'
+        template: '{{venue.status}} {{venue.title}} · {{relation}}'
       readonly: false
       required: false
       searchable: true
@@ -10154,14 +12352,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{exhibition.title}} · {{role}}'
+        template: '{{exhibition.status}} {{exhibition.title}} · {{role}}'
       field: exhibitions
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{exhibition.title}} · {{role}}'
+        template: '{{exhibition.status}} {{exhibition.title}} · {{role}}'
       readonly: false
       required: false
       searchable: true
@@ -10180,14 +12378,18 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{person.first_name}} {{person.last_name}} · {{function}}'
+        template: >-
+          {{person.status}} {{person.first_name}} {{person.last_name}} ·
+          {{function}}
       field: members
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{person.first_name}} {{person.last_name}} · {{function}}'
+        template: >-
+          {{person.status}} {{person.first_name}} {{person.last_name}} ·
+          {{function}}
       readonly: false
       required: false
       searchable: true
@@ -10206,14 +12408,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{websites_id.title}}'
+        template: '{{websites_id.status}} {{websites_id.title}}'
       field: websites
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{websites_id.title}}'
+        template: '{{websites_id.status}} {{websites_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -10837,6 +13039,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_organisations
+    field: news
+    type: alias
+    meta:
+      collection: pp_organisations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      field: news
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_persons
     field: ui_accordion_main
     type: alias
@@ -11255,14 +13483,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{roles_id.title}}'
+        template: '{{roles_id.status}} {{roles_id.title}}'
       field: roles
       group: ui_group_title
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{roles_id.title}}'
+        template: '{{roles_id.status}} {{roles_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -11281,14 +13509,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{exhibition.title}} · {{role.title}}'
+        template: '{{exhibition.status}} {{exhibition.title}} · {{role.title}}'
       field: participations
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{exhibition.title}} · {{role.title}}'
+        template: '{{exhibition.status}} {{exhibition.title}} · {{role.title}}'
       readonly: false
       required: false
       searchable: true
@@ -11307,14 +13535,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{venues_id.title}}'
+        template: '{{venues_id.status}} {{venues_id.title}}'
       field: venues
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{venues_id.title}}'
+        template: '{{venues_id.status}} {{venues_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -11333,14 +13561,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{sponsors_id.title}}'
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
       field: sponsors
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{sponsors_id.title}}'
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -11610,14 +13838,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{websites_id.title}}'
+        template: '{{websites_id.status}} {{websites_id.title}}'
       field: websites
       group: ui_group_links
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{websites_id.title}}'
+        template: '{{websites_id.status}} {{websites_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -11681,14 +13909,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{organisation.title}} · {{function}}'
+        template: '{{organisation.status}} {{organisation.title}} · {{function}}'
       field: memberships
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{organisation.title}} · {{function}}'
+        template: '{{organisation.status}} {{organisation.title}} · {{function}}'
       readonly: false
       required: false
       searchable: true
@@ -12218,6 +14446,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_persons
+    field: news
+    type: alias
+    meta:
+      collection: pp_persons
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      field: news
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_quotes
     field: ui_accordion_main
     type: alias
@@ -13288,14 +15542,18 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
       field: persons
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
       readonly: false
       required: false
       searchable: true
@@ -13992,14 +16250,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{venues_id.title}}'
+        template: '{{venues_id.status}} {{venues_id.title}}'
       field: venues
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{venues_id.title}}'
+        template: '{{venues_id.status}} {{venues_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -14018,14 +16276,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{exhibitions_id.title}}'
+        template: '{{exhibitions_id.status}} {{exhibitions_id.title}}'
       field: exhibitions
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{exhibitions_id.title}}'
+        template: '{{exhibitions_id.status}} {{exhibitions_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -14044,14 +16302,18 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
       field: persons
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
       readonly: false
       required: false
       searchable: true
@@ -14070,14 +16332,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{locations_id.title}}'
+        template: '{{locations_id.status}} {{locations_id.title}}'
       field: locations
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{locations_id.title}}'
+        template: '{{locations_id.status}} {{locations_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -14487,6 +16749,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_sponsors
+    field: news
+    type: alias
+    meta:
+      collection: pp_sponsors
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      field: news
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_translations__exhibition_statements
     field: id
     type: integer
@@ -15557,6 +17845,342 @@ fields:
       data_type: varchar
       default_value: null
       max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__news
+    field: id
+    type: integer
+    meta:
+      collection: pp_translations__news
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: id
+      table: pp_translations__news
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__news
+    field: news_id
+    type: string
+    meta:
+      collection: pp_translations__news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{published_on}} · {{title}}'
+      field: news_id
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{published_on}} · {{title}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: news_id
+      table: pp_translations__news
+      data_type: char
+      default_value: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: pp_news
+      foreign_key_column: id
+  - collection: pp_translations__news
+    field: languages_code
+    type: string
+    meta:
+      collection: pp_translations__news
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: languages_code
+      group: null
+      hidden: true
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: languages_code
+      table: pp_translations__news
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: languages
+      foreign_key_column: code
+  - collection: pp_translations__news
+    field: title
+    type: string
+    meta:
+      collection: pp_translations__news
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_news.title
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: pp_translations__news
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__news
+    field: image_alt
+    type: string
+    meta:
+      collection: pp_translations__news
+      conditions: null
+      display: null
+      display_options: null
+      field: image_alt
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_news.image_alt
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: image_alt
+      table: pp_translations__news
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__news
+    field: summary
+    type: string
+    meta:
+      collection: pp_translations__news
+      conditions: null
+      display: null
+      display_options: null
+      field: summary
+      group: null
+      hidden: false
+      interface: input
+      note: Translated field for pp_news.summary
+      options:
+        trim: true
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: summary
+      table: pp_translations__news
+      data_type: varchar
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__news
+    field: description
+    type: text
+    meta:
+      collection: pp_translations__news
+      conditions: null
+      display: null
+      display_options: null
+      field: description
+      group: null
+      hidden: false
+      interface: input-rich-text-md
+      note: Translated field for pp_news.description
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: description
+      table: pp_translations__news
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pp_translations__news
+    field: seo
+    type: json
+    meta:
+      collection: pp_translations__news
+      conditions: null
+      display: seo-display
+      display_options:
+        showSearchPreview: true
+      field: seo
+      group: null
+      hidden: false
+      interface: seo-interface
+      note: Translated field for pp_news.seo
+      options:
+        descriptionTemplate: '{{summary}}'
+        showOgImage: false
+        showSearchControls: false
+        showSitemap: false
+        titleTemplate: '{{title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 8
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: seo
+      table: pp_translations__news
+      data_type: json
+      default_value: null
+      max_length: null
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -18865,14 +21489,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       field: exhibitions
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       readonly: false
       required: false
       searchable: true
@@ -18891,14 +21515,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{exhibitions_id.title}}'
+        template: '{{exhibitions_id.status}} {{exhibitions_id.title}}'
       field: further_exhibitions
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{exhibitions_id.title}}'
+        template: '{{exhibitions_id.status}} {{exhibitions_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -18917,14 +21541,18 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
       field: persons
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
       readonly: false
       required: false
       searchable: true
@@ -18943,14 +21571,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{sponsors_id.title}}'
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
       field: sponsors
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{sponsors_id.title}}'
+        template: '{{sponsors_id.status}} {{sponsors_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -19375,14 +22003,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       field: spaces
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{title}}'
+        template: '{{status}} {{title}}'
       readonly: false
       required: false
       searchable: true
@@ -19401,14 +22029,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{organisation.title}} · {{relation}}'
+        template: '{{organisation.status}} {{organisation.title}} · {{relation}}'
       field: organisation_relations
       group: ui_group_relations
       hidden: false
       interface: list-o2m
       note: null
       options:
-        template: '{{organisation.title}} · {{relation}}'
+        template: '{{organisation.status}} {{organisation.title}} · {{relation}}'
       readonly: false
       required: false
       searchable: true
@@ -19427,14 +22055,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{websites_id.title}}'
+        template: '{{websites_id.status}} {{websites_id.title}}'
       field: websites
       group: ui_group_address
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{websites_id.title}}'
+        template: '{{websites_id.status}} {{websites_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -19575,6 +22203,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: pp_venues
+    field: news
+    type: alias
+    meta:
+      collection: pp_venues
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      field: news
+      group: ui_group_relations
+      hidden: false
+      interface: list-m2m
+      note: null
+      options:
+        template: '{{news_id.status}} {{news_id.title}}'
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: pp_websites
     field: ui_accordion_main
     type: alias
@@ -19922,14 +22576,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{exhibitions_id.title}}'
+        template: '{{exhibitions_id.status}} {{exhibitions_id.title}}'
       field: exhibitions
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{exhibitions_id.title}}'
+        template: '{{exhibitions_id.status}} {{exhibitions_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -19948,14 +22602,18 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
       field: persons
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{persons_id.first_name}} {{persons_id.last_name}}'
+        template: >-
+          {{persons_id.status}} {{persons_id.first_name}}
+          {{persons_id.last_name}}
       readonly: false
       required: false
       searchable: true
@@ -20253,14 +22911,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{organisations_id.title}}'
+        template: '{{organisations_id.status}} {{organisations_id.title}}'
       field: organisations
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{organisations_id.title}}'
+        template: '{{organisations_id.status}} {{organisations_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -20279,14 +22937,14 @@ fields:
       conditions: null
       display: related-values
       display_options:
-        template: '{{venues_id.title}}'
+        template: '{{venues_id.status}} {{venues_id.title}}'
       field: venues
       group: ui_group_relations
       hidden: false
       interface: list-m2m
       note: null
       options:
-        template: '{{venues_id.title}}'
+        template: '{{venues_id.status}} {{venues_id.title}}'
       readonly: false
       required: false
       searchable: true
@@ -20731,6 +23389,48 @@ relations:
       constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
+  - collection: pp_mm__exhibitions_news
+    field: exhibitions_id
+    related_collection: pp_exhibitions
+    meta:
+      junction_field: news_id
+      many_collection: pp_mm__exhibitions_news
+      many_field: exhibitions_id
+      one_allowed_collections: null
+      one_collection: pp_exhibitions
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: news
+      sort_field: null
+    schema:
+      table: pp_mm__exhibitions_news
+      column: exhibitions_id
+      foreign_key_table: pp_exhibitions
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__exhibitions_news
+    field: news_id
+    related_collection: pp_news
+    meta:
+      junction_field: exhibitions_id
+      many_collection: pp_mm__exhibitions_news
+      many_field: news_id
+      one_allowed_collections: null
+      one_collection: pp_news
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: exhibitions
+      sort_field: sort
+    schema:
+      table: pp_mm__exhibitions_news
+      column: news_id
+      foreign_key_table: pp_news
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
   - collection: pp_mm__exhibitions_sponsors
     field: exhibitions_id
     related_collection: pp_exhibitions
@@ -20895,6 +23595,174 @@ relations:
       table: pp_mm__locations_sponsors
       column: sponsors_id
       foreign_key_table: pp_sponsors
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__news_organisations
+    field: news_id
+    related_collection: pp_news
+    meta:
+      junction_field: organisations_id
+      many_collection: pp_mm__news_organisations
+      many_field: news_id
+      one_allowed_collections: null
+      one_collection: pp_news
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: organisations
+      sort_field: sort
+    schema:
+      table: pp_mm__news_organisations
+      column: news_id
+      foreign_key_table: pp_news
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__news_organisations
+    field: organisations_id
+    related_collection: pp_organisations
+    meta:
+      junction_field: news_id
+      many_collection: pp_mm__news_organisations
+      many_field: organisations_id
+      one_allowed_collections: null
+      one_collection: pp_organisations
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: news
+      sort_field: null
+    schema:
+      table: pp_mm__news_organisations
+      column: organisations_id
+      foreign_key_table: pp_organisations
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__news_persons
+    field: news_id
+    related_collection: pp_news
+    meta:
+      junction_field: persons_id
+      many_collection: pp_mm__news_persons
+      many_field: news_id
+      one_allowed_collections: null
+      one_collection: pp_news
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: persons
+      sort_field: sort
+    schema:
+      table: pp_mm__news_persons
+      column: news_id
+      foreign_key_table: pp_news
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__news_persons
+    field: persons_id
+    related_collection: pp_persons
+    meta:
+      junction_field: news_id
+      many_collection: pp_mm__news_persons
+      many_field: persons_id
+      one_allowed_collections: null
+      one_collection: pp_persons
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: news
+      sort_field: null
+    schema:
+      table: pp_mm__news_persons
+      column: persons_id
+      foreign_key_table: pp_persons
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__news_sponsors
+    field: news_id
+    related_collection: pp_news
+    meta:
+      junction_field: sponsors_id
+      many_collection: pp_mm__news_sponsors
+      many_field: news_id
+      one_allowed_collections: null
+      one_collection: pp_news
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: sponsors
+      sort_field: sort
+    schema:
+      table: pp_mm__news_sponsors
+      column: news_id
+      foreign_key_table: pp_news
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__news_sponsors
+    field: sponsors_id
+    related_collection: pp_sponsors
+    meta:
+      junction_field: news_id
+      many_collection: pp_mm__news_sponsors
+      many_field: sponsors_id
+      one_allowed_collections: null
+      one_collection: pp_sponsors
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: news
+      sort_field: null
+    schema:
+      table: pp_mm__news_sponsors
+      column: sponsors_id
+      foreign_key_table: pp_sponsors
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__news_venues
+    field: news_id
+    related_collection: pp_news
+    meta:
+      junction_field: venues_id
+      many_collection: pp_mm__news_venues
+      many_field: news_id
+      one_allowed_collections: null
+      one_collection: pp_news
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: venues
+      sort_field: sort
+    schema:
+      table: pp_mm__news_venues
+      column: news_id
+      foreign_key_table: pp_news
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_mm__news_venues
+    field: venues_id
+    related_collection: pp_venues
+    meta:
+      junction_field: news_id
+      many_collection: pp_mm__news_venues
+      many_field: venues_id
+      one_allowed_collections: null
+      one_collection: pp_venues
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: news
+      sort_field: null
+    schema:
+      table: pp_mm__news_venues
+      column: venues_id
+      foreign_key_table: pp_venues
       foreign_key_column: id
       constraint_name: null
       on_update: NO ACTION
@@ -21313,6 +24181,69 @@ relations:
       sort_field: null
     schema:
       table: pp_navigations
+      column: user_updated
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_news
+    field: image
+    related_collection: directus_files
+    meta:
+      junction_field: null
+      many_collection: pp_news
+      many_field: image
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_news
+      column: image
+      foreign_key_table: directus_files
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_news
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_news
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_news
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: pp_news
+    field: user_updated
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: pp_news
+      many_field: user_updated
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_news
       column: user_updated
       foreign_key_table: directus_users
       foreign_key_column: id
@@ -21964,6 +24895,48 @@ relations:
       sort_field: null
     schema:
       table: pp_translations__navigation_items
+      column: languages_code
+      foreign_key_table: languages
+      foreign_key_column: code
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__news
+    field: news_id
+    related_collection: pp_news
+    meta:
+      junction_field: languages_code
+      many_collection: pp_translations__news
+      many_field: news_id
+      one_allowed_collections: null
+      one_collection: pp_news
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: translations
+      sort_field: null
+    schema:
+      table: pp_translations__news
+      column: news_id
+      foreign_key_table: pp_news
+      foreign_key_column: id
+      constraint_name: null
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: pp_translations__news
+    field: languages_code
+    related_collection: languages
+    meta:
+      junction_field: news_id
+      many_collection: pp_translations__news
+      many_field: languages_code
+      one_allowed_collections: null
+      one_collection: languages
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: null
+      sort_field: null
+    schema:
+      table: pp_translations__news
       column: languages_code
       foreign_key_table: languages
       foreign_key_column: code

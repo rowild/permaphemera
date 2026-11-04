@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, integer, m2o, markdown, richText, seo, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-11-04.1'
+export const SCHEMA_VERSION = '2026-11-04.2'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -374,11 +374,15 @@ export const entities = {
 // Many-to-many links. Table names come from mmTable(a, b); FK columns from fk().
 // `owner` = sidebar parent. `sortedFrom` = the side whose list order the junction's
 // `sort` column stores (conventions §2 rule 4: one side only → the column is `sort`).
+// `fields` = extra columns on the link row itself (no status: status lives on records).
 export const junctions = [
   { a: 'exhibitions', b: 'venues', aliasA: 'further_venues', aliasB: 'further_exhibitions', owner: 'exhibitions', sortedFrom: 'exhibitions', note: 'Further venues of a travelling exhibition; primary_venue stays the main one.' },
   { a: 'exhibitions', b: 'sponsors', aliasA: 'sponsors', aliasB: 'exhibitions', owner: 'sponsors', sortedFrom: 'exhibitions' },
   { a: 'persons', b: 'roles', aliasA: 'roles', aliasB: 'persons', owner: 'persons', sortedFrom: 'persons', note: 'What a person can be. A participation role must be one of these.' },
-  { a: 'persons', b: 'venues', aliasA: 'venues', aliasB: 'persons', owner: 'persons', sortedFrom: 'venues', note: 'The venue represents or works with the person. Not derived from exhibitions.' },
+  { a: 'persons', b: 'venues', aliasA: 'venues', aliasB: 'persons', owner: 'persons', sortedFrom: 'venues', note: 'The venue represents or works with the person. Not derived from exhibitions.',
+    // Owner, 2026-11-04: the gallery page names its curator ("Kurator:in") and its head ("Leitung"),
+    // like "Betrieben von" for an organisation. Empty: another tie, not shown on the gallery page.
+    fields: [dropdown('relation', ['curator', 'head'], { note: 'curator: curates the house\'s programme. head: leads the house. Empty: another tie (member, photographer, …); not shown on the gallery page.' })] },
   { a: 'persons', b: 'sponsors', aliasA: 'sponsors', aliasB: 'persons', owner: 'sponsors', sortedFrom: 'persons' },
   { a: 'locations', b: 'sponsors', aliasA: 'sponsors', aliasB: 'locations', owner: 'sponsors', sortedFrom: 'locations' },
   { a: 'sponsors', b: 'venues', aliasA: 'venues', aliasB: 'sponsors', owner: 'sponsors', sortedFrom: 'venues' },

@@ -25,7 +25,7 @@ function buildArchiveData() {
   const locale = useNuxtApp().$i18n.locale
 
   const venuesForLocale = computed(() =>
-    resolveVenues(archive.value.locations, archive.value.venues, locale.value, archive.value.organisationVenueRelations, archive.value.organisations, archive.value.websites, archive.value.venuesWebsites))
+    resolveVenues(archive.value.locations, archive.value.venues, locale.value, archive.value.organisationVenueRelations, archive.value.organisations, archive.value.websites, archive.value.venuesWebsites, archive.value.persons, archive.value.personsVenues))
 
   const exhibitionsForLocale = computed(() => resolveExhibitions(
     archive.value.exhibitions,

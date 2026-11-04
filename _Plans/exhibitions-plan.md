@@ -140,7 +140,7 @@ Every line is one relation. The naming rule (conventions §2 rule 12) makes an M
 | person | role | M2M | `pp_mm__persons_roles` | what the person can be; aliases `roles` / `persons` |
 | statement | exhibition | M2O, child | `pp_exhibition_statements.exhibition` | dies with the exhibition |
 | statement | person | M2O | `pp_exhibition_statements.person` | who said it |
-| person | venue | M2M | `pp_mm__persons_venues` | the venue represents or works with the person; aliases `venues` / `persons` |
+| person | venue | M2M | `pp_mm__persons_venues` | the venue represents or works with the person; aliases `venues` / `persons`; `relation` (`curator`, `head`, empty) names the curator and the head on the gallery page (2026-11-04) |
 | sponsor | venue | M2M | `pp_mm__sponsors_venues` | aliases `venues` / `sponsors` |
 | sponsor | exhibition | M2M | `pp_mm__exhibitions_sponsors` | aliases `exhibitions` / `sponsors` |
 | sponsor | person | M2M | `pp_mm__persons_sponsors` | aliases `persons` / `sponsors` |
@@ -262,7 +262,7 @@ a translation entry holds only title and description for its language, and `en` 
 
 #### Structural junctions
 
-`pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`, `pp_mm__exhibitions_websites`, `pp_mm__persons_websites`, `pp_mm__organisations_websites`, `pp_mm__venues_websites`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`.
+`pp_mm__exhibitions_venues`, `pp_mm__exhibitions_sponsors`, `pp_mm__persons_roles`, `pp_mm__persons_venues`, `pp_mm__persons_sponsors`, `pp_mm__locations_sponsors`, `pp_mm__sponsors_venues`, `pp_mm__exhibitions_websites`, `pp_mm__persons_websites`, `pp_mm__organisations_websites`, `pp_mm__venues_websites`: each `id`, `<a>_id`, `<b>_id` (CASCADE, NOT NULL, indexed), `sort`. Aliases on both ends, plural, `list-m2m`. `pp_mm__persons_venues` also has `relation` (dropdown `curator` / `head`, nullable; 2026-11-04).
 
 #### `pp_meta` (singleton, hidden)
 
