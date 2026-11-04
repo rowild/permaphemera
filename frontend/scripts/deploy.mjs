@@ -24,6 +24,7 @@ async function loadEnvironmentFile(filePath) {
     if (error.code === 'ENOENT') {
       throw new Error(
         '.env.deploy.local is missing. Copy .env.deploy.example and fill in the local credentials.',
+        { cause: error },
       )
     }
 
@@ -106,7 +107,7 @@ async function readPrivateKey(keyPath) {
   }
   catch (error) {
     if (error.code === 'ENOENT') {
-      throw new Error(`The private key was not found: ${keyPath}`)
+      throw new Error(`The private key was not found: ${keyPath}`, { cause: error })
     }
 
     throw error

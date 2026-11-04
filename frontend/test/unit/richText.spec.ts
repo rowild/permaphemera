@@ -12,7 +12,7 @@ describe('sanitizeRichText', () => {
   })
 
   it('keeps site and https links only when asked (news), dropping every other link and attribute', () => {
-    const html = '<p><a href="/exhibitions/x/" onclick="evil()">site</a> <a href="https://example.org/a?b=1">web</a> <a href="javascript:alert(1)">js</a> <a href="//evil.org">proto</a> <a href="http://plain.org">http</a> <a href="/x\" onmouseover=\"evil()">quote</a></p>'
+    const html = '<p><a href="/exhibitions/x/" onclick="evil()">site</a> <a href="https://example.org/a?b=1">web</a> <a href="javascript:alert(1)">js</a> <a href="//evil.org">proto</a> <a href="http://plain.org">http</a> <a href="/x" onmouseover="evil()">quote</a></p>'
     expect(sanitizeRichText(html, { links: true })).toBe('<p><a href="/exhibitions/x/">site</a> <a href="https://example.org/a?b=1" target="_blank" rel="noopener noreferrer">web</a> js proto http <a href="/x">quote</a></p>')
   })
 

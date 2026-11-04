@@ -11,6 +11,9 @@
 #                                                only these tours, then the cache purge
 #                                                (the Tour Editor's upload list)
 #   pnpm run deploy:hetzner -- … --plan          print what would happen; change nothing
+#   pnpm run deploy:hetzner -- … --skip-verify   build without the tests and checks first
+#                                                (an emergency only; they run by default
+#                                                before every site build since 2026-11-04)
 #
 # The three modes exist since 2026-10-29: a viewer update or one published tour
 # used to check and push every tour copy here, one connection per tour — slow
@@ -33,6 +36,7 @@ NEWS_REPORT_DIR="$(dirname "$REMOTE_DIR")/news-report"
 export NUXT_PUBLIC_DIRECTUS_URL="${NUXT_PUBLIC_DIRECTUS_URL_PROD:-https://permaphemera.at/cms}"
 
 SKIP_BUILD=0
+SKIP_VERIFY=0
 TOURS_DRY_RUN=0
 SITE=1              # build, site rsync, SEO; --no-site skips it
 TOURS_MODE=all      # all | none (--site-only) | list (--tours a,b)
@@ -41,6 +45,7 @@ PLAN=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --skip-build) SKIP_BUILD=1 ;;
+    --skip-verify) SKIP_VERIFY=1 ;;
     --tours-dry-run) TOURS_DRY_RUN=1 ;;
     --site-only) TOURS_MODE=none ;;
     --no-site) SITE=0 ;;
@@ -133,6 +138,13 @@ if [[ "$SITE" == 1 ]]; then
   case "$NUXT_PUBLIC_DIRECTUS_URL" in
     http://localhost*|http://127.*) echo "Refusing to deploy a build that points at $NUXT_PUBLIC_DIRECTUS_URL" >&2; exit 1 ;;
   esac
+
+  # Nothing goes live that fails a test or a check (plans/2026-11-04__nuxt-optimisation-audit.md, phase 4).
+  if [[ "$SKIP_BUILD" != 1 && "$SKIP_VERIFY" != 1 ]]; then
+    echo "[deploy] verify: tests, offline checks, types, then the checks against Directus"
+    pnpm -s verify
+    pnpm -s verify:live
+  fi
 
   if [[ "$SKIP_BUILD" != 1 ]]; then
     echo "[deploy] building with NUXT_PUBLIC_DIRECTUS_URL=$NUXT_PUBLIC_DIRECTUS_URL"

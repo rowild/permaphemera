@@ -17,7 +17,10 @@ source-text checks (`scripts/check-*.mjs`) or replaces them (phase 5).
 
 ---
 
-## Phase 0 — live bugs (S, fix first)
+## Phase 0 — live bugs (S, fix first) — DONE, release 0.0.50
+
+Item 3 was no bug (`newsMarkdown.ts` localizes the links before render). Found on the way: the
+404 page had no `lang`; unknown addresses now match `pages/[...slug].vue`.
 
 1. **`/locations/**` redirect is broken.** `nuxt.config.ts:23-24`. With `ssr:false` the route
    rule only runs in the browser and does not fill in `**`: `/locations/galerie-3/` goes to
@@ -134,7 +137,7 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
    `<ClientOnly>` → `LazyArtistExhibitionModal v-if="open"` or one modal per page.
 8. Auto-import consistency: 12 components import `ref`/`computed` from `'vue'`.
 
-## Phase 4 — gates (nothing runs the checks today)
+## Phase 4 — gates (nothing runs the checks today) — DONE 2026-11-04 (`verify`, `verify:live`, deploy gate, `.githooks/pre-commit`, `@nuxt/eslint`: 90 findings fixed, among them two pages with a comment as a second template root, a computed without return, four errors without `cause`, a prop `ariaLabel` the type check could not see)
 
 No CI, no git hooks; `deploy-hetzner.sh` runs `nuxt generate` with no test or check.
 1. `pnpm verify` = vitest + `check:conventions` + `check:tailwind` + `check:types` (offline).
@@ -143,7 +146,7 @@ No CI, no git hooks; `deploy-hetzner.sh` runs `nuxt generate` with no test or ch
    `vitest related --run` and `check:tailwind`.
 3. `@nuxt/eslint` (understands auto-imports; can take over "never `useSeoMeta`").
 
-## Phase 5 — test architecture
+## Phase 5 — test architecture (base DONE 2026-11-04: `@nuxt/test-utils`, `test/nuxt/`)
 
 Target:
 1. `test/unit` (node): pure utils and resolvers, logic pulled out of pages (search, wheel preload

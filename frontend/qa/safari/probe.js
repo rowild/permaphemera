@@ -18,7 +18,7 @@
     if (!localStorage.getItem('permaphemera-cookie-consent')) {
       localStorage.setItem('permaphemera-cookie-consent', JSON.stringify({ analytics: 'denied', googleMaps: 'denied', youtube: 'denied', savedAt: Date.now(), version: 2 }))
     }
-  } catch (e) { /* private mode: the notice may show */ }
+  } catch { /* private mode: the notice may show */ }
 
   var params = new URLSearchParams(location.search)
   var runner = params.get('qa_runner')
@@ -202,8 +202,8 @@
 
   // ---- environment ----------------------------------------------------------------
   function env() {
-    var sup = function (p, v) { try { return CSS.supports(p, v) } catch (e) { return null } }
-    var supSel = function (s) { try { return CSS.supports('selector(' + s + ')') } catch (e) { return null } }
+    var sup = function (p, v) { try { return CSS.supports(p, v) } catch { return null } }
+    var supSel = function (s) { try { return CSS.supports('selector(' + s + ')') } catch { return null } }
     var gl = null
     try {
       var c = document.createElement('canvas')
@@ -333,13 +333,13 @@
     }
     // Close-ups of text the browser has to fake (no italic or 600 face).
     var shown = 0
-    for (var key in combos) {
-      var fakedEl = firstOf[key]
-      if (!combos[key].faked || !fakedEl || shown >= 3) continue
+    for (var combo in combos) {
+      var fakedEl = firstOf[combo]
+      if (!combos[combo].faked || !fakedEl || shown >= 3) continue
       await scrollToCenter(fakedEl)
       var c3 = clampToViewport(grow(rectOf(fakedEl), 14))
       if (c3) {
-        await checkpoint('font-faked-' + combos[key].weight + '-' + combos[key].style, { clips: { text: c3 } })
+        await checkpoint('font-faked-' + combos[combo].weight + '-' + combos[combo].style, { clips: { text: c3 } })
         shown++
       }
     }
@@ -407,14 +407,14 @@
       }
     }
     for (var s = 0; s < document.styleSheets.length; s++) {
-      try { walk(document.styleSheets[s].cssRules) } catch (e) { /* cross-origin sheet */ }
+      try { walk(document.styleSheets[s].cssRules) } catch { /* cross-origin sheet */ }
     }
     var style = document.createElement('style')
     style.setAttribute('data-qa', 'forced-hover')
     document.head.appendChild(style)
     hoverSheet = { sheet: style.sheet, copied: 0, failed: 0 }
     texts.forEach(function (t) {
-      try { style.sheet.insertRule(t, style.sheet.cssRules.length); hoverSheet.copied++ } catch (e) { hoverSheet.failed++ }
+      try { style.sheet.insertRule(t, style.sheet.cssRules.length); hoverSheet.copied++ } catch { hoverSheet.failed++ }
     })
   }
   function setForcedHover(el, on) {

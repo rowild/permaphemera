@@ -29,7 +29,7 @@ const resolvedButtonLabel = computed(() => props.buttonLabel ?? t('common.search
         :name="props.id"
         type="search"
         :placeholder="props.placeholder"
-      />
+      >
     </div>
     <button
       class="[ search-submit ] archive-button-primary-frame inline-flex h-[3.55rem] min-h-0 w-46 min-w-46 shrink-0 flex-nowrap items-center justify-center gap-[0.8rem] self-center rounded-none border-12 border-transparent bg-transparent px-[1.45rem] font-display text-button font-normal whitespace-nowrap text-archive-light-ink shadow-none transition-[filter,transform,translate,scale,rotate] duration-[0.38s,0.14s] ease-[ease,cubic-bezier(0.4,0,0.2,1)] hover:brightness-109 hover:contrast-102 hover:saturate-108 active:translate-y-px active:scale-97 focus-visible:outline-2 focus-visible:outline-offset-[0.28rem] focus-visible:outline-archive-red compact:size-12 compact:min-w-12 compact:gap-0 compact:p-0"

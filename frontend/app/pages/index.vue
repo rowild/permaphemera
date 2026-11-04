@@ -637,7 +637,7 @@ const openRandomTour = (event: MouseEvent) => {
           src="/media/svg/dividers/artists-section-divider.svg"
           alt=""
           aria-hidden="true"
-        />
+        >
       </section>
 
       <section v-if="belowHeroStep >= 5" id="method" class="[ method-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(20rem,0.58fr)_minmax(36rem,1.42fr)] gap-x-[clamp(2.5rem,4vw,4.5rem)] gap-y-0 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:px-4 compact:py-5">
@@ -656,7 +656,7 @@ const openRandomTour = (event: MouseEvent) => {
             class="block h-auto w-full compact:transform-none"
             src="/media/images/landing/method/archive-method-composition.png"
             :alt="$t('landing.method.imageAlt')"
-          />
+          >
         </div>
 
         <div class="[ method-steps ] archive-method-steps-frame relative z-1 col-span-full mt-0 grid -translate-y-3.25 grid-cols-3 gap-0 border-16 border-transparent bg-transparent px-[0.6rem] py-[0.35rem] shadow-none compact:translate-y-1.5 compact:grid-cols-1">
@@ -672,10 +672,10 @@ const openRandomTour = (event: MouseEvent) => {
           <!-- The cell stays without a quote, so the facts keep their column. -->
           <figure class="[ method-quote ] m-0 grid grid-cols-[3rem_1fr] items-start gap-4 compact:mb-4">
             <template v-if="methodQuote">
-              <img class="h-auto w-[2.6rem]" src="/media/images/landing/method/details/quote-mark.png" alt="" aria-hidden="true" />
+              <img class="h-auto w-[2.6rem]" src="/media/images/landing/method/details/quote-mark.png" alt="" aria-hidden="true" >
               <div>
                 <blockquote class="m-0">
-                  <p class="m-0 font-display text-h4 leading-[1.18] text-archive-copy italic">{{ methodQuote.line1 }}<template v-if="methodQuote.line2 || methodQuote.accent"><br />{{ methodQuote.line2 }} <em v-if="methodQuote.accent" class="font-normal text-archive-red">{{ methodQuote.accent }}</em></template></p>
+                  <p class="m-0 font-display text-h4 leading-[1.18] text-archive-copy italic">{{ methodQuote.line1 }}<template v-if="methodQuote.line2 || methodQuote.accent"><br >{{ methodQuote.line2 }} <em v-if="methodQuote.accent" class="font-normal text-archive-red">{{ methodQuote.accent }}</em></template></p>
                 </blockquote>
                 <figcaption v-if="methodQuote.source" class="mt-3 block text-xs tracking-[0.08em] text-archive-red uppercase">{{ methodQuote.source }}</figcaption>
               </div>
@@ -695,7 +695,7 @@ const openRandomTour = (event: MouseEvent) => {
             class="[ method-archive-stamp ] h-auto w-30 opacity-72 tablet:w-24 compact:mx-auto compact:mt-5 compact:mb-8 compact:justify-self-center"
             src="/media/images/landing/method/details/archive-stamp.png"
             :alt="$t('landing.sealAlt')"
-          />
+          >
         </div>
       </section>
 

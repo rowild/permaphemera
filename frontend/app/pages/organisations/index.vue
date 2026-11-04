@@ -110,9 +110,9 @@ usePageSeo('/organisations/')
       <section id="organisation-directory" class="[ organisation-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('organisations.directory')">
         <div class="[ organisation-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
           <ArchiveSearchForm
+            id="organisation-directory-search"
             v-model="searchQuery"
             class="[ organisation-directory-search ]"
-            id="organisation-directory-search"
             :label="$t('organisations.searchLabel')"
             :placeholder="$t('organisations.searchPlaceholder')"
           />

@@ -22,9 +22,10 @@ const followSiteLink = (event: MouseEvent) => {
 </script>
 
 <template>
+  <!-- eslint-disable vue/no-v-html -- sanitizeRichText above keeps only safe tags and links -->
   <div
     class="[ archive-rich-text ] prose max-w-176 text-button leading-[1.58] text-archive-body prose-p:text-archive-body prose-li:text-archive-body prose-strong:font-medium prose-strong:text-archive-ink compact:text-base compact:leading-normal"
-    v-html="safeHtml"
     @click="followSiteLink"
+    v-html="safeHtml"
   />
 </template>

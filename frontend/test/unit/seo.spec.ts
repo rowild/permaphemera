@@ -127,7 +127,7 @@ describe('recordSeoEntries', () => {
   })
 
   it('describes an exhibition as an ExhibitionEvent with gallery, organiser and breadcrumbs', () => {
-    const [event, breadcrumbs] = entry(entries(), '/exhibitions/trigeniale-26/', 'de').jsonLd as Record<string, any>[]
+    const [event, breadcrumbs] = entry(entries(), '/exhibitions/trigeniale-26/', 'de').jsonLd as Record<string, unknown>[]
     expect(event).toMatchObject({ '@type': 'ExhibitionEvent', name: 'Trigeniale 26', startDate: '2026-10-15', endDate: '2026-10-29' })
     expect(event.location).toMatchObject({ '@type': 'ArtGallery', name: 'Studiogalerie im Stadthaus Klagenfurt', address: { addressLocality: 'Klagenfurt am Wörthersee', postalCode: '9020' } })
     expect(event.organizer[0]).toMatchObject({ '@type': 'Organization', name: 'bewegung / movimento / gibanje IN kultur' })

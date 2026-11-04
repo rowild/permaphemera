@@ -87,9 +87,9 @@ usePageSeo('/exhibitions/')
       <section id="exhibitions-directory" class="[ exhibitions-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('exhibitionsDirectory.directory')">
         <div class="[ exhibitions-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
           <ArchiveSearchForm
+            id="exhibitions-directory-search"
             v-model="exhibitionSearchQuery"
             class="[ exhibitions-directory-search ]"
-            id="exhibitions-directory-search"
             :label="$t('exhibitionsDirectory.searchLabel')"
             :placeholder="$t('exhibitionsDirectory.searchPlaceholder')"
           />

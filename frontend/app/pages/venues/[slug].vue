@@ -187,11 +187,11 @@ const venueLedgerItems = computed(() => [
 ])
 
 usePageSeo(`/venues/${slug}/`)
+// An unknown slug throws the 404 in setup; the template then renders nothing (v-if on <main>),
+// or it reads the missing record and the error page never appears (like the person and sponsor pages).
 </script>
 
 <template>
-  <!-- An unknown slug throws the 404 in setup; the page must then render nothing, or it reads the
-       missing record and the error page never appears (like the person and sponsor pages). -->
   <main v-if="venue" class="[ site-shell ] [ venue-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
     <ArchivePageChrome />
     <ArchiveHeader active="galleries" />
@@ -291,9 +291,9 @@ usePageSeo(`/venues/${slug}/`)
         </div>
 
         <ArchiveSearchForm
+          id="venue-record-search"
           v-model="venueSearchQuery"
           class="[ venue-record-search ]"
-          id="venue-record-search"
           :label="$t('venue.searchLabel', { name: venue.name })"
           :placeholder="$t('venue.searchPlaceholder')"
         />
@@ -327,7 +327,7 @@ usePageSeo(`/venues/${slug}/`)
                   class="[ venue-preview-image ] archive-venue-preview-image absolute inset-0 size-full object-cover brightness-76 saturate-88"
                   :src="previewExhibition.image"
                   :alt="previewExhibition.image_alt"
-                />
+                >
               </Transition>
               <div class="[ venue-preview-shade ] archive-venue-preview-shade absolute inset-x-0 top-[35%] bottom-0" />
               <div class="[ venue-preview-copy ] absolute right-[clamp(1.5rem,4vw,3rem)] bottom-[clamp(1.5rem,4vw,2.7rem)] left-[clamp(1.5rem,4vw,3rem)] z-2 text-archive-light-ink compact:right-[1.4rem] compact:bottom-[1.4rem] compact:left-[1.4rem]" aria-live="polite">
@@ -351,14 +351,14 @@ usePageSeo(`/venues/${slug}/`)
         </div>
       </section>
 
-      <img class="[ venue-section-divider ] pointer-events-none mx-auto block w-[min(46rem,84vw)] opacity-62" src="/media/svg/dividers/exhibitions-section-divider.svg" alt="" aria-hidden="true" />
+      <img class="[ venue-section-divider ] pointer-events-none mx-auto block w-[min(46rem,84vw)] opacity-62" src="/media/svg/dividers/exhibitions-section-divider.svg" alt="" aria-hidden="true" >
 
       <section
         class="[ venue-about ] [ section-band ] relative mx-auto mt-8 grid max-w-[105rem] grid-cols-[11rem_minmax(0,1.15fr)_minmax(18rem,0.85fr)] items-start gap-[clamp(2rem,5vw,5rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:mt-4 compact:gap-6 compact:px-4 compact:py-5"
         aria-labelledby="venue-about-title"
       >
         <div class="[ venue-about-ornament ] tablet:hidden" aria-hidden="true">
-          <img class="w-42 -rotate-4 opacity-48" src="/media/images/landing/footer/permanently-preserved-stamp.png" alt="" />
+          <img class="w-42 -rotate-4 opacity-48" src="/media/images/landing/footer/permanently-preserved-stamp.png" alt="" >
         </div>
         <div class="[ venue-about-copy ]">
           <p class="[ eyebrow ] archive-routed-eyebrow m-0 mb-[0.85rem] inline-flex items-center gap-[0.7rem] font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('venue.venueEyebrow') }}</p>

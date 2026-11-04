@@ -27,7 +27,7 @@ export async function directusGet(path, { token = '' } = {}) {
   try {
     response = await fetch(`${directusUrl}${path}`, { headers: token ? { Authorization: `Bearer ${token}` } : {} })
   } catch (error) {
-    throw new Error(`Directus not reachable at ${directusUrl}: ${error.message}`)
+    throw new Error(`Directus not reachable at ${directusUrl}: ${error.message}`, { cause: error })
   }
   if (!response.ok) throw new Error(`${path}: ${response.status} ${response.statusText}`)
   return (await response.json()).data

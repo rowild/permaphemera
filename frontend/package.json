@@ -39,10 +39,14 @@
     "tour:publish": "node scripts/publish-tour.mjs",
     "tour:status": "node scripts/tour-status.mjs",
     "test:watch": "vitest",
+    "lint": "eslint .",
+    "verify": "vitest run && pnpm -s lint && pnpm -s check:tailwind && pnpm -s check:links && pnpm -s check:venues && pnpm -s check:artists && pnpm -s check:preloader && pnpm -s check:types",
+    "verify:live": "pnpm -s check:data && pnpm -s check:public && pnpm -s check:directories && pnpm -s check:i18n && pnpm -s check:mobile",
     "deploy:hetzner": "bash scripts/deploy-hetzner.sh",
     "cache:purge": "node scripts/purge-cloudflare.mjs",
     "seo:snapshot": "node scripts/seo-snapshot.mjs",
-    "viewer:update": "node scripts/update-tour-viewer.mjs"
+    "viewer:update": "node scripts/update-tour-viewer.mjs",
+    "prepare": "git -C .. config core.hooksPath .githooks || true"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.2.11",
@@ -60,9 +64,11 @@
   },
   "devDependencies": {
     "@mdn/browser-compat-data": "^8.1.6",
+    "@nuxt/eslint": "^1.17.0",
     "@nuxt/test-utils": "^4.3.4",
     "@tailwindcss/typography": "^0.5.20",
     "@vue/test-utils": "^2.5.1",
+    "eslint": "^10.14.0",
     "happy-dom": "^21.0.4",
     "playwright": "1.63.0",
     "postcss": "^8.5.31",

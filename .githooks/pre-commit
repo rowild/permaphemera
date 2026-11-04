@@ -1,0 +1,9 @@
+#!/bin/sh
+# Before every commit: the tests related to the staged frontend files and the Tailwind rules
+# (plans/2026-11-04__nuxt-optimisation-audit.md, phase 4). Installed by `pnpm install` in
+# frontend/ (core.hooksPath). Skip once with `git commit --no-verify`.
+files=$(git diff --cached --name-only --diff-filter=ACMR -- 'frontend/app' 'frontend/shared' 'frontend/test' 'frontend/i18n' | sed 's#^frontend/##')
+[ -z "$files" ] && exit 0
+cd frontend || exit 1
+pnpm -s vitest related --run --passWithNoTests $files || exit 1
+pnpm -s check:tailwind || exit 1

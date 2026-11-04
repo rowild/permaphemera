@@ -1478,7 +1478,7 @@ onMounted(async () => {
 
   textures.forEach((texture, index) => {
     const geometry = createTriangleGeometry()
-    const layerMaterials = [0, 1].map((layerIndex) => new THREE.MeshBasicMaterial({
+    const layerMaterials = [0, 1].map(() => new THREE.MeshBasicMaterial({
       depthWrite: false,
       map: texture,
       // Built invisible: the blades wait folded edge-on, and an opaque blade

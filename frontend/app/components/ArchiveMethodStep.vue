@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <article class="[ method-step ] relative grid min-h-[9.4rem] min-w-0 grid-cols-[4.8rem_minmax(0,1fr)] items-center gap-5 px-8 py-[1.35rem] compact:min-h-28 compact:grid-cols-[3.5rem_minmax(0,1fr)] compact:gap-3 compact:px-4 compact:py-3" :class="{ 'archive-method-step-divider': divider }">
-    <img class="[ method-step-icon ] block h-20 w-[4.4rem] object-contain object-center compact:h-14 compact:w-12" :src="icon" alt="" aria-hidden="true" />
+    <img class="[ method-step-icon ] block h-20 w-[4.4rem] object-contain object-center compact:h-14 compact:w-12" :src="icon" alt="" aria-hidden="true" >
     <div>
       <p class="[ method-step-number ] archive-method-step-number m-0 mb-1 flex items-center gap-[0.35rem] font-display text-title leading-none text-archive-red compact:text-base">
         {{ number }}

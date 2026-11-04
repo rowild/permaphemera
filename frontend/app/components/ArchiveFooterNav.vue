@@ -1,7 +1,7 @@
 <script setup lang="ts">
 withDefaults(defineProps<{
   title: string
-  ariaLabel: string
+  navLabel: string
   compactColumns?: boolean
 }>(), {
   compactColumns: false
@@ -11,7 +11,7 @@ withDefaults(defineProps<{
 <template>
   <nav
     class="[ footer-navigation ] archive-footer-navigation grid content-start gap-3 compact:gap-2"
-    :aria-label="ariaLabel"
+    :aria-label="navLabel"
   >
     <p class="m-0 mb-2 font-display text-archive-ochre uppercase compact:mb-1 compact:text-xs">{{ title }}</p>
     <div

@@ -125,9 +125,9 @@ usePageSeo('/artists/')
       <section id="artist-directory" class="[ artist-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('artists.directory')">
         <div class="[ artist-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
           <ArchiveSearchForm
+            id="artist-directory-search"
             v-model="artistSearchQuery"
             class="[ artist-directory-search ]"
-            id="artist-directory-search"
             :label="$t('artists.searchLabel')"
             :placeholder="$t('artists.searchPlaceholder')"
           />

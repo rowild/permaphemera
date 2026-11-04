@@ -21,6 +21,8 @@ const pick = val('--profiles')?.split(',')
 const server = await ensureServer()
 const browsers = new Map()
 
+// defaultBrowserType is taken out of the profile: Playwright's newContext() refuses it.
+// eslint-disable-next-line no-unused-vars
 for (const [runner, { engine, defaultBrowserType, ...profile }] of Object.entries(PROFILES)) {
   if (pick && !pick.includes(runner)) continue
   if (!browsers.has(engine)) {

@@ -69,15 +69,16 @@ const tourStatus = computed(() => {
     case 'preparing': return { icon: Hourglass, text: t('exhibition.inPreparation') }
     case 'restricted': return { icon: Info, text: kindText('restricted') }
     case 'unavailable': return { icon: Info, text: kindText('unavailable') }
+    default: return null
   }
 })
 
 usePageSeo(`/exhibitions/${routeSlug}/`)
+// An unknown slug throws the 404 in setup; the template then renders nothing (v-if on <main>),
+// or it reads the missing record and the error page never appears (like the person and sponsor pages).
 </script>
 
 <template>
-  <!-- An unknown slug throws the 404 in setup; the page must then render nothing, or it reads the
-       missing record and the error page never appears (like the person and sponsor pages). -->
   <main v-if="exhibition" class="[ site-shell ] [ exhibition-detail-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
     <ArchivePageChrome />
     <ArchiveHeader active="exhibitions" />

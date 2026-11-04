@@ -31,7 +31,7 @@ const runAction = (action?: string) => {
       v-for="group in footerGroups"
       :key="group.key"
       :title="group.label"
-      :ariaLabel="$t(`footer.${group.key}Aria`)"
+      :nav-label="$t(`footer.${group.key}Aria`)"
       :compact-columns="props.variant === 'drawer' && isLegal(group.key)"
       :class="props.variant === 'drawer' && isLegal(group.key) ? 'col-span-2 border-t border-archive-ochre/20 pt-4' : ''"
     >
@@ -41,6 +41,6 @@ const runAction = (action?: string) => {
         <button v-else class="cursor-pointer border-0 bg-transparent p-0 text-left" type="button" @click="runAction(link.action)">{{ link.label }}</button>
       </template>
     </ArchiveFooterNav>
-    <img v-if="props.variant === 'desktop'" class="[ footer-seal ] w-62 max-w-full self-center opacity-90 mix-blend-screen" src="/media/images/landing/footer/permanently-preserved-stamp.png" :alt="$t('footer.sealAlt')" />
+    <img v-if="props.variant === 'desktop'" class="[ footer-seal ] w-62 max-w-full self-center opacity-90 mix-blend-screen" src="/media/images/landing/footer/permanently-preserved-stamp.png" :alt="$t('footer.sealAlt')" >
   </component>
 </template>

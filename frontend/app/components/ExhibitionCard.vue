@@ -180,7 +180,7 @@ const copyClass = {
         :src="props.exhibition.image"
         :alt="imageAlt"
         :loading="isHero ? undefined : 'lazy'"
-      />
+      >
     </div>
 
     <div class="[ record-card-text ] @container flex min-h-0 min-w-0 flex-col" :class="textClass[props.layout]">

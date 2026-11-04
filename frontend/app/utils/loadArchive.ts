@@ -29,7 +29,7 @@ export const loadArchive = async (client: ArchiveClient, { pause = wait }: LoadA
       try {
         return await client.items<Record<string, unknown>>(collection, { fields: fieldsQuery(collection), limit: '-1', sort: 'sort' })
       } catch (error) {
-        if (attempt >= RETRIES) throw new Error(`${collection}: ${(error as Error).message.replace(new RegExp(`^${collection}: `), '')}`)
+        if (attempt >= RETRIES) throw new Error(`${collection}: ${(error as Error).message.replace(new RegExp(`^${collection}: `), '')}`, { cause: error })
         await pause(attempt + 1)
       }
     }

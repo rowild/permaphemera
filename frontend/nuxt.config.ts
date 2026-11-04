@@ -15,7 +15,7 @@ export default defineNuxtConfig({
       directusUrl: process.env.NUXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8077'
     }
   },
-  modules: ['@nuxtjs/i18n'],
+  modules: ['@nuxtjs/i18n', '@nuxt/eslint'],
   devServer: {
     port: 4991
   },

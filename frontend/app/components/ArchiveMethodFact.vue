@@ -11,7 +11,7 @@ defineProps<{
     <dt class="mb-[0.45rem] font-display text-xs tracking-widest text-archive-muted uppercase compact:mb-1 compact:text-3xs compact:tracking-wide">{{ label }}</dt>
     <dd class="m-0 font-display leading-tight text-archive-copy-warm compact:text-xs">
       <template v-for="(line, index) in lines" :key="line">
-        <br v-if="index" />{{ line }}
+        <br v-if="index" >{{ line }}
       </template>
     </dd>
     <span v-if="divider" class="[ method-fact-divider-compact ] absolute top-1/2 right-0 hidden h-12 w-px -translate-y-1/2 bg-archive-rule-warm/28 compact:block" aria-hidden="true" />
