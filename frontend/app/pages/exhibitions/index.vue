@@ -81,10 +81,7 @@ definePageMeta({ navActive: 'exhibitions' })
 
           <!-- A search shows one flat list of every match, newest first, in pages. -->
           <template v-if="searching">
-            <div v-if="!filteredExhibitions.length" class="[ exhibitions-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-              <p class="m-0 text-title text-archive-ink">{{ $t('exhibitionsDirectory.noMatches') }}</p>
-              <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="exhibitionSearchQuery = ''">{{ $t('exhibitionsDirectory.returnAll') }}</button>
-            </div>
+            <ArchiveEmptyState v-if="!filteredExhibitions.length" class="[ exhibitions-directory-empty ]" :message="$t('exhibitionsDirectory.noMatches')" :action-label="$t('exhibitionsDirectory.returnAll')" @action="exhibitionSearchQuery = ''" />
             <ExhibitionPagedList v-else :exhibitions="filteredExhibitions" anchor="exhibitions-directory-results" />
           </template>
 

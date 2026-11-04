@@ -262,10 +262,7 @@ definePageMeta({ navActive: 'galleries' })
 
         <ArchiveDirectoryStatus class="[ venue-search-status ] mb-8 compact:mb-4" :text="$t('venue.showing', { visible: filteredExhibitions.length, total: exhibitions.length })" :clear-label="venueSearchQuery ? $t('venue.clearSearch') : undefined" @clear="venueSearchQuery = ''" />
 
-        <div v-if="!filteredExhibitions.length" class="[ venue-search-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-          <p class="m-0 text-title text-archive-ink">{{ venueSearchQuery ? $t('venue.noMatches', { query: venueSearchQuery }) : $t('venue.noRecords', { name: venue.name }) }}</p>
-          <button v-if="venueSearchQuery" class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="venueSearchQuery = ''">{{ $t('venue.showAll', { name: venue.name }) }}</button>
-        </div>
+        <ArchiveEmptyState v-if="!filteredExhibitions.length" class="[ venue-search-empty ]" :message="venueSearchQuery ? $t('venue.noMatches', { query: venueSearchQuery }) : $t('venue.noRecords', { name: venue.name })" :action-label="venueSearchQuery ? $t('venue.showAll', { name: venue.name }) : undefined" @action="venueSearchQuery = ''" />
 
         <div v-else class="[ venue-exhibition-browser ] grid grid-cols-[minmax(24rem,0.72fr)_minmax(34rem,1.28fr)] items-start gap-[clamp(2rem,5vw,5rem)] tablet:grid-cols-[minmax(18rem,0.72fr)_minmax(28rem,1.28fr)] tablet:gap-8 medium:grid-cols-1">
           <ol class="[ venue-exhibition-list ] m-0 list-none p-0 medium:row-start-2" :aria-label="$t('venue.exhibitionsAria', { name: venue.name })">

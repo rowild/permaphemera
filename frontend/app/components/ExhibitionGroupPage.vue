@@ -10,7 +10,6 @@ const props = defineProps<{
 const { venueExhibitions } = useArchiveData()
 const archiveToday = useArchiveToday()
 const { t } = useI18n()
-const localePath = useLocalePath()
 
 const exhibitions = computed(() => groupExhibitionsByTime(venueExhibitions.value, archiveToday.value)[props.group])
 const title = computed(() => t(`exhibitionsDirectory.groups.${props.group}.title`))
@@ -30,10 +29,7 @@ usePageSeo(() => `/exhibitions/${props.group}/`)
           <p class="mt-[0.85rem] mb-0 text-button text-archive-muted compact:mt-2 compact:text-sm">{{ $t('exhibitionsDirectory.groupCount', exhibitions.length) }}</p>
         </header>
 
-        <div v-if="!exhibitions.length" class="[ exhibition-group-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-          <p class="m-0 text-title text-archive-ink">{{ $t(`exhibitionsDirectory.groups.${props.group}.empty`) }}</p>
-          <ArchiveTextLink class="mt-4" :to="localePath('/exhibitions/')">{{ $t('exhibitionsDirectory.backToIndex') }}</ArchiveTextLink>
-        </div>
+        <ArchiveEmptyState v-if="!exhibitions.length" class="[ exhibition-group-empty ]" :message="$t(`exhibitionsDirectory.groups.${props.group}.empty`)" :action-label="$t('exhibitionsDirectory.backToIndex')" to="/exhibitions/" />
         <ExhibitionPagedList v-else :exhibitions="exhibitions" anchor="exhibition-group-list" />
       </section>
   </div>

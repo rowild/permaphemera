@@ -90,10 +90,7 @@ definePageMeta({ navActive: 'galleries' })
         <div class="[ gallery-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-3">
           <ArchiveDirectoryStatus class="[ gallery-directory-status ] my-7 compact:my-4" :show="Boolean(gallerySearchQuery || selectedState)" :text="$t('galleries.status', { visible: filteredVenues.length, total: venues.length })" :clear-label="$t('galleries.clearFilters')" @clear="clearFilters" />
 
-          <div v-if="!filteredVenues.length" class="[ gallery-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-            <p class="m-0 text-title text-archive-ink">{{ $t('galleries.noMatches') }}</p>
-            <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="clearFilters">{{ $t('galleries.returnAll') }}</button>
-          </div>
+          <ArchiveEmptyState v-if="!filteredVenues.length" class="[ gallery-directory-empty ]" :message="$t('galleries.noMatches')" :action-label="$t('galleries.returnAll')" @action="clearFilters" />
 
           <div v-else class="[ gallery-directory-grid ] grid grid-cols-3 items-stretch gap-5 tablet:grid-cols-2 compact:grid-cols-2 compact:gap-2.5">
             <GalleryDirectoryCard

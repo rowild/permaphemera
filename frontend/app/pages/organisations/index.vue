@@ -99,10 +99,7 @@ definePageMeta({ navActive: 'organisations' })
         <div class="[ organisation-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
           <ArchiveDirectoryStatus class="[ organisation-directory-status ] my-7 compact:my-4" :show="Boolean(searchQuery)" :text="$t('organisations.status', { visible: visibleEntries, total: totalEntries })" :clear-label="$t('organisations.clearSearch')" @clear="searchQuery = ''" />
 
-          <div v-if="!visibleEntries" class="[ organisation-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-            <p class="m-0 text-title text-archive-ink">{{ $t('organisations.noMatches') }}</p>
-            <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="searchQuery = ''">{{ $t('organisations.returnAll') }}</button>
-          </div>
+          <ArchiveEmptyState v-if="!visibleEntries" class="[ organisation-directory-empty ]" :message="$t('organisations.noMatches')" :action-label="$t('organisations.returnAll')" @action="searchQuery = ''" />
 
           <div v-else class="[ organisation-directory-blocks ] grid gap-[clamp(3rem,5vw,5rem)]">
             <section v-if="filteredOrganisations.length" class="[ organisation-list ]" aria-labelledby="organisation-list-title">

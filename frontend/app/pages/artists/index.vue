@@ -126,10 +126,7 @@ definePageMeta({ navActive: 'artists' })
         <div class="[ artist-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-3">
           <ArchiveDirectoryStatus class="[ artist-directory-status ] mt-8 mb-8 compact:mt-3 compact:mb-4" :text="$t('artists.status', { visible: visibleArtistCount, total: filteredArtists.length, kind: $t(artistSearchQuery ? 'artists.kindMatching' : 'artists.kindAll') })" :clear-label="artistSearchQuery || selectedLetter ? $t('artists.clearFilters') : undefined" @clear="clearFilters" />
 
-          <div v-if="!artistsByLetter.length" class="[ artist-directory-empty ] border-y border-archive-rule-deep/24 py-16 text-center">
-            <p class="m-0 text-title text-archive-ink">{{ $t('artists.noMatches') }}</p>
-            <button class="mt-4 border-0 bg-transparent text-archive-red underline underline-offset-4" type="button" @click="clearFilters">{{ $t('artists.returnAll') }}</button>
-          </div>
+          <ArchiveEmptyState v-if="!artistsByLetter.length" class="[ artist-directory-empty ]" :message="$t('artists.noMatches')" :action-label="$t('artists.returnAll')" @action="clearFilters" />
 
           <div v-else class="[ artist-directory-columns ] archive-artist-column-rule columns-3 gap-10 tablet:columns-2 compact:columns-2 compact:gap-4">
             <ArtistDirectoryGroup
