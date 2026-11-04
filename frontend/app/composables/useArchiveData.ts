@@ -7,9 +7,22 @@ import { resolvePersons } from '~/utils/resolvePersons'
 import { resolveSponsors } from '~/utils/resolveSponsors'
 import { resolveVenues } from '~/utils/resolveVenues'
 
-export function useArchiveData() {
+type ArchiveData = ReturnType<typeof buildArchiveData>
+
+/**
+ * The resolved archive for the pages: one instance per app, built once in its own scope, so the
+ * 13 callers share the same computed joins instead of building and computing them again
+ * (plans/2026-11-04__nuxt-optimisation-audit.md 3.1). The language is the app's global locale.
+ */
+export function useArchiveData(): ArchiveData {
+  const nuxtApp = useNuxtApp() as ReturnType<typeof useNuxtApp> & { _archiveData?: ArchiveData }
+  nuxtApp._archiveData ??= nuxtApp.runWithContext(() => effectScope(true).run(buildArchiveData)!) as ArchiveData
+  return nuxtApp._archiveData
+}
+
+function buildArchiveData() {
   const archive = useArchiveSnapshot()
-  const { locale } = useI18n()
+  const locale = useNuxtApp().$i18n.locale
 
   const venuesForLocale = computed(() =>
     resolveVenues(archive.value.locations, archive.value.venues, locale.value, archive.value.organisationVenueRelations, archive.value.organisations, archive.value.websites, archive.value.venuesWebsites))
