@@ -4,26 +4,7 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 
 
-const methodSteps = computed(() => [
-  {
-    icon: '/media/images/landing/method/steps/captured.png',
-    number: '01',
-    title: t('landing.method.steps.captured.title'),
-    text: t('landing.method.steps.captured.text')
-  },
-  {
-    icon: '/media/images/landing/method/steps/connected.png',
-    number: '02',
-    title: t('landing.method.steps.connected.title'),
-    text: t('landing.method.steps.connected.text')
-  },
-  {
-    icon: '/media/images/landing/method/steps/preserved.png',
-    number: '03',
-    title: t('landing.method.steps.preserved.title'),
-    text: t('landing.method.steps.preserved.text')
-  }
-])
+const methodSteps = useMethodSteps()
 
 const selectionSection = computed<EditorialSection>(() => ({
   id: 'selection',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
-import { createOrnamentTransform } from '~/utils/seededLayout'
+import { createOrnamentTransform, placeOrnament } from '~/utils/seededLayout'
 
 // Only fed from app/pages/index.vue's `directoryVenues`, a landing-page card
 // projection built from ResolvedVenue — not the full resolved record itself
@@ -17,11 +17,7 @@ const props = withDefaults(defineProps<{
 
 const active = ref(false)
 const ornament = computed(() => createOrnamentTransform(props.venue.id, props.featured))
-const ornamentStyle = computed<CSSProperties>(() => ({
-  right: ornament.value.right,
-  bottom: ornament.value.bottom,
-  transform: active.value ? ornament.value.active : ornament.value.rest
-}))
+const ornamentStyle = computed<CSSProperties>(() => placeOrnament(ornament.value, active.value))
 const localePath = useLocalePath()
 </script>
 

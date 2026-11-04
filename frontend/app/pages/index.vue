@@ -345,26 +345,7 @@ function revealWheelControls() {
   })
 }
 
-const methodSteps = computed(() => [
-  {
-    icon: '/media/images/landing/method/steps/captured.png',
-    number: '01',
-    title: t('landing.method.steps.captured.title'),
-    text: t('landing.method.steps.captured.text')
-  },
-  {
-    icon: '/media/images/landing/method/steps/connected.png',
-    number: '02',
-    title: t('landing.method.steps.connected.title'),
-    text: t('landing.method.steps.connected.text')
-  },
-  {
-    icon: '/media/images/landing/method/steps/preserved.png',
-    number: '03',
-    title: t('landing.method.steps.preserved.title'),
-    text: t('landing.method.steps.preserved.text')
-  }
-])
+const methodSteps = useMethodSteps()
 
 // The quote beside the facts: one published quote from Directus (pp_quotes), picked at random
 // and weighted on every visit (app/utils/quotes.ts). A language switch keeps the same quote.

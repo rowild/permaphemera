@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
-import { createCornerOrnament, createDirectoryImageTransform, createOrnamentTransform } from '~/utils/seededLayout'
+import { createCornerOrnament, createDirectoryImageTransform, createOrnamentTransform, placeOrnament } from '~/utils/seededLayout'
 
 const props = withDefaults(defineProps<{
   venue: ResolvedVenue
@@ -20,11 +20,7 @@ const ornament = computed(() => createOrnamentTransform(`gallery-directory:${pro
 const imageStyle = computed<CSSProperties>(() => ({
   transform: active.value ? imageTransform.value.active : imageTransform.value.rest
 }))
-const ornamentStyle = computed<CSSProperties>(() => ({
-  right: ornament.value.right,
-  bottom: ornament.value.bottom,
-  transform: active.value ? ornament.value.active : ornament.value.rest
-}))
+const ornamentStyle = computed<CSSProperties>(() => placeOrnament(ornament.value, active.value))
 // Regular cards carry the ornament in the text area's top-right corner; the
 // featured card keeps it at the card's bottom-right.
 const corner = computed(() => createCornerOrnament(`gallery-directory:${props.venue.id}`))

@@ -155,3 +155,10 @@ export const pickStuckLetter = (text: string): StuckLetter | null => {
 
   return { index: pick.index, tilt: Number(tilt.toFixed(2)) }
 }
+
+/** Where an ornament of createOrnamentTransform sits, at rest or while its card is active. */
+export const placeOrnament = (ornament: ReturnType<typeof createOrnamentTransform>, active: boolean) => ({
+  right: ornament.right,
+  bottom: ornament.bottom,
+  transform: active ? ornament.active : ornament.rest
+})
