@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.55 - 2026-11-04 20:15:00 CET
+
+- The hero wheel on the start page draws only while it is on screen (before: every frame, also when the page was scrolled far down) — less battery and processor load on phones.
+- Page changes compute the archive once for the whole site instead of once per component; rich texts are cleaned once instead of twice.
+- The small capital lines above headings are one shared component (no visible change).
+
 ## 0.0.54 - 2026-11-04 19:30:00 CET
 
 - Breadcrumbs follow one pattern on every page: they start at the start page (exhibition, gallery and organisation pages lacked it) and end with the current page, which screen readers announce as such.

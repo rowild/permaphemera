@@ -71,7 +71,7 @@ the same address. Measured: start page 16.4 → 1.3 MB, `/venues/` 18.3 → 0.7 
    synchronous (the faded arrows must appear at once), `await import('three')` in `onMounted`
    before the WebGL setup. The wheel already waits for `heroTextDone && belowHeroBuilt`.
    **Needs a frame-by-frame intro check (no-flash rule).**
-5. **The wheel renders every frame forever.** `HeroKaleidoscope.vue:200-208`. Fix: pause with an
+5. **DONE 0.0.55 (useVisibleFrameLoop)** **The wheel renders every frame forever.** `HeroKaleidoscope.vue:200-208`. Fix: pause with an
    IntersectionObserver when off screen; better, render only while a timeline is active.
 6. **Page chunks are discovered late.** `seo-snapshot.mjs` could write `modulepreload` links per
    route from the build manifest (~one round trip on mobile).
@@ -124,7 +124,7 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
 
 ## Phase 3 — data layer
 
-1. **One `useArchiveData()` instance per app** (today 13 callers each build all computeds; the
+1. **DONE 0.0.55** **One `useArchiveData()` instance per app** (today 13 callers each build all computeds; the
    start page runs all seven resolvers): detached `effectScope` on `nuxtApp`.
 2. **`indexArchive(snapshot)`** once: id maps and junction rows grouped by owner, passed to every
    resolver (today maps are rebuilt 4–6× per pass; per-record junction scans in
@@ -133,7 +133,7 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
 3. **Shared resolver helpers:** `linksThrough` (4 copies incl. `seo.mjs:208`), `linked` (2),
    translated-field `text()` (~40 inline copies), `groupBy` (4), `hostnameOf` (2),
    `displayPersonName`, one image-fallback rule.
-4. **Rich text sanitised twice** (`richText.ts:56-61`): once.
+4. **DONE 0.0.55** **Rich text sanitised twice** (`richText.ts:56-61`): once.
 5. **Per-card composables and observers** (`useArchiveToday` timer, ResizeObserver, formatters
    per card) → shared instance, one observer, cached formatters. Small.
 6. **Language switch** (`ArchiveLanguageSwitch.vue:17-20,113-115`) writes the cookie i18n

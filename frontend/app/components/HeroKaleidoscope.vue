@@ -137,7 +137,6 @@ let renderer: THREE.WebGLRenderer | null = null
 let scene: THREE.Scene | null = null
 let camera: THREE.PerspectiveCamera | null = null
 let loadingIconTexture: THREE.CanvasTexture | null = null
-let frameId = 0
 let resizeObserver: ResizeObserver | null = null
 let introTimeline: gsap.core.Timeline | null = null
 let rotationTimeline: gsap.core.Timeline | null = null
@@ -197,15 +196,16 @@ function createTriangleGeometry() {
   return geometry
 }
 
-function render(time = 0) {
+function drawFrame(time = 0) {
   if (!renderer || !scene || !camera) return
 
   sliceLoadingMaterials.forEach((material) => {
     material.rotation = -(time * 0.0024)
   })
   renderer.render(scene, camera)
-  frameId = window.requestAnimationFrame(render)
 }
+// Draws only while the wheel is on screen; scrolled away it costs no GPU or main-thread time.
+const renderLoop = useVisibleFrameLoop(containerRef, drawFrame)
 
 function createLoadingIconTexture() {
   const canvas = document.createElement('canvas')
@@ -1555,7 +1555,7 @@ onMounted(async () => {
   resizeObserver = new ResizeObserver(resize)
   resizeObserver.observe(containerRef.value)
   resize()
-  render()
+  renderLoop.start()
   dismissLoader()
   scheduleBackgroundPreload()
 })
@@ -1568,7 +1568,6 @@ onBeforeUnmount(() => {
   window.clearTimeout(touchPreviewTimer)
   document.removeEventListener('pointerdown', handleDocumentPointerDown)
 
-  if (frameId) window.cancelAnimationFrame(frameId)
   resizeObserver?.disconnect()
   introTimeline?.kill()
   rotationTimeline?.kill()
