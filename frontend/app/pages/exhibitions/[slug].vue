@@ -124,17 +124,15 @@ definePageMeta({ navActive: 'exhibitions' })
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.curators.length" :label="$t('exhibition.curators', exhibition.curators.length)" variant="exhibition">
             <template #icon><Users :size="18" aria-hidden="true" /></template>
-            <template v-for="(curator, index) in exhibition.curators" :key="curator.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${curator.slug}/`)">{{ curator.name }}</ArchiveTextLink></template>
+            <ArchiveLinkList :items="exhibition.curators.map((curator) => ({ label: curator.name, to: `/persons/${curator.slug}/` }))" />
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.organiser_persons.length" :label="$t('exhibition.organiserPersons', exhibition.organiser_persons.length)" variant="exhibition">
             <template #icon><Users :size="18" aria-hidden="true" /></template>
-            <template v-for="(organiser, index) in exhibition.organiser_persons" :key="organiser.id"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${organiser.slug}/`)">{{ organiser.name }}</ArchiveTextLink></template>
+            <ArchiveLinkList :items="exhibition.organiser_persons.map((organiser) => ({ label: organiser.name, to: `/persons/${organiser.slug}/` }))" />
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.organisers.length" :label="organiserLabel" variant="exhibition">
             <template #icon><Landmark :size="18" aria-hidden="true" /></template>
-            <template v-for="(organiser, index) in exhibition.organisers" :key="organiser.id">
-              <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/organisations/${organiser.slug}/`)">{{ organiser.title }}</ArchiveTextLink>
-            </template>
+            <ArchiveLinkList :items="exhibition.organisers.map((organiser) => ({ label: organiser.title, to: `/organisations/${organiser.slug}/` }))" />
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.artist" :label="$t('exhibition.artistParticipants')" variant="exhibition">
             <template #icon><Users :size="18" aria-hidden="true" /></template>
@@ -142,9 +140,7 @@ definePageMeta({ navActive: 'exhibitions' })
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.websites.length" :label="$t('exhibition.links', exhibition.websites.length)" variant="exhibition">
             <template #icon><Link2 :size="18" aria-hidden="true" /></template>
-            <template v-for="(link, index) in exhibition.websites" :key="link.id">
-              <template v-if="index">, </template><ArchiveTextLink :href="link.url" target="_blank" rel="noreferrer" icon-motion="external">{{ link.title }}</ArchiveTextLink>
-            </template>
+            <ArchiveLinkList :items="exhibition.websites.map((link) => ({ label: link.title, href: link.url }))" />
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="exhibition.medium" :label="$t('exhibition.form')" variant="exhibition">
             <template #icon><Palette :size="18" aria-hidden="true" /></template>

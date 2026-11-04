@@ -3,7 +3,6 @@ import { ExternalLink } from '@lucide/vue'
 import { hostnameOf } from '~/utils/externalLinks'
 
 const { sponsorPages } = useArchiveData()
-const localePath = useLocalePath()
 
 const { slug, record: sponsor } = useRecordBySlug(sponsorPages, 'sponsorPages.notFound')
 const hasSupports = computed(() => Boolean(sponsor.value && (sponsor.value.exhibitions.length || sponsor.value.venues.length || sponsor.value.persons.length || sponsor.value.towns.length)))
@@ -44,10 +43,10 @@ usePageSeo(`/sponsors/${slug}/`)
         </div>
         <dl class="m-0 max-w-176">
           <ArchiveMetadataRow v-if="sponsor.venues.length" :label="$t('sponsorPages.galleries')" variant="venue">
-            <template v-for="(venue, index) in sponsor.venues" :key="venue.slug"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/venues/${venue.slug}/`)">{{ venue.name }}</ArchiveTextLink></template>
+            <ArchiveLinkList :items="sponsor.venues.map((venue) => ({ label: venue.name, to: `/venues/${venue.slug}/` }))" />
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="sponsor.persons.length" :label="$t('sponsorPages.persons')" variant="venue">
-            <template v-for="(person, index) in sponsor.persons" :key="person.slug"><template v-if="index">, </template><ArchiveTextLink :to="localePath(`/persons/${person.slug}/`)">{{ person.name }}</ArchiveTextLink></template>
+            <ArchiveLinkList :items="sponsor.persons.map((person) => ({ label: person.name, to: `/persons/${person.slug}/` }))" />
           </ArchiveMetadataRow>
           <ArchiveMetadataRow v-if="sponsor.towns.length" :label="$t('sponsorPages.towns')" variant="venue">
             {{ sponsor.towns.join(', ') }}

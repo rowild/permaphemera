@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { linkLabel } from '~/utils/externalLinks'
 import { Building2, CalendarDays, ExternalLink, MapPin, Users } from '@lucide/vue'
 
 const { organisations } = useArchiveData()
@@ -12,13 +13,6 @@ const kindLabel = computed(() => t(`organisations.kinds.${organisation.value!.ki
 const venueGroups = computed(() => (['runs', 'seat', 'exhibits_at'] as const)
   .map((relation) => ({ relation, venues: organisation.value!.venues.filter((venue) => venue.relation === relation) }))
   .filter((group) => group.venues.length))
-const hostnameOf = (url: string) => {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '')
-  } catch {
-    return url
-  }
-}
 
 usePageSeo(`/organisations/${slug}/`)
 definePageMeta({ navActive: 'organisations' })
@@ -44,15 +38,11 @@ definePageMeta({ navActive: 'organisations' })
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-for="group in venueGroups" :key="group.relation" :label="$t(`organisations.venueRelations.${group.relation}`)" variant="venue">
               <template #icon><Building2 :size="18" aria-hidden="true" /></template>
-              <template v-for="(venue, index) in group.venues" :key="venue.slug">
-                <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/venues/${venue.slug}/`)">{{ venue.name }}</ArchiveTextLink>
-              </template>
+              <ArchiveLinkList :items="group.venues.map((venue) => ({ label: venue.name, to: `/venues/${venue.slug}/` }))" />
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="organisation.websites.length" :label="$t('organisations.links', organisation.websites.length)" variant="venue">
               <template #icon><ExternalLink :size="18" aria-hidden="true" /></template>
-              <template v-for="(link, index) in organisation.websites" :key="link.id">
-                <template v-if="index">, </template><ArchiveTextLink :href="link.url" target="_blank" rel="noreferrer" icon-motion="external">{{ link.kind === 'website' ? hostnameOf(link.url) : link.title }}</ArchiveTextLink>
-              </template>
+              <ArchiveLinkList :items="organisation.websites.map((link) => ({ label: linkLabel(link), href: link.url }))" />
             </ArchiveMetadataRow>
           </dl>
         </div>

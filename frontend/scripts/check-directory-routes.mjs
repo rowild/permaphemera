@@ -226,7 +226,7 @@ assert.match(organisationPage, /v-if="organisation\.image"/, 'The organisation p
 const exhibitionPage = await readText('app/pages/exhibitions/[slug].vue')
 for (const [pattern, what] of [
   [/:to="localePath\(`\/persons\/\$\{artist\.slug\}\/`\)"/, 'artist names'],
-  [/:to="localePath\(`\/persons\/\$\{curator\.slug\}\/`\)"/, 'curator names'],
+  [/to: `\/persons\/\$\{curator\.slug\}\/`/, 'curator names'],
   [/:to="localePath\(`\/persons\/\$\{statement\.artist_slug\}\/`\)"/, 'statement authors']
 ]) assert.match(exhibitionPage, pattern, `On the exhibition page, ${what} must link to the person page.`)
 // Admission comes from the record; an empty field means free admission.

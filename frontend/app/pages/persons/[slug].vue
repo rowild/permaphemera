@@ -49,17 +49,13 @@ usePageSeo(`/persons/${slug}/`)
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="person.venues.length" :label="$t('persons.galleries', person.venues.length)" variant="venue">
               <template #icon><Building2 :size="18" aria-hidden="true" /></template>
-              <template v-for="(venue, index) in person.venues" :key="venue.slug">
-                <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/venues/${venue.slug}/`)">{{ venue.name }}</ArchiveTextLink>
-              </template>
+              <ArchiveLinkList :items="person.venues.map((venue) => ({ label: venue.name, to: `/venues/${venue.slug}/` }))" />
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="person.home" :label="$t('persons.links', person.links.length)" variant="venue">
               <template #icon><ExternalLink :size="18" aria-hidden="true" /></template>
               <span class="[ person-link-main ] block"><ArchiveTextLink :href="person.home.url" target="_blank" rel="noreferrer" icon-motion="external">{{ person.home.label }}</ArchiveTextLink></span>
               <span v-if="furtherLinks.length" class="[ person-links-further ] block">
-                <template v-for="(link, index) in furtherLinks" :key="link.id">
-                  <template v-if="index">, </template><ArchiveTextLink :href="link.url" target="_blank" rel="noreferrer" icon-motion="external">{{ linkLabel(link) }}</ArchiveTextLink>
-                </template>
+                <ArchiveLinkList :items="furtherLinks.map((link) => ({ label: linkLabel(link), href: link.url }))" />
               </span>
             </ArchiveMetadataRow>
           </dl>

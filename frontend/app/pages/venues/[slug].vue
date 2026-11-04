@@ -181,15 +181,11 @@ definePageMeta({ navActive: 'galleries' })
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="venue.spaces.length" :label="$t('venue.spaces', venue.spaces.length)" variant="venue">
               <template #icon><LayoutGrid :size="18" aria-hidden="true" /></template>
-              <template v-for="(space, index) in venue.spaces" :key="space.slug">
-                <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/venues/${space.slug}/`)">{{ space.name }}</ArchiveTextLink>
-              </template>
+              <ArchiveLinkList :items="venue.spaces.map((space) => ({ label: space.name, to: `/venues/${space.slug}/` }))" />
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-for="group in organisationGroups" :key="group.relation" :label="$t(`venue.organisationRelations.${group.relation}`)" variant="venue">
               <template #icon><Landmark :size="18" aria-hidden="true" /></template>
-              <template v-for="(organisation, index) in group.organisations" :key="organisation.slug">
-                <template v-if="index">, </template><ArchiveTextLink :to="localePath(`/organisations/${organisation.slug}/`)">{{ organisation.title }}</ArchiveTextLink>
-              </template>
+              <ArchiveLinkList :items="group.organisations.map((organisation) => ({ label: organisation.title, to: `/organisations/${organisation.slug}/` }))" />
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="venue.latitude !== undefined && venue.longitude !== undefined" :label="$t('venue.coordinates')" variant="venue">
               <template #icon><Compass :size="18" aria-hidden="true" /></template>
@@ -197,9 +193,7 @@ definePageMeta({ navActive: 'galleries' })
             </ArchiveMetadataRow>
             <ArchiveMetadataRow v-if="venue.links.length" :label="venueLinksLabel" variant="venue">
               <template #icon><ExternalLink :size="18" aria-hidden="true" /></template>
-              <template v-for="(link, index) in venue.links" :key="link.id">
-                <template v-if="index">, </template><ArchiveTextLink :href="link.url" target="_blank" rel="noreferrer" icon-motion="external">{{ linkLabel(link) }}</ArchiveTextLink>
-              </template>
+              <ArchiveLinkList :items="venue.links.map((link) => ({ label: linkLabel(link), href: link.url }))" />
             </ArchiveMetadataRow>
           </dl>
 
