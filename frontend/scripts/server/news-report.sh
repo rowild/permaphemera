@@ -8,7 +8,8 @@
 # mail went out, so a failed send repeats the same report next time.
 #
 # Settings and state live outside the code folder (a deploy replaces that folder):
-#   /srv/sites/permaphemera.at/news-report-data/mail.env   SMTP_URL, SMTP_USER, SMTP_PASS,
+#   /srv/sites/permaphemera.at/news-report-data/mail.env   SMTP_URL (smtp://<host>:587: Hetzner
+#                                                          blocks outgoing 465), SMTP_USER, SMTP_PASS,
 #                                                          NEWS_REPORT_FROM, NEWS_REPORT_TO
 #   /srv/sites/permaphemera.at/news-report-data/state.json the last report's state
 #   /srv/sites/permaphemera.at/news-report.log             the log (last 400 lines)
@@ -31,7 +32,7 @@ LOG="$SITE/news-report.log"
         -e NEWS_REPORT_FROM="$NEWS_REPORT_FROM" -e NEWS_REPORT_TO="$NEWS_REPORT_TO" \
         -v "$CODE:/app:ro" -v "$DATA:/data" -w /app \
         node:24.11.1-alpine node scripts/news-report.mjs --mail /data/mail.eml; then
-      if curl --silent --show-error --ssl-reqd --url "$SMTP_URL" --user "$SMTP_USER:$SMTP_PASS" \
+      if curl --silent --show-error --ssl-reqd --connect-timeout 20 --max-time 90 --url "$SMTP_URL" --user "$SMTP_USER:$SMTP_PASS" \
           --mail-from "$NEWS_REPORT_FROM" --mail-rcpt "$NEWS_REPORT_TO" --upload-file "$DATA/mail.eml"; then
         mv "$DATA/state.json.pending" "$DATA/state.json"
         echo "== sent to $NEWS_REPORT_TO"

@@ -264,7 +264,7 @@ writes the state and says "Baseline set".
 ### 7.4 What the owner must give before step 7 is built
 
 - Build: the settings file is `/srv/sites/permaphemera.at/news-report-data/mail.env` with
-  `SMTP_URL` (for example `smtps://<all-inkl mail server>:465`), `SMTP_USER`, `SMTP_PASS`,
+  `SMTP_URL` (`smtp://w00c8d25.kasserver.com:587`, STARTTLS: Hetzner blocks outgoing port 465), `SMTP_USER`, `SMTP_PASS`,
   `NEWS_REPORT_FROM`, `NEWS_REPORT_TO`. The deploy creates the folder; the owner writes the file.
 - **(owner, 2026-11-04)** Sender: `webmaster@rowild.at` (an all-inkl mailbox; may change
   later). Receiver: `robertwildling@gmail.com`. Both are settings in the server file, not in

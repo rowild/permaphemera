@@ -73,8 +73,8 @@ Directus container on the same origin, so institutional networks never see a sec
   Backup of the config before that change: `permaphemera.at.bak-2026-11-04-ai` next to it.
 - Monthly news report (since 2026-11-04, `frontend/scripts/server/news-report.sh`): code in
   `/srv/sites/permaphemera.at/news-report/` (replaced by every deploy), settings and state in
-  `/srv/sites/permaphemera.at/news-report-data/` (`mail.env`: `SMTP_URL` e.g.
-  `smtps://<all-inkl mail server>:465`, `SMTP_USER`, `SMTP_PASS`, `NEWS_REPORT_FROM`,
+  `/srv/sites/permaphemera.at/news-report-data/` (`mail.env`: `SMTP_URL`
+  `smtp://w00c8d25.kasserver.com:587` (STARTTLS; Hetzner blocks outgoing port 465), `SMTP_USER`, `SMTP_PASS`, `NEWS_REPORT_FROM`,
   `NEWS_REPORT_TO`; `state.json`; never touched by a deploy, mode 700), log
   `/srv/sites/permaphemera.at/news-report.log`, cron of `rowild` `0 8 1 * *`. By hand:
   `sh /srv/sites/permaphemera.at/news-report/news-report.sh`.
