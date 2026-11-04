@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.59 - 2026-11-04 23:00:00 CET
+
+- No visible change: the method steps, the gallery card ornament and the page band width and gutter (now theme tokens) each live in one place.
+
 ## 0.0.58 - 2026-11-04 22:30:00 CET
 
 - On phones the fact boxes of the contact and legal pages put each label above its value; long labels ("Verantwortlich", "Kontaktperson") ran into the value before.
