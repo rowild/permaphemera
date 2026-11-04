@@ -62,6 +62,11 @@ describe('newsMarkdownToHtml', () => {
     expect(newsMarkdownToHtml('<script>alert(1)</script> <a href="x">link</a>')).toBe('<p>&lt;script&gt;alert(1)&lt;/script&gt; &lt;a href="x"&gt;link&lt;/a&gt;</p>')
   })
 
+  it('makes site links (in the current language) and https links, and leaves other links as text', () => {
+    expect(newsMarkdownToHtml('See [the tour](/exhibitions/a/), [PSV](https://photo-sphere-viewer.js.org/) and [bad](javascript:void).', (path) => `/en${path}`))
+      .toBe('<p>See <a href="/en/exhibitions/a/">the tour</a>, <a href="https://photo-sphere-viewer.js.org/" target="_blank" rel="noopener noreferrer">PSV</a> and bad.</p>')
+  })
+
   it('returns undefined for an empty text', () => {
     expect(newsMarkdownToHtml('  \n ')).toBeUndefined()
   })

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.49 - 2026-11-04 13:20:00 CET
+
+- News articles can link inside their text: to a page of the site (`[text](/exhibitions/…/)`, in the current language, without reloading the page) or to an https address (opens in a new tab). Every other link stays plain text; scripts and attributes never pass.
+- Nine first news articles (2 June to 4 November 2026) are in Directus as drafts: the beginning at the Parkschlössl, Spittal an der Drau and Monika Gaberscek, PERMAPHEMERA online with four Klagenfurt venues, the summer at the Parkschlössl, the Long Night of Museums, the Tour Editor, five new venues in Carinthia, the name PERMAPHEMERA and Sylvia Ofner's opening at the Galerie im Schloss Porcia.
+
 ## 0.0.48 - 2026-11-04 13:00:00 CET
 
 - News ("Aktuelles"): an overview at `/news/` (newest first, by year, filter by topic) and a page per article at `/news/<slug>/` with the date and topic, the text, an image and the galleries, exhibitions, persons, organisations and sponsors it is about. Topics: new in the archive, support, opening, tour to follow, website.

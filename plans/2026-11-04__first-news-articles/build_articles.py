@@ -1,0 +1,329 @@
+# Builds articles.json: the first news articles (texts DE + EN, links, images). Run: python3 -I build_articles.py
+import json
+
+EX = {
+ 'all-the-magic': 'df840053-091d-43a1-9bba-616897e612dc', 'auf-linien-zum-leben': 'c54f0485-f7c2-4a91-8926-5dd15bd4c468',
+ 'verwandlung-und-zustand': '1ed1be5e-62e5-4b41-9047-ccdcbb319a40', 'begegnungen-kunst-oeffnet-tueren': 'd93b80a3-c88c-45b7-8c57-fdc39b33627e',
+ 'farbe-trifft-struktur': '9e8499ac-37a1-4ed6-af32-94940b866ad7', 'farben-im-park': '93609614-95ba-4dde-8ec9-b6b3e47166ca',
+ 'african-heart': '257a46d3-f212-4f5c-99a1-c0f4a03ed091', 'gehen-und-sehen': 'b9f39828-2559-40fa-8b76-d0d17dad4db9',
+ 'das-was-entsteht': '6a00a540-0e9c-43ca-8d5c-1ddc7d57db06', 'all-about-nature': '235dd05f-bdad-4101-8234-55d627dd7661',
+ 'biodiversitaet-entdecken': '05eb6bf9-58c5-4653-b33a-b04de4267fd4', 'armin-guerino-durch-die-zeit': '585ac22d-0dd3-4526-87e5-ca2972be9974',
+ 'katharina-gruzei-hydrotopia': '225bfee5-6225-4105-bab0-8a94a9332aa1', 'franz-grabmayr-stadtgalerie-klagenfurt': '27fcc5ab-73d8-4a9b-b4c2-9349093140fa',
+ 'spannungsfelder-und-perspektiven-2026': '7c5b46b5-3c37-4f42-9cfb-440799b6dfe2', 'schwach-unperfekt-ausgefranst-echt-2026': 'b3d73d2d-d41c-48e6-a233-46f7141c53b5',
+ 'bv-art-ex-26': 'e0d42e01-4846-4aa8-9e22-16566122847e', 'epische-gemaelde': '1420e853-bbc5-4816-9a30-2692f3e0ec3f',
+ 'blinddate-der-perspektiven': '6bd91200-8b2d-43f2-92e3-7bb33da400c6', 'walther-preiml-sehnsucht': '34a00445-7c1f-4532-86b4-61cb44218469',
+ 'mediterraneo-harald-scheicher-2026': '67474b28-9459-4f91-a909-ab9ecb24c956', 'trigeniale-26': '773b8787-fda4-4aca-b4b0-4c9774cc0192',
+ 'aus-der-asche-empor': '111e477f-f0e6-4193-91a2-c077abe7e6e0'
+}
+VE = {
+ 'parkschloessl-spittal-drau': 'dcc5bd98-2876-42fd-8ff7-d5e6e040c14f', 'stadtgalerie-klagenfurt': 'fbfc6a7d-6d2b-48fd-8bdd-b5cb55d69efd',
+ 'alpen-adria-galerie-klagenfurt': 'e516ca94-9353-47d5-b748-8e44d727735e', 'living-studio-klagenfurt': '69119036-2389-4664-a710-c591e90c438d',
+ 'theatergalerie-klagenfurt': '6a07ffe2-65ad-49f7-a810-9a50f06680ac', 'europahaus-klagenfurt': 'eb4fc6d6-5ed8-475d-b02c-166bba4c8d22',
+ 'bv-galerie-klagenfurt': 'acc03b4a-6e30-45a6-8e80-3790aaeba6cb', 'galerie-im-schloss-porcia-spittal-drau': 'e5e146ff-9d26-48e6-a34c-0d057caf6813',
+ 'galerie-palais-fugger-klagenfurt': 'eeb7d3cc-3453-46ab-b410-975888f4ed12', 'startup-gallery-koetschach-mauthen': 'eb6323b2-3d44-45af-b637-7d511c1d1ddc',
+ 'galerie-im-stiegenhaus-seeboden': 'cb8c9052-7193-48f6-91d3-3a1621d907da', 'studiogalerie-klagenfurt': 'a6a51650-c456-4dbc-b724-cc80adf672a4'
+}
+PE = {
+ 'adi-schmoelzer': 'cd845373-c1eb-4400-b2a8-e0efcc4aea7c', 'nicoline-von-heyl': '11e9491d-1709-4aa2-aae0-7d4cfcaf84e9',
+ 'herbert-meisslitzer': 'cd325a20-678b-4bcb-8df2-638a071b3738', 'sylvia-campidell': '7afcf44f-b564-4a7c-be73-28589087cea7',
+ 'judith-maria-kulle': 'c875f42b-9e81-491d-a43c-82b5a6d77ffd', 'birgit-moertl': 'd1e6a4f8-12b8-436d-8659-9defae5a5ff0',
+ 'peter-kohlweiss': 'de1c95ba-7885-4cdc-a3f1-a1a52c53cd63', 'santino-solace': '18050820-ad48-46d9-ace4-df324a9a3e9e',
+ 'ines-urach': 'd56c167d-e908-41c6-8d21-5a4cb0617ddb', 'ingrid-proeller': '23191859-da2c-4676-85ef-bdd5c53fcbd5',
+ 'sylvia-ofner': 'ba400ab1-78a3-47f9-b66a-1bf4981be6f0', 'walther-preiml': '9bd2dc2b-3967-4631-a878-480c16a8ac5d',
+ 'harald-scheicher': '4f765949-57a5-4606-be0c-a2f81f189d25'
+}
+OR = {
+ 'spittaler-comicfestival': '185a515d-b001-4fb3-92a1-582218b02e69', 'austriatoon': '05849f4c-fef9-45e7-b27b-ea7d28044737',
+ 'lebenshilfe-spittal': 'b8446ed7-65c8-446f-adc7-4d060956c138', 'kunstverein-velden': 'eed2c291-dd5a-4a32-b6e1-c19129621316',
+ 'bv-kaernten': 'b0ef2398-aaeb-42cc-94e5-1a9f3796bb8f', 'bewegung-in-kultur': '44330447-a71c-4ff1-bfd4-cd868a8cdcd9',
+ 'kultur-im-puls': '0a004d03-d556-4f92-bfca-e9a79ad5e2de'
+}
+IMG_TOUR = '3e3a1e4c-0ac0-46d5-9aa1-7066e12405e6'
+IMG_EDITOR = 'bc4538b3-117c-4050-a97e-be322aaeb070'
+IMG_WHEEL = '71fe6575-22cc-49a9-ab4f-e889722e2791'
+IMG_PARKSCHLOESSL = '207013be-8dd1-4b68-8929-1af14dc282cf'  # the venue's own photo
+
+articles = []
+def article(slug, date, topic, de, en, exhibitions=(), venues=(), persons=(), organisations=(), image=None):
+    for key in ('title', 'summary', 'description'):
+        assert de.get(key) and en.get(key), (slug, key)
+    articles.append({
+        'slug': slug, 'published_on': date, 'topic': topic, 'image': image,
+        'de': de, 'en': en,
+        'exhibitions': [EX[s] for s in exhibitions], 'venues': [VE[s] for s in venues],
+        'persons': [PE[s] for s in persons], 'organisations': [OR[s] for s in organisations]
+    })
+
+# 1 ─ the beginning ─────────────────────────────────────────────────────────────────────────
+article('der-anfang-im-parkschloessl', '2026-06-02', 'site', {
+ 'title': 'Der Anfang im Parkschlössl',
+ 'summary': 'Am 2. Juni 2026 öffnet Adi Schmölzers Ausstellung „All the magic“ im Parkschlössl in Spittal an der Drau. Mit ihr beginnt PERMAPHEMERA.',
+ 'image_alt': '360°-Rundgang „All the magic“: der Saal des Parkschlössl mit einem schwarz-weißen Figurenfries an den Wänden und einem Tisch mit bemalten Bechern',
+ 'description': """Im Stadtpark von Spittal an der Drau steht das [Parkschlössl](/venues/parkschloessl-spittal-drau/), ein kleines Haus mit einem einzigen Ausstellungsraum: hohe Bogenfenster, ornamental bemalte Wände, ein Kronleuchter in der Mitte. Im Sommer wechseln hier die Ausstellungen, meist im Abstand von zwei Wochen. Am 2. Juni 2026 eröffnet [Adi Schmölzer](/persons/adi-schmoelzer/) mit [„All the magic“](/exhibitions/all-the-magic/) die Saison, und mit dieser Ausstellung beginnt PERMAPHEMERA.
+
+Am Anfang steht eine einfache Frage: Was bleibt von einer Ausstellung, wenn sie abgebaut ist? Eine Einladungskarte, einige Fotos, die Erinnerung derer, die dort waren. Wie die Werke im Raum hingen, wie sie zueinander standen, welche Wege und Blickwinkel der Raum anbot, geht meist verloren. Gerade das ist aber die eigentliche Arbeit einer Ausstellung: Für jede Ausstellung muss die Anordnung im Raum neu gefunden werden, bis Abstände, Licht und Atmosphäre stimmen.
+
+PERMAPHEMERA hält diese Anordnung fest. Solange eine Ausstellung zu sehen ist, entstehen 360°-Aufnahmen von mehreren Standpunkten im Raum. Zu einem Rundgang verbunden, ähnlich wie bei Google Street View, lässt sich die Ausstellung später wieder betreten: Die Werke hängen, wo sie hingen, das Licht fällt, wie es fiel. Die Aufnahmen entstehen im Einverständnis mit dem Ausstellungsort und den Kunstschaffenden.
+
+Den Anstoß zur Idee gab Adi Schmölzer selbst. In „All the magic“ zieht sich ein langer schwarzer Fries mit weißen Figuren über die Stellwände; darunter hängen kleine, farbkräftige Arbeiten, und in der Mitte des Saals steht ein Tisch mit bemalten Bechern. Gezeichnete Zeichen, Fragmente von Architektur und gesättigte Farbflächen treffen in diesem Raum aufeinander, und genau dieses Zusammenspiel zeigt der 360°-Rundgang.
+
+Aus diesem einen Raum soll ein Archiv werden, das Ausstellungen in ganz Österreich als Räume bewahrt, Ausstellung für Ausstellung."""
+}, {
+ 'title': 'A beginning at the Parkschlössl',
+ 'summary': 'On 2 June 2026 Adi Schmölzer’s exhibition “All the magic” opens at the Parkschlössl in Spittal an der Drau. PERMAPHEMERA begins with it.',
+ 'image_alt': '360° tour “All the magic”: the hall of the Parkschlössl with a black-and-white frieze of figures on the walls and a table of painted cups',
+ 'description': """In the town park of Spittal an der Drau stands the [Parkschlössl](/venues/parkschloessl-spittal-drau/), a small house with a single exhibition room: tall arched windows, ornamentally painted walls, a chandelier in the middle. In summer the exhibitions change here, usually every two weeks. On 2 June 2026 [Adi Schmölzer](/persons/adi-schmoelzer/) opens the season with [“All the magic”](/exhibitions/all-the-magic/), and PERMAPHEMERA begins with this exhibition.
+
+It starts with a simple question: what remains of an exhibition once it has been taken down? An invitation card, a few photographs, the memory of those who were there. How the works hung in the room, how they related to each other, which paths and angles the room offered, is usually lost. Yet this is the real work of an exhibition: for every exhibition the arrangement in the room has to be found anew, until distances, light and atmosphere are right.
+
+PERMAPHEMERA captures this arrangement. While an exhibition is on view, 360° images are taken from several standpoints in the room. Linked into a tour, much like Google Street View, the exhibition can be entered again later: the works hang where they hung, the light falls as it fell. The images are taken with the consent of the venue and the artists.
+
+The impetus for the idea came from Adi Schmölzer himself. In “All the magic” a long black frieze of white figures runs along the partition walls; below it hang small, strongly coloured works, and in the middle of the hall stands a table of painted cups. Drawn signs, fragments of architecture and saturated fields of colour meet in this room, and the 360° tour shows exactly this interplay.
+
+From this one room, an archive is to grow that keeps exhibitions across Austria as rooms, exhibition by exhibition."""
+}, exhibitions=['all-the-magic'], venues=['parkschloessl-spittal-drau'], persons=['adi-schmoelzer'], image=IMG_TOUR)
+
+# 2 ─ Spittal and Monika Gaberscek ──────────────────────────────────────────────────────────
+article('spittal-an-der-drau-erster-partner', '2026-06-15', 'support', {
+ 'title': 'Spittal an der Drau als erster Partner',
+ 'summary': 'Die Stadt Spittal an der Drau öffnet das Parkschlössl für die ersten 360°-Aufnahmen. Monika Gaberscek begleitet PERMAPHEMERA von Beginn an.',
+ 'image_alt': 'Das Parkschlössl im Stadtpark von Spittal an der Drau',
+ 'description': """Ein Archiv von Ausstellungsräumen braucht zuerst einen Raum, der aufgenommen werden darf, und Menschen, die dafür die Türen öffnen. Für PERMAPHEMERA ist das die Stadt Spittal an der Drau mit dem [Parkschlössl](/venues/parkschloessl-spittal-drau/).
+
+Den Kontakt stellte Adi Schmölzer her, dessen Ausstellung „All the magic“ am 2. Juni die Sommersaison eröffnete, allen voran zu Monika Gaberscek. Die Stadt begegnet dem jungen Vorhaben mit Offenheit, mit Vertrauen und ohne Umwege. So kann jede Ausstellung dieses Sommers im Parkschlössl aufgenommen werden, jeweils in Absprache mit den Kunstschaffenden.
+
+Monika Gaberscek begleitet PERMAPHEMERA aus eigener Initiative und mit großem persönlichem Einsatz; vieles ist erst dadurch möglich geworden. Dafür gilt ihr ein besonderer Dank.
+
+Am 15. Juni folgt im Parkschlössl die zweite Ausstellung der Saison: [„Auf Linien zum Leben“](/exhibitions/auf-linien-zum-leben/) des Spittaler Comicfestivals, mit Comics, Cartoons, Illustration und Outsider Art und einem offenen Zeichenstudio für alle Altersgruppen. Auch sie wird als 360°-Rundgang aufgenommen."""
+}, {
+ 'title': 'Spittal an der Drau, the first partner',
+ 'summary': 'The town of Spittal an der Drau opens the Parkschlössl for the first 360° recordings. Monika Gaberscek supports PERMAPHEMERA from the very start.',
+ 'image_alt': 'The Parkschlössl in the town park of Spittal an der Drau',
+ 'description': """An archive of exhibition rooms first needs a room that may be recorded, and people who open the doors for it. For PERMAPHEMERA these are the town of Spittal an der Drau and its [Parkschlössl](/venues/parkschloessl-spittal-drau/).
+
+The contact came through Adi Schmölzer, whose exhibition “All the magic” opened the summer season on 2 June, above all to Monika Gaberscek. The town meets the young project with openness, with trust and without detours. This way every exhibition of this summer at the Parkschlössl can be recorded, each in agreement with the artists.
+
+Monika Gaberscek supports PERMAPHEMERA on her own initiative and with great personal commitment; much has only become possible through her. Special thanks go to her.
+
+On 15 June the second exhibition of the season follows at the Parkschlössl: [“Auf Linien zum Leben”](/exhibitions/auf-linien-zum-leben/) by the Spittal comic festival, with comics, cartoons, illustration and outsider art and an open drawing studio for all ages. It, too, is recorded as a 360° tour."""
+}, venues=['parkschloessl-spittal-drau'], exhibitions=['auf-linien-zum-leben'], organisations=['spittaler-comicfestival'], image=IMG_PARKSCHLOESSL)
+
+# 3 ─ PERMAPHEMERA online, Klagenfurt ───────────────────────────────────────────────────────
+article('permaphemera-waechst', '2026-09-16', 'welcome', {
+ 'title': 'PERMAPHEMERA wächst',
+ 'summary': 'Seit 16. September ist permaphemera.at online. Mit der Stadtgalerie, der Alpen-Adria-Galerie, dem Living Studio und der Theatergalerie kommt Klagenfurt dazu.',
+ 'description': """Am 16. September 2026 geht permaphemera.at online, und zum Start ist das Archiv bereits größer als der Raum im Park, in dem es begonnen hat. Vier Ausstellungsorte in Klagenfurt am Wörthersee sind dazugekommen, jeder mit eigenem Profil.
+
+Die [Stadtgalerie Klagenfurt](/venues/stadtgalerie-klagenfurt/) zeigte bis 6. September [„ALL ABOUT NATURE – Zwischen Idylle, Krise und Hoffnung“](/exhibitions/all-about-nature/): 35 Künstler:innen, von Herbert Boeckl und Franz Grabmayr bis Melitta Moschik und Werner Reiterer, zum Verhältnis von Mensch und Natur. Ab 20. November folgt dort [„Franz Grabmayr – Alles Farbe“](/exhibitions/franz-grabmayr-stadtgalerie-klagenfurt/). Gleich daneben liegt die [Theatergalerie](/venues/theatergalerie-klagenfurt/), ein eigener Raum der Stadtgalerie für Ausstellungen rund um das Theater und seine Menschen.
+
+In der [Alpen-Adria-Galerie](/venues/alpen-adria-galerie-klagenfurt/) eröffnet am 22. September [„Armin Guerino – Durch die Zeit“](/exhibitions/armin-guerino-durch-die-zeit/) mit Arbeiten in Eitempera auf Papier.
+
+Das [Living Studio](/venues/living-studio-klagenfurt/) zeigte im Sommer [„Biodiversität entdecken“](/exhibitions/biodiversitaet-entdecken/) mit Arbeiten Kärntner Schulklassen; die Ausstellung ist als 360°-Rundgang im Archiv. Ab 30. September folgt dort [„Katharina Gruzei – Hydrotopia“](/exhibitions/katharina-gruzei-hydrotopia/).
+
+Für jeden dieser Orte gilt, was im Parkschlössl begonnen hat: Laufende und kommende Ausstellungen sind im Archiv zu finden, und wo eine Ausstellung aufgenommen wird, bleibt sie nach dem Abbau als 360°-Rundgang erhalten."""
+}, {
+ 'title': 'PERMAPHEMERA is growing',
+ 'summary': 'Since 16 September permaphemera.at is online. With the Stadtgalerie, the Alpen-Adria-Galerie, the Living Studio and the Theatergalerie, Klagenfurt joins.',
+ 'description': """On 16 September 2026 permaphemera.at goes online, and at launch the archive is already larger than the room in the park where it began. Four exhibition venues in Klagenfurt am Wörthersee have joined, each with a profile of its own.
+
+Until 6 September the [Stadtgalerie Klagenfurt](/venues/stadtgalerie-klagenfurt/) showed [“ALL ABOUT NATURE – Zwischen Idylle, Krise und Hoffnung”](/exhibitions/all-about-nature/): 35 artists, from Herbert Boeckl and Franz Grabmayr to Melitta Moschik and Werner Reiterer, on the relationship between people and nature. From 20 November it is followed by [“Franz Grabmayr – Alles Farbe”](/exhibitions/franz-grabmayr-stadtgalerie-klagenfurt/). Right next door is the [Theatergalerie](/venues/theatergalerie-klagenfurt/), a room of the Stadtgalerie for exhibitions about the theatre and its people.
+
+At the [Alpen-Adria-Galerie](/venues/alpen-adria-galerie-klagenfurt/), [“Armin Guerino – Durch die Zeit”](/exhibitions/armin-guerino-durch-die-zeit/) opens on 22 September with works in egg tempera on paper.
+
+In summer the [Living Studio](/venues/living-studio-klagenfurt/) showed [“Biodiversität entdecken”](/exhibitions/biodiversitaet-entdecken/) with works by Carinthian school classes; the exhibition is in the archive as a 360° tour. From 30 September it is followed by [“Katharina Gruzei – Hydrotopia”](/exhibitions/katharina-gruzei-hydrotopia/).
+
+For each of these venues the same holds as at the Parkschlössl: current and upcoming exhibitions can be found in the archive, and where an exhibition is recorded, it remains as a 360° tour after it has been taken down."""
+}, exhibitions=['all-about-nature', 'armin-guerino-durch-die-zeit', 'biodiversitaet-entdecken', 'katharina-gruzei-hydrotopia', 'franz-grabmayr-stadtgalerie-klagenfurt'],
+   venues=['stadtgalerie-klagenfurt', 'theatergalerie-klagenfurt', 'alpen-adria-galerie-klagenfurt', 'living-studio-klagenfurt'])
+
+# 4 ─ the first artists: the Parkschlössl summer ───────────────────────────────────────────
+article('der-sommer-im-parkschloessl', '2026-09-18', 'welcome', {
+ 'title': 'Der Sommer im Parkschlössl',
+ 'summary': 'Mit „Das, was entsteht“ von Santino Solace endet am 18. September die Saison im Parkschlössl. Neun Ausstellungen sind als 360°-Rundgang im Archiv.',
+ 'description': """Am 18. September geht im [Parkschlössl](/venues/parkschloessl-spittal-drau/) in Spittal an der Drau die Ausstellungssaison 2026 zu Ende. Von Juni bis September folgte hier eine Ausstellung auf die andere, und jede ist nun als 360°-Rundgang im Archiv. Damit sind die ersten Kunstschaffenden von PERMAPHEMERA beisammen:
+
+- [Adi Schmölzer](/persons/adi-schmoelzer/), [„All the magic“](/exhibitions/all-the-magic/), 2. bis 12. Juni
+- das [Spittaler Comicfestival](/organisations/spittaler-comicfestival/) mit [Austriatoon](/organisations/austriatoon/), [„Auf Linien zum Leben“](/exhibitions/auf-linien-zum-leben/), 15. bis 20. Juni
+- [Nicoline von Heyl](/persons/nicoline-von-heyl/), [„Verwandlung und Zustand“](/exhibitions/verwandlung-und-zustand/), 23. Juni bis 3. Juli
+- die [Lebenshilfe Spittal](/organisations/lebenshilfe-spittal/), [„Begegnungen – Kunst öffnet Türen“](/exhibitions/begegnungen-kunst-oeffnet-tueren/), 7. bis 10. Juli
+- [Herbert Meißlitzer](/persons/herbert-meisslitzer/), [„Farbe trifft Struktur“](/exhibitions/farbe-trifft-struktur/), 14. bis 24. Juli
+- [Sylvia Campidell](/persons/sylvia-campidell/) und [Judith Maria Kulle](/persons/judith-maria-kulle/), [„Farben im Park“](/exhibitions/farben-im-park/), 28. Juli bis 7. August
+- [Birgit Mörtl](/persons/birgit-moertl/), [„African Heart“](/exhibitions/african-heart/), 11. bis 21. August
+- [Peter Kohlweiß](/persons/peter-kohlweiss/), [„Gehen & Sehen“](/exhibitions/gehen-und-sehen/), 25. August bis 4. September
+- [Santino Solace](/persons/santino-solace/), [„Das, was entsteht“](/exhibitions/das-was-entsteht/), 8. bis 18. September
+
+Der Raum blieb derselbe, und doch sah er jedes Mal anders aus. Prozesshafte Malerei bei Nicoline von Heyl, Farbe über architektonischer Struktur bei Herbert Meißlitzer, Figuren und Pflanzen im Dialog bei Sylvia Campidell und Judith Maria Kulle, die afrikanische Landschaft und ihre Tiere bei Birgit Mörtl, Aquarelle und Zeichnungen aus dem Gehen bei Peter Kohlweiß, Comic, Manga und Webtoon bei Santino Solace: Jede Ausstellung hat den Saal mit seinen Bogenfenstern, den bemalten Wänden und dem Kronleuchter neu eingerichtet. Wer die Rundgänge nacheinander öffnet, sieht, wie verschieden ein einziger Raum gelesen werden kann.
+
+Allen Kunstschaffenden dieses Sommers gilt Dank für ihre Offenheit. Sie haben zugestimmt, dass ihre Ausstellungen aufgenommen werden, und PERMAPHEMERA damit den Anfang ermöglicht."""
+}, {
+ 'title': 'The summer at the Parkschlössl',
+ 'summary': 'With Santino Solace’s “Das, was entsteht” the season at the Parkschlössl ends on 18 September. Nine exhibitions are in the archive as 360° tours.',
+ 'description': """On 18 September the 2026 exhibition season at the [Parkschlössl](/venues/parkschloessl-spittal-drau/) in Spittal an der Drau comes to an end. From June to September one exhibition followed another here, and each is now in the archive as a 360° tour. With them, the first artists of PERMAPHEMERA are together:
+
+- [Adi Schmölzer](/persons/adi-schmoelzer/), [“All the magic”](/exhibitions/all-the-magic/), 2 to 12 June
+- the [Spittal comic festival](/organisations/spittaler-comicfestival/) with [Austriatoon](/organisations/austriatoon/), [“Auf Linien zum Leben”](/exhibitions/auf-linien-zum-leben/), 15 to 20 June
+- [Nicoline von Heyl](/persons/nicoline-von-heyl/), [“Verwandlung und Zustand”](/exhibitions/verwandlung-und-zustand/), 23 June to 3 July
+- [Lebenshilfe Spittal](/organisations/lebenshilfe-spittal/), [“Begegnungen – Kunst öffnet Türen”](/exhibitions/begegnungen-kunst-oeffnet-tueren/), 7 to 10 July
+- [Herbert Meißlitzer](/persons/herbert-meisslitzer/), [“Farbe trifft Struktur”](/exhibitions/farbe-trifft-struktur/), 14 to 24 July
+- [Sylvia Campidell](/persons/sylvia-campidell/) and [Judith Maria Kulle](/persons/judith-maria-kulle/), [“Farben im Park”](/exhibitions/farben-im-park/), 28 July to 7 August
+- [Birgit Mörtl](/persons/birgit-moertl/), [“African Heart”](/exhibitions/african-heart/), 11 to 21 August
+- [Peter Kohlweiß](/persons/peter-kohlweiss/), [“Gehen & Sehen”](/exhibitions/gehen-und-sehen/), 25 August to 4 September
+- [Santino Solace](/persons/santino-solace/), [“Das, was entsteht”](/exhibitions/das-was-entsteht/), 8 to 18 September
+
+The room stayed the same, and yet it looked different every time. Process-led painting by Nicoline von Heyl, colour over architectural structure by Herbert Meißlitzer, figures and plants in dialogue by Sylvia Campidell and Judith Maria Kulle, the African landscape and its animals by Birgit Mörtl, watercolours and drawings born from walking by Peter Kohlweiß, comics, manga and webtoons by Santino Solace: each exhibition furnished the hall with its arched windows, painted walls and chandelier anew. Opening the tours one after another shows how differently a single room can be read.
+
+Thanks go to all artists of this summer for their openness. They agreed to have their exhibitions recorded, and so made the beginning of PERMAPHEMERA possible."""
+}, exhibitions=['all-the-magic', 'auf-linien-zum-leben', 'verwandlung-und-zustand', 'begegnungen-kunst-oeffnet-tueren', 'farbe-trifft-struktur', 'farben-im-park', 'african-heart', 'gehen-und-sehen', 'das-was-entsteht'],
+   venues=['parkschloessl-spittal-drau'],
+   persons=['adi-schmoelzer', 'nicoline-von-heyl', 'herbert-meisslitzer', 'sylvia-campidell', 'judith-maria-kulle', 'birgit-moertl', 'peter-kohlweiss', 'santino-solace'],
+   organisations=['spittaler-comicfestival', 'austriatoon', 'lebenshilfe-spittal'])
+
+# 5 ─ Lange Nacht der Museen ────────────────────────────────────────────────────────────────
+article('lange-nacht-der-museen-2026', '2026-10-05', 'welcome', {
+ 'title': 'Die Lange Nacht der Museen im Rundgang',
+ 'summary': 'Zur ORF-Langen Nacht der Museen am 3. Oktober zeigte das Europahaus Klagenfurt zwei Ausstellungen für einen Abend. Beide sind jetzt als 360°-Rundgang online.',
+ 'description': """Manche Ausstellungen dauern nur einen Abend. Zur ORF-Langen Nacht der Museen am 3. Oktober 2026 zeigte das [Europahaus Klagenfurt](/venues/europahaus-klagenfurt/) zwei davon, und beide sind seither als 360°-Rundgang im Archiv:
+
+- [„Spannungsfelder und Perspektiven“](/exhibitions/spannungsfelder-und-perspektiven-2026/), eine Gemeinschaftsausstellung von Mitgliedern des [Kunstvereins Velden](/organisations/kunstverein-velden/) mit Malerei, Zeichnung und Mischtechnik von Siegfried Zellot, Gudrun Zikulnig, Slava Mohl, Alfred Scheikl und Sylvia Campidell, die im Sommer schon im Parkschlössl ausstellte
+- [„Schwach.Unperfekt.Ausgefranst.Echt“](/exhibitions/schwach-unperfekt-ausgefranst-echt-2026/), eine Einzelausstellung von [Inés Urach](/persons/ines-urach/) im Erdgeschoß, mit Malerei, Mischtechnik und Collage
+
+Für Ausstellungen dieser Art ist ein Rundgang oft die einzige Möglichkeit, sie später noch zu sehen. Nach wenigen Stunden war der Abend vorbei; die Räume, so wie sie an diesem Abend eingerichtet waren, sind geblieben.
+
+Ebenfalls neu im Archiv ist die [BV Galerie Kärnten](/venues/bv-galerie-klagenfurt/) in Klagenfurt, die Galerie des Kärntner Landesverbands der Berufsvereinigung bildender Künstler Österreichs ([BV Kärnten](/organisations/bv-kaernten/)). Dort eröffnet am 5. November [„BV ART-EX 26“](/exhibitions/bv-art-ex-26/); der 360°-Rundgang ist ab 24. November geplant."""
+}, {
+ 'title': 'The Long Night of Museums as a tour',
+ 'summary': 'For the ORF Long Night of Museums on 3 October, the Europahaus Klagenfurt showed two exhibitions for one evening. Both are now online as 360° tours.',
+ 'description': """Some exhibitions last only one evening. For the ORF Long Night of Museums on 3 October 2026 the [Europahaus Klagenfurt](/venues/europahaus-klagenfurt/) showed two of them, and both have since been in the archive as 360° tours:
+
+- [“Spannungsfelder und Perspektiven”](/exhibitions/spannungsfelder-und-perspektiven-2026/), a group exhibition by members of the [Kunstverein Velden](/organisations/kunstverein-velden/) with painting, drawing and mixed media by Siegfried Zellot, Gudrun Zikulnig, Slava Mohl, Alfred Scheikl and Sylvia Campidell, who already exhibited at the Parkschlössl in summer
+- [“Schwach.Unperfekt.Ausgefranst.Echt”](/exhibitions/schwach-unperfekt-ausgefranst-echt-2026/), a solo exhibition by [Inés Urach](/persons/ines-urach/) on the ground floor, with painting, mixed media and collage
+
+For exhibitions like these, a tour is often the only way to see them later. After a few hours the evening was over; the rooms, as they were arranged that evening, have remained.
+
+Also new in the archive is the [BV Galerie Kärnten](/venues/bv-galerie-klagenfurt/) in Klagenfurt, the gallery of the Carinthian branch of the Austrian professional association of visual artists ([BV Kärnten](/organisations/bv-kaernten/)). There, [“BV ART-EX 26”](/exhibitions/bv-art-ex-26/) opens on 5 November; the 360° tour is planned from 24 November."""
+}, exhibitions=['spannungsfelder-und-perspektiven-2026', 'schwach-unperfekt-ausgefranst-echt-2026', 'bv-art-ex-26'],
+   venues=['europahaus-klagenfurt', 'bv-galerie-klagenfurt'], persons=['ines-urach'], organisations=['kunstverein-velden', 'bv-kaernten'])
+
+# 6 ─ the Tour Editor ───────────────────────────────────────────────────────────────────────
+article('das-werkzeug-hinter-den-rundgaengen', '2026-10-20', 'site', {
+ 'title': 'Das Werkzeug hinter den Rundgängen',
+ 'summary': 'Jeder Rundgang auf PERMAPHEMERA entsteht im Tour Editor, einer eigenen Software auf Basis von Photo Sphere Viewer. Ein Blick in die Werkstatt.',
+ 'image_alt': 'Der Tour Editor mit dem Rundgang „All the magic“: links die Gliederung nach Gebäude, Geschoß und Raum, in der Mitte die Vorschau des Ausstellungsraums, rechts die Angaben zum Standpunkt',
+ 'description': """Ein 360°-Foto ist zunächst ein flaches Bild im Seitenverhältnis 2:1. Erst eine Software macht daraus einen Raum, in dem sich der Blick frei bewegen kann, und erst viele solcher Bilder, richtig verbunden, ergeben einen Rundgang. Für PERMAPHEMERA entsteht dafür seit 13. Juli 2026 eine eigene Anwendung: der Tour Editor.
+
+Die Grundlage ist [Photo Sphere Viewer](https://photo-sphere-viewer.js.org/), eine Open-Source-Bibliothek für 360°-Panoramen im Browser. Darauf baut der Tour Editor auf, eine Desktop-Anwendung für den Mac. Sie liest einen Ordner mit Aufnahmen und ordnet sie nach Gebäude, Geschoß, Raum und Standpunkt. Im Editor werden die Standpunkte verbunden: Markierungen am Boden führen von einem Standpunkt zum nächsten, Hinweise erklären einzelne Werke, und für jeden Übergang lässt sich festlegen, wohin der Blick beim Ankommen gerichtet ist.
+
+Eine Besonderheit, die übliche Programme für virtuelle Rundgänge nicht bieten: Jeder Standpunkt kann aus mehreren Höhen aufgenommen werden, „High“, „Normal“ und „Low“. Ein Raum lässt sich so aus Augenhöhe betrachten, von oben mit dem Überblick über die Anordnung der Werke, oder nahe am Boden, wo Skulpturen und Objekte stehen. Für Ausstellungen, deren Wirkung vom Raum abhängt, ist dieser Wechsel der Höhe mehr als ein Effekt.
+
+Damit Details auch beim Hineinzoomen scharf bleiben, zerlegt der Editor jedes Panorama in Kacheln, die der Browser nur dort lädt, wohin gerade geblickt wird. Am Ende exportiert er den fertigen Rundgang; die Website bindet ihn mit demselben Viewer ein, der auch im Editor läuft. Einen eigenen Server braucht keiner der beiden Teile.
+
+Rund 760 einzelne Änderungen sind bis heute in die Software geflossen. Sie wächst mit jeder Ausstellung, die aufgenommen wird: Was bei einem Rundgang fehlt, wird für den nächsten ergänzt."""
+}, {
+ 'title': 'The tool behind the tours',
+ 'summary': 'Every tour on PERMAPHEMERA is built in the Tour Editor, software of its own based on Photo Sphere Viewer. A look into the workshop.',
+ 'image_alt': 'The Tour Editor with the tour “All the magic”: on the left the structure by building, floor and room, in the middle the preview of the exhibition room, on the right the details of the standpoint',
+ 'description': """A 360° photo is at first a flat image with an aspect ratio of 2:1. Only software turns it into a room in which the eye can move freely, and only many such images, properly linked, make a tour. For PERMAPHEMERA an application of its own has been in the making since 13 July 2026: the Tour Editor.
+
+Its foundation is [Photo Sphere Viewer](https://photo-sphere-viewer.js.org/), an open-source library for 360° panoramas in the browser. The Tour Editor, a desktop application for the Mac, builds on it. It reads a folder of images and orders them by building, floor, room and standpoint. In the editor the standpoints are linked: markers on the floor lead from one standpoint to the next, notes explain individual works, and for every transition the direction of view on arrival can be set.
+
+A feature that common virtual-tour software does not offer: every standpoint can be recorded from several heights, “High”, “Normal” and “Low”. A room can thus be seen at eye level, from above with an overview of how the works are arranged, or close to the floor, where sculptures and objects stand. For exhibitions whose effect depends on the room, this change of height is more than an effect.
+
+So that details stay sharp when zooming in, the editor cuts every panorama into tiles, which the browser loads only where the view is directed. Finally it exports the finished tour; the website embeds it with the same viewer that runs in the editor. Neither part needs a server of its own.
+
+Around 760 individual changes have gone into the software so far. It grows with every exhibition that is recorded: whatever one tour lacks is added for the next."""
+}, exhibitions=['all-the-magic'], image=IMG_EDITOR)
+
+# 7 ─ newer galleries ───────────────────────────────────────────────────────────────────────
+article('vom-millstaetter-see-bis-ins-gailtal', '2026-10-25', 'welcome', {
+ 'title': 'Vom Millstätter See bis ins Gailtal',
+ 'summary': 'Fünf weitere Ausstellungsorte sind im Archiv: in Spittal an der Drau, in Seeboden, in Kötschach-Mauthen und zweimal in Klagenfurt.',
+ 'description': """Im Oktober ist das Archiv deutlich gewachsen. Fünf Ausstellungsorte in Kärnten sind neu verzeichnet, mit ihren laufenden und kommenden Ausstellungen.
+
+Die [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) führt zurück nach Spittal an der Drau, in die Stadt, in der PERMAPHEMERA begonnen hat. Im Säulengewölbe des Salamancakellers zeigte [Ingrid Pröller](/persons/ingrid-proeller/) bis 24. Oktober großformatige Malerei zwischen Mythos, Natur und Kosmos: [„Epische Gemälde“](/exhibitions/epische-gemaelde/). Der 360°-Rundgang ist in Vorbereitung.
+
+Am Millstätter See ist die [Galerie im Stiegenhaus](/venues/galerie-im-stiegenhaus-seeboden/) in Seeboden dazugekommen, mit [„Blinddate der Perspektiven“](/exhibitions/blinddate-der-perspektiven/), einer Ausstellung von [kultur.im.puls](/organisations/kultur-im-puls/). Inés Urach, Nicoline von Heyl und Roswitha Bucher-Sakowski, drei Absolventinnen der Freien Akademie der Bildenden Künste Kärnten, zeigen dort Malerei. Zwei von ihnen sind im Archiv bereits vertreten: Nicoline von Heyl stellte im Sommer im Parkschlössl aus, Inés Urach zur Langen Nacht der Museen im Europahaus.
+
+Im Gailtal zeigt die [stARTup gallery](/venues/startup-gallery-koetschach-mauthen/) in Kötschach-Mauthen bis Jahresende [„Walther Preiml – Sehnsucht“](/exhibitions/walther-preiml-sehnsucht/), Holzschnitte und Frottagen zum „schmerzlichen Verlangen nach dem Unerreichbaren“.
+
+In Klagenfurt sind zwei Orte neu. In der [Galerie Palais Fugger](/venues/galerie-palais-fugger-klagenfurt/) war zur Langen Nacht der Museen [„Mediterraneo“](/exhibitions/mediterraneo-harald-scheicher-2026/) mit Ölbildern von Harald Scheicher zu sehen. Die [Studiogalerie im Stadthaus Klagenfurt](/venues/studiogalerie-klagenfurt/) zeigt noch bis 29. Oktober [„Trigeniale 26“](/exhibitions/trigeniale-26/), die Dreiländerausstellung der Kulturinitiative [bewegungINkultur](/organisations/bewegung-in-kultur/) mit fünf Kunstschaffenden aus Kärnten, Friaul und Slowenien. Ihr 360°-Rundgang ist bereits online.
+
+Aus dem einen Raum im Park ist in wenigen Monaten ein Netz von Orten geworden, das vom Millstätter See bis ins Gailtal reicht."""
+}, {
+ 'title': 'From Lake Millstatt to the Gail Valley',
+ 'summary': 'Five more exhibition venues are in the archive: in Spittal an der Drau, in Seeboden, in Kötschach-Mauthen and two in Klagenfurt.',
+ 'description': """In October the archive grew markedly. Five exhibition venues in Carinthia are newly listed, with their current and upcoming exhibitions.
+
+The [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) leads back to Spittal an der Drau, the town where PERMAPHEMERA began. In the pillared vault of the Salamanca cellar, [Ingrid Pröller](/persons/ingrid-proeller/) showed large-format painting between myth, nature and cosmos until 24 October: [“Epische Gemälde”](/exhibitions/epische-gemaelde/). The 360° tour is in preparation.
+
+On Lake Millstatt the [Galerie im Stiegenhaus](/venues/galerie-im-stiegenhaus-seeboden/) in Seeboden has joined, with [“Blinddate der Perspektiven”](/exhibitions/blinddate-der-perspektiven/), an exhibition by [kultur.im.puls](/organisations/kultur-im-puls/). Inés Urach, Nicoline von Heyl and Roswitha Bucher-Sakowski, three graduates of the Freie Akademie der Bildenden Künste Kärnten, show painting there. Two of them are already in the archive: Nicoline von Heyl exhibited at the Parkschlössl in summer, Inés Urach at the Europahaus for the Long Night of Museums.
+
+In the Gail Valley the [stARTup gallery](/venues/startup-gallery-koetschach-mauthen/) in Kötschach-Mauthen shows [“Walther Preiml – Sehnsucht”](/exhibitions/walther-preiml-sehnsucht/) until the end of the year, woodcuts and frottages on the “painful longing for the unattainable”.
+
+In Klagenfurt two venues are new. At the [Galerie Palais Fugger](/venues/galerie-palais-fugger-klagenfurt/), [“Mediterraneo”](/exhibitions/mediterraneo-harald-scheicher-2026/) with oil paintings by Harald Scheicher was on view for the Long Night of Museums. The [Studiogalerie im Stadthaus Klagenfurt](/venues/studiogalerie-klagenfurt/) shows [“Trigeniale 26”](/exhibitions/trigeniale-26/) until 29 October, the three-country exhibition of the cultural initiative [bewegungINkultur](/organisations/bewegung-in-kultur/) with five artists from Carinthia, Friuli and Slovenia. Its 360° tour is already online.
+
+In a few months the one room in the park has become a network of venues reaching from Lake Millstatt to the Gail Valley."""
+}, exhibitions=['epische-gemaelde', 'blinddate-der-perspektiven', 'walther-preiml-sehnsucht', 'mediterraneo-harald-scheicher-2026', 'trigeniale-26'],
+   venues=['galerie-im-schloss-porcia-spittal-drau', 'galerie-im-stiegenhaus-seeboden', 'startup-gallery-koetschach-mauthen', 'galerie-palais-fugger-klagenfurt', 'studiogalerie-klagenfurt'],
+   persons=['ingrid-proeller', 'walther-preiml', 'harald-scheicher'], organisations=['kultur-im-puls', 'bewegung-in-kultur'])
+
+# 8 ─ the name ──────────────────────────────────────────────────────────────────────────────
+article('warum-permaphemera', '2026-10-30', 'site', {
+ 'title': 'Warum PERMAPHEMERA',
+ 'summary': 'Der Name ist nicht der leichteste. Er verbindet „permanent“ und „Ephemera“ und sagt damit in einem Wort, worum es dem Archiv geht.',
+ 'image_alt': 'Das Rad der Ausstellungsräume, das Bild der Website: Ausschnitte aus zwölf Ausstellungsräumen, im Kreis angeordnet',
+ 'description': """PERMAPHEMERA ist kein Wort, das beim ersten Hören leicht von der Hand geht. Es verbindet zwei Begriffe, die einander zu widersprechen scheinen: „perma-“ wie permanent, dauerhaft, und „Ephemera“, das Flüchtige.
+
+Ephemera ist ein Begriff aus Bibliotheken und Archiven. Er steht für Drucksachen, die nur für kurze Zeit gemacht sind: Einladungskarten, Plakate, Programmzettel, Eintrittskarten. Gerade sie werden gesammelt, weil sie zeigen, was an einem bestimmten Tag an einem bestimmten Ort geschah. Eine Ausstellung ist in diesem Sinn selbst Ephemera: sorgfältig eingerichtet, einige Wochen zugänglich, dann abgebaut. PERMAPHEMERA hält dieses Flüchtige dauerhaft zugänglich. Der Name beschreibt genau den Widerspruch, an dem das Projekt arbeitet.
+
+Weitere Gründe sprechen für ihn:
+
+- **Er ist unverwechselbar.** Als neu gebildetes Wort lässt er sich mit keinem gängigen Begriff verwechseln, und eine Suche danach führt zum Archiv statt zu tausend anderen Treffern.
+- **Er versteht sich über Sprachgrenzen hinweg.** Die lateinischen und griechischen Wurzeln sind im Deutschen, Englischen, Italienischen und Slowenischen gleichermaßen geläufig, in einer Region, in der Kärnten, Friaul und Slowenien aneinandergrenzen.
+- **Er beschreibt, statt zu werben.** Der Name verspricht nichts; er benennt eine Aufgabe.
+- **Er bleibt.** Wer ihn einmal verstanden hat, behält ihn: Dauer und Vergänglichkeit in einem Wort.
+
+Im Schriftzug ist der Gedanke sichtbar. Das H fällt aus der Reihe und neigt sich zur Seite, als Zeichen dafür, dass nichts ganz so bleibt, wie es war. Und in der linken unteren Ecke jeder Seite steht die kleine Zeichnung „Fig. I. Temporary, yet enduring.“: vergänglich und doch beständig."""
+}, {
+ 'title': 'Why PERMAPHEMERA',
+ 'summary': 'The name is not the easiest. It joins “permanent” and “ephemera”, and so says in one word what the archive is about.',
+ 'image_alt': 'The wheel of exhibition rooms, the image of the website: details of twelve exhibition rooms arranged in a circle',
+ 'description': """PERMAPHEMERA is not a word that comes easily on first hearing. It joins two terms that seem to contradict each other: “perma-” as in permanent, lasting, and “ephemera”, the fleeting.
+
+Ephemera is a term from libraries and archives. It stands for printed matter made for a short time only: invitation cards, posters, programme leaflets, tickets. These are collected precisely because they show what happened on a particular day in a particular place. In this sense an exhibition is itself ephemera: carefully arranged, open for a few weeks, then taken down. PERMAPHEMERA keeps this fleeting thing permanently accessible. The name describes exactly the contradiction the project works on.
+
+More reasons speak for it:
+
+- **It is unmistakable.** As a newly formed word it cannot be confused with any common term, and a search for it leads to the archive rather than to a thousand other results.
+- **It travels across languages.** Its Latin and Greek roots are familiar in German, English, Italian and Slovene alike, in a region where Carinthia, Friuli and Slovenia meet.
+- **It describes instead of advertising.** The name promises nothing; it names a task.
+- **It stays.** Once understood, it is kept: duration and transience in one word.
+
+The lettering shows the idea. The H falls out of line and leans to one side, a sign that nothing stays quite as it was. And in the lower left corner of every page stands the small drawing “Fig. I. Temporary, yet enduring.”"""
+}, image=IMG_WHEEL)
+
+# 9 ─ opening: Sylvia Ofner ─────────────────────────────────────────────────────────────────
+article('aus-der-asche-empor-schloss-porcia', '2026-11-04', 'opening', {
+ 'title': 'Sylvia Ofner in der Galerie im Schloss Porcia',
+ 'summary': 'Am 6. November um 19 Uhr eröffnet in Spittal an der Drau „Aus der Asche empor“, Skulpturen aus alten Orientteppichen. Der 360°-Rundgang folgt am 19. Dezember.',
+ 'description': """Ein Phönix, eine Sphinx, Gestalten aus Mythen und Legenden: [Sylvia Ofner](/persons/sylvia-ofner/) formt ihre Figuren aus alten Orientteppichen und Handarbeiten. Was einmal als Teppich am Boden lag, wird bei ihr zur weichen Skulptur; Stickereien begleiten die Figuren. Ab 7. November zeigt die [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) in Spittal an der Drau diese Arbeiten unter dem Titel [„Aus der Asche empor – Skulptur und Stickerei“](/exhibitions/aus-der-asche-empor/).
+
+- **Vernissage:** Freitag, 6. November 2026, 19 Uhr
+- **Laufzeit:** 7. November bis 19. Dezember 2026
+- **Ort:** Galerie im Schloss Porcia, Säulengewölbe des Salamancakellers, Spittal an der Drau
+
+Die Ausstellung wird für PERMAPHEMERA aufgenommen. Ab dem letzten Ausstellungstag, dem 19. Dezember, ist sie als 360°-Rundgang online. Wer es bis dahin nicht nach Spittal schafft, kann die Figuren dann so sehen, wie sie im Gewölbe aufgestellt waren."""
+}, {
+ 'title': 'Sylvia Ofner at the Galerie im Schloss Porcia',
+ 'summary': 'On 6 November at 7 pm “Aus der Asche empor” opens in Spittal an der Drau, with sculptures made from old oriental rugs. The 360° tour follows on 19 December.',
+ 'description': """A phoenix, a sphinx, figures from myths and legends: [Sylvia Ofner](/persons/sylvia-ofner/) shapes her figures from old oriental rugs and needlework. What once lay on the floor as a rug becomes a soft sculpture in her hands; embroideries accompany the figures. From 7 November the [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) in Spittal an der Drau shows these works under the title [“Aus der Asche empor – Skulptur und Stickerei”](/exhibitions/aus-der-asche-empor/).
+
+- **Opening:** Friday, 6 November 2026, 7 pm
+- **On view:** 7 November to 19 December 2026
+- **Venue:** Galerie im Schloss Porcia, pillared vault of the Salamanca cellar, Spittal an der Drau
+
+The exhibition is recorded for PERMAPHEMERA. From its last day, 19 December, it will be online as a 360° tour. Anyone who cannot make it to Spittal by then can see the figures as they were placed in the vault."""
+}, exhibitions=['aus-der-asche-empor'], venues=['galerie-im-schloss-porcia-spittal-drau'], persons=['sylvia-ofner'])
+
+json.dump(articles, open('articles.json', 'w'), ensure_ascii=False, indent=2)
+for a in articles:
+    print(a['published_on'], a['topic'].ljust(8), a['slug'], '| summary DE', len(a['de']['summary']), 'EN', len(a['en']['summary']))

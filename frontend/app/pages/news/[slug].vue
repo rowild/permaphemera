@@ -16,7 +16,7 @@ if (!article.value) {
 // The list is newest first: the newer article comes before this one.
 const newer = computed(() => (index.value > 0 ? news.value[index.value - 1] : undefined))
 const older = computed(() => news.value[index.value + 1])
-const bodyHtml = computed(() => newsMarkdownToHtml(article.value?.description))
+const bodyHtml = computed(() => newsMarkdownToHtml(article.value?.description, (path) => localePath(path)))
 const hasRecords = computed(() => Boolean(article.value && (article.value.exhibitions.length || article.value.venues.length || article.value.persons.length || article.value.organisations.length || article.value.sponsors.length)))
 
 usePageSeo(`/news/${slug}/`)
@@ -42,7 +42,7 @@ usePageSeo(`/news/${slug}/`)
         class="[ news-article-body ] [ section-band ] mx-auto grid max-w-[105rem] items-start gap-[clamp(2rem,5vw,5rem)] px-[clamp(1.4rem,5vw,5.2rem)] pb-[clamp(2.5rem,4vw,4rem)] tablet:grid-cols-1 compact:px-4"
         :class="bodyHtml && article.image ? 'grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]' : 'grid-cols-1'"
       >
-        <ArchiveRichText v-if="bodyHtml" class="max-w-3xl" :html="bodyHtml" />
+        <ArchiveRichText v-if="bodyHtml" class="max-w-3xl" :html="bodyHtml" links />
         <img v-if="article.image" class="block aspect-4/3 w-full max-w-176 border border-archive-rule-warm/30 object-cover" :src="article.image" :alt="article.image_alt">
       </div>
 
