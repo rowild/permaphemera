@@ -20,13 +20,9 @@ const big = computed(() => props.group === 'current')
 
 <template>
   <section class="[ exhibition-time-group ] min-w-0" :aria-labelledby="`exhibitions-${props.group}-title`">
-    <h3
-      :id="`exhibitions-${props.group}-title`"
-      class="m-0 mb-4 pl-1 text-left font-display text-eyebrow font-medium tracking-widest uppercase compact:mb-3 compact:text-xs"
-      :class="big ? 'text-archive-red' : 'text-archive-copy'"
-    >
+    <ArchiveGroupLabel class="pl-1" :id="`exhibitions-${props.group}-title`" :tone="big ? 'red' : 'muted'">
       {{ $t(`exhibitionsDirectory.groups.${props.group}.title`) }}
-    </h3>
+    </ArchiveGroupLabel>
 
     <p v-if="!shown.length" class="m-0 border-y border-archive-rule-deep/24 py-8 text-center text-archive-muted compact:py-5 compact:text-sm">
       {{ $t(`exhibitionsDirectory.groups.${props.group}.empty`) }}

@@ -94,11 +94,7 @@ usePageSeo(`/persons/${slug}/`)
 
       <section v-if="person.statements.length" class="[ person-statements ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pb-[clamp(3rem,5vw,5rem)] compact:px-4 compact:pb-5" aria-labelledby="person-statements-title">
         <h2 id="person-statements-title" class="m-0 mb-6 font-display text-h3-sm font-normal compact:mb-4 compact:text-2xl">{{ $t('persons.statementsTitle', { name: person.name }) }}</h2>
-        <figure v-for="statement in person.statements" :key="statement.id" class="[ person-statement ] m-0 mb-8 max-w-3xl border-l border-archive-red/42 py-1 pl-6">
-          <p v-if="statement.prompt" class="m-0 mb-2 text-sm tracking-[0.04em] text-archive-red">{{ statement.prompt }}</p>
-          <blockquote class="m-0 font-display text-xl leading-normal text-archive-ink compact:text-lg">{{ statement.text }}</blockquote>
-          <figcaption class="mt-3 text-sm text-archive-muted">{{ $t('persons.statementOn') }} <ArchiveTextLink :to="localePath(`/exhibitions/${statement.exhibitionSlug}/`)">{{ statement.exhibitionTitle }}</ArchiveTextLink></figcaption>
-        </figure>
+        <ArchiveStatement v-for="statement in person.statements" :key="statement.id" class="[ person-statement ] max-w-3xl" :prompt="statement.prompt" :text="statement.text">{{ $t('persons.statementOn') }} <ArchiveTextLink :to="localePath(`/exhibitions/${statement.exhibitionSlug}/`)">{{ statement.exhibitionTitle }}</ArchiveTextLink></ArchiveStatement>
       </section>
   </div>
 </template>

@@ -42,14 +42,14 @@ usePageSeo(`/news/${slug}/`)
         <h2 id="news-article-records-title" class="m-0 mb-6 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('newsPage.inArticle') }}</h2>
 
         <template v-if="article.exhibitions.length">
-          <h3 class="m-0 mb-4 pl-1 text-eyebrow font-medium tracking-widest text-archive-red uppercase">{{ $t('newsPage.groups.exhibitions') }}</h3>
+          <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.exhibitions') }}</ArchiveGroupLabel>
           <div class="mb-10 grid grid-cols-2 gap-4 tablet:grid-cols-1">
             <ExhibitionCard v-for="exhibition in article.exhibitions" :key="exhibition.id" :exhibition="exhibition" layout="side" />
           </div>
         </template>
 
         <template v-if="article.venues.length">
-          <h3 class="m-0 mb-4 pl-1 text-eyebrow font-medium tracking-widest text-archive-red uppercase">{{ $t('newsPage.groups.venues') }}</h3>
+          <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.venues') }}</ArchiveGroupLabel>
           <div class="mb-10 grid grid-cols-4 gap-[1.4rem] tablet:grid-cols-2 compact:gap-3">
             <VenueArchiveCard v-for="venue in article.venues" :key="venue.id" :venue="venue" />
           </div>
@@ -57,15 +57,15 @@ usePageSeo(`/news/${slug}/`)
 
         <div v-if="article.persons.length || article.organisations.length || article.sponsors.length" class="grid grid-cols-3 gap-[clamp(2rem,4vw,4rem)] tablet:grid-cols-1">
           <section v-if="article.persons.length">
-            <h3 class="m-0 mb-4 pl-1 text-eyebrow font-medium tracking-widest text-archive-red uppercase">{{ $t('newsPage.groups.persons') }}</h3>
+            <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.persons') }}</ArchiveGroupLabel>
             <PersonDirectoryEntry v-for="person in article.persons" :key="person.id" :person="person" :roles="person.roles.map((role) => role.slug)" />
           </section>
           <section v-if="article.organisations.length">
-            <h3 class="m-0 mb-4 pl-1 text-eyebrow font-medium tracking-widest text-archive-red uppercase">{{ $t('newsPage.groups.organisations') }}</h3>
+            <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.organisations') }}</ArchiveGroupLabel>
             <OrganisationDirectoryEntry v-for="organisation in article.organisations" :key="organisation.id" :organisation="organisation" />
           </section>
           <section v-if="article.sponsors.length">
-            <h3 class="m-0 mb-4 pl-1 text-eyebrow font-medium tracking-widest text-archive-red uppercase">{{ $t('newsPage.groups.sponsors') }}</h3>
+            <ArchiveGroupLabel class="pl-1">{{ $t('newsPage.groups.sponsors') }}</ArchiveGroupLabel>
             <SponsorDirectoryEntry v-for="sponsor in article.sponsors" :key="sponsor.id" :sponsor="sponsor" />
           </section>
         </div>

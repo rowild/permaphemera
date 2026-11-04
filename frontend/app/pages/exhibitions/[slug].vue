@@ -101,11 +101,7 @@ definePageMeta({ navActive: 'exhibitions' })
 
           <section v-if="exhibition.statements.length" class="[ exhibition-statements ] mt-12 max-w-3xl compact:mt-8" :aria-label="$t('exhibition.statementsTitle', exhibition.artists.length)">
             <h3 class="m-0 mb-6 font-display text-h3-sm font-normal compact:mb-4 compact:text-2xl">{{ $t('exhibition.statementsTitle', exhibition.artists.length) }}</h3>
-            <figure v-for="statement in exhibition.statements" :key="statement.id" class="[ exhibition-statement ] m-0 border-l border-archive-red/42 py-1 pl-6 not-last:mb-8 compact:pl-4 compact:not-last:mb-6">
-              <p v-if="statement.prompt" class="[ exhibition-statement-prompt ] m-0 mb-2 text-sm tracking-[0.04em] text-archive-red">{{ statement.prompt }}</p>
-              <blockquote class="m-0 font-display text-xl leading-normal text-archive-ink compact:text-lg">{{ statement.text }}</blockquote>
-              <figcaption class="mt-3 text-sm text-archive-muted">— <ArchiveTextLink :to="localePath(`/persons/${statement.artist_slug}/`)">{{ statement.artist }}</ArchiveTextLink></figcaption>
-            </figure>
+            <ArchiveStatement v-for="statement in exhibition.statements" :key="statement.id" class="[ exhibition-statement ]" :prompt="statement.prompt" :text="statement.text">— <ArchiveTextLink :to="localePath(`/persons/${statement.artist_slug}/`)">{{ statement.artist }}</ArchiveTextLink></ArchiveStatement>
           </section>
         </div>
 

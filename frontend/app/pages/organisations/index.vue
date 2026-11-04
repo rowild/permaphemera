@@ -123,13 +123,13 @@ definePageMeta({ navActive: 'organisations' })
               </div>
               <div class="[ people-list-groups ] grid grid-cols-2 items-start gap-[clamp(2rem,5vw,5rem)] tablet:grid-cols-1">
                 <div v-if="filteredOrganisers.length" class="[ people-list-group ]">
-                  <h3 class="m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:text-xs">{{ $t('organisations.organisersTitle') }} · {{ filteredOrganisers.length }}</h3>
+                  <ArchiveGroupLabel>{{ $t('organisations.organisersTitle') }} · {{ filteredOrganisers.length }}</ArchiveGroupLabel>
                   <div class="border-t border-archive-rule-warm/22">
                     <PersonDirectoryEntry v-for="person in filteredOrganisers" :key="person.id" :person="person" :roles="ORGANISER_ROLES" />
                   </div>
                 </div>
                 <div v-if="filteredCurators.length" class="[ people-list-group ]">
-                  <h3 class="m-0 mb-3 font-display text-eyebrow font-medium tracking-[0.06em] text-archive-red uppercase compact:text-xs">{{ $t('organisations.curatorsTitle') }} · {{ filteredCurators.length }}</h3>
+                  <ArchiveGroupLabel>{{ $t('organisations.curatorsTitle') }} · {{ filteredCurators.length }}</ArchiveGroupLabel>
                   <div class="border-t border-archive-rule-warm/22">
                     <PersonDirectoryEntry v-for="person in filteredCurators" :key="person.id" :person="person" :roles="CURATOR_ROLES" />
                   </div>
