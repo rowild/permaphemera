@@ -31,11 +31,7 @@ definePageMeta({ navActive: 'organisations' })
         <div class="[ organisation-hero-copy ] relative z-2">
           <ArchiveBreadcrumb :items="[{ label: $t('organisations.breadcrumb'), to: '/organisations/' }, { label: organisation.title }]" />
           <ArchiveEyebrow>{{ kindLabel }}</ArchiveEyebrow>
-          <h1 id="organisation-title" class="[ organisation-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">
-            {{ organisation.title }}
-            <span v-if="organisation.city" class="mt-3 block max-w-116 text-city leading-[1.02] text-archive-red">{{ organisation.city }}</span>
-          </h1>
-          <p class="[ organisation-hero-lede ] my-0 mt-[1.6rem] mb-[1.85rem] max-w-136 text-lede leading-[1.42] text-archive-body compact:mt-4 compact:mb-4 compact:text-base compact:leading-normal">{{ organisation.lede ?? organisation.description ?? $t('organisations.fallbackLede', { kind: kindLabel }) }}</p>
+          <ArchiveRecordTitle title-id="organisation-title" :title="organisation.title" :subtitle="organisation.city" :lede="organisation.lede ?? organisation.description ?? $t('organisations.fallbackLede', { kind: kindLabel })" />
 
           <dl class="[ organisation-contact-list ] m-0">
             <ArchiveMetadataRow v-if="organisation.address" :label="$t('organisations.address')" variant="venue">
@@ -62,13 +58,7 @@ definePageMeta({ navActive: 'organisations' })
         </div>
 
         <div class="[ organisation-about ] relative z-1 tablet:row-start-2">
-          <figure v-if="organisation.image" class="[ organisation-figure ] archive-venue-hero-artwork relative m-0 mb-10 pt-[1.1rem] pr-4 pb-6 pl-0 compact:mx-[-0.45rem] compact:mb-6 compact:pr-0">
-            <ArchiveFramedImage class="[ organisation-image ] aspect-[1.28] rotate-[0.65deg] compact:rotate-0" :src="organisation.image" :alt="organisation.image_alt ?? organisation.title" />
-            <figcaption v-if="organisation.image_caption" class="mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic">
-              <span class="shrink-0 whitespace-nowrap not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
-              {{ organisation.image_caption }}
-            </figcaption>
-          </figure>
+          <ArchiveRecordFigure v-if="organisation.image" class="[ organisation-figure ] mb-10 pb-6 compact:mb-6" image-class="[ organisation-image ] aspect-[1.28]" :src="organisation.image" :alt="organisation.image_alt ?? organisation.title" :caption="organisation.image_caption" />
           <ArchiveEyebrow>{{ $t('organisations.aboutEyebrow') }}</ArchiveEyebrow>
           <ArchiveRichText v-if="organisation.aboutHtml" :html="organisation.aboutHtml" />
           <p v-else class="max-w-176 text-button leading-[1.58] text-archive-body compact:text-base compact:leading-normal">{{ organisation.description ?? $t('organisations.fallbackAbout', { name: organisation.title }) }}</p>

@@ -211,13 +211,14 @@ assert.doesNotMatch(personPage, /person-home-link/, 'The person page must not re
 // Exhibitions need no filter here: resolveExhibitions drops every one without a real image.
 const landingPage = await readText('app/pages/index.vue')
 assert.match(landingPage, /venues\.value\.filter\(\(venueRecord\) => venueRecord\.has_image\)/, 'The start page must preview only galleries with a real image.')
-// The figure label ("FIG. I") never wraps, however long the caption beside it is.
-const venuePage = await readText('app/pages/venues/[slug].vue')
-for (const [name, page] of [['venue', venuePage], ['person', personPage], ['organisation', organisationPage]]) {
-  assert.match(page, /<span class="shrink-0 whitespace-nowrap not-italic[^"]*">\{\{ \$t\('venue\.figure'\) \}\}/, `The ${name} page figure label must not wrap.`)
+// The figure label ("FIG. I") never wraps, however long the caption beside it is; a photo without
+// a caption leaves no lone label (ArchiveRecordFigure; test/nuxt/ArchiveRecordParts.spec.ts).
+const recordFigure = await readText('app/components/ArchiveRecordFigure.vue')
+assert.match(recordFigure, /<span class="shrink-0 whitespace-nowrap not-italic[^"]*">\{\{ \$t\('venue\.figure'\) \}\}/, 'The figure label must not wrap.')
+assert.match(recordFigure, /<figcaption v-if="props\.caption"/, 'A photo without a caption must not leave a lone figure label.')
+for (const [name, page] of [['venue', await readText('app/pages/venues/[slug].vue')], ['person', personPage], ['organisation', organisationPage]]) {
+  assert.match(page, /<ArchiveRecordFigure/, `The ${name} page must show its photo with ArchiveRecordFigure.`)
 }
-// A photo without a credit line must not leave a lone "FIG. I" label behind.
-assert.match(personPage, /<figcaption v-if="person\.image\.caption \|\| person\.image\.fromExhibition"/, 'The person photo caption must hide when there is nothing to show.')
 assert.match(personPage, /person-link-main[\s\S]{0,300}person\.home\.url/, 'The Links row must start with the main link.')
 assert.match(personPage, /person-hero-copy[\s\S]*person-facts[\s\S]*person-about[\s\S]*person-hero-figure/, 'The biography must follow the facts inside the left column.')
 assert.match(organisationPage, /:to="localePath\(`\/persons\/\$\{member\.slug\}\/`\)"/, 'Organisation members must link to their person page.')

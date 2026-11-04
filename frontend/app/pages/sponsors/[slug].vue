@@ -18,8 +18,7 @@ usePageSeo(`/sponsors/${slug}/`)
         <div class="[ sponsor-hero-copy ] relative z-2">
           <ArchiveBreadcrumb :items="[{ label: sponsor.title }]" />
           <ArchiveEyebrow>{{ $t('sponsorPages.eyebrow') }}</ArchiveEyebrow>
-          <h1 id="sponsor-title" class="m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">{{ sponsor.title }}</h1>
-          <p v-if="sponsor.description" class="my-0 mt-[1.6rem] mb-[1.85rem] max-w-136 text-lede leading-[1.42] text-archive-body compact:mt-4 compact:mb-4 compact:text-base compact:leading-normal">{{ sponsor.description }}</p>
+          <ArchiveRecordTitle title-id="sponsor-title" :title="sponsor.title" :lede="sponsor.description" />
           <dl class="m-0">
             <ArchiveMetadataRow v-if="sponsor.website_url" :label="$t('sponsorPages.website')" variant="venue">
               <template #icon><ExternalLink :size="18" aria-hidden="true" /></template>

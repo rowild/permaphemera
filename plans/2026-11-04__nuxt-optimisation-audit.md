@@ -100,12 +100,12 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
    missing on venue, organisation and exhibition detail pages; no `aria-current`.
 5. **`ArchiveEyebrow` DONE (30 copies, no visual change except the artist modal's drifted one)** (~35 copies, 5 variants) and **`ArchiveSectionHeading`** (eyebrow + h2 +
    accent + intro, ~18 copies, high drift in leading, size and margins).
-6. **`ArchiveRecordHero` + `ArchiveRecordFigure`**: the detail-page hero of venue, organisation,
+6. **DONE as `ArchiveRecordTitle` + `ArchiveRecordFigure` (the grids stay per page: different pictures, on purpose)** **`ArchiveRecordHero` + `ArchiveRecordFigure`**: the detail-page hero of venue, organisation,
    person, sponsor (4 copies, high drift in grid and padding; figure 3 copies).
 7. **Hero type scale DONE 0.0.56 (`ArchivePageTitle`, decision B); the editorial hero frame itself is still open** **`ArchiveEditorialHero`** (about, how-it-works, contact, legal; 4 copies) and
    **`ArchiveActionBand`** (3 copies). Today there are three hero type scales (directory,
    editorial, news). **Owner decision B.**
-8. **Directory body:** `ArchiveDirectoryStatus` (5), `ArchiveEmptyState` (8; some buttons miss
+8. **Status + empty state DONE** **Directory body:** `ArchiveDirectoryStatus` (5), `ArchiveEmptyState` (8; some buttons miss
    `p-0`), `ArchiveDirectoryBody` (controls → divider → results, 5; divider margin and gutter
    drift). `news/index.vue:32-39` hand-rolls `ArchiveDirectoryHero` → ledger optional, use it.
    The hero `facts` joiner (3 copies, one with a literal NBSP) moves into the hero.

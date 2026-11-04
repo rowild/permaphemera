@@ -168,11 +168,7 @@ definePageMeta({ navActive: 'galleries' })
         <div class="[ venue-hero-copy ] relative z-2 tablet:row-start-2">
           <ArchiveBreadcrumb :items="[{ label: $t('navigation.galleries'), to: '/venues/' }, { label: venue.name }]" />
           <ArchiveEyebrow>{{ $t('venue.archiveVenue') }}</ArchiveEyebrow>
-          <h1 id="venue-title" class="[ venue-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">
-            {{ venue.name }}
-            <span class="mt-3 block max-w-116 text-city leading-[1.02] text-archive-red">{{ venue.city }}</span>
-          </h1>
-          <p class="[ venue-hero-lede ] my-0 mt-[1.6rem] mb-[1.85rem] max-w-136 text-lede leading-[1.42] text-archive-body compact:mt-4 compact:mb-4 compact:text-base compact:leading-normal">{{ venue.lede ?? $t('venue.fallbackLede', { city: venue.city }) }}</p>
+          <ArchiveRecordTitle title-id="venue-title" :title="venue.name" :subtitle="venue.city" :lede="venue.lede ?? $t('venue.fallbackLede', { city: venue.city })" />
 
           <dl class="[ venue-contact-list ] m-0">
             <ArchiveMetadataRow :label="$t('venue.address')" variant="venue">
@@ -227,17 +223,7 @@ definePageMeta({ navActive: 'galleries' })
           </div>
         </div>
 
-        <figure class="[ venue-hero-figure ] archive-venue-hero-artwork relative m-0 pt-[1.1rem] pr-4 pb-10 pl-0 tablet:row-start-1 compact:mx-[-0.45rem] compact:pr-0">
-          <ArchiveFramedImage
-            class="[ venue-hero-image ] aspect-[1.28] rotate-[0.65deg] tablet:aspect-[1.7] compact:aspect-[1.28] compact:rotate-0"
-            :src="venue.hero_image ?? venue.image"
-            :alt="venue.hero_image_alt ?? $t('venue.fallbackAlt', { name: venue.name, city: venue.city })"
-          />
-          <figcaption class="[ venue-hero-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic">
-            <span class="shrink-0 whitespace-nowrap not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
-            {{ venue.image_caption ?? $t('venue.fallbackCaption', { name: venue.name, city: venue.city }) }}
-          </figcaption>
-        </figure>
+        <ArchiveRecordFigure class="[ venue-hero-figure ] pb-10 tablet:row-start-1" image-class="[ venue-hero-image ] aspect-[1.28] tablet:aspect-[1.7] compact:aspect-[1.28]" :src="venue.hero_image ?? venue.image" :alt="venue.hero_image_alt ?? $t('venue.fallbackAlt', { name: venue.name, city: venue.city })" :caption="venue.image_caption ?? $t('venue.fallbackCaption', { name: venue.name, city: venue.city })" />
 
         <ArchiveScrollCue target="#venue-exhibitions" :label="$t('venue.continue')" />
       </section>

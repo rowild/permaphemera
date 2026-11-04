@@ -30,8 +30,7 @@ usePageSeo(`/persons/${slug}/`)
         <div class="[ person-hero-copy ] relative z-2">
           <ArchiveBreadcrumb :items="person.isArtist ? [{ label: $t('artists.breadcrumb'), to: '/artists/' }, { label: person.name }] : [{ label: person.name }]" />
           <ArchiveEyebrow v-if="roleLine">{{ roleLine }}</ArchiveEyebrow>
-          <h1 id="person-title" class="[ person-hero-title ] m-0 font-display text-hero font-light leading-[0.92] compact:text-5xl compact:leading-none">{{ person.name }}</h1>
-          <p class="[ person-hero-lede ] my-0 mt-[1.6rem] mb-[1.85rem] max-w-136 text-lede leading-[1.42] text-archive-body compact:mt-4 compact:mb-4 compact:text-base compact:leading-normal">{{ person.lede ?? $t(person.roles.length ? 'persons.fallbackLede' : 'persons.fallbackLedeNoRole', { name: person.name, roles: roleSentence }) }}</p>
+          <ArchiveRecordTitle title-id="person-title" :title="person.name" :lede="person.lede ?? $t(person.roles.length ? 'persons.fallbackLede' : 'persons.fallbackLedeNoRole', { name: person.name, roles: roleSentence })" />
 
           <dl class="[ person-facts ] m-0">
             <ArchiveMetadataRow v-if="person.born" :label="$t('persons.born')" variant="venue">
@@ -72,18 +71,7 @@ usePageSeo(`/persons/${slug}/`)
           </section>
         </div>
 
-        <figure v-if="person.image" class="[ person-hero-figure ] archive-venue-hero-artwork relative m-0 pt-[1.1rem] pr-4 pb-10 pl-0 tablet:row-start-1 compact:mx-[-0.45rem] compact:pr-0">
-          <ArchiveFramedImage
-            class="[ person-hero-image ] rotate-[0.65deg] compact:rotate-0"
-            :class="person.image.fromExhibition ? 'aspect-[1.28]' : 'aspect-[0.8] tablet:w-full tablet:max-w-md'"
-            :src="person.image.src"
-            :alt="person.image.alt"
-          />
-          <figcaption v-if="person.image.caption || person.image.fromExhibition" class="[ person-hero-caption ] mt-[0.9rem] mr-0 mb-0 ml-[1.4rem] flex items-center gap-[0.65rem] text-sm text-archive-muted italic">
-            <span class="shrink-0 whitespace-nowrap not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.figure') }}</span>
-            {{ person.image.caption ?? (person.image.fromExhibition ? $t('persons.fromExhibition', { title: person.image.fromExhibition }) : '') }}
-          </figcaption>
-        </figure>
+        <ArchiveRecordFigure v-if="person.image" class="[ person-hero-figure ] pb-10 tablet:row-start-1" :image-class="['[ person-hero-image ]', person.image.fromExhibition ? 'aspect-[1.28]' : 'aspect-[0.8] tablet:w-full tablet:max-w-md']" :src="person.image.src" :alt="person.image.alt" :caption="person.image.caption ?? (person.image.fromExhibition ? $t('persons.fromExhibition', { title: person.image.fromExhibition }) : undefined)" />
       </section>
 
       <ArchiveExhibitionsDivider />
