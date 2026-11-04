@@ -11,9 +11,10 @@
 #                                                only these tours, then the cache purge
 #                                                (the Tour Editor's upload list)
 #   pnpm run deploy:hetzner -- … --plan          print what would happen; change nothing
-#   pnpm run deploy:hetzner -- … --skip-verify   build without the tests and checks first
+#   pnpm run deploy:hetzner -- … --skip-verify   build without the tests and checks first,
+#                                                and upload without the browser tests
 #                                                (an emergency only; they run by default
-#                                                before every site build since 2026-11-04)
+#                                                before every site upload since 2026-11-04)
 #
 # The three modes exist since 2026-10-29: a viewer update or one published tour
 # used to check and push every tour copy here, one connection per tour — slow
@@ -157,6 +158,13 @@ if [[ "$SITE" == 1 ]]; then
   # Fresh on every deploy, also with --skip-build, so newly published records get theirs.
   echo "[deploy] SEO snapshots"
   node scripts/seo-snapshot.mjs
+
+  # The browser tests (test/e2e) open the built pages at three screen widths, with the live data.
+  if [[ "$SKIP_VERIFY" != 1 ]]; then
+    echo "[deploy] browser tests against .output/public (desktop, tablet, phone)"
+    pkill -f "serve --single --no-clipboard -l 4993" 2>/dev/null || true
+    pnpm -s test:e2e
+  fi
 
   echo "[deploy] rsync .output/public -> $HOST:$REMOTE_DIR (tours excluded)"
   rsync -az --delete --exclude '/media/tours/' -e "ssh -i $KEY -o BatchMode=yes" .output/public/ "$HOST:$REMOTE_DIR/"

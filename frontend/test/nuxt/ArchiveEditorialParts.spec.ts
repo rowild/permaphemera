@@ -41,7 +41,15 @@ describe('ArchiveActionBand', () => {
 describe('ArchiveMethodFigure', () => {
   it('shows the method picture with its label and caption', async () => {
     const figure = await mountSuspended(ArchiveMethodFigure, { props: { alt: 'Rundgang', label: 'Rundgang', caption: 'Verbundene Blickpunkte' } })
-    expect(figure.get('img').attributes('src')).toBe('/media/images/landing/method/archive-method-composition.png')
+    expect(figure.get('img').attributes('src')).toBe('/media/images/landing/method/archive-method-composition.webp')
     expect(figure.get('figcaption').text()).toMatch(/^Rundgang\s+Verbundene Blickpunkte$/)
+  })
+
+  // On tablets and phones the picture stands above the heading: without its size the heading
+  // jumped about 520 px down when the picture arrived (layout shift 0.34 on /about/).
+  it('tells the browser the picture\'s size, so its place is kept before it loads', async () => {
+    const img = (await mountSuspended(ArchiveMethodFigure, { props: { alt: '', label: '', caption: '' } })).get('img')
+    expect(img.attributes('width')).toBe('1087')
+    expect(img.attributes('height')).toBe('615')
   })
 })

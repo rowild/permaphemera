@@ -55,14 +55,9 @@ The configured development URL is `http://localhost:4991`.
 Build and preview production output:
 
 ```bash
-pnpm check:data
-pnpm check:tailwind
-pnpm check:i18n
-pnpm check:artists
-pnpm check:directories
-pnpm check:links
-pnpm check:venues
-pnpm check:mobile
+pnpm verify          # unit + component tests, ESLint, check:tailwind, check:conventions, check:preloader, nuxt typecheck
+pnpm verify:live     # check:data, check:public (read Directus)
+pnpm test:e2e        # browser tests (test/e2e) against the built .output/public, desktop/tablet/phone
 pnpm build
 pnpm generate
 pnpm preview

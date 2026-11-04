@@ -20,7 +20,7 @@ const big = computed(() => props.group === 'current')
 
 <template>
   <section class="[ exhibition-time-group ] min-w-0" :aria-labelledby="`exhibitions-${props.group}-title`">
-    <ArchiveGroupLabel class="pl-1" :id="`exhibitions-${props.group}-title`" :tone="big ? 'red' : 'muted'">
+    <ArchiveGroupLabel :id="`exhibitions-${props.group}-title`" class="pl-1" :tone="big ? 'red' : 'muted'">
       {{ $t(`exhibitionsDirectory.groups.${props.group}.title`) }}
     </ArchiveGroupLabel>
 

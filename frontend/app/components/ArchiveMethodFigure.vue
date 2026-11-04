@@ -12,7 +12,9 @@ const props = defineProps<{
   <figure class="[ method-figure ] relative m-0 tablet:row-start-1">
     <img
       class="block h-auto w-full object-contain filter-[drop-shadow(0_1.15rem_1.25rem_rgba(69,46,24,0.2))]"
-      src="/media/images/landing/method/archive-method-composition.png"
+      :src="METHOD_PICTURE.src"
+      :width="METHOD_PICTURE.width"
+      :height="METHOD_PICTURE.height"
       :alt="props.alt"
     >
     <figcaption class="mt-3 ml-[clamp(1rem,4vw,3.5rem)] flex flex-wrap items-center gap-x-3 gap-y-1 font-display text-sm text-archive-muted compact:mt-2 compact:ml-2 compact:text-xs">

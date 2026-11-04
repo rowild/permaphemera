@@ -11,7 +11,8 @@ Match the mockups closely across desktop and mobile before expanding scope.
 
 ```
 pnpm check:tailwind   # canonical utilities, marker spacing, component <style> blocks
-pnpm check:i18n       # message parity, overlay coverage, locale switching
+pnpm verify           # tests (locale parity in test/unit/locales.spec.ts), lint, conventions, types
+pnpm test:e2e         # browser tests at 1440/1024/390 against .output/public
 ```
 
 **Then apply the general per-page bar** in `docs/STYLE_GUIDE.md` §26 — 44 checkboxes covering brand, layout, components, images, responsive behavior, accessibility, and performance. That section is the source of truth for anything that applies to *every* page; do not duplicate it here.

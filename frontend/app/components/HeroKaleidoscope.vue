@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import { gsap } from 'gsap'
-import * as THREE from 'three'
+import type * as THREE from 'three'
+import { loadThree } from '~/utils/threeRuntime'
 import {
   describeArrowHead,
   describeOrbitArc,
@@ -39,6 +40,7 @@ const LOADER_FADE_MS = 400
 // dial's ring dissolves into the arrows drawing along the same orbit.
 const LOADER_INTRO_OVERLAP_SECONDS = 0.1
 
+let three: typeof THREE
 const containerRef = ref<HTMLDivElement | null>(null)
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const readySlices = ref<boolean[]>(Array.from({ length: sliceCount }, () => false))
@@ -57,9 +59,7 @@ const loadingSliceIndex = ref(0)
 const loadingFraction = ref(0)
 const kaleidoscopeViewSize = 2.35
 const cameraDistance = 3
-const cameraFov = THREE.MathUtils.radToDeg(
-  2 * Math.atan(kaleidoscopeViewSize / (2 * cameraDistance))
-)
+const cameraFov = (2 * Math.atan(kaleidoscopeViewSize / (2 * cameraDistance)) * 180) / Math.PI
 const radialOffsetPixels = 10
 // Keep antialiased blade tips inside the WebGL viewport. Scaling the complete
 // wheel preserves the shared circular origin and every blade's radial spacing.
@@ -175,7 +175,7 @@ let lastActivationType: 'mouse' | 'touch' | 'pen' | 'keyboard' | null = null
 function createTriangleGeometry() {
   const innerOffset = 0
 
-  const geometry = new THREE.BufferGeometry()
+  const geometry = new three.BufferGeometry()
   const vertices = new Float32Array([
     innerOffset, 0, 0,
     triangleOuterRadius, 0, 0,
@@ -187,8 +187,8 @@ function createTriangleGeometry() {
     0.92, 0.92
   ])
 
-  geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
-  geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2))
+  geometry.setAttribute('position', new three.BufferAttribute(vertices, 3))
+  geometry.setAttribute('uv', new three.BufferAttribute(uvs, 2))
   geometry.setIndex([0, 1, 2])
   geometry.computeVertexNormals()
 
@@ -231,8 +231,8 @@ function createLoadingIconTexture() {
     context.stroke()
   }
 
-  const texture = new THREE.CanvasTexture(canvas)
-  texture.colorSpace = THREE.SRGBColorSpace
+  const texture = new three.CanvasTexture(canvas)
+  texture.colorSpace = three.SRGBColorSpace
 
   return texture
 }
@@ -697,7 +697,7 @@ function syncBladeLinkRotations() {
     const pivot = slicePivots[index]
     if (!pivot) return
 
-    setBladeLinkRotation(link, index, -THREE.MathUtils.radToDeg(pivot.rotation.z))
+    setBladeLinkRotation(link, index, -three.MathUtils.radToDeg(pivot.rotation.z))
   })
 }
 
@@ -1396,17 +1396,21 @@ onMounted(async () => {
     loaderShownAt = performance.now()
   }, LOADER_GRACE_MS)
 
-  scene = new THREE.Scene()
-  camera = new THREE.PerspectiveCamera(cameraFov, 1, 0.1, 10)
+  // Three.js loads here, not with the page: the hero text and the loading dial need none of it.
+  three = await loadThree()
+  if (!isActive || !containerRef.value || !canvasRef.value) return
+
+  scene = new three.Scene()
+  camera = new three.PerspectiveCamera(cameraFov, 1, 0.1, 10)
   camera.position.z = cameraDistance
 
-  renderer = new THREE.WebGLRenderer({
+  renderer = new three.WebGLRenderer({
     canvas: canvasRef.value,
     antialias: true,
     alpha: true,
     preserveDrawingBuffer: true
   })
-  renderer.outputColorSpace = THREE.SRGBColorSpace
+  renderer.outputColorSpace = three.SRGBColorSpace
   renderer.setClearColor(0x000000, 0)
 
   // Size and clear the drawing buffer before any image is requested. Without
@@ -1472,24 +1476,24 @@ onMounted(async () => {
   )
 
   loadingIconTexture = createLoadingIconTexture()
-  const wheel = new THREE.Group()
+  const wheel = new three.Group()
   wheel.scale.setScalar(bladeWheelScale)
 
   textures.forEach((texture, index) => {
     const geometry = createTriangleGeometry()
-    const layerMaterials = [0, 1].map(() => new THREE.MeshBasicMaterial({
+    const layerMaterials = [0, 1].map(() => new three.MeshBasicMaterial({
       depthWrite: false,
       map: texture,
       // Built invisible: the blades wait folded edge-on, and an opaque blade
       // seen edge-on is a thin line from the centre; twelve of them flashed
       // as a star until the intro faded them in (measured 2026-10-22).
       opacity: 0,
-      side: THREE.DoubleSide,
+      side: three.DoubleSide,
       transparent: true
     }))
-    const layerGroups = [new THREE.Group(), new THREE.Group()]
+    const layerGroups = [new three.Group(), new three.Group()]
     const meshes = layerMaterials.map((material, layerIndex) => {
-      const mesh = new THREE.Mesh(geometry, material)
+      const mesh = new three.Mesh(geometry, material)
       mesh.position.set(-triangleCentroidX, -triangleCentroidY, 0)
       mesh.renderOrder = 40 + index * 2 + layerIndex
       mesh.visible = layerIndex === 0
@@ -1497,7 +1501,7 @@ onMounted(async () => {
       layerGroups[layerIndex]?.add(mesh)
       return mesh
     })
-    const loadingMaterial = new THREE.SpriteMaterial({
+    const loadingMaterial = new three.SpriteMaterial({
       map: loadingIconTexture,
       color: 0xffffff,
       depthTest: false,
@@ -1505,11 +1509,11 @@ onMounted(async () => {
       opacity: 0,
       transparent: true
     })
-    const loadingSprite = new THREE.Sprite(loadingMaterial)
-    const counterPivot = new THREE.Group()
-    const bladeAxisPivot = new THREE.Group()
-    const bladePivot = new THREE.Group()
-    const pivot = new THREE.Group()
+    const loadingSprite = new three.Sprite(loadingMaterial)
+    const counterPivot = new three.Group()
+    const bladeAxisPivot = new three.Group()
+    const bladePivot = new three.Group()
+    const pivot = new three.Group()
 
     pivot.rotation.z = index * sliceAngle
     // Align a dedicated local X-axis with the triangle median. Folding and

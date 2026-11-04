@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<{
 })
 
 const menuOpen = ref(false)
+const menuButtonRef = ref<HTMLButtonElement | null>(null)
 // Owner, 2026-11-04: the header stays at the top and shrinks to a slim bar while the page is
 // scrolled. Every part reads the mark through `group-data-compact/header:`; the solid background
 // is in main.css (.archive-header-surface[data-compact]).
@@ -39,6 +40,15 @@ const secondaryGroups = computed(() => {
     .map((group) => ({ ...group, links: group.links.filter((l) => !mainKeys.has(l.key)) }))
 })
 
+// Escape closes the menu wherever the focus is in the header (also on the menu button right after
+// a click); focus inside the closing menu goes back to the button.
+const closeMenu = () => {
+  if (!menuOpen.value) return
+  const focusInMenu = document.activeElement?.closest('#mobile-primary-navigation')
+  menuOpen.value = false
+  if (focusInMenu) menuButtonRef.value?.focus()
+}
+
 const runAction = (action?: string) => {
   menuOpen.value = false
   if (action === 'cookie-settings') showCookieNotice()
@@ -46,7 +56,7 @@ const runAction = (action?: string) => {
 </script>
 
 <template>
-  <header class="[ site-header ] archive-header-surface group/header sticky top-0 z-30 grid min-h-[6.4rem] transition-[min-height,padding] duration-300 ease-out motion-reduce:transition-none data-compact:min-h-16 data-compact:pt-1 tablet:data-compact:min-h-14 compact:data-compact:min-h-12 compact:data-compact:pt-1 grid-cols-[auto_minmax(0,1fr)_auto] content-center items-baseline px-gutter pt-3 tablet:min-h-24 tablet:grid-cols-[1fr_auto] tablet:items-center tablet:pt-3 compact:min-h-16 compact:grid-cols-[minmax(0,1fr)_auto] compact:content-start compact:gap-y-0 compact:px-4 compact:pt-2 compact:pb-0" :data-compact="compact || undefined">
+  <header class="[ site-header ] archive-header-surface group/header sticky top-0 z-30 grid min-h-[6.4rem] transition-[min-height,padding] duration-300 ease-out motion-reduce:transition-none data-compact:min-h-16 data-compact:pt-1 tablet:data-compact:min-h-14 compact:data-compact:min-h-12 compact:data-compact:pt-1 grid-cols-[auto_minmax(0,1fr)_auto] content-center items-baseline px-gutter pt-3 tablet:min-h-24 tablet:grid-cols-[1fr_auto] tablet:items-center tablet:pt-3 compact:min-h-16 compact:grid-cols-[minmax(0,1fr)_auto] compact:content-start compact:gap-y-0 compact:px-4 compact:pt-2 compact:pb-0" :data-compact="compact || undefined" @keydown.esc="closeMenu">
     <a class="[ skip-link ] absolute left-5 -top-20 z-60 border border-archive-red bg-archive-paper px-4 py-[0.7rem] text-archive-ink focus:top-[0.65rem]" :href="`#${props.skipTarget}`">{{ $t('site.skipToContent') }}</a>
     <p data-header-tagline class="[ header-eyebrow ] col-span-full m-0 max-h-4 translate-y-1 self-end overflow-hidden transition-[max-height,margin] duration-300 ease-out motion-reduce:transition-none group-data-compact/header:max-h-0 pl-[2.65rem] font-display text-3xs leading-none font-medium tracking-widest text-archive-red/82 compact:translate-y-2 compact:pl-8 narrow:pl-7">
       {{ $t('site.headerTagline') }}
@@ -84,6 +94,7 @@ const runAction = (action?: string) => {
     <div class="[ header-actions ] flex items-center justify-end justify-self-end self-center gap-[1.4rem] compact:gap-2">
       <ArchiveLanguageSwitch data-header-language @click="menuOpen = false" />
       <button
+        ref="menuButtonRef"
         class="[ mobile-menu ] inline-flex min-h-11 w-11 items-center justify-end border-0 bg-transparent text-archive-ink"
         type="button"
         :aria-label="menuOpen ? $t('navigation.closeMenu') : $t('navigation.openMenu')"
@@ -103,7 +114,6 @@ const runAction = (action?: string) => {
         pointer-side="top"
         :pointer-offset="999"
         :aria-label="$t('navigation.mobileAria')"
-        @keydown.esc="menuOpen = false"
       >
         <div class="archive-header-menu-surface relative z-1 grid overflow-hidden">
           <div class="[ mobile-nav-primary ] hidden tablet:grid gap-1 px-4 pt-4 compact:px-3 compact:pt-3">

@@ -1,20 +1,27 @@
 # Changelog
 
-## 0.0.61 - 2026-11-05 00:10:00 CET
+## 0.0.62 - 2026-11-04 19:53:50 CET
+
+- The "about" and "how it works" pages no longer jump on tablets and phones while the method picture loads; the picture is 147 KB instead of 1 MB, and on the start page it loads only when it comes into view.
+- The start page shows sooner: the 3D library of the picture wheel (734 KB) loads on its own, after the page is visible.
+- The header menu closes with Escape also right after it was opened with a click.
+- Browser tests at three screen widths (1440, 1024, 390 px) run against the built site before every upload; they replace six older checks that only read the source code.
+
+## 0.0.61 - 2026-11-04 18:41:03 CET
 
 - The language switch goes to the other language in one step (before: two navigations); the choice is remembered as before.
 - One shared "today" for the whole site instead of one timer per exhibition card.
 - Shared helpers for links and records reached through Directus junction tables; components use Nuxt's auto-imports throughout (no visible change).
 
-## 0.0.60 - 2026-11-04 23:30:00 CET
+## 0.0.60 - 2026-11-04 18:23:06 CET
 
 - Section headings share one line height per size (the one most sections already had). Six headings that were set looser now match: the closing bands of about, how it works and contact, the process heading, "Jetzt und demnächst" and the start page's news column (5–9 px shorter on desktop).
 
-## 0.0.59 - 2026-11-04 23:00:00 CET
+## 0.0.59 - 2026-11-04 18:15:16 CET
 
 - No visible change: the method steps, the gallery card ornament and the page band width and gutter (now theme tokens) each live in one place.
 
-## 0.0.58 - 2026-11-04 22:30:00 CET
+## 0.0.58 - 2026-11-04 18:03:58 CET
 
 - On phones the fact boxes of the contact and legal pages put each label above its value; long labels ("Verantwortlich", "Kontaktperson") ran into the value before.
 - English dates on exhibition cards are written in British order ("19 Dec 2026"), as everywhere else.
@@ -23,33 +30,33 @@
 - Small alignments from merging copies: the legal pages' sections are spaced like the about page, the related exhibitions grid has two columns on tablets, the organisations page's group headings match the others.
 - Shared components instead of copies (no other visible change): link lists, card grids, statements, group headings, artist letter groups, the fact box, the owner's contact data, the date format.
 
-## 0.0.57 - 2026-11-04 21:20:00 CET
+## 0.0.57 - 2026-11-04 17:44:41 CET
 
 - Contact and the legal pages share one hero layout (title beside the fact box); the legal pages' fact box is a little wider, as on the contact page.
 - Shared parts instead of copies, with no visible change: the "no results" block of seven lists, the title and photo of gallery, organisation, person and sponsor pages, the hero frame, closing band and method picture of the text pages.
 
-## 0.0.56 - 2026-11-04 20:40:00 CET
+## 0.0.56 - 2026-11-04 17:25:15 CET
 
 - One type scale for every page hero (owner decision B): the text pages (about, how it works, contact, the legal pages) and the news overview now set their title and intro like the index pages.
 
-## 0.0.55 - 2026-11-04 20:15:00 CET
+## 0.0.55 - 2026-11-04 17:21:31 CET
 
 - The hero wheel on the start page draws only while it is on screen (before: every frame, also when the page was scrolled far down) — less battery and processor load on phones.
 - Page changes compute the archive once for the whole site instead of once per component; rich texts are cleaned once instead of twice.
 - The small capital lines above headings are one shared component (no visible change).
 
-## 0.0.54 - 2026-11-04 19:30:00 CET
+## 0.0.54 - 2026-11-04 17:09:20 CET
 
 - Breadcrumbs follow one pattern on every page: they start at the start page (exhibition, gallery and organisation pages lacked it) and end with the current page, which screen readers announce as such.
 - Search and filters on the index and gallery pages: clearing search and filter together always clears both; an unknown federal state or letter in a link shows everything instead of an empty list.
 - Detail pages share one record lookup and 404 (no visible change).
 
-## 0.0.53 - 2026-11-04 18:45:00 CET
+## 0.0.53 - 2026-11-04 16:56:28 CET
 
 - The header stays at the top while a page scrolls and shrinks to a slim bar on solid paper (the tagline folds away, brand, logo and menu get smaller; desktop 102 → 64 px, tablet 96 → 56 px, phone 64 → 48 px). Near the top it grows back. Before, it scrolled away, because the page frame clipped it.
 - One page frame for every page (a Nuxt layout): header, page and footer are now separate landmarks for screen readers (the header and footer sat inside the main content). The start page keeps its own frame for its intro, with the same structure.
 
-## 0.0.52 - 2026-11-04 18:10:00 CET
+## 0.0.52 - 2026-11-04 16:44:52 CET
 
 - A count shows once per page: the line "22 Ausstellungseinträge im Archiv", "12 von 12 Galerien …" and "19 von 19 Einträgen" shows only while a search or filter is active (the artists line and a gallery's "9 von 9" stay). The gallery page names its year once and drops the repeated record count from its ledger.
 - The exhibition page shows its short text and its tour notice once; artists and their websites share one row (the website as a small link icon next to the name).
@@ -57,13 +64,13 @@
 - "Im Archiv" no longer appears twice in a heading pair (person and exhibition pages).
 - Texts follow the text rules: no "Sie" in search intros, the preview notice and the contact page; "So funktioniert's" speaks of tours, never documents; the archive does not select or curate (how-it-works, about, contact, organisations).
 
-## 0.0.51 - 2026-11-04 17:30:00 CET
+## 0.0.51 - 2026-11-04 16:36:12 CET
 
 - Images load at the size the layout needs, as WebP, instead of the full original: the start page drops from about 16 MB to 1.3 MB of images, the galleries page from 18 MB to 0.7 MB, a detail page to about 0.3 MB (measured at 1440 px, 2× screen). The hero wheel and the cards ask for the same address, so a photo shown twice loads once; the gallery preview preloads exactly the file it then shows.
 - The site data arrives earlier (its request starts before the language file) and page changes compute faster (the loaded data is no longer watched deeply by Vue; about 8× faster per pass).
 - Checks before every deploy (`pnpm verify`, `pnpm verify:live`), a pre-commit hook and ESLint with Nuxt's config; ESLint's first run found two pages with a second root node, a computed value without a result and a footer prop the type check could not see — all fixed.
 
-## 0.0.50 - 2026-11-04 16:40:00 CET
+## 0.0.50 - 2026-11-04 16:15:14 CET
 
 - The four index pages (exhibitions, galleries, organisations, artists) share one hero: the breadcrumb sits at the same height on every page, the text below takes the room it needs, and the hero is at least 480px high on desktop and tablet (organisations was lower).
 - Unknown addresses show the site's own "Seite nicht gefunden" / "Page not found" in the language of the address, with the page language set, and lead back to the start page of that language (before: an English framework message and always the German start page).

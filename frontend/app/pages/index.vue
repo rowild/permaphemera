@@ -623,7 +623,10 @@ const openRandomTour = (event: MouseEvent) => {
         <div class="[ method-image-stack ] relative z-3 isolate compact:mx-[-0.7rem]">
           <img
             class="block h-auto w-full compact:transform-none"
-            src="/media/images/landing/method/archive-method-composition.png"
+            :src="METHOD_PICTURE.src"
+            :width="METHOD_PICTURE.width"
+            :height="METHOD_PICTURE.height"
+            loading="lazy"
             :alt="$t('landing.method.imageAlt')"
           >
         </div>

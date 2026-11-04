@@ -1,6 +1,7 @@
-import * as THREE from 'three'
+import type * as THREE from 'three'
 import { directusImageUrl } from '~/utils/archiveAsset'
 import { createTextureCache } from '~/utils/textureCache'
+import { loadThree, useThree } from '~/utils/threeRuntime'
 
 // The twelve displayed slices plus one rotation's worth of replacements.
 const TEXTURE_CAPACITY = 24
@@ -26,12 +27,13 @@ let fallbackTexture: THREE.Texture | null = null
 let activeProgress: ProgressHandler | null = null
 
 function prepareTexture(texture: THREE.Texture) {
-  texture.colorSpace = THREE.SRGBColorSpace
-  texture.wrapS = THREE.ClampToEdgeWrapping
-  texture.wrapT = THREE.ClampToEdgeWrapping
+  const three = useThree()
+  texture.colorSpace = three.SRGBColorSpace
+  texture.wrapS = three.ClampToEdgeWrapping
+  texture.wrapT = three.ClampToEdgeWrapping
   texture.generateMipmaps = true
-  texture.minFilter = THREE.LinearMipmapLinearFilter
-  texture.magFilter = THREE.LinearFilter
+  texture.minFilter = three.LinearMipmapLinearFilter
+  texture.magFilter = three.LinearFilter
 
   return texture
 }
@@ -66,10 +68,10 @@ function downloadImage(url: string) {
 }
 
 async function loadTextureFromNetwork(url: string) {
-  const blob = await downloadImage(url)
+  const [blob, three] = await Promise.all([downloadImage(url), loadThree()])
   const blobUrl = URL.createObjectURL(blob)
 
-  textureLoader ??= new THREE.TextureLoader()
+  textureLoader ??= new three.TextureLoader()
 
   try {
     const texture = await textureLoader.loadAsync(blobUrl)
@@ -124,8 +126,9 @@ export function getFallbackTexture(): THREE.Texture {
   canvas.width = 1
   canvas.height = 1
 
-  fallbackTexture = new THREE.CanvasTexture(canvas)
-  fallbackTexture.colorSpace = THREE.SRGBColorSpace
+  const three = useThree()
+  fallbackTexture = new three.CanvasTexture(canvas)
+  fallbackTexture.colorSpace = three.SRGBColorSpace
 
   return fallbackTexture
 }

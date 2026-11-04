@@ -176,4 +176,4 @@ disappear." (impeccable, clarify)
    change / delete / move / check), the reason, the new text (de + en).
 2. The owner approves the table, or changes it.
 3. Change the locale files (and Directus texts, if any), in German and English together.
-4. `pnpm check:i18n`, look at the page at 1440 px and 393 px, then release.
+4. `pnpm test` (the locale test checks both languages), look at the page at 1440 px and 393 px, then release.

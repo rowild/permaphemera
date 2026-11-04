@@ -75,7 +75,24 @@ async function main() {
     .filter((exhibition) => !['restricted', 'unavailable'].includes(exhibition.tour_status) && seoDescriptions(exhibition).some((text) => text.length > roomForTour))
     .map((exhibition) => exhibition.slug)
 
+  // Moved here from check-directory-routes and check-i18n-privacy (2026-11-05): data facts belong
+  // to the data check; each list names the records that fail.
+  const locationById = new Map(locations.map((location) => [location.id, location]))
+  const galleriesWithoutCity = venues.filter((venue) => { const city = locationById.get(venue.location); return !city || !['title', 'postal_code', 'state', 'country'].every((field) => city[field]) }).map((venue) => venue.slug)
+  const publishedWithoutFacts = venues.filter((venue) => venue.status === 'published' && !['address', 'image_alt', 'archive_number', 'image'].every((field) => venue[field])).map((venue) => venue.slug)
+  const STABLE_FIELDS = ['slug', 'location', 'part_of', 'venue_slug', 'start_date', 'end_date', 'image', 'hero_image', 'source_pdf', 'website_url']
+  const translatedStable = [exhibitions, venues, locations].flat().filter((record) => (record.translations ?? []).some((entry) => entry.languages_code === 'de' && STABLE_FIELDS.some((field) => field in entry))).map((record) => record.slug)
+  const footerId = navigations.find((nav) => nav.key === 'footer')?.id
+  const legalNotInFooter = ['imprint', 'privacy', 'terms', 'accessibility'].filter((route) => !navigationItems.some((item) => item.navigation === footerId && item.path === `/${route}/`))
+  const mainPaths = navigationItems.filter((item) => item.navigation === navigations.find((nav) => nav.key === 'main')?.id).map((item) => item.path)
+  const mainMissing = ['/venues/', '/exhibitions/'].filter((path) => !mainPaths.includes(path))
+
   const checks = [
+    [named('every gallery resolves a town with title, postal code, federal state and country', galleriesWithoutCity), galleriesWithoutCity.length === 0],
+    [named('every published gallery has address, image, image text and archive number', publishedWithoutFacts), publishedWithoutFacts.length === 0],
+    [named('no German translation carries a stable field (slug, dates, images, links)', translatedStable), translatedStable.length === 0],
+    [named('the footer menu links imprint, privacy, terms and accessibility', legalNotInFooter), legalNotInFooter.length === 0],
+    [named('the main menu links the gallery and exhibition indexes', mainMissing), mainMissing.length === 0],
     // Content counts are the owner's business and change in Directus every day,
     // so nothing here pins a number. The checks below are structural: each
     // collection the site needs is present and non-empty, and every reference

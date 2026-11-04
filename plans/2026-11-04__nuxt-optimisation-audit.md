@@ -1,6 +1,6 @@
 # Nuxt optimisation audit — frontend
 
-Date: 2026-11-04. Status: **in progress** (owner: "Go!", 2026-11-04). Owner decisions:
+Date: 2026-11-04. Status: **done except 1.3b and 1.6 (optional)** (owner: "Go!", 2026-11-04). Owner decisions:
 A = the header stays at the top and shrinks to a slim bar on scroll (smaller text, padding,
 margins, graphics); B = one hero type scale; C = `@nuxt/test-utils`. Text findings: see phase 6.
 Trigger: the four index heroes were four drifting copies (fixed the same day with
@@ -38,7 +38,23 @@ Item 3 was no bug (`newsMarkdown.ts` localizes the links before render). Found o
    `VenueExhibitionLedgerRow.vue:46`. Fix: `experimental.defaults.nuxtLink.trailingSlash:
    'append'`.
 
-## Phase 1 — load time (biggest gain for visitors) — 1.1, 1.2, 1.3a DONE, release 0.0.51
+## Phase 1 — load time (biggest gain for visitors) — 1.1, 1.2, 1.3a DONE, release 0.0.51; 1.4, 1.7 DONE 0.0.62
+
+1.4 done: `utils/threeRuntime.ts` (`loadThree()` once, `useThree()` after it); `HeroKaleidoscope`
+awaits it in `onMounted` after the loader's grace timer, `kaleidoscopeTextures` with the first
+download. Three.js is its own 734 KB file, requested at about 1.3–1.9 s; the start page's own file
+is 137 KB. Intro frames at 150/400/900/1600/3000/6000 ms: no flash. Guarded by
+`check:conventions` (only `import type` from `'three'`) and the e2e test "the start page wheel
+draws all twelve pictures and loads Three.js on its own".
+
+1.7 measured instead of built: layout shift on five pages at three widths is 0.000–0.003; the
+font swap does not move the pages. The one big shift (0.34 on `/about/` and `/how-it-works/` on
+tablets, 0.20 on phones) came from the method picture without a size: fixed with
+`utils/methodPicture.ts` (width/height, WebP 147 KB instead of the 1 MB PNG, lazy on the start
+page) and an e2e test (layout shift < 0.1, own pictures < 300 KB). `@nuxt/fonts` not added.
+
+1.6 open (optional, owner's call): per-route `modulepreload` in the SEO snapshots; about one round
+trip on mobile.
 
 1.1 note: `@nuxt/image` was tried and removed again: its typings exclude `format` and `quality` for the
 Directus provider, and only its address builder was used. `utils/archiveAsset.ts`
@@ -161,7 +177,22 @@ No CI, no git hooks; `deploy-hetzner.sh` runs `nuxt generate` with no test or ch
    `vitest related --run` and `check:tailwind`.
 3. `@nuxt/eslint` (understands auto-imports; can take over "never `useSeoMeta`").
 
-## Phase 5 — test architecture (base DONE 2026-11-04: `@nuxt/test-utils`, `test/nuxt/`)
+## Phase 5 — test architecture — DONE, release 0.0.62
+
+Done: Playwright (`playwright.config.ts`, `test/e2e/`: 115 tests at 1440/1024/390 against the
+built `.output/public`, about 1.5 min; `pnpm test:e2e`; in `deploy:hetzner` after the build and the
+SEO snapshots, before the upload). The live Directus allows only its own origins and 50 requests
+per second per address, so `test/e2e/fixtures.ts` sends every Directus request through one paced,
+cached helper per worker (a real visitor gets no 429: 62/45/48 requests, all 200, measured).
+`check:conventions` replaces the house rules of the six deleted scripts (`check-mobile-density`,
+`-archive-text-links`, `-venue-exhibition-browser`, `-artist-directory-modal`, `-directory-routes`,
+`-i18n-privacy`); data facts moved to `check:data` (92 checks); `check-kaleidoscope-preloader` 58 →
+21 checks, its unit tests moved to `test/unit`. Gates: `verify` = vitest + lint + tailwind +
+conventions + preloader + types; `verify:live` = data + public. Found on the way: the header menu
+did not close with Escape while the focus was on its button (fixed, `ArchiveHeader`).
+Still without a test: `useTourViewer` (fullscreen, close once), `ArchiveAlphabetRail` beyond the
+letter size.
+
 
 Target:
 1. `test/unit` (node): pure utils and resolvers, logic pulled out of pages (search, wheel preload
