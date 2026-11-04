@@ -122,10 +122,10 @@ definePageMeta({ navActive: 'artists' })
             <ArtistDirectoryGroup
               v-for="group in artistsByLetter"
               :key="group.letter"
-              :group="group"
+              :letter="group.letter"
+              :artists="group.artists"
               :open-artist-slug="openArtistSlug"
-              :preview-limit="artistsPerLetterPreview"
-              :show-more-to="artistLetterRoute(group.letter)"
+              :more="group.hasMore ? { count: group.total - artistsPerLetterPreview, to: artistLetterRoute(group.letter) } : undefined"
               @toggle="toggleArtistDetails"
               @close="openArtistSlug = ''"
             />

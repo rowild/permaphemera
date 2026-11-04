@@ -581,7 +581,7 @@ const openRandomTour = (event: MouseEvent) => {
           </ArchiveAlphabetRail>
 
           <div class="[ artist-columns ] archive-artist-column-rule columns-3 gap-10 tablet:columns-2 compact:columns-2 compact:gap-4">
-            <LandingArtistGroup
+            <ArtistDirectoryGroup
               v-for="group in artistsByLetter"
               :key="group.letter"
               :letter="group.letter"
