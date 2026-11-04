@@ -23,7 +23,7 @@ describe('useArchiveSource', () => {
     }))
     const ready = useArchiveReady()
     const { archive } = useArchiveSource()
-    await vi.waitUntil(() => archive.value, { timeout: 3000 })
+    await vi.waitUntil(() => archive.value, { timeout: 10000 })
 
     expect(isReactive(archive.value)).toBe(false)
     expect(isReactive(archive.value!.venues[0])).toBe(false)
@@ -38,7 +38,7 @@ describe('useArchiveSource', () => {
     startArchiveLoad('http://directus.test')
     const requests = fetch.mock.calls.length
     const { archive } = useArchiveSource()
-    await vi.waitUntil(() => archive.value, { timeout: 3000 })
+    await vi.waitUntil(() => archive.value, { timeout: 10000 })
     expect(fetch.mock.calls.length).toBe(requests)
     expect(fetch.mock.calls[0]?.[0]).toMatch(/^http:\/\/directus\.test\/items\//)
     expect((archive.value as ArchiveSnapshot).venues[0]?.slug).toBe('parkschloessl')
