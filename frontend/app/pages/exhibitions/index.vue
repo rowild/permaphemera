@@ -36,7 +36,7 @@ const exhibitionLedgerItems = computed(() => [
 const exhibitionFacts = computed(() => [
   t('exhibitionsDirectory.factExhibitions', venueExhibitions.value.length),
   t('exhibitionsDirectory.factVenues', exhibitionVenues.value)
-].map((fact) => fact.replaceAll(' ', '\u00A0')).join(' · '))
+])
 const timeGroups = computed(() => groupExhibitionsByTime(venueExhibitions.value, archiveToday.value))
 // Mobile: one slider per time group; current exhibitions in the larger cards.
 const SLIDES = { current: 5, upcoming: 5, past: 10 } as const

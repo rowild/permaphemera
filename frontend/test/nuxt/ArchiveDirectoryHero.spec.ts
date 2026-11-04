@@ -6,7 +6,7 @@ const props = {
   titleId: 'galleries-page-title',
   breadcrumb: 'Galleries',
   eyebrow: 'Exhibition places',
-  facts: '12 galleries · 4 states',
+  facts: ['12 galleries', '4 states'],
   title: 'Rooms that',
   accent: 'stay',
   intro: 'Every place an exhibition was recorded.',
@@ -41,7 +41,8 @@ describe('ArchiveDirectoryHero', () => {
   it('shows the facts instead of the eyebrow on mobile when there are facts', async () => {
     const eyebrow = (await hero()).get('.eyebrow')
     expect(eyebrow.get('.compact\\:hidden').text()).toBe('Exhibition places')
-    expect(eyebrow.get('.compact\\:inline').text()).toBe('12 galleries · 4 states')
+    // One line: the words of a fact never break apart (non-breaking spaces), the facts are joined by ·.
+    expect(eyebrow.get('.compact\\:inline').text()).toBe('12\u00A0galleries · 4\u00A0states')
     expect((await hero({ facts: undefined })).get('.eyebrow').text()).toBe('Exhibition places')
   })
 

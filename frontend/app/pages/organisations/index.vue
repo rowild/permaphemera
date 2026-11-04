@@ -62,7 +62,7 @@ const organisationFacts = computed(() => [
   t('organisations.factOrganisations', registerOrganisations.value.length),
   t('organisations.factPeople', peopleCount.value),
   t('organisations.factRecords', recordCount.value)
-].map((fact) => fact.replaceAll(' ', ' ')).join(' · '))
+])
 
 usePageSeo('/organisations/')
 definePageMeta({ navActive: 'organisations' })

@@ -6,8 +6,8 @@ const props = withDefaults(defineProps<{
   titleId: string
   breadcrumb: string
   eyebrow: string
-  /** Replaces the eyebrow on mobile, where the ledger is hidden: "12 galleries · 4 states". */
-  facts?: string
+  /** Replaces the eyebrow on mobile, where the ledger is hidden: ['12 galleries', '4 states']. */
+  facts?: string[]
   title: string
   accent: string
   intro: string
@@ -18,6 +18,8 @@ const props = withDefaults(defineProps<{
   ledgerOnMobile: false
 })
 
+// One line of facts: a fact's words never break apart, the facts are joined by ·.
+const factLine = computed(() => props.facts?.map((fact) => fact.replaceAll(' ', '\u00A0')).join(' · '))
 </script>
 
 <template>
@@ -25,7 +27,7 @@ const props = withDefaults(defineProps<{
     <div class="[ directory-hero-heading ]">
       <ArchiveBreadcrumb :items="[{ label: props.breadcrumb }]" />
       <ArchiveEyebrow :class="{ 'archive-routed-eyebrow-facts': props.facts }">
-        <template v-if="props.facts"><span class="compact:hidden">{{ props.eyebrow }}</span><span class="hidden compact:inline">{{ props.facts }}</span></template>
+        <template v-if="props.facts"><span class="compact:hidden">{{ props.eyebrow }}</span><span class="hidden compact:inline">{{ factLine }}</span></template>
         <template v-else>{{ props.eyebrow }}</template>
       </ArchiveEyebrow>
       <ArchivePageTitle :title-id="props.titleId" :title="props.title" :accent="props.accent" :intro="props.intro" />

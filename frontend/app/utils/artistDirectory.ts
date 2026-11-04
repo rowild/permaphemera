@@ -86,3 +86,6 @@ export const buildArtistDirectory = (
     return left.displayName.localeCompare(right.displayName)
   })
 }
+
+/** The letters of the A–Z rails; # for names that start with another character. */
+export const ALPHABET: readonly string[] = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']

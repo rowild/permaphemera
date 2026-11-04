@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ALPHABET } from '~/utils/artistDirectory'
 import {
   Landmark
 } from '@lucide/vue'
@@ -98,7 +99,6 @@ const heroExhibitionItems = computed<KaleidoscopeExhibitionItem[]>(() => buildHe
     venue: (slug) => localePath(`/venues/${slug}/`)
   }
 ))
-const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
 const artistGroupOrder = ['B', 'E', 'J', 'K', 'L', 'R', 'W']
 const venueStackItems = [
   '/media/images/landing/kaleidoscope/locations/location_07.png',
@@ -577,23 +577,7 @@ const openRandomTour = (event: MouseEvent) => {
             controls
             :label="$t('landing.artists.alphabetAria')"
           >
-            <template v-for="letter in alphabet" :key="letter">
-              <NuxtLink
-                v-if="availableArtistLetters.has(letter)"
-                class="inline-flex min-h-11 min-w-7 shrink-0 items-center justify-center text-button text-archive-muted no-underline transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-archive-red compact:text-sm"
-                :to="artistLetterRoute(letter)"
-                :aria-label="$t('landing.artists.openLetter', { letter })"
-              >
-                {{ letter }}
-              </NuxtLink>
-              <span
-                v-else
-                class="inline-flex min-h-11 min-w-7 shrink-0 cursor-not-allowed items-center justify-center text-button text-archive-muted opacity-28 compact:text-sm"
-                aria-disabled="true"
-              >
-                {{ letter }}
-              </span>
-            </template>
+            <ArchiveLetterLink v-for="letter in ALPHABET" :key="letter" :to="availableArtistLetters.has(letter) ? artistLetterRoute(letter) : undefined" :aria-label="availableArtistLetters.has(letter) ? $t('landing.artists.openLetter', { letter }) : undefined">{{ letter }}</ArchiveLetterLink>
           </ArchiveAlphabetRail>
 
           <div class="[ artist-columns ] archive-artist-column-rule columns-3 gap-10 tablet:columns-2 compact:columns-2 compact:gap-4">

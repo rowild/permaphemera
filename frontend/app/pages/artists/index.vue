@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { ALPHABET } from '~/utils/artistDirectory'
 import { splitArtistCredit } from '~/utils/artistNames'
 
 const route = useRoute()
 const { artistDirectory: directoryArtists } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
-const alphabet = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#']
 // Change this one value to alter the size of every all-letters preview group.
 const artistsPerLetterPreview = 5
 const artistLedgerItems = computed(() => [
@@ -38,7 +38,7 @@ const filteredArtists = computed(() => {
   })
 })
 
-const artistsByLetter = computed(() => alphabet
+const artistsByLetter = computed(() => ALPHABET
   .map((letter) => {
     const matchingArtists = filteredArtists.value.filter((artist) => artist.letter === letter)
     const showCompleteLetter = selectedLetter.value === letter
@@ -106,18 +106,8 @@ definePageMeta({ navActive: 'artists' })
           />
 
           <ArchiveAlphabetRail class="[ artist-alphabet-filter ] mt-8 mb-0 gap-[clamp(0.55rem,1.2vw,1.35rem)] pb-[1.2rem] compact:mt-4 compact:gap-3 compact:pb-3" :label="$t('artists.alphabetAria')">
-            <NuxtLink class="shrink-0 text-button text-archive-muted no-underline current-page:font-medium current-page:text-archive-red compact:text-sm" :to="artistLetterRoute()" :aria-current="!selectedLetter ? 'page' : undefined">{{ $t('common.all') }}</NuxtLink>
-            <template v-for="letter in alphabet" :key="letter">
-              <NuxtLink
-              v-if="availableLetters.has(letter)"
-                class="shrink-0 text-button text-archive-muted no-underline current-page:font-medium current-page:text-archive-red compact:text-sm"
-                :to="artistLetterRoute(letter)"
-                :aria-current="selectedLetter === letter ? 'page' : undefined"
-              >
-                {{ letter }}
-              </NuxtLink>
-              <span v-else class="shrink-0 cursor-not-allowed text-button text-archive-muted opacity-28 compact:text-sm" aria-disabled="true">{{ letter }}</span>
-            </template>
+            <ArchiveLetterLink :to="artistLetterRoute()" :current="!selectedLetter">{{ $t('common.all') }}</ArchiveLetterLink>
+            <ArchiveLetterLink v-for="letter in ALPHABET" :key="letter" :to="availableLetters.has(letter) ? artistLetterRoute(letter) : undefined" :current="selectedLetter === letter">{{ letter }}</ArchiveLetterLink>
           </ArchiveAlphabetRail>
         </div>
 

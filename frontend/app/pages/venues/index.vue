@@ -43,7 +43,7 @@ const galleryFacts = computed(() => [
   t('galleries.factGalleries', venues.value.length),
   t('galleries.factStates', states.value.length),
   t('galleries.factExhibitions', venueExhibitions.value.length)
-].map((fact) => fact.replaceAll(' ', '\u00A0')).join(' · '))
+])
 
 const clearFilters = () => {
   gallerySearchQuery.value = ''
