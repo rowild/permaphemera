@@ -46,7 +46,7 @@ const runAction = (action?: string) => {
 </script>
 
 <template>
-  <header class="[ site-header ] archive-header-surface group/header sticky top-0 z-30 grid min-h-[6.4rem] transition-[min-height,padding] duration-300 ease-out motion-reduce:transition-none data-compact:min-h-16 data-compact:pt-1 tablet:data-compact:min-h-14 compact:data-compact:min-h-12 compact:data-compact:pt-1 grid-cols-[auto_minmax(0,1fr)_auto] content-center items-baseline px-[clamp(1.4rem,5vw,5.2rem)] pt-3 tablet:min-h-24 tablet:grid-cols-[1fr_auto] tablet:items-center tablet:pt-3 compact:min-h-16 compact:grid-cols-[minmax(0,1fr)_auto] compact:content-start compact:gap-y-0 compact:px-4 compact:pt-2 compact:pb-0" :data-compact="compact || undefined">
+  <header class="[ site-header ] archive-header-surface group/header sticky top-0 z-30 grid min-h-[6.4rem] transition-[min-height,padding] duration-300 ease-out motion-reduce:transition-none data-compact:min-h-16 data-compact:pt-1 tablet:data-compact:min-h-14 compact:data-compact:min-h-12 compact:data-compact:pt-1 grid-cols-[auto_minmax(0,1fr)_auto] content-center items-baseline px-gutter pt-3 tablet:min-h-24 tablet:grid-cols-[1fr_auto] tablet:items-center tablet:pt-3 compact:min-h-16 compact:grid-cols-[minmax(0,1fr)_auto] compact:content-start compact:gap-y-0 compact:px-4 compact:pt-2 compact:pb-0" :data-compact="compact || undefined">
     <a class="[ skip-link ] absolute left-5 -top-20 z-60 border border-archive-red bg-archive-paper px-4 py-[0.7rem] text-archive-ink focus:top-[0.65rem]" :href="`#${props.skipTarget}`">{{ $t('site.skipToContent') }}</a>
     <p data-header-tagline class="[ header-eyebrow ] col-span-full m-0 max-h-4 translate-y-1 self-end overflow-hidden transition-[max-height,margin] duration-300 ease-out motion-reduce:transition-none group-data-compact/header:max-h-0 pl-[2.65rem] font-display text-3xs leading-none font-medium tracking-widest text-archive-red/82 compact:translate-y-2 compact:pl-8 narrow:pl-7">
       {{ $t('site.headerTagline') }}
@@ -99,7 +99,7 @@ const runAction = (action?: string) => {
         v-if="menuOpen"
         id="mobile-primary-navigation"
         as="nav"
-        class="[ mobile-nav ] archive-header-menu-frame absolute top-[calc(100%-0.2rem)] right-[clamp(1.4rem,5vw,5.2rem)] z-40 isolate w-[min(34rem,calc(100vw-2.8rem))] p-0 filter-[drop-shadow(0_0.8rem_0.9rem_rgba(66,43,22,0.18))] tablet:right-[clamp(1.15rem,4vw,2rem)] tablet:left-[clamp(1.15rem,4vw,2rem)] tablet:w-auto compact:right-[0.7rem] compact:left-[0.7rem]"
+        class="[ mobile-nav ] archive-header-menu-frame absolute top-[calc(100%-0.2rem)] right-gutter z-40 isolate w-[min(34rem,calc(100vw-2.8rem))] p-0 filter-[drop-shadow(0_0.8rem_0.9rem_rgba(66,43,22,0.18))] tablet:right-[clamp(1.15rem,4vw,2rem)] tablet:left-[clamp(1.15rem,4vw,2rem)] tablet:w-auto compact:right-[0.7rem] compact:left-[0.7rem]"
         pointer-side="top"
         :pointer-offset="999"
         :aria-label="$t('navigation.mobileAria')"

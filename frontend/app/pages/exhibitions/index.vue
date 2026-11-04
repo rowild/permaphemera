@@ -64,7 +64,7 @@ definePageMeta({ navActive: 'exhibitions' })
       />
 
       <section id="exhibitions-directory" class="[ exhibitions-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('exhibitionsDirectory.directory')">
-        <div class="[ exhibitions-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
+        <div class="[ exhibitions-directory-controls ] mx-auto max-w-band px-gutter compact:px-4">
           <ArchiveSearchForm
             id="exhibitions-directory-search"
             v-model="exhibitionSearchQuery"
@@ -76,7 +76,7 @@ definePageMeta({ navActive: 'exhibitions' })
 
         <ArchiveInsetDivider class="mt-8 compact:mt-4" />
 
-        <div class="[ exhibitions-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-3">
+        <div class="[ exhibitions-directory-results ] mx-auto max-w-band px-gutter compact:px-3">
           <ArchiveDirectoryStatus class="[ exhibitions-directory-status ] my-7 compact:my-4" :show="searching" :text="$t('exhibitionsDirectory.statusSearch', { visible: filteredExhibitions.length, total: venueExhibitions.length })" :clear-label="$t('exhibitionsDirectory.clearSearch')" @clear="exhibitionSearchQuery = ''" />
 
           <!-- A search shows one flat list of every match, newest first, in pages. -->

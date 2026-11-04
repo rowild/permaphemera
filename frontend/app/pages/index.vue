@@ -402,7 +402,7 @@ const openRandomTour = (event: MouseEvent) => {
 
     <section
       id="top"
-      class="[ hero-section ] [ section-band ] relative mx-auto grid min-h-[calc(100vh-6.4rem)] max-w-[105rem] grid-cols-[minmax(22rem,0.82fr)_minmax(26rem,1.18fr)] items-center gap-[clamp(2.5rem,5vw,6rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,4vw,4.5rem)] pb-[clamp(5.2rem,7vw,6.5rem)] tablet:min-h-[calc(100svh-6rem)] tablet:grid-cols-1 tablet:content-center tablet:gap-3 tablet:pt-2 tablet:pb-20 tablet-landscape:grid-cols-[minmax(16rem,0.82fr)_minmax(19rem,1.18fr)] tablet-landscape:gap-8 tablet-landscape:pt-6 compact:min-h-[calc(100svh-4rem)] compact:gap-2 compact:px-4 compact:pt-1 compact:pb-20"
+      class="[ hero-section ] [ section-band ] relative mx-auto grid min-h-[calc(100vh-6.4rem)] max-w-band grid-cols-[minmax(22rem,0.82fr)_minmax(26rem,1.18fr)] items-center gap-[clamp(2.5rem,5vw,6rem)] px-gutter pt-[clamp(3rem,4vw,4.5rem)] pb-[clamp(5.2rem,7vw,6.5rem)] tablet:min-h-[calc(100svh-6rem)] tablet:grid-cols-1 tablet:content-center tablet:gap-3 tablet:pt-2 tablet:pb-20 tablet-landscape:grid-cols-[minmax(16rem,0.82fr)_minmax(19rem,1.18fr)] tablet-landscape:gap-8 tablet-landscape:pt-6 compact:min-h-[calc(100svh-4rem)] compact:gap-2 compact:px-4 compact:pt-1 compact:pb-20"
     >
       <div ref="heroCopyRef" class="[ hero-copy ] relative tablet:row-start-2 tablet-landscape:col-start-1 tablet-landscape:row-start-1 tablet-portrait:mx-auto tablet-portrait:max-w-3xl tablet-portrait:text-center compact:text-center">
         <h1 class="m-0 max-w-124 font-display text-hero font-light leading-[0.98] tracking-normal tablet-landscape:max-w-96 tablet-landscape:text-h2-lg tablet-portrait:max-w-none tablet-portrait:text-center tablet-portrait:text-h1-steep tablet-portrait:leading-none compact:max-w-none compact:text-center compact:text-3xl compact:leading-none">
@@ -489,7 +489,7 @@ const openRandomTour = (event: MouseEvent) => {
       />
       <LandingNewsList v-if="belowHeroStep >= 1 && latestNews.length && !hasTimelyExhibitions" class="compact:hidden" :news="latestNews" variant="section" />
 
-      <section v-if="belowHeroStep >= 2" id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
+      <section v-if="belowHeroStep >= 2" id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
           <ArchiveEyebrow ornament="section">{{ $t('landing.venues.eyebrow') }}</ArchiveEyebrow>
           <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.venues.title') }} <span class="text-archive-red">{{ $t('landing.venues.accent') }}</span></h2>
@@ -520,7 +520,7 @@ const openRandomTour = (event: MouseEvent) => {
         <ArchiveExhibitionsDivider />
       </section>
 
-      <section v-if="belowHeroStep >= 3" id="exhibitions" class="[ exhibitions-section ] [ section-band ] relative isolate mx-auto max-w-[105rem] overflow-hidden px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
+      <section v-if="belowHeroStep >= 3" id="exhibitions" class="[ exhibitions-section ] [ section-band ] relative isolate mx-auto max-w-band overflow-hidden px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
           <ArchiveEyebrow ornament="section">{{ $t('landing.exhibitions.eyebrow') }}</ArchiveEyebrow>
           <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></h2>
@@ -546,7 +546,7 @@ const openRandomTour = (event: MouseEvent) => {
         <ArchiveExhibitionsDivider />
       </section>
 
-      <section v-if="belowHeroStep >= 4" id="artists" class="[ artists-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] gap-[clamp(2rem,5vw,4.5rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-5 compact:px-4 compact:py-5">
+      <section v-if="belowHeroStep >= 4" id="artists" class="[ artists-section ] [ section-band ] relative mx-auto grid max-w-band grid-cols-[minmax(0,1fr)_18rem] gap-[clamp(2rem,5vw,4.5rem)] px-gutter py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-5 compact:px-4 compact:py-5">
         <div class="[ artists-main ] min-w-0">
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
             <ArchiveEyebrow ornament="section">{{ $t('landing.artists.eyebrow') }}</ArchiveEyebrow>
@@ -609,7 +609,7 @@ const openRandomTour = (event: MouseEvent) => {
         >
       </section>
 
-      <section v-if="belowHeroStep >= 5" id="method" class="[ method-section ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(20rem,0.58fr)_minmax(36rem,1.42fr)] gap-x-[clamp(2.5rem,4vw,4.5rem)] gap-y-0 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:px-4 compact:py-5">
+      <section v-if="belowHeroStep >= 5" id="method" class="[ method-section ] [ section-band ] relative mx-auto grid max-w-band grid-cols-[minmax(20rem,0.58fr)_minmax(36rem,1.42fr)] gap-x-[clamp(2.5rem,4vw,4.5rem)] gap-y-0 px-gutter py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:px-4 compact:py-5">
         <div class="[ method-copy ] relative z-1">
           <ArchiveEyebrow ornament="section">{{ $t('landing.method.eyebrow') }}</ArchiveEyebrow>
           <h2 class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('landing.method.title') }} <span class="text-archive-red">{{ $t('landing.method.accent') }}</span></h2>

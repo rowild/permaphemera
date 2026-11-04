@@ -21,7 +21,7 @@ usePageSeo(() => `/exhibitions/${props.group}/`)
 <template>
   <div class="[ exhibition-group-page ]">
 
-      <section class="[ exhibition-group ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-3 compact:py-4" aria-labelledby="exhibition-group-title">
+      <section class="[ exhibition-group ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-3 compact:py-4" aria-labelledby="exhibition-group-title">
         <header class="[ section-heading ] relative z-1 mb-8 compact:mb-5">
           <ArchiveBreadcrumb :items="[{ label: $t('exhibitionsDirectory.breadcrumb'), to: '/exhibitions/' }, { label: title }]" />
           <ArchiveEyebrow>{{ $t('exhibitionsDirectory.eyebrow') }}</ArchiveEyebrow>

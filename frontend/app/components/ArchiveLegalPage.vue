@@ -35,7 +35,7 @@ const props = defineProps<{
 
       <ArchiveInsetDivider />
 
-      <section class="[ legal-page-body ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
+      <section class="[ legal-page-body ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <article class="[ legal-page-article ] min-w-0" :aria-label="props.articleAria">
           <ArchiveEditorialSection v-for="section in props.sections" :key="section.id" v-bind="section" />
         </article>

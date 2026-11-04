@@ -93,7 +93,7 @@ definePageMeta({ navActive: 'exhibitions' })
         </div>
       </section>
 
-      <section id="exhibition-details" class="[ exhibition-details ] [ section-band ] relative mx-auto grid max-w-[105rem] scroll-mt-[6.4rem] grid-cols-[minmax(30rem,1.2fr)_minmax(23rem,0.8fr)] gap-x-[clamp(3rem,7vw,7rem)] gap-y-12 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] outline-none tablet:grid-cols-1 compact:gap-y-8 compact:px-4 compact:py-5" aria-labelledby="exhibition-details-title" tabindex="-1">
+      <section id="exhibition-details" class="[ exhibition-details ] [ section-band ] relative mx-auto grid max-w-band scroll-mt-[6.4rem] grid-cols-[minmax(30rem,1.2fr)_minmax(23rem,0.8fr)] gap-x-[clamp(3rem,7vw,7rem)] gap-y-12 px-gutter py-[clamp(3rem,5vw,5rem)] outline-none tablet:grid-cols-1 compact:gap-y-8 compact:px-4 compact:py-5" aria-labelledby="exhibition-details-title" tabindex="-1">
         <div class="[ exhibition-details-prose ]">
           <ArchiveEyebrow>{{ kindText('recordEyebrow') }}</ArchiveEyebrow>
           <h2 id="exhibition-details-title" class="m-0 text-h2-lg font-light leading-[0.98] compact:text-4xl">{{ kindText('aboutTitle') }} <span class="text-archive-red">{{ kindText('aboutAccent') }}</span></h2>
@@ -163,7 +163,7 @@ definePageMeta({ navActive: 'exhibitions' })
 
       <ArchiveExhibitionsDivider v-if="relatedExhibitions.length" />
 
-      <section v-if="relatedExhibitions.length" class="[ exhibition-related ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="related-title">
+      <section v-if="relatedExhibitions.length" class="[ exhibition-related ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="related-title">
         <div class="[ section-heading ] relative z-1 mb-10 compact:mb-5">
           <ArchiveEyebrow ornament="section">{{ $t('exhibition.relatedEyebrow') }}</ArchiveEyebrow>
           <h2 id="related-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccent') }}</span></h2>

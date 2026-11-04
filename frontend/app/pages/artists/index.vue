@@ -96,7 +96,7 @@ definePageMeta({ navActive: 'artists' })
       />
 
       <section id="artist-directory" class="[ artist-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('artists.directory')">
-        <div class="[ artist-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
+        <div class="[ artist-directory-controls ] mx-auto max-w-band px-gutter compact:px-4">
           <ArchiveSearchForm
             id="artist-directory-search"
             v-model="artistSearchQuery"
@@ -113,7 +113,7 @@ definePageMeta({ navActive: 'artists' })
 
         <ArchiveInsetDivider />
 
-        <div class="[ artist-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-3">
+        <div class="[ artist-directory-results ] mx-auto max-w-band px-gutter compact:px-3">
           <ArchiveDirectoryStatus class="[ artist-directory-status ] mt-8 mb-8 compact:mt-3 compact:mb-4" :text="$t('artists.status', { visible: visibleArtistCount, total: filteredArtists.length, kind: $t(artistSearchQuery ? 'artists.kindMatching' : 'artists.kindAll') })" :clear-label="artistSearchQuery || selectedLetter ? $t('artists.clearFilters') : undefined" @clear="clearFilters" />
 
           <ArchiveEmptyState v-if="!artistsByLetter.length" class="[ artist-directory-empty ]" :message="$t('artists.noMatches')" :action-label="$t('artists.returnAll')" @action="clearFilters" />

@@ -74,7 +74,7 @@ definePageMeta({ navActive: 'about' })
 
       <ArchiveInsetDivider />
 
-      <article class="[ about-editorial ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4" :aria-label="$t('about.articleAria')">
+      <article class="[ about-editorial ] [ section-band ] relative mx-auto max-w-band px-gutter compact:px-4" :aria-label="$t('about.articleAria')">
         <template v-for="(section, index) in editorialSections" :key="section.id">
           <ArchiveEditorialSection
             :id="section.id"

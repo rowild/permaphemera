@@ -23,7 +23,7 @@ const factLine = computed(() => props.facts?.map((fact) => fact.replaceAll(' ', 
 </script>
 
 <template>
-  <section class="[ directory-hero ] [ section-band ] relative mx-auto grid min-h-120 max-w-[105rem] grid-cols-[minmax(0,1fr)_18rem] items-start gap-[clamp(3rem,8vw,8rem)] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:min-h-0 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-4" :aria-labelledby="props.titleId">
+  <section class="[ directory-hero ] [ section-band ] relative mx-auto grid min-h-120 max-w-band grid-cols-[minmax(0,1fr)_18rem] items-start gap-[clamp(3rem,8vw,8rem)] px-gutter pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] tablet:grid-cols-[minmax(0,1fr)_16rem] tablet:gap-8 compact:min-h-0 compact:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-4" :aria-labelledby="props.titleId">
     <div class="[ directory-hero-heading ]">
       <ArchiveBreadcrumb :items="[{ label: props.breadcrumb }]" />
       <ArchiveEyebrow :class="{ 'archive-routed-eyebrow-facts': props.facts }">

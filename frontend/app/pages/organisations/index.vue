@@ -84,7 +84,7 @@ definePageMeta({ navActive: 'organisations' })
       />
 
       <section id="organisation-directory" class="[ organisation-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('organisations.directory')">
-        <div class="[ organisation-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
+        <div class="[ organisation-directory-controls ] mx-auto max-w-band px-gutter compact:px-4">
           <ArchiveSearchForm
             id="organisation-directory-search"
             v-model="searchQuery"
@@ -96,7 +96,7 @@ definePageMeta({ navActive: 'organisations' })
 
         <ArchiveInsetDivider class="mt-7 compact:mt-4" />
 
-        <div class="[ organisation-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
+        <div class="[ organisation-directory-results ] mx-auto max-w-band px-gutter compact:px-4">
           <ArchiveDirectoryStatus class="[ organisation-directory-status ] my-7 compact:my-4" :show="Boolean(searchQuery)" :text="$t('organisations.status', { visible: visibleEntries, total: totalEntries })" :clear-label="$t('organisations.clearSearch')" @clear="searchQuery = ''" />
 
           <ArchiveEmptyState v-if="!visibleEntries" class="[ organisation-directory-empty ]" :message="$t('organisations.noMatches')" :action-label="$t('organisations.returnAll')" @action="searchQuery = ''" />

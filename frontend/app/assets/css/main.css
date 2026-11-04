@@ -99,6 +99,10 @@
   --font-body: "Cormorant Garamond", "EB Garamond", "Adobe Garamond Pro", "Garamond", "Times New Roman", serif;
   --ease-archive-lift: cubic-bezier(0.22, 1, 0.36, 1);
   /* Exhibition card size classes, measured on the card's text block (`@card-m:`, `@card-l:`). */
+  /* The content width and side gutter of every page band (was max-w-[105rem] and
+     px-[clamp(1.4rem,5vw,5.2rem)] ~45 times each). */
+  --container-band: 105rem;
+  --spacing-gutter: clamp(1.4rem, 5vw, 5.2rem);
   --container-card-m: 13rem;
   --container-card-l: 24rem;
   /* Mobile slider cards: current exhibitions 4/5 of the screen width, all others 2/3 (`w-slide-feature`, `w-slide`). */
@@ -330,8 +334,8 @@ button {
 
 .archive-header-surface::after {
   position: absolute;
-  left: clamp(1.4rem, 5vw, 5.2rem);
-  right: clamp(1.4rem, 5vw, 5.2rem);
+  left: var(--spacing-gutter);
+  right: var(--spacing-gutter);
   bottom: 0;
   height: 0.75rem;
   pointer-events: none;

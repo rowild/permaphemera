@@ -103,7 +103,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <footer class="[ site-footer ] archive-footer-surface relative isolate mt-8 overflow-hidden px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3.5rem,5vw,5rem)] pb-[2.3rem] text-archive-footer-copy compact:mt-2 compact:px-4 compact:pt-6 compact:pb-5">
+  <footer class="[ site-footer ] archive-footer-surface relative isolate mt-8 overflow-hidden px-gutter pt-[clamp(3.5rem,5vw,5rem)] pb-[2.3rem] text-archive-footer-copy compact:mt-2 compact:px-4 compact:pt-6 compact:pb-5">
     <section class="[ supporters ] relative z-1 mx-auto max-w-none">
       <ArchiveEyebrow ornament="section" tone="gold">{{ $t('footer.supporters') }}</ArchiveEyebrow>
       <h2 class="m-0 max-w-208 font-display text-h2-lg font-normal leading-[0.98] tracking-normal text-archive-night-heading compact:text-3xl">{{ $t(sponsors.length ? 'footer.title' : 'footer.callTitle') }} <span class="text-archive-ochre">{{ $t('footer.accent') }}</span></h2>

@@ -118,7 +118,7 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
    `useHoverActive`/`useSeededOrnament` (2 cards), `utils/siteOwner.ts` (owner address 4×), one
    date formatter util, `EditorialSection` type exported once, `ArchiveTextLink as="button"`
    (10 hand-styled "clear search" buttons).
-10. **Section container tokens:** `mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)]` ~50×,
+10. **DONE (`max-w-band`, `px-gutter`; 102 bands compared, identical)** **Section container tokens:** `mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)]` ~50×,
     `py-[clamp(3rem,5vw,5rem)]` 21× → `@theme` tokens (AGENTS.md CSS rule 1) and optionally
     `ArchiveBand`. Compact gutter drifts `px-3`/`px-4`.
 

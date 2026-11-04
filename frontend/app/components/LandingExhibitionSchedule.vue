@@ -40,7 +40,7 @@ const columnGroups = computed(() => groups.value
   <section
     v-if="groups.length"
     id="current-upcoming"
-    class="[ current-upcoming-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5"
+    class="[ current-upcoming-section ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5"
     aria-labelledby="current-upcoming-title"
   >
     <div

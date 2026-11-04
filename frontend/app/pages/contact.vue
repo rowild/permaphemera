@@ -74,7 +74,7 @@ usePageSeo('/contact/')
 
       <ArchiveInsetDivider />
 
-      <article class="[ contact-editorial ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4" :aria-label="$t('contactPage.articleAria')">
+      <article class="[ contact-editorial ] [ section-band ] relative mx-auto max-w-band px-gutter compact:px-4" :aria-label="$t('contactPage.articleAria')">
         <ArchiveEditorialSection
           v-for="section in editorialSections"
           :key="section.id"

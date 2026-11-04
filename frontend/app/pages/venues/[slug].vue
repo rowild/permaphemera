@@ -162,7 +162,7 @@ definePageMeta({ navActive: 'galleries' })
   <div v-if="venue" class="[ venue-page ]">
 
       <section
-        class="[ venue-hero ] [ section-band ] relative mx-auto grid min-h-[calc(100vh-6.4rem)] max-w-[105rem] grid-cols-[minmax(22rem,0.82fr)_minmax(30rem,1.18fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:min-h-auto tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-10"
+        class="[ venue-hero ] [ section-band ] relative mx-auto grid min-h-[calc(100vh-6.4rem)] max-w-band grid-cols-[minmax(22rem,0.82fr)_minmax(30rem,1.18fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-gutter py-[clamp(3rem,5vw,5rem)] tablet:min-h-auto tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-10"
         aria-labelledby="venue-title"
       >
         <div class="[ venue-hero-copy ] relative z-2 tablet:row-start-2">
@@ -222,7 +222,7 @@ definePageMeta({ navActive: 'galleries' })
         <ArchiveScrollCue target="#venue-exhibitions" :label="$t('venue.continue')" />
       </section>
 
-      <section id="venue-exhibitions" class="[ venue-exhibitions ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(4rem,7vw,7rem)] pb-[clamp(3rem,5vw,5rem)] compact:px-4 compact:pt-5 compact:pb-5" aria-labelledby="venue-exhibitions-title">
+      <section id="venue-exhibitions" class="[ venue-exhibitions ] [ section-band ] relative mx-auto max-w-band px-gutter pt-[clamp(4rem,7vw,7rem)] pb-[clamp(3rem,5vw,5rem)] compact:px-4 compact:pt-5 compact:pb-5" aria-labelledby="venue-exhibitions-title">
         <div class="[ venue-exhibitions-intro ] mb-12 grid grid-cols-[minmax(0,1fr)_minmax(20rem,0.55fr)] items-start gap-[clamp(2.5rem,6vw,6rem)] tablet:grid-cols-1 compact:mb-5 compact:gap-4">
           <div class="[ section-heading ] relative z-1 mb-8 compact:mb-3">
             <ArchiveEyebrow>{{ $t('venue.ledger') }}</ArchiveEyebrow>
@@ -291,7 +291,7 @@ definePageMeta({ navActive: 'galleries' })
       <ArchiveExhibitionsDivider class="[ venue-section-divider ]" :spaced="false" />
 
       <section
-        class="[ venue-about ] [ section-band ] relative mx-auto mt-8 grid max-w-[105rem] grid-cols-[11rem_minmax(0,1.15fr)_minmax(18rem,0.85fr)] items-start gap-[clamp(2rem,5vw,5rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:mt-4 compact:gap-6 compact:px-4 compact:py-5"
+        class="[ venue-about ] [ section-band ] relative mx-auto mt-8 grid max-w-band grid-cols-[11rem_minmax(0,1.15fr)_minmax(18rem,0.85fr)] items-start gap-[clamp(2rem,5vw,5rem)] px-gutter py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:mt-4 compact:gap-6 compact:px-4 compact:py-5"
         aria-labelledby="venue-about-title"
       >
         <div class="[ venue-about-ornament ] tablet:hidden" aria-hidden="true">

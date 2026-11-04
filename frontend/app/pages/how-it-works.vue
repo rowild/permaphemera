@@ -73,7 +73,7 @@ usePageSeo('/how-it-works/')
 
       <ArchiveInsetDivider />
 
-      <article class="[ how-it-works-editorial ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4" :aria-label="$t('howItWorksPage.articleAria')">
+      <article class="[ how-it-works-editorial ] [ section-band ] relative mx-auto max-w-band px-gutter compact:px-4" :aria-label="$t('howItWorksPage.articleAria')">
         <ArchiveEditorialSection v-bind="selectionSection" />
 
         <section class="[ how-it-works-process ] py-[clamp(2.8rem,5vw,4.8rem)]" aria-labelledby="how-it-works-process-title">

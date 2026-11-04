@@ -13,7 +13,7 @@ usePageSeo(`/sponsors/${slug}/`)
 <template>
   <div v-if="sponsor" class="[ sponsor-page ]">
 
-      <section class="[ sponsor-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(16rem,0.6fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="sponsor-title">
+      <section class="[ sponsor-hero ] [ section-band ] relative mx-auto grid max-w-band grid-cols-[minmax(22rem,0.9fr)_minmax(16rem,0.6fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-gutter py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="sponsor-title">
         <div class="[ sponsor-hero-copy ] relative z-2">
           <ArchiveBreadcrumb :items="[{ label: sponsor.title }]" />
           <ArchiveEyebrow>{{ $t('sponsorPages.eyebrow') }}</ArchiveEyebrow>
@@ -32,7 +32,7 @@ usePageSeo(`/sponsors/${slug}/`)
 
       <ArchiveExhibitionsDivider />
 
-      <section class="[ sponsor-supports ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="sponsor-supports-title">
+      <section class="[ sponsor-supports ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5" aria-labelledby="sponsor-supports-title">
         <h2 id="sponsor-supports-title" class="m-0 mb-3 max-w-232 font-display text-h2 font-normal leading-[0.98] compact:text-3xl">{{ $t('sponsorPages.supportsTitle', { name: sponsor.title }) }}</h2>
         <p class="m-0 mb-8 max-w-176 text-button text-archive-muted compact:text-sm">{{ hasSupports ? $t('sponsorPages.supportsIntro', { name: sponsor.title }) : $t('sponsorPages.noSupports', { name: sponsor.title }) }}</p>
         <div v-if="sponsor.exhibitions.length" class="mb-10">

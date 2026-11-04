@@ -10,7 +10,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <section class="[ action-band ] [ section-band ] mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-10 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:grid-cols-1 compact:gap-5 compact:px-4 compact:py-5" :aria-labelledby="props.titleId">
+  <section class="[ action-band ] [ section-band ] mx-auto grid max-w-band grid-cols-[minmax(0,1fr)_auto] items-center gap-10 px-gutter py-[clamp(3rem,5vw,5rem)] compact:grid-cols-1 compact:gap-5 compact:px-4 compact:py-5" :aria-labelledby="props.titleId">
     <div>
       <p class="m-0 mb-3 font-display text-eyebrow font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">{{ props.eyebrow }}</p>
       <h2 :id="props.titleId" class="m-0 max-w-192 pb-1 font-display text-h2 font-normal leading-[1.08] compact:pb-0.5 compact:text-3xl compact:leading-tight">

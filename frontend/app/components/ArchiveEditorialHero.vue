@@ -15,7 +15,7 @@ const sectionClass = {
 
 <template>
   <section
-    class="[ editorial-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:py-4"
+    class="[ editorial-hero ] [ section-band ] relative mx-auto grid max-w-band items-center gap-[clamp(3rem,7vw,7rem)] px-gutter py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:py-4"
     :class="sectionClass[props.layout]"
     :aria-labelledby="props.titleId"
   >

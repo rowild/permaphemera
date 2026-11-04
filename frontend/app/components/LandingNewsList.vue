@@ -33,7 +33,7 @@ const headingId = computed(() => `news-latest-${props.variant}-title`)
 
   <section
     v-else
-    class="[ news-latest-section ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5"
+    class="[ news-latest-section ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5"
     :aria-labelledby="headingId"
   >
     <ArchiveEyebrow ornament="section">{{ $t('newsPage.latestEyebrow') }}</ArchiveEyebrow>

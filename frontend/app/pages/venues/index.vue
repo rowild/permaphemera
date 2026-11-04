@@ -70,7 +70,7 @@ definePageMeta({ navActive: 'galleries' })
       />
 
       <section id="gallery-directory" class="[ gallery-directory ] [ section-band ] relative pb-[clamp(3rem,5vw,5rem)] compact:pb-6" :aria-label="$t('galleries.directory')">
-        <div class="[ gallery-directory-controls ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-4">
+        <div class="[ gallery-directory-controls ] mx-auto max-w-band px-gutter compact:px-4">
           <ArchiveSearchForm
             id="gallery-directory-search"
             v-model="gallerySearchQuery"
@@ -87,7 +87,7 @@ definePageMeta({ navActive: 'galleries' })
 
         <ArchiveInsetDivider />
 
-        <div class="[ gallery-directory-results ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] compact:px-3">
+        <div class="[ gallery-directory-results ] mx-auto max-w-band px-gutter compact:px-3">
           <ArchiveDirectoryStatus class="[ gallery-directory-status ] my-7 compact:my-4" :show="Boolean(gallerySearchQuery || selectedState)" :text="$t('galleries.status', { visible: filteredVenues.length, total: venues.length })" :clear-label="$t('galleries.clearFilters')" @clear="clearFilters" />
 
           <ArchiveEmptyState v-if="!filteredVenues.length" class="[ gallery-directory-empty ]" :message="$t('galleries.noMatches')" :action-label="$t('galleries.returnAll')" @action="clearFilters" />
