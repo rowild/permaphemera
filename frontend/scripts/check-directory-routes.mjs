@@ -149,7 +149,7 @@ assert.match(slideTrack, /w-slide-feature/, 'Current exhibitions must use the la
 assert.match(exhibitionCard, /ResizeObserver/, 'Exhibition card overflow must respond to live card width.')
 assert.match(exhibitionCard, /<ArchiveFloatingTooltip[\s\S]*?\[ record-title-tooltip \]/, 'Cut exhibition titles must use the body-level archival tooltip so no card clip can cut it.')
 assert.match(archiveFloatingTooltip, /<Teleport to="body">[\s\S]*?<ArchiveTooltipFrame/, 'The floating tooltip must teleport the shared archival frame to <body>.')
-assert.match(exhibitionDetail, /<ExhibitionCard[\s\S]*v-for="item in relatedExhibitions"/, 'Related records on an exhibition page must reuse the one exhibition card.')
+assert.match(exhibitionDetail, /<ExhibitionCardGrid[^>]*relatedExhibitions/, 'Related records on an exhibition page must reuse the one exhibition card (ExhibitionCardGrid).')
 assert.equal(englishMessages.cards.openExhibition, 'Visit Exhibition', 'English exhibition actions must use the requested label.')
 assert.equal(germanMessages.cards.openExhibition, 'Ausstellung besuchen', 'German exhibition actions must use the equivalent localized label.')
 assert.equal(englishMessages.cards.enterExhibition, 'Visit Exhibition', 'The featured exhibition action must use the requested English label.')
@@ -165,7 +165,7 @@ assert.match(organisationsIndex, /<ArchiveSearchForm/, 'The organisations index 
 assert.match(organisationsIndex, /<OrganisationDirectoryEntry[\s\S]*v-for=/, 'The organisations index must render reusable entries.')
 assert.match(organisationsIndex, /definePageMeta\(\{ navActive: 'organisations' \}\)/, 'The organisations index must mark its menu item (page meta navActive, layouts/default.vue).')
 assert.match(organisationDetail, /useRecordBySlug\(organisations, 'organisations\.notFound'\)/, 'Organisation pages must resolve the canonical organisations collection.')
-assert.match(organisationDetail, /<ExhibitionCard/, 'Organisation pages must reuse the one exhibition card for their records.')
+assert.match(organisationDetail, /<ExhibitionCardGrid/, 'Organisation pages must reuse the one exhibition card for their records (ExhibitionCardGrid).')
 assert.match(organisationEntry, /props\.organisation\.title/, 'Organisation entries show the title verbatim.')
 assert.doesNotMatch(organisationEntry, /formatArtistName|split\(/, 'Organisation names are never split or inverted.')
 

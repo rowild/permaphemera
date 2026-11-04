@@ -168,13 +168,7 @@ definePageMeta({ navActive: 'exhibitions' })
           <ArchiveEyebrow ornament="section">{{ $t('exhibition.relatedEyebrow') }}</ArchiveEyebrow>
           <h2 id="related-title" class="m-0 max-w-232 font-display text-h2 font-normal leading-[0.98] tracking-normal compact:text-3xl">{{ $t('exhibition.relatedTitle') }} <span class="text-archive-red">{{ $t('exhibition.relatedAccent') }}</span></h2>
         </div>
-        <div class="[ exhibition-related-grid ] grid grid-cols-3 gap-6 compact:grid-cols-1">
-          <ExhibitionCard
-            v-for="item in relatedExhibitions"
-            :key="item.id"
-            :exhibition="item"
-          />
-        </div>
+        <ExhibitionCardGrid class="[ exhibition-related-grid ]" :items="relatedExhibitions.map((exhibition) => ({ exhibition }))" />
       </section>
   </div>
 </template>

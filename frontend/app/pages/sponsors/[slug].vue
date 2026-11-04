@@ -37,9 +37,7 @@ usePageSeo(`/sponsors/${slug}/`)
         <p class="m-0 mb-8 max-w-176 text-button text-archive-muted compact:text-sm">{{ hasSupports ? $t('sponsorPages.supportsIntro', { name: sponsor.title }) : $t('sponsorPages.noSupports', { name: sponsor.title }) }}</p>
         <div v-if="sponsor.exhibitions.length" class="mb-10">
           <h3 class="m-0 mb-4 font-display text-h3 font-normal compact:text-lg">{{ $t('sponsorPages.exhibitions') }}</h3>
-          <div class="grid grid-cols-3 gap-6 tablet:grid-cols-2 compact:grid-cols-1">
-            <ExhibitionCard v-for="exhibition in sponsor.exhibitions" :key="exhibition.id" :exhibition="exhibition" />
-          </div>
+          <ExhibitionCardGrid :items="sponsor.exhibitions.map((exhibition) => ({ exhibition }))" />
         </div>
         <dl class="m-0 max-w-176">
           <ArchiveMetadataRow v-if="sponsor.venues.length" :label="$t('sponsorPages.galleries')" variant="venue">
