@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { directusImageUrl } from '~/utils/archiveAsset'
 import { createTextureCache } from '~/utils/textureCache'
 
 // The twelve displayed slices plus one rotation's worth of replacements.
@@ -9,10 +10,11 @@ const TEXTURE_CAPACITY = 24
  * 800 image pixels, even on a dense screen. Directus delivers that size as
  * WebP: about a quarter of the bytes and of the pixels to decode and upload
  * (measured 2026-10-22: 285 KB → 66 KB). Other URLs (local fallbacks) pass.
+ * The same address as an ArchiveImage card at 800 px (directusImageUrl), so a start-page
+ * exhibition in the wheel and in a card downloads once.
  */
 export function wheelTextureUrl(url: string) {
-  if (!url.includes('/assets/')) return url
-  return `${url}${url.includes('?') ? '&' : '?'}width=800&quality=80&format=webp&withoutEnlargement=true`
+  return directusImageUrl(url, 800)
 }
 
 export type ProgressHandler = (fraction: number) => void

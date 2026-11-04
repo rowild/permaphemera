@@ -43,7 +43,7 @@ usePageSeo(`/news/${slug}/`)
         :class="bodyHtml && article.image ? 'grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]' : 'grid-cols-1'"
       >
         <ArchiveRichText v-if="bodyHtml" class="max-w-3xl" :html="bodyHtml" links />
-        <img v-if="article.image" class="block aspect-4/3 w-full max-w-176 border border-archive-rule-warm/30 object-cover" :src="article.image" :alt="article.image_alt">
+        <ArchiveImage v-if="article.image" class="block aspect-4/3 w-full max-w-176 border border-archive-rule-warm/30 object-cover" :src="article.image" :alt="article.image_alt" sizes="(max-width: 767px) 92vw, 44rem" eager />
       </div>
 
       <section v-if="hasRecords" class="[ news-article-records ] [ section-band ] mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pb-[clamp(2rem,4vw,3rem)] compact:px-4" aria-labelledby="news-article-records-title">

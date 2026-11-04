@@ -145,6 +145,13 @@ const mediaClass = {
   slide: 'relative flex-1',
   hero: 'absolute inset-0'
 }
+// How wide the image is in the layout: the browser picks the Directus size from this.
+const imageSizes = {
+  stacked: '(max-width: 767px) 86vw, (max-width: 1280px) 45vw, 30vw',
+  side: '(max-width: 767px) 86vw, (max-width: 1280px) 40vw, 25vw',
+  slide: '(max-width: 767px) 80vw, 40vw',
+  hero: '(max-width: 767px) 92vw, (max-width: 1280px) 70vw, 60vw'
+}
 const textClass = {
   stacked: 'flex-1',
   side: '',
@@ -174,13 +181,14 @@ const copyClass = {
     @focusout="hide()"
   >
     <div class="[ record-card-media ] min-h-0 overflow-hidden" :class="mediaClass[props.layout]">
-      <img
+      <ArchiveImage
         class="[ record-card-image ] absolute inset-0 size-full object-cover"
         :class="isHero ? 'brightness-72 saturate-86' : ''"
         :src="props.exhibition.image"
         :alt="imageAlt"
-        :loading="isHero ? undefined : 'lazy'"
-      >
+        :sizes="imageSizes[props.layout]"
+        :eager="isHero"
+      />
     </div>
 
     <div class="[ record-card-text ] @container flex min-h-0 min-w-0 flex-col" :class="textClass[props.layout]">

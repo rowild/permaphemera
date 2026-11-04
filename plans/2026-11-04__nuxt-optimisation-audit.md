@@ -38,7 +38,12 @@ Item 3 was no bug (`newsMarkdown.ts` localizes the links before render). Found o
    `VenueExhibitionLedgerRow.vue:46`. Fix: `experimental.defaults.nuxtLink.trailingSlash:
    'append'`.
 
-## Phase 1 — load time (biggest gain for visitors)
+## Phase 1 — load time (biggest gain for visitors) — 1.1, 1.2, 1.3a DONE, release 0.0.51
+
+1.1 note: `@nuxt/image` was tried and removed again: its typings exclude `format` and `quality` for the
+Directus provider, and only its address builder was used. `utils/archiveAsset.ts`
+(`directusImageUrl`, `directusImageSet`, `IMAGE_WIDTHS`) + `ArchiveImage` do the job; the wheel uses
+the same address. Measured: start page 16.4 → 1.3 MB, `/venues/` 18.3 → 0.7 MB.
 
 1. **Images load as full originals.** `shared/archive-schema.mjs:66` builds plain
    `/assets/<id>` URLs; 25 `<img>`, the SVG `<image>` in `VenueMaskedImage`, and the exhibition

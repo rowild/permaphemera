@@ -39,7 +39,7 @@ usePageSeo(`/sponsors/${slug}/`)
           </dl>
         </div>
         <div v-if="sponsor.logo" class="[ sponsor-logo ] grid place-items-center p-8 tablet:row-start-1 tablet:justify-items-start compact:p-0">
-          <img class="max-h-48 w-auto max-w-full object-contain" :src="sponsor.logo" :alt="sponsor.title">
+          <ArchiveImage class="max-h-48 w-auto max-w-full object-contain" :src="sponsor.logo" :alt="sponsor.title" sizes="(max-width: 767px) 80vw, 30rem" eager />
         </div>
       </section>
 

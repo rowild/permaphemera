@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, useId } from 'vue'
+import { directusImageUrl, imageWidthFor } from '../utils/archiveAsset'
 import { createVenueInnerFramePath, createVenueMediaPath } from '../utils/venueFrameGeometry'
 
 const props = defineProps<{
@@ -13,6 +14,12 @@ const svgRef = ref<SVGSVGElement | null>(null)
 const width = ref(436)
 const height = ref(220)
 let resizeObserver: ResizeObserver | null = null
+
+// Directus delivers the image at the measured width (an SVG <image> takes no srcset). The address
+// waits for the first measurement, which comes before the first paint, so only one size loads;
+// it only grows, so a smaller window keeps the image it has.
+const imageStep = ref(0)
+const href = computed(() => (imageStep.value ? directusImageUrl(props.src, imageStep.value) : undefined))
 
 const maskId = `venue-image-mask-${useId().replaceAll(':', '')}`
 
@@ -34,6 +41,7 @@ const updateSize = ([entry]: ResizeObserverEntry[]) => {
 
   width.value = Math.max(1, entry.contentRect.width)
   height.value = Math.max(1, entry.contentRect.height)
+  imageStep.value = Math.max(imageStep.value, imageWidthFor(width.value, window.devicePixelRatio || 1))
 }
 
 onMounted(() => {
@@ -78,7 +86,7 @@ onBeforeUnmount(() => {
       class="origin-center motion-reduce:transition-none"
       :class="{ 'transition-transform duration-700 ease-archive-lift group-hover/venue:scale-[1.035]': props.interactive }"
       style="transform-box: fill-box"
-      :href.attr="props.src"
+      :href.attr="href"
       x="0"
       y="0"
       :width.attr="width"

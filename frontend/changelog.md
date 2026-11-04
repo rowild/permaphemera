@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.51 - 2026-11-04 17:30:00 CET
+
+- Images load at the size the layout needs, as WebP, instead of the full original: the start page drops from about 16 MB to 1.3 MB of images, the galleries page from 18 MB to 0.7 MB, a detail page to about 0.3 MB (measured at 1440 px, 2× screen). The hero wheel and the cards ask for the same address, so a photo shown twice loads once; the gallery preview preloads exactly the file it then shows.
+- The site data arrives earlier (its request starts before the language file) and page changes compute faster (the loaded data is no longer watched deeply by Vue; about 8× faster per pass).
+- Checks before every deploy (`pnpm verify`, `pnpm verify:live`), a pre-commit hook and ESLint with Nuxt's config; ESLint's first run found two pages with a second root node, a computed value without a result and a footer prop the type check could not see — all fixed.
+
 ## 0.0.50 - 2026-11-04 16:40:00 CET
 
 - The four index pages (exhibitions, galleries, organisations, artists) share one hero: the breadcrumb sits at the same height on every page, the text below takes the room it needs, and the hero is at least 480px high on desktop and tablet (organisations was lower).

@@ -6,13 +6,15 @@ import tailwindcss from '@tailwindcss/vite'
 // rather than a new project dependency just for this one read.
 declare const process: { env: Record<string, string | undefined> }
 
+const directusUrl = process.env.NUXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8077'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   ssr: false,
   devtools: { enabled: false },
   runtimeConfig: {
     public: {
-      directusUrl: process.env.NUXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8077'
+      directusUrl
     }
   },
   modules: ['@nuxtjs/i18n', '@nuxt/eslint'],

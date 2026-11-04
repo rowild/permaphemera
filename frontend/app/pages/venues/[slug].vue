@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { directusImageSet } from '~/utils/archiveAsset'
 import { Building2, CalendarDays, Compass, ExternalLink, Landmark, LayoutGrid, MapPin } from '@lucide/vue'
 import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { exhibitionLinkLabels } from '~/utils/exhibitionLinkLabels'
@@ -97,6 +98,7 @@ const cachedPreviewImages = new Set<string>()
 let previewRequestId = 0
 let pendingPreviewImage = ''
 
+const PREVIEW_SIZES = '(max-width: 767px) 92vw, (max-width: 1280px) 50vw, 40vw'
 const selectExhibition = (exhibition: ResolvedExhibition) => {
   selectedExhibition.value = exhibition
   previewLoadFailed.value = false
@@ -129,7 +131,12 @@ const selectExhibition = (exhibition: ResolvedExhibition) => {
     previewLoadFailed.value = true
   }
 
-  image.src = exhibition.image
+  // The same candidates and sizes as the preview <ArchiveImage>, so the browser loads the file
+  // the preview then shows, once.
+  const { src, srcset } = directusImageSet(exhibition.image)
+  image.sizes = PREVIEW_SIZES
+  if (srcset) image.srcset = srcset
+  image.src = src
 }
 
 watch(filteredExhibitions, (matches) => {
@@ -322,12 +329,13 @@ usePageSeo(`/venues/${slug}/`)
           <aside v-if="previewExhibition" class="[ venue-preview-column ] sticky top-32 min-w-0 medium:relative medium:top-0 medium:row-start-1" :aria-label="$t('venue.previewAria')">
             <ExhibitionFrameCard class="[ venue-active-preview ] archive-venue-active-preview block h-[clamp(31rem,42vw,40rem)] w-full medium:h-124 compact:h-80" surface-class="bg-archive-night">
               <Transition name="archive-venue-preview-image">
-                <img
+                <ArchiveImage
                   :key="previewExhibition.id"
                   class="[ venue-preview-image ] archive-venue-preview-image absolute inset-0 size-full object-cover brightness-76 saturate-88"
                   :src="previewExhibition.image"
                   :alt="previewExhibition.image_alt"
-                >
+                  :sizes="PREVIEW_SIZES"
+                />
               </Transition>
               <div class="[ venue-preview-shade ] archive-venue-preview-shade absolute inset-x-0 top-[35%] bottom-0" />
               <div class="[ venue-preview-copy ] absolute right-[clamp(1.5rem,4vw,3rem)] bottom-[clamp(1.5rem,4vw,2.7rem)] left-[clamp(1.5rem,4vw,3rem)] z-2 text-archive-light-ink compact:right-[1.4rem] compact:bottom-[1.4rem] compact:left-[1.4rem]" aria-live="polite">

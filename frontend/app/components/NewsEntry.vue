@@ -35,7 +35,7 @@ const date = computed(() => formatNewsDate(props.news.date, locale.value))
       <h3 class="m-0 font-display text-h4 leading-[1.18] font-normal transition-colors duration-150 group-hover:text-archive-red group-focus-visible:text-archive-red compact:text-lg">{{ props.news.title }}</h3>
       <span v-if="props.news.summary" class="mt-1.5 mb-0 block text-button text-archive-muted compact:text-sm">{{ props.news.summary }}</span>
     </span>
-    <img v-if="props.news.image" class="aspect-4/3 w-full border border-archive-rule-warm/30 object-cover" :src="props.news.image" :alt="props.news.image_alt" loading="lazy">
+    <ArchiveImage v-if="props.news.image" class="aspect-4/3 w-full border border-archive-rule-warm/30 object-cover" :src="props.news.image" :alt="props.news.image_alt" sizes="(max-width: 767px) 92vw, 24vw" />
     <span v-else aria-hidden="true" />
   </NuxtLink>
 </template>
