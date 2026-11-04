@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.57 - 2026-11-04 21:20:00 CET
+
+- Contact and the legal pages share one hero layout (title beside the fact box); the legal pages' fact box is a little wider, as on the contact page.
+- Shared parts instead of copies, with no visible change: the "no results" block of seven lists, the title and photo of gallery, organisation, person and sponsor pages, the hero frame, closing band and method picture of the text pages.
+
 ## 0.0.56 - 2026-11-04 20:40:00 CET
 
 - One type scale for every page hero (owner decision B): the text pages (about, how it works, contact, the legal pages) and the news overview now set their title and intro like the index pages.
