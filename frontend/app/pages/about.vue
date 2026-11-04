@@ -64,27 +64,20 @@ definePageMeta({ navActive: 'about' })
 <template>
   <div class="[ about-page ]">
 
-      <section class="[ about-page-intro ] [ section-band ] relative mx-auto grid min-h-144 max-w-[105rem] grid-cols-[minmax(0,0.88fr)_minmax(28rem,1.12fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 tablet:gap-10 compact:gap-6 compact:px-4 compact:py-4" aria-labelledby="about-page-title">
-        <div class="[ about-page-heading ] tablet:row-start-2">
+      <ArchiveEditorialHero title-id="about-page-title" layout="figure">
           <ArchiveBreadcrumb :items="[{ label: $t('about.breadcrumb') }]" />
           <ArchiveEyebrow>
             {{ $t('about.eyebrow') }}
           </ArchiveEyebrow>
           <ArchivePageTitle title-id="about-page-title" :title="$t('about.title')" :accent="$t('about.accent')" :intro="$t('about.intro')" />
-        </div>
 
-        <figure class="[ about-page-figure ] relative m-0 tablet:row-start-1">
-          <img
-            class="block h-auto w-full object-contain filter-[drop-shadow(0_1.15rem_1.25rem_rgba(69,46,24,0.2))]"
-            src="/media/images/landing/method/archive-method-composition.png"
-            :alt="$t('about.figureAlt')"
-          >
-          <figcaption class="mt-3 ml-[clamp(1rem,4vw,3.5rem)] flex flex-wrap items-center gap-x-3 gap-y-1 font-display text-sm text-archive-muted compact:mt-2 compact:ml-2 compact:text-xs">
-            <span class="tracking-widest text-archive-red uppercase">{{ $t('about.figureLabel') }}</span>
-            {{ $t('about.figureCaption') }}
-          </figcaption>
-        </figure>
-      </section>
+          <template #aside>
+
+            <ArchiveMethodFigure :alt="$t('about.figureAlt')" :label="$t('about.figureLabel')" :caption="$t('about.figureCaption')" />
+
+          </template>
+
+      </ArchiveEditorialHero>
 
       <ArchiveInsetDivider />
 
@@ -104,21 +97,18 @@ definePageMeta({ navActive: 'about' })
 
       <ArchiveExhibitionsDivider />
 
-      <section class="[ about-page-actions ] [ section-band ] mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-10 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:grid-cols-1 compact:gap-5 compact:px-4 compact:py-5" aria-labelledby="about-actions-title">
-        <div>
-          <p class="m-0 mb-3 font-display text-eyebrow font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('about.actionsEyebrow') }}</p>
-          <h2 id="about-actions-title" class="m-0 max-w-192 pb-1 font-display text-h2 font-normal leading-[1.08] compact:pb-0.5 compact:text-3xl compact:leading-tight">
-            {{ $t('about.actionsTitle') }} <span class="text-archive-red">{{ $t('about.actionsAccent') }}</span>
-          </h2>
-        </div>
-        <div class="[ about-action-links ] flex flex-wrap justify-end gap-4 compact:justify-start compact:gap-3">
+      <ArchiveActionBand title-id="about-actions-title" :eyebrow="$t('about.actionsEyebrow')" :title="$t('about.actionsTitle')" :accent="$t('about.actionsAccent')">
+
+        <template #actions>
           <ArchiveButton :to="localePath('/exhibitions/')" variant="primary">
             {{ $t('about.viewExhibitions') }} <ArchiveArrow />
           </ArchiveButton>
           <ArchiveButton :to="localePath('/venues/')" variant="secondary">
             {{ $t('about.viewGalleries') }} <ArchiveArrow />
           </ArchiveButton>
-        </div>
-      </section>
+
+        </template>
+
+      </ArchiveActionBand>
   </div>
 </template>

@@ -64,21 +64,23 @@ usePageSeo('/contact/')
 <template>
   <div class="[ contact-page ]">
 
-      <section class="[ contact-page-intro ] [ section-band ] relative mx-auto grid min-h-128 max-w-[105rem] grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-4" aria-labelledby="contact-page-title">
-        <header class="[ contact-page-heading ]">
+      <ArchiveEditorialHero title-id="contact-page-title" layout="aside">
           <ArchiveBreadcrumb :items="[{ label: $t('contactPage.breadcrumb') }]" />
           <ArchiveEyebrow>
             {{ $t('contactPage.eyebrow') }}
           </ArchiveEyebrow>
           <ArchivePageTitle title-id="contact-page-title" :title="$t('contactPage.title')" :accent="$t('contactPage.accent')" :intro="$t('contactPage.intro')" />
-        </header>
 
+          <template #aside>
         <ArchiveContactRecord
           :label="$t('contactPage.record.label')"
           :record-aria="$t('contactPage.record.aria')"
           :items="contactRecordItems"
         />
-      </section>
+
+          </template>
+
+      </ArchiveEditorialHero>
 
       <ArchiveInsetDivider />
 
@@ -90,18 +92,11 @@ usePageSeo('/contact/')
         />
       </article>
 
-      <section class="[ contact-actions ] [ section-band ] mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-10 px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:grid-cols-1 compact:gap-5 compact:px-4 compact:py-5" aria-labelledby="contact-actions-title">
-        <div>
-          <p class="m-0 mb-3 font-display text-eyebrow font-medium tracking-widest text-archive-red uppercase compact:mb-2 compact:text-xs">{{ $t('contactPage.actionsEyebrow') }}</p>
-          <h2 id="contact-actions-title" class="m-0 max-w-192 pb-1 font-display text-h2 font-normal leading-[1.08] compact:pb-0.5 compact:text-3xl compact:leading-tight">
-            {{ $t('contactPage.actionsTitle') }} <span class="text-archive-red">{{ $t('contactPage.actionsAccent') }}</span>
-          </h2>
-          <p class="mt-4 mb-0 max-w-152 font-display text-base leading-relaxed text-archive-muted">
+      <ArchiveActionBand title-id="contact-actions-title" :eyebrow="$t('contactPage.actionsEyebrow')" :title="$t('contactPage.actionsTitle')" :accent="$t('contactPage.actionsAccent')">
             {{ $t('contactPage.privacyNote') }}
             <ArchiveTextLink :to="localePath('/privacy/')">{{ $t('contactPage.privacyAction') }}</ArchiveTextLink>
-          </p>
-        </div>
-        <div class="[ contact-action-links ] flex flex-wrap justify-end gap-4 compact:justify-start compact:gap-3">
+
+        <template #actions>
           <ArchiveActionHint id="contact-email-hint" :text="$t('contactPage.emailHint')">
             <template #default="{ describedBy }">
               <ArchiveButton :href="emailHref" :aria-describedby="describedBy" variant="primary">
@@ -116,7 +111,9 @@ usePageSeo('/contact/')
               </ArchiveButton>
             </template>
           </ArchiveActionHint>
-        </div>
-      </section>
+
+        </template>
+
+      </ArchiveActionBand>
   </div>
 </template>

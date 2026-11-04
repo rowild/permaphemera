@@ -19,15 +19,14 @@ const props = defineProps<{
 <template>
   <div class="[ legal-page ]">
 
-      <section class="[ legal-page-intro ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1.12fr)_minmax(20rem,0.88fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-4" :aria-labelledby="`${props.sections[0]?.id ?? 'legal'}-page-title`">
-        <header class="[ legal-page-heading ]">
+      <ArchiveEditorialHero :title-id="`${props.sections[0]?.id ?? 'legal'}-page-title`" layout="aside">
           <ArchiveBreadcrumb :items="[{ label: props.breadcrumb }]" />
           <ArchiveEyebrow>
             {{ props.eyebrow }}
           </ArchiveEyebrow>
           <ArchivePageTitle :title-id="`${props.sections[0]?.id ?? 'legal'}-page-title`" :title="props.title" :accent="props.accent" :intro="props.intro" />
-        </header>
 
+          <template #aside>
         <aside class="[ legal-record ] self-center border-y border-archive-rule-warm/28 py-5 tablet:max-w-180 compact:py-4" :aria-label="props.recordAria">
           <p class="m-0 mb-4 font-display text-xs font-medium tracking-widest text-archive-red uppercase compact:mb-3">
             {{ props.recordLabel }}
@@ -42,7 +41,10 @@ const props = defineProps<{
             </div>
           </dl>
         </aside>
-      </section>
+
+          </template>
+
+      </ArchiveEditorialHero>
 
       <ArchiveInsetDivider />
 
