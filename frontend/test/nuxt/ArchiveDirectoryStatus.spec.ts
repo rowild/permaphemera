@@ -12,13 +12,15 @@ describe('ArchiveDirectoryStatus', () => {
     expect(status.emitted('clear')).toHaveLength(1)
   })
 
-  it('shows nothing without a search, but keeps the live region for the next announcement', async () => {
+  // Its margin stays: the first heading below the divider keeps its space (owner, 2026-11-04).
+  it('shows nothing without a search, but keeps its space and the live region for the next announcement', async () => {
     const status = await mountSuspended(ArchiveDirectoryStatus, { props: { text: '22 im Archiv', show: false, clearLabel: 'Suche löschen' } })
     const region = status.get('[role="status"]')
     expect(region.attributes('aria-live')).toBe('polite')
     expect(region.text()).toBe('')
     expect(status.find('button').exists()).toBe(false)
-    expect(status.classes()).toContain('sr-only')
+    expect(status.classes()).not.toContain('sr-only')
+    expect(status.classes()).not.toContain('flex')
   })
 
   it('a page can keep the line without a clear button', async () => {

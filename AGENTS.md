@@ -6,10 +6,11 @@ these folders. Each has its own rules. Read them before you change anything ther
 `PROJECT_INFO.md` maps this repo and its two sibling folders (the 360° image
 pipeline and the Tour Editor app) and says where each step of the work happens.
 
-**Important rule (owner, 2026-11-04): always commit `PROJECT_INFO.md` too.** It lives in 3
-folders and must stay current in all of them. When it has changed, commit it with your next
-commit, here and in the sibling folders where it changed (only that file there). When it shows a
-change you did not make, read it, check what it means for your work, and tell the owner.
+**Important rule (owner, 2026-11-04): always commit `PROJECT_INFO.md` too, in this folder
+only.** It lives in 3 folders and must stay current. When it has changed, commit it with your
+next commit, here. Never commit in the two sibling folders (forbidden; their own sessions commit
+their copy). When it shows a change you did not make, read it, check what it means for your
+work, and tell the owner.
 
 | Folder      | Read first                                   |
 |-------------|----------------------------------------------|

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.63 - 2026-11-04 20:48:35 CET
+
+- "Aktuelle Ausstellungen" and "Organisationen" no longer sit right on the divider line under the search: the same space as above the line (28 px, 16 px on phones), as on the other index pages. The space was lost in 0.0.52, when the repeated count line was hidden.
+
 ## 0.0.62 - 2026-11-04 19:53:50 CET
 
 - The "about" and "how it works" pages no longer jump on tablets and phones while the method picture loads; the picture is 147 KB instead of 1 MB, and on the start page it loads only when it comes into view.

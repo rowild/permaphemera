@@ -8,7 +8,8 @@ const baseURL = process.env.E2E_BASE_URL || 'http://localhost:4993'
 export default defineConfig({
   testDir: 'test/e2e',
   timeout: 60_000,
-  expect: { timeout: 10_000 },
+  // 15 s: a worker's first page waits for its paced Directus requests (test/e2e/fixtures.ts).
+  expect: { timeout: 15_000 },
   retries: 1,
   workers: 3,
   reporter: [['list']],

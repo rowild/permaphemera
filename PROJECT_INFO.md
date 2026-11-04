@@ -18,11 +18,12 @@
 > cp "$SRC" "/Users/robertwildling/Desktop/_WWW/_MacAPP TOUR-VIEWER/PROJECT_INFO.md"
 > ```
 >
-> **Important rule (owner, 2026-11-04): this file is always committed.** Every commit in
-> any of the 3 folders also commits this file when it has changed, in every folder where it
-> changed (only this file, never someone else's other open changes). When you see a change in
-> it that you did not make, read the change, check what it means for your work, and tell the
-> owner (for example: the website runs an older tour viewer than the Tour Editor).
+> **Important rule (owner, 2026-11-04): this file is always committed, in your own folder
+> only.** Every commit also commits this file when it has changed, but only the copy in the
+> folder you work in. Never commit it (or anything else) in one of the other two folders: that
+> is forbidden; their own sessions commit their copy. When you see a change in it that you did
+> not make, read the change, check what it means for your work, and tell the owner (for
+> example: the website runs an older tour viewer than the Tour Editor).
 >
 > Last checked against the code and the live Directus: **2026-10-26**.
 
@@ -90,7 +91,7 @@ The only link between the two is the text field `pp_exhibitions.tour`.
 | **Where do I build the tour (links, hotspots, texts)?** | `Tour Editor.app` (in `_MacAPP TOUR-VIEWER/`). See §3 steps 5–6 (markers are made by script first). |
 | **Where do I upload finalised tours?** | Export from the Tour Editor to `_360_GALLERIES_AND_TOURS/exported/`. Then in `_WEBSITE PERMAPHEMERA/frontend/`: `pnpm tour:publish <tour-id>`, then `pnpm deploy:hetzner`. Or in the Tour Editor: File → Publish to website… (or the tour's Export tab), which does these steps plus the save and the backup in one window (Handbook Tutorial No. 4). See §3 steps 7–8. |
 | **Where do I change the database schema (new fields)?** | `_WEBSITE PERMAPHEMERA/directus/scripts/schema.mjs` plus the other files that root `AGENTS.md` lists. Never only in the admin app. |
-| **Where does the viewer JS on the website come from?** | `_MacAPP TOUR-VIEWER`. In `_WEBSITE PERMAPHEMERA/frontend/`, `pnpm viewer:update` runs its `pnpm build:all`, copies `dist/tour-viewer.js` and `dist/tour-viewer.css` to `public/media/tour-viewer/` and writes their fingerprint (`app/utils/tourViewerBuild.ts`); then commit and `pnpm deploy:hetzner`. Or in the Tour Editor: File → Update viewer on website… does all of it. While the website still runs an older viewer, the editor shows it: a warning on the start page, and a red pulsing dot on "File" and on that menu item (since 0.25.116, 2026-11-04). |
+| **Where does the viewer JS on the website come from?** | `_MacAPP TOUR-VIEWER`. In `_WEBSITE PERMAPHEMERA/frontend/`, `pnpm viewer:update` runs its `pnpm build:all`, copies `dist/tour-viewer.js` and `dist/tour-viewer.css` to `public/media/tour-viewer/` and writes their fingerprint (`app/utils/tourViewerBuild.ts`); then commit and `pnpm deploy:hetzner`. Or in the Tour Editor: File → Update viewer on website… does all of it. While the website still runs an older viewer, the editor shows it: a warning on the start page, and a red pulsing dot on "File" and on that menu item (since 0.25.116, 2026-11-04). Since 1.0.0 the viewer and the app share one version: every release asks for a viewer upload, and the viewer says its version (`TourViewer.version`, `data-viewer-version`). |
 
 ---
 

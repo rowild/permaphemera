@@ -5,7 +5,8 @@ import { test as base, expect, type APIRequestContext } from '@playwright/test'
 // The built site here runs on another port, and three test browsers share this computer's address.
 // So every Directus request (data and pictures) goes through one helper per worker: it asks for
 // each address once, starts at most one request every 70 ms (three workers: about 43 per second),
-// waits and tries again on a 429 or a dropped line, and answers with the test origin allowed.
+// waits and tries again on a 429, a dropped line or a stalled one (6 s per try: the line to the
+// server sometimes hangs for 15 s), and answers with the test origin allowed.
 type Answer = { status: number, headers: Record<string, string>, body: Buffer }
 type Directus = (url: string) => Promise<Answer>
 
@@ -29,7 +30,7 @@ const directusClient = (request: APIRequestContext): Directus => {
     for (let attempt = 1; ; attempt++) {
       await slot()
       try {
-        const response = await request.get(url, { headers: { origin: 'https://permaphemera.at' }, timeout: 20_000 })
+        const response = await request.get(url, { headers: { origin: 'https://permaphemera.at' }, timeout: 6_000 })
         if (response.status() !== 429 && response.status() < 500) return { status: response.status(), headers: response.headers(), body: await response.body() }
         if (attempt === 5) throw new Error(`${url} answered ${response.status()} five times`)
       } catch (error) {

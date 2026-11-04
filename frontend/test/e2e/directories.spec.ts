@@ -30,14 +30,13 @@ test('the search form stays one row with a 44 px search button on phones', async
 test('a search shows its count, keeps it in the address and clears again', async ({ page }) => {
   await page.goto('/exhibitions/')
   const status = page.locator('.directory-status')
-  await expect(status).toHaveClass(/sr-only/)
+  await expect(status.getByRole('status')).toHaveText('')
   await page.locator('input[type="search"]').fill('Klagenfurt')
-  await expect(status).not.toHaveClass(/sr-only/)
   await expect(status.getByRole('status')).toContainText(/\d+ von \d+/)
   await expect(page).toHaveURL(/\?q=Klagenfurt/)
   await status.getByRole('button').click()
   await expect(page).toHaveURL(/\/exhibitions\/$/)
-  await expect(status).toHaveClass(/sr-only/)
+  await expect(status.getByRole('status')).toHaveText('')
 })
 
 test('a search without results says so and leads back to the full list', async ({ page }) => {
@@ -93,3 +92,23 @@ test('the artist dialog opens from the "i", keeps the focus inside, closes by Es
   await page.mouse.click(5, 5)
   await expect(dialog).toBeHidden()
 })
+
+// Owner, 2026-11-04: the first heading below the divider never sits on it. The hidden status line
+// keeps its space (28 px, 16 on phones), the same as the space above the divider.
+for (const path of INDEX_PAGES) {
+  test(`${path} keeps space between the divider and the first content`, async ({ page }) => {
+    await page.goto(path)
+    await expect(page.locator('h1').first()).toBeVisible()
+    const gap = await page.locator('main .archive-inset-divider').first().evaluate((divider) => {
+      const below = divider.getBoundingClientRect().bottom
+      const tops = [...divider.nextElementSibling!.querySelectorAll('*')]
+        // Whole lines only: an inline piece's letter box reaches above a tight line height.
+        .filter((element) => !element.closest('.sr-only') && getComputedStyle(element).display !== 'inline' && [...element.childNodes].some((node) => node.nodeType === Node.TEXT_NODE && node.textContent!.trim()))
+        .map((element) => element.getBoundingClientRect())
+        .filter((box) => box.height > 0 && box.top >= below - 2)
+        .map((box) => box.top)
+      return Math.min(...tops) - below
+    })
+    expect(gap).toBeGreaterThanOrEqual(width(page) < 768 ? 12 : 24)
+  })
+}
