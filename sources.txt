@@ -1,3 +1,36 @@
+--- NEUE GALERIEN / AUSSTELUNGSORTE ---
+
+- Art Hotel Spielberg, Steiermark
+
+https://www.arthotel-spielberg.at/
+
+
+- Lebenshilfe Knittelfeld, Ideenreich
+
+https://www.lebenshilfe-knittelfeld.at/
+
+
+--- NEUE KÜNSTLER / PERSONEN
+
+- Séverin Krön (Kurator der Galerie Porcia)
+
+https://www.meinbezirk.at/tag/severin-kr%C3%B6n
+https://www.spittal-drau.at/politik/detailansicht?tx_sicaddress_sicaddress%5Baction%5D=show&tx_sicaddress_sicaddress%5Baddress%5D=89&tx_sicaddress_sicaddress%5Bcontroller%5D=Address&cHash=d03425912d020d8d9eaf0504cdd7c5c0
+https://menschlichkeit.jetzt/bilder-malen-severin-kroen/
+https://www.kuenstlerstadt-gmuend.at/programm/severin-kron
+https://www.artmajeur.com/severin-kroen/de
+https://www.instagram.com/severin.kron/
+https://www.linkedin.com/in/severin-kroen/
+https://www.zugaenglichekunst.at/severin-kron-kunst-oder-spiel/
+https://www.youtube.com/channel/UC09uCVSCgehz7HnPjf_VjbA
+
+
+
+--- IGNORE ---
+
+Any information found below "IGNORE" is already in the Directus Database, so ignore it.
+
+
 - Galerie Freihausgasse Villach
 
 https://villach.at/stadt-erleben/kultur/galerie-freihausgasse
