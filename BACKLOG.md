@@ -6,9 +6,10 @@ Work that is agreed but parked for later. Newest first.
 
 Added 2026-11-04 by the owner. Priority: very important, at the top of the backlog.
 
-Started 2026-11-04 (`plans/2026-11-04__ai-image-protection.md`): steps 1, 3 and 4 below are in
-the repository (robots.txt, TDM reservation, meta tags, terms). Next: nginx headers and the
-Cloudflare settings (plan, steps 5 and 6), then steps 5 to 7 below.
+Started 2026-11-04 (`plans/2026-11-04__ai-image-protection.md`, release 0.0.47, report for
+contracts `docs/legal/2026-11-04__ki-schutz-massnahmen.pdf`): done are steps 1 to 4 and 7 below
+(robots.txt, Cloudflare AI training block, TDM reservation, meta tags and nginx headers, terms,
+hotlink protection). Open: steps 5, 6 and 8. Renew the report after each change.
 
 Goal: AI systems must not take the images of this website (exhibition photos, artworks, the
 360° tours) to train models or to copy them.

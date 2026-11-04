@@ -31,9 +31,9 @@ crawlers.
    also for training AI systems, is reserved. `noReuse` no longer says "360°-Dokumentationen" /
    "360° documentation" (text rules §1.1).
 
-## Next, outside the repository (owner's go needed)
+## Outside the repository (done 2026-11-04 unless marked)
 
-5. nginx on the Hetzner host (`/etc/nginx/sites-available/permaphemera.at`, server block of
+5. **Done 2026-11-04.** nginx on the Hetzner host (`/etc/nginx/sites-available/permaphemera.at`, server block of
    `permaphemera.at`): two response headers for every page, image and tour tile:
 
    ```nginx
@@ -47,7 +47,12 @@ crawlers.
    training, skips images whose response carries `X-Robots-Tag: noai` or `noimageai`.
    Then `nginx -t`, reload, and purge the Cloudflare cache (`pnpm cache:purge`), because
    Cloudflare keeps cached images with their old headers.
-6. Cloudflare dashboard (the token in the repo can only purge the cache):
+6. Cloudflare. **Done 2026-11-04** with the token `permaphemera-settings`
+   (`CLOUDFLARE_SETTINGS_TOKEN` in `frontend/.env.deploy.local`; Zone: Bot Management, Zone
+   Settings, Zone WAF edit, Zone read; only permaphemera.at): `ai_training: block` (AI search
+   and user agents stay allowed, like robots.txt 1b) and Hotlink Protection on. Checked live:
+   GPTBot 403, Googlebot 200, foreign referer on an image 403, own and empty referer 200.
+   Original idea:
    - Security → Bots: turn on "Block AI bots" (AI Crawl Control). This also stops crawlers
      that ignore robots.txt.
    - Turn on "Bot Fight Mode" only after a test: it can block the Tour Editor's uploads.

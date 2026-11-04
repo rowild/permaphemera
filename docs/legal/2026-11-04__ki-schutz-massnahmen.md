@@ -7,10 +7,21 @@ Stand: 4. November 2026 · Website: https://permaphemera.at · Betreiber: Robert
 
 ## 1. Gegenstand
 
-Die Website PERMAPHEMERA zeigt temporäre Kunstausstellungen in österreichischen Galerien:
-Fotografien von Ausstellungen und Kunstwerken, Texte und 360°-Rundgänge. Die Rechte an
-Fotografien und Kunstwerken liegen bei den jeweiligen Urheber:innen, Kunstschaffenden,
-Fotograf:innen und Institutionen.
+PERMAPHEMERA bewahrt Ausstellungen als 360°-Rundgänge auf. Die Aufnahmen entstehen im
+Einverständnis mit der Galerie oder den Inhaber:innen des Ausstellungsorts und mit den
+Kunstschaffenden. Nach dem Abbau bleibt die Ausstellung als Rundgang auf der Website
+permaphemera.at erhalten, die für alle öffentlich und frei zugänglich ist.
+
+Gezeigt werden Räume, nicht einzelne Kunstwerke: wie eine Ausstellung im Raum eingerichtet war,
+wie die Werke zueinander, zum Licht und zur Architektur stehen, welche Blickwinkel, Wege und
+welche Atmosphäre entstanden sind. Jede Ausstellung muss diese Anordnung im Raum neu finden.
+Ein zweidimensionales Bild in einem Katalog hält sie nicht fest. 360°-Aufnahmen, zu einem
+begehbaren Rundgang verbunden (ähnlich wie bei Google Street View), halten sie fest.
+
+Dazu enthält die Website Fotografien von Ausstellungsräumen und Gebäuden, Einladungen und Texte
+zu Ausstellungen, Kunstschaffenden und Orten. In den Rundgängen und Bildern sind Kunstwerke zu
+sehen. Die Rechte an den Werken bleiben bei den Kunstschaffenden, die Rechte an Fotografien bei
+den Fotograf:innen, Institutionen und sonstigen Berechtigten.
 
 Dieser Bericht beschreibt, welche Maßnahmen seit dem 4. November 2026 bestehen, damit diese
 Inhalte nicht für das Training von KI-Systemen, für Bilddatensätze oder für das Erzeugen
@@ -30,8 +41,9 @@ und welche weiteren Schritte geplant sind.
   Urheberrechts der Union haben, insbesondere um einen solchen Vorbehalt zu ermitteln und
   einzuhalten.
 
-PERMAPHEMERA erklärt den Vorbehalt auf fünf voneinander unabhängigen Wegen (Abschnitt 3), in
-maschinenlesbarer Form und in den Nutzungsbedingungen.
+PERMAPHEMERA erklärt den Vorbehalt auf fünf voneinander unabhängigen Wegen, in
+maschinenlesbarer Form und in den Nutzungsbedingungen (Abschnitte 3.1 bis 3.5). Zusätzlich
+sperrt der Netzwerkdienst der Website bekannte KI-Trainings-Crawler technisch (Abschnitt 3.6).
 
 ## 3. Umgesetzte Maßnahmen
 
@@ -114,6 +126,19 @@ https://permaphemera.at/en/terms/) enthalten im Abschnitt „Erlaubte Nutzung" f
 > Bilddatensätze oder das Erzeugen ähnlicher Werke ausgelesen werden. Der Vorbehalt steht auch
 > in maschinenlesbarer Form in robots.txt und /.well-known/tdmrep.json.
 
+### 3.6 Technische Sperre beim Netzwerkdienst Cloudflare
+
+Der gesamte Verkehr der Website läuft über den Netzwerkdienst Cloudflare, bevor er den Server
+erreicht. Dort gelten seit 4. November 2026 zwei Einstellungen:
+
+- **Sperre der KI-Trainings-Crawler:** Crawler, die Cloudflare als Crawler für KI-Training
+  erkennt, erhalten keinen Zugriff (Antwort „403 Forbidden"). Das gilt auch für Crawler, die
+  robots.txt nicht beachten. KI-Such- und Antwortdienste sind davon nicht erfasst; für sie
+  gilt die Regel aus 3.1 b (Seiten ja, Bilder und Rundgänge nein).
+- **Hotlink-Schutz:** Bilder werden nur ausgeliefert, wenn sie von permaphemera.at selbst
+  angefordert werden oder ohne Herkunftsangabe (zum Beispiel für die Vorschau eines geteilten
+  Links). Fremde Websites können Bilder von PERMAPHEMERA nicht direkt einbinden.
+
 ## 4. Prüfung am 4. November 2026
 
 Alle Maßnahmen wurden nach der Veröffentlichung auf der öffentlichen Website geprüft.
@@ -128,6 +153,10 @@ Alle Maßnahmen wurden nach der Veröffentlichung auf der öffentlichen Website 
 | Header eines Bildes unter `/media/` | `X-Robots-Tag: noai, noimageai`, `tdm-reservation: 1` |
 | Header einer Datei eines 360°-Rundgangs (`/media/tours/…`) | `X-Robots-Tag: noai, noimageai`, `tdm-reservation: 1` |
 | Nutzungsbedingungen, deutsch und englisch | beide Regeln aus 3.5 sichtbar |
+| Abruf der Startseite als „GPTBot" (KI-Trainings-Crawler von OpenAI) | gesperrt (HTTP 403) |
+| Abruf der Startseite als „Googlebot" (Suchmaschine) | erlaubt (HTTP 200) |
+| Bild mit fremder Website als Herkunft (Hotlink) | gesperrt (HTTP 403) |
+| Bild von permaphemera.at selbst und ohne Herkunftsangabe | ausgeliefert (HTTP 200) |
 
 Jede Person kann diese Prüfung wiederholen: die genannten Adressen im Browser öffnen, oder für
 die Header zum Beispiel `curl -I https://permaphemera.at/` ausführen.
@@ -137,7 +166,8 @@ die Header zum Beispiel `curl -I https://permaphemera.at/` ausführen.
 Diese Maßnahmen erklären den Vorbehalt auf allen üblichen maschinenlesbaren Wegen und sperren
 die bekannten KI-Crawler. Sie sind keine technische Garantie:
 
-- robots.txt, Meta-Tags und Header wirken nur bei Programmen, die sie beachten. Ein Programm,
+- robots.txt, Meta-Tags und Header wirken nur bei Programmen, die sie beachten. Die Sperre in 3.6
+  erfasst nur Crawler, die Cloudflare als solche erkennt. Ein Programm,
   das sie bewusst übergeht oder sich als gewöhnlicher Browser ausgibt, wird dadurch nicht
   technisch gehindert. In diesem Fall erfolgt die Auslese entgegen dem erklärten Vorbehalt.
 - Die Liste der KI-Crawler ändert sich laufend. Neue Kennungen werden ergänzt, sobald sie bekannt
@@ -149,15 +179,11 @@ die bekannten KI-Crawler. Sie sind keine technische Garantie:
 
 Noch nicht umgesetzt; in Vorbereitung:
 
-1. **Sperre beim Netzwerkdienst Cloudflare:** Über Cloudflare läuft der gesamte Verkehr der
-   Website. Die Einstellung „Block AI bots" sperrt bekannte KI-Crawler schon vor dem Server,
-   auch solche, die robots.txt nicht beachten.
-2. **Hotlink-Schutz:** Andere Websites können Bilder von PERMAPHEMERA nicht direkt einbinden.
-3. **Keine Originalgrößen:** Bilder werden öffentlich nur in den Größen ausgeliefert, die die
+1. **Keine Originalgrößen:** Bilder werden öffentlich nur in den Größen ausgeliefert, die die
    Website anzeigt, nicht als Originaldatei.
-4. **Begrenzung der Abrufrate:** Massenhafte Abrufe von Bildern und Rundgängen in kurzer Zeit
+2. **Begrenzung der Abrufrate:** Massenhafte Abrufe von Bildern und Rundgängen in kurzer Zeit
    werden gebremst.
-5. **Rechteangaben in den Bilddateien:** Rechteinhaber und „Data Mining: verboten" in den
+3. **Rechteangaben in den Bilddateien:** Rechteinhaber und „Data Mining: verboten" in den
    IPTC/XMP-Daten der ausgelieferten Bilder.
 
 Dieser Bericht wird bei jeder wesentlichen Änderung neu ausgestellt.
