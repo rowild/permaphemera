@@ -1,3 +1,4 @@
+import { linksThrough } from '~/utils/externalLinks'
 import { toRichHtml } from '~/utils/richText'
 import type {
   ExhibitionOrganiserRecord, ExhibitionOrganiserRole, JunctionRow, LocationRecord, OrganisationMembershipRecord, OrganisationRecord,
@@ -90,15 +91,7 @@ export const resolveOrganisations = (
     const text = pickTranslation(organisation, locale)
     const location = organisation.location ? locationById.get(organisation.location) : undefined
 
-    const links: ResolvedLink[] = organisationsWebsites
-      .filter((row) => row.organisations_id === organisation.id)
-      .sort((a, b) => a.sort - b.sort)
-      .flatMap((row) => {
-        const site = websiteById.get(String(row.websites_id))
-        if (!site) return []
-        const words = pickTranslation(site, locale)
-        return [{ id: site.id, title: (words.title as string) || site.title, url: site.url, kind: site.kind }]
-      })
+    const links: ResolvedLink[] = linksThrough(websiteById, organisationsWebsites, 'organisations_id', organisation.id, locale)
 
     const venueLinks: OrganisationVenueLink[] = venueRelations
       .filter((row) => row.organisation === organisation.id)

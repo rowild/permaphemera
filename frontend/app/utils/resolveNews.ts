@@ -1,3 +1,4 @@
+import { linkedRecords } from '~/utils/junction'
 import type { JunctionRow, NewsRecord, NewsTopic } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
@@ -45,27 +46,20 @@ export interface NewsSources {
   locale: string
 }
 
-// The resolved lists hold published records only, so a link to a draft simply finds nothing.
-const linked = <T extends { id: string }>(rows: JunctionRow[], newsId: string, column: string, records: T[]): T[] => {
-  const byId = new Map(records.map((record) => [record.id, record]))
-  return rows
-    .filter((row) => row.news_id === newsId)
-    .sort((a, b) => a.sort - b.sort)
-    .flatMap((row) => {
-      const record = byId.get(String(row[column]))
-      return record ? [record] : []
-    })
-}
 
 const text = (value: unknown): string | undefined => (typeof value === 'string' && value.trim() ? value : undefined)
 
 /** Published articles, newest first; same day: by title. */
-export const resolveNews = (s: NewsSources): ResolvedNews[] => s.news
+export const resolveNews = (s: NewsSources): ResolvedNews[] => {
+  // The resolved lists hold published records only, so a link to a draft simply finds nothing.
+  const byId = <T extends { id: string }>(records: T[]) => new Map(records.map((record) => [record.id, record]))
+  const [exhibitionById, venueById, personById, organisationById, sponsorById] = [byId(s.exhibitions), byId(s.venues), byId(s.persons), byId(s.organisations), byId(s.sponsors)]
+  return s.news
   .filter(isVisible)
   .map((record) => {
     const words = pickTranslation(record, s.locale)
-    const exhibitions = linked(s.exhibitionsNews, record.id, 'exhibitions_id', s.exhibitions)
-    const venues = linked(s.newsVenues, record.id, 'venues_id', s.venues)
+    const exhibitions = linkedRecords(s.exhibitionsNews, 'news_id', record.id, 'exhibitions_id', exhibitionById)
+    const venues = linkedRecords(s.newsVenues, 'news_id', record.id, 'venues_id', venueById)
     const ownImage = record.image && !(record as NewsRecord & { image_placeholder?: boolean }).image_placeholder ? record.image : undefined
     const galleryWithImage = venues.find((venue) => venue.has_image)
     const picture = ownImage
@@ -86,9 +80,10 @@ export const resolveNews = (s: NewsSources): ResolvedNews[] => s.news
       description: text(words.description) ?? text(record.description),
       exhibitions,
       venues,
-      persons: linked(s.newsPersons, record.id, 'persons_id', s.persons),
-      organisations: linked(s.newsOrganisations, record.id, 'organisations_id', s.organisations),
-      sponsors: linked(s.newsSponsors, record.id, 'sponsors_id', s.sponsors)
+      persons: linkedRecords(s.newsPersons, 'news_id', record.id, 'persons_id', personById),
+      organisations: linkedRecords(s.newsOrganisations, 'news_id', record.id, 'organisations_id', organisationById),
+      sponsors: linkedRecords(s.newsSponsors, 'news_id', record.id, 'sponsors_id', sponsorById)
     }
   })
   .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title))
+}

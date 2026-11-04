@@ -1,3 +1,4 @@
+import { linksThrough } from '~/utils/externalLinks'
 import type {
   ExhibitionRecord, ExhibitionStatement, JunctionRow, LocationRecord, ParticipationRecord, PersonRecord, RoleRecord, VenueRecord, WebsiteRecord, ExhibitionKind,
   ExhibitionOrganiserRecord, ExhibitionOrganiserRole, OrganisationRecord } from '~/types/content'
@@ -114,20 +115,9 @@ export const resolveExhibitions = (
   const roleSlugById = new Map(roles.filter(isVisible).map((role) => [role.id, role.slug]))
   const websiteById = new Map(websites.filter(isVisible).map((site) => [site.id, site]))
 
-  // Links reach a record through a junction table; unpublished links and rows
-  // whose link is gone simply drop out.
-  const linksThrough = (rows: JunctionRow[], ownerColumn: string, ownerId: string): ResolvedLink[] => rows
-    .filter((row) => row[ownerColumn] === ownerId)
-    .sort((a, b) => a.sort - b.sort)
-    .flatMap((row) => {
-      const site = websiteById.get(String(row.websites_id))
-      if (!site) return []
-      const words = pickTranslation(site, locale)
-      return [{ id: site.id, title: (words.title as string) || site.title, url: site.url, kind: site.kind }]
-    })
 
   const toCredit = (person: PersonRecord): ResolvedExhibitionArtist => {
-    const links = linksThrough(personsWebsites, 'persons_id', person.id)
+    const links = linksThrough(websiteById, personsWebsites, 'persons_id', person.id, locale)
     const primary = links.find((link) => link.kind === 'website') ?? links[0]
     return { id: person.id, slug: person.slug, name: displayPersonName(person), website_url: primary?.url, websites: links }
   }
@@ -192,7 +182,7 @@ export const resolveExhibitions = (
       organiser_persons: organiserPersons.map(toCredit),
       organisers: organisersByExhibition.get(exhibition.id) ?? [],
       statements: resolvedStatements,
-      websites: linksThrough(exhibitionsWebsites, 'exhibitions_id', exhibition.id),
+      websites: linksThrough(websiteById, exhibitionsWebsites, 'exhibitions_id', exhibition.id, locale),
       venue_slug: venue.slug,
       venue: venue.title,
       venue_website: venue.website_url || undefined,

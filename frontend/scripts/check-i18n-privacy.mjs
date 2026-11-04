@@ -83,10 +83,10 @@ assert.match(nuxtConfig, /redirectOn:\s*'root'/, 'Browser-language detection mus
 assert.match(nuxtConfig, /fallbackLocale:\s*'de'/, 'German must remain the browser-detection fallback locale.')
 
 const languageSwitch = await readText('app/components/ArchiveLanguageSwitch.vue')
-assert.match(languageSwitch, /useSwitchLocalePath\(\)/, 'The language switch must resolve the equivalent localized route.')
-assert.match(languageSwitch, /useCookie<string>\('permaphemera-locale'/, 'The language switch must remember an explicit locale preference.')
+// setLocale goes to the same page in the other language and writes the i18n cookie, once
+// (behaviour: test/nuxt/ArchiveLanguageSwitch.spec.ts).
 assert.match(languageSwitch, /await setLocale\(localeCode\)/, 'The language switch must update the active locale.')
-assert.match(languageSwitch, /await navigateTo\(targetPath\)/, 'The language switch must navigate to the localized route.')
+assert.doesNotMatch(languageSwitch, /navigateTo\(/, 'The language switch must not navigate a second time after setLocale.')
 assert.match(languageSwitch, /<ArchiveTooltipFrame[\s\S]*?name="archive-language-menu"|name="archive-language-menu"[\s\S]*?<ArchiveTooltipFrame/, 'The language menu must reuse the shared archival tooltip frame and its motion contract.')
 
 const privacyNotice = await readText('app/components/ArchiveCookieNotice.vue')

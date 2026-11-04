@@ -12,12 +12,7 @@ const props = withDefaults(defineProps<{
 })
 
 const { locale, locales, setLocale, t } = useI18n()
-const switchLocalePath = useSwitchLocalePath()
 const route = useRoute()
-const localePreference = useCookie<string>('permaphemera-locale', {
-  maxAge: 60 * 60 * 24 * 365,
-  sameSite: 'lax'
-})
 const rootElement = ref<HTMLElement | null>(null)
 const triggerElement = ref<HTMLButtonElement | null>(null)
 const menuOpen = ref(false)
@@ -108,11 +103,10 @@ const switchLanguage = async (localeCode: SupportedLocale) => {
 
   switching.value = true
 
+  // setLocale goes to the same page in the new language and stores the choice in the i18n
+  // cookie (detectBrowserLanguage.cookieKey); one navigation.
   try {
-    const targetPath = switchLocalePath(localeCode)
-    localePreference.value = localeCode
     await setLocale(localeCode)
-    await navigateTo(targetPath)
   } finally {
     switching.value = false
   }

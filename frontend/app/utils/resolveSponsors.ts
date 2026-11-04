@@ -1,3 +1,4 @@
+import { linkedRecords } from '~/utils/junction'
 import type { JunctionRow, LocationRecord, PersonRecord, SponsorRecord, VenueRecord } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
@@ -31,13 +32,6 @@ export interface SponsorSources {
   locale: string
 }
 
-const linked = <T>(rows: JunctionRow[], sponsorId: string, column: string, byId: Map<string, T>): T[] => rows
-  .filter((row) => row.sponsors_id === sponsorId)
-  .sort((a, b) => a.sort - b.sort)
-  .flatMap((row) => {
-    const item = byId.get(String(row[column]))
-    return item ? [item] : []
-  })
 
 export const resolveSponsors = (s: SponsorSources): ResolvedSponsor[] => {
   const exhibitionById = new Map(s.exhibitions.map((exhibition) => [exhibition.id, exhibition]))
@@ -54,10 +48,10 @@ export const resolveSponsors = (s: SponsorSources): ResolvedSponsor[] => {
       website_url: sponsor.website_url || undefined,
       logo: sponsor.logo || undefined,
       description: (text.description as string) || sponsor.description || undefined,
-      exhibitions: linked(s.exhibitionsSponsors, sponsor.id, 'exhibitions_id', exhibitionById),
-      venues: linked(s.sponsorsVenues, sponsor.id, 'venues_id', venueById),
-      persons: linked(s.personsSponsors, sponsor.id, 'persons_id', personById),
-      towns: linked(s.locationsSponsors, sponsor.id, 'locations_id', townById)
+      exhibitions: linkedRecords(s.exhibitionsSponsors, 'sponsors_id', sponsor.id, 'exhibitions_id', exhibitionById),
+      venues: linkedRecords(s.sponsorsVenues, 'sponsors_id', sponsor.id, 'venues_id', venueById),
+      persons: linkedRecords(s.personsSponsors, 'sponsors_id', sponsor.id, 'persons_id', personById),
+      towns: linkedRecords(s.locationsSponsors, 'sponsors_id', sponsor.id, 'locations_id', townById)
     }
   })
 }
