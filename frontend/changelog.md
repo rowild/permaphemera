@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.61 - 2026-11-05 00:10:00 CET
+
+- The language switch goes to the other language in one step (before: two navigations); the choice is remembered as before.
+- One shared "today" for the whole site instead of one timer per exhibition card.
+- Shared helpers for links and records reached through Directus junction tables; components use Nuxt's auto-imports throughout (no visible change).
+
 ## 0.0.60 - 2026-11-04 23:30:00 CET
 
 - Section headings share one line height per size (the one most sections already had). Six headings that were set looser now match: the closing bands of about, how it works and contact, the process heading, "Jetzt und demnächst" and the start page's news column (5–9 px shorter on desktop).

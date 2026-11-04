@@ -122,7 +122,17 @@ Ranked by copies × drift. Every new piece gets a test in the component test bas
     `py-[clamp(3rem,5vw,5rem)]` 21× → `@theme` tokens (AGENTS.md CSS rule 1) and optionally
     `ArchiveBand`. Compact gutter drifts `px-3`/`px-4`.
 
-## Phase 3 — data layer
+## Phase 3 — data layer — DONE 0.0.55/0.0.61, with three decisions
+
+Done: 3.1 shared useArchiveData, 3.3 junction helpers (linkedRecords, linksThrough), 3.4 sanitize
+once, 3.5 shared useArchiveToday, 3.6 language switch (one navigation), 3.8 auto-imports.
+Not built, on purpose:
+- 3.2 indexArchive: after markRaw a full resolver pass takes ~2 ms; revisit at ~10× the data.
+- 3.3 the translated-field one-liners stay: they fall back differently on purpose (a missing German
+  lede must not show the English one); a helper would hide that.
+- 3.5 one shared ResizeObserver, 3.7 lazy artist modal: small gains; the modal needs to stay
+  mounted for its closing transition and the focus return to the "i" button.
+
 
 1. **DONE 0.0.55** **One `useArchiveData()` instance per app** (today 13 callers each build all computeds; the
    start page runs all seven resolvers): detached `effectScope` on `nuxtApp`.
