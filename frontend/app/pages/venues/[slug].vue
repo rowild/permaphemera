@@ -193,16 +193,14 @@ const venueLedgerItems = computed(() => [
 ])
 
 usePageSeo(`/venues/${slug}/`)
-// An unknown slug throws the 404 in setup; the template then renders nothing (v-if on <main>),
+// An unknown slug throws the 404 in setup; the template then renders nothing (v-if on its root),
 // or it reads the missing record and the error page never appears (like the person and sponsor pages).
+definePageMeta({ navActive: 'galleries' })
 </script>
 
 <template>
-  <main v-if="venue" class="[ site-shell ] [ venue-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader active="galleries" />
+  <div v-if="venue" class="[ venue-page ]">
 
-    <div id="main-content">
       <section
         class="[ venue-hero ] [ section-band ] relative mx-auto grid min-h-[calc(100vh-6.4rem)] max-w-[105rem] grid-cols-[minmax(22rem,0.82fr)_minmax(30rem,1.18fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:min-h-auto tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-10"
         aria-labelledby="venue-title"
@@ -377,8 +375,5 @@ usePageSeo(`/venues/${slug}/`)
           <cite class="mt-4 block text-xs not-italic tracking-[0.08em] text-archive-red uppercase">{{ $t('venue.fieldNote') }}</cite>
         </blockquote>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

@@ -18,11 +18,8 @@ usePageSeo(`/sponsors/${slug}/`)
 </script>
 
 <template>
-  <main v-if="sponsor" class="[ site-shell ] [ sponsor-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader />
+  <div v-if="sponsor" class="[ sponsor-page ]">
 
-    <div id="main-content">
       <section class="[ sponsor-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(16rem,0.6fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="sponsor-title">
         <div class="[ sponsor-hero-copy ] relative z-2">
           <ArchiveBreadcrumb>
@@ -66,8 +63,5 @@ usePageSeo(`/sponsors/${slug}/`)
           </ArchiveMetadataRow>
         </dl>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

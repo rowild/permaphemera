@@ -15,15 +15,13 @@ const localePath = useLocalePath()
 const exhibitions = computed(() => groupExhibitionsByTime(venueExhibitions.value, archiveToday.value)[props.group])
 const title = computed(() => t(`exhibitionsDirectory.groups.${props.group}.title`))
 
+useNavActive('exhibitions')
 usePageSeo(() => `/exhibitions/${props.group}/`)
 </script>
 
 <template>
-  <main class="[ site-shell ] [ exhibition-group-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader active="exhibitions" />
+  <div class="[ exhibition-group-page ]">
 
-    <div id="main-content">
       <section class="[ exhibition-group ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] compact:px-3 compact:py-4" aria-labelledby="exhibition-group-title">
         <header class="[ section-heading ] relative z-1 mb-8 compact:mb-5">
           <ArchiveBreadcrumb>
@@ -40,8 +38,5 @@ usePageSeo(() => `/exhibitions/${props.group}/`)
         </div>
         <ExhibitionPagedList v-else :exhibitions="exhibitions" anchor="exhibition-group-list" />
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

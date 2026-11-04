@@ -12,6 +12,8 @@ const person = computed(() => persons.value.find((item) => item.slug === slug))
 if (!person.value) {
   throw createError({ statusCode: 404, statusMessage: t('persons.notFound'), fatal: true })
 }
+// An artist's page belongs to "Künstler:innen" in the menu; other persons to no item.
+if (person.value.isArtist) useNavActive('artists')
 
 const roleLine = computed(() => person.value!.roles.map((role) => role.title).join(' · '))
 // The main link opens the Links row on its own line; these follow on the next line.
@@ -27,11 +29,8 @@ usePageSeo(`/persons/${slug}/`)
 </script>
 
 <template>
-  <main v-if="person" class="[ site-shell ] [ person-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader :active="person.isArtist ? 'artists' : undefined" />
+  <div v-if="person" class="[ person-page ]">
 
-    <div id="main-content">
       <section class="[ person-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(24rem,1.1fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="person-title">
         <div class="[ person-hero-copy ] relative z-2">
           <ArchiveBreadcrumb>
@@ -122,8 +121,5 @@ usePageSeo(`/persons/${slug}/`)
           <figcaption class="mt-3 text-sm text-archive-muted">{{ $t('persons.statementOn') }} <ArchiveTextLink :to="localePath(`/exhibitions/${statement.exhibitionSlug}/`)">{{ statement.exhibitionTitle }}</ArchiveTextLink></figcaption>
         </figure>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

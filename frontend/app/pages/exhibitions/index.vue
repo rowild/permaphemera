@@ -64,14 +64,12 @@ watch(exhibitionSearchQuery, (query) => {
 })
 
 usePageSeo('/exhibitions/')
+definePageMeta({ navActive: 'exhibitions' })
 </script>
 
 <template>
-  <main class="[ site-shell ] [ exhibitions-directory-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader active="exhibitions" />
+  <div class="[ exhibitions-directory-page ]">
 
-    <div id="main-content">
       <ArchiveDirectoryHero
         class="[ exhibitions-directory-intro ]"
         title-id="exhibitions-directory-title"
@@ -136,8 +134,5 @@ usePageSeo('/exhibitions/')
           </div>
         </div>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

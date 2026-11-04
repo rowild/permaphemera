@@ -70,16 +70,14 @@ const tourStatus = computed(() => {
 const heroImage = computed(() => directusImageUrl(exhibition.value?.image, 1600))
 
 usePageSeo(`/exhibitions/${routeSlug}/`)
-// An unknown slug throws the 404 in setup; the template then renders nothing (v-if on <main>),
+// An unknown slug throws the 404 in setup; the template then renders nothing (v-if on its root),
 // or it reads the missing record and the error page never appears (like the person and sponsor pages).
+definePageMeta({ navActive: 'exhibitions' })
 </script>
 
 <template>
-  <main v-if="exhibition" class="[ site-shell ] [ exhibition-detail-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader active="exhibitions" />
+  <div v-if="exhibition" class="[ exhibition-detail-page ]">
 
-    <div id="main-content">
       <section class="[ exhibition-hero ] archive-exhibition-experience relative grid min-h-[calc(100vh-6.4rem)] grid-cols-[minmax(0,1.05fr)_minmax(30rem,0.95fr)] overflow-hidden bg-archive-night text-archive-footer-copy tablet:grid-cols-1 tablet:min-h-auto" aria-labelledby="exhibition-title">
         <div class="[ exhibition-hero-image ] min-h-0 bg-cover bg-center brightness-50 saturate-72 tablet:min-h-100 compact:min-h-76" :style="{ backgroundImage: `url('${heroImage}')` }" aria-hidden="true" />
         <div class="[ exhibition-hero-copy ] archive-exhibition-experience-copy relative z-2 flex flex-col justify-center p-[clamp(3rem,6vw,6rem)] compact:bg-archive-night compact:px-4 compact:py-8">
@@ -198,8 +196,5 @@ usePageSeo(`/exhibitions/${routeSlug}/`)
           />
         </div>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

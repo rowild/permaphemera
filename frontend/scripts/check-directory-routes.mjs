@@ -162,7 +162,7 @@ assert.match(exhibitionDetail, /galleryPath/, 'Exhibition detail routes must der
 // Organisations: a register with one row per body and a page per organisation.
 assert.match(organisationsIndex, /<ArchiveSearchForm/, 'The organisations index must use the shared search form.')
 assert.match(organisationsIndex, /<OrganisationDirectoryEntry[\s\S]*v-for=/, 'The organisations index must render reusable entries.')
-assert.match(organisationsIndex, /<ArchiveHeader active="organisations"/, 'The organisations index must mark its header state.')
+assert.match(organisationsIndex, /definePageMeta\(\{ navActive: 'organisations' \}\)/, 'The organisations index must mark its menu item (page meta navActive, layouts/default.vue).')
 assert.match(organisationDetail, /organisations\.value\.find/, 'Organisation pages must resolve the canonical organisations collection.')
 assert.match(organisationDetail, /<ExhibitionCard/, 'Organisation pages must reuse the one exhibition card for their records.')
 assert.match(organisationEntry, /props\.organisation\.title/, 'Organisation entries show the title verbatim.')
@@ -197,7 +197,7 @@ for (const [name, file] of [['exhibition', 'exhibitions'], ['venue', 'venues'], 
   const page = await readText(`app/pages/${file}/[slug].vue`)
   assert.match(page, /createError\(\{ statusCode: 404, statusMessage: [^}]*, fatal: true \}\)/, `An unknown ${name} slug must throw a fatal 404, or the browser shows an empty page.`)
   // After the 404 in setup the template must render nothing; reading the missing record would crash before the error page.
-  assert.match(page, /<template>\s*(<!--[\s\S]*?-->\s*)?<main v-if="/, `The ${name} page must guard its template with v-if on the record.`)
+  assert.match(page, /<template>\s*<(div|main) v-if="/, `The ${name} page must guard its template with v-if on the record.`)
 }
 // A portrait keeps its upright frame at every width (a wide frame would crop the head);
 // the fallback exhibition image, usually landscape, gets the wide frame.

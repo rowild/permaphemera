@@ -23,7 +23,10 @@ type Exhibition = ResolvedExhibition
 
 // The start page renders before the archive arrives (app.vue): the hero shows
 // at once, the wheel's arrows run faded, everything below waits for the data.
-definePageMeta({ archiveOptional: true })
+// The start page keeps its own frame (layout: false): the intro plays the header in, and the
+// footer waits for the sections below the hero. The structure follows layouts/default.vue:
+// header and footer beside <main>, overflow-clip so the sticky header stays.
+definePageMeta({ archiveOptional: true, layout: false })
 
 const { venues, venueExhibitions, artistDirectory: directoryArtists, news } = useArchiveData()
 const archiveReady = useArchiveReady()
@@ -411,9 +414,10 @@ const openRandomTour = (event: MouseEvent) => {
 </script>
 
 <template>
-  <main ref="pageRef" class="[ site-shell ] archive-drafting-canvas relative z-1 min-h-screen overflow-hidden">
+  <div ref="pageRef" class="[ site-shell ] archive-drafting-canvas relative z-1 min-h-screen overflow-clip">
     <ArchivePageChrome />
     <ArchiveHeader skip-target="top" intro />
+    <main>
 
     <section
       id="top"
@@ -700,8 +704,8 @@ const openRandomTour = (event: MouseEvent) => {
       </section>
 
       <LandingNewsList v-if="belowHeroStep >= 5 && latestNewsMobile.length" class="hidden compact:block" :news="latestNewsMobile" variant="section" />
-
-      <ArchiveFooter v-if="belowHeroStep >= 6" />
     </template>
-  </main>
+    </main>
+    <ArchiveFooter v-if="archiveReady && belowHeroStep >= 6" />
+  </div>
 </template>

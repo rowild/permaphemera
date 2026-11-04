@@ -80,14 +80,12 @@ watch([gallerySearchQuery, selectedState], ([query, state]) => {
 })
 
 usePageSeo('/venues/')
+definePageMeta({ navActive: 'galleries' })
 </script>
 
 <template>
-  <main class="[ site-shell ] [ galleries-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader active="galleries" />
+  <div class="[ galleries-page ]">
 
-    <div id="main-content">
       <ArchiveDirectoryHero
         class="[ galleries-page-intro ]"
         title-id="galleries-page-title"
@@ -137,8 +135,5 @@ usePageSeo('/venues/')
           </div>
         </div>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

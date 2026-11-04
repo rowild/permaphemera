@@ -62,11 +62,8 @@ usePageSeo('/contact/')
 </script>
 
 <template>
-  <main class="[ site-shell ] [ contact-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader />
+  <div class="[ contact-page ]">
 
-    <div id="main-content">
       <section class="[ contact-page-intro ] [ section-band ] relative mx-auto grid min-h-128 max-w-[105rem] grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-4" aria-labelledby="contact-page-title">
         <header class="[ contact-page-heading ]">
           <ArchiveBreadcrumb>
@@ -128,8 +125,5 @@ usePageSeo('/contact/')
           </ArchiveActionHint>
         </div>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

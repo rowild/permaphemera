@@ -23,11 +23,9 @@ usePageSeo(`/news/${slug}/`)
 </script>
 
 <template>
-  <main v-if="article" class="[ site-shell ] [ news-article-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader />
+  <div v-if="article" class="[ news-article-page ]">
 
-    <article id="main-content" aria-labelledby="news-article-title">
+    <article aria-labelledby="news-article-title">
       <header class="[ news-article-intro ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] pt-[clamp(3rem,6vw,6rem)] pb-[clamp(1.5rem,3vw,3rem)] compact:px-4 compact:pt-6 compact:pb-4">
         <ArchiveBreadcrumb>
           <ArchiveTextLink :to="localePath('/')">{{ $t('navigation.archive') }}</ArchiveTextLink><span aria-hidden="true">/</span><ArchiveTextLink :to="localePath('/news/')">{{ $t('newsPage.breadcrumb') }}</ArchiveTextLink>
@@ -96,7 +94,5 @@ usePageSeo(`/news/${slug}/`)
         </ArchiveTextLink>
       </nav>
     </article>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

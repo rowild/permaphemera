@@ -79,11 +79,8 @@ usePageSeo('/how-it-works/')
 </script>
 
 <template>
-  <main class="[ site-shell ] [ how-it-works-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader />
+  <div class="[ how-it-works-page ]">
 
-    <div id="main-content">
       <section class="[ how-it-works-intro ] [ section-band ] relative mx-auto grid min-h-144 max-w-[105rem] grid-cols-[minmax(0,0.88fr)_minmax(28rem,1.12fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 tablet:gap-10 compact:gap-6 compact:px-4 compact:py-4" aria-labelledby="how-it-works-page-title">
         <header class="[ how-it-works-heading ] tablet:row-start-2">
           <ArchiveBreadcrumb>
@@ -164,8 +161,5 @@ usePageSeo('/how-it-works/')
           </ArchiveButton>
         </div>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

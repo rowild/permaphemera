@@ -87,14 +87,12 @@ watch(searchQuery, (query) => {
 })
 
 usePageSeo('/organisations/')
+definePageMeta({ navActive: 'organisations' })
 </script>
 
 <template>
-  <main class="[ site-shell ] [ organisations-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader active="organisations" />
+  <div class="[ organisations-page ]">
 
-    <div id="main-content">
       <ArchiveDirectoryHero
         class="[ organisations-page-intro ]"
         title-id="organisations-page-title"
@@ -176,8 +174,5 @@ usePageSeo('/organisations/')
           </div>
         </div>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

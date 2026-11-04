@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.53 - 2026-11-04 18:45:00 CET
+
+- The header stays at the top while a page scrolls and shrinks to a slim bar on solid paper (the tagline folds away, brand, logo and menu get smaller; desktop 102 → 64 px, tablet 96 → 56 px, phone 64 → 48 px). Near the top it grows back. Before, it scrolled away, because the page frame clipped it.
+- One page frame for every page (a Nuxt layout): header, page and footer are now separate landmarks for screen readers (the header and footer sat inside the main content). The start page keeps its own frame for its intro, with the same structure.
+
 ## 0.0.52 - 2026-11-04 18:10:00 CET
 
 - A count shows once per page: the line "22 Ausstellungseinträge im Archiv", "12 von 12 Galerien …" and "19 von 19 Einträgen" shows only while a search or filter is active (the artists line and a gallery's "9 von 9" stay). The gallery page names its year once and drops the repeated record count from its ledger.

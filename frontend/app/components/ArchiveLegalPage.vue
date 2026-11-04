@@ -18,11 +18,8 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-  <main class="[ site-shell ] [ legal-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader />
+  <div class="[ legal-page ]">
 
-    <div id="main-content">
       <section class="[ legal-page-intro ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(0,1.12fr)_minmax(20rem,0.88fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:grid-cols-1 tablet:gap-8 compact:gap-6 compact:px-4 compact:py-4" :aria-labelledby="`${props.sections[0]?.id ?? 'legal'}-page-title`">
         <header class="[ legal-page-heading ]">
           <ArchiveBreadcrumb>
@@ -66,8 +63,5 @@ const localePath = useLocalePath()
           />
         </article>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

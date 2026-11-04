@@ -26,14 +26,12 @@ const hostnameOf = (url: string) => {
 }
 
 usePageSeo(`/organisations/${slug}/`)
+definePageMeta({ navActive: 'organisations' })
 </script>
 
 <template>
-  <main v-if="organisation" class="[ site-shell ] [ organisation-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader active="organisations" />
+  <div v-if="organisation" class="[ organisation-page ]">
 
-    <div id="main-content">
       <section class="[ organisation-hero ] [ section-band ] relative mx-auto grid max-w-[105rem] grid-cols-[minmax(22rem,0.9fr)_minmax(24rem,1.1fr)] items-start gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,5vw,5rem)] tablet:grid-cols-1 compact:gap-6 compact:px-4 compact:pt-6 compact:pb-6" aria-labelledby="organisation-title">
         <div class="[ organisation-hero-copy ] relative z-2">
           <ArchiveBreadcrumb>
@@ -111,8 +109,5 @@ usePageSeo(`/organisations/${slug}/`)
       <section v-else class="[ organisation-records-empty ] [ section-band ] relative mx-auto max-w-[105rem] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(2rem,4vw,4rem)] compact:px-4 compact:py-4">
         <p class="m-0 max-w-176 text-button text-archive-muted compact:text-sm">{{ $t('organisations.noRecords', { name: organisation.title }) }}</p>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

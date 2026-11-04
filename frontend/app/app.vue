@@ -14,7 +14,9 @@ useDocumentLang()
 
 <template>
   <NuxtRouteAnnouncer />
-  <NuxtPage v-if="archive || route.meta.archiveOptional" />
+  <NuxtLayout v-if="archive || route.meta.archiveOptional">
+    <NuxtPage />
+  </NuxtLayout>
   <p v-else class="[ archive-loading ] m-0 grid min-h-dvh place-items-center font-display text-lg text-archive-muted">{{ $t('site.archiveLoading') }}</p>
   <ArchiveCookieNotice />
 </template>

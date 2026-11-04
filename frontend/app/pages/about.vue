@@ -58,14 +58,12 @@ const editorialSections = computed<EditorialSection[]>(() => [
 ])
 
 usePageSeo('/about/')
+definePageMeta({ navActive: 'about' })
 </script>
 
 <template>
-  <main class="[ site-shell ] [ about-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader active="about" />
+  <div class="[ about-page ]">
 
-    <div id="main-content">
       <section class="[ about-page-intro ] [ section-band ] relative mx-auto grid min-h-144 max-w-[105rem] grid-cols-[minmax(0,0.88fr)_minmax(28rem,1.12fr)] items-center gap-[clamp(3rem,7vw,7rem)] px-[clamp(1.4rem,5vw,5.2rem)] py-[clamp(3rem,6vw,6rem)] tablet:min-h-0 tablet:grid-cols-1 tablet:gap-10 compact:gap-6 compact:px-4 compact:py-4" aria-labelledby="about-page-title">
         <div class="[ about-page-heading ] tablet:row-start-2">
           <ArchiveBreadcrumb>
@@ -129,8 +127,5 @@ usePageSeo('/about/')
           </ArchiveButton>
         </div>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>

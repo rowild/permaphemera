@@ -82,7 +82,7 @@ the same address. Measured: start page 16.4 → 1.3 MB, `/venues/` 18.3 → 0.7 
 
 Ranked by copies × drift. Every new piece gets a test in the component test base (phase 5).
 
-1. **`layouts/default.vue`: the page frame, 16 copies** (`<main class="[ site-shell ] …">` +
+1. **DONE 0.0.53** **`layouts/default.vue`: the page frame, 16 copies** (`<main class="[ site-shell ] …">` +
    `ArchivePageChrome` + `ArchiveHeader` + `#main-content` + `ArchiveFooter`; e.g. `about.vue:64`,
    `venues/index.vue:86`, all detail pages, `ExhibitionGroupPage`, `ArchiveLegalPage`). Drift:
    `active` missing on contact, how-it-works, news, sponsors, legal. Live side effects of today's

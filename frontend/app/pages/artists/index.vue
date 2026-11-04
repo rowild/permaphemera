@@ -102,14 +102,12 @@ watch([artistSearchQuery, selectedLetter], ([query, letter]) => {
 })
 
 usePageSeo('/artists/')
+definePageMeta({ navActive: 'artists' })
 </script>
 
 <template>
-  <main class="[ site-shell ] [ artists-page ] archive-drafting-canvas archive-routed-page-surface relative z-1 min-h-screen overflow-hidden">
-    <ArchivePageChrome />
-    <ArchiveHeader active="artists" />
+  <div class="[ artists-page ]">
 
-    <div id="main-content">
       <ArchiveDirectoryHero
         class="[ artists-page-intro ]"
         title-id="artists-page-title"
@@ -172,8 +170,5 @@ usePageSeo('/artists/')
           </div>
         </div>
       </section>
-    </div>
-
-    <ArchiveFooter />
-  </main>
+  </div>
 </template>
