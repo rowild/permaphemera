@@ -3,4 +3,4 @@
 // their URLs, so every viewer update gets a new address that no browser or
 // Cloudflare cache has seen. test/unit/tour-viewer-build.spec.ts checks that it
 // matches the files.
-export const TOUR_VIEWER_BUILD = '0dc9d6952d'
+export const TOUR_VIEWER_BUILD = '44e6cbbbfd'
