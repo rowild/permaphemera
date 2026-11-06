@@ -1,0 +1,814 @@
+{
+  "metaBefore": {
+    "pp_exhibitions": {
+      "id": 153,
+      "collection": "pp_exhibitions",
+      "field": "description",
+      "special": null,
+      "interface": "input-rich-text-md",
+      "options": null,
+      "display": null,
+      "display_options": null,
+      "readonly": false,
+      "hidden": false,
+      "sort": 2,
+      "width": "full",
+      "translations": null,
+      "note": "Curatorial statement.",
+      "conditions": null,
+      "required": false,
+      "group": "ui_group_content",
+      "validation": null,
+      "validation_message": null,
+      "searchable": true
+    },
+    "pp_translations__exhibitions": {
+      "id": 167,
+      "collection": "pp_translations__exhibitions",
+      "field": "description",
+      "special": null,
+      "interface": "input-rich-text-md",
+      "options": null,
+      "display": null,
+      "display_options": null,
+      "readonly": false,
+      "hidden": false,
+      "sort": 7,
+      "width": "full",
+      "translations": null,
+      "note": "Translated field for pp_exhibitions.description",
+      "conditions": null,
+      "required": false,
+      "group": null,
+      "validation": null,
+      "validation_message": null,
+      "searchable": true
+    },
+    "pp_news": {
+      "id": 530,
+      "collection": "pp_news",
+      "field": "description",
+      "special": null,
+      "interface": "input-rich-text-md",
+      "options": null,
+      "display": null,
+      "display_options": null,
+      "readonly": false,
+      "hidden": false,
+      "sort": 2,
+      "width": "full",
+      "translations": null,
+      "note": "The article text. Follows docs/text-rules.md.",
+      "conditions": null,
+      "required": false,
+      "group": "ui_group_content",
+      "validation": null,
+      "validation_message": null,
+      "searchable": true
+    },
+    "pp_translations__news": {
+      "id": 545,
+      "collection": "pp_translations__news",
+      "field": "description",
+      "special": null,
+      "interface": "input-rich-text-md",
+      "options": null,
+      "display": null,
+      "display_options": null,
+      "readonly": false,
+      "hidden": false,
+      "sort": 7,
+      "width": "full",
+      "translations": null,
+      "note": "Translated field for pp_news.description",
+      "conditions": null,
+      "required": false,
+      "group": null,
+      "validation": null,
+      "validation_message": null,
+      "searchable": true
+    }
+  },
+  "texts": [
+    {
+      "where": "pp_exhibitions/drago-druskovic-alpen-adria-galerie",
+      "path": "/items/pp_exhibitions/05c1c210-9912-49a6-9187-686f4ac5e1b5",
+      "field": "description",
+      "before": "The Alpen-Adria-Galerie announces an exhibition of works by Drago Druškovič for the turn of the year 2026/27. Opening on 15 December 2026 at 18:00; on view until 31 January 2027. Title and further details have not been published yet; the gallery reserves the right to make changes. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_exhibitions/biodiversitaet-entdecken",
+      "path": "/items/pp_exhibitions/05eb6bf9-58c5-4653-b33a-b04de4267fd4",
+      "field": "description",
+      "before": "Classes from 17 primary schools across Carinthia showed what they had made in the kidsmobil workshop “Kleine Künstler*innen für eine große Vielfalt” of the wissens.wert.welt at the kärnten.museum: animal rescue islands built from natural materials near their schools, documented in photographs, with interactive stations and workshop materials. Three classes were to be awarded for the most rescue islands for hedgehog, wolf and lynx; the proceeds from the sale of the photographs were intended for the Climate Fund Klagenfurt. Part of the EU project Climate Art City, the exhibition was organised by the Stadtgalerie Klagenfurt with the kärnten.museum, the University of Klagenfurt and the Climate Fund Klagenfurt. Scientific supervision: Franz Rauch, Cornelia Malojer, Petra Korenjak and Stefanie Margarita Preiml (University of Klagenfurt); project lead: Katharina Kavallar (kärnten.museum). PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_exhibitions/aus-der-asche-empor",
+      "path": "/items/pp_exhibitions/111e477f-f0e6-4193-91a2-c077abe7e6e0",
+      "field": "description",
+      "before": "Announcement. This exhibition has not opened yet. Under the title “Aus der Asche empor” (rising from the ashes), Sylvia Ofner shows sculpture and embroidery in the Salamancakeller of Schloss Porcia. From old oriental carpets, heirlooms and needlework of the 1930s she sews mythological figures: phoenix and centaur, Europa and the bull, Gilgamesh, Lamassu and the sphinx. With needle and thread she spins a story from the roots of Europe in Egypt and Mesopotamia to the present, a Europe that has reinvented itself again and again after wars and crises. The setting echoes the theme: the palace was built in the Renaissance, the age that saw itself as the rebirth of antiquity. Source: invitation of the Galerie im Schloss Porcia"
+    },
+    {
+      "where": "pp_exhibitions/epische-gemaelde",
+      "path": "/items/pp_exhibitions/1420e853-bbc5-4816-9a30-2692f3e0ec3f",
+      "field": "description",
+      "before": "Under the title “Epische Gemälde – Zwischen Mythos und Kosmos” (epic paintings – between myth and cosmos), Ingrid Pröller shows large-format paintings, some up to five metres wide, in the vaulted Salamancakeller of Schloss Porcia. The cycle runs from archaic landscapes to futuristic images and asks how people, nature and the cosmos relate. In “Wildes Kind” and “Kretische Landschaft” consumer waste intrudes on idyllic landscapes; “Geburt” and “Fabel” take up motifs of creation and storytelling. The poster image “Endzeit” (2022) reads a coastal scene with a child, an octopus and dead animals as a passage to a new beginning, and “Matrix” shows a cosmonaut as a modern Odysseus. Pröller, born in Schärding in 1970 and trained at the Akademie der bildenden Künste in Vienna, paints many of her works in an open-air studio on Crete. Source: invitation and poster of the Galerie im Schloss Porcia; spittal-drau.at"
+    },
+    {
+      "where": "pp_exhibitions/homestory",
+      "path": "/items/pp_exhibitions/172f28da-11eb-4cf9-89ad-d8f65ef0554f",
+      "field": "description",
+      "before": "The photographers Sebastian Köpcke and Volker Weinhold portray the artist Lisa Huber, born in Villach, in a photographic essay. They met as exhibiting artists at Admont Abbey and then photographed in her Berlin studio and in her workshop in the Haus der künstlerischen Begegnung in Villach. Their staged still lifes show objects from her life and work. The gallery hangs them next to large colour woodcuts by Lisa Huber. The exhibition is part of the Triennale IV Kärnten 2026. Source: villach.at, langenacht.orf.at"
+    },
+    {
+      "where": "pp_exhibitions/verwandlung-und-zustand",
+      "path": "/items/pp_exhibitions/1ed1be5e-62e5-4b41-9047-ccdcbb319a40",
+      "field": "description",
+      "before": "Nicoline von Heyl lives and works in Krumpendorf am Wörthersee. Her work moves between portrait and figure studies and non-representational, process-based painting. During the exhibition, the artist works on site in an open studio."
+    },
+    {
+      "where": "pp_exhibitions/katharina-gruzei-hydrotopia",
+      "path": "/items/pp_exhibitions/225bfee5-6225-4105-bab0-8a94a9332aa1",
+      "field": "description",
+      "before": "As Carinthia’s 2026 grant holder for photography and media art, Katharina Gruzei spent five months as artist in residence in the Europahaus studio provided by the City of Klagenfurt. The works, made between May and September, answer a summer marked by extreme heat and water scarcity: an analytical and humorous look at urban water spaces that places bodies and cityscape in an unusual state of suspension, between movement and stillness, everyday life and exception. Born in Klagenfurt in 1983, Gruzei works across photography, video, film, sound and installation, with a focus on socio-cultural themes and site-specific projects in public space."
+    },
+    {
+      "where": "pp_exhibitions/all-about-nature",
+      "path": "/items/pp_exhibitions/235dd05f-bdad-4101-8234-55d627dd7661",
+      "field": "description",
+      "before": "A group exhibition curated by Ulli Sturm with thirty-five artists, among them Uwe Bressnik, whose World Record IV (2020) is the key image. Painting, graphic art and objects make the relationship between people and nature tangible across past, present and future: what a natural habitat once was, how humans changed the environment, and where hope lies. Twenty per cent of the proceeds from sales go to the Klagenfurt climate fund. All participants are recorded on this page."
+    },
+    {
+      "where": "pp_exhibitions/wie-kriege-enden",
+      "path": "/items/pp_exhibitions/23b6f814-b9be-4821-96b9-93452e8c6725",
+      "field": "description",
+      "before": "Eighty years after the end of the Second World War, the Museum der Stadt Villach shows how wars end, in German and English. Six conflicts, from the Napoleonic Wars to the war in Ukraine, are linked to the history of Villach. Eleven eyewitnesses tell of flight, violence and new beginnings. Among the objects are a defused aerial bomb from the Second World War, a replica of an alpine position from the First World War and a Lada from Ukraine that was shot at by both sides. For 2026 the exhibition was extended and updated, with new content on the Cold War, the war in Ukraine and the sinking of the warship “Szent István”. It ends in a Peace Lab with interactive stations; two of them were developed by pupils of the BG/BRG Villach St. Martin. Source: villach.at, kaernten.orf.at, welcome2villach.at, klick-kaernten.at, it-gymnasium.at"
+    },
+    {
+      "where": "pp_exhibitions/bv-flohmarkt-2026",
+      "path": "/items/pp_exhibitions/2663ff78-e74f-4770-94e9-e632e74046dd",
+      "field": "description",
+      "before": "Announcement. The Carinthian branch of the Berufsvereinigung bildender Künstler Österreichs invites to its BV flea market at the gallery, Feldkirchner Straße 31: painting, graphic art, small furniture and tableware from the members. The market opens on Monday, 28 September 2026 from 16:00 to 20:00 and runs from 29 September to 2 October 2026 during the gallery's opening hours. This is a sale, not an exhibition, so PERMAPHEMERA will not record it as a 360° tour. Source: bv-kaernten.at, \"Aktuell\" (flyer of September 2026)."
+    },
+    {
+      "where": "pp_exhibitions/franz-grabmayr-stadtgalerie-klagenfurt",
+      "path": "/items/pp_exhibitions/27fcc5ab-73d8-4a9b-b4c2-9349093140fa",
+      "field": "description",
+      "before": "The Stadtgalerie Klagenfurt devotes its winter exhibition “Alles Farbe” to Franz Grabmayr (1927–2015), the Carinthian-born painter whose thickly layered landscapes, sand pits and dance pictures made him one of Austria’s most distinctive post-war painters. Opening on 19 November 2026 at 18:00; further details have not been published yet. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_exhibitions/vintage-views-from-an-unknown-future",
+      "path": "/items/pp_exhibitions/2d00261b-11e7-4b1f-9753-c7868591c628",
+      "field": "description",
+      "before": "Announcement. This exhibition has not opened yet. The Galerie Freihausgasse shows paintings by Gernot Fischer-Kondratovitch, born in Villach in 1968, under the title “vintage views from an unknown future”. According to the gallery they show pictures from a distant future: people, containers, houses and exotic animals in landscapes of ice and snow, or palm trees, beaches and seas in front of mountains. One of the works is from the series “Schneehaluzinationen” of 2026, acrylic on canvas, 100 × 140 cm. Source: villach.at"
+    },
+    {
+      "where": "pp_exhibitions/walther-preiml-sehnsucht",
+      "path": "/items/pp_exhibitions/34a00445-7c1f-4532-86b4-61cb44218469",
+      "field": "description",
+      "before": "Under the title “Sehnsucht” (longing), the printmaker and songwriter Walther Preiml, who lives in Kötschach-Mauthen, shows new work at the stARTup gallery. His woodcuts and frottages revolve around a “painful longing for the unattainable”; according to the ORF programme, the mountains of the region, seen from Preiml’s own perspective, are at the centre. The exhibition opened during the ORF Lange Nacht der Museen on 3 October 2026, when the artist also performed songs of his own. It is on view until 31 December 2026, on Fridays from 17:00 to 19:00. Preiml had already exhibited prints at the gallery in 2024. Source: waltherpreiml.at, langenacht.orf.at"
+    },
+    {
+      "where": "pp_exhibitions/kunstkalender-hoffnung-und-frieden",
+      "path": "/items/pp_exhibitions/3f2847a5-3828-41c5-8a8d-8245a0b7711a",
+      "field": "description",
+      "before": "The Lebenshilfe Region Knittelfeld presents its art calendar “Hoffnung und Frieden” in a pop-up gallery in Knittelfeld, with the works for it on the walls. Artists of the Lebenshilfe with and without disabilities made it with Helmuth Ploschnitznigg and Adi Schmölzer, partly at a working morning with the Spielberg middle school on 24 March 2026. Works from the project also hung in the exhibition “Hoffnung & Frieden” at the Stadtgalerie Judenburg in April 2026. At the vernissage Johann Hubmann, chair of the Lebenshilfe, welcomed the guests, and the two artists spoke about how the calendar came about. Source: meinbezirk.at, kleinezeitung.at, lebenshilfe-knittelfeld.at, murtalinfo.at"
+    },
+    {
+      "where": "pp_exhibitions/atemzuege",
+      "path": "/items/pp_exhibitions/4bac4c8e-299c-49ad-92f4-29bd58d841f8",
+      "field": "description",
+      "before": "Wolfgang Daborer, who lives in Spittal an der Drau, shows works from his cycle “Atemzüge” of 2025 and 2026 in the Wallnerhaus: mixed media on paper, 49.5 × 34.5 cm, and on linen, 200 × 35 cm. According to the flyer, the title refers to the line as a trace of breath. The lines come together, separate and open up space, with some accents of colour. The linen strips hang freely in the room. The exhibition opened on 21 May 2026 in the presence of Mayor Manfred Fleißner. Source: kleblach-lind.at, radio-osttirol.at"
+    },
+    {
+      "where": "pp_exhibitions/arnold-poeschl-hometown",
+      "path": "/items/pp_exhibitions/4d002715-d330-4e0a-8ada-d0ca4ff02fe8",
+      "field": "description",
+      "before": "For his photo book Hometown, Arnold Pöschl portrayed one hundred people of the Carinthian capital: the director of the Stadttheater, Aron Stiehl, the stage director Ute Liepold, and figures from the graffiti, street-art and literary scenes. Together they draw a picture of a city between generations, cultures and social change, and a photographic counter-narrative to the cliché of a backward Klagenfurt. The exhibition opens at the Robert Musil Literatur-Museum on 16 September 2026 at 19:30 with the presentation of the book, and runs until the end of January 2027."
+    },
+    {
+      "where": "pp_exhibitions/armin-guerino-durch-die-zeit",
+      "path": "/items/pp_exhibitions/585ac22d-0dd3-4526-87e5-ca2972be9974",
+      "field": "description",
+      "before": "Armin Guerino’s practice bridges painting and art in public space. Landscape is his central theme, fed by travel and by his experiences in Africa. Recent works look at ecological change and extreme weather through motifs such as horizons, clouds, rain, cities and heads: the line becomes a trace, a path and a labyrinth; the city becomes landscape. Curated by Gabriele Ruff. The exhibition in the Alpen-Adria-Galerie at Theaterplatz 3 is free of charge. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_exhibitions/karlheinz-simonitsch-living-studio",
+      "path": "/items/pp_exhibitions/5eff5a0d-3e7c-4168-a6ca-e46867a8cc5b",
+      "field": "description",
+      "before": "The Living Studio of the Stadtgalerie Klagenfurt announces an exhibition of works by Karlheinz Simonitsch. Opening on 1 December 2026 at 18:00; on view until 31 January 2027. Title and further details have not been published yet; the gallery reserves the right to make changes. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_exhibitions/mediterraneo-harald-scheicher-2026",
+      "path": "/items/pp_exhibitions/67474b28-9459-4f91-a909-ab9ecb24c956",
+      "field": "description",
+      "before": "For the ORF Lange Nacht der Museen on 3 October 2026, the Galerie Palais Fugger in Klagenfurt showed oil paintings by the Carinthian painter Harald Scheicher under the title “Mediterraneo”. A grandson of Werner Berg, Scheicher has painted outdoors in front of the motif for decades; besides the landscape of southern Carinthia, painting journeys regularly take him to Istria, Dalmatia and Sicily. From 18:00 the artist guided visitors through the exhibition and was available for conversation; children could join tours, puzzle rallies and drawing. Whether the exhibition stayed on view after that night is not documented. Source: langenacht.orf.at, scheicher.cc"
+    },
+    {
+      "where": "pp_exhibitions/das-was-entsteht",
+      "path": "/items/pp_exhibitions/6a00a540-0e9c-43ca-8d5c-1ddc7d57db06",
+      "field": "description",
+      "before": "Santino Solace lives and works in Spittal an der Drau as a comic artist, illustrator and founder of the creative platform SolaceWorks. His work combines manga, comics and modern digital illustration in a personal, humorous narrative style. The exhibition offers insight into his projects, working processes and the development of his own worlds."
+    },
+    {
+      "where": "pp_exhibitions/blinddate-der-perspektiven",
+      "path": "/items/pp_exhibitions/6bd91200-8b2d-43f2-92e3-7bb33da400c6",
+      "field": "description",
+      "before": "The association kultur.im.puls shows works by three graduates of the Freie Akademie der Bildenden Künste Kärnten in Klagenfurt: Inés Urach, Nicoline von Heyl and Roswitha Bucher-Sakowski. According to the organiser, the title “Blinddate der Perspektiven” (blind date of perspectives) refers to three separately developed positions meeting in one exhibition. Urach combines paper and paint in abstract pictures, von Heyl paints process-based works in mixed media, and Bucher-Sakowski paints figurative pictures in acrylic. The works hang in the daylit stairwell gallery of the Impuls Center; further works are on view in the stairwell of the Seeboden municipal office. Source: kultur-impuls.com, kaerntenportal.at, inesurach.at, nicolinevonheyl.com, bucher-sakowski.at"
+    },
+    {
+      "where": "pp_exhibitions/trigeniale-26",
+      "path": "/items/pp_exhibitions/773b8787-fda4-4aca-b4b0-4c9774cc0192",
+      "field": "description",
+      "before": "The international Alps-Adriatic joint exhibition of the Kulturinitiative bewegungINkultur shows works by five artists from four municipalities in Friuli, Carinthia and Slovenia. Alda Grudina (Goriška Brda) shows flower paintings in oil, Alessandra Minin (Tavagnacco) abstract paintings and Ondina Altran (Monfalcone) paintings of the biblical story of Susanna and the Elders. Karl Nackler (Klagenfurt) shows white-on-black drawings of conductors, violinists and pianists as well as still lifes in colour; Marlis Lepicnik (Klagenfurt) shows women's faces. The exhibition continues the initiative's eleven-year exchange with the Gruppo artistico culturale Albrecht Dürer in Tavagnacco, the artists' association DABLO in Brda and the Circolo Culturale ENDAS in Monfalcone. Governor Daniel Fellner is the honorary patron; the Euregio Senza Confini, the Alps-Adriatic Alliance and the Alpe-Adria Center for Cross-border Cooperation (AACC) give their patronage. Source: invitation and poster of bewegungINkultur, meinbezirk.at, novice.at"
+    },
+    {
+      "where": "pp_exhibitions/spannungsfelder-und-perspektiven-2026",
+      "path": "/items/pp_exhibitions/7c5b46b5-3c37-4f42-9cfb-440799b6dfe2",
+      "field": "description",
+      "before": "For the ORF Lange Nacht der Museen 2026, the Kunstverein Velden showed the group exhibition “Spannungsfelder und Perspektiven” (fields of tension and perspectives) in the large and small halls on the first floor of the Europahaus in Klagenfurt. The works by members of the association circled around opposites, encounters and shifting points of view – the contrasts that arise where different things meet. The range of motifs, techniques and approaches was correspondingly wide, from gestural painting to drawing. The announcement named Siegfried Zellot, Gudrun Zikulnig, Slava Mohl, Alfred Scheikl and Sylvia Campidell. Guided tours started at 18:00, and the artists were present for conversation. The association from Velden am Wörther See has taken part in the Lange Nacht with themed exhibitions since 2004. PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here. Source: langenacht.orf.at, kunstverein-velden.at"
+    },
+    {
+      "where": "pp_exhibitions/klaus-zlattinger-and-friends",
+      "path": "/items/pp_exhibitions/90b23239-414e-49c4-8261-49e5c3b2ecca",
+      "field": "description",
+      "before": "Announcement. This exhibition has not opened yet. The association kultur.im.puls marks the tenth anniversary of the death of Klaus Zlattinger, who died in December 2016 and worked as an artist, art educator and gallerist. The exhibition presents a cross-section of his work together with works by artist friends, among them Wolfgang Daborer, Christine De Pauli, Otmar Eder and Karl Vouk; the complete list has not been published. At the vernissage Christine Strobl-Oman reads from the poetry volume “alles leben”, which includes photographic works by Zlattinger. Further works are on view in the Seeboden municipal office. Source: kultur-impuls.com"
+    },
+    {
+      "where": "pp_exhibitions/fragil",
+      "path": "/items/pp_exhibitions/a23ab66d-6019-4a1a-9a82-21732c90a1d1",
+      "field": "description",
+      "before": "The Kunstverein postWERK devotes its annual exhibition at the Dinzlschloss to fragility, within the theme “schwach • šibko • debole” of the Triennale IV Kärnten 2026. Members and guest artists from Austria, Germany, Slovenia and Iran show painting, photography, installation, literature and performance. According to the organiser the exhibition treats tenderness as a state of attention, not of weakness. The works deal with vulnerability in material and in people, with fragile ecosystems and with a shared future. On the ORF Long Night of Museums on 3 October 2026, Christina Clar and Phil Yaeger performed “Wieso wir uns wiegen”. Source: villach.at, postwerk.at, langenacht.orf.at"
+    },
+    {
+      "where": "pp_exhibitions/schwach-unperfekt-ausgefranst-echt-2026",
+      "path": "/items/pp_exhibitions/b3d73d2d-d41c-48e6-a233-46f7141c53b5",
+      "field": "description",
+      "before": "On the ground floor of the Europahaus in Klagenfurt, Inés Urach showed the solo exhibition “Schwach.Unperfekt.Ausgefranst.Echt” (weak, imperfect, frayed, real) for the ORF Lange Nacht der Museen 2026. She announced it as a contribution to the Triennale IV Kärnten and its theme “schwach.šibko.debole”. The exhibition set cracks, breaks and frayed edges against the ideal of smooth, flawless surfaces and read them as traces of movement, time and resistance: imperfection not as a lack but as a form of honesty. Urach studied at the Freie Akademie der Bildenden Künste in Klagenfurt; she works abstractly and combines painting with paper and collaged elements. The artist was present for talks and guided tours from 18:00. PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here. Source: langenacht.orf.at, inesurach.at"
+    },
+    {
+      "where": "pp_exhibitions/gehen-und-sehen",
+      "path": "/items/pp_exhibitions/b9f39828-2559-40fa-8b76-d0d17dad4db9",
+      "field": "description",
+      "before": "Peter Kohlweiß has painted since 1982, beginning with Professor Hans Picottini at the HTL Villach and continuing through courses and seminars until he found his own style. He works in watercolour and drawing, translating what he sees on walks into pencil, brush and colour on paper and canvas."
+    },
+    {
+      "where": "pp_exhibitions/auf-linien-zum-leben",
+      "path": "/items/pp_exhibitions/c54f0485-f7c2-4a91-8926-5dd15bd4c468",
+      "field": "description",
+      "before": "Under the theme ‘Life stories – from tragedy to comedy’, visitors are invited to turn experiences, thoughts and texts into images. The festival combines an exhibition with daily workshops and a growing display of work created on site."
+    },
+    {
+      "where": "pp_exhibitions/hans-kupelwieser-raumschatten",
+      "path": "/items/pp_exhibitions/d1abf6d0-8ca6-49ff-9e34-239de111a508",
+      "field": "description",
+      "before": "Hans Kupelwieser, born 1948 in Lunz am See, has spent four decades testing materials and space. Raumschatten brings anodised aluminium reliefs, photograms, magnifying-glass objects, rotating metal discs and stainless steel into six rooms of the Stadtgalerie: works that fuse sculpture and photography and unsettle how a room is perceived. Curated by Lisa Ortner-Kreil."
+    },
+    {
+      "where": "pp_exhibitions/dialog-ars-carinthia-kunst-und-handwerk",
+      "path": "/items/pp_exhibitions/e03373b7-de2b-4e3e-9943-cb975b1f9a4e",
+      "field": "description",
+      "before": "DIALOG is part of INSIEME, the tenth design experiment of ARS CARINTHIA – Kunst & Handwerk, with which the initiative also marks its 30th anniversary in 2026. At the Stadtgalerie Klagenfurt two positions at a time answer each other in sequence: each pair starts from a freely chosen theme, first conceived for a defined space, real or imagined, and selected craft workshops realise the designs as active co-creators. The pairs are Esther Stocker and Matteo Thun, Sofia Podreka and Boris Podrecca, Laurids and Manfred Ortner, Karsten K. Krebs and HG Esch, Theres Cassini and Eva Schlegel, Sophie Grell and Ursula Klein, and Pepo Pichler and Walter Hösel; Tine Steinthaler works in exchange with an artificial intelligence. Curated by Walter Hösel. An exhibition of ARS CARINTHIA in cooperation with the Stadtgalerie Klagenfurt. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_exhibitions/bv-art-ex-26",
+      "path": "/items/pp_exhibitions/e0d42e01-4846-4aa8-9e22-16566122847e",
+      "field": "description",
+      "before": "Announcement. This exhibition has not opened yet. ART-EX is the annual exhibition of the members of the Carinthian branch of the Berufsvereinigung bildender Künstler Österreichs. The 2026 edition opens on Thursday, 5 November 2026 at 18:00 at the BV Galerie Kärnten, Feldkirchner Straße 31, and runs until 24 November 2026. Gallery direction: Margaretha Bauer, vice president of the BV Kärnten. Press: Eva Asaad. Details on the participating artists follow as soon as the invitation is published. Source: art-navi.at (the website bv-kaernten.at was not reachable on 23 September 2026)."
+    },
+    {
+      "where": "pp_translations__exhibitions/3 (auf-linien-zum-leben, en)",
+      "path": "/items/pp_translations__exhibitions/3",
+      "field": "description",
+      "before": "Under the theme ‘Life stories – from tragedy to comedy’, visitors are invited to turn experiences, thoughts and texts into images. The festival combines an exhibition with daily workshops and a growing display of work created on site."
+    },
+    {
+      "where": "pp_translations__exhibitions/4 (auf-linien-zum-leben, de)",
+      "path": "/items/pp_translations__exhibitions/4",
+      "field": "description",
+      "before": "Unter dem Motto „Lebensgeschichten – von der Tragödie zur Komödie“ sind Besucherinnen und Besucher eingeladen, Erlebnisse, Gedanken und Texte in Bilder zu verwandeln. Das Festival verbindet eine Ausstellung mit täglichen Workshops und einer wachsenden Präsentation der vor Ort entstandenen Arbeiten."
+    },
+    {
+      "where": "pp_translations__exhibitions/5 (verwandlung-und-zustand, en)",
+      "path": "/items/pp_translations__exhibitions/5",
+      "field": "description",
+      "before": "Nicoline von Heyl lives and works in Krumpendorf am Wörthersee. Her work moves between portrait and figure studies and non-representational, process-based painting. During the exhibition, the artist works on site in an open studio."
+    },
+    {
+      "where": "pp_translations__exhibitions/6 (verwandlung-und-zustand, de)",
+      "path": "/items/pp_translations__exhibitions/6",
+      "field": "description",
+      "before": "Nicoline von Heyl lebt und arbeitet in Krumpendorf am Wörthersee. Ihr Werk bewegt sich zwischen Porträt- und Figurenstudien und gegenstandsloser, prozessbasierter Malerei. Während der Ausstellung arbeitet die Künstlerin vor Ort in einem offenen Atelier."
+    },
+    {
+      "where": "pp_translations__exhibitions/15 (gehen-und-sehen, en)",
+      "path": "/items/pp_translations__exhibitions/15",
+      "field": "description",
+      "before": "Peter Kohlweiß has painted since 1982, beginning with Professor Hans Picottini at the HTL Villach and continuing through courses and seminars until he found his own style. He works in watercolour and drawing, translating what he sees on walks into pencil, brush and colour on paper and canvas."
+    },
+    {
+      "where": "pp_translations__exhibitions/16 (gehen-und-sehen, de)",
+      "path": "/items/pp_translations__exhibitions/16",
+      "field": "description",
+      "before": "Peter Kohlweiß malt seit 1982 und sammelte seine ersten Erfahrungen bei Professor Hans Picottini an der HTL Villach. In Kursen und Seminaren bildete er sich weiter, bis er seinen eigenen Stil fand. Mit offenen Augen durchs Leben zu gehen und das Gesehene mit Stift, Pinsel und Farbe auf Papier und Leinwand zu gestalten, ist für ihn ein wunderbares Gefühl."
+    },
+    {
+      "where": "pp_translations__exhibitions/17 (das-was-entsteht, en)",
+      "path": "/items/pp_translations__exhibitions/17",
+      "field": "description",
+      "before": "Santino Solace lives and works in Spittal an der Drau as a comic artist, illustrator and founder of the creative platform SolaceWorks. His work combines manga, comics and modern digital illustration in a personal, humorous narrative style. The exhibition offers insight into his projects, working processes and the development of his own worlds."
+    },
+    {
+      "where": "pp_translations__exhibitions/18 (das-was-entsteht, de)",
+      "path": "/items/pp_translations__exhibitions/18",
+      "field": "description",
+      "before": "Santino Solace lebt und arbeitet in Spittal an der Drau. Als Comiczeichner, Illustrator und Gründer der kreativen Plattform SolaceWorks entwickelt er eigene Geschichten, Charaktere und fantasievolle Welten. Seine Arbeiten verbinden Manga, Comics und moderne digitale Illustration mit einem persönlichen, humorvollen Erzählstil. Die Ausstellung gibt Einblick in seine bisherigen Projekte, Arbeitsprozesse und die Entwicklung seiner eigenen Welten."
+    },
+    {
+      "where": "pp_translations__exhibitions/23 (dialog-ars-carinthia-kunst-und-handwerk, en)",
+      "path": "/items/pp_translations__exhibitions/23",
+      "field": "description",
+      "before": "DIALOG is part of INSIEME, the tenth design experiment of ARS CARINTHIA – Kunst & Handwerk, with which the initiative also marks its 30th anniversary in 2026. At the Stadtgalerie Klagenfurt two positions at a time answer each other in sequence: each pair starts from a freely chosen theme, first conceived for a defined space, real or imagined, and selected craft workshops realise the designs as active co-creators. The pairs are Esther Stocker and Matteo Thun, Sofia Podreka and Boris Podrecca, Laurids and Manfred Ortner, Karsten K. Krebs and HG Esch, Theres Cassini and Eva Schlegel, Sophie Grell and Ursula Klein, and Pepo Pichler and Walter Hösel; Tine Steinthaler works in exchange with an artificial intelligence. Curated by Walter Hösel. An exhibition of ARS CARINTHIA in cooperation with the Stadtgalerie Klagenfurt. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/24 (dialog-ars-carinthia-kunst-und-handwerk, de)",
+      "path": "/items/pp_translations__exhibitions/24",
+      "field": "description",
+      "before": "DIALOG ist Teil von INSIEME, dem zehnten Gestaltungsexperiment von ARS CARINTHIA – Kunst & Handwerk, mit dem die Initiative 2026 auch ihr 30-jähriges Bestehen begeht. In der Stadtgalerie Klagenfurt antworten jeweils zwei Positionen nacheinander aufeinander: Jedes Paar geht von einem frei gewählten Thema aus, das zunächst für einen klar umrissenen realen oder imaginären Raum entworfen wird; ausgewählte Handwerksbetriebe setzen die Entwürfe als aktive Mitgestalter um. Die Paare sind Esther Stocker und Matteo Thun, Sofia Podreka und Boris Podrecca, Laurids und Manfred Ortner, Karsten K. Krebs und HG Esch, Theres Cassini und Eva Schlegel, Sophie Grell und Ursula Klein sowie Pepo Pichler und Walter Hösel; Tine Steinthaler arbeitet im Wechselspiel mit einer künstlichen Intelligenz. Kurator ist Walter Hösel. Eine Ausstellung von ARS CARINTHIA in Kooperation mit der Stadtgalerie Klagenfurt. Quelle: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/25 (katharina-gruzei-hydrotopia, en)",
+      "path": "/items/pp_translations__exhibitions/25",
+      "field": "description",
+      "before": "As Carinthia’s 2026 grant holder for photography and media art, Katharina Gruzei spent five months as artist in residence in the Europahaus studio provided by the City of Klagenfurt. The works, made between May and September, answer a summer marked by extreme heat and water scarcity: an analytical and humorous look at urban water spaces that places bodies and cityscape in an unusual state of suspension, between movement and stillness, everyday life and exception. Born in Klagenfurt in 1983, Gruzei works across photography, video, film, sound and installation, with a focus on socio-cultural themes and site-specific projects in public space."
+    },
+    {
+      "where": "pp_translations__exhibitions/26 (katharina-gruzei-hydrotopia, de)",
+      "path": "/items/pp_translations__exhibitions/26",
+      "field": "description",
+      "before": "Als Kärntner Stipendiatin für Fotografie und Medienkunst 2026 verbrachte Katharina Gruzei fünf Monate als Artist in Residence im Atelier Europahaus der Stadt Klagenfurt. Die zwischen Mai und September entstandenen Arbeiten antworten auf einen Sommer, der von extremer Hitze und Wasserknappheit geprägt war: ein analytischer und humorvoller Blick auf städtische Wasserräume, der Körper und Stadtraum in einen ungewöhnlichen Schwebezustand versetzt – zwischen Bewegung und Stillstand, Alltag und Ausnahme. Gruzei, 1983 in Klagenfurt geboren, arbeitet mit Fotografie, Video, Film, Sound und Installation, mit Schwerpunkt auf soziokulturellen Themen und ortsspezifischen Projekten im öffentlichen Raum."
+    },
+    {
+      "where": "pp_translations__exhibitions/27 (armin-guerino-durch-die-zeit, en)",
+      "path": "/items/pp_translations__exhibitions/27",
+      "field": "description",
+      "before": "Armin Guerino’s practice bridges painting and art in public space. Landscape is his central theme, fed by travel and by his experiences in Africa. Recent works look at ecological change and extreme weather through motifs such as horizons, clouds, rain, cities and heads: the line becomes a trace, a path and a labyrinth; the city becomes landscape. Curated by Gabriele Ruff. The exhibition in the Alpen-Adria-Galerie at Theaterplatz 3 is free of charge. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/28 (armin-guerino-durch-die-zeit, de)",
+      "path": "/items/pp_translations__exhibitions/28",
+      "field": "description",
+      "before": "Armin Guerinos Arbeit verbindet Malerei und Kunst im öffentlichen Raum. Die Landschaft ist sein zentrales Thema, gespeist von Reisen und von seinen Erfahrungen in Afrika. Jüngere Arbeiten betrachten ökologischen Wandel und Wetterextreme in Motiven wie Horizonten, Wolken, Regen, Städten und Köpfen: Die Linie wird zur Spur, zum Weg und zum Labyrinth; die Stadt wird zur Landschaft. Kuratiert von Gabriele Ruff. Die Ausstellung in der Alpen-Adria-Galerie am Theaterplatz 3 ist bei freiem Eintritt zugänglich. Quelle: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/29 (franz-grabmayr-stadtgalerie-klagenfurt, en)",
+      "path": "/items/pp_translations__exhibitions/29",
+      "field": "description",
+      "before": "The Stadtgalerie Klagenfurt devotes its winter exhibition “Alles Farbe” to Franz Grabmayr (1927–2015), the Carinthian-born painter whose thickly layered landscapes, sand pits and dance pictures made him one of Austria’s most distinctive post-war painters. Opening on 19 November 2026 at 18:00; further details have not been published yet. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/30 (franz-grabmayr-stadtgalerie-klagenfurt, de)",
+      "path": "/items/pp_translations__exhibitions/30",
+      "field": "description",
+      "before": "Die Stadtgalerie Klagenfurt widmet ihre Winterausstellung „Alles Farbe“ Franz Grabmayr (1927–2015), dem in Kärnten geborenen Maler, dessen dick geschichtete Landschaften, Sandgruben und Tanzbilder ihn zu einem der eigenständigsten österreichischen Maler der Nachkriegszeit machten. Eröffnung am 19. November 2026 um 18 Uhr; weitere Angaben wurden noch nicht veröffentlicht. Quelle: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/33 (all-about-nature, en)",
+      "path": "/items/pp_translations__exhibitions/33",
+      "field": "description",
+      "before": "A group exhibition curated by Ulli Sturm with thirty-five artists, among them Uwe Bressnik, whose World Record IV (2020) is the key image. Painting, graphic art and objects make the relationship between people and nature tangible across past, present and future: what a natural habitat once was, how humans changed the environment, and where hope lies. Twenty per cent of the proceeds from sales go to the Klagenfurt climate fund. All participants are recorded on this page."
+    },
+    {
+      "where": "pp_translations__exhibitions/34 (all-about-nature, de)",
+      "path": "/items/pp_translations__exhibitions/34",
+      "field": "description",
+      "before": "Eine von Ulli Sturm kuratierte Gruppenausstellung mit fünfunddreißig Künstler:innen, darunter Uwe Bressnik, dessen World Record IV (2020) das Sujet der Ausstellung ist. Malerei, Grafik und Objekte machen das Verhältnis von Mensch und Natur über Vergangenheit, Gegenwart und Zukunft hinweg erfahrbar: was natürlicher Lebensraum einst war, wie der Mensch die Umwelt verändert hat und wo Hoffnung liegt. Zwanzig Prozent der Verkaufserlöse gehen an den Klagenfurter Klimafonds. Alle Beteiligten sind auf dieser Seite verzeichnet."
+    },
+    {
+      "where": "pp_translations__exhibitions/35 (arnold-poeschl-hometown, en)",
+      "path": "/items/pp_translations__exhibitions/35",
+      "field": "description",
+      "before": "For his photo book Hometown, Arnold Pöschl portrayed one hundred people of the Carinthian capital: the director of the Stadttheater, Aron Stiehl, the stage director Ute Liepold, and figures from the graffiti, street-art and literary scenes. Together they draw a picture of a city between generations, cultures and social change, and a photographic counter-narrative to the cliché of a backward Klagenfurt. The exhibition opens at the Robert Musil Literatur-Museum on 16 September 2026 at 19:30 with the presentation of the book, and runs until the end of January 2027."
+    },
+    {
+      "where": "pp_translations__exhibitions/36 (arnold-poeschl-hometown, de)",
+      "path": "/items/pp_translations__exhibitions/36",
+      "field": "description",
+      "before": "Für seinen Bildband Hometown hat Arnold Pöschl hundert Menschen der Kärntner Landeshauptstadt porträtiert: den Intendanten des Stadttheaters Aron Stiehl, die Regisseurin Ute Liepold sowie Akteur:innen der Graffiti-, Street-Art- und Literaturszene. Zusammen ergeben sie das Bild einer Stadt zwischen Generationen, Kulturen und gesellschaftlichem Wandel – und eine fotografische Gegenerzählung zum Klischee vom rückständigen Klagenfurt. Die Ausstellung wird am 16. September 2026 um 19:30 Uhr im Robert Musil Literatur-Museum eröffnet, zugleich wird der Bildband präsentiert. Sie läuft bis Ende Jänner 2027."
+    },
+    {
+      "where": "pp_translations__exhibitions/37 (spannungsfelder-und-perspektiven-2026, en)",
+      "path": "/items/pp_translations__exhibitions/37",
+      "field": "description",
+      "before": "For the ORF Lange Nacht der Museen 2026, the Kunstverein Velden showed the group exhibition “Spannungsfelder und Perspektiven” (fields of tension and perspectives) in the large and small halls on the first floor of the Europahaus in Klagenfurt. The works by members of the association circled around opposites, encounters and shifting points of view – the contrasts that arise where different things meet. The range of motifs, techniques and approaches was correspondingly wide, from gestural painting to drawing. The announcement named Siegfried Zellot, Gudrun Zikulnig, Slava Mohl, Alfred Scheikl and Sylvia Campidell. Guided tours started at 18:00, and the artists were present for conversation. The association from Velden am Wörther See has taken part in the Lange Nacht with themed exhibitions since 2004. PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here. Source: langenacht.orf.at, kunstverein-velden.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/38 (spannungsfelder-und-perspektiven-2026, de)",
+      "path": "/items/pp_translations__exhibitions/38",
+      "field": "description",
+      "before": "Der Kunstverein Velden zeigte zur ORF-Langen Nacht der Museen 2026 im großen und kleinen Saal im ersten Stock des Klagenfurter Europahauses die Gemeinschaftsausstellung „Spannungsfelder und Perspektiven“. Die Arbeiten von Vereinsmitgliedern kreisten um Gegensätze, Begegnungen und wechselnde Blickwinkel – um jene Kontraste, die entstehen, wo Unterschiedliches aufeinandertrifft. Entsprechend breit war das Spektrum an Motiven, Techniken und Zugängen, von gestischer Malerei bis zur Zeichnung. Angekündigt waren Siegfried Zellot, Gudrun Zikulnig, Slava Mohl, Alfred Scheikl und Sylvia Campidell. Ab 18 Uhr fanden Führungen statt, die anwesenden Künstlerinnen und Künstler standen für Gespräche bereit. Der Verein aus Velden am Wörther See beteiligt sich seit 2004 regelmäßig mit Themenausstellungen an der Langen Nacht. PERMAPHEMERA hat die Ausstellung als 360°-Tour aufgenommen; sie wird für die Veröffentlichung hier vorbereitet. Quelle: langenacht.orf.at, kunstverein-velden.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/39 (bv-art-ex-26, en)",
+      "path": "/items/pp_translations__exhibitions/39",
+      "field": "description",
+      "before": "Announcement. This exhibition has not opened yet. ART-EX is the annual exhibition of the members of the Carinthian branch of the Berufsvereinigung bildender Künstler Österreichs. The 2026 edition opens on Thursday, 5 November 2026 at 18:00 at the BV Galerie Kärnten, Feldkirchner Straße 31, and runs until 24 November 2026. Gallery direction: Margaretha Bauer, vice president of the BV Kärnten. Press: Eva Asaad. Details on the participating artists follow as soon as the invitation is published. Source: art-navi.at (the website bv-kaernten.at was not reachable on 23 September 2026)."
+    },
+    {
+      "where": "pp_translations__exhibitions/40 (bv-art-ex-26, de)",
+      "path": "/items/pp_translations__exhibitions/40",
+      "field": "description",
+      "before": "Ankündigung. Diese Ausstellung ist noch nicht eröffnet. ART-EX ist die jährliche Ausstellung der Mitglieder des Kärntner Landesverbands der Berufsvereinigung bildender Künstler Österreichs. Die Ausgabe 2026 wird am Donnerstag, 5. November 2026 um 18:00 Uhr in der BV Galerie Kärnten, Feldkirchner Straße 31, eröffnet und läuft bis 24. November 2026. Galerieleitung: Margaretha Bauer, Vizepräsidentin des BV Kärnten. Pressesprecherin: Eva Asaad. Angaben zu den teilnehmenden Künstler:innen folgen, sobald die Einladung vorliegt. Quelle: art-navi.at (die Website bv-kaernten.at war am 23. September 2026 nicht erreichbar)."
+    },
+    {
+      "where": "pp_translations__exhibitions/41 (bv-flohmarkt-2026, en)",
+      "path": "/items/pp_translations__exhibitions/41",
+      "field": "description",
+      "before": "Announcement. The Carinthian branch of the Berufsvereinigung bildender Künstler Österreichs invites to its BV flea market at the gallery, Feldkirchner Straße 31: painting, graphic art, small furniture and tableware from the members. The market opens on Monday, 28 September 2026 from 16:00 to 20:00 and runs from 29 September to 2 October 2026 during the gallery's opening hours. This is a sale, not an exhibition, so PERMAPHEMERA will not record it as a 360° tour. Source: bv-kaernten.at, \"Aktuell\" (flyer of September 2026)."
+    },
+    {
+      "where": "pp_translations__exhibitions/42 (bv-flohmarkt-2026, de)",
+      "path": "/items/pp_translations__exhibitions/42",
+      "field": "description",
+      "before": "Ankündigung. Der Landesverband Kärnten der Berufsvereinigung bildender Künstler Österreichs lädt zum BV Flohmarkt in die Galerie, Feldkirchner Straße 31: Malerei, Grafik, Kleinmöbel und Geschirr aus den Beständen der Mitglieder. Die Eröffnung findet am Montag, 28. September 2026 von 16:00 bis 20:00 Uhr statt; der Flohmarkt dauert vom 29. September bis 2. Oktober 2026 zu den Öffnungszeiten der Galerie. Es ist ein Verkauf, keine Ausstellung: PERMAPHEMERA dokumentiert ihn nicht als 360°-Tour. Quelle: bv-kaernten.at, „Aktuell“ (Flyer, September 2026)."
+    },
+    {
+      "where": "pp_translations__exhibitions/43 (drago-druskovic-alpen-adria-galerie, en)",
+      "path": "/items/pp_translations__exhibitions/43",
+      "field": "description",
+      "before": "The Alpen-Adria-Galerie announces an exhibition of works by Drago Druškovič for the turn of the year 2026/27. Opening on 15 December 2026 at 18:00; on view until 31 January 2027. Title and further details have not been published yet; the gallery reserves the right to make changes. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/44 (drago-druskovic-alpen-adria-galerie, de)",
+      "path": "/items/pp_translations__exhibitions/44",
+      "field": "description",
+      "before": "Die Alpen-Adria-Galerie kündigt für den Jahreswechsel 2026/27 eine Ausstellung mit Arbeiten von Drago Druškovič an. Eröffnung am 15. Dezember 2026 um 18 Uhr; zu sehen bis 31. Jänner 2027. Titel und weitere Angaben wurden noch nicht veröffentlicht; Änderungen vorbehalten. Quelle: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/45 (karlheinz-simonitsch-living-studio, en)",
+      "path": "/items/pp_translations__exhibitions/45",
+      "field": "description",
+      "before": "The Living Studio of the Stadtgalerie Klagenfurt announces an exhibition of works by Karlheinz Simonitsch. Opening on 1 December 2026 at 18:00; on view until 31 January 2027. Title and further details have not been published yet; the gallery reserves the right to make changes. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/46 (karlheinz-simonitsch-living-studio, de)",
+      "path": "/items/pp_translations__exhibitions/46",
+      "field": "description",
+      "before": "Das Living Studio der Stadtgalerie Klagenfurt kündigt eine Ausstellung mit Arbeiten von Karlheinz Simonitsch an. Eröffnung am 1. Dezember 2026 um 18 Uhr; zu sehen bis 31. Jänner 2027. Titel und weitere Angaben wurden noch nicht veröffentlicht; Änderungen vorbehalten. Quelle: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/47 (schwach-unperfekt-ausgefranst-echt-2026, en)",
+      "path": "/items/pp_translations__exhibitions/47",
+      "field": "description",
+      "before": "On the ground floor of the Europahaus in Klagenfurt, Inés Urach showed the solo exhibition “Schwach.Unperfekt.Ausgefranst.Echt” (weak, imperfect, frayed, real) for the ORF Lange Nacht der Museen 2026. She announced it as a contribution to the Triennale IV Kärnten and its theme “schwach.šibko.debole”. The exhibition set cracks, breaks and frayed edges against the ideal of smooth, flawless surfaces and read them as traces of movement, time and resistance: imperfection not as a lack but as a form of honesty. Urach studied at the Freie Akademie der Bildenden Künste in Klagenfurt; she works abstractly and combines painting with paper and collaged elements. The artist was present for talks and guided tours from 18:00. PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here. Source: langenacht.orf.at, inesurach.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/48 (schwach-unperfekt-ausgefranst-echt-2026, de)",
+      "path": "/items/pp_translations__exhibitions/48",
+      "field": "description",
+      "before": "Im Erdgeschoß des Klagenfurter Europahauses zeigte Inés Urach zur ORF-Langen Nacht der Museen 2026 die Einzelausstellung „Schwach.Unperfekt.Ausgefranst.Echt“. Sie kündigte sie als Beitrag zur Triennale IV Kärnten mit dem Rahmenthema „schwach.šibko.debole“ an. Die Ausstellung stellte dem Ideal glatter, fehlerloser Oberflächen Risse, Brüche und ausgefranste Ränder gegenüber und las sie als Spuren von Bewegung, Zeit und Widerstand: das Unvollkommene nicht als Mangel, sondern als Ausdruck von Ehrlichkeit. Urach studierte an der Freien Akademie der Bildenden Künste in Klagenfurt; sie arbeitet abstrakt und verbindet Malerei mit Papier und collagierten Elementen. Ab 18 Uhr war die Künstlerin für Gespräche und Führungen anwesend. PERMAPHEMERA hat die Ausstellung als 360°-Tour aufgenommen; sie wird für die Veröffentlichung hier vorbereitet. Quelle: langenacht.orf.at, inesurach.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/49 (epische-gemaelde, en)",
+      "path": "/items/pp_translations__exhibitions/49",
+      "field": "description",
+      "before": "Under the title “Epische Gemälde – Zwischen Mythos und Kosmos” (epic paintings – between myth and cosmos), Ingrid Pröller shows large-format paintings, some up to five metres wide, in the vaulted Salamancakeller of Schloss Porcia. The cycle runs from archaic landscapes to futuristic images and asks how people, nature and the cosmos relate. In “Wildes Kind” and “Kretische Landschaft” consumer waste intrudes on idyllic landscapes; “Geburt” and “Fabel” take up motifs of creation and storytelling. The poster image “Endzeit” (2022) reads a coastal scene with a child, an octopus and dead animals as a passage to a new beginning, and “Matrix” shows a cosmonaut as a modern Odysseus. Pröller, born in Schärding in 1970 and trained at the Akademie der bildenden Künste in Vienna, paints many of her works in an open-air studio on Crete. Source: invitation and poster of the Galerie im Schloss Porcia; spittal-drau.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/50 (epische-gemaelde, de)",
+      "path": "/items/pp_translations__exhibitions/50",
+      "field": "description",
+      "before": "Unter dem Titel „Epische Gemälde – Zwischen Mythos und Kosmos“ zeigt Ingrid Pröller großformatige Malerei, teils bis zu fünf Meter breit, im Gewölbe des Salamancakellers von Schloss Porcia. Der Zyklus reicht von archaischen Landschaften bis zu futuristischen Bildern und befragt das Verhältnis von Mensch, Natur und Kosmos. In „Wildes Kind“ und „Kretische Landschaft“ dringen Konsumreste in arkadische Naturräume ein; „Geburt“ und „Fabel“ greifen Motive von Schöpfung und Erzählung auf. Das Plakatmotiv „Endzeit“ (2022) deutet eine Küstenszene mit Kind, Oktopus und verendeten Tieren als Übergang zu einem Neubeginn, „Matrix“ zeigt einen Kosmonauten als modernen Odysseus. Pröller, 1970 in Schärding geboren und an der Akademie der bildenden Künste Wien ausgebildet, malt viele ihrer Bilder in einem Freiluftatelier auf Kreta. Quelle: Einladung und Plakat der Galerie im Schloss Porcia; spittal-drau.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/51 (mediterraneo-harald-scheicher-2026, en)",
+      "path": "/items/pp_translations__exhibitions/51",
+      "field": "description",
+      "before": "For the ORF Lange Nacht der Museen on 3 October 2026, the Galerie Palais Fugger in Klagenfurt showed oil paintings by the Carinthian painter Harald Scheicher under the title “Mediterraneo”. A grandson of Werner Berg, Scheicher has painted outdoors in front of the motif for decades; besides the landscape of southern Carinthia, painting journeys regularly take him to Istria, Dalmatia and Sicily. From 18:00 the artist guided visitors through the exhibition and was available for conversation; children could join tours, puzzle rallies and drawing. Whether the exhibition stayed on view after that night is not documented. Source: langenacht.orf.at, scheicher.cc"
+    },
+    {
+      "where": "pp_translations__exhibitions/52 (mediterraneo-harald-scheicher-2026, de)",
+      "path": "/items/pp_translations__exhibitions/52",
+      "field": "description",
+      "before": "Zur ORF-Langen Nacht der Museen am 3. Oktober 2026 zeigte die Galerie Palais Fugger in Klagenfurt unter dem Titel „Mediterraneo“ Ölbilder des Kärntner Malers Harald Scheicher. Der Enkel Werner Bergs malt seit Jahrzehnten im Freien vor dem Motiv; neben der Südkärntner Landschaft führen ihn Malreisen regelmäßig nach Istrien, Dalmatien und Sizilien. Ab 18 Uhr führte der Künstler selbst durch die Ausstellung und stand für Gespräche zur Verfügung; für Kinder gab es Führungen, Rätselrallyes und Zeichnen. Ob die Ausstellung über diesen Abend hinaus zu sehen war, ist nicht dokumentiert. Quelle: langenacht.orf.at, scheicher.cc"
+    },
+    {
+      "where": "pp_translations__exhibitions/53 (walther-preiml-sehnsucht, en)",
+      "path": "/items/pp_translations__exhibitions/53",
+      "field": "description",
+      "before": "Under the title “Sehnsucht” (longing), the printmaker and songwriter Walther Preiml, who lives in Kötschach-Mauthen, shows new work at the stARTup gallery. His woodcuts and frottages revolve around a “painful longing for the unattainable”; according to the ORF programme, the mountains of the region, seen from Preiml’s own perspective, are at the centre. The exhibition opened during the ORF Lange Nacht der Museen on 3 October 2026, when the artist also performed songs of his own. It is on view until 31 December 2026, on Fridays from 17:00 to 19:00. Preiml had already exhibited prints at the gallery in 2024. Source: waltherpreiml.at, langenacht.orf.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/54 (walther-preiml-sehnsucht, de)",
+      "path": "/items/pp_translations__exhibitions/54",
+      "field": "description",
+      "before": "Unter dem Titel „Sehnsucht“ zeigt der in Kötschach-Mauthen lebende Druckgrafiker und Liedermacher Walther Preiml neue Arbeiten in der stARTup gallery. Holzschnitte und Frottagen kreisen um das „schmerzliche Verlangen nach dem Unerreichbaren“; laut ORF-Programm stehen dabei die Berge der Region aus Preimls persönlicher Sicht im Mittelpunkt. Eröffnet wurde die Ausstellung zur ORF-Langen Nacht der Museen am 3. Oktober 2026, bei der der Künstler auch eigene Lieder vortrug. Bis 31. Dezember 2026 ist sie freitags von 17 bis 19 Uhr zu sehen. Preiml hatte bereits 2024 Druckgrafiken in der Galerie ausgestellt. Quelle: waltherpreiml.at, langenacht.orf.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/55 (aus-der-asche-empor, en)",
+      "path": "/items/pp_translations__exhibitions/55",
+      "field": "description",
+      "before": "Announcement. This exhibition has not opened yet. Under the title “Aus der Asche empor” (rising from the ashes), Sylvia Ofner shows sculpture and embroidery in the Salamancakeller of Schloss Porcia. From old oriental carpets, heirlooms and needlework of the 1930s she sews mythological figures: phoenix and centaur, Europa and the bull, Gilgamesh, Lamassu and the sphinx. With needle and thread she spins a story from the roots of Europe in Egypt and Mesopotamia to the present, a Europe that has reinvented itself again and again after wars and crises. The setting echoes the theme: the palace was built in the Renaissance, the age that saw itself as the rebirth of antiquity. Source: invitation of the Galerie im Schloss Porcia"
+    },
+    {
+      "where": "pp_translations__exhibitions/56 (aus-der-asche-empor, de)",
+      "path": "/items/pp_translations__exhibitions/56",
+      "field": "description",
+      "before": "Ankündigung. Diese Ausstellung ist noch nicht eröffnet. Unter dem Titel „Aus der Asche empor“ zeigt Sylvia Ofner Skulptur und Stickerei im Salamancakeller von Schloss Porcia. Aus alten Orientteppichen, Erbstücken und Handarbeiten der 1930er-Jahre näht sie mythologische Gestalten: Phönix und Kentaur, Europa und den Stier, Gilgamesch, Lamassu und die Sphinx. Mit Nadel und Faden spannt sie einen Erzählbogen von den Wurzeln Europas in Ägypten und Mesopotamien bis in die Gegenwart, zu einem Europa, das sich nach Kriegen und Krisen immer wieder neu erfunden hat. Der Ort spiegelt das Thema: Das Schloss entstand in der Renaissance, der Epoche, die sich als Wiedergeburt der Antike verstand. Quelle: Einladung der Galerie im Schloss Porcia"
+    },
+    {
+      "where": "pp_translations__exhibitions/57 (hans-kupelwieser-raumschatten, en)",
+      "path": "/items/pp_translations__exhibitions/57",
+      "field": "description",
+      "before": "Hans Kupelwieser, born 1948 in Lunz am See, has spent four decades testing materials and space. Raumschatten brings anodised aluminium reliefs, photograms, magnifying-glass objects, rotating metal discs and stainless steel into six rooms of the Stadtgalerie: works that fuse sculpture and photography and unsettle how a room is perceived. Curated by Lisa Ortner-Kreil."
+    },
+    {
+      "where": "pp_translations__exhibitions/58 (hans-kupelwieser-raumschatten, de)",
+      "path": "/items/pp_translations__exhibitions/58",
+      "field": "description",
+      "before": "Hans Kupelwieser, 1948 in Lunz am See geboren, erprobt seit vier Jahrzehnten Material und Raum. Raumschatten bringt eloxierte Aluminiumreliefs, Fotogramme, Lupenobjekte, rotierende Metallscheiben und Edelstahl in sechs Räume der Stadtgalerie: Arbeiten, die Skulptur und Fotografie verschmelzen und die Wahrnehmung des Raums verunsichern. Kuratiert von Lisa Ortner-Kreil."
+    },
+    {
+      "where": "pp_translations__exhibitions/59 (biodiversitaet-entdecken, en)",
+      "path": "/items/pp_translations__exhibitions/59",
+      "field": "description",
+      "before": "Classes from 17 primary schools across Carinthia showed what they had made in the kidsmobil workshop “Kleine Künstler*innen für eine große Vielfalt” of the wissens.wert.welt at the kärnten.museum: animal rescue islands built from natural materials near their schools, documented in photographs, with interactive stations and workshop materials. Three classes were to be awarded for the most rescue islands for hedgehog, wolf and lynx; the proceeds from the sale of the photographs were intended for the Climate Fund Klagenfurt. Part of the EU project Climate Art City, the exhibition was organised by the Stadtgalerie Klagenfurt with the kärnten.museum, the University of Klagenfurt and the Climate Fund Klagenfurt. Scientific supervision: Franz Rauch, Cornelia Malojer, Petra Korenjak and Stefanie Margarita Preiml (University of Klagenfurt); project lead: Katharina Kavallar (kärnten.museum). PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here. Source: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/60 (biodiversitaet-entdecken, de)",
+      "path": "/items/pp_translations__exhibitions/60",
+      "field": "description",
+      "before": "Klassen aus 17 Volksschulen in ganz Kärnten zeigten, was im Kidsmobil-Workshop „Kleine Künstler*innen für eine große Vielfalt“ der wissens.wert.welt des kärnten.museum entstanden war: Tier-Rettungsinseln aus Naturmaterialien in der Umgebung ihrer Schulen, dokumentiert in Fotografien, dazu interaktive Stationen und eigens entwickelte Workshop-Materialien. Drei Klassen sollten für die meisten Rettungsinseln für Igel, Wolf und Luchs prämiert werden; der Erlös aus dem Verkauf der Fotografien war für den Climate Fund Klagenfurt bestimmt. Die Ausstellung im Rahmen des EU-Projekts „Climate Art City“ veranstaltete die Stadtgalerie Klagenfurt in Zusammenarbeit mit dem kärnten.museum, der Universität Klagenfurt und dem Climate Fund Klagenfurt. Wissenschaftliche Begleitung: Franz Rauch, Cornelia Malojer, Petra Korenjak und Stefanie Margarita Preiml (Universität Klagenfurt); Leitung der Projektumsetzung: Katharina Kavallar (kärnten.museum). PERMAPHEMERA hat die Ausstellung als 360°-Tour aufgenommen; sie wird für die Veröffentlichung hier vorbereitet. Quelle: stadtgalerie.net"
+    },
+    {
+      "where": "pp_translations__exhibitions/61 (blinddate-der-perspektiven, en)",
+      "path": "/items/pp_translations__exhibitions/61",
+      "field": "description",
+      "before": "The association kultur.im.puls shows works by three graduates of the Freie Akademie der Bildenden Künste Kärnten in Klagenfurt: Inés Urach, Nicoline von Heyl and Roswitha Bucher-Sakowski. According to the organiser, the title “Blinddate der Perspektiven” (blind date of perspectives) refers to three separately developed positions meeting in one exhibition. Urach combines paper and paint in abstract pictures, von Heyl paints process-based works in mixed media, and Bucher-Sakowski paints figurative pictures in acrylic. The works hang in the daylit stairwell gallery of the Impuls Center; further works are on view in the stairwell of the Seeboden municipal office. Source: kultur-impuls.com, kaerntenportal.at, inesurach.at, nicolinevonheyl.com, bucher-sakowski.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/62 (blinddate-der-perspektiven, de)",
+      "path": "/items/pp_translations__exhibitions/62",
+      "field": "description",
+      "before": "Der Verein kultur.im.puls zeigt Arbeiten von drei Absolventinnen der Freien Akademie der Bildenden Künste Kärnten in Klagenfurt: Inés Urach, Nicoline von Heyl und Roswitha Bucher-Sakowski. Der Titel „Blinddate der Perspektiven“ bezieht sich laut Veranstalter auf das Zusammentreffen dreier unabhängig voneinander entwickelter Positionen. Urach verbindet in abstrakten Bildern Papier und Malerei, von Heyl arbeitet prozesshaft in Mischtechnik, Bucher-Sakowski malt gegenständlich in Acryl. Die Arbeiten hängen in der tageslichthellen Stiegenhaus-Galerie des Impuls Centers; weitere Arbeiten sind im Stiegenhaus des Marktgemeindeamts Seeboden zu sehen. Quelle: kultur-impuls.com, kaerntenportal.at, inesurach.at, nicolinevonheyl.com, bucher-sakowski.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/63 (klaus-zlattinger-and-friends, en)",
+      "path": "/items/pp_translations__exhibitions/63",
+      "field": "description",
+      "before": "Announcement. This exhibition has not opened yet. The association kultur.im.puls marks the tenth anniversary of the death of Klaus Zlattinger, who died in December 2016 and worked as an artist, art educator and gallerist. The exhibition presents a cross-section of his work together with works by artist friends, among them Wolfgang Daborer, Christine De Pauli, Otmar Eder and Karl Vouk; the complete list has not been published. At the vernissage Christine Strobl-Oman reads from the poetry volume “alles leben”, which includes photographic works by Zlattinger. Further works are on view in the Seeboden municipal office. Source: kultur-impuls.com"
+    },
+    {
+      "where": "pp_translations__exhibitions/64 (klaus-zlattinger-and-friends, de)",
+      "path": "/items/pp_translations__exhibitions/64",
+      "field": "description",
+      "before": "Ankündigung. Diese Ausstellung ist noch nicht eröffnet. Der Verein kultur.im.puls erinnert an den zehnten Todestag von Klaus Zlattinger, der im Dezember 2016 gestorben ist und als Künstler, Kunstvermittler und Galerist tätig war. Die Ausstellung gibt einen Querschnitt durch sein Werk und zeigt dazu Arbeiten befreundeter Künstler, darunter Wolfgang Daborer, Christine De Pauli, Otmar Eder und Karl Vouk; eine vollständige Liste ist nicht veröffentlicht. Bei der Vernissage liest Christine Strobl-Oman aus dem Lyrikband „alles leben“, der Fotografiken von Zlattinger enthält. Weitere Arbeiten sind im Marktgemeindeamt Seeboden zu sehen. Quelle: kultur-impuls.com"
+    },
+    {
+      "where": "pp_translations__exhibitions/65 (trigeniale-26, en)",
+      "path": "/items/pp_translations__exhibitions/65",
+      "field": "description",
+      "before": "The international Alps-Adriatic joint exhibition of the Kulturinitiative bewegungINkultur shows works by five artists from four municipalities in Friuli, Carinthia and Slovenia. Alda Grudina (Goriška Brda) shows flower paintings in oil, Alessandra Minin (Tavagnacco) abstract paintings and Ondina Altran (Monfalcone) paintings of the biblical story of Susanna and the Elders. Karl Nackler (Klagenfurt) shows white-on-black drawings of conductors, violinists and pianists as well as still lifes in colour; Marlis Lepicnik (Klagenfurt) shows women's faces. The exhibition continues the initiative's eleven-year exchange with the Gruppo artistico culturale Albrecht Dürer in Tavagnacco, the artists' association DABLO in Brda and the Circolo Culturale ENDAS in Monfalcone. Governor Daniel Fellner is the honorary patron; the Euregio Senza Confini, the Alps-Adriatic Alliance and the Alpe-Adria Center for Cross-border Cooperation (AACC) give their patronage. Source: invitation and poster of bewegungINkultur, meinbezirk.at, novice.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/66 (trigeniale-26, de)",
+      "path": "/items/pp_translations__exhibitions/66",
+      "field": "description",
+      "before": "Die internationale Alpen-Adria-Gemeinschaftsausstellung der Kulturinitiative bewegungINkultur zeigt Arbeiten von fünf Kunstschaffenden aus vier Gemeinden in Friaul, Kärnten und Slowenien. Alda Grudina (Goriška Brda) zeigt Blumenbilder in Öl, Alessandra Minin (Tavagnacco) abstrakte Gemälde und Ondina Altran (Monfalcone) Bilder zur biblischen Geschichte von Susanna und den beiden Alten. Karl Nackler (Klagenfurt) zeigt Zeichnungen in Weiß auf Schwarz von Dirigenten, Geigern und Pianisten sowie farbige Stillleben; Marlis Lepicnik (Klagenfurt) zeigt Frauengesichter. Die Ausstellung setzt den seit elf Jahren gepflegten Austausch der Initiative mit dem Gruppo artistico culturale Albrecht Dürer in Tavagnacco, dem Künstlerverein DABLO in Brda und dem Circolo Culturale ENDAS in Monfalcone fort. Den Ehrenschutz hat Landeshauptmann Daniel Fellner übernommen; unter der Patronanz stehen die Euregio Senza Confini, die Alpen-Adria-Allianz und das Alpe-Adria Zentrum für grenzüberschreitende Kooperation (AACC). Quelle: Einladung und Plakat von bewegungINkultur, meinbezirk.at, novice.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/67 (fragil, en)",
+      "path": "/items/pp_translations__exhibitions/67",
+      "field": "description",
+      "before": "The Kunstverein postWERK devotes its annual exhibition at the Dinzlschloss to fragility, within the theme “schwach • šibko • debole” of the Triennale IV Kärnten 2026. Members and guest artists from Austria, Germany, Slovenia and Iran show painting, photography, installation, literature and performance. According to the organiser the exhibition treats tenderness as a state of attention, not of weakness. The works deal with vulnerability in material and in people, with fragile ecosystems and with a shared future. On the ORF Long Night of Museums on 3 October 2026, Christina Clar and Phil Yaeger performed “Wieso wir uns wiegen”. Source: villach.at, postwerk.at, langenacht.orf.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/68 (fragil, de)",
+      "path": "/items/pp_translations__exhibitions/68",
+      "field": "description",
+      "before": "Der Kunstverein postWERK widmet seine Jahresausstellung im Dinzlschloss dem Zerbrechlichen, im Rahmen des Themas „schwach • šibko • debole“ der Triennale IV Kärnten 2026. Mitglieder und Gastkünstler:innen aus Österreich, Deutschland, Slowenien und dem Iran zeigen Malerei, Fotografie, Installation, Literatur und Performance. Laut Veranstalter versteht die Ausstellung das Zarte als Zustand der Aufmerksamkeit, nicht der Schwäche. Die Arbeiten behandeln Verletzlichkeit im Material und im Menschen, fragile Ökosysteme und eine gemeinsame Zukunft. Bei der ORF-Langen Nacht der Museen am 3. Oktober 2026 zeigten Christina Clar und Phil Yaeger die Performance „Wieso wir uns wiegen“. Quelle: villach.at, postwerk.at, langenacht.orf.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/69 (homestory, en)",
+      "path": "/items/pp_translations__exhibitions/69",
+      "field": "description",
+      "before": "The photographers Sebastian Köpcke and Volker Weinhold portray the artist Lisa Huber, born in Villach, in a photographic essay. They met as exhibiting artists at Admont Abbey and then photographed in her Berlin studio and in her workshop in the Haus der künstlerischen Begegnung in Villach. Their staged still lifes show objects from her life and work. The gallery hangs them next to large colour woodcuts by Lisa Huber. The exhibition is part of the Triennale IV Kärnten 2026. Source: villach.at, langenacht.orf.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/70 (homestory, de)",
+      "path": "/items/pp_translations__exhibitions/70",
+      "field": "description",
+      "before": "Die Fotografen Sebastian Köpcke und Volker Weinhold porträtieren die in Villach geborene Künstlerin Lisa Huber in einem fotografischen Essay. Sie trafen einander als ausstellende Künstler im Stift Admont und fotografierten danach in ihrem Berliner Atelier und in ihrer Werkstatt im Haus der künstlerischen Begegnung in Villach. Ihre inszenierten Stillleben zeigen Objekte aus ihrem Leben und Werk. Die Galerie hängt sie neben großformatige Farbholzschnitte von Lisa Huber. Die Ausstellung ist ein Beitrag zur Triennale IV Kärnten 2026. Quelle: villach.at, langenacht.orf.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/71 (vintage-views-from-an-unknown-future, en)",
+      "path": "/items/pp_translations__exhibitions/71",
+      "field": "description",
+      "before": "Announcement. This exhibition has not opened yet. The Galerie Freihausgasse shows paintings by Gernot Fischer-Kondratovitch, born in Villach in 1968, under the title “vintage views from an unknown future”. According to the gallery they show pictures from a distant future: people, containers, houses and exotic animals in landscapes of ice and snow, or palm trees, beaches and seas in front of mountains. One of the works is from the series “Schneehaluzinationen” of 2026, acrylic on canvas, 100 × 140 cm. Source: villach.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/72 (vintage-views-from-an-unknown-future, de)",
+      "path": "/items/pp_translations__exhibitions/72",
+      "field": "description",
+      "before": "Ankündigung. Diese Ausstellung ist noch nicht eröffnet. Die Galerie Freihausgasse zeigt Bilder von Gernot Fischer-Kondratovitch, 1968 in Villach geboren, unter dem Titel „vintage views from an unknown future“. Laut Galerie zeigen sie Bilder aus einer fernen Zukunft: Menschen, Container, Häuser und exotische Tiere in Eis- und Schneelandschaften, oder Palmen, Strände und Meere vor Bergkulissen. Eine der Arbeiten stammt aus der Serie „Schneehaluzinationen“ von 2026, Acryl auf Leinwand, 100 × 140 cm. Quelle: villach.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/73 (atemzuege, en)",
+      "path": "/items/pp_translations__exhibitions/73",
+      "field": "description",
+      "before": "Wolfgang Daborer, who lives in Spittal an der Drau, shows works from his cycle “Atemzüge” of 2025 and 2026 in the Wallnerhaus: mixed media on paper, 49.5 × 34.5 cm, and on linen, 200 × 35 cm. According to the flyer, the title refers to the line as a trace of breath. The lines come together, separate and open up space, with some accents of colour. The linen strips hang freely in the room. The exhibition opened on 21 May 2026 in the presence of Mayor Manfred Fleißner. Source: kleblach-lind.at, radio-osttirol.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/74 (atemzuege, de)",
+      "path": "/items/pp_translations__exhibitions/74",
+      "field": "description",
+      "before": "Wolfgang Daborer, der in Spittal an der Drau lebt, zeigt im Wallnerhaus Arbeiten aus seinem Zyklus „Atemzüge“ von 2025 und 2026: Mischtechnik auf Papier, 49,5 × 34,5 cm, und auf Leinen, 200 × 35 cm. Laut Flyer verweist der Titel auf die Linie als Spur des Atems. Die Linien verdichten sich, lösen sich und öffnen Räume, mit einzelnen farbigen Akzenten. Die Leinenbahnen hängen frei im Raum. Eröffnet wurde die Ausstellung am 21. Mai 2026 im Beisein von Bürgermeister Manfred Fleißner. Quelle: kleblach-lind.at, radio-osttirol.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/75 (kunstkalender-hoffnung-und-frieden, en)",
+      "path": "/items/pp_translations__exhibitions/75",
+      "field": "description",
+      "before": "The Lebenshilfe Region Knittelfeld presents its art calendar “Hoffnung und Frieden” in a pop-up gallery in Knittelfeld, with the works for it on the walls. Artists of the Lebenshilfe with and without disabilities made it with Helmuth Ploschnitznigg and Adi Schmölzer, partly at a working morning with the Spielberg middle school on 24 March 2026. Works from the project also hung in the exhibition “Hoffnung & Frieden” at the Stadtgalerie Judenburg in April 2026. At the vernissage Johann Hubmann, chair of the Lebenshilfe, welcomed the guests, and the two artists spoke about how the calendar came about. Source: meinbezirk.at, kleinezeitung.at, lebenshilfe-knittelfeld.at, murtalinfo.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/76 (kunstkalender-hoffnung-und-frieden, de)",
+      "path": "/items/pp_translations__exhibitions/76",
+      "field": "description",
+      "before": "Die Lebenshilfe Region Knittelfeld präsentiert ihren Kunstkalender „Hoffnung und Frieden“ in einer Pop-up-Galerie in Knittelfeld, die Arbeiten dafür hängen an den Wänden. Künstler:innen der Lebenshilfe mit und ohne Behinderung gestalteten ihn mit Helmuth Ploschnitznigg und Adi Schmölzer, zum Teil bei einem künstlerischen Vormittag mit der MS Spielberg am 24. März 2026. Arbeiten aus dem Projekt hingen im April 2026 auch in der Ausstellung „Hoffnung & Frieden“ in der Stadtgalerie Judenburg. Bei der Vernissage begrüßte Johann Hubmann, Obmann der Lebenshilfe, die Gäste, und die beiden Künstler erzählten von der Entstehung des Kalenders. Quelle: meinbezirk.at, kleinezeitung.at, lebenshilfe-knittelfeld.at, murtalinfo.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/77 (wie-kriege-enden, en)",
+      "path": "/items/pp_translations__exhibitions/77",
+      "field": "description",
+      "before": "Eighty years after the end of the Second World War, the Museum der Stadt Villach shows how wars end, in German and English. Six conflicts, from the Napoleonic Wars to the war in Ukraine, are linked to the history of Villach. Eleven eyewitnesses tell of flight, violence and new beginnings. Among the objects are a defused aerial bomb from the Second World War, a replica of an alpine position from the First World War and a Lada from Ukraine that was shot at by both sides. For 2026 the exhibition was extended and updated, with new content on the Cold War, the war in Ukraine and the sinking of the warship “Szent István”. It ends in a Peace Lab with interactive stations; two of them were developed by pupils of the BG/BRG Villach St. Martin. Source: villach.at, kaernten.orf.at, welcome2villach.at, klick-kaernten.at, it-gymnasium.at"
+    },
+    {
+      "where": "pp_translations__exhibitions/78 (wie-kriege-enden, de)",
+      "path": "/items/pp_translations__exhibitions/78",
+      "field": "description",
+      "before": "80 Jahre nach dem Ende des Zweiten Weltkriegs zeigt das Museum der Stadt Villach zweisprachig, wie Kriege enden. Sechs Konflikte, von den Napoleonischen Kriegen bis zum Krieg in der Ukraine, werden mit der Geschichte Villachs verbunden. Elf Zeitzeug:innen erzählen von Flucht, Gewalt und Neubeginn. Zu den Objekten zählen eine entschärfte Fliegerbombe aus dem Zweiten Weltkrieg, der Nachbau einer alpinen Kriegsstellung aus dem Ersten Weltkrieg und ein Lada aus der Ukraine, auf den beide Seiten geschossen haben. Für 2026 wurde die Ausstellung verlängert und aktualisiert, mit neuen Inhalten zum Kalten Krieg, zum Krieg in der Ukraine und zum Untergang des Kriegsschiffs „Szent István“. Am Ende steht ein Friedenslabor mit Mitmach-Stationen; zwei davon entwickelten Schüler:innen des BG/BRG Villach St. Martin. Quelle: villach.at, kaernten.orf.at, welcome2villach.at, klick-kaernten.at, it-gymnasium.at"
+    },
+    {
+      "where": "pp_news/spittal-an-der-drau-erster-partner",
+      "path": "/items/pp_news/54681cb2-a37a-4470-9d67-8d540e50ec05",
+      "field": "description",
+      "before": "An archive of exhibition rooms first needs a room that may be recorded, and people who open the doors for it. For PERMAPHEMERA these are the town of Spittal an der Drau and its [Parkschlössl](/venues/parkschloessl-spittal-drau/).\n\nThe contact came through Adi Schmölzer, whose exhibition “All the magic” opened the summer season on 2 June, above all to Monika Gaberscek. The town meets the young project with openness, with trust and without detours. This way every exhibition of this summer at the Parkschlössl can be recorded, each in agreement with the artists.\n\nMonika Gaberscek supports PERMAPHEMERA on her own initiative and with great personal commitment; much has only become possible through her. Special thanks go to her.\n\nOn 15 June the second exhibition of the season follows at the Parkschlössl: [“Auf Linien zum Leben”](/exhibitions/auf-linien-zum-leben/) by the Spittal comic festival, with comics, cartoons, illustration and outsider art and an open drawing studio for all ages. It, too, is recorded as a 360° tour."
+    },
+    {
+      "where": "pp_news/permaphemera-waechst",
+      "path": "/items/pp_news/99bba90e-5825-4695-afbf-5eb36d0db1c0",
+      "field": "description",
+      "before": "On 16 September 2026 permaphemera.at goes online, and at launch the archive is already larger than the room in the park where it began. Four exhibition venues in Klagenfurt am Wörthersee have joined, each with a profile of its own.\n\nUntil 6 September the [Stadtgalerie Klagenfurt](/venues/stadtgalerie-klagenfurt/) showed [“ALL ABOUT NATURE – Zwischen Idylle, Krise und Hoffnung”](/exhibitions/all-about-nature/): 35 artists, from Herbert Boeckl and Franz Grabmayr to Melitta Moschik and Werner Reiterer, on the relationship between people and nature. From 20 November it is followed by [“Franz Grabmayr – Alles Farbe”](/exhibitions/franz-grabmayr-stadtgalerie-klagenfurt/). Right next door is the [Theatergalerie](/venues/theatergalerie-klagenfurt/), a room of the Stadtgalerie for exhibitions about the theatre and its people.\n\nAt the [Alpen-Adria-Galerie](/venues/alpen-adria-galerie-klagenfurt/), [“Armin Guerino – Durch die Zeit”](/exhibitions/armin-guerino-durch-die-zeit/) opens on 22 September with works in egg tempera on paper.\n\nIn summer the [Living Studio](/venues/living-studio-klagenfurt/) showed [“Biodiversität entdecken”](/exhibitions/biodiversitaet-entdecken/) with works by Carinthian school classes; the exhibition is in the archive as a 360° tour. From 30 September it is followed by [“Katharina Gruzei – Hydrotopia”](/exhibitions/katharina-gruzei-hydrotopia/).\n\nFor each of these venues the same holds as at the Parkschlössl: current and upcoming exhibitions can be found in the archive, and where an exhibition is recorded, it remains as a 360° tour after it has been taken down."
+    },
+    {
+      "where": "pp_news/das-werkzeug-hinter-den-rundgaengen",
+      "path": "/items/pp_news/be72209b-a3f0-4d09-8b03-85b1fc6576b1",
+      "field": "description",
+      "before": "A 360° photo is at first a flat image with an aspect ratio of 2:1. Only software turns it into a room in which the eye can move freely, and only many such images, properly linked, make a tour. For PERMAPHEMERA an application of its own has been in the making since 13 July 2026: the Tour Editor.\n\nIts foundation is [Photo Sphere Viewer](https://photo-sphere-viewer.js.org/), an open-source library for 360° panoramas in the browser. The Tour Editor, a desktop application for the Mac, builds on it. It reads a folder of images and orders them by building, floor, room and standpoint. In the editor the standpoints are linked: markers on the floor lead from one standpoint to the next, notes explain individual works, and for every transition the direction of view on arrival can be set.\n\nA feature that common virtual-tour software does not offer: every standpoint can be recorded from several heights, “High”, “Normal” and “Low”. A room can thus be seen at eye level, from above with an overview of how the works are arranged, or close to the floor, where sculptures and objects stand. For exhibitions whose effect depends on the room, this change of height is more than an effect.\n\nSo that details stay sharp when zooming in, the editor cuts every panorama into tiles, which the browser loads only where the view is directed. Finally it exports the finished tour; the website embeds it with the same viewer that runs in the editor. Neither part needs a server of its own.\n\nAround 760 individual changes have gone into the software so far. It grows with every exhibition that is recorded: whatever one tour lacks is added for the next."
+    },
+    {
+      "where": "pp_news/lange-nacht-der-museen-2026",
+      "path": "/items/pp_news/d9996e28-e18e-4e87-aa1b-6e1878abff11",
+      "field": "description",
+      "before": "Some exhibitions last only one evening. For the ORF Long Night of Museums on 3 October 2026 the [Europahaus Klagenfurt](/venues/europahaus-klagenfurt/) showed two of them, and both have since been in the archive as 360° tours:\n\n- [“Spannungsfelder und Perspektiven”](/exhibitions/spannungsfelder-und-perspektiven-2026/), a group exhibition by members of the [Kunstverein Velden](/organisations/kunstverein-velden/) with painting, drawing and mixed media by Siegfried Zellot, Gudrun Zikulnig, Slava Mohl, Alfred Scheikl and Sylvia Campidell, who already exhibited at the Parkschlössl in summer\n- [“Schwach.Unperfekt.Ausgefranst.Echt”](/exhibitions/schwach-unperfekt-ausgefranst-echt-2026/), a solo exhibition by [Inés Urach](/persons/ines-urach/) on the ground floor, with painting, mixed media and collage\n\nFor exhibitions like these, a tour is often the only way to see them later. After a few hours the evening was over; the rooms, as they were arranged that evening, have remained.\n\nAlso new in the archive is the [BV Galerie Kärnten](/venues/bv-galerie-klagenfurt/) in Klagenfurt, the gallery of the Carinthian branch of the Austrian professional association of visual artists ([BV Kärnten](/organisations/bv-kaernten/)). There, [“BV ART-EX 26”](/exhibitions/bv-art-ex-26/) opens on 5 November; the 360° tour is planned from 24 November."
+    },
+    {
+      "where": "pp_news/der-sommer-im-parkschloessl",
+      "path": "/items/pp_news/df063508-12d0-452a-867e-1371dca21ec6",
+      "field": "description",
+      "before": "On 18 September the 2026 exhibition season at the [Parkschlössl](/venues/parkschloessl-spittal-drau/) in Spittal an der Drau comes to an end. From June to September one exhibition followed another here, and each is now in the archive as a 360° tour. With them, the first artists of PERMAPHEMERA are together:\n\n- [Adi Schmölzer](/persons/adi-schmoelzer/), [“All the magic”](/exhibitions/all-the-magic/), 2 to 12 June\n- the [Spittal comic festival](/events/spittaler-comicfestival/) with [Austriatoon](/organisations/austriatoon/), [“Auf Linien zum Leben”](/exhibitions/auf-linien-zum-leben/), 15 to 20 June\n- [Nicoline von Heyl](/persons/nicoline-von-heyl/), [“Verwandlung und Zustand”](/exhibitions/verwandlung-und-zustand/), 23 June to 3 July\n- [Lebenshilfe Spittal](/organisations/lebenshilfe-spittal/), [“Begegnungen – Kunst öffnet Türen”](/exhibitions/begegnungen-kunst-oeffnet-tueren/), 7 to 10 July\n- [Herbert Meißlitzer](/persons/herbert-meisslitzer/), [“Farbe trifft Struktur”](/exhibitions/farbe-trifft-struktur/), 14 to 24 July\n- [Sylvia Campidell](/persons/sylvia-campidell/) and [Judith Maria Kulle](/persons/judith-maria-kulle/), [“Farben im Park”](/exhibitions/farben-im-park/), 28 July to 7 August\n- [Birgit Mörtl](/persons/birgit-moertl/), [“African Heart”](/exhibitions/african-heart/), 11 to 21 August\n- [Peter Kohlweiß](/persons/peter-kohlweiss/), [“Gehen & Sehen”](/exhibitions/gehen-und-sehen/), 25 August to 4 September\n- [Santino Solace](/persons/santino-solace/), [“Das, was entsteht”](/exhibitions/das-was-entsteht/), 8 to 18 September\n\nThe room stayed the same, and yet it looked different every time. Process-led painting by Nicoline von Heyl, colour over architectural structure by Herbert Meißlitzer, figures and plants in dialogue by Sylvia Campidell and Judith Maria Kulle, the African landscape and its animals by Birgit Mörtl, watercolours and drawings born from walking by Peter Kohlweiß, comics, manga and webtoons by Santino Solace: each exhibition furnished the hall with its arched windows, painted walls and chandelier anew. Opening the tours one after another shows how differently a single room can be read.\n\nThanks go to all artists of this summer for their openness. They agreed to have their exhibitions recorded, and so made the beginning of PERMAPHEMERA possible."
+    },
+    {
+      "where": "pp_news/warum-permaphemera",
+      "path": "/items/pp_news/eb6b0ecd-1f6f-44fe-af29-82be80ebbe0b",
+      "field": "description",
+      "before": "PERMAPHEMERA is not a word that comes easily on first hearing. It joins two terms that seem to contradict each other: “perma-” as in permanent, lasting, and “ephemera”, the fleeting.\n\nEphemera is a term from libraries and archives. It stands for printed matter made for a short time only: invitation cards, posters, programme leaflets, tickets. These are collected precisely because they show what happened on a particular day in a particular place. In this sense an exhibition is itself ephemera: carefully arranged, open for a few weeks, then taken down. PERMAPHEMERA keeps this fleeting thing permanently accessible. The name describes exactly the contradiction the project works on.\n\nMore reasons speak for it:\n\n- **It is unmistakable.** As a newly formed word it cannot be confused with any common term, and a search for it leads to the archive rather than to a thousand other results.\n- **It travels across languages.** Its Latin and Greek roots are familiar in German, English, Italian and Slovene alike, in a region where Carinthia, Friuli and Slovenia meet.\n- **It describes instead of advertising.** The name promises nothing; it names a task.\n- **It stays.** Once understood, it is kept: duration and transience in one word.\n\nThe lettering shows the idea. The H falls out of line and leans to one side, a sign that nothing stays quite as it was. And in the lower left corner of every page stands the small drawing “Fig. I. Temporary, yet enduring.”"
+    },
+    {
+      "where": "pp_news/aus-der-asche-empor-schloss-porcia",
+      "path": "/items/pp_news/ed3e0968-b909-48b3-9c5a-9409988076c6",
+      "field": "description",
+      "before": "A phoenix, a sphinx, figures from myths and legends: [Sylvia Ofner](/persons/sylvia-ofner/) shapes her figures from old oriental rugs and needlework. What once lay on the floor as a rug becomes a soft sculpture in her hands; embroideries accompany the figures. From 7 November the [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) in Spittal an der Drau shows these works under the title [“Aus der Asche empor – Skulptur und Stickerei”](/exhibitions/aus-der-asche-empor/).\n\n- **Opening:** Friday, 6 November 2026, 7 pm\n- **On view:** 7 November to 19 December 2026\n- **Venue:** Galerie im Schloss Porcia, pillared vault of the Salamanca cellar, Spittal an der Drau\n\nThe exhibition is recorded for PERMAPHEMERA. From its last day, 19 December, it will be online as a 360° tour. Anyone who cannot make it to Spittal by then can see the figures as they were placed in the vault."
+    },
+    {
+      "where": "pp_news/der-anfang-im-parkschloessl",
+      "path": "/items/pp_news/efb82942-5855-412d-bf01-9a171ce2ab54",
+      "field": "description",
+      "before": "In the town park of Spittal an der Drau stands the [Parkschlössl](/venues/parkschloessl-spittal-drau/), a small house with a single exhibition room: tall arched windows, ornamentally painted walls, a chandelier in the middle. In summer the exhibitions change here, usually every two weeks. On 2 June 2026 [Adi Schmölzer](/persons/adi-schmoelzer/) opens the season with [“All the magic”](/exhibitions/all-the-magic/), and PERMAPHEMERA begins with this exhibition.\n\nIt starts with a simple question: what remains of an exhibition once it has been taken down? An invitation card, a few photographs, the memory of those who were there. How the works hung in the room, how they related to each other, which paths and angles the room offered, is usually lost. Yet this is the real work of an exhibition: for every exhibition the arrangement in the room has to be found anew, until distances, light and atmosphere are right.\n\nPERMAPHEMERA captures this arrangement. While an exhibition is on view, 360° images are taken from several standpoints in the room. Linked into a tour, much like Google Street View, the exhibition can be entered again later: the works hang where they hung, the light falls as it fell. The images are taken with the consent of the venue and the artists.\n\nThe impetus for the idea came from Adi Schmölzer himself. In “All the magic” a long black frieze of white figures runs along the partition walls; below it hang small, strongly coloured works, and in the middle of the hall stands a table of painted cups. Drawn signs, fragments of architecture and saturated fields of colour meet in this room, and the 360° tour shows exactly this interplay.\n\nFrom this one room, an archive is to grow that keeps exhibitions across Austria as rooms, exhibition by exhibition."
+    },
+    {
+      "where": "pp_news/vom-millstaetter-see-bis-ins-gailtal",
+      "path": "/items/pp_news/f8abeacf-cf2c-43a3-9315-f41d26f1ecf7",
+      "field": "description",
+      "before": "In October the archive grew markedly. Five exhibition venues in Carinthia are newly listed, with their current and upcoming exhibitions.\n\nThe [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) leads back to Spittal an der Drau, the town where PERMAPHEMERA began. In the pillared vault of the Salamanca cellar, [Ingrid Pröller](/persons/ingrid-proeller/) showed large-format painting between myth, nature and cosmos until 24 October: [“Epische Gemälde”](/exhibitions/epische-gemaelde/). The 360° tour is in preparation.\n\nOn Lake Millstatt the [Galerie im Stiegenhaus](/venues/galerie-im-stiegenhaus-seeboden/) in Seeboden has joined, with [“Blinddate der Perspektiven”](/exhibitions/blinddate-der-perspektiven/), an exhibition by [kultur.im.puls](/organisations/kultur-im-puls/). Inés Urach, Nicoline von Heyl and Roswitha Bucher-Sakowski, three graduates of the Freie Akademie der Bildenden Künste Kärnten, show painting there. Two of them are already in the archive: Nicoline von Heyl exhibited at the Parkschlössl in summer, Inés Urach at the Europahaus for the Long Night of Museums.\n\nIn the Gail Valley the [stARTup gallery](/venues/startup-gallery-koetschach-mauthen/) in Kötschach-Mauthen shows [“Walther Preiml – Sehnsucht”](/exhibitions/walther-preiml-sehnsucht/) until the end of the year, woodcuts and frottages on the “painful longing for the unattainable”.\n\nIn Klagenfurt two venues are new. At the [Galerie Palais Fugger](/venues/galerie-palais-fugger-klagenfurt/), [“Mediterraneo”](/exhibitions/mediterraneo-harald-scheicher-2026/) with oil paintings by Harald Scheicher was on view for the Long Night of Museums. The [Studiogalerie im Stadthaus Klagenfurt](/venues/studiogalerie-klagenfurt/) shows [“Trigeniale 26”](/exhibitions/trigeniale-26/) until 29 October, the three-country exhibition of the cultural initiative [bewegungINkultur](/organisations/bewegung-in-kultur/) with five artists from Carinthia, Friuli and Slovenia. Its 360° tour is already online.\n\nIn a few months the one room in the park has become a network of venues reaching from Lake Millstatt to the Gail Valley."
+    },
+    {
+      "where": "pp_translations__news/1 (der-anfang-im-parkschloessl, en)",
+      "path": "/items/pp_translations__news/1",
+      "field": "description",
+      "before": "In the town park of Spittal an der Drau stands the [Parkschlössl](/venues/parkschloessl-spittal-drau/), a small house with a single exhibition room: tall arched windows, ornamentally painted walls, a chandelier in the middle. In summer the exhibitions change here, usually every two weeks. On 2 June 2026 [Adi Schmölzer](/persons/adi-schmoelzer/) opens the season with [“All the magic”](/exhibitions/all-the-magic/), and PERMAPHEMERA begins with this exhibition.\n\nIt starts with a simple question: what remains of an exhibition once it has been taken down? An invitation card, a few photographs, the memory of those who were there. How the works hung in the room, how they related to each other, which paths and angles the room offered, is usually lost. Yet this is the real work of an exhibition: for every exhibition the arrangement in the room has to be found anew, until distances, light and atmosphere are right.\n\nPERMAPHEMERA captures this arrangement. While an exhibition is on view, 360° images are taken from several standpoints in the room. Linked into a tour, much like Google Street View, the exhibition can be entered again later: the works hang where they hung, the light falls as it fell. The images are taken with the consent of the venue and the artists.\n\nThe impetus for the idea came from Adi Schmölzer himself. In “All the magic” a long black frieze of white figures runs along the partition walls; below it hang small, strongly coloured works, and in the middle of the hall stands a table of painted cups. Drawn signs, fragments of architecture and saturated fields of colour meet in this room, and the 360° tour shows exactly this interplay.\n\nFrom this one room, an archive is to grow that keeps exhibitions across Austria as rooms, exhibition by exhibition."
+    },
+    {
+      "where": "pp_translations__news/2 (der-anfang-im-parkschloessl, de)",
+      "path": "/items/pp_translations__news/2",
+      "field": "description",
+      "before": "Im Stadtpark von Spittal an der Drau steht das [Parkschlössl](/venues/parkschloessl-spittal-drau/), ein kleines Haus mit einem einzigen Ausstellungsraum: hohe Bogenfenster, ornamental bemalte Wände, ein Kronleuchter in der Mitte. Im Sommer wechseln hier die Ausstellungen, meist im Abstand von zwei Wochen. Am 2. Juni 2026 eröffnet [Adi Schmölzer](/persons/adi-schmoelzer/) mit [„All the magic“](/exhibitions/all-the-magic/) die Saison, und mit dieser Ausstellung beginnt PERMAPHEMERA.\n\nAm Anfang steht eine einfache Frage: Was bleibt von einer Ausstellung, wenn sie abgebaut ist? Eine Einladungskarte, einige Fotos, die Erinnerung derer, die dort waren. Wie die Werke im Raum hingen, wie sie zueinander standen, welche Wege und Blickwinkel der Raum anbot, geht meist verloren. Gerade das ist aber die eigentliche Arbeit einer Ausstellung: Für jede Ausstellung muss die Anordnung im Raum neu gefunden werden, bis Abstände, Licht und Atmosphäre stimmen.\n\nPERMAPHEMERA hält diese Anordnung fest. Solange eine Ausstellung zu sehen ist, entstehen 360°-Aufnahmen von mehreren Standpunkten im Raum. Zu einem Rundgang verbunden, ähnlich wie bei Google Street View, lässt sich die Ausstellung später wieder betreten: Die Werke hängen, wo sie hingen, das Licht fällt, wie es fiel. Die Aufnahmen entstehen im Einverständnis mit dem Ausstellungsort und den Kunstschaffenden.\n\nDen Anstoß zur Idee gab Adi Schmölzer selbst. In „All the magic“ zieht sich ein langer schwarzer Fries mit weißen Figuren über die Stellwände; darunter hängen kleine, farbkräftige Arbeiten, und in der Mitte des Saals steht ein Tisch mit bemalten Bechern. Gezeichnete Zeichen, Fragmente von Architektur und gesättigte Farbflächen treffen in diesem Raum aufeinander, und genau dieses Zusammenspiel zeigt der 360°-Rundgang.\n\nAus diesem einen Raum soll ein Archiv werden, das Ausstellungen in ganz Österreich als Räume bewahrt, Ausstellung für Ausstellung."
+    },
+    {
+      "where": "pp_translations__news/3 (spittal-an-der-drau-erster-partner, en)",
+      "path": "/items/pp_translations__news/3",
+      "field": "description",
+      "before": "An archive of exhibition rooms first needs a room that may be recorded, and people who open the doors for it. For PERMAPHEMERA these are the town of Spittal an der Drau and its [Parkschlössl](/venues/parkschloessl-spittal-drau/).\n\nThe contact came through Adi Schmölzer, whose exhibition “All the magic” opened the summer season on 2 June, above all to Monika Gaberscek. The town meets the young project with openness, with trust and without detours. This way every exhibition of this summer at the Parkschlössl can be recorded, each in agreement with the artists.\n\nMonika Gaberscek supports PERMAPHEMERA on her own initiative and with great personal commitment; much has only become possible through her. Special thanks go to her.\n\nOn 15 June the second exhibition of the season follows at the Parkschlössl: [“Auf Linien zum Leben”](/exhibitions/auf-linien-zum-leben/) by the Spittal comic festival, with comics, cartoons, illustration and outsider art and an open drawing studio for all ages. It, too, is recorded as a 360° tour."
+    },
+    {
+      "where": "pp_translations__news/4 (spittal-an-der-drau-erster-partner, de)",
+      "path": "/items/pp_translations__news/4",
+      "field": "description",
+      "before": "Ein Archiv von Ausstellungsräumen braucht zuerst einen Raum, der aufgenommen werden darf, und Menschen, die dafür die Türen öffnen. Für PERMAPHEMERA ist das die Stadt Spittal an der Drau mit dem [Parkschlössl](/venues/parkschloessl-spittal-drau/).\n\nDen Kontakt stellte Adi Schmölzer her, dessen Ausstellung „All the magic“ am 2. Juni die Sommersaison eröffnete, allen voran zu Monika Gaberscek. Die Stadt begegnet dem jungen Vorhaben mit Offenheit, mit Vertrauen und ohne Umwege. So kann jede Ausstellung dieses Sommers im Parkschlössl aufgenommen werden, jeweils in Absprache mit den Kunstschaffenden.\n\nMonika Gaberscek begleitet PERMAPHEMERA aus eigener Initiative und mit großem persönlichem Einsatz; vieles ist erst dadurch möglich geworden. Dafür gilt ihr ein besonderer Dank.\n\nAm 15. Juni folgt im Parkschlössl die zweite Ausstellung der Saison: [„Auf Linien zum Leben“](/exhibitions/auf-linien-zum-leben/) des Spittaler Comicfestivals, mit Comics, Cartoons, Illustration und Outsider Art und einem offenen Zeichenstudio für alle Altersgruppen. Auch sie wird als 360°-Rundgang aufgenommen."
+    },
+    {
+      "where": "pp_translations__news/5 (permaphemera-waechst, en)",
+      "path": "/items/pp_translations__news/5",
+      "field": "description",
+      "before": "On 16 September 2026 permaphemera.at goes online, and at launch the archive is already larger than the room in the park where it began. Four exhibition venues in Klagenfurt am Wörthersee have joined, each with a profile of its own.\n\nUntil 6 September the [Stadtgalerie Klagenfurt](/venues/stadtgalerie-klagenfurt/) showed [“ALL ABOUT NATURE – Zwischen Idylle, Krise und Hoffnung”](/exhibitions/all-about-nature/): 35 artists, from Herbert Boeckl and Franz Grabmayr to Melitta Moschik and Werner Reiterer, on the relationship between people and nature. From 20 November it is followed by [“Franz Grabmayr – Alles Farbe”](/exhibitions/franz-grabmayr-stadtgalerie-klagenfurt/). Right next door is the [Theatergalerie](/venues/theatergalerie-klagenfurt/), a room of the Stadtgalerie for exhibitions about the theatre and its people.\n\nAt the [Alpen-Adria-Galerie](/venues/alpen-adria-galerie-klagenfurt/), [“Armin Guerino – Durch die Zeit”](/exhibitions/armin-guerino-durch-die-zeit/) opens on 22 September with works in egg tempera on paper.\n\nIn summer the [Living Studio](/venues/living-studio-klagenfurt/) showed [“Biodiversität entdecken”](/exhibitions/biodiversitaet-entdecken/) with works by Carinthian school classes; the exhibition is in the archive as a 360° tour. From 30 September it is followed by [“Katharina Gruzei – Hydrotopia”](/exhibitions/katharina-gruzei-hydrotopia/).\n\nFor each of these venues the same holds as at the Parkschlössl: current and upcoming exhibitions can be found in the archive, and where an exhibition is recorded, it remains as a 360° tour after it has been taken down."
+    },
+    {
+      "where": "pp_translations__news/6 (permaphemera-waechst, de)",
+      "path": "/items/pp_translations__news/6",
+      "field": "description",
+      "before": "Am 16. September 2026 geht permaphemera.at online, und zum Start ist das Archiv bereits größer als der Raum im Park, in dem es begonnen hat. Vier Ausstellungsorte in Klagenfurt am Wörthersee sind dazugekommen, jeder mit eigenem Profil.\n\nDie [Stadtgalerie Klagenfurt](/venues/stadtgalerie-klagenfurt/) zeigte bis 6. September [„ALL ABOUT NATURE – Zwischen Idylle, Krise und Hoffnung“](/exhibitions/all-about-nature/): 35 Künstler:innen, von Herbert Boeckl und Franz Grabmayr bis Melitta Moschik und Werner Reiterer, zum Verhältnis von Mensch und Natur. Ab 20. November folgt dort [„Franz Grabmayr – Alles Farbe“](/exhibitions/franz-grabmayr-stadtgalerie-klagenfurt/). Gleich daneben liegt die [Theatergalerie](/venues/theatergalerie-klagenfurt/), ein eigener Raum der Stadtgalerie für Ausstellungen rund um das Theater und seine Menschen.\n\nIn der [Alpen-Adria-Galerie](/venues/alpen-adria-galerie-klagenfurt/) eröffnet am 22. September [„Armin Guerino – Durch die Zeit“](/exhibitions/armin-guerino-durch-die-zeit/) mit Arbeiten in Eitempera auf Papier.\n\nDas [Living Studio](/venues/living-studio-klagenfurt/) zeigte im Sommer [„Biodiversität entdecken“](/exhibitions/biodiversitaet-entdecken/) mit Arbeiten Kärntner Schulklassen; die Ausstellung ist als 360°-Rundgang im Archiv. Ab 30. September folgt dort [„Katharina Gruzei – Hydrotopia“](/exhibitions/katharina-gruzei-hydrotopia/).\n\nFür jeden dieser Orte gilt, was im Parkschlössl begonnen hat: Laufende und kommende Ausstellungen sind im Archiv zu finden, und wo eine Ausstellung aufgenommen wird, bleibt sie nach dem Abbau als 360°-Rundgang erhalten."
+    },
+    {
+      "where": "pp_translations__news/7 (der-sommer-im-parkschloessl, en)",
+      "path": "/items/pp_translations__news/7",
+      "field": "description",
+      "before": "On 18 September the 2026 exhibition season at the [Parkschlössl](/venues/parkschloessl-spittal-drau/) in Spittal an der Drau comes to an end. From June to September one exhibition followed another here, and each is now in the archive as a 360° tour. With them, the first artists of PERMAPHEMERA are together:\n\n- [Adi Schmölzer](/persons/adi-schmoelzer/), [“All the magic”](/exhibitions/all-the-magic/), 2 to 12 June\n- the [Spittal comic festival](/events/spittaler-comicfestival/) with [Austriatoon](/organisations/austriatoon/), [“Auf Linien zum Leben”](/exhibitions/auf-linien-zum-leben/), 15 to 20 June\n- [Nicoline von Heyl](/persons/nicoline-von-heyl/), [“Verwandlung und Zustand”](/exhibitions/verwandlung-und-zustand/), 23 June to 3 July\n- [Lebenshilfe Spittal](/organisations/lebenshilfe-spittal/), [“Begegnungen – Kunst öffnet Türen”](/exhibitions/begegnungen-kunst-oeffnet-tueren/), 7 to 10 July\n- [Herbert Meißlitzer](/persons/herbert-meisslitzer/), [“Farbe trifft Struktur”](/exhibitions/farbe-trifft-struktur/), 14 to 24 July\n- [Sylvia Campidell](/persons/sylvia-campidell/) and [Judith Maria Kulle](/persons/judith-maria-kulle/), [“Farben im Park”](/exhibitions/farben-im-park/), 28 July to 7 August\n- [Birgit Mörtl](/persons/birgit-moertl/), [“African Heart”](/exhibitions/african-heart/), 11 to 21 August\n- [Peter Kohlweiß](/persons/peter-kohlweiss/), [“Gehen & Sehen”](/exhibitions/gehen-und-sehen/), 25 August to 4 September\n- [Santino Solace](/persons/santino-solace/), [“Das, was entsteht”](/exhibitions/das-was-entsteht/), 8 to 18 September\n\nThe room stayed the same, and yet it looked different every time. Process-led painting by Nicoline von Heyl, colour over architectural structure by Herbert Meißlitzer, figures and plants in dialogue by Sylvia Campidell and Judith Maria Kulle, the African landscape and its animals by Birgit Mörtl, watercolours and drawings born from walking by Peter Kohlweiß, comics, manga and webtoons by Santino Solace: each exhibition furnished the hall with its arched windows, painted walls and chandelier anew. Opening the tours one after another shows how differently a single room can be read.\n\nThanks go to all artists of this summer for their openness. They agreed to have their exhibitions recorded, and so made the beginning of PERMAPHEMERA possible."
+    },
+    {
+      "where": "pp_translations__news/8 (der-sommer-im-parkschloessl, de)",
+      "path": "/items/pp_translations__news/8",
+      "field": "description",
+      "before": "Am 18. September geht im [Parkschlössl](/venues/parkschloessl-spittal-drau/) in Spittal an der Drau die Ausstellungssaison 2026 zu Ende. Von Juni bis September folgte hier eine Ausstellung auf die andere, und jede ist nun als 360°-Rundgang im Archiv. Damit sind die ersten Kunstschaffenden von PERMAPHEMERA beisammen:\n\n- [Adi Schmölzer](/persons/adi-schmoelzer/), [„All the magic“](/exhibitions/all-the-magic/), 2. bis 12. Juni\n- das [Spittaler Comicfestival](/events/spittaler-comicfestival/) mit [Austriatoon](/organisations/austriatoon/), [„Auf Linien zum Leben“](/exhibitions/auf-linien-zum-leben/), 15. bis 20. Juni\n- [Nicoline von Heyl](/persons/nicoline-von-heyl/), [„Verwandlung und Zustand“](/exhibitions/verwandlung-und-zustand/), 23. Juni bis 3. Juli\n- die [Lebenshilfe Spittal](/organisations/lebenshilfe-spittal/), [„Begegnungen – Kunst öffnet Türen“](/exhibitions/begegnungen-kunst-oeffnet-tueren/), 7. bis 10. Juli\n- [Herbert Meißlitzer](/persons/herbert-meisslitzer/), [„Farbe trifft Struktur“](/exhibitions/farbe-trifft-struktur/), 14. bis 24. Juli\n- [Sylvia Campidell](/persons/sylvia-campidell/) und [Judith Maria Kulle](/persons/judith-maria-kulle/), [„Farben im Park“](/exhibitions/farben-im-park/), 28. Juli bis 7. August\n- [Birgit Mörtl](/persons/birgit-moertl/), [„African Heart“](/exhibitions/african-heart/), 11. bis 21. August\n- [Peter Kohlweiß](/persons/peter-kohlweiss/), [„Gehen & Sehen“](/exhibitions/gehen-und-sehen/), 25. August bis 4. September\n- [Santino Solace](/persons/santino-solace/), [„Das, was entsteht“](/exhibitions/das-was-entsteht/), 8. bis 18. September\n\nDer Raum blieb derselbe, und doch sah er jedes Mal anders aus. Prozesshafte Malerei bei Nicoline von Heyl, Farbe über architektonischer Struktur bei Herbert Meißlitzer, Figuren und Pflanzen im Dialog bei Sylvia Campidell und Judith Maria Kulle, die afrikanische Landschaft und ihre Tiere bei Birgit Mörtl, Aquarelle und Zeichnungen aus dem Gehen bei Peter Kohlweiß, Comic, Manga und Webtoon bei Santino Solace: Jede Ausstellung hat den Saal mit seinen Bogenfenstern, den bemalten Wänden und dem Kronleuchter neu eingerichtet. Wer die Rundgänge nacheinander öffnet, sieht, wie verschieden ein einziger Raum gelesen werden kann.\n\nAllen Kunstschaffenden dieses Sommers gilt Dank für ihre Offenheit. Sie haben zugestimmt, dass ihre Ausstellungen aufgenommen werden, und PERMAPHEMERA damit den Anfang ermöglicht."
+    },
+    {
+      "where": "pp_translations__news/9 (lange-nacht-der-museen-2026, en)",
+      "path": "/items/pp_translations__news/9",
+      "field": "description",
+      "before": "Some exhibitions last only one evening. For the ORF Long Night of Museums on 3 October 2026 the [Europahaus Klagenfurt](/venues/europahaus-klagenfurt/) showed two of them, and both have since been in the archive as 360° tours:\n\n- [“Spannungsfelder und Perspektiven”](/exhibitions/spannungsfelder-und-perspektiven-2026/), a group exhibition by members of the [Kunstverein Velden](/organisations/kunstverein-velden/) with painting, drawing and mixed media by Siegfried Zellot, Gudrun Zikulnig, Slava Mohl, Alfred Scheikl and Sylvia Campidell, who already exhibited at the Parkschlössl in summer\n- [“Schwach.Unperfekt.Ausgefranst.Echt”](/exhibitions/schwach-unperfekt-ausgefranst-echt-2026/), a solo exhibition by [Inés Urach](/persons/ines-urach/) on the ground floor, with painting, mixed media and collage\n\nFor exhibitions like these, a tour is often the only way to see them later. After a few hours the evening was over; the rooms, as they were arranged that evening, have remained.\n\nAlso new in the archive is the [BV Galerie Kärnten](/venues/bv-galerie-klagenfurt/) in Klagenfurt, the gallery of the Carinthian branch of the Austrian professional association of visual artists ([BV Kärnten](/organisations/bv-kaernten/)). There, [“BV ART-EX 26”](/exhibitions/bv-art-ex-26/) opens on 5 November; the 360° tour is planned from 24 November."
+    },
+    {
+      "where": "pp_translations__news/10 (lange-nacht-der-museen-2026, de)",
+      "path": "/items/pp_translations__news/10",
+      "field": "description",
+      "before": "Manche Ausstellungen dauern nur einen Abend. Zur ORF-Langen Nacht der Museen am 3. Oktober 2026 zeigte das [Europahaus Klagenfurt](/venues/europahaus-klagenfurt/) zwei davon, und beide sind seither als 360°-Rundgang im Archiv:\n\n- [„Spannungsfelder und Perspektiven“](/exhibitions/spannungsfelder-und-perspektiven-2026/), eine Gemeinschaftsausstellung von Mitgliedern des [Kunstvereins Velden](/organisations/kunstverein-velden/) mit Malerei, Zeichnung und Mischtechnik von Siegfried Zellot, Gudrun Zikulnig, Slava Mohl, Alfred Scheikl und Sylvia Campidell, die im Sommer schon im Parkschlössl ausstellte\n- [„Schwach.Unperfekt.Ausgefranst.Echt“](/exhibitions/schwach-unperfekt-ausgefranst-echt-2026/), eine Einzelausstellung von [Inés Urach](/persons/ines-urach/) im Erdgeschoß, mit Malerei, Mischtechnik und Collage\n\nFür Ausstellungen dieser Art ist ein Rundgang oft die einzige Möglichkeit, sie später noch zu sehen. Nach wenigen Stunden war der Abend vorbei; die Räume, so wie sie an diesem Abend eingerichtet waren, sind geblieben.\n\nEbenfalls neu im Archiv ist die [BV Galerie Kärnten](/venues/bv-galerie-klagenfurt/) in Klagenfurt, die Galerie des Kärntner Landesverbands der Berufsvereinigung bildender Künstler Österreichs ([BV Kärnten](/organisations/bv-kaernten/)). Dort eröffnet am 5. November [„BV ART-EX 26“](/exhibitions/bv-art-ex-26/); der 360°-Rundgang ist ab 24. November geplant."
+    },
+    {
+      "where": "pp_translations__news/11 (das-werkzeug-hinter-den-rundgaengen, en)",
+      "path": "/items/pp_translations__news/11",
+      "field": "description",
+      "before": "A 360° photo is at first a flat image with an aspect ratio of 2:1. Only software turns it into a room in which the eye can move freely, and only many such images, properly linked, make a tour. For PERMAPHEMERA an application of its own has been in the making since 13 July 2026: the Tour Editor.\n\nIts foundation is [Photo Sphere Viewer](https://photo-sphere-viewer.js.org/), an open-source library for 360° panoramas in the browser. The Tour Editor, a desktop application for the Mac, builds on it. It reads a folder of images and orders them by building, floor, room and standpoint. In the editor the standpoints are linked: markers on the floor lead from one standpoint to the next, notes explain individual works, and for every transition the direction of view on arrival can be set.\n\nA feature that common virtual-tour software does not offer: every standpoint can be recorded from several heights, “High”, “Normal” and “Low”. A room can thus be seen at eye level, from above with an overview of how the works are arranged, or close to the floor, where sculptures and objects stand. For exhibitions whose effect depends on the room, this change of height is more than an effect.\n\nSo that details stay sharp when zooming in, the editor cuts every panorama into tiles, which the browser loads only where the view is directed. Finally it exports the finished tour; the website embeds it with the same viewer that runs in the editor. Neither part needs a server of its own.\n\nAround 760 individual changes have gone into the software so far. It grows with every exhibition that is recorded: whatever one tour lacks is added for the next."
+    },
+    {
+      "where": "pp_translations__news/12 (das-werkzeug-hinter-den-rundgaengen, de)",
+      "path": "/items/pp_translations__news/12",
+      "field": "description",
+      "before": "Ein 360°-Foto ist zunächst ein flaches Bild im Seitenverhältnis 2:1. Erst eine Software macht daraus einen Raum, in dem sich der Blick frei bewegen kann, und erst viele solcher Bilder, richtig verbunden, ergeben einen Rundgang. Für PERMAPHEMERA entsteht dafür seit 13. Juli 2026 eine eigene Anwendung: der Tour Editor.\n\nDie Grundlage ist [Photo Sphere Viewer](https://photo-sphere-viewer.js.org/), eine Open-Source-Bibliothek für 360°-Panoramen im Browser. Darauf baut der Tour Editor auf, eine Desktop-Anwendung für den Mac. Sie liest einen Ordner mit Aufnahmen und ordnet sie nach Gebäude, Geschoß, Raum und Standpunkt. Im Editor werden die Standpunkte verbunden: Markierungen am Boden führen von einem Standpunkt zum nächsten, Hinweise erklären einzelne Werke, und für jeden Übergang lässt sich festlegen, wohin der Blick beim Ankommen gerichtet ist.\n\nEine Besonderheit, die übliche Programme für virtuelle Rundgänge nicht bieten: Jeder Standpunkt kann aus mehreren Höhen aufgenommen werden, „High“, „Normal“ und „Low“. Ein Raum lässt sich so aus Augenhöhe betrachten, von oben mit dem Überblick über die Anordnung der Werke, oder nahe am Boden, wo Skulpturen und Objekte stehen. Für Ausstellungen, deren Wirkung vom Raum abhängt, ist dieser Wechsel der Höhe mehr als ein Effekt.\n\nDamit Details auch beim Hineinzoomen scharf bleiben, zerlegt der Editor jedes Panorama in Kacheln, die der Browser nur dort lädt, wohin gerade geblickt wird. Am Ende exportiert er den fertigen Rundgang; die Website bindet ihn mit demselben Viewer ein, der auch im Editor läuft. Einen eigenen Server braucht keiner der beiden Teile.\n\nRund 760 einzelne Änderungen sind bis heute in die Software geflossen. Sie wächst mit jeder Ausstellung, die aufgenommen wird: Was bei einem Rundgang fehlt, wird für den nächsten ergänzt."
+    },
+    {
+      "where": "pp_translations__news/13 (vom-millstaetter-see-bis-ins-gailtal, en)",
+      "path": "/items/pp_translations__news/13",
+      "field": "description",
+      "before": "In October the archive grew markedly. Five exhibition venues in Carinthia are newly listed, with their current and upcoming exhibitions.\n\nThe [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) leads back to Spittal an der Drau, the town where PERMAPHEMERA began. In the pillared vault of the Salamanca cellar, [Ingrid Pröller](/persons/ingrid-proeller/) showed large-format painting between myth, nature and cosmos until 24 October: [“Epische Gemälde”](/exhibitions/epische-gemaelde/). The 360° tour is in preparation.\n\nOn Lake Millstatt the [Galerie im Stiegenhaus](/venues/galerie-im-stiegenhaus-seeboden/) in Seeboden has joined, with [“Blinddate der Perspektiven”](/exhibitions/blinddate-der-perspektiven/), an exhibition by [kultur.im.puls](/organisations/kultur-im-puls/). Inés Urach, Nicoline von Heyl and Roswitha Bucher-Sakowski, three graduates of the Freie Akademie der Bildenden Künste Kärnten, show painting there. Two of them are already in the archive: Nicoline von Heyl exhibited at the Parkschlössl in summer, Inés Urach at the Europahaus for the Long Night of Museums.\n\nIn the Gail Valley the [stARTup gallery](/venues/startup-gallery-koetschach-mauthen/) in Kötschach-Mauthen shows [“Walther Preiml – Sehnsucht”](/exhibitions/walther-preiml-sehnsucht/) until the end of the year, woodcuts and frottages on the “painful longing for the unattainable”.\n\nIn Klagenfurt two venues are new. At the [Galerie Palais Fugger](/venues/galerie-palais-fugger-klagenfurt/), [“Mediterraneo”](/exhibitions/mediterraneo-harald-scheicher-2026/) with oil paintings by Harald Scheicher was on view for the Long Night of Museums. The [Studiogalerie im Stadthaus Klagenfurt](/venues/studiogalerie-klagenfurt/) shows [“Trigeniale 26”](/exhibitions/trigeniale-26/) until 29 October, the three-country exhibition of the cultural initiative [bewegungINkultur](/organisations/bewegung-in-kultur/) with five artists from Carinthia, Friuli and Slovenia. Its 360° tour is already online.\n\nIn a few months the one room in the park has become a network of venues reaching from Lake Millstatt to the Gail Valley."
+    },
+    {
+      "where": "pp_translations__news/14 (vom-millstaetter-see-bis-ins-gailtal, de)",
+      "path": "/items/pp_translations__news/14",
+      "field": "description",
+      "before": "Im Oktober ist das Archiv deutlich gewachsen. Fünf Ausstellungsorte in Kärnten sind neu verzeichnet, mit ihren laufenden und kommenden Ausstellungen.\n\nDie [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) führt zurück nach Spittal an der Drau, in die Stadt, in der PERMAPHEMERA begonnen hat. Im Säulengewölbe des Salamancakellers zeigte [Ingrid Pröller](/persons/ingrid-proeller/) bis 24. Oktober großformatige Malerei zwischen Mythos, Natur und Kosmos: [„Epische Gemälde“](/exhibitions/epische-gemaelde/). Der 360°-Rundgang ist in Vorbereitung.\n\nAm Millstätter See ist die [Galerie im Stiegenhaus](/venues/galerie-im-stiegenhaus-seeboden/) in Seeboden dazugekommen, mit [„Blinddate der Perspektiven“](/exhibitions/blinddate-der-perspektiven/), einer Ausstellung von [kultur.im.puls](/organisations/kultur-im-puls/). Inés Urach, Nicoline von Heyl und Roswitha Bucher-Sakowski, drei Absolventinnen der Freien Akademie der Bildenden Künste Kärnten, zeigen dort Malerei. Zwei von ihnen sind im Archiv bereits vertreten: Nicoline von Heyl stellte im Sommer im Parkschlössl aus, Inés Urach zur Langen Nacht der Museen im Europahaus.\n\nIm Gailtal zeigt die [stARTup gallery](/venues/startup-gallery-koetschach-mauthen/) in Kötschach-Mauthen bis Jahresende [„Walther Preiml – Sehnsucht“](/exhibitions/walther-preiml-sehnsucht/), Holzschnitte und Frottagen zum „schmerzlichen Verlangen nach dem Unerreichbaren“.\n\nIn Klagenfurt sind zwei Orte neu. In der [Galerie Palais Fugger](/venues/galerie-palais-fugger-klagenfurt/) war zur Langen Nacht der Museen [„Mediterraneo“](/exhibitions/mediterraneo-harald-scheicher-2026/) mit Ölbildern von Harald Scheicher zu sehen. Die [Studiogalerie im Stadthaus Klagenfurt](/venues/studiogalerie-klagenfurt/) zeigt noch bis 29. Oktober [„Trigeniale 26“](/exhibitions/trigeniale-26/), die Dreiländerausstellung der Kulturinitiative [bewegungINkultur](/organisations/bewegung-in-kultur/) mit fünf Kunstschaffenden aus Kärnten, Friaul und Slowenien. Ihr 360°-Rundgang ist bereits online.\n\nAus dem einen Raum im Park ist in wenigen Monaten ein Netz von Orten geworden, das vom Millstätter See bis ins Gailtal reicht."
+    },
+    {
+      "where": "pp_translations__news/15 (warum-permaphemera, en)",
+      "path": "/items/pp_translations__news/15",
+      "field": "description",
+      "before": "PERMAPHEMERA is not a word that comes easily on first hearing. It joins two terms that seem to contradict each other: “perma-” as in permanent, lasting, and “ephemera”, the fleeting.\n\nEphemera is a term from libraries and archives. It stands for printed matter made for a short time only: invitation cards, posters, programme leaflets, tickets. These are collected precisely because they show what happened on a particular day in a particular place. In this sense an exhibition is itself ephemera: carefully arranged, open for a few weeks, then taken down. PERMAPHEMERA keeps this fleeting thing permanently accessible. The name describes exactly the contradiction the project works on.\n\nMore reasons speak for it:\n\n- **It is unmistakable.** As a newly formed word it cannot be confused with any common term, and a search for it leads to the archive rather than to a thousand other results.\n- **It travels across languages.** Its Latin and Greek roots are familiar in German, English, Italian and Slovene alike, in a region where Carinthia, Friuli and Slovenia meet.\n- **It describes instead of advertising.** The name promises nothing; it names a task.\n- **It stays.** Once understood, it is kept: duration and transience in one word.\n\nThe lettering shows the idea. The H falls out of line and leans to one side, a sign that nothing stays quite as it was. And in the lower left corner of every page stands the small drawing “Fig. I. Temporary, yet enduring.”"
+    },
+    {
+      "where": "pp_translations__news/16 (warum-permaphemera, de)",
+      "path": "/items/pp_translations__news/16",
+      "field": "description",
+      "before": "PERMAPHEMERA ist kein Wort, das beim ersten Hören leicht von der Hand geht. Es verbindet zwei Begriffe, die einander zu widersprechen scheinen: „perma-“ wie permanent, dauerhaft, und „Ephemera“, das Flüchtige.\n\nEphemera ist ein Begriff aus Bibliotheken und Archiven. Er steht für Drucksachen, die nur für kurze Zeit gemacht sind: Einladungskarten, Plakate, Programmzettel, Eintrittskarten. Gerade sie werden gesammelt, weil sie zeigen, was an einem bestimmten Tag an einem bestimmten Ort geschah. Eine Ausstellung ist in diesem Sinn selbst Ephemera: sorgfältig eingerichtet, einige Wochen zugänglich, dann abgebaut. PERMAPHEMERA hält dieses Flüchtige dauerhaft zugänglich. Der Name beschreibt genau den Widerspruch, an dem das Projekt arbeitet.\n\nWeitere Gründe sprechen für ihn:\n\n- **Er ist unverwechselbar.** Als neu gebildetes Wort lässt er sich mit keinem gängigen Begriff verwechseln, und eine Suche danach führt zum Archiv statt zu tausend anderen Treffern.\n- **Er versteht sich über Sprachgrenzen hinweg.** Die lateinischen und griechischen Wurzeln sind im Deutschen, Englischen, Italienischen und Slowenischen gleichermaßen geläufig, in einer Region, in der Kärnten, Friaul und Slowenien aneinandergrenzen.\n- **Er beschreibt, statt zu werben.** Der Name verspricht nichts; er benennt eine Aufgabe.\n- **Er bleibt.** Wer ihn einmal verstanden hat, behält ihn: Dauer und Vergänglichkeit in einem Wort.\n\nIm Schriftzug ist der Gedanke sichtbar. Das H fällt aus der Reihe und neigt sich zur Seite, als Zeichen dafür, dass nichts ganz so bleibt, wie es war. Und in der linken unteren Ecke jeder Seite steht die kleine Zeichnung „Fig. I. Temporary, yet enduring.“: vergänglich und doch beständig."
+    },
+    {
+      "where": "pp_translations__news/17 (aus-der-asche-empor-schloss-porcia, en)",
+      "path": "/items/pp_translations__news/17",
+      "field": "description",
+      "before": "A phoenix, a sphinx, figures from myths and legends: [Sylvia Ofner](/persons/sylvia-ofner/) shapes her figures from old oriental rugs and needlework. What once lay on the floor as a rug becomes a soft sculpture in her hands; embroideries accompany the figures. From 7 November the [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) in Spittal an der Drau shows these works under the title [“Aus der Asche empor – Skulptur und Stickerei”](/exhibitions/aus-der-asche-empor/).\n\n- **Opening:** Friday, 6 November 2026, 7 pm\n- **On view:** 7 November to 19 December 2026\n- **Venue:** Galerie im Schloss Porcia, pillared vault of the Salamanca cellar, Spittal an der Drau\n\nThe exhibition is recorded for PERMAPHEMERA. From its last day, 19 December, it will be online as a 360° tour. Anyone who cannot make it to Spittal by then can see the figures as they were placed in the vault."
+    },
+    {
+      "where": "pp_translations__news/18 (aus-der-asche-empor-schloss-porcia, de)",
+      "path": "/items/pp_translations__news/18",
+      "field": "description",
+      "before": "Ein Phönix, eine Sphinx, Gestalten aus Mythen und Legenden: [Sylvia Ofner](/persons/sylvia-ofner/) formt ihre Figuren aus alten Orientteppichen und Handarbeiten. Was einmal als Teppich am Boden lag, wird bei ihr zur weichen Skulptur; Stickereien begleiten die Figuren. Ab 7. November zeigt die [Galerie im Schloss Porcia](/venues/galerie-im-schloss-porcia-spittal-drau/) in Spittal an der Drau diese Arbeiten unter dem Titel [„Aus der Asche empor – Skulptur und Stickerei“](/exhibitions/aus-der-asche-empor/).\n\n- **Vernissage:** Freitag, 6. November 2026, 19 Uhr\n- **Laufzeit:** 7. November bis 19. Dezember 2026\n- **Ort:** Galerie im Schloss Porcia, Säulengewölbe des Salamancakellers, Spittal an der Drau\n\nDie Ausstellung wird für PERMAPHEMERA aufgenommen. Ab dem letzten Ausstellungstag, dem 19. Dezember, ist sie als 360°-Rundgang online. Wer es bis dahin nicht nach Spittal schafft, kann die Figuren dann so sehen, wie sie im Gewölbe aufgestellt waren."
+    }
+  ]
+}

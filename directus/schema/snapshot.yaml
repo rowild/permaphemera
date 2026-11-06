@@ -6319,15 +6319,28 @@ fields:
       field: description
       group: ui_group_content
       hidden: false
-      interface: input-rich-text-md
-      note: Curatorial statement.
-      options: null
+      interface: input-rich-text-html
+      note: >-
+        Paragraphs, bold, italic, lists; sources at the end as their own list
+        (docs/how-to-gallery-and-exhibition.md §7a). No links: add them under
+        Links.
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
       readonly: false
       required: false
       searchable: true
       sort: 2
       special: null
-      translations: null
+      translations:
+        - language: en-US
+          translation: Description
       validation: null
       validation_message: null
       width: full
@@ -13098,15 +13111,29 @@ fields:
       field: description
       group: ui_group_content
       hidden: false
-      interface: input-rich-text-md
-      note: The article text. Follows docs/text-rules.md.
-      options: null
+      interface: input-rich-text-html
+      note: >-
+        The article text: paragraphs, bold, italic, lists, links to site pages
+        (/exhibitions/<slug>/, without /en) or https. Follows docs/text-rules.md
+        and docs/how-to-news.md.
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - link
+          - removeformat
+          - undo
+          - redo
       readonly: false
       required: false
       searchable: true
       sort: 2
       special: null
-      translations: null
+      translations:
+        - language: en-US
+          translation: Text
       validation: null
       validation_message: null
       width: full
@@ -20379,15 +20406,25 @@ fields:
       field: description
       group: null
       hidden: false
-      interface: input-rich-text-md
+      interface: input-rich-text-html
       note: Translated field for pp_exhibitions.description
-      options: null
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - removeformat
+          - undo
+          - redo
       readonly: false
       required: false
       searchable: true
       sort: 7
       special: null
-      translations: null
+      translations:
+        - language: en-US
+          translation: Description
       validation: null
       validation_message: null
       width: full
@@ -21253,15 +21290,26 @@ fields:
       field: description
       group: null
       hidden: false
-      interface: input-rich-text-md
+      interface: input-rich-text-html
       note: Translated field for pp_news.description
-      options: null
+      options:
+        toolbar:
+          - bold
+          - italic
+          - bullist
+          - numlist
+          - link
+          - removeformat
+          - undo
+          - redo
       readonly: false
       required: false
       searchable: true
       sort: 7
       special: null
-      translations: null
+      translations:
+        - language: en-US
+          translation: Text
       validation: null
       validation_message: null
       width: full
