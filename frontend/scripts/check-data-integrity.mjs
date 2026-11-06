@@ -58,6 +58,14 @@ async function main() {
   // must point at a file Directus actually serves.
   const { COLLECTIONS, FILE_FIELDS } = await import('../shared/archive-schema.mjs')
   const { SHAREABLE_TYPES, TOUR_SENTENCE_RESERVE, mentionsTour } = await import('../shared/seo.mjs')
+  // Museums stay draft until the owner releases one by name (owner, 2026-11-06). Draft museums
+  // come with the token, so a published exhibition at a draft museum is caught too.
+  const { museumLeaks } = await import('../shared/museum-drafts.mjs')
+  const draftMuseums = directusToken
+    ? await directusGet('/items/pp_venues?fields=id,slug,type,status&limit=-1&filter[type][_eq]=museum', { token: directusToken })
+    : []
+  const museumVenues = [...venues, ...draftMuseums.filter((museum) => !venueIds.has(museum.id))]
+  const museumHeld = museumLeaks({ venues: museumVenues, exhibitions, persons, personsVenues: a.personsVenues, participations })
   const fileUrls = []
   const fileOwners = []
   for (const [key, collection] of Object.entries(COLLECTIONS)) {
@@ -220,6 +228,7 @@ async function main() {
       .filter((item) => item.navigation === navigations.find((nav) => nav.key === 'main')?.id && item.parent === null)
       .every((item) => ['about', 'artists', 'exhibitions', 'galleries', 'organisations', 'events'].includes(item.key))],
 
+    [named('no museum, museum exhibition or museum-only person is published (owner rule; shared/museum-drafts.mjs)', museumHeld), museumHeld.length === 0],
     ['every venue has a known type', venues.every((venue) =>
       ['gallery', 'museum', 'kunsthalle', 'art_cafe', 'open_air', 'forum'].includes(venue.type))],
 

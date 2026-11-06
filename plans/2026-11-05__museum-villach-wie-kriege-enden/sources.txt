@@ -1,0 +1,24 @@
+SOURCES:
+
+Sonderausstellung Museum 2026Wie Kriege enden / How wars end
+2. Mai bis 1. November 2026
+
+https://villach.at/stadt-erleben/museum-der-stadt/aktuelle-sonderausstellung-im-stadtmuseum
+
+| Quelle | Was du dort findest |
+|---|---|
+| **[ORF Kärnten: „Ausstellung: Wie Kriege enden“](https://kaernten.orf.at/stories/3315182/)** · 26.7.2025 | Ausführlicher Überblick mit Fotos: der mittels KI animierte Soldat Franz Arneitz, historische Propaganda, die Bombardierung Villachs und der zerschossene Lada aus der Ukraine. ([kaernten.ORF.at][1]) |
+| **[Internationaler Versöhnungsbund: Besuchsbericht](https://blog.versoehnungsbund.at/ausstellung-wie-kriege-enden/)** · 18.8.2025 | Besonders lesenswert: Monika Schöner beschreibt ihren Rundgang, konkrete Ausstellungsstücke und das Friedenslabor mit gewaltfreier Kommunikation und einem Konflikt-Selbsttest. ([Internationaler Versöhnungsbund][2]) |
+| **[Welcome2Villach: Vorstellung der Ausstellung](https://www.welcome2villach.at/blog/wie-kriege-enden-sonderausstellung-im-stadtmuseum-villach-setzt-ein-zeichen-fuer-den-frieden)** · 25.5.2025 | Bebilderte Einführung zum Konzept, zu den elf Zeitzeug:innen und den interaktiven Stationen. Beschrieben werden unter anderem eine nachgebaute alpine Kriegsstellung und eine entschärfte Fliegerbombe. ([welcome2villach.at][3]) |
+| **[KLiCK Kärnten: „Museum zeigt neue Ausstellung“](https://www.klick-kaernten.at/1550312026/museum-zeigt-neue-ausstellung/)** · 8.5.2026 | Bericht über die Verlängerung und Erweiterung 2026, mit Ergänzungen zum Kalten Krieg, zur Ukraine und zum Untergang des Kriegsschiffs „Szent István“. ([KLiCK Kärnten][4]) |
+| **[Gymnasium St. Martin: Schüler:innen als Co-Kurator:innen](https://www.it-gymnasium.at/schuelerinnen-als-co-kuratorinnen-eroeffnung-der-neuen-mitmachstationen/)** · 11.7.2026 | Hintergrund zu zwei gemeinsam mit Jugendlichen entwickelten Stationen: „Frieden auf der Kippe“ und „Lass mich in Frieden“, eröffnet am 2. Juli 2026. ([it-gymnasium.at][5]) |
+
+[1]: https://kaernten.orf.at/stories/3315182/?utm_source=chatgpt.com "Ausstellung: Wie Kriege enden"
+
+[2]: https://blog.versoehnungsbund.at/ausstellung-wie-kriege-enden/?utm_source=chatgpt.com "Ausstellung: Wie Kriege enden"
+
+[3]: https://www.welcome2villach.at/blog/wie-kriege-enden-sonderausstellung-im-stadtmuseum-villach-setzt-ein-zeichen-fuer-den-frieden?utm_source=chatgpt.com "Welcome2Villach: „WIE KRIEGE ENDEN“ – SONDERAUSSTELLUNG IM STADTMUSEUM VILLACH SETZT EIN ZEICHEN FÜR DEN FRIEDEN"
+
+[4]: https://www.klick-kaernten.at/1550312026/museum-zeigt-neue-ausstellung/?utm_source=chatgpt.com "Museum zeigt neue Ausstellung"
+
+[5]: https://www.it-gymnasium.at/schuelerinnen-als-co-kuratorinnen-eroeffnung-der-neuen-mitmachstationen/?utm_source=chatgpt.com "BG|BRG Villach St.Martin | SchülerInnen als Co-KuratorInnen: Eröffnung der neuen Mitmachstationen"

@@ -1,0 +1,11 @@
+[
+  { "collection": "venues", "slug": "museum-der-stadt-villach",
+    "en": { "title": "Museum der Stadt Villach", "meta_description": "Municipal museum of Villach, founded in 1873, in a palace on the Widmanngasse: archaeology, city history and art. In the archive: Wie Kriege enden." },
+    "de": { "title": "Museum der Stadt Villach", "meta_description": "Städtisches Museum Villachs, gegründet 1873, in einem Palais in der Widmanngasse: Archäologie, Stadtgeschichte und Kunst. Im Archiv: Wie Kriege enden." } },
+  { "collection": "exhibitions", "slug": "wie-kriege-enden",
+    "en": { "title": "Wie Kriege enden / How wars end – Museum Villach", "meta_description": "Six wars and how they ended, from Napoleon to Ukraine, with eyewitnesses and a Peace Lab at the Museum der Stadt Villach." },
+    "de": { "title": "Wie Kriege enden / How wars end – Museum Villach", "meta_description": "Sechs Kriege und ihr Ende, von Napoleon bis zur Ukraine, mit Zeitzeug:innen und Friedenslabor im Museum der Stadt Villach." } },
+  { "collection": "persons", "slug": "andreas-kuchler",
+    "en": { "title": "Andreas Kuchler, Museum der Stadt Villach", "meta_description": "Andreas Kuchler is the director of the Museum der Stadt Villach and led curator's tours of the exhibition Wie Kriege enden / How wars end." },
+    "de": { "title": "Andreas Kuchler, Museum der Stadt Villach", "meta_description": "Andreas Kuchler ist Direktor des Museums der Stadt Villach und führte durch die Sonderausstellung Wie Kriege enden / How wars end." } }
+]

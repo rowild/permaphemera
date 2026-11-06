@@ -44,6 +44,13 @@ change `schema.mjs`, `frontend/shared/archive-schema.mjs` if it is a file
 field or a new collection, `frontend/app/types/content.ts`, and
 `_Plans/exhibitions-plan.md` §2 in the same commit.
 
+**Museums stay draft (owner, 2026-11-06).** A venue of type `museum`, every exhibition at it
+(`primary_venue`) and every person who appears only there stay `draft` until the owner releases
+that museum by name. Keep collecting their data (research, records, tours); never publish them.
+On the owner's word, add the museum's slug to `MUSEUMS_RELEASED` in
+`frontend/shared/museum-drafts.mjs` (with the date). `pnpm check:data` fails on any published
+record that breaks the rule (`frontend/test/unit/museumDrafts.spec.ts`).
+
 **Never Markdown (owner, 2026-11-06).** A new long text field is always WYSIWYG
 (`richText` in `directus/scripts/fields.mjs`, interface `input-rich-text-html`), never Markdown;
 `fields.mjs` has no Markdown helper and `directus/scripts/build.test.mjs` fails on any

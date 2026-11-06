@@ -24,6 +24,9 @@ event, one `pp_event_editions` row per year, and each exhibition of that year po
   organisers, memberships, venue relations) have **no status** (removed 2026-10-14): a relation
   shows when every record it connects is published. Links (`pp_websites`) keep a status and are
   created as `published`; a link shows when its owner is published.
+- **Museums stay draft (owner, 2026-11-06).** A venue of type `museum`, its exhibitions and the
+  persons who appear only there stay `draft` until the owner releases that museum by name
+  (`MUSEUMS_RELEASED` in `frontend/shared/museum-drafts.mjs`; `pnpm check:data` enforces it).
 - **Only published data leaves Directus.** The public API delivers published records only, and a
   relation row only when all its ends are published (`directus/scripts/public-rules.mjs`). The
   frontend filters again. In the admin app drafts stay visible everywhere, so you can link them.
@@ -387,7 +390,7 @@ Update the record field **and** its `en` translation together.
 3. Report to the owner: what was created (admin links), what was changed live, every conflict
    between sources, and what is still missing (image, run dates, curator).
 4. The owner checks the drafts in the admin app and publishes the records: town, venue,
-   persons, organisations, exhibition. Relations and links need no publishing; they appear as
+   persons, organisations, exhibition (not a museum's records: they stay draft, see §0). Relations and links need no publishing; they appear as
    soon as the records they connect are published.
 
 ---
