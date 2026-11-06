@@ -4,6 +4,8 @@ import type {
   ExhibitionOrganiserRecord, ExhibitionOrganiserRole, OrganisationRecord } from '~/types/content'
 import { isVisible } from '~/utils/contentStatus'
 import { pickTranslation } from '~/utils/pickTranslation'
+import { toRichHtml } from '~/utils/richText'
+import { stripMarkup } from '../../shared/seo.mjs'
 import type { TourStatus } from '~/utils/tourAccess'
 
 /** One pp_websites row, title already picked for the locale. */
@@ -67,7 +69,10 @@ export interface ResolvedExhibition {
   /** Admission text from the record; undefined means free admission. */
   admission?: string
   summary: string
+  /** The description as plain text (search). */
   description?: string
+  /** The description as safe HTML (WYSIWYG field since 2026-11-06), for ArchiveRichText. */
+  descriptionHtml?: string
   medium?: string
   opening_hours: string
   vernissage: string
@@ -155,6 +160,7 @@ export const resolveExhibitions = (
     const organiserPersons = credited.filter(({ role }) => role === 'organiser').map(({ person }) => person)
 
     const text = pickTranslation(exhibition, locale)
+    const descriptionHtml = toRichHtml(text.description as string)
     const resolvedStatements = (statementsByExhibition.get(exhibition.id) ?? [])
       .sort((a, b) => a.sort - b.sort)
       .flatMap((statement) => {
@@ -195,7 +201,8 @@ export const resolveExhibitions = (
       admission: (text.admission as string) || exhibition.admission || undefined,
       image_alt: (text.image_alt as string) || exhibition.image_alt,
       summary: (text.summary as string) || exhibition.summary || '',
-      description: (text.description as string) || undefined,
+      description: descriptionHtml ? stripMarkup(descriptionHtml) : undefined,
+      descriptionHtml,
       medium: (text.medium as string) || undefined,
       opening_hours: (text.opening_hours as string) || exhibition.opening_hours,
       vernissage: (text.vernissage as string) || exhibition.vernissage,

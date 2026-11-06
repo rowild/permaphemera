@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { newsMarkdownToHtml } from '~/utils/newsMarkdown'
 import { formatArchiveDate } from '~/utils/archiveDate'
+import { toRichHtml } from '~/utils/richText'
 
 const { news } = useArchiveData()
 const { locale } = useI18n()
@@ -11,7 +11,8 @@ const index = computed(() => news.value.indexOf(article.value))
 // The list is newest first: the newer article comes before this one.
 const newer = computed(() => (index.value > 0 ? news.value[index.value - 1] : undefined))
 const older = computed(() => news.value[index.value + 1])
-const bodyHtml = computed(() => newsMarkdownToHtml(article.value?.description, (path) => localePath(path)))
+// The article text is WYSIWYG HTML (since 2026-11-06); ArchiveRichText localises its site links.
+const bodyHtml = computed(() => toRichHtml(article.value?.description, { links: true }))
 const hasRecords = computed(() => Boolean(article.value && (article.value.exhibitions.length || article.value.venues.length || article.value.persons.length || article.value.organisations.length || article.value.events.length || article.value.sponsors.length)))
 
 usePageSeo(`/news/${slug}/`)

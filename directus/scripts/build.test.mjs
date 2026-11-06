@@ -235,3 +235,15 @@ test('organisations put an event on in a role; links and news reach events', () 
   assert.equal(field('pp_event_organisers', 'status'), undefined)
   for (const name of ['pp_mm__events_news', 'pp_mm__events_websites']) assert.ok(byName[name], name)
 })
+
+// Owner, 2026-11-06: no Markdown in this project. Every long text is WYSIWYG (richText).
+test('no field is a Markdown field', () => {
+  const markdown = collections.flatMap((c) => (c.fields ?? []).filter((f) => f.meta?.interface === 'input-rich-text-md').map((f) => `${c.collection}.${f.field}`))
+  assert.deepEqual(markdown, [])
+})
+
+test('the news text is WYSIWYG with the link button; other WYSIWYG texts have none', () => {
+  assert.equal(field('pp_news', 'description').meta.interface, 'input-rich-text-html')
+  assert.ok(field('pp_news', 'description').meta.options.toolbar.includes('link'))
+  assert.ok(!field('pp_exhibitions', 'description').meta.options.toolbar.includes('link'))
+})

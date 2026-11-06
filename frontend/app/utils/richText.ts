@@ -25,6 +25,8 @@ const hrefOf = (attributes: string) => {
 export interface RichTextOptions {
   /** Keep links to site pages and https addresses (news articles). */
   links?: boolean
+  /** Gives a kept site link (`/…`) the current language's prefix. */
+  localize?: (path: string) => string
 }
 
 export const sanitizeRichText = (html: string, options: RichTextOptions = {}): string => {
@@ -39,7 +41,9 @@ export const sanitizeRichText = (html: string, options: RichTextOptions = {}): s
         const allowed = isAllowedHref(href)
         openLinks.push(allowed)
         if (!allowed) return ''
-        return EXTERNAL_HREF.test(href) ? `<a href="${href}" target="_blank" rel="noopener noreferrer">` : `<a href="${href}">`
+        if (EXTERNAL_HREF.test(href)) return `<a href="${href}" target="_blank" rel="noopener noreferrer">`
+        const local = options.localize ? options.localize(href) : href
+        return `<a href="${isAllowedHref(local) ? local : href}">`
       }
       const kept = KEEP[name.toLowerCase()]
       if (!kept) return ''
@@ -64,3 +68,13 @@ export const toRichHtml = (html?: string | null, options: RichTextOptions = {}):
   const safe = sanitizeRichText(html, options)
   return showsText(safe) ? safe : undefined
 }
+
+/**
+ * Sources close a text as their own block (owner, 2026-11-06): a paragraph with only the label
+ * ("Quelle", "Quellen", "Source", "Sources", a colon allowed) and the list right after it, as the
+ * last block. Runs on sanitised HTML (no attributes left), so only this step can set the two classes.
+ */
+const SOURCES = /<p>\s*(Quellen?|Sources?)\s*:?\s*<\/p>\s*<ul>((?:(?!<\/?ul>)[\s\S])*)<\/ul>\s*$/i
+
+export const markSources = (safeHtml: string): string => safeHtml.replace(SOURCES, (_block, label: string, items: string) =>
+  `<p class="archive-sources-label">${label}</p><ul class="archive-sources">${items}</ul>`)

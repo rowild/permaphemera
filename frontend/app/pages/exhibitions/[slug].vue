@@ -99,7 +99,7 @@ definePageMeta({ navActive: 'exhibitions' })
         <div class="[ exhibition-details-prose ]">
           <ArchiveEyebrow>{{ kindText('recordEyebrow') }}</ArchiveEyebrow>
           <ArchiveSectionHeading id="exhibition-details-title" size="lg">{{ kindText('aboutTitle') }} <span class="text-archive-red">{{ kindText('aboutAccent') }}</span></ArchiveSectionHeading>
-          <p v-if="exhibition.description" class="[ exhibition-details-description ] mt-6 mb-0 max-w-3xl text-lg leading-[1.65] text-archive-body compact:mt-3 compact:text-base compact:leading-normal">{{ exhibition.description }}</p>
+          <ArchiveRichText v-if="exhibition.descriptionHtml" class="[ exhibition-details-description ] mt-6 compact:mt-3" :html="exhibition.descriptionHtml" size="lead" />
 
           <section v-if="exhibition.statements.length" class="[ exhibition-statements ] mt-12 max-w-3xl compact:mt-8" :aria-label="$t('exhibition.statementsTitle', exhibition.artists.length)">
             <h3 class="m-0 mb-6 font-display text-h3-sm font-normal compact:mb-4 compact:text-2xl">{{ $t('exhibition.statementsTitle', exhibition.artists.length) }}</h3>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { hasRichText, sanitizeRichText } from '~/utils/richText'
+import { hasRichText, markSources, sanitizeRichText } from '~/utils/richText'
 
 describe('sanitizeRichText', () => {
   it('keeps paragraphs, line breaks, bold, italic and lists, without attributes', () => {
@@ -14,6 +14,11 @@ describe('sanitizeRichText', () => {
   it('keeps site and https links only when asked (news), dropping every other link and attribute', () => {
     const html = '<p><a href="/exhibitions/x/" onclick="evil()">site</a> <a href="https://example.org/a?b=1">web</a> <a href="javascript:alert(1)">js</a> <a href="//evil.org">proto</a> <a href="http://plain.org">http</a> <a href="/x" onmouseover="evil()">quote</a></p>'
     expect(sanitizeRichText(html, { links: true })).toBe('<p><a href="/exhibitions/x/">site</a> <a href="https://example.org/a?b=1" target="_blank" rel="noopener noreferrer">web</a> js proto http <a href="/x">quote</a></p>')
+  })
+
+  it('gives a kept site link the language prefix (news in English)', () => {
+    expect(sanitizeRichText('<p><a href="/exhibitions/a/">tour</a> <a href="https://x.org/">web</a></p>', { links: true, localize: (path) => `/en${path}` }))
+      .toBe('<p><a href="/en/exhibitions/a/">tour</a> <a href="https://x.org/" target="_blank" rel="noopener noreferrer">web</a></p>')
   })
 
   it('drops scripts, styles and event handlers entirely', () => {
@@ -36,5 +41,26 @@ describe('hasRichText', () => {
     expect(hasRichText('<p>&nbsp;</p>')).toBe(false)
     expect(hasRichText('')).toBe(false)
     expect(hasRichText(null)).toBe(false)
+  })
+})
+
+// Sources close a text as their own block: a label paragraph and a list (owner, 2026-11-06).
+describe('markSources', () => {
+  it('marks the closing label paragraph and its list, and drops the colon', () => {
+    expect(markSources('<p>Text.</p><p>Quellen:</p><ul><li>a.at</li><li>b.at</li></ul>'))
+      .toBe('<p>Text.</p><p class="archive-sources-label">Quellen</p><ul class="archive-sources"><li>a.at</li><li>b.at</li></ul>')
+  })
+
+  it('knows the singular and the English labels', () => {
+    for (const label of ['Quelle', 'Source', 'Sources']) {
+      expect(markSources(`<p>Text.</p><p>${label}</p><ul><li>a.at</li></ul>`)).toContain(`<p class="archive-sources-label">${label}</p><ul class="archive-sources">`)
+    }
+  })
+
+  it('leaves a list alone that is not the last block or has no label before it', () => {
+    const middle = '<p>Quellen</p><ul><li>a.at</li></ul><p>More text.</p>'
+    const plain = '<p>Works shown:</p><ul><li>One</li></ul>'
+    expect(markSources(middle)).toBe(middle)
+    expect(markSources(plain)).toBe(plain)
   })
 })

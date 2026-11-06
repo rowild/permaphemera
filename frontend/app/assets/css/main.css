@@ -185,6 +185,56 @@
   color: var(--color-archive-red);
 }
 
+/*
+ * ArchiveRichText (.archive-cms-text) lists: the bullet is the diamond of the language menu's pointer
+ * (.archive-shared-tooltip-pointer: record paper, a thin red edge, turned 45°), sized to the text
+ * and centred on the first line (1lh).
+ */
+.archive-cms-text :where(ul) {
+  list-style: none;
+  padding-inline-start: 1.35em;
+}
+
+.archive-cms-text :where(ul > li) {
+  position: relative;
+  padding-inline-start: 0;
+}
+
+.archive-cms-text :where(ul > li)::before {
+  position: absolute;
+  top: calc(0.5lh - 0.2em);
+  left: -1.1em;
+  width: 0.46em;
+  height: 0.46em;
+  border: 1px solid rgb(var(--color-archive-red-rgb) / 0.55);
+  background: var(--color-archive-record-paper);
+  content: "";
+  transform: rotate(45deg);
+}
+
+/* The closing source block (markSources): a quiet label and a small list, set apart by space. */
+.archive-cms-text .archive-sources-label {
+  margin-top: 2.2em;
+  margin-bottom: 0.35em;
+  color: var(--color-archive-muted);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  letter-spacing: 0.03em;
+}
+
+.archive-cms-text .archive-sources {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--color-archive-muted);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+.archive-cms-text .archive-sources > li {
+  margin-block: 0.15em;
+  color: inherit;
+}
+
 html {
   scroll-behavior: smooth;
   background-color: var(--color-archive-paper);

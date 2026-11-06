@@ -1,7 +1,7 @@
 // directus/scripts/schema.mjs
 // The PERMAPHEMERA schema as data. Names of junction tables, translation tables
 // and FK columns are never written here; naming.mjs derives them.
-import { bool, date, dropdown, file, float, integer, m2o, markdown, richText, seo, str, text } from './fields.mjs'
+import { bool, date, dropdown, file, float, integer, m2o, richText, seo, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
 export const SCHEMA_VERSION = '2026-11-04.3'
@@ -90,7 +90,7 @@ export const entities = {
       str('image_alt', { width: 'half', translated: true }),
       str('image_caption', { translated: true, note: 'Credit line under the photo: "<what> · Foto: <holder>".' }),
       str('lede', { translated: true, note: 'One line under the name on the person page.' }),
-      richText('about_html', { translated: true, label: 'Biography', note: 'Biography (paragraphs, bold, italic, lists); the last sentence names the source. No links: add them under Links.' }),
+      richText('about_html', { translated: true, label: 'Biography', note: 'Biography (paragraphs, bold, italic, lists); sources at the end as their own list (docs/how-to-gallery-and-exhibition.md §7a). No links: add them under Links.' }),
       seo({ titleTemplate: '{{first_name}} {{last_name}}', descriptionTemplate: '{{lede}}', translationDescriptionTemplate: '{{lede}}' }),
     ],
     layout: [
@@ -134,7 +134,7 @@ export const entities = {
       file('image', { image: true }),
       str('image_alt', { width: 'half', translated: true }),
       str('summary', { translated: true, note: 'One-line teaser.' }),
-      markdown('description', { translated: true, note: 'Curatorial statement.' }),
+      richText('description', { translated: true, label: 'Description', note: 'Paragraphs, bold, italic, lists; sources at the end as their own list (docs/how-to-gallery-and-exhibition.md §7a). No links: add them under Links.' }),
       str('date_range', { width: 'half', translated: true, note: 'Display form of the dates.' }),
       str('opening_hours', { width: 'half', translated: true }),
       str('vernissage', { width: 'half', translated: true }),
@@ -422,7 +422,7 @@ export const entities = {
       file('image', { image: true, note: 'Optional. Without an image the site uses the image of the first linked exhibition or gallery.' }),
       str('image_alt', { width: 'half', translated: true }),
       str('summary', { translated: true, note: 'One line for the lists, the start page and SEO.' }),
-      markdown('description', { translated: true, note: 'The article text. Follows docs/text-rules.md.' }),
+      richText('description', { translated: true, links: true, label: 'Text', note: 'The article text: paragraphs, bold, italic, lists, links to site pages (/exhibitions/<slug>/, without /en) or https. Follows docs/text-rules.md and docs/how-to-news.md.' }),
       seo({ titleTemplate: '{{title}}', descriptionTemplate: '{{summary}}', translationTitleTemplate: '{{title}}', translationDescriptionTemplate: '{{summary}}' }),
     ],
     layout: [

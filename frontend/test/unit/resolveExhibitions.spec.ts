@@ -55,6 +55,15 @@ describe('resolveExhibitions', () => {
     expect(resolve()[0].artist).toBe('Sylvia Campidell & Judith Maria Kulle')
   })
 
+  it('gives the WYSIWYG description as safe HTML for the page and as plain text for the search', () => {
+    const html = '<p>Woodcuts on <strong>longing</strong>.</p><p>Sources</p><ul><li>a.at</li></ul><script>x</script>'
+    const [exhibition] = resolveExhibitions([{ ...exhibitions[0], translations: [{ ...exhibitions[0].translations[0], description: html }] }], venues, locations, participations, persons, roles, 'en')
+    expect(exhibition.descriptionHtml).toBe('<p>Woodcuts on <strong>longing</strong>.</p><p>Sources</p><ul><li>a.at</li></ul>')
+    expect(exhibition.description).not.toMatch(/[<>]/)
+    expect(exhibition.description?.replace(/\s+/g, '')).toBe('Woodcutsonlonging.Sourcesa.at')
+    expect(resolve()[0].descriptionHtml).toBeUndefined()
+  })
+
   it('exposes the artist ids for downstream linking', () => {
     expect(resolve()[0].artist_ids).toEqual(['person-sylvia-campidell', 'person-judith-maria-kulle'])
   })

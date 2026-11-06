@@ -54,15 +54,15 @@ export const str = (field, opts = {}) => withOpts(base(field, 'string',
 export const text = (field, opts = {}) => withOpts(base(field, 'text',
   { interface: 'input-multiline', width: 'full' }, { is_nullable: true }), opts)
 
-export const markdown = (field, opts = {}) => withOpts(base(field, 'text',
-  { interface: 'input-rich-text-md', width: 'full' }, { is_nullable: true }), opts)
-
+// No Markdown in this project (owner, 2026-11-06): every long text is WYSIWYG, through richText.
 // WYSIWYG text (HTML). The toolbar offers only what the site renders: paragraphs, bold,
 // italic and lists. No links: every external address is a link record (pp_websites).
+// `links: true` adds the link button where the site keeps links (news articles, 2026-11-04).
 export const richText = (field, opts = {}) => {
+  const toolbar = ['bold', 'italic', 'bullist', 'numlist', ...(opts.links ? ['link'] : []), 'removeformat', 'undo', 'redo']
   const payload = base(field, 'text', {
     interface: 'input-rich-text-html', width: 'full',
-    options: { toolbar: ['bold', 'italic', 'bullist', 'numlist', 'removeformat', 'undo', 'redo'] },
+    options: { toolbar },
   }, { is_nullable: true })
   if (opts.label) payload.meta.translations = [{ language: 'en-US', translation: opts.label }]
   return withOpts(payload, opts)

@@ -246,8 +246,7 @@ exhibition's `event_edition` instead (see "Words" above). A frame without an org
   a dead link is worse than none.
 - Every published person has a page at `/persons/<slug>/` (English `/en/persons/<slug>/`). It shows:
   `image` (portrait, see §3) with `image_alt` and `image_caption` (`<Name> · Foto: <holder>`),
-  `lede` (one line), `about_html` (WYSIWYG biography, the last sentence names the source:
-  `Quelle: <domain>.`), `born` (`1970, Schärding`), `based_in` (`Wien` / `Vienna`), the roles, the
+  `lede` (one line), `about_html` (WYSIWYG biography, sources at the end, see "Sources" below), `born` (`1970, Schärding`), `based_in` (`Wien` / `Vienna`), the roles, the
   links, the memberships, the galleries and every published exhibition with the person.
   Translated: `based_in`, `image_alt`, `image_caption`, `lede`, `about_html` — write `en` and `de`; the
   plain fields hold English. Only facts with a source; no metaphors, no praise words.
@@ -269,7 +268,7 @@ exhibition's `event_edition` instead (see "Words" above). A frame without an org
 | `image`, `image_alt` | §3; alt ends with `(© holder)` |
 | `source_pdf` | the invitation PDF file id, if there is one |
 | `summary` | one line |
-| `description` | 60–130 words, own words, neutral archive tone, ends with `Source: <domains>` (DE `Quelle: …`) |
+| `description` | 60–130 words, own words, neutral archive tone, WYSIWYG HTML (since 2026-11-06; Markdown before); sources at the end as a list (§7a) |
 | `participations` | nested rows `{ person, role, sort }` (no status); artists in the order of the invitation, curator first. A person who organises the exhibition gets the role `organiser` (own row "Organiser" on the page); the body behind it stays in `organisers` (§6) |
 | `websites` | `[{ "websites_id": <existing id> }]` or a nested new link with en/de titles |
 | `translations` | `en` and `de`: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `admission`, `medium`, `image_alt` |
@@ -313,12 +312,12 @@ and only when both are empty builds a plain text from title, artists, dates, gal
    "date_range": "12 September–24 October 2026", "opening_hours": "…", "vernissage": "…",
    "medium": "…", "image": "<file id>", "image_alt": "… (© …)", "source_pdf": "<file id>",
    "tour_status": "available", "tour_available_from": "2026-10-24",
-   "summary": "…", "description": "… Source: …",
+   "summary": "…", "description": "<p>…</p><p>Sources</p><ul><li>a.at</li><li>b.at</li></ul>",
    "translations": [
      { "languages_code": "en", "title": "…", "date_range": "…", "opening_hours": "…", "vernissage": "…",
        "medium": "…", "image_alt": "…", "summary": "…", "description": "…" },
      { "languages_code": "de", "title": "…", "date_range": "…", "opening_hours": "…", "vernissage": "…",
-       "medium": "…", "image_alt": "…", "summary": "…", "description": "… Quelle: …" } ],
+       "medium": "…", "image_alt": "…", "summary": "…", "description": "<p>…</p><p>Quellen</p><ul><li>a.at</li><li>b.at</li></ul>" } ],
    "participations": [ { "person": "<person id>", "role": "<artist role id>", "sort": 1 } ],
    "websites": [ { "websites_id": "<website id>", "sort": 1 } ] }]
 ```
@@ -327,6 +326,27 @@ Update a translation by its id: `"translations": { "update": [ { "id": 37, "desc
 Get the ids with a read of `pp_translations__exhibitions` filtered by `exhibitions_id`.
 
 ---
+
+## 7a. Sources: always a list at the end (owner, 2026-11-06)
+
+Every text that names its sources (biography, organisation text, exhibition description, any
+later text) ends with them as its own block: a paragraph with only the label, then a bullet list,
+one source per item. Never "Source: a, b." inside the last sentence. Label: `Source` / `Quelle`
+for one item, `Sources` / `Quellen` for more (English on the record and in `en`, German in `de`).
+The site finds the block by its label and shows it small, with the diamond bullet of the language
+menu (`markSources` in `frontend/app/utils/richText.ts`); search texts leave it out.
+
+```html
+<p>… last sentence.</p><p>Quellen</p><ul><li>kuenstlerstadt-gmuend.at</li><li>meinbezirk.at</li></ul>
+```
+
+In the admin app: a new paragraph with only "Quellen", then the list button. All long texts are
+WYSIWYG fields (biographies, organisation and venue texts, exhibition descriptions and news
+articles since 2026-11-06); no field is Markdown (root `AGENTS.md`, Data model).
+
+An inline "(Quelle: …)" right after one sensitive fact stays where it is (see the persons'
+documented history); the list at the end still names all sources. Converter for old texts:
+`plans/2026-11-06__sources-as-list/migrate-sources.mjs`.
 
 ## 8a. Links are always link records, never text
 

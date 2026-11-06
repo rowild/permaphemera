@@ -93,6 +93,13 @@ The section on how a 360° tour is made may reflect a little more (owner, 2026-1
 room says more than a single photograph, how the works relate to each other. It still states
 facts, and it never calls an exhibition a document.
 
+### 1.9 Sources: a list at the end
+
+Every text that names its sources ends with them as their own block: a paragraph "Quellen" /
+"Sources" ("Quelle" / "Source" for one), then one source per bullet point (owner, 2026-11-06).
+Never "Quelle: a, b." inside the last sentence. Format and examples:
+`how-to-gallery-and-exhibition.md` §7a.
+
 ## 2. Word list
 
 | Thing | German | English |

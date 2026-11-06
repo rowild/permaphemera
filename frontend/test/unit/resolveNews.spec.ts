@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import { resolveNews, type NewsSources } from '~/utils/resolveNews'
-import { newsMarkdownToHtml } from '~/utils/newsMarkdown'
 
 const article = (id: string, overrides: Record<string, unknown> = {}) => ({
   id, slug: id, status: 'published', sort: null, title: `Title ${id}`, published_on: '2026-11-03', topic: 'welcome',
@@ -52,25 +51,5 @@ describe('resolveNews', () => {
     expect(resolveNews(base())[0]).toMatchObject({ image: '/e1.jpg', image_alt: 'E1 alt' })
     expect(resolveNews(base({ exhibitionsNews: [] }))[0]).toMatchObject({ image: '/v1.jpg', image_alt: 'V1 alt' })
     expect(resolveNews(base({ exhibitionsNews: [], newsVenues: [] }))[0]!.image).toBeUndefined()
-  })
-})
-
-describe('newsMarkdownToHtml', () => {
-  it('makes paragraphs, line breaks, bold, italic and lists', () => {
-    expect(newsMarkdownToHtml('One **bold** and *soft*.\nNext line.\n\n- a\n- b\n\n1. x\n2. y'))
-      .toBe('<p>One <strong>bold</strong> and <em>soft</em>.<br>Next line.</p><ul><li>a</li><li>b</li></ul><ol><li>x</li><li>y</li></ol>')
-  })
-
-  it('escapes every tag from the text', () => {
-    expect(newsMarkdownToHtml('<script>alert(1)</script> <a href="x">link</a>')).toBe('<p>&lt;script&gt;alert(1)&lt;/script&gt; &lt;a href="x"&gt;link&lt;/a&gt;</p>')
-  })
-
-  it('makes site links (in the current language) and https links, and leaves other links as text', () => {
-    expect(newsMarkdownToHtml('See [the tour](/exhibitions/a/), [PSV](https://photo-sphere-viewer.js.org/) and [bad](javascript:void).', (path) => `/en${path}`))
-      .toBe('<p>See <a href="/en/exhibitions/a/">the tour</a>, <a href="https://photo-sphere-viewer.js.org/" target="_blank" rel="noopener noreferrer">PSV</a> and bad.</p>')
-  })
-
-  it('returns undefined for an empty text', () => {
-    expect(newsMarkdownToHtml('  \n ')).toBeUndefined()
   })
 })

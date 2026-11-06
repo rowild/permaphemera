@@ -421,7 +421,7 @@ export interface NewsRecord {
   image_alt: string | null
   /** One line for the lists, the start page and SEO. */
   summary: string | null
-  /** The article text (markdown: paragraphs, bold, italic, lists). */
+  /** The article text (WYSIWYG HTML: paragraphs, bold, italic, lists, links; Markdown until 2026-11-06). */
   description: string | null
   translations: TranslationEntry[]
   /** Search engines and link previews; see SeoData. */

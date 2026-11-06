@@ -91,7 +91,11 @@ export const fitTitle = (base, max = TITLE_MAX) => {
   return cutAtWord(text, max)
 }
 
-export const fitDescription = (text, max = DESCRIPTION_MAX) => cutAtWord(stripMarkup(text), max)
+/** The closing source block (label paragraph and list, HTML or Markdown) is no description. */
+const SOURCE_BLOCK = /(?:<p>\s*(?:Quellen?|Sources?)\s*:?\s*<\/p>\s*<ul>[\s\S]*|\n\s*\n[ \t]*(?:Quellen?|Sources?)[ \t]*:?[ \t]*\n\s*[-*][ \t][\s\S]*)$/i
+export const withoutSources = (text) => String(text ?? '').replace(SOURCE_BLOCK, '')
+
+export const fitDescription = (text, max = DESCRIPTION_MAX) => cutAtWord(stripMarkup(withoutSources(text)), max)
 
 /** The first candidate that fits with the site name, else the first that fits, else the last cut. */
 const generatedTitle = (candidates) => {

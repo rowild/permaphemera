@@ -193,7 +193,7 @@ Translated: `title`. Seeded: artist ("Artist" / "Künstler:in"), curator ("Curat
 
 #### `pp_exhibitions`
 
-`id`, `status`, `sort`, `title`, `slug`, `kind` (exhibition | event), `primary_venue` (M2O → venues, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (markdown, English), `date_range`, `opening_hours`, `vernissage`, `admission` (empty = the site shows "Free admission"; added 2026-10-15), `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `participations`, `statements` (o2m), `websites`, `further_venues`, `sponsors` (m2m), audit.
+`id`, `status`, `sort`, `title`, `slug`, `kind` (exhibition | event), `primary_venue` (M2O → venues, SET NULL), `start_date`, `end_date`, `is_permanent`, `image`, `image_alt`, `summary`, `description` (WYSIWYG HTML: paragraphs, bold, italic, lists, sources as a closing list; Markdown until 2026-11-06), `date_range`, `opening_hours`, `vernissage`, `admission` (empty = the site shows "Free admission"; added 2026-10-15), `medium`, `source_pdf`, `tour`, `tour_status`, `tour_available_from`, `translations`, `participations`, `statements` (o2m), `websites`, `further_venues`, `sponsors` (m2m), audit.
 Translated: `title`, `summary`, `description`, `date_range`, `opening_hours`, `vernissage`, `admission`, `image_alt`, `medium`.
 
 #### `pp_exhibition_participations` (child)
@@ -225,7 +225,7 @@ Translated: `title`. Route paths are locale-neutral; the frontend passes them th
 
 #### `pp_news` (2026-11-04)
 
-`id`, `status`, `sort`, `title` (English, required), `slug` (unique), `published_on` (date, required: the date the site shows and sorts by, newest first; it does not publish anything, the status alone does), `topic` (dropdown `welcome` | `support` | `opening` | `closing` | `site`), `image` (file, optional), `image_alt`, `summary` (one line for lists, start page, SEO), `description` (markdown: paragraphs, bold, italic, lists), `seo`, `translations`, the five link aliases, audit.
+`id`, `status`, `sort`, `title` (English, required), `slug` (unique), `published_on` (date, required: the date the site shows and sorts by, newest first; it does not publish anything, the status alone does), `topic` (dropdown `welcome` | `support` | `opening` | `closing` | `site`), `image` (file, optional), `image_alt`, `summary` (one line for lists, start page, SEO), `description` (WYSIWYG HTML: paragraphs, bold, italic, lists, links to site pages and https; Markdown until 2026-11-06), `seo`, `translations`, the five link aliases, audit.
 Translated: `title`, `image_alt`, `summary`, `description`, `seo`. Pages `/news/` and `/news/<slug>/`; the latest five sit beside the current and upcoming exhibitions on the start page. Without an own image an article shows the image of its first linked exhibition, else of its first gallery with a photo. Plan: `plans/2026-11-04__news-system.md`; how to write one: `docs/how-to-news.md`.
 
 #### `pp_quotes` (2026-10-25)

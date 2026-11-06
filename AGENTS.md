@@ -43,3 +43,11 @@ the schema lives in `directus/scripts/schema.mjs`. When a field changes,
 change `schema.mjs`, `frontend/shared/archive-schema.mjs` if it is a file
 field or a new collection, `frontend/app/types/content.ts`, and
 `_Plans/exhibitions-plan.md` §2 in the same commit.
+
+**Never Markdown (owner, 2026-11-06).** A new long text field is always WYSIWYG
+(`richText` in `directus/scripts/fields.mjs`, interface `input-rich-text-html`), never Markdown;
+`fields.mjs` has no Markdown helper and `directus/scripts/build.test.mjs` fails on any
+`input-rich-text-md` field. Links in a text only where the site keeps them (`richText(…, { links: true })`,
+news articles); everywhere else links are link records. A short one-line field stays `str` / `text`.
+The site renders every WYSIWYG field through `ArchiveRichText` (sanitised). Since 2026-11-06 no
+Markdown field is left (`plans/2026-11-06__no-markdown-fields.md`).

@@ -477,3 +477,10 @@ describe('events', () => {
     expect(json).toContain(`${SITE_URL}/events/`)
   })
 })
+
+describe('a generated description leaves the sources out', () => {
+  it('drops the closing source block of HTML and of Markdown', () => {
+    expect(fitDescription('<p>Painter in Vienna.</p><p>Sources</p><ul><li>a.at</li><li>b.at</li></ul>')).toBe('Painter in Vienna.')
+    expect(fitDescription('Woodcuts on longing.\n\nQuelle\n\n- stadtgalerie.net')).toBe('Woodcuts on longing.')
+  })
+})

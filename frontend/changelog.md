@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.66 - 2026-11-06 18:32:38 CET
+
+- Sources close every text as their own block: a small label "Quellen" / "Sources" and a list, one source per line, instead of "Quelle: …" in the last sentence. Biographies, organisation texts, exhibition descriptions.
+- Bullet lists in all longer texts use the diamond of the language menu as their bullet.
+- Exhibition descriptions and news articles are WYSIWYG texts now, like every other longer text (they were Markdown). The exhibition page shows its description with paragraphs and the source list.
+- Search snippets built from a text leave its sources out.
+
 ## 0.0.65 - 2026-11-04 23:17:12 CET
 
 - New: **Veranstaltungen** (events). Festivals and museum nights get their own pages with each year's edition and its exhibitions: the Spittaler Comicfestival (7th edition, 2026, organised by Austriatoon) and the ORF Lange Nacht der Museen (3 October 2026, four exhibitions). An index at /events/ and the menu item "Veranstaltungen".
