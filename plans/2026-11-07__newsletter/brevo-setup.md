@@ -131,12 +131,29 @@ not recommended"); never use it for the newsletter.
 
 ## 5. The two confirmation mails (about 10 min)
 
-1. Brevo → Campaigns → Templates → New template → paste code: `doi-template-de.html`
-   (subject "Anmeldung zum Newsletter bestätigen"), sender `newsletter@permaphemera.at`.
-2. In the template settings add the tag **`optin`** (that makes it a double-opt-in template).
-   Activate it.
-3. The same with `doi-template-en.html` (subject "Confirm your newsletter sign-up").
-4. Note both template ids, put them into `.env.remote` as `NEWSLETTER_BREVO_TEMPLATE_DE` / `_EN`.
+A "DOI template" is the short mail Brevo sends after a sign-up: "please confirm, click here"
+(DOI = double opt-in: the person says yes twice, in the form and by the click). The texts are
+ready: `worktree-newsletter/plans/2026-11-07__newsletter/doi-template-de.html` and `…-en.html`.
+Brevo's screens as checked by Claude on 2026-11-07:
+
+1. Brevo, left menu: **Marketing → Templates** → button **"Create template"** (top right).
+   (Template **#1 "New template"** exists already, empty: Claude opened the code editor once
+   to check the screens, and that alone created it. Click it in the list and use it for German.)
+2. Right side of the page:
+   - **Sender email**: choose `newsletter@permaphemera.at` (not the Gmail address).
+   - **Sender name**: `PERMAPHEMERA`.
+   - **Subject line**: `Anmeldung zum Newsletter bestätigen`.
+   - **Show advanced settings** → **Tag**: `optin` (that makes it a confirmation mail).
+3. Left side, **"Add content"** → black button **"Create from scratch"** → **"HTML custom code"**.
+   A big empty white box opens: that is the code field.
+4. In the editor, open `doi-template-de.html`, select all (Cmd+A), copy (Cmd+C). In Brevo click
+   into the white box, paste (Cmd+V). Top right: **"Save & Quit"**.
+5. Back on the template page: name (pencil next to "New template"): `Newsletter-Bestätigung DE`.
+   Top right **"Save"**; in its arrow menu choose the option that activates the template.
+6. The same for English: `doi-template-en.html`, subject `Confirm your newsletter sign-up`,
+   name `Newsletter confirmation EN`.
+7. Note both template numbers (the list shows them as `#1`, `#2`), put them into `.env.remote` as
+   `NEWSLETTER_BREVO_TEMPLATE_DE` / `_EN`.
 5. Run `DIRECTUS_ENV_FILE=.env.remote node scripts/brevo-setup.mjs` again: it now checks both
    templates (active, tag `optin`, `{{ doubleoptin }}` link, sender).
 
