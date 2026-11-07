@@ -193,6 +193,9 @@ template page: small arrow on **"Save"** → **"Save & activate"**.
    5. Leave it on **"No"** (preset).
    6. Click the black button **"Save"**.
    **Done 2026-11-07** (owner; Claude checked after a reload: "Yes", unknown "No").
+   Also done 2026-11-07: Settings → "Transactional emails" → "Tracking" → "Anonymous email
+   tracking?" **Yes** (the confirmation mails are transactional; checked by Claude). Retention
+   rules there: logs deleted after **1 month**, previews never stored (already so).
    Not offered there: links in campaigns may still pass through Brevo's link address
    (`r.em.permaphemera.at`) for Brevo's spam protection; without consent nothing is recorded.
    (Settings → Campaigns → "Default Settings" → tab "Tracking and reports" only has
