@@ -66,5 +66,5 @@ deleting.
 
 - Docker Desktop asked for an admin password at start; it was quit. **Colima** (the other
   Docker engine here) was started and became the current Docker context. Switch back with
-  `docker context use desktop-linux` (done at the end of the run, see report).
+  `docker context use desktop-linux` (done at the end of the run: Colima stopped, context back on desktop-linux).
 - A throwaway container `pp-newsletter-test` and volume `pp-newsletter-test-db` (test data only).
