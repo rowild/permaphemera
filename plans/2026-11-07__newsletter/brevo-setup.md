@@ -188,6 +188,7 @@ template page: small arrow on **"Save"** → **"Save & activate"**.
    4. Click **"Yes"**. → A second question appears: **"Track contacts whose consent is unknown"**.
    5. Leave it on **"No"** (preset).
    6. Click the black button **"Save"**.
+   **Done 2026-11-07** (owner; Claude checked after a reload: "Yes", unknown "No").
    Not offered there: links in campaigns may still pass through Brevo's link address
    (`r.em.permaphemera.at`) for Brevo's spam protection; without consent nothing is recorded.
    (Settings → Campaigns → "Default Settings" → tab "Tracking and reports" only has
