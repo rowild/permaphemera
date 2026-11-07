@@ -19,4 +19,5 @@ useDocumentLang()
   </NuxtLayout>
   <p v-else class="[ archive-loading ] m-0 grid min-h-dvh place-items-center font-display text-lg text-archive-muted">{{ $t('site.archiveLoading') }}</p>
   <ArchiveCookieNotice />
+  <ArchiveNewsletterInvite />
 </template>

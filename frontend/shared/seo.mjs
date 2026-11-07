@@ -218,8 +218,8 @@ const linksOf = (archive, junction, ownerColumn, ownerId) => {
     .filter(Boolean)
 }
 
-const entry = ({ path, locale, record, generated, description, suffix, image, imageAlt, ogType, jsonLd, changeFrequency, priority }, assetBase) => {
-  const seo = record ? readSeo(record, locale) : { noIndex: false, noFollow: false }
+const entry = ({ path, locale, record, generated, description, suffix, image, imageAlt, ogType, jsonLd, changeFrequency, priority, noIndex = false }, assetBase) => {
+  const seo = record ? readSeo(record, locale) : { noIndex, noFollow: false }
   const canonical = absolute(path, locale)
   const title = seo.title ?? generated
   const shared = seo.image ?? image
@@ -507,6 +507,11 @@ const STATIC_PAGES = [
   { path: '/about/', title: 'about.seoTitle', description: 'about.seoDescription', changeFrequency: 'monthly', priority: '0.6' },
   { path: '/how-it-works/', title: 'howItWorksPage.seoTitle', description: 'howItWorksPage.seoDescription', changeFrequency: 'monthly', priority: '0.5' },
   { path: '/contact/', title: 'contactPage.seoTitle', description: 'contactPage.seoDescription', changeFrequency: 'yearly', priority: '0.4' },
+  { path: '/newsletter/', title: 'newsletter.seoTitle', description: 'newsletter.seoDescription', changeFrequency: 'yearly', priority: '0.4' },
+  // Where the confirmation and the unsubscribe links lead: no page for search engines.
+  ...['confirmed', 'unsubscribed'].map((page) => ({
+    path: `/newsletter/${page}/`, title: `newsletter.${page}.seoTitle`, description: `newsletter.${page}.seoDescription`, changeFrequency: 'yearly', priority: '0.1', noIndex: true
+  })),
   ...['imprint', 'privacy', 'terms', 'accessibility'].map((page) => ({
     path: `/${page}/`, title: `legal.${page}.seoTitle`, description: `legal.${page}.seoDescription`, changeFrequency: 'yearly', priority: '0.2'
   }))
@@ -522,7 +527,7 @@ export const staticSeoEntries = (messages, counts = {}) => STATIC_PAGES.flatMap(
   return entry({
     path: page.path, locale, record: null,
     generated: title ?? SITE_NAME,
-    description, image: null, imageAlt: SITE_NAME, ogType: 'website', changeFrequency: page.changeFrequency, priority: page.priority,
+    description, image: null, imageAlt: SITE_NAME, ogType: 'website', changeFrequency: page.changeFrequency, priority: page.priority, noIndex: page.noIndex,
     jsonLd: (url) => (page.website
       ? [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url, inLanguage: locale, description }]
       : [])

@@ -625,7 +625,7 @@
       "title": "As little data as possible.",
       "accent": "As clear as necessary.",
       "intro": "When you use this website, PERMAPHEMERA processes data for secure operation, language selection, cookieless audience measurement with Umami and direct contact. Google Maps and YouTube may be activated only through separate consent choices. The archive also publishes editorial information about exhibitions and participants.",
-      "updatedValue": "24 October 2026",
+      "updatedValue": "7 November 2026",
       "recordType": "Privacy information",
       "recordAria": "Document record for the Privacy Policy",
       "articleAria": "PERMAPHEMERA Privacy Policy",
@@ -655,7 +655,8 @@
           "title": "Language preference and privacy choice",
           "p1": "Functional information is stored on your device. It is not used for advertising and is not combined into a usage profile.",
           "locale": "Necessary cookie storing the selected language; retained for up to one year.",
-          "consent": "Local browser storage for your individual Google Maps and YouTube choices; requested again after no more than one year."
+          "consent": "Local browser storage for your individual Google Maps and YouTube choices; requested again after no more than one year.",
+          "newsletterInvite": "Stores whether the newsletter note was closed or a sign-up was sent, so that it does not appear on every visit (date and state, nothing of the sign-up itself)."
         },
         "contact": {
           "eyebrow": "Direct communication",
@@ -702,17 +703,27 @@
           "mapsPolicy": "Google Maps Platform policies",
           "youtubePrivacy": "YouTube privacy-enhanced embedding"
         },
-        "planned": {
-          "eyebrow": "Not yet active",
-          "title": "Planned newsletter",
-          "p1": "A newsletter subscription is planned but is not active on the current website. This website does not currently collect newsletter data.",
-          "p2": "Before activation, this Privacy Policy will be expanded to identify the provider, data categories, purpose, legal basis, double-opt-in procedure, retention period, recipients, withdrawal option and any transfers outside the EEA.",
-          "newsletter": "Newsletter: planned; provider, double-opt-in procedure and retention period have not yet been determined."
+        "newsletter": {
+          "eyebrow": "Newsletter",
+          "title": "Newsletter through Brevo",
+          "p1": "When signing up for the newsletter, the e-mail address, a name given voluntarily, the chosen topics and towns, the language, the page of the sign-up, the date and the version of the consent text are stored. The only purpose is sending the newsletter.",
+          "p2": "The sign-up uses double opt-in: the address joins the mailing list only after the link in the confirmation e-mail is clicked. Time and IP address of the confirmation are stored as proof of consent.",
+          "p3": "Brevo (Sendinblue SAS, Paris, France) sends the newsletter as a processor with servers in the EU. Opens and clicks are not measured.",
+          "p4": "The consent can be withdrawn at any time with the unsubscribe link in every e-mail or by e-mail to the controller. After unsubscribing, the address stays only as a blocked entry so that nothing more is sent. Sign-ups that are not confirmed are deleted after 30 days.",
+          "providerLabel": "Provider",
+          "providerValue": "Sendinblue SAS (Brevo), Paris, France",
+          "basisLabel": "Legal basis",
+          "basisValue": "Consent, Art. 6(1)(a) GDPR",
+          "retentionLabel": "Retention",
+          "retentionValue": "Until withdrawn; unconfirmed sign-ups 30 days",
+          "trackingLabel": "Measurement",
+          "trackingValue": "No open or click tracking",
+          "brevoPrivacy": "Brevo privacy policy"
         },
         "recipients": {
           "eyebrow": "Recipients",
           "title": "Disclosure and international transfers",
-          "p1": "During ordinary technical operation, Hetzner as host and Cloudflare as delivery network receive access to the data required for hosting, delivery, maintenance and security. Usage data for audience measurement goes to our self-hosted Umami instance at umami.project-backends.info; no external analytics service is used. No further disclosure occurs unless required by law, necessary to establish or defend legal claims, or expressly permitted.",
+          "p1": "During ordinary technical operation, Hetzner as host and Cloudflare as delivery network receive access to the data required for hosting, delivery, maintenance and security. Usage data for audience measurement goes to our self-hosted Umami instance at umami.project-backends.info; no external analytics service is used. No further disclosure occurs unless required by law, necessary to establish or defend legal claims, or expressly permitted. For the newsletter, Brevo receives the data given at sign-up (see “Newsletter through Brevo”).",
           "p2": "Cloudflare may process access data in the USA; Cloudflare relies on its certification under the EU–US Data Privacy Framework and, should it lapse, on the EU standard contractual clauses. Google Maps and YouTube are currently inactive. If either service is introduced and you consent to it, data will be sent to Google as described under Optional external media; Google’s information about international transfers then applies. Ordinary external links transmit data only when their destination is opened."
         },
         "rights": {
@@ -1081,6 +1092,102 @@
       "opening": "Opening",
       "closing": "Tour to follow",
       "site": "Website"
+    }
+  },
+  "newsletter": {
+    "seoTitle": "Newsletter · PERMAPHEMERA",
+    "seoDescription": "The PERMAPHEMERA newsletter: new exhibitions and 360° tours in the archive, openings and last days of exhibitions in galleries across Austria.",
+    "breadcrumb": "Newsletter",
+    "eyebrow": "By e-mail",
+    "title": "Newsletter",
+    "intro": "New in the archive, openings and last days of exhibitions in galleries across Austria. Once a month, only when there is news.",
+    "record": {
+      "label": "At a glance",
+      "aria": "Facts about the newsletter",
+      "cadence": "Frequency",
+      "cadenceValue": "Once a month, only when there is news",
+      "sender": "Sender",
+      "provider": "Delivery",
+      "providerValue": "Brevo, servers in the EU",
+      "tracking": "Measurement",
+      "trackingValue": "No open or click tracking",
+      "unsubscribe": "Unsubscribe",
+      "unsubscribeValue": "With a link in every issue"
+    },
+    "formTitle": "Sign-up",
+    "formAria": "Newsletter sign-up",
+    "form": {
+      "email": "E-mail address",
+      "name": "Name (optional)",
+      "topicsLegend": "Topics",
+      "townsLegend": "Towns (optional)",
+      "townsNote": "For “On now and opening soon” and “Last chance”. Without a choice: all of Austria.",
+      "townsSummary": "Choose towns",
+      "townsChosen": "none chosen | one town chosen | {count} towns chosen",
+      "townsOther": "Other towns",
+      "stateAll": "{state}: all towns",
+      "consent": "I would like to receive the PERMAPHEMERA newsletter. My e-mail address and my choices are stored for this and sent through the service provider Brevo. I can withdraw this consent at any time with the unsubscribe link in every e-mail.",
+      "consentMore": "More in the",
+      "consentLink": "privacy policy",
+      "honeypot": "Website (leave empty)",
+      "submit": "Sign up",
+      "sending": "Sending …",
+      "cadence": "Once a month, only when there is news.",
+      "more": "Choose topics and towns"
+    },
+    "topics": {
+      "new_records": {
+        "title": "New in the archive",
+        "note": "New exhibitions, galleries and artists in the archive"
+      },
+      "nearby": {
+        "title": "On now and opening soon",
+        "note": "Current and upcoming exhibitions in the chosen towns"
+      },
+      "closing_soon": {
+        "title": "Last chance",
+        "note": "Exhibitions that close within the next two weeks"
+      },
+      "project_news": {
+        "title": "Project news",
+        "note": "New functions of the website, partners, figures on the archive"
+      }
+    },
+    "success": {
+      "title": "Confirmation pending",
+      "text": "An e-mail with a confirmation link is on its way to {email}. The newsletter starts only after a click on that link."
+    },
+    "errors": {
+      "invalid_email": "This e-mail address is not valid.",
+      "missing_consent": "Signing up needs the consent.",
+      "missing_topic": "At least one topic must be chosen.",
+      "rate_limited": "Too many tries in a short time. Possible again in an hour.",
+      "unavailable": "The sign-up is not open yet.",
+      "failed": "The sign-up did not work. A later try or an e-mail to {email} helps."
+    },
+    "invite": {
+      "aria": "Note about the newsletter",
+      "title": "Newsletter",
+      "text": "New in the archive, openings and last days of exhibitions, once a month by e-mail. Only when there is news.",
+      "close": "Close the newsletter note"
+    },
+    "confirmed": {
+      "seoTitle": "Sign-up confirmed · PERMAPHEMERA",
+      "seoDescription": "The sign-up to the PERMAPHEMERA newsletter is confirmed.",
+      "breadcrumb": "Confirmed",
+      "title": "Sign-up confirmed",
+      "intro": "The e-mail address is confirmed. The newsletter comes once a month, only when there is news. Every issue has a link to unsubscribe.",
+      "toExhibitions": "To the exhibitions",
+      "toStart": "To the start page"
+    },
+    "unsubscribed": {
+      "seoTitle": "Unsubscribed · PERMAPHEMERA",
+      "seoDescription": "The PERMAPHEMERA newsletter has been unsubscribed.",
+      "breadcrumb": "Unsubscribed",
+      "title": "Unsubscribed",
+      "intro": "This e-mail address receives no more newsletters. A new sign-up is possible at any time.",
+      "again": "Sign up again",
+      "toStart": "To the start page"
     }
   }
 }

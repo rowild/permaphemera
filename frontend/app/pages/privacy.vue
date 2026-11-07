@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { SITE_OWNER } from '~/utils/siteOwner'
+import { NEWSLETTER_INVITE_STORAGE_KEY } from '~/utils/newsletter'
 import type { LegalRecordItem, LegalSection } from '~/types/legal'
 
 const { t } = useI18n()
@@ -51,7 +52,8 @@ const sections = computed<LegalSection[]>(() => [
     paragraphs: [t('legal.privacy.sections.storage.p1')],
     details: [
       { label: 'permaphemera-locale', value: t('legal.privacy.sections.storage.locale') },
-      { label: 'permaphemera-cookie-consent', value: t('legal.privacy.sections.storage.consent') }
+      { label: 'permaphemera-cookie-consent', value: t('legal.privacy.sections.storage.consent') },
+      { label: NEWSLETTER_INVITE_STORAGE_KEY, value: t('legal.privacy.sections.storage.newsletterInvite') }
     ]
   },
   {
@@ -111,11 +113,24 @@ const sections = computed<LegalSection[]>(() => [
     ]
   },
   {
-    id: 'planned-newsletter',
-    eyebrow: t('legal.privacy.sections.planned.eyebrow'),
-    title: t('legal.privacy.sections.planned.title'),
-    paragraphs: [t('legal.privacy.sections.planned.p1'), t('legal.privacy.sections.planned.p2')],
-    items: [t('legal.privacy.sections.planned.newsletter')]
+    id: 'newsletter',
+    eyebrow: t('legal.privacy.sections.newsletter.eyebrow'),
+    title: t('legal.privacy.sections.newsletter.title'),
+    paragraphs: [
+      t('legal.privacy.sections.newsletter.p1'),
+      t('legal.privacy.sections.newsletter.p2'),
+      t('legal.privacy.sections.newsletter.p3'),
+      t('legal.privacy.sections.newsletter.p4')
+    ],
+    details: [
+      { label: t('legal.privacy.sections.newsletter.providerLabel'), value: t('legal.privacy.sections.newsletter.providerValue') },
+      { label: t('legal.privacy.sections.newsletter.basisLabel'), value: t('legal.privacy.sections.newsletter.basisValue') },
+      { label: t('legal.privacy.sections.newsletter.retentionLabel'), value: t('legal.privacy.sections.newsletter.retentionValue') },
+      { label: t('legal.privacy.sections.newsletter.trackingLabel'), value: t('legal.privacy.sections.newsletter.trackingValue') }
+    ],
+    links: [
+      { label: t('legal.privacy.sections.newsletter.brevoPrivacy'), href: 'https://www.brevo.com/legal/privacypolicy/' }
+    ]
   },
   {
     id: 'recipients-and-transfers',

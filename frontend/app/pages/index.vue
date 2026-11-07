@@ -275,6 +275,23 @@ onMounted(() => {
 })
 onBeforeUnmount(() => VISITOR_EVENTS.forEach((type) => window.removeEventListener(type, onVisitorAction)))
 
+// The newsletter invite (ArchiveNewsletterInvite) waits until the wheel's intro is over, at
+// most 30 s (an interrupted intro never reports its end); its own 10 s start after that.
+const newsletterInvite = useNewsletterInvite()
+newsletterInvite.holdForIntro()
+let inviteHoldLimit: ReturnType<typeof setTimeout> | undefined
+onMounted(() => { inviteHoldLimit = setTimeout(newsletterInvite.releaseIntro, 30_000) })
+function releaseNewsletterInvite() {
+  clearTimeout(inviteHoldLimit)
+  newsletterInvite.releaseIntro()
+}
+onBeforeUnmount(releaseNewsletterInvite)
+
+function onWheelIntroComplete() {
+  dropStuckLetters()
+  releaseNewsletterInvite()
+}
+
 // The wheel is built: the stuck letters let go, one shortly after the other,
 // drop past their resting lean and settle into it, crooked and a little low.
 // The logo's H falls last.
@@ -441,7 +458,7 @@ const openRandomTour = (event: MouseEvent) => {
           :hold-intro="!wheelReleased"
           @animation-state-change="handleKaleidoscopeAnimationState"
           @controls-reveal="revealWheelControls"
-          @intro-complete="dropStuckLetters"
+          @intro-complete="onWheelIntroComplete"
         />
 
         <div

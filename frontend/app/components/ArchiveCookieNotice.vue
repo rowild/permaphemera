@@ -62,32 +62,15 @@ onMounted(() => {
         <fieldset class="m-0 grid grid-cols-2 gap-x-8 gap-y-4 border-0 p-0 compact:grid-cols-1 compact:gap-3">
           <legend class="sr-only">{{ $t('privacyNotice.selectionAria') }}</legend>
 
-          <label class="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-3">
-            <input class="mt-1 size-5 shrink-0 accent-archive-red" type="checkbox" checked disabled>
-            <span class="min-w-0">
-              <span class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span class="font-display text-base text-archive-ink">{{ $t('privacyNotice.necessary.title') }}</span>
-                <span class="font-display text-xs tracking-widest text-archive-muted uppercase">{{ $t('privacyNotice.alwaysActive') }}</span>
-              </span>
-              <span class="block text-xs leading-snug text-archive-muted">{{ $t('privacyNotice.necessary.description') }}</span>
-            </span>
-          </label>
-
-          <label class="grid cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-start gap-3">
-            <input v-model="googleMapsSelected" class="mt-1 size-5 shrink-0 cursor-pointer accent-archive-red" type="checkbox">
-            <span class="min-w-0">
-              <span class="font-display text-base text-archive-ink">{{ $t('privacyNotice.googleMaps.title') }}</span>
-              <span class="block text-xs leading-snug text-archive-muted">{{ $t('privacyNotice.googleMaps.description') }}</span>
-            </span>
-          </label>
-
-          <label class="grid cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-start gap-3">
-            <input v-model="youtubeSelected" class="mt-1 size-5 shrink-0 cursor-pointer accent-archive-red" type="checkbox">
-            <span class="min-w-0">
-              <span class="font-display text-base text-archive-ink">{{ $t('privacyNotice.youtube.title') }}</span>
-              <span class="block text-xs leading-snug text-archive-muted">{{ $t('privacyNotice.youtube.description') }}</span>
-            </span>
-          </label>
+          <ArchiveCheckbox
+            :model-value="true"
+            disabled
+            :title="$t('privacyNotice.necessary.title')"
+            :badge="$t('privacyNotice.alwaysActive')"
+            :note="$t('privacyNotice.necessary.description')"
+          />
+          <ArchiveCheckbox v-model="googleMapsSelected" :title="$t('privacyNotice.googleMaps.title')" :note="$t('privacyNotice.googleMaps.description')" />
+          <ArchiveCheckbox v-model="youtubeSelected" :title="$t('privacyNotice.youtube.title')" :note="$t('privacyNotice.youtube.description')" />
         </fieldset>
 
         <div class="flex flex-wrap items-center justify-between gap-3 compact:grid compact:grid-cols-1">

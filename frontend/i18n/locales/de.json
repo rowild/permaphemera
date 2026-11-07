@@ -625,7 +625,7 @@
       "title": "So wenig Daten wie möglich.",
       "accent": "So klar wie nötig.",
       "intro": "Bei der Nutzung dieser Website verarbeitet PERMAPHEMERA Daten für den sicheren Betrieb, die gewählte Sprache, eine Reichweitenmessung ohne Cookies mit Umami und eine direkte Kontaktaufnahme. Google Maps und YouTube dürfen nur über getrennte Einwilligungen aktiviert werden. Das Archiv veröffentlicht darüber hinaus redaktionelle Informationen zu Ausstellungen und Beteiligten.",
-      "updatedValue": "24. Oktober 2026",
+      "updatedValue": "7. November 2026",
       "recordType": "Datenschutzinformation",
       "recordAria": "Dokumentvermerk zur Datenschutzerklärung",
       "articleAria": "Datenschutzerklärung von PERMAPHEMERA",
@@ -655,7 +655,8 @@
           "title": "Spracheinstellung und Datenschutzwahl",
           "p1": "Funktionale Informationen werden auf Ihrem Endgerät gespeichert. Sie dienen nicht der Werbung und werden nicht zu einem Nutzungsprofil zusammengeführt.",
           "locale": "Notwendiges Cookie zur Speicherung der gewählten Sprache; Speicherdauer bis zu einem Jahr.",
-          "consent": "Lokaler Browser-Speicher für Ihre einzelnen Entscheidungen zu Google Maps und YouTube; wird nach spätestens einem Jahr erneut abgefragt."
+          "consent": "Lokaler Browser-Speicher für Ihre einzelnen Entscheidungen zu Google Maps und YouTube; wird nach spätestens einem Jahr erneut abgefragt.",
+          "newsletterInvite": "Speichert, ob der Hinweis auf den Newsletter geschlossen oder eine Anmeldung abgeschickt wurde, damit er nicht bei jedem Besuch erscheint (Datum und Zustand, kein Inhalt der Anmeldung)."
         },
         "contact": {
           "eyebrow": "Direkte Kommunikation",
@@ -702,17 +703,27 @@
           "mapsPolicy": "Richtlinien der Google Maps Platform",
           "youtubePrivacy": "Datenschutzfreundliche YouTube-Einbettung"
         },
-        "planned": {
-          "eyebrow": "Noch nicht aktiv",
-          "title": "Geplanter Newsletter",
-          "p1": "Eine Newsletter-Anmeldung ist vorgesehen, aber in der gegenwärtigen Website noch nicht aktiv. Über diese Website werden derzeit keine Newsletter-Daten erhoben.",
-          "p2": "Vor einer Aktivierung wird diese Datenschutzerklärung um Anbieter, Datenarten, Zwecke, Rechtsgrundlage, Double-Opt-in-Verfahren, Speicherdauer, Empfänger, Widerrufsmöglichkeit und gegebenenfalls Drittlandübermittlungen ergänzt.",
-          "newsletter": "Newsletter: geplant; Anbieter, Double-Opt-in-Verfahren und Speicherdauer noch nicht festgelegt."
+        "newsletter": {
+          "eyebrow": "Newsletter",
+          "title": "Newsletter über Brevo",
+          "p1": "Bei der Anmeldung zum Newsletter werden die E-Mail-Adresse, ein freiwillig angegebener Name, die gewählten Themen und Orte, die Sprache, die Seite der Anmeldung, das Datum und die Fassung des Einwilligungstextes gespeichert. Zweck ist allein der Versand des Newsletters.",
+          "p2": "Die Anmeldung läuft im Double-Opt-in-Verfahren: Erst nach dem Klick auf den Link in der Bestätigungs-E-Mail wird die Adresse in die Verteilerliste aufgenommen. Zeitpunkt und IP-Adresse der Bestätigung werden als Nachweis der Einwilligung gespeichert.",
+          "p3": "Den Versand übernimmt Brevo (Sendinblue SAS, Paris, Frankreich) als Auftragsverarbeiter mit Servern in der EU. Öffnungen und Klicks werden nicht gemessen.",
+          "p4": "Die Einwilligung kann jederzeit über den Abmeldelink in jeder E-Mail oder per E-Mail an den Verantwortlichen widerrufen werden. Nach einer Abmeldung bleibt die Adresse nur als gesperrt vermerkt, damit kein weiterer Versand erfolgt. Nicht bestätigte Anmeldungen werden nach 30 Tagen gelöscht.",
+          "providerLabel": "Anbieter",
+          "providerValue": "Sendinblue SAS (Brevo), Paris, Frankreich",
+          "basisLabel": "Rechtsgrundlage",
+          "basisValue": "Einwilligung, Art. 6 Abs. 1 lit. a DSGVO",
+          "retentionLabel": "Speicherdauer",
+          "retentionValue": "Bis zum Widerruf; nicht bestätigte Anmeldungen 30 Tage",
+          "trackingLabel": "Messung",
+          "trackingValue": "Keine Öffnungs- und Klickmessung",
+          "brevoPrivacy": "Datenschutzerklärung von Brevo"
         },
         "recipients": {
           "eyebrow": "Empfänger",
           "title": "Weitergabe und Drittstaaten",
-          "p1": "Im laufenden technischen Betrieb erhalten Hetzner als Hostinganbieter und Cloudflare als Auslieferungsnetzwerk Zugriff auf jene Daten, die für Hosting, Auslieferung, Wartung und Sicherheit erforderlich sind. Nutzungsdaten für die Reichweitenmessung gehen an unsere selbst betriebene Umami-Instanz unter umami.project-backends.info; ein externer Analysedienst wird nicht eingesetzt. Eine weitere Weitergabe erfolgt nur, wenn sie gesetzlich vorgeschrieben, zur Rechtsdurchsetzung erforderlich oder ausdrücklich erlaubt ist.",
+          "p1": "Im laufenden technischen Betrieb erhalten Hetzner als Hostinganbieter und Cloudflare als Auslieferungsnetzwerk Zugriff auf jene Daten, die für Hosting, Auslieferung, Wartung und Sicherheit erforderlich sind. Nutzungsdaten für die Reichweitenmessung gehen an unsere selbst betriebene Umami-Instanz unter umami.project-backends.info; ein externer Analysedienst wird nicht eingesetzt. Eine weitere Weitergabe erfolgt nur, wenn sie gesetzlich vorgeschrieben, zur Rechtsdurchsetzung erforderlich oder ausdrücklich erlaubt ist. Für den Newsletter erhält Brevo die bei der Anmeldung angegebenen Daten (siehe „Newsletter über Brevo“).",
           "p2": "Cloudflare kann Zugriffsdaten in den USA verarbeiten; Cloudflare stützt sich dabei auf seine Zertifizierung nach dem EU-US-Datenschutzrahmen und, falls diese entfällt, auf die EU-Standardvertragsklauseln. Google Maps und YouTube sind derzeit inaktiv. Wird einer der Dienste später eingeführt und von Ihnen erlaubt, werden Daten wie unter „Optionale externe Medien“ beschrieben an Google übermittelt; dann gelten auch Googles Informationen zu internationalen Übermittlungen. Gewöhnliche externe Links übertragen Daten erst beim Öffnen ihres Ziels."
         },
         "rights": {
@@ -1081,6 +1092,102 @@
       "opening": "Eröffnung",
       "closing": "Rundgang folgt",
       "site": "Website"
+    }
+  },
+  "newsletter": {
+    "seoTitle": "Newsletter · PERMAPHEMERA",
+    "seoDescription": "Newsletter von PERMAPHEMERA: neue Ausstellungen und 360°-Rundgänge im Archiv, Eröffnungen und letzte Ausstellungstage in Galerien in ganz Österreich.",
+    "breadcrumb": "Newsletter",
+    "eyebrow": "Per E-Mail",
+    "title": "Newsletter",
+    "intro": "Neu im Archiv, Eröffnungen und letzte Ausstellungstage in Galerien in ganz Österreich. Einmal im Monat, nur wenn es Neues gibt.",
+    "record": {
+      "label": "Auf einen Blick",
+      "aria": "Angaben zum Newsletter",
+      "cadence": "Häufigkeit",
+      "cadenceValue": "Einmal im Monat, nur wenn es Neues gibt",
+      "sender": "Absender",
+      "provider": "Versand",
+      "providerValue": "Brevo, Server in der EU",
+      "tracking": "Messung",
+      "trackingValue": "Keine Öffnungs- oder Klickmessung",
+      "unsubscribe": "Abmeldung",
+      "unsubscribeValue": "Mit einem Link in jeder Ausgabe"
+    },
+    "formTitle": "Anmeldung",
+    "formAria": "Anmeldung zum Newsletter",
+    "form": {
+      "email": "E-Mail-Adresse",
+      "name": "Name (freiwillig)",
+      "topicsLegend": "Themen",
+      "townsLegend": "Orte (freiwillig)",
+      "townsNote": "Für „Aktuell und demnächst“ und „Letzte Gelegenheit“. Ohne Auswahl: ganz Österreich.",
+      "townsSummary": "Orte wählen",
+      "townsChosen": "keiner gewählt | ein Ort gewählt | {count} Orte gewählt",
+      "townsOther": "Weitere Orte",
+      "stateAll": "{state}: alle Orte",
+      "consent": "Ich möchte den Newsletter von PERMAPHEMERA erhalten. Meine E-Mail-Adresse und meine Auswahl werden dafür gespeichert und über den Dienstleister Brevo versendet. Die Einwilligung kann ich jederzeit über den Abmeldelink in jeder E-Mail widerrufen.",
+      "consentMore": "Mehr dazu in der",
+      "consentLink": "Datenschutzerklärung",
+      "honeypot": "Website (leer lassen)",
+      "submit": "Anmelden",
+      "sending": "Wird gesendet …",
+      "cadence": "Einmal im Monat, nur wenn es Neues gibt.",
+      "more": "Themen und Orte wählen"
+    },
+    "topics": {
+      "new_records": {
+        "title": "Neu im Archiv",
+        "note": "Neue Ausstellungen, Galerien und Künstler:innen im Archiv"
+      },
+      "nearby": {
+        "title": "Aktuell und demnächst",
+        "note": "Laufende und kommende Ausstellungen in den gewählten Orten"
+      },
+      "closing_soon": {
+        "title": "Letzte Gelegenheit",
+        "note": "Ausstellungen, die in den nächsten zwei Wochen enden"
+      },
+      "project_news": {
+        "title": "Projektnachrichten",
+        "note": "Neue Funktionen der Website, Partner:innen, Zahlen zum Archiv"
+      }
+    },
+    "success": {
+      "title": "Bestätigung ausstehend",
+      "text": "Eine E-Mail mit einem Bestätigungslink ist unterwegs an {email}. Der Versand beginnt erst nach dem Klick auf diesen Link."
+    },
+    "errors": {
+      "invalid_email": "Diese E-Mail-Adresse ist ungültig.",
+      "missing_consent": "Ohne Einwilligung ist keine Anmeldung möglich.",
+      "missing_topic": "Mindestens ein Thema muss gewählt sein.",
+      "rate_limited": "Zu viele Versuche in kurzer Zeit. In einer Stunde ist es wieder möglich.",
+      "unavailable": "Die Anmeldung ist noch nicht geöffnet.",
+      "failed": "Die Anmeldung hat nicht funktioniert. Ein späterer Versuch oder eine E-Mail an {email} hilft weiter."
+    },
+    "invite": {
+      "aria": "Hinweis auf den Newsletter",
+      "title": "Newsletter",
+      "text": "Neu im Archiv, Eröffnungen und letzte Ausstellungstage, einmal im Monat per E-Mail. Nur wenn es Neues gibt.",
+      "close": "Newsletter-Hinweis schließen"
+    },
+    "confirmed": {
+      "seoTitle": "Anmeldung bestätigt · PERMAPHEMERA",
+      "seoDescription": "Die Anmeldung zum Newsletter von PERMAPHEMERA ist bestätigt.",
+      "breadcrumb": "Bestätigt",
+      "title": "Anmeldung bestätigt",
+      "intro": "Die E-Mail-Adresse ist bestätigt. Der Newsletter kommt einmal im Monat, nur wenn es Neues gibt. Jede Ausgabe enthält einen Link zum Abmelden.",
+      "toExhibitions": "Zu den Ausstellungen",
+      "toStart": "Zur Startseite"
+    },
+    "unsubscribed": {
+      "seoTitle": "Abgemeldet · PERMAPHEMERA",
+      "seoDescription": "Die Abmeldung vom Newsletter von PERMAPHEMERA ist erfolgt.",
+      "breadcrumb": "Abgemeldet",
+      "title": "Abgemeldet",
+      "intro": "Diese E-Mail-Adresse erhält keinen Newsletter mehr. Eine neue Anmeldung ist jederzeit möglich.",
+      "again": "Neu anmelden",
+      "toStart": "Zur Startseite"
     }
   }
 }

@@ -10,6 +10,10 @@ import type { CSSProperties } from 'vue'
 // centred on the anchor and kept inside the viewport, its pointer still on
 // the anchor; `prefer="above"` tries the space above first. It follows the
 // anchor while the page scrolls or resizes.
+// The root is a Teleport, which takes no attributes: the caller's class (its marker) goes onto
+// the tooltip itself. Without this Vue warned once per card and dropped the class.
+defineOptions({ inheritAttrs: false })
+
 const props = withDefaults(defineProps<{
   anchor: HTMLElement | null
   open: boolean
@@ -76,6 +80,7 @@ onBeforeUnmount(unlisten)
     <Transition name="archive-floating-tooltip">
       <ArchiveTooltipFrame
         v-if="props.open"
+        v-bind="$attrs"
         ref="frame"
         as="div"
         class="[ archive-floating-tooltip ] pointer-events-none z-50 px-2 py-1 font-display text-sm leading-[1.2] text-archive-ink filter-[drop-shadow(0_0.38rem_0.42rem_rgba(75,52,29,0.18))] compact:text-xs"
