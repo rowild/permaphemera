@@ -137,10 +137,12 @@ ready: `worktree-newsletter/plans/2026-11-07__newsletter/doi-template-de.html` a
 Brevo's screens as checked by Claude on 2026-11-07:
 
 1. Brevo, left menu: **Marketing → Templates** → button **"Create template"** (top right).
-   (Template **#1 "New template"** exists already, empty: Claude opened the code editor once
-   to check the screens, and that alone created it. Click it in the list and use it for German.)
+   A window "Create an email" opens: close it with the **×** (the content comes in step 3).
+   Note: opening the code editor (step 3) already creates the template in Brevo's list, even
+   without saving. (Claude's test template #1 was deleted on the owner's request.)
 2. Right side of the page:
-   - **Sender email**: choose `newsletter@permaphemera.at` (not the Gmail address).
+   - **Sender email**: preset is the Gmail address with a red warning; choose
+     `newsletter@permaphemera.at` instead.
    - **Sender name**: `PERMAPHEMERA`.
    - **Subject line**: `Anmeldung zum Newsletter bestätigen`.
    - **Show advanced settings** → **Tag**: `optin` (that makes it a confirmation mail).
@@ -149,7 +151,7 @@ Brevo's screens as checked by Claude on 2026-11-07:
 4. In the editor, open `doi-template-de.html`, select all (Cmd+A), copy (Cmd+C). In Brevo click
    into the white box, paste (Cmd+V). Top right: **"Save & Quit"**.
 5. Back on the template page: name (pencil next to "New template"): `Newsletter-Bestätigung DE`.
-   Top right **"Save"**; in its arrow menu choose the option that activates the template.
+   Top right: the small arrow on **"Save"** → **"Save & activate"**.
 6. The same for English: `doi-template-en.html`, subject `Confirm your newsletter sign-up`,
    name `Newsletter confirmation EN`.
 7. Note both template numbers (the list shows them as `#1`, `#2`), put them into `.env.remote` as
