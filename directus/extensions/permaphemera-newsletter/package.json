@@ -1,0 +1,14 @@
+{
+  "name": "permaphemera-newsletter",
+  "description": "Newsletter sign-up for permaphemera.at: checks the form and asks Brevo for a double opt-in.",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "keywords": ["directus", "directus-extension", "directus-extension-endpoint"],
+  "directus:extension": {
+    "type": "endpoint",
+    "path": "index.js",
+    "source": "index.js",
+    "host": "^11.0.0"
+  }
+}
