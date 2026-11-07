@@ -35,7 +35,7 @@ test('a refusal shows its reason and keeps the form', async ({ page }) => {
   await page.getByLabel('E-mail address', { exact: true }).fill('maria@example.at')
   await page.locator('[data-part="consent"] input').check()
   await page.getByRole('button', { name: 'Sign up' }).click()
-  await expect(page.getByRole('alert')).toHaveText('This e-mail address is not valid.')
+  await expect(page.getByRole('alert')).toHaveText('Please check the e-mail address.')
   await expect(page.getByLabel('E-mail address', { exact: true })).toBeVisible()
 })
 

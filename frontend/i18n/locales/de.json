@@ -503,7 +503,7 @@
     "eyebrow": "Kontakt & Vorschläge",
     "title": "Ein Raum, eine Ausstellung,",
     "accent": "eine Nachricht.",
-    "intro": "Eine Ausstellung vorschlagen, einen Eintrag ergänzen, über eine Zusammenarbeit sprechen: PERMAPHEMERA ist ein persönlich geführtes Projekt, und jede Nachricht erreicht direkt Robert Wildling.",
+    "intro": "Sie möchten eine Ausstellung vorschlagen, einen Eintrag ergänzen oder über eine Zusammenarbeit sprechen? PERMAPHEMERA ist ein persönlich geführtes Projekt: Ihre Nachricht erreicht direkt Robert Wildling.",
     "articleAria": "Kontaktmöglichkeiten und Hinweise für Nachrichten an PERMAPHEMERA",
     "record": {
       "label": "Direkter Kontakt",
@@ -520,7 +520,7 @@
         "eyebrow": "Worum es gehen kann",
         "title": "Ausstellungen vorschlagen.",
         "accent": "Spuren ergänzen.",
-        "p1": "Kontakt ist nicht auf formale Projektanfragen beschränkt. Besonders willkommen sind Nachrichten aus kleineren, regionalen oder temporären Ausstellungskontexten.",
+        "p1": "Sie brauchen keinen formalen Anlass, um zu schreiben. Besonders willkommen sind Nachrichten aus kleineren, regionalen oder temporären Ausstellungskontexten.",
         "item1": "Vorschläge für laufende oder kommende Ausstellungen und räumliche Dokumentationen",
         "item2": "Korrekturen, Ergänzungen und Bild- oder Urheberrechtshinweise zu bestehenden Einträgen",
         "item3": "Anfragen zu Kooperation, Forschung, Vermittlung oder zum österreichweiten Index",
@@ -530,15 +530,15 @@
         "eyebrow": "Für die erste Nachricht",
         "title": "Wenige Angaben.",
         "accent": "Ein klarer Anfang.",
-        "p1": "Bei einem Ausstellungsvorschlag helfen Titel, beteiligte Kunstschaffende, Ausstellungsort und Adresse, Laufzeit sowie eine Kontaktperson. Ein kurzer Satz dazu, warum die Ausstellung räumlich oder dokumentarisch interessant ist, erleichtert die erste Einordnung.",
-        "p2": "Links zu einer Website, Ankündigung oder kleinen Bildauswahl sind willkommen. Für umfangreiche Dateien ist ein Download-Link meist hilfreicher als ein großer E-Mail-Anhang."
+        "p1": "Wenn Sie eine Ausstellung vorschlagen, helfen Titel, beteiligte Kunstschaffende, Ausstellungsort und Adresse, Laufzeit sowie eine Kontaktperson. Ein kurzer Satz dazu, warum die Ausstellung räumlich oder dokumentarisch interessant ist, erleichtert die erste Einordnung.",
+        "p2": "Gerne können Sie Links zu einer Website, einer Ankündigung oder einer kleinen Bildauswahl mitschicken. Für umfangreiche Dateien ist ein Download-Link meist hilfreicher als ein großer E-Mail-Anhang."
       },
       "selection": {
         "eyebrow": "Aufnahme & Antwort",
         "title": "Gemeinsam planen.",
         "accent": "Persönlich antworten.",
         "p1": "Ob und wann eine Ausstellung als 360°-Rundgang aufgenommen werden kann, hängt vom Einverständnis der Galerie und der Kunstschaffenden, vom Zugang zum Ort, vom Zeitpunkt und von den verfügbaren Möglichkeiten ab. Für Galerien und Kunstschaffende soll die Teilnahme kostenfrei bleiben.",
-        "p2": "Alle Nachrichten werden persönlich gelesen. Da PERMAPHEMERA bewusst im Kleinen beginnt, kann eine Antwort etwas Zeit benötigen – sie kommt jedoch nicht aus einem automatisierten Ticketsystem."
+        "p2": "Jede Nachricht wird persönlich gelesen. Da PERMAPHEMERA bewusst im Kleinen beginnt, kann eine Antwort etwas Zeit benötigen. Sie erhalten aber eine persönliche Antwort, keine aus einem automatisierten Ticketsystem."
       }
     },
     "actionsEyebrow": "Direkt schreiben",
@@ -1100,7 +1100,7 @@
     "breadcrumb": "Newsletter",
     "eyebrow": "Per E-Mail",
     "title": "Newsletter",
-    "intro": "Neu im Archiv, Eröffnungen und letzte Ausstellungstage in Galerien in ganz Österreich. Einmal im Monat, nur wenn es Neues gibt.",
+    "intro": "Mit dem Newsletter erfahren Sie von neuen Einträgen im Archiv, von Eröffnungen und letzten Ausstellungstagen in Galerien in ganz Österreich: einmal im Monat, nur wenn es Neues gibt.",
     "record": {
       "label": "Auf einen Blick",
       "aria": "Angaben zum Newsletter",
@@ -1112,7 +1112,7 @@
       "tracking": "Messung",
       "trackingValue": "Keine Öffnungs- oder Klickmessung",
       "unsubscribe": "Abmeldung",
-      "unsubscribeValue": "Mit einem Link in jeder Ausgabe"
+      "unsubscribeValue": "Jederzeit, mit dem Link in jeder Ausgabe"
     },
     "formTitle": "Anmeldung",
     "formAria": "Anmeldung zum Newsletter",
@@ -1121,7 +1121,7 @@
       "name": "Name (freiwillig)",
       "topicsLegend": "Themen",
       "townsLegend": "Orte (freiwillig)",
-      "townsNote": "Für „Aktuell und demnächst“ und „Letzte Gelegenheit“. Ohne Auswahl: ganz Österreich.",
+      "townsNote": "Für „Aktuell und demnächst“ und „Letzte Gelegenheit“. Wenn Sie keinen Ort wählen, erhalten Sie Hinweise aus ganz Österreich.",
       "townsSummary": "Orte wählen",
       "townsChosen": "keiner gewählt | ein Ort gewählt | {count} Orte gewählt",
       "townsOther": "Weitere Orte",
@@ -1154,21 +1154,21 @@
       }
     },
     "success": {
-      "title": "Bestätigung ausstehend",
-      "text": "Eine E-Mail mit einem Bestätigungslink ist unterwegs an {email}. Der Versand beginnt erst nach dem Klick auf diesen Link."
+      "title": "Bitte bestätigen Sie Ihre Anmeldung",
+      "text": "Eine E-Mail mit einem Bestätigungslink ist unterwegs an {email}. Bitte klicken Sie auf den Link darin: Erst dann erhalten Sie den Newsletter. Falls keine E-Mail ankommt, sehen Sie bitte auch im Spam-Ordner nach."
     },
     "errors": {
-      "invalid_email": "Diese E-Mail-Adresse ist ungültig.",
-      "missing_consent": "Ohne Einwilligung ist keine Anmeldung möglich.",
-      "missing_topic": "Mindestens ein Thema muss gewählt sein.",
-      "rate_limited": "Zu viele Versuche in kurzer Zeit. In einer Stunde ist es wieder möglich.",
-      "unavailable": "Die Anmeldung ist noch nicht geöffnet.",
-      "failed": "Die Anmeldung hat nicht funktioniert. Ein späterer Versuch oder eine E-Mail an {email} hilft weiter."
+      "invalid_email": "Bitte prüfen Sie die E-Mail-Adresse.",
+      "missing_consent": "Bitte setzen Sie das Häkchen bei der Einwilligung.",
+      "missing_topic": "Bitte wählen Sie mindestens ein Thema.",
+      "rate_limited": "Zu viele Versuche in kurzer Zeit. Bitte versuchen Sie es in einer Stunde noch einmal.",
+      "unavailable": "Die Anmeldung ist noch nicht geöffnet. Bitte versuchen Sie es später noch einmal.",
+      "failed": "Die Anmeldung hat leider nicht funktioniert. Bitte versuchen Sie es später noch einmal oder schreiben Sie an {email}."
     },
     "invite": {
       "aria": "Hinweis auf den Newsletter",
       "title": "Newsletter",
-      "text": "Neu im Archiv, Eröffnungen und letzte Ausstellungstage, einmal im Monat per E-Mail. Nur wenn es Neues gibt.",
+      "text": "Möchten Sie von neuen Einträgen im Archiv, von Eröffnungen und letzten Ausstellungstagen erfahren? Einmal im Monat per E-Mail, nur wenn es Neues gibt.",
       "close": "Newsletter-Hinweis schließen"
     },
     "confirmed": {
@@ -1176,7 +1176,7 @@
       "seoDescription": "Die Anmeldung zum Newsletter von PERMAPHEMERA ist bestätigt.",
       "breadcrumb": "Bestätigt",
       "title": "Anmeldung bestätigt",
-      "intro": "Die E-Mail-Adresse ist bestätigt. Der Newsletter kommt einmal im Monat, nur wenn es Neues gibt. Jede Ausgabe enthält einen Link zum Abmelden.",
+      "intro": "Vielen Dank! Ihre E-Mail-Adresse ist bestätigt. Sie erhalten den Newsletter einmal im Monat, nur wenn es Neues gibt. Jede Ausgabe enthält einen Link zum Abmelden.",
       "toExhibitions": "Zu den Ausstellungen",
       "toStart": "Zur Startseite"
     },
@@ -1185,7 +1185,7 @@
       "seoDescription": "Die Abmeldung vom Newsletter von PERMAPHEMERA ist erfolgt.",
       "breadcrumb": "Abgemeldet",
       "title": "Abgemeldet",
-      "intro": "Diese E-Mail-Adresse erhält keinen Newsletter mehr. Eine neue Anmeldung ist jederzeit möglich.",
+      "intro": "Sie erhalten an diese E-Mail-Adresse keinen Newsletter mehr. Sie können sich jederzeit wieder anmelden.",
       "again": "Neu anmelden",
       "toStart": "Zur Startseite"
     }

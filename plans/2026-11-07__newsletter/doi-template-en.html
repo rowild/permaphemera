@@ -1,8 +1,10 @@
 <!doctype html>
 <!--
-  Brevo double-opt-in template, English. Paste into Brevo: Campaigns → Templates → New template →
-  "Paste your code". Template settings: tag "optin" (makes it a DOI template), sender
-  newsletter@permaphemera.at, name "PERMAPHEMERA", subject below.
+  Brevo double-opt-in template, English. Steps in Brevo: brevo-setup.md, section 5 (Marketing →
+  Templates → "Create template" → "Email template" → "Add content" → "Create from scratch ⌄" →
+  "HTML custom code"). Settings: tag "optin" (makes it a DOI template), sender
+  newsletter@permaphemera.at, name "PERMAPHEMERA", subject below. Addresses the reader with
+  "Sie" / "you" (docs/text-rules.md: direct address where the site talks with a person).
   Subject: Confirm your newsletter sign-up
   {{ doubleoptin }} is Brevo's confirmation link; it leads on to the page set in redirectionUrl
   (/en/newsletter/confirmed/). Email HTML: tables, inline styles, Georgia (web fonts do not load).
@@ -11,7 +13,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Confirm the newsletter sign-up</title>
+  <title>Confirm your newsletter sign-up</title>
 </head>
 <body style="margin:0;padding:0;background:#f3ede3;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3ede3;">
@@ -30,19 +32,20 @@
           </tr>
           <tr>
             <td style="padding:24px 36px 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.2;color:#1d1a16;">
-              Confirm the sign-up
+              Confirm your sign-up
             </td>
           </tr>
           <tr>
             <td style="padding:16px 36px 0;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.55;color:#3b342c;">
-              The PERMAPHEMERA newsletter was ordered for this e-mail address: new exhibitions and 360°
-              tours in the archive, openings and last days of exhibitions in galleries across Austria.
-              Once a month, only when there is news.
+              Hello,<br><br>
+              thank you for your interest in the PERMAPHEMERA newsletter. It reports on new exhibitions
+              and 360° tours in the archive, on openings and last days of exhibitions in galleries
+              across Austria: once a month, only when there is news.
             </td>
           </tr>
           <tr>
             <td style="padding:16px 36px 0;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.55;color:#3b342c;">
-              Nothing is sent before a click on this link:
+              Please confirm your sign-up with a click on this button:
             </td>
           </tr>
           <tr>
@@ -52,8 +55,11 @@
           </tr>
           <tr>
             <td style="padding:16px 36px 28px;font-family:Georgia,'Times New Roman',serif;font-size:14px;line-height:1.5;color:#6f6458;">
-              Without the click nothing is sent; the sign-up is deleted after 30 days. If this e-mail
-              was not expected, it can simply be deleted.
+              You will receive the newsletter only after you confirm. Without confirmation, your
+              address is deleted after 30 days. If you did not sign up, you can simply delete this
+              e-mail.<br><br>
+              Kind regards<br>
+              Robert Wildling, PERMAPHEMERA
             </td>
           </tr>
           <tr>

@@ -503,7 +503,7 @@
     "eyebrow": "Contact & proposals",
     "title": "A space, an exhibition,",
     "accent": "a message.",
-    "intro": "Proposing an exhibition, adding to a record, discussing a collaboration: PERMAPHEMERA is personally run, and every message goes directly to Robert Wildling.",
+    "intro": "Would you like to propose an exhibition, add to a record or discuss a collaboration? PERMAPHEMERA is personally run: your message goes directly to Robert Wildling.",
     "articleAria": "Contact options and guidance for messages to PERMAPHEMERA",
     "record": {
       "label": "Direct contact",
@@ -520,7 +520,7 @@
         "eyebrow": "Reasons to write",
         "title": "Propose exhibitions.",
         "accent": "Complete the record.",
-        "p1": "Contact is not limited to formal project enquiries. Messages from smaller, regional or temporary exhibition contexts are especially welcome.",
+        "p1": "You do not need a formal reason to write. Messages from smaller, regional or temporary exhibition contexts are especially welcome.",
         "item1": "Proposals for current or upcoming exhibitions and spatial documentation",
         "item2": "Corrections, additions, and image-rights or copyright notices concerning existing records",
         "item3": "Enquiries about collaboration, research, mediation or the Austria-wide index",
@@ -530,15 +530,15 @@
         "eyebrow": "For a first message",
         "title": "A few details.",
         "accent": "A clear beginning.",
-        "p1": "For an exhibition proposal, it helps to include the title, participating artists, venue and address, dates, and a contact person. One brief sentence about why the exhibition is spatially or documentarily interesting makes an initial assessment easier.",
-        "p2": "Links to a website, announcement or small image selection are welcome. For larger files, a download link is usually more useful than a large email attachment."
+        "p1": "If you propose an exhibition, it helps to include the title, participating artists, venue and address, dates, and a contact person. One brief sentence about why the exhibition is spatially or documentarily interesting makes an initial assessment easier.",
+        "p2": "You are welcome to include links to a website, an announcement or a small image selection. For larger files, a download link is usually more useful than a large email attachment."
       },
       "selection": {
         "eyebrow": "Recording & response",
         "title": "Planning together.",
         "accent": "A personal reply.",
         "p1": "Whether and when an exhibition can be recorded as a 360° tour depends on the consent of the gallery and the artists, access to the venue, timing and the project’s available capacity. Participation is intended to remain free of charge for galleries and artists.",
-        "p2": "Every message is read personally. Because PERMAPHEMERA is deliberately beginning on a small scale, a reply may take a little time—but it will not come from an automated ticket system."
+        "p2": "Every message is read personally. Because PERMAPHEMERA is deliberately beginning on a small scale, a reply may take a little time. You will get a personal answer, not one from an automated ticket system."
       }
     },
     "actionsEyebrow": "Write directly",
@@ -1100,7 +1100,7 @@
     "breadcrumb": "Newsletter",
     "eyebrow": "By e-mail",
     "title": "Newsletter",
-    "intro": "New in the archive, openings and last days of exhibitions in galleries across Austria. Once a month, only when there is news.",
+    "intro": "The newsletter tells you about new records in the archive, openings and last days of exhibitions in galleries across Austria: once a month, only when there is news.",
     "record": {
       "label": "At a glance",
       "aria": "Facts about the newsletter",
@@ -1112,7 +1112,7 @@
       "tracking": "Measurement",
       "trackingValue": "No open or click tracking",
       "unsubscribe": "Unsubscribe",
-      "unsubscribeValue": "With a link in every issue"
+      "unsubscribeValue": "At any time, with the link in every issue"
     },
     "formTitle": "Sign-up",
     "formAria": "Newsletter sign-up",
@@ -1121,7 +1121,7 @@
       "name": "Name (optional)",
       "topicsLegend": "Topics",
       "townsLegend": "Towns (optional)",
-      "townsNote": "For “On now and opening soon” and “Last chance”. Without a choice: all of Austria.",
+      "townsNote": "For “On now and opening soon” and “Last chance”. If you choose no town, you get news from all of Austria.",
       "townsSummary": "Choose towns",
       "townsChosen": "none chosen | one town chosen | {count} towns chosen",
       "townsOther": "Other towns",
@@ -1154,21 +1154,21 @@
       }
     },
     "success": {
-      "title": "Confirmation pending",
-      "text": "An e-mail with a confirmation link is on its way to {email}. The newsletter starts only after a click on that link."
+      "title": "Please confirm your sign-up",
+      "text": "An e-mail with a confirmation link is on its way to {email}. Please click the link in it: only then will you receive the newsletter. If no e-mail arrives, please also check your spam folder."
     },
     "errors": {
-      "invalid_email": "This e-mail address is not valid.",
-      "missing_consent": "Signing up needs the consent.",
-      "missing_topic": "At least one topic must be chosen.",
-      "rate_limited": "Too many tries in a short time. Possible again in an hour.",
-      "unavailable": "The sign-up is not open yet.",
-      "failed": "The sign-up did not work. A later try or an e-mail to {email} helps."
+      "invalid_email": "Please check the e-mail address.",
+      "missing_consent": "Please tick the consent box.",
+      "missing_topic": "Please choose at least one topic.",
+      "rate_limited": "Too many tries in a short time. Please try again in an hour.",
+      "unavailable": "The sign-up is not open yet. Please try again later.",
+      "failed": "Unfortunately, the sign-up did not work. Please try again later or write to {email}."
     },
     "invite": {
       "aria": "Note about the newsletter",
       "title": "Newsletter",
-      "text": "New in the archive, openings and last days of exhibitions, once a month by e-mail. Only when there is news.",
+      "text": "Would you like to hear about new records in the archive, openings and last days of exhibitions? Once a month by e-mail, only when there is news.",
       "close": "Close the newsletter note"
     },
     "confirmed": {
@@ -1176,7 +1176,7 @@
       "seoDescription": "The sign-up to the PERMAPHEMERA newsletter is confirmed.",
       "breadcrumb": "Confirmed",
       "title": "Sign-up confirmed",
-      "intro": "The e-mail address is confirmed. The newsletter comes once a month, only when there is news. Every issue has a link to unsubscribe.",
+      "intro": "Thank you! Your e-mail address is confirmed. You will receive the newsletter once a month, only when there is news. Every issue has a link to unsubscribe.",
       "toExhibitions": "To the exhibitions",
       "toStart": "To the start page"
     },
@@ -1185,7 +1185,7 @@
       "seoDescription": "The PERMAPHEMERA newsletter has been unsubscribed.",
       "breadcrumb": "Unsubscribed",
       "title": "Unsubscribed",
-      "intro": "This e-mail address receives no more newsletters. A new sign-up is possible at any time.",
+      "intro": "You will no longer receive the newsletter at this e-mail address. You can sign up again at any time.",
       "again": "Sign up again",
       "toStart": "To the start page"
     }

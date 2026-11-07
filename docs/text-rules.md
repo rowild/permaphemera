@@ -61,7 +61,16 @@ No "wir", "uns", "unser" / "we", "us", "our": the site does not speak as a perso
 a person or the team speaks on purpose: the origin story on the About page, thanks, the
 imprint. Third-person pronouns for things ("wie sie gehängt waren") are plain grammar.
 
-### 1.6 Explanations, not instructions; no "Sie" / "you"
+### 1.6 Explanations, not instructions; no "Sie" / "you" (except in direct exchange)
+
+**Exception, owner 2026-11-07: where the site deals directly with a person, it addresses that
+person.** This covers the newsletter (page, form, invite, confirmation and unsubscribe pages,
+the confirmation mails and the issues), the contact page, and every other sign-up, form,
+error message or mail that a person reads because they did something. There the address is
+**"Sie" / "you"**, friendly and professional: "Bitte bestätigen Sie Ihre Anmeldung", "Vielen
+Dank!", "Gerne können Sie …", "Please confirm your sign-up". Never "du". A consent text stays in
+the first person ("Ich möchte den Newsletter … erhalten"): there the person speaks. Everywhere
+else (archive pages, records, lists, explanations) the rule below stays.
 
 Texts explain. They do not tell the visitor what to do, and they do not invite ("Entdecken
 Sie …", "Discover …", "Explore …", "Experience …"). Avoid "Sie" / "you" wherever possible.

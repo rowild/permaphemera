@@ -14,6 +14,11 @@ what comes next.
 
 ## PERMAPHEMERA is online
 
+Hello,
+
+thank you for subscribing to the PERMAPHEMERA newsletter. This first issue shows you what
+the archive already holds.
+
 [permaphemera.at](https://permaphemera.at/en/) is an archive of exhibitions in Austrian
 galleries. Each exhibition is captured as a 360° tour, with the consent of the gallery or venue
 and of the artists, and stays online after it is taken down: the whole room, the works as they
@@ -58,14 +63,18 @@ Every venue with its address and exhibitions: [permaphemera.at/en/venues/](https
 
 ## For galleries
 
-Suggest an exhibition for a 360° tour, add to an entry or correct it:
-[permaphemera.at/en/contact/](https://permaphemera.at/en/contact/)
+Would you like to suggest an exhibition for a 360° tour, add to an entry or correct it? You are
+welcome to write via [permaphemera.at/en/contact/](https://permaphemera.at/en/contact/).
+
+Kind regards
+Robert Wildling, PERMAPHEMERA
 
 ---
 
 *Footer (in Brevo, every issue):*
 
-This newsletter comes once a month, only when there is news.
+You receive this newsletter because you signed up on permaphemera.at. It comes once a month,
+only when there is news.
 [Unsubscribe]({{ unsubscribe }}) · [Imprint](https://permaphemera.at/en/imprint/) ·
 [Privacy](https://permaphemera.at/en/privacy/)
 PERMAPHEMERA · Robert Wildling · Göllnergasse 19/30, 1030 Vienna, Austria

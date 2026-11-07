@@ -114,7 +114,7 @@ describe('ArchiveNewsletterForm', () => {
     for (const box of wrapper.findAll('[data-part="topics"] input')) await box.setValue(false)
     await wrapper.get('form').trigger('submit')
     expect(fetch).not.toHaveBeenCalled()
-    expect(wrapper.get('[role="alert"]').text()).toBe('Mindestens ein Thema muss gewählt sein.')
+    expect(wrapper.get('[role="alert"]').text()).toBe('Bitte wählen Sie mindestens ein Thema.')
   })
 
   it('shows the reason of a refusal', async () => {
@@ -123,7 +123,7 @@ describe('ArchiveNewsletterForm', () => {
     await fill(wrapper)
     await wrapper.get('form').trigger('submit')
     await vi.waitUntil(() => wrapper.find('[role="alert"]').exists())
-    expect(wrapper.get('[role="alert"]').text()).toBe('Diese E-Mail-Adresse ist ungültig.')
+    expect(wrapper.get('[role="alert"]').text()).toBe('Bitte prüfen Sie die E-Mail-Adresse.')
     expect(wrapper.find('input[type="email"]').exists()).toBe(true)
   })
 

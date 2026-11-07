@@ -1,8 +1,10 @@
 <!doctype html>
 <!--
-  Brevo double-opt-in template, German. Paste into Brevo: Campaigns → Templates → New template →
-  "Paste your code". Template settings: tag "optin" (makes it a DOI template), sender
-  newsletter@permaphemera.at, name "PERMAPHEMERA", subject below.
+  Brevo double-opt-in template, German. Steps in Brevo: brevo-setup.md, section 5 (Marketing →
+  Templates → "Create template" → "Email template" → "Add content" → "Create from scratch ⌄" →
+  "HTML custom code"). Settings: tag "optin" (makes it a DOI template), sender
+  newsletter@permaphemera.at, name "PERMAPHEMERA", subject below. Addresses the reader with
+  "Sie" / "you" (docs/text-rules.md: direct address where the site talks with a person).
   Subject: Anmeldung zum Newsletter bestätigen
   {{ doubleoptin }} is Brevo's confirmation link; it leads on to the page set in redirectionUrl
   (/newsletter/confirmed/). Email HTML: tables, inline styles, Georgia (web fonts do not load).
@@ -35,14 +37,15 @@
           </tr>
           <tr>
             <td style="padding:16px 36px 0;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.55;color:#3b342c;">
-              Für diese E-Mail-Adresse wurde der Newsletter von PERMAPHEMERA bestellt: neue Ausstellungen
-              und 360°-Rundgänge im Archiv, Eröffnungen und letzte Ausstellungstage in Galerien in ganz
-              Österreich. Einmal im Monat, nur wenn es Neues gibt.
+              Guten Tag,<br><br>
+              vielen Dank für Ihr Interesse am Newsletter von PERMAPHEMERA. Er berichtet über neue
+              Ausstellungen und 360°-Rundgänge im Archiv, über Eröffnungen und letzte Ausstellungstage
+              in Galerien in ganz Österreich: einmal im Monat, nur wenn es Neues gibt.
             </td>
           </tr>
           <tr>
             <td style="padding:16px 36px 0;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.55;color:#3b342c;">
-              Der Versand beginnt erst nach einem Klick auf diesen Link:
+              Bitte bestätigen Sie Ihre Anmeldung mit einem Klick auf diese Schaltfläche:
             </td>
           </tr>
           <tr>
@@ -52,8 +55,11 @@
           </tr>
           <tr>
             <td style="padding:16px 36px 28px;font-family:Georgia,'Times New Roman',serif;font-size:14px;line-height:1.5;color:#6f6458;">
-              Ohne Klick wird nichts verschickt; die Anmeldung wird nach 30 Tagen gelöscht. Wer diese
-              E-Mail nicht erwartet hat, kann sie einfach löschen.
+              Erst nach Ihrer Bestätigung erhalten Sie den Newsletter. Ohne Bestätigung wird Ihre
+              Adresse nach 30 Tagen gelöscht. Falls Sie sich nicht angemeldet haben, können Sie diese
+              E-Mail einfach löschen.<br><br>
+              Herzliche Grüße<br>
+              Robert Wildling, PERMAPHEMERA
             </td>
           </tr>
           <tr>

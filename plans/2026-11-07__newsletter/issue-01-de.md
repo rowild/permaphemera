@@ -3,7 +3,8 @@
 Status: **Entwurf.** Thema laut Eigentümer (2026-11-07): die Präsenz der Website im Netz, mit
 dem, was das Archiv schon enthält. Zahlen: Stand 7. November 2026, aus der Website selbst
 (`/exhibitions/`, `/artists/`, `/venues/`, `/organisations/`) und aus Directus; **vor dem
-Versand neu zählen**. Text nach `docs/text-rules.md` (kein „wir“, kein „Sie“, wertfrei).
+Versand neu zählen**. Text nach `docs/text-rules.md` (kein „wir“, wertfrei; die Leserin, der Leser wird mit „Sie“
+angesprochen, §1.6, Ausnahme für den direkten Austausch).
 
 ---
 
@@ -15,6 +16,11 @@ Rundgänge und was als Nächstes kommt.
 ---
 
 ## PERMAPHEMERA ist online
+
+Guten Tag,
+
+vielen Dank, dass Sie den Newsletter von PERMAPHEMERA abonniert haben. In dieser ersten
+Ausgabe erfahren Sie, was das Archiv schon enthält.
 
 Unter [permaphemera.at](https://permaphemera.at) steht ein Archiv von Ausstellungen in
 österreichischen Galerien. Jede Ausstellung wird als 360°-Rundgang festgehalten, mit dem
@@ -61,14 +67,18 @@ Alle Häuser mit Adresse und Ausstellungen: [permaphemera.at/venues/](https://pe
 
 ## Für Galerien
 
-Eine Ausstellung für einen 360°-Rundgang vorschlagen, einen Eintrag ergänzen oder korrigieren:
-[permaphemera.at/contact/](https://permaphemera.at/contact/)
+Sie möchten eine Ausstellung für einen 360°-Rundgang vorschlagen, einen Eintrag ergänzen oder
+korrigieren? Schreiben Sie gerne über [permaphemera.at/contact/](https://permaphemera.at/contact/).
+
+Herzliche Grüße
+Robert Wildling, PERMAPHEMERA
 
 ---
 
 *Fußzeile (in Brevo, jede Ausgabe):*
 
-Dieser Newsletter kommt einmal im Monat, nur wenn es Neues gibt.
+Sie erhalten diesen Newsletter, weil Sie sich auf permaphemera.at angemeldet haben. Er kommt
+einmal im Monat, nur wenn es Neues gibt.
 [Abmelden]({{ unsubscribe }}) · [Impressum](https://permaphemera.at/imprint/) ·
 [Datenschutz](https://permaphemera.at/privacy/)
 PERMAPHEMERA · Robert Wildling · Göllnergasse 19/30, 1030 Wien, Österreich
