@@ -1,6 +1,6 @@
 # Newsletter: plan of 2026-11-07
 
-Status: **in work on branch `feature/newsletter`** (worktree folder `worktree-newsletter/` in the project root; moved there from the hidden `.claude/worktrees/newsletter` on 2026-11-07 at the owner's request: project work stays visible in the project folder).
+Status: **live since 2026-11-07 (release 0.0.67)**, merged into `main` on the owner's word ("merge, update the server, fin-patch and push"; the invite shows to every visitor). Built on branch `feature/newsletter` in the visible worktree folder `worktree-newsletter/`. Open: the menu item (Directus draft), the owner's test sign-up, the lawyer.
 Replaces the technical parts of `_Plans/newsletter-subscription.md` (2026-08-13). That plan
 stays as background for the reasons behind the topics (§2), the legal rules (§7) and the
 choice of Brevo (§8). Where the two disagree, this plan wins.
@@ -136,5 +136,5 @@ after a sign-up never again; on phones a bottom panel, never the full screen.
 | 5 | Invite | Claude | done 2026-11-07 |
 | 6 | Privacy texts, SEO, checks, QA | Claude | done 2026-11-07 |
 | 7 | First newsletter (draft) | Claude | done 2026-11-07 |
-| 8 | Launch: env on the server, extension on the server, merge, deploy, publish menu items, test with a real address | owner's word, then Claude | open |
+| 8 | Launch: env on the server, extension on the server, merge, deploy, publish menu items, test with a real address | owner's word, then Claude | merged, deployed 2026-11-07 (0.0.67); menu item still draft; owner tests |
 | 9 | Lawyer reads consent and privacy text | owner | later |

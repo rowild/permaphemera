@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.67 - 2026-11-07 17:12:03 CET
+
+- New: **Newsletter.** The page /newsletter/ has a sign-up form: e-mail address, a name if wanted, four topics (new in the archive, on now and opening soon, last chance, project news) and towns to choose, grouped by federal state. Brevo sends a confirmation mail; only after its link is clicked is the address on the list, and the page "Anmeldung bestätigt" says so. At most once a month, only when there is news. No opens or clicks are measured.
+- A small invite to the newsletter appears at the bottom of the screen 10 seconds after a page is ready (on the start page after the intro), never on the legal and newsletter pages. Closing it keeps it away for 30 days, a sign-up for good. On phones it only links to the newsletter page.
+- The privacy page describes the newsletter: Brevo GmbH, Berlin, as processor with servers in the EU, double opt-in, no measuring, unconfirmed sign-ups deleted after one month, and the invite's note in the browser's storage.
+- The contact page and everything around the newsletter address the reader directly ("Sie" / "you").
+
 ## 0.0.66 - 2026-11-06 18:32:38 CET
 
 - Sources close every text as their own block: a small label "Quellen" / "Sources" and a list, one source per line, instead of "Quelle: …" in the last sentence. Biographies, organisation texts, exhibition descriptions.

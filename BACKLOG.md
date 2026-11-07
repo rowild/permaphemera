@@ -349,13 +349,25 @@ the site now runs on Hetzner and reads Directus. Check the plan with the owner b
 starts. The privacy page already says that a newsletter is planned and not active
 (`privacy` texts in `frontend/i18n/locales/`); change those texts in the same release.
 
-**State 2026-11-07: built, waiting for the owner's Brevo setup.** The owner decided: no PHP,
+**State 2026-11-07, evening: live (release 0.0.67).** Brevo is set up (domain, sender,
+lists 6/7, templates #2/#3, tracking off via consent, logs 1 month), the endpoint and the weekly
+key check run on the server. Open: the owner's test sign-up, publishing the menu item
+(Directus `pp_navigation_items` key `newsletter`), the lawyer, the first issue.
+Earlier state: **built, waiting for the owner's Brevo setup.** The owner decided: no PHP,
 sender `newsletter@permaphemera.at`, "monthly, but only if there is news", first issue about the
 site going online, lawyer later. New plan `plans/2026-11-07__newsletter.md`; code on branch
 `feature/newsletter` (Directus endpoint, form, pages, invite, privacy texts, tests); the menu
 item is a draft in Directus. Open: the owner's steps in
 `plans/2026-11-07__newsletter/brevo-setup.md` (mail address at ALL-INKL, Brevo account, domain
 records in Cloudflare, API key, templates), then the launch (step 7 there), then the lawyer.
+
+## The name on the website: PermaPhemera instead of PERMAPHEMERA (parked)
+
+Added 2026-11-07 during the newsletter work. The owner: the name is written PermaPhemera
+(newsletter, mails and Brevo already do). The website still writes PERMAPHEMERA in about 174
+places (texts, the `· PERMAPHEMERA` title suffix, legal pages). **The logo stays as it is**
+(owner: "leave the logo untouched, it is good as it is"). Parked to finish the newsletter first;
+ask the owner before starting.
 
 ## Safari: real devices and other Safari versions (not important, later)
 
