@@ -128,6 +128,10 @@ not recommended"); never use it for the newsletter.
    run for the last time (step 5.5), because the script runs on the Mac, whose address is not
    on the list. The Directus container reaches Brevo over IPv4 (Docker's default network has no
    IPv6), so the one IPv4 address is enough.
+   **State 2026-11-07:** the IP lock is on; the list holds the server and the owner's Mac
+   (IPv6 `2001:4bc9:d02c:9d08:…`). Owner: **keep the Mac's address**, it may be needed again
+   (a new run of `brevo-setup.mjs`). Mac addresses change now and then: if Brevo answers
+   "unrecognised IP address", allow the new one (Brevo mails a link, or Security → Authorized IPs).
 
 ## 5. The two confirmation mails (about 10 min)
 
