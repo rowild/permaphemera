@@ -349,6 +349,14 @@ the site now runs on Hetzner and reads Directus. Check the plan with the owner b
 starts. The privacy page already says that a newsletter is planned and not active
 (`privacy` texts in `frontend/i18n/locales/`); change those texts in the same release.
 
+**State 2026-11-07: built, waiting for the owner's Brevo setup.** The owner decided: no PHP,
+sender `newsletter@permaphemera.at`, "monthly, but only if there is news", first issue about the
+site going online, lawyer later. New plan `plans/2026-11-07__newsletter.md`; code on branch
+`feature/newsletter` (Directus endpoint, form, pages, invite, privacy texts, tests); the menu
+item is a draft in Directus. Open: the owner's steps in
+`plans/2026-11-07__newsletter/brevo-setup.md` (mail address at ALL-INKL, Brevo account, domain
+records in Cloudflare, API key, templates), then the launch (step 7 there), then the lawyer.
+
 ## Safari: real devices and other Safari versions (not important, later)
 
 Added 2026-10-22 as an emergency; since 2026-10-25 not important, for later.

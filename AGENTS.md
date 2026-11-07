@@ -34,6 +34,7 @@ Cross-cutting design specs (Directus + frontend together) live in `docs/superpow
 - The `fin-patch` skill is global (`~/.claude/skills/fin-patch/`) and works from any folder.
 - Agreed work parked for later lives in `BACKLOG.md` at the root.
 - News articles ("Aktuelles", `pp_news`, `/news/`): written on the owner's command as drafts, after `docs/how-to-news.md`; the monthly report that prompts them is `frontend/scripts/news-report.mjs` (`pnpm news:report`).
+- Newsletter (Brevo, double opt-in): plan `plans/2026-11-07__newsletter.md`, the owner's steps `plans/2026-11-07__newsletter/brevo-setup.md`; server side `directus/extensions/permaphemera-newsletter/` (no PHP), site side `frontend/AGENTS.md` "Newsletter".
 - Every text visitors read (locale files, fixed and SEO texts in Directus) follows `docs/text-rules.md`: the owner's rules, a word list and the method for changing a text.
 
 ## Data model

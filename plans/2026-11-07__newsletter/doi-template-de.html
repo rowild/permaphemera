@@ -1,0 +1,71 @@
+<!doctype html>
+<!--
+  Brevo double-opt-in template, German. Paste into Brevo: Campaigns → Templates → New template →
+  "Paste your code". Template settings: tag "optin" (makes it a DOI template), sender
+  newsletter@permaphemera.at, name "PERMAPHEMERA", subject below.
+  Subject: Anmeldung zum Newsletter bestätigen
+  {{ doubleoptin }} is Brevo's confirmation link; it leads on to the page set in redirectionUrl
+  (/newsletter/confirmed/). Email HTML: tables, inline styles, Georgia (web fonts do not load).
+-->
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anmeldung zum Newsletter bestätigen</title>
+</head>
+<body style="margin:0;padding:0;background:#f3ede3;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3ede3;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fbf7f0;border:1px solid #d8c9b2;">
+          <tr>
+            <td style="padding:32px 36px 8px;font-family:Georgia,'Times New Roman',serif;letter-spacing:6px;font-size:20px;color:#1d1a16;">
+              PERMAPHEMERA
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 36px;font-family:Georgia,'Times New Roman',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#a6523c;">
+              Newsletter
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px 36px 0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.2;color:#1d1a16;">
+              Anmeldung bestätigen
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:16px 36px 0;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.55;color:#3b342c;">
+              Für diese E-Mail-Adresse wurde der Newsletter von PERMAPHEMERA bestellt: neue Ausstellungen
+              und 360°-Rundgänge im Archiv, Eröffnungen und letzte Ausstellungstage in Galerien in ganz
+              Österreich. Einmal im Monat, nur wenn es Neues gibt.
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:16px 36px 0;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.55;color:#3b342c;">
+              Der Versand beginnt erst nach einem Klick auf diesen Link:
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px 36px 8px;">
+              <a href="{{ doubleoptin }}" style="display:inline-block;padding:14px 28px;background:#a6523c;color:#fbf7f0;font-family:Georgia,'Times New Roman',serif;font-size:17px;text-decoration:none;">Anmeldung bestätigen</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:16px 36px 28px;font-family:Georgia,'Times New Roman',serif;font-size:14px;line-height:1.5;color:#6f6458;">
+              Ohne Klick wird nichts verschickt; die Anmeldung wird nach 30 Tagen gelöscht. Wer diese
+              E-Mail nicht erwartet hat, kann sie einfach löschen.
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 36px 28px;border-top:1px solid #e3d7c4;font-family:Georgia,'Times New Roman',serif;font-size:12px;line-height:1.5;color:#6f6458;">
+              PERMAPHEMERA · Robert Wildling · Göllnergasse 19/30, 1030 Wien, Österreich<br>
+              <a href="https://permaphemera.at/imprint/" style="color:#a6523c;">Impressum</a> ·
+              <a href="https://permaphemera.at/privacy/" style="color:#a6523c;">Datenschutzerklärung</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

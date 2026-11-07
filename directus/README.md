@@ -44,6 +44,7 @@ Single scripts, all safe to run twice:
 
 ```bash
 node --test scripts/*.test.mjs        # unit tests for naming and the builder
+node --test extensions/permaphemera-newsletter/*.test.mjs  # the newsletter endpoint
 node scripts/create-schema.mjs        # add missing collections, fields, relations
 node scripts/seed.mjs                 # languages, roles, menus
 node scripts/permissions.mjs          # public read rules (--reset recreates them)
@@ -53,6 +54,7 @@ node scripts/export.mjs               # backup records + files to ../_BU/directu
 node scripts/import.mjs --from <dir>  # restore from ../_BU/directus-data by default
 node scripts/snapshot.mjs             # export schema/snapshot.yaml
 node scripts/upload-files.mjs <manifest.json>  # images/PDFs for venues and exhibitions, with credit lines (see ../docs/how-to-gallery-and-exhibition.md)
+node scripts/brevo-setup.mjs [--dry-run]      # newsletter: Brevo lists, contact attributes, template check (needs NEWSLETTER_BREVO_API_KEY)
 node scripts/files.mjs                # (helper, not run directly) upload/folder helpers shared by import.mjs and apply-settings.mjs
 ```
 
@@ -95,6 +97,18 @@ Every file in Directus is readable without a token (the public rule limits which
   `og_image`, `no_index`, `no_follow`, `sitemap.change_frequency`, `sitemap.priority`.
 
 - **SEO texts:** `node scripts/write-seo.mjs <file.json> [--dry-run]` (with `DIRECTUS_ENV_FILE=.env.remote` for production) writes hand-written titles and descriptions into the `seo` fields: English into the record and its `en` translation, German into `de`; share image, robots and sitemap settings stay. Rules (title ≤ 60, description 130–160 characters; an exhibition with a 360° tour 98–128 and never naming the tour, because the site adds that sentence) in `scripts/seo-texts.mjs`; the first batch is `seo/2026-10-24-seo-texts.json`, the tour sentences came out with `seo/2026-10-24-seo-without-tour-sentence.json`.
+
+- **Newsletter endpoint** `extensions/permaphemera-newsletter/` (our own, plain JavaScript, no
+  build step; since 2026-11-07, plan `../plans/2026-11-07__newsletter.md`). `POST
+  /newsletter/subscribe` (public: `https://permaphemera.at/cms/newsletter/subscribe`) checks a
+  sign-up (bot field, time, origin, consent, e-mail, topics, published towns, 5 tries per hour
+  and IP) and asks Brevo for a double opt-in. It always answers 200 with `{ ok, state | error }`
+  and the same for a known address. Logic and tests: `lib.js`, `lib.test.mjs`; `index.js`
+  wires it into Directus. Settings: the `NEWSLETTER_*` lines of `.env.example` /
+  `hetzner/.env.example`; without the key it answers `unavailable` and sends nothing. Local
+  instance: the folder is mounted, `EXTENSIONS_AUTO_RELOAD` loads changes. Production:
+  `bash hetzner/install-extension.sh` (copy, restart, check). Brevo side:
+  `node scripts/brevo-setup.mjs`.
 
 ## Folders
 

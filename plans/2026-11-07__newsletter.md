@@ -27,7 +27,7 @@ Files of this plan: `plans/2026-11-07__newsletter/`
 | Tracking | Open and click tracking off in Brevo. | 2026-08 |
 | Topics | The 4 of the old plan, all checked by default: `new_records`, `nearby`, `closing_soon`, `project_news`. At least one must stay checked. | 2026-08 |
 | Towns | Optional. The list comes from Directus (`pp_locations`, published), grouped by federal state. No list in code, so a new town needs no work. None chosen = all of Austria. | 2026-08, Claude (from Directus) |
-| Entry points | Footer and header menu (Directus navigation items, draft until launch), the page `/newsletter/`, a small invite after 10 s (30 days quiet after "no", never again after a sign-up). | 2026-08 |
+| Entry points | Footer and header menu (one Directus navigation item, draft until launch), the page `/newsletter/`, a small invite after 10 s (30 days quiet after "no", never again after a sign-up; on phones only a link to the page). | 2026-08 |
 | Launch switch | Nothing goes live before the owner's word. The branch is merged on launch day; the menu items are published that day. | Claude |
 
 ## 2. How it works
@@ -129,12 +129,12 @@ after a sign-up never again; on phones a bottom panel, never the full screen.
 | # | Phase | Who | State |
 |---|---|---|---|
 | 0 | Brevo account, domain, mail address, lists, templates, key | owner (`brevo-setup.md`) | open |
-| 1 | Directus endpoint extension + tests | Claude | see worklog |
-| 2 | `brevo-setup.mjs` (lists, attributes, template check) | Claude | see worklog |
-| 3 | Form, page, confirmed and unsubscribed pages | Claude | see worklog |
-| 4 | Menu items (Directus, draft) | Claude | see worklog |
-| 5 | Invite | Claude | see worklog |
-| 6 | Privacy texts, SEO, checks, QA | Claude | see worklog |
-| 7 | First newsletter (draft) | Claude | see worklog |
+| 1 | Directus endpoint extension + tests | Claude | done 2026-11-07 |
+| 2 | `brevo-setup.mjs` (lists, attributes, template check) | Claude | done 2026-11-07 |
+| 3 | Form, page, confirmed and unsubscribed pages | Claude | done 2026-11-07 |
+| 4 | Menu item (Directus, draft, footer group information = also the header popup) | Claude | done 2026-11-07 |
+| 5 | Invite | Claude | done 2026-11-07 |
+| 6 | Privacy texts, SEO, checks, QA | Claude | done 2026-11-07 |
+| 7 | First newsletter (draft) | Claude | done 2026-11-07 |
 | 8 | Launch: env on the server, extension on the server, merge, deploy, publish menu items, test with a real address | owner's word, then Claude | open |
 | 9 | Lawyer reads consent and privacy text | owner | later |

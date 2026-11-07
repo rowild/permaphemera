@@ -1,0 +1,100 @@
+# Newsletter: the owner's steps (phase 0) and the launch (phase 8)
+
+Everything here needs the owner's logins (ALL-INKL, Cloudflare, Brevo). The code is ready on
+branch `feature/newsletter`. Background: `email-research.md`. Order matters.
+
+## 1. Make newsletter@permaphemera.at receive mail (ALL-INKL, about 10 min)
+
+Today mail to `…@permaphemera.at` bounces: ALL-INKL's server `w00c8d25.kasserver.com` answers
+"Relay access denied" (checked 2026-11-07). The DNS already points mail to ALL-INKL; only the
+ALL-INKL account must take the domain.
+
+1. Log in to the ALL-INKL KAS.
+2. Check that `permaphemera.at` is a domain of the account (Domain menu). If not: add it.
+3. E-Mail → create a forward (Weiterleitung) `newsletter@permaphemera.at` →
+   `robertwildling@gmail.com`. (A real mailbox also works and allows answering as
+   newsletter@permaphemera.at.)
+4. Test: send a mail to `newsletter@permaphemera.at` **from another address than the Gmail one**
+   (Gmail hides mail it sent itself), check that it arrives.
+
+If ALL-INKL cannot take the domain: Cloudflare → Email → Email Routing, rule
+`newsletter@permaphemera.at` → `robertwildling@gmail.com`. Cloudflare then replaces the MX records
+(ALL-INKL mail for the domain ends; today none works anyway).
+
+## 2. Brevo account (about 15 min)
+
+1. Sign up at brevo.com (free plan: 300 mails a day, no card). Company data: PERMAPHEMERA,
+   Robert Wildling, Göllnergasse 19/30, 1030 Wien. Brevo prints this address in every mail.
+2. Data processing agreement (AV-Vertrag): download it from the account (legal / GDPR section)
+   and keep it. **Copy Brevo's exact company name and address from it** and send it to Claude:
+   the privacy page says "Sendinblue SAS (Brevo), Paris, Frankreich" for now, because Brevo's
+   own pages name three different addresses.
+
+## 3. Domain authentication (Brevo + Cloudflare, about 15 min, then up to 48 h waiting)
+
+1. Brevo → Senders, domains & dedicated IPs → Domains → Add a domain → `permaphemera.at`.
+2. Choose the **manual** way (not "automatic"): the automatic way can overwrite the existing
+   DMARC record.
+3. Cloudflare → permaphemera.at → DNS → add exactly the records Brevo shows:
+   - the TXT record "brevo-code" on `permaphemera.at`;
+   - the DKIM records (usually 2 CNAME, `brevo1._domainkey` and `brevo2._domainkey`):
+     **Proxy status "DNS only" (grey cloud)**;
+   - DMARC: **add nothing.** `_dmarc.permaphemera.at` exists already (`v=DMARC1; p=none;`).
+     Never a second DMARC record.
+4. Back in Brevo: "Authenticate this email domain". Green check = done (can take up to 48 h).
+5. Brevo → Senders → add sender: name `PERMAPHEMERA`, address `newsletter@permaphemera.at`.
+   If Brevo sends a code to that address, it arrives through the forward from step 1.
+
+## 4. API key and the setup script (about 10 min)
+
+1. Brevo → SMTP & API → API keys → "Generate a new API key", name `permaphemera-newsletter`.
+   Copy it once (Brevo shows it only once).
+2. Put it into `directus/.env.remote` (main checkout, never in git) with the other lines from
+   `directus/hetzner/.env.example` (section "Newsletter").
+3. On the Mac, in `directus/`:
+   `DIRECTUS_ENV_FILE=.env.remote node scripts/brevo-setup.mjs --dry-run`, then without
+   `--dry-run`. It creates the folder, the lists "Newsletter DE" / "Newsletter EN" and the
+   contact attributes, and prints the lines `NEWSLETTER_LIST_DE=…` / `…_EN=…` for `.env.remote`.
+4. Brevo → Security → Authorized IPs: add **`138.199.205.241`** (the Hetzner server). Without it
+   Brevo refuses the sign-ups once its IP lock is active.
+
+## 5. The two confirmation mails (about 10 min)
+
+1. Brevo → Campaigns → Templates → New template → paste code: `doi-template-de.html`
+   (subject "Anmeldung zum Newsletter bestätigen"), sender `newsletter@permaphemera.at`.
+2. In the template settings add the tag **`optin`** (that makes it a double-opt-in template).
+   Activate it.
+3. The same with `doi-template-en.html` (subject "Confirm your newsletter sign-up").
+4. Note both template ids, put them into `.env.remote` as `NEWSLETTER_TEMPLATE_DE` / `_EN`.
+5. Run `DIRECTUS_ENV_FILE=.env.remote node scripts/brevo-setup.mjs` again: it now checks both
+   templates (active, tag `optin`, `{{ doubleoptin }}` link, sender).
+
+## 6. Settings in Brevo (about 5 min)
+
+1. **Tracking off:** open and click tracking off (account default if Brevo offers it, and in
+   each campaign's settings). The privacy page says nothing is measured.
+2. Unsubscribe page: Brevo's settings for the unsubscribe form → after unsubscribing, redirect
+   to `https://permaphemera.at/newsletter/unsubscribed/`.
+3. Unconfirmed sign-ups: look whether Brevo keeps addresses that never clicked the confirmation
+   link. If yes, delete those older than 30 days once a month (the privacy page and the
+   confirmation mail promise it). Tell Claude what Brevo shows; a monthly job can do it later.
+
+## 7. Launch (phase 8): say "Newsletter starten" to Claude
+
+Claude then, in this order:
+
+1. `bash directus/hetzner/install-remote.sh` (copies `.env.remote` with the NEWSLETTER_* lines to
+   the server and restarts Directus).
+2. `bash directus/hetzner/install-extension.sh` (copies the endpoint, restarts, checks it answers).
+3. Merges `feature/newsletter` into `main`, runs the release routine, `pnpm deploy:hetzner`.
+4. Publishes the menu item "Newsletter" (Directus, `pp_navigation_items`, key `newsletter`,
+   now a draft) and, if wanted, a news article (topic `site`) about the newsletter.
+5. A real sign-up with an address of the owner: confirmation mail arrives, link leads to
+   `/newsletter/confirmed/`, the contact is in the list with its attributes.
+
+## Later
+
+- Lawyer reads the consent text (`newsletter.form.consent` in the locale files) and the privacy
+  section "Newsletter über Brevo" before the first real sign-ups of the public. When the consent
+  text changes, raise `NEWSLETTER_CONSENT_VERSION` in `frontend/app/utils/newsletter.ts`.
+- First issue: `issue-01-de.md` / `issue-01-en.md` (count the numbers again before sending).

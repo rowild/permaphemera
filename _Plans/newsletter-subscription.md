@@ -1,5 +1,10 @@
 # Newsletter Subscription — Plan
 
+> **Superseded in parts (2026-11-07).** The current plan is `plans/2026-11-07__newsletter.md`:
+> no PHP (a Directus endpoint instead), sender `newsletter@permaphemera.at`, Hetzner and Directus
+> instead of ALL-INKL and `app/data/`, text attributes instead of multiple-choice. This file stays
+> as background for the topics (§2), the legal rules (§7) and the choice of Brevo (§8).
+
 Status: **planned, not implemented.** Nothing in this document has been built.
 Target branch: `feature/newsletter-subscription` (to be created off `feature/current-and-upcoming-exhibitions`).
 Written: 2026-08-13.

@@ -10,7 +10,7 @@ app/.env                 ← directus/.env.remote from this Mac (git-ignored)
 data/database/           SQLite
 data/uploads/            files
 data/redis/              cache
-extensions/              custom extensions (none yet)
+extensions/              custom extensions: permaphemera-newsletter (bash hetzner/install-extension.sh)
 ```
 
 The host nginx maps `permaphemera.project-backends.info` to the stack's port
@@ -25,6 +25,7 @@ Spittal server, a client project. PERMAPHEMERA never goes there.
 ```bash
 cp hetzner/.env.example .env.remote        # once; fill in the secrets
 bash hetzner/install-remote.sh             # copy compose + env, (re)start, nginx map, health
+bash hetzner/install-extension.sh          # copy the newsletter endpoint, restart, check it answers
 
 # every script in scripts/ can target the remote instance:
 DIRECTUS_ENV_FILE=.env.remote node scripts/create-schema.mjs
