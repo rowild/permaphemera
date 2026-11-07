@@ -75,7 +75,13 @@ records in Cloudflare, all **DNS only** (grey cloud):
 The `em` CNAMEs must never be "Proxied" (orange cloud): Cloudflare then hides the CNAME, Brevo
 finds nothing, and Cloudflare's certificate does not cover `r.em` / `img.em` (two levels deep).
 Step 4 below said "DMARC: add nothing"; Brevo asked for `rua=…` in the one existing record,
-so it was edited, not added. Step 6 (sender) is open.
+so it was edited, not added.
+
+**Step 6 done 2026-11-07:** sender `PERMAPHEMERA <newsletter@permaphemera.at>` added. Brevo
+marked it "Verified" at once, without a code (the domain is authenticated), DKIM
+`permaphemera.at` ✓, "DMARC is configured" ✓. The older sender
+`PermaPhemera <robertwildling@gmail.com>` stays in the list (Brevo warns "Freemail domain is
+not recommended"); never use it for the newsletter.
 
 1. Brevo → Senders, domains & dedicated IPs → Domains → Add a domain → `permaphemera.at`.
 2. "Branded subdomain" (Brevo's new flow, optional on shared IPs): **yes, prefix `em`** →
