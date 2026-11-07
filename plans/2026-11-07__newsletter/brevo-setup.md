@@ -157,6 +157,16 @@ Brevo's screens as checked by Claude on 2026-11-07:
    Top right: the small arrow on **"Save"** → **"Save & activate"**.
 6. The same for English: `doi-template-en.html`, subject `Confirm your newsletter sign-up`,
    name `Newsletter confirmation EN`.
+**Done 2026-11-07:** German = **#2** "Newsletter-Bestätigung DE", English = **#3**
+"Newsletter confirmation EN", both active, tag `optin`, sender `newsletter@permaphemera.at`;
+numbers in `.env.remote`; `brevo-setup.mjs` says "ok" for both.
+
+**Replacing the code later** (e.g. after a text change; checked by Claude 2026-11-07):
+Marketing → Templates → **pencil icon** at the right end of the template's row → page of the
+template → **"Edit"** (top right of the "Content" box) → code page with the old code → click
+into the code, Cmd+A, then paste the new code with Cmd+V → **"Save & Quit"** → back on the
+template page: small arrow on **"Save"** → **"Save & activate"**.
+
 7. Note both template numbers (the list shows them as `#1`, `#2`), put them into `.env.remote` as
    `NEWSLETTER_BREVO_TEMPLATE_DE` / `_EN`.
 5. Run `DIRECTUS_ENV_FILE=.env.remote node scripts/brevo-setup.mjs` again: it now checks both
