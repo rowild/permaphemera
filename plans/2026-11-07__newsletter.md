@@ -1,6 +1,6 @@
 # Newsletter: plan of 2026-11-07
 
-Status: **in work on branch `feature/newsletter`** (worktree `.claude/worktrees/newsletter`).
+Status: **in work on branch `feature/newsletter`** (worktree folder `worktree-newsletter/` in the project root; moved there from the hidden `.claude/worktrees/newsletter` on 2026-11-07 at the owner's request: project work stays visible in the project folder).
 Replaces the technical parts of `_Plans/newsletter-subscription.md` (2026-08-13). That plan
 stays as background for the reasons behind the topics (§2), the legal rules (§7) and the
 choice of Brevo (§8). Where the two disagree, this plan wins.
