@@ -43,6 +43,9 @@ deleting.
 10. The invite waits for the start page's wheel intro, at most 30 s.
 11. Privacy page: Brevo named as "Sendinblue SAS (Brevo), Paris, Frankreich" **without street**:
     Brevo's own pages give three different addresses. The exact one comes from the DPA.
+    **Resolved later the same day:** the DPA is Appendix 3 of Brevo's Terms of Service; for
+    users in Austria the contract partner is Brevo GmbH, Köpenicker Str. 126, 10179 Berlin. The
+    privacy page now names it.
 12. Privacy page date set to 7 November 2026 (it changes only with the launch merge).
 13. Consent text in the first person ("Ich möchte …"): a consent is the visitor's own statement;
     the text rules allow legal texts to address the reader. Lawyer checks it later.

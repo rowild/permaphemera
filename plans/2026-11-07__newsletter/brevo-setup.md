@@ -50,25 +50,32 @@ If ALL-INKL cannot take the domain: Cloudflare → Email → Email Routing, rule
 
 1. Sign up at brevo.com (free plan: 300 mails a day, no card). Company data: PERMAPHEMERA,
    Robert Wildling, Göllnergasse 19/30, 1030 Wien. Brevo prints this address in every mail.
-2. Data processing agreement (AV-Vertrag): download it from the account (legal / GDPR section)
-   and keep it. **Copy Brevo's exact company name and address from it** and send it to Claude:
-   the privacy page says "Sendinblue SAS (Brevo), Paris, Frankreich" for now, because Brevo's
-   own pages name three different addresses.
+2. Data processing agreement (AV-Vertrag): **nothing to download.** It is Appendix 3 of the
+   Brevo Terms of Service (https://www.brevo.com/legal/termsofuse/, version 1 October 2025),
+   accepted with the sign-up. Contract partner for users in Germany, Switzerland and Austria:
+   **Brevo GmbH, Köpenicker Str. 126, 10179 Berlin** (HRB 133191, Amtsgericht
+   Charlottenburg); Brevo SAS, 9-17 rue Salneuve, 75017 Paris, is the parent and a
+   sub-processor. The privacy page names Brevo GmbH (read by Claude 2026-11-07).
 
 ## 3. Domain authentication (Brevo + Cloudflare, about 15 min, then up to 48 h waiting)
 
 1. Brevo → Senders, domains & dedicated IPs → Domains → Add a domain → `permaphemera.at`.
-2. Choose the **manual** way (not "automatic"): the automatic way can overwrite the existing
+2. "Branded subdomain" (Brevo's new flow, optional on shared IPs): **yes, prefix `em`** →
+   `em.permaphemera.at`. Brevo then uses our domain for the return-path (SPF aligned with
+   permaphemera.at, so DMARC passes twice) and for image and link addresses. Not `mail`:
+   `mail.permaphemera.at` already answers (wildcard to ALL-INKL) and mail programs may use it.
+   Its CNAMEs: DNS only (grey cloud), like DKIM.
+3. Choose the **manual** way (not "automatic"): the automatic way can overwrite the existing
    DMARC record.
-3. Cloudflare → permaphemera.at → DNS → add exactly the records Brevo shows:
+4. Cloudflare → permaphemera.at → DNS → add exactly the records Brevo shows:
    - the TXT record "brevo-code" on `permaphemera.at`;
    - the DKIM records (usually 2 CNAME, `brevo1._domainkey` and `brevo2._domainkey`):
      **Proxy status "DNS only" (grey cloud)**;
    - DMARC: **add nothing.** `_dmarc.permaphemera.at` exists already (`v=DMARC1; p=none;`).
      Never a second DMARC record.
-4. Back in Brevo: "Authenticate this email domain". Green check = done (can take up to 48 h).
-5. Brevo → Senders → add sender: name `PERMAPHEMERA`, address `newsletter@permaphemera.at`.
-   If Brevo sends a code to that address, it arrives through the forward from step 1.
+5. Back in Brevo: "Authenticate this email domain". Green check = done (can take up to 48 h).
+6. Brevo → Senders → add sender: name `PERMAPHEMERA`, address `newsletter@permaphemera.at`.
+   If Brevo sends a code to that address, it arrives in the ALL-INKL mailbox (section 1).
 
 ## 4. API key and the setup script (about 10 min)
 
