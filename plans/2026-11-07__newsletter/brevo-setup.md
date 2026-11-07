@@ -193,8 +193,14 @@ template page: small arrow on **"Save"** → **"Save & activate"**.
    (`r.em.permaphemera.at`) for Brevo's spam protection; without consent nothing is recorded.
    (Settings → Campaigns → "Default Settings" → tab "Tracking and reports" only has
    "Anonymous email tracking": still counts, not per person. Not needed with the step above.)
-2. Unsubscribe page: Brevo's settings for the unsubscribe form → after unsubscribing, redirect
-   to `https://permaphemera.at/newsletter/unsubscribed/`.
+2. Unsubscribe page: **skipped, owner 2026-11-07.** Unsubscribing always starts in a mail, so
+   Brevo's own "Default unsubscribe page" is enough. (A redirect would need one custom
+   unsubscribe page per language under Settings → Campaigns → "Unsubscribe Pages", chosen again
+   in every campaign; the default page itself cannot be edited, only duplicated.)
+   Where the status lives: **only in Brevo.** Directus stores no subscribers; the endpoint
+   only reads the published towns and forwards the sign-up to Brevo. An unsubscribe therefore
+   needs no message to Directus. The site page `/newsletter/unsubscribed/` is not linked by
+   Brevo now.
 3. Unconfirmed sign-ups: look whether Brevo keeps addresses that never clicked the confirmation
    link. If yes, delete those older than 30 days once a month (the privacy page and the
    confirmation mail promise it). Tell Claude what Brevo shows; a monthly job can do it later.
