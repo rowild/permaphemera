@@ -159,7 +159,9 @@ Brevo's screens as checked by Claude on 2026-11-07:
    name `Newsletter confirmation EN`.
 **Done 2026-11-07:** German = **#2** "Newsletter-Bestätigung DE", English = **#3**
 "Newsletter confirmation EN", both active, tag `optin`, sender `newsletter@permaphemera.at`;
-numbers in `.env.remote`; `brevo-setup.mjs` says "ok" for both.
+numbers in `.env.remote`; `brevo-setup.mjs` says "ok" for both. Later the same day Claude put in the
+"Sie" texts and the spelling PermaPhemera (code via the "Edit" page, sender name in both
+templates and in Senders), checked against the files: identical.
 
 **Replacing the code later** (e.g. after a text change; checked by Claude 2026-11-07):
 Marketing → Templates → **pencil icon** at the right end of the template's row → page of the
