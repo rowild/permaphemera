@@ -59,6 +59,24 @@ If ALL-INKL cannot take the domain: Cloudflare → Email → Email Routing, rule
 
 ## 3. Domain authentication (Brevo + Cloudflare, about 15 min, then up to 48 h waiting)
 
+**Done 2026-11-07:** Brevo shows "Domain authenticated and branded" (steps 1–5). The 7
+records in Cloudflare, all **DNS only** (grey cloud):
+
+| Name | Type | Value |
+|---|---|---|
+| `permaphemera.at` | TXT | `brevo-code:25409224c8e5c04f7a7c682ecf36c22a` |
+| `brevo1._domainkey` | CNAME | `b1.permaphemera-at.dkim.brevo.com` |
+| `brevo2._domainkey` | CNAME | `b2.permaphemera-at.dkim.brevo.com` |
+| `em` | CNAME | `em-permaphemera-at.brand.brevosend.com` |
+| `r.em` | CNAME | `em-permaphemera-at.r.brand.brevosend.com` |
+| `img.em` | CNAME | `em-permaphemera-at.img.brand.brevosend.com` |
+| `_dmarc` | TXT | `v=DMARC1; p=none; rua=mailto:rua@dmarc.brevo.com` (the old record, edited) |
+
+The `em` CNAMEs must never be "Proxied" (orange cloud): Cloudflare then hides the CNAME, Brevo
+finds nothing, and Cloudflare's certificate does not cover `r.em` / `img.em` (two levels deep).
+Step 4 below said "DMARC: add nothing"; Brevo asked for `rua=…` in the one existing record,
+so it was edited, not added. Step 6 (sender) is open.
+
 1. Brevo → Senders, domains & dedicated IPs → Domains → Add a domain → `permaphemera.at`.
 2. "Branded subdomain" (Brevo's new flow, optional on shared IPs): **yes, prefix `em`** →
    `em.permaphemera.at`. Brevo then uses our domain for the return-path (SPF aligned with
