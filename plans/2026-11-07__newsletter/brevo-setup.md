@@ -20,6 +20,10 @@ website only (it runs on Hetzner); ignore it, change nothing on that page.
 Cloudflare compared: Cloudflare has all mail records, the ALL-INKL DKIM key
 `kas202609151012._domainkey` included (same value). Steps 1–3 done; step 4 (test) is open.
 
+**Update 2026-11-07, evening:** owner: "mail works" (send and receive). Mailbox login
+`m0838e71` or the address itself. Section 1 done. Brevo account opened with the Gmail address
+as login; that is fine (login ≠ sender; the sender is set in section 3.5).
+
 1. Log in to the ALL-INKL KAS (`kas.all-inkl.com`).
 2. E-Mail → E-Mail-Postfach → "Neues Postfach anlegen": address `newsletter`, domain
    `permaphemera.at`, password "automatisch generieren", XLIST on, save. Write down the login
