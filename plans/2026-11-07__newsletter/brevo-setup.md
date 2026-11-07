@@ -117,7 +117,7 @@ not recommended"); never use it for the newsletter.
 3. On the Mac, in `directus/`:
    `DIRECTUS_ENV_FILE=.env.remote node scripts/brevo-setup.mjs --dry-run`, then without
    `--dry-run`. It creates the folder, the lists "Newsletter DE" / "Newsletter EN" and the
-   contact attributes, and prints the lines `NEWSLETTER_LIST_DE=…` / `…_EN=…` for `.env.remote`.
+   contact attributes, and prints the lines `NEWSLETTER_BREVO_LIST_DE=…` / `…_EN=…` for `.env.remote`.
    **Done 2026-11-07:** key in `.env.remote` (plain `xkeysib-` form); script run: folder
    PERMAPHEMERA, lists **Newsletter DE = 6**, **Newsletter EN = 7**, the 9 `NL_` attributes.
    `.env.remote` has all `NEWSLETTER_*` lines; the two template ids are still empty.
@@ -136,7 +136,7 @@ not recommended"); never use it for the newsletter.
 2. In the template settings add the tag **`optin`** (that makes it a double-opt-in template).
    Activate it.
 3. The same with `doi-template-en.html` (subject "Confirm your newsletter sign-up").
-4. Note both template ids, put them into `.env.remote` as `NEWSLETTER_TEMPLATE_DE` / `_EN`.
+4. Note both template ids, put them into `.env.remote` as `NEWSLETTER_BREVO_TEMPLATE_DE` / `_EN`.
 5. Run `DIRECTUS_ENV_FILE=.env.remote node scripts/brevo-setup.mjs` again: it now checks both
    templates (active, tag `optin`, `{{ doubleoptin }}` link, sender).
 

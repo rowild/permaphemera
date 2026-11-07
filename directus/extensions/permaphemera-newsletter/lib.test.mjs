@@ -9,10 +9,10 @@ const TOWNS = new Map([['wien', 'vienna'], ['graz', 'styria'], ['villach', 'cari
 
 const ENV = {
   NEWSLETTER_BREVO_API_KEY: 'xkeysib-test',
-  NEWSLETTER_LIST_DE: 3,
-  NEWSLETTER_LIST_EN: '4',
-  NEWSLETTER_TEMPLATE_DE: 5,
-  NEWSLETTER_TEMPLATE_EN: '6',
+  NEWSLETTER_BREVO_LIST_DE: 3,
+  NEWSLETTER_BREVO_LIST_EN: '4',
+  NEWSLETTER_BREVO_TEMPLATE_DE: 5,
+  NEWSLETTER_BREVO_TEMPLATE_EN: '6',
   NEWSLETTER_SITE_URL: 'https://permaphemera.at/',
   NEWSLETTER_ALLOWED_ORIGINS: 'https://permaphemera.at, http://localhost:4991'
 }
@@ -49,8 +49,8 @@ test('the origin list may also arrive as an array (Directus splits comma values)
 
 test('a missing key or id leaves the endpoint unready', () => {
   assert.equal(readConfig({ ...ENV, NEWSLETTER_BREVO_API_KEY: '' }).ready, false)
-  assert.equal(readConfig({ ...ENV, NEWSLETTER_TEMPLATE_EN: undefined }).ready, false)
-  assert.equal(readConfig({ ...ENV, NEWSLETTER_LIST_DE: 'abc' }).ready, false)
+  assert.equal(readConfig({ ...ENV, NEWSLETTER_BREVO_TEMPLATE_EN: undefined }).ready, false)
+  assert.equal(readConfig({ ...ENV, NEWSLETTER_BREVO_LIST_DE: 'abc' }).ready, false)
   assert.equal(readConfig({}).ready, false)
 })
 

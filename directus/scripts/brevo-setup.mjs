@@ -7,7 +7,7 @@
 //   DIRECTUS_ENV_FILE=.env.remote node scripts/brevo-setup.mjs
 //
 // The key comes from NEWSLETTER_BREVO_API_KEY (environment, else the env file); template ids
-// from NEWSLETTER_TEMPLATE_DE / _EN when they are set. Plan: plans/2026-11-07__newsletter.md.
+// from NEWSLETTER_BREVO_TEMPLATE_DE / _EN when they are set. Plan: plans/2026-11-07__newsletter.md.
 import { fileURLToPath } from 'node:url'
 
 export const SENDER = 'newsletter@permaphemera.at'
@@ -53,10 +53,10 @@ export function planBrevoSetup({ folders, lists, attributes }) {
 export function envLines(listIds, templateIds) {
   const value = (id, label) => id ?? `<id of the ${label} DOI template>`
   return [
-    `NEWSLETTER_LIST_DE=${listIds.de}`,
-    `NEWSLETTER_LIST_EN=${listIds.en}`,
-    `NEWSLETTER_TEMPLATE_DE=${value(templateIds.de, 'German')}`,
-    `NEWSLETTER_TEMPLATE_EN=${value(templateIds.en, 'English')}`
+    `NEWSLETTER_BREVO_LIST_DE=${listIds.de}`,
+    `NEWSLETTER_BREVO_LIST_EN=${listIds.en}`,
+    `NEWSLETTER_BREVO_TEMPLATE_DE=${value(templateIds.de, 'German')}`,
+    `NEWSLETTER_BREVO_TEMPLATE_EN=${value(templateIds.en, 'English')}`
   ].join('\n')
 }
 
@@ -128,9 +128,9 @@ async function main() {
       () => brevo('POST', `/contacts/attributes/normal/${attribute.name}`, { type: attribute.type }))
   }
 
-  const templateIds = { de: Number(read('NEWSLETTER_TEMPLATE_DE')) || null, en: Number(read('NEWSLETTER_TEMPLATE_EN')) || null }
+  const templateIds = { de: Number(read('NEWSLETTER_BREVO_TEMPLATE_DE')) || null, en: Number(read('NEWSLETTER_BREVO_TEMPLATE_EN')) || null }
   for (const [language, id] of Object.entries(templateIds)) {
-    if (!id) { console.log(`template ${language}: not set yet (NEWSLETTER_TEMPLATE_${language.toUpperCase()})`); continue }
+    if (!id) { console.log(`template ${language}: not set yet (NEWSLETTER_BREVO_TEMPLATE_${language.toUpperCase()})`); continue }
     const problems = templateProblems(await brevo('GET', `/smtp/templates/${id}`))
     console.log(problems.length ? problems.map((p) => `! ${p}`).join('\n') : `template ${language} (${id}): ok`)
   }

@@ -71,8 +71,8 @@ export async function checkBrevoKey(apiKey, fetchImpl = fetch) {
 export function readConfig(env = {}) {
   const config = {
     apiKey: brevoApiKey(env.NEWSLETTER_BREVO_API_KEY),
-    lists: { de: positiveInt(env.NEWSLETTER_LIST_DE), en: positiveInt(env.NEWSLETTER_LIST_EN) },
-    templates: { de: positiveInt(env.NEWSLETTER_TEMPLATE_DE), en: positiveInt(env.NEWSLETTER_TEMPLATE_EN) },
+    lists: { de: positiveInt(env.NEWSLETTER_BREVO_LIST_DE), en: positiveInt(env.NEWSLETTER_BREVO_LIST_EN) },
+    templates: { de: positiveInt(env.NEWSLETTER_BREVO_TEMPLATE_DE), en: positiveInt(env.NEWSLETTER_BREVO_TEMPLATE_EN) },
     siteUrl: String(env.NEWSLETTER_SITE_URL ?? '').trim().replace(/\/+$/, ''),
     allowedOrigins: listOf(env.NEWSLETTER_ALLOWED_ORIGINS).map((origin) => origin.replace(/\/+$/, ''))
   }

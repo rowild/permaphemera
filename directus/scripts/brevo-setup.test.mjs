@@ -37,10 +37,10 @@ test('the attribute set: one date, the rest text, all with the NL_ prefix', () =
 
 test('the env lines name the lists and leave the templates to fill in', () => {
   assert.equal(envLines({ de: 3, en: 4 }, { de: null, en: 6 }), [
-    'NEWSLETTER_LIST_DE=3',
-    'NEWSLETTER_LIST_EN=4',
-    'NEWSLETTER_TEMPLATE_DE=<id of the German DOI template>',
-    'NEWSLETTER_TEMPLATE_EN=6'
+    'NEWSLETTER_BREVO_LIST_DE=3',
+    'NEWSLETTER_BREVO_LIST_EN=4',
+    'NEWSLETTER_BREVO_TEMPLATE_DE=<id of the German DOI template>',
+    'NEWSLETTER_BREVO_TEMPLATE_EN=6'
   ].join('\n'))
 })
 
