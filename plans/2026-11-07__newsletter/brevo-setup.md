@@ -15,6 +15,11 @@ Checked again 2026-11-07 (owner's KAS screenshots + DNS): the domain is in the K
 or forward for the domain yet. The KAS warning "not connected to our web space" is about the
 website only (it runs on Hetzner); ignore it, change nothing on that page.
 
+**Update 2026-11-07, later:** the owner created the mailbox. The server now knows the domain
+("User unknown" for a made-up address instead of "Relay access denied"). KAS DNS list and
+Cloudflare compared: Cloudflare has all mail records, the ALL-INKL DKIM key
+`kas202609151012._domainkey` included (same value). Steps 1–3 done; step 4 (test) is open.
+
 1. Log in to the ALL-INKL KAS (`kas.all-inkl.com`).
 2. E-Mail → E-Mail-Postfach → "Neues Postfach anlegen": address `newsletter`, domain
    `permaphemera.at`, password "automatisch generieren", XLIST on, save. Write down the login
