@@ -48,7 +48,7 @@ If ALL-INKL cannot take the domain: Cloudflare → Email → Email Routing, rule
 
 ## 2. Brevo account (about 15 min)
 
-1. Sign up at brevo.com (free plan: 300 mails a day, no card). Company data: PERMAPHEMERA,
+1. Sign up at brevo.com (free plan: 300 mails a day, no card). Company data: PermaPhemera,
    Robert Wildling, Göllnergasse 19/30, 1030 Wien. Brevo prints this address in every mail.
 2. Data processing agreement (AV-Vertrag): **nothing to download.** It is Appendix 3 of the
    Brevo Terms of Service (https://www.brevo.com/legal/termsofuse/, version 1 October 2025),
@@ -77,7 +77,7 @@ finds nothing, and Cloudflare's certificate does not cover `r.em` / `img.em` (tw
 Step 4 below said "DMARC: add nothing"; Brevo asked for `rua=…` in the one existing record,
 so it was edited, not added.
 
-**Step 6 done 2026-11-07:** sender `PERMAPHEMERA <newsletter@permaphemera.at>` added. Brevo
+**Step 6 done 2026-11-07:** sender `PermaPhemera <newsletter@permaphemera.at>` added. Brevo
 marked it "Verified" at once, without a code (the domain is authenticated), DKIM
 `permaphemera.at` ✓, "DMARC is configured" ✓. The older sender
 `PermaPhemera <robertwildling@gmail.com>` stays in the list (Brevo warns "Freemail domain is
@@ -98,7 +98,7 @@ not recommended"); never use it for the newsletter.
    - DMARC: **add nothing.** `_dmarc.permaphemera.at` exists already (`v=DMARC1; p=none;`).
      Never a second DMARC record.
 5. Back in Brevo: "Authenticate this email domain". Green check = done (can take up to 48 h).
-6. Brevo → Senders → add sender: name `PERMAPHEMERA`, address `newsletter@permaphemera.at`.
+6. Brevo → Senders → add sender: name `PermaPhemera`, address `newsletter@permaphemera.at`.
    If Brevo sends a code to that address, it arrives in the ALL-INKL mailbox (section 1).
 
 ## 4. API key and the setup script (about 10 min)
@@ -150,7 +150,7 @@ Brevo's screens as checked by Claude on 2026-11-07:
    filled in before the jump into the code page):
    - **Sender email**: preset is the Gmail address with a red warning; choose
      `newsletter@permaphemera.at` instead.
-   - **Sender name**: `PERMAPHEMERA`.
+   - **Sender name**: `PermaPhemera`.
    - **Subject line**: `Anmeldung zum Newsletter bestätigen`.
    - **Show advanced settings** → **Tag**: `optin` (that makes it a confirmation mail).
 5. Name (pencil next to "New template"): `Newsletter-Bestätigung DE`.

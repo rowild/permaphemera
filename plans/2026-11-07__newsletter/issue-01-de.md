@@ -8,18 +8,18 @@ angesprochen, §1.6, Ausnahme für den direkten Austausch).
 
 ---
 
-**Betreff:** PERMAPHEMERA ist online: 26 Ausstellungen, 18 als 360°-Rundgang
+**Betreff:** PermaPhemera ist online: 26 Ausstellungen, 18 als 360°-Rundgang
 
 **Vorschautext:** Galerien und Ausstellungsorte in Kärnten und der Steiermark, Künstler:innen,
 Rundgänge und was als Nächstes kommt.
 
 ---
 
-## PERMAPHEMERA ist online
+## PermaPhemera ist online
 
 Guten Tag,
 
-vielen Dank, dass Sie den Newsletter von PERMAPHEMERA abonniert haben. In dieser ersten
+vielen Dank, dass Sie den Newsletter von PermaPhemera abonniert haben. In dieser ersten
 Ausgabe erfahren Sie, was das Archiv schon enthält.
 
 Unter [permaphemera.at](https://permaphemera.at) steht ein Archiv von Ausstellungen in
@@ -71,7 +71,7 @@ Sie möchten eine Ausstellung für einen 360°-Rundgang vorschlagen, einen Eintr
 korrigieren? Schreiben Sie gerne über [permaphemera.at/contact/](https://permaphemera.at/contact/).
 
 Herzliche Grüße
-Robert Wildling, PERMAPHEMERA
+Robert Wildling, PermaPhemera
 
 ---
 
@@ -81,7 +81,7 @@ Sie erhalten diesen Newsletter, weil Sie sich auf permaphemera.at angemeldet hab
 einmal im Monat, nur wenn es Neues gibt.
 [Abmelden]({{ unsubscribe }}) · [Impressum](https://permaphemera.at/imprint/) ·
 [Datenschutz](https://permaphemera.at/privacy/)
-PERMAPHEMERA · Robert Wildling · Göllnergasse 19/30, 1030 Wien, Österreich
+PermaPhemera · Robert Wildling · Göllnergasse 19/30, 1030 Wien, Österreich
 
 ## Offen vor dem Versand
 

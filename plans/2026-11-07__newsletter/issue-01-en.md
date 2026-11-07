@@ -5,18 +5,18 @@ again before sending).
 
 ---
 
-**Subject:** PERMAPHEMERA is online: 26 exhibitions, 18 as 360° tours
+**Subject:** PermaPhemera is online: 26 exhibitions, 18 as 360° tours
 
 **Preview text:** Galleries and exhibition venues in Carinthia and Styria, artists, tours and
 what comes next.
 
 ---
 
-## PERMAPHEMERA is online
+## PermaPhemera is online
 
 Hello,
 
-thank you for subscribing to the PERMAPHEMERA newsletter. This first issue shows you what
+thank you for subscribing to the PermaPhemera newsletter. This first issue shows you what
 the archive already holds.
 
 [permaphemera.at](https://permaphemera.at/en/) is an archive of exhibitions in Austrian
@@ -67,7 +67,7 @@ Would you like to suggest an exhibition for a 360° tour, add to an entry or cor
 welcome to write via [permaphemera.at/en/contact/](https://permaphemera.at/en/contact/).
 
 Kind regards
-Robert Wildling, PERMAPHEMERA
+Robert Wildling, PermaPhemera
 
 ---
 
@@ -77,4 +77,4 @@ You receive this newsletter because you signed up on permaphemera.at. It comes o
 only when there is news.
 [Unsubscribe]({{ unsubscribe }}) · [Imprint](https://permaphemera.at/en/imprint/) ·
 [Privacy](https://permaphemera.at/en/privacy/)
-PERMAPHEMERA · Robert Wildling · Göllnergasse 19/30, 1030 Vienna, Austria
+PermaPhemera · Robert Wildling · Göllnergasse 19/30, 1030 Vienna, Austria

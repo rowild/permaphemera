@@ -24,7 +24,7 @@ LOG="$STACK/brevo-keepalive.log"
     *)
       if [ -f "$MAIL_ENV" ]; then
         . "$MAIL_ENV"
-        printf 'From: %s\r\nTo: %s\r\nSubject: PERMAPHEMERA: Brevo-Key des Newsletters geht nicht\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nDie wöchentliche Prüfung des Brevo-API-Schlüssels ist fehlgeschlagen:\r\n\r\n  %s\r\n\r\nSolange das so ist, kann sich niemand zum Newsletter anmelden.\r\nBrevo → SMTP & API → API keys: Ist der Schlüssel "permaphemera-newsletter" aktiv?\r\nBrevo → Security → Authorized IPs: Steht 138.199.205.241 dort?\r\nLog: %s\r\n' \
+        printf 'From: %s\r\nTo: %s\r\nSubject: PermaPhemera: Brevo-Key des Newsletters geht nicht\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nDie wöchentliche Prüfung des Brevo-API-Schlüssels ist fehlgeschlagen:\r\n\r\n  %s\r\n\r\nSolange das so ist, kann sich niemand zum Newsletter anmelden.\r\nBrevo → SMTP & API → API keys: Ist der Schlüssel "permaphemera-newsletter" aktiv?\r\nBrevo → Security → Authorized IPs: Steht 138.199.205.241 dort?\r\nLog: %s\r\n' \
           "$NEWS_REPORT_FROM" "$NEWS_REPORT_TO" "$ANSWER" "$LOG" \
         | curl --silent --show-error --ssl-reqd --connect-timeout 20 --max-time 90 --url "$SMTP_URL" \
             --user "$SMTP_USER:$SMTP_PASS" --mail-from "$NEWS_REPORT_FROM" --mail-rcpt "$NEWS_REPORT_TO" --upload-file - \
