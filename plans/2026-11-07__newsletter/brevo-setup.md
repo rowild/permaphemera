@@ -176,8 +176,22 @@ template page: small arrow on **"Save"** → **"Save & activate"**.
 
 ## 6. Settings in Brevo (about 5 min)
 
-1. **Tracking off:** open and click tracking off (account default if Brevo offers it, and in
-   each campaign's settings). The privacy page says nothing is measured.
+1. **Tracking off.** The privacy page says opens and clicks are not measured. Brevo has **no
+   plain "tracking off" switch** (checked by Claude 2026-11-07; Brevo staff refuse a full
+   switch-off except for Enterprise plans: help.brevo.com "About email tracking pixels and the
+   CNIL recommendation"). What works: track only contacts who gave tracking consent, and never
+   ask for it. Steps, checked on the real screens:
+   1. Left menu, bottom: **"Settings"** (gear icon). → The settings menu opens.
+   2. In the settings menu, under "CRM": **"Contacts"**. → A list of contact settings opens.
+   3. Click **"Per-contact pixel tracking consent"**. → Page with "Per-contact tracking consent",
+      **"Yes" / "No"** (preset "No" = everybody is tracked).
+   4. Click **"Yes"**. → A second question appears: **"Track contacts whose consent is unknown"**.
+   5. Leave it on **"No"** (preset).
+   6. Click the black button **"Save"**.
+   Not offered there: links in campaigns may still pass through Brevo's link address
+   (`r.em.permaphemera.at`) for Brevo's spam protection; without consent nothing is recorded.
+   (Settings → Campaigns → "Default Settings" → tab "Tracking and reports" only has
+   "Anonymous email tracking": still counts, not per person. Not needed with the step above.)
 2. Unsubscribe page: Brevo's settings for the unsubscribe form → after unsubscribing, redirect
    to `https://permaphemera.at/newsletter/unsubscribed/`.
 3. Unconfirmed sign-ups: look whether Brevo keeps addresses that never clicked the confirmation
