@@ -508,10 +508,8 @@ const STATIC_PAGES = [
   { path: '/how-it-works/', title: 'howItWorksPage.seoTitle', description: 'howItWorksPage.seoDescription', changeFrequency: 'monthly', priority: '0.5' },
   { path: '/contact/', title: 'contactPage.seoTitle', description: 'contactPage.seoDescription', changeFrequency: 'yearly', priority: '0.4' },
   { path: '/newsletter/', title: 'newsletter.seoTitle', description: 'newsletter.seoDescription', changeFrequency: 'yearly', priority: '0.4' },
-  // Where the confirmation and the unsubscribe links lead: no page for search engines.
-  ...['confirmed', 'unsubscribed'].map((page) => ({
-    path: `/newsletter/${page}/`, title: `newsletter.${page}.seoTitle`, description: `newsletter.${page}.seoDescription`, changeFrequency: 'yearly', priority: '0.1', noIndex: true
-  })),
+  // Where the confirmation link leads: no page for search engines.
+  { path: '/newsletter/confirmed/', title: 'newsletter.confirmed.seoTitle', description: 'newsletter.confirmed.seoDescription', changeFrequency: 'yearly', priority: '0.1', noIndex: true },
   ...['imprint', 'privacy', 'terms', 'accessibility'].map((page) => ({
     path: `/${page}/`, title: `legal.${page}.seoTitle`, description: `legal.${page}.seoDescription`, changeFrequency: 'yearly', priority: '0.2'
   }))

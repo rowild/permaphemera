@@ -126,8 +126,9 @@ an address. `ArchiveNewsletterForm` (`page` on `/newsletter/`, `compact` in the 
 through `useNewsletterSubscription` to `<NUXT_PUBLIC_DIRECTUS_URL>/newsletter/subscribe`, the
 Directus endpoint extension `../directus/extensions/permaphemera-newsletter/` (no PHP). Pure
 logic (topics, towns by state from the published `pp_locations`, request body, invite rule) is
-`app/utils/newsletter.ts`. `/newsletter/confirmed/` and `/newsletter/unsubscribed/` are where
-Brevo's links lead (`NewsletterStatusPage`, `noindex` in `shared/seo.mjs`). The invite
+`app/utils/newsletter.ts`. `/newsletter/confirmed/` is where
+Brevo's confirmation link leads (`NewsletterStatusPage`, `noindex` in `shared/seo.mjs`); unsubscribing
+stays on Brevo's own page (owner, 2026-11-07). The invite
 (`ArchiveNewsletterInvite` in `app.vue`, state in `useNewsletterInvite`, localStorage
 `permaphemera-newsletter-invite`, listed on the privacy page) comes 10 s after the page is ready,
 never with the cookie notice open, on the start page only after the wheel intro

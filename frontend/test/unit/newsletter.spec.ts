@@ -88,7 +88,7 @@ describe('the invite', () => {
 
   it.each([
     '/privacy/', '/en/privacy/', '/imprint/', '/terms/', '/accessibility/', '/en/accessibility/',
-    '/newsletter/', '/newsletter/confirmed/', '/en/newsletter/unsubscribed/'
+    '/newsletter/', '/newsletter/confirmed/', '/en/newsletter/confirmed/'
   ])('stays away from %s', (path) => {
     expect(inviteSuppressedOn(path)).toBe(true)
   })

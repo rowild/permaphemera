@@ -175,17 +175,16 @@ describe('staticSeoEntries', () => {
     expect(list.filter((item) => item.locale === 'de').map((item) => item.path)).toEqual([
       '/', '/exhibitions/', '/exhibitions/current/', '/exhibitions/upcoming/', '/exhibitions/past/', '/artists/', '/venues/', '/organisations/',
       '/events/', '/news/', '/about/', '/how-it-works/', '/contact/',
-      '/newsletter/', '/newsletter/confirmed/', '/newsletter/unsubscribed/',
+      '/newsletter/', '/newsletter/confirmed/',
       '/imprint/', '/privacy/', '/terms/', '/accessibility/'
     ])
   })
 
-  it('keeps the two newsletter landing pages out of search engines, the sign-up page in', () => {
+  it('keeps the confirmation page out of search engines, the sign-up page in', () => {
     const list = staticSeoEntries(messages, {})
     const robots = (path: string) => list.filter((item) => item.path === path).map((item) => item.noIndex)
     expect(robots('/newsletter/')).toEqual([false, false])
     expect(robots('/newsletter/confirmed/')).toEqual([true, true])
-    expect(robots('/newsletter/unsubscribed/')).toEqual([true, true])
     expect(list.find((item) => item.path === '/newsletter/confirmed/' && item.locale === 'en')!.title).toBe('Sign-up confirmed · PERMAPHEMERA')
   })
 })

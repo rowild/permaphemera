@@ -1179,15 +1179,6 @@
       "intro": "Thank you! Your e-mail address is confirmed. You will receive the newsletter once a month, only when there is news. Every issue has a link to unsubscribe.",
       "toExhibitions": "To the exhibitions",
       "toStart": "To the start page"
-    },
-    "unsubscribed": {
-      "seoTitle": "Unsubscribed · PERMAPHEMERA",
-      "seoDescription": "The PERMAPHEMERA newsletter has been unsubscribed.",
-      "breadcrumb": "Unsubscribed",
-      "title": "Unsubscribed",
-      "intro": "You will no longer receive the newsletter at this e-mail address. You can sign up again at any time.",
-      "again": "Sign up again",
-      "toStart": "To the start page"
     }
   }
 }

@@ -3,5 +3,5 @@ usePageSeo('/newsletter/confirmed/')
 </script>
 
 <template>
-  <NewsletterStatusPage page="confirmed" />
+  <NewsletterStatusPage />
 </template>

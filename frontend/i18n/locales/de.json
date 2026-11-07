@@ -1179,15 +1179,6 @@
       "intro": "Vielen Dank! Ihre E-Mail-Adresse ist bestätigt. Sie erhalten den Newsletter einmal im Monat, nur wenn es Neues gibt. Jede Ausgabe enthält einen Link zum Abmelden.",
       "toExhibitions": "Zu den Ausstellungen",
       "toStart": "Zur Startseite"
-    },
-    "unsubscribed": {
-      "seoTitle": "Abgemeldet · PERMAPHEMERA",
-      "seoDescription": "Die Abmeldung vom Newsletter von PERMAPHEMERA ist erfolgt.",
-      "breadcrumb": "Abgemeldet",
-      "title": "Abgemeldet",
-      "intro": "Sie erhalten an diese E-Mail-Adresse keinen Newsletter mehr. Sie können sich jederzeit wieder anmelden.",
-      "again": "Neu anmelden",
-      "toStart": "Zur Startseite"
     }
   }
 }

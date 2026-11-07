@@ -53,8 +53,8 @@ Brevo: sends the confirmation mail; after the click the contact joins the list
 /newsletter/confirmed/  (or /en/newsletter/confirmed/)
 ```
 
-Unsubscribe: the link in every Brevo mail. Brevo's unsubscribe page can send the reader on to
-`/newsletter/unsubscribed/`.
+Unsubscribe: the link in every Brevo mail leads to Brevo's own unsubscribe page; the status lives
+only in Brevo (owner, 2026-11-07: no page of our own, no redirect).
 
 ## 3. The endpoint
 
@@ -116,7 +116,7 @@ Brevo segment can ask "`NL_TOWNS` contains `|graz|`" and a new town needs no cha
 | `ArchiveNewsletterForm.vue` | The form, `variant: 'page' | 'compact'`. |
 | `ArchiveTownSelect.vue` | Towns grouped by federal state. |
 | `ArchiveNewsletterInvite.vue` | The small invite (bottom panel, `archive-modal-frame`). |
-| `pages/newsletter/index.vue`, `confirmed.vue`, `unsubscribed.vue` | The three routes (de unprefixed, en under `/en/`). |
+| `pages/newsletter/index.vue`, `confirmed.vue` | The two routes (de unprefixed, en under `/en/`). The page `unsubscribed.vue` was removed 2026-11-07. |
 | `i18n/locales/*.json` | `newsletter.*` keys; privacy: the "planned" section becomes the Brevo section. |
 | `shared/seo.mjs` | `/newsletter/` in the sitemap; the two other pages `noindex`. |
 
@@ -131,7 +131,7 @@ after a sign-up never again; on phones a bottom panel, never the full screen.
 | 0 | Brevo account, domain, mail address, lists, templates, key | owner (`brevo-setup.md`) | open |
 | 1 | Directus endpoint extension + tests | Claude | done 2026-11-07 |
 | 2 | `brevo-setup.mjs` (lists, attributes, template check) | Claude | done 2026-11-07 |
-| 3 | Form, page, confirmed and unsubscribed pages | Claude | done 2026-11-07 |
+| 3 | Form, page, confirmed page (unsubscribed page removed later) | Claude | done 2026-11-07 |
 | 4 | Menu item (Directus, draft, footer group information = also the header popup) | Claude | done 2026-11-07 |
 | 5 | Invite | Claude | done 2026-11-07 |
 | 6 | Privacy texts, SEO, checks, QA | Claude | done 2026-11-07 |
