@@ -137,7 +137,9 @@ ready: `worktree-newsletter/plans/2026-11-07__newsletter/doi-template-de.html` a
 Brevo's screens as checked by Claude on 2026-11-07:
 
 1. Brevo, left menu: **Marketing → Templates** → button **"Create template"** (top right).
-   A window "Create an email" opens: close it with the **×** (the content comes in step 3).
+   A window "What template do you want to create?" opens: click **"Email template"**.
+   Then a window "Create an email" opens: close it with the **×** (the content comes in step 3).
+   The page now has two halves: left "Content" with "Add content", right the sender fields.
    Note: opening the code editor (step 3) already creates the template in Brevo's list, even
    without saving. (Claude's test template #1 was deleted on the owner's request.)
 2. Right side of the page:
