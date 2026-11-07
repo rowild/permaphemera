@@ -96,8 +96,8 @@ Environment (Directus `.env`, production: `directus/.env.remote`, never in git):
 | `NEWSLETTER_BREVO_API_KEY` | `xkeysib-…` | Without it every request answers `unavailable`. |
 | `NEWSLETTER_BREVO_LIST_DE`, `NEWSLETTER_BREVO_LIST_EN` | `3`, `4` | Brevo list ids (`directus/scripts/brevo-setup.mjs` prints them). |
 | `NEWSLETTER_BREVO_TEMPLATE_DE`, `NEWSLETTER_BREVO_TEMPLATE_EN` | `5`, `6` | Ids of the two DOI templates. |
-| `NEWSLETTER_SITE_URL` | `https://permaphemera.at` | Base of the redirect after the confirmation. |
-| `NEWSLETTER_ALLOWED_ORIGINS` | `https://permaphemera.at,http://localhost:4991` | Comma list. |
+| `NEWSLETTER_BREVO_SITE_URL` | `https://permaphemera.at` | Base of the redirect after the confirmation. |
+| `NEWSLETTER_BREVO_ALLOWED_ORIGINS` | `https://permaphemera.at,http://localhost:4991` | Comma list. |
 
 Brevo contact attributes (all text, except the date; created by `brevo-setup.mjs`):
 `NL_NAME`, `NL_LANGUAGE`, `NL_TOPICS`, `NL_TOWNS`, `NL_REGIONS`, `NL_SOURCE`, `NL_SIGNUP_URL`,

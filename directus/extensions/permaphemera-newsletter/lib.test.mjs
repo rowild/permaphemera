@@ -13,8 +13,8 @@ const ENV = {
   NEWSLETTER_BREVO_LIST_EN: '4',
   NEWSLETTER_BREVO_TEMPLATE_DE: 5,
   NEWSLETTER_BREVO_TEMPLATE_EN: '6',
-  NEWSLETTER_SITE_URL: 'https://permaphemera.at/',
-  NEWSLETTER_ALLOWED_ORIGINS: 'https://permaphemera.at, http://localhost:4991'
+  NEWSLETTER_BREVO_SITE_URL: 'https://permaphemera.at/',
+  NEWSLETTER_BREVO_ALLOWED_ORIGINS: 'https://permaphemera.at, http://localhost:4991'
 }
 
 const body = (overrides = {}) => ({
@@ -44,7 +44,7 @@ test('a complete environment is ready; numbers may arrive as strings or numbers'
 })
 
 test('the origin list may also arrive as an array (Directus splits comma values)', () => {
-  assert.deepEqual(readConfig({ ...ENV, NEWSLETTER_ALLOWED_ORIGINS: ['https://permaphemera.at'] }).allowedOrigins, ['https://permaphemera.at'])
+  assert.deepEqual(readConfig({ ...ENV, NEWSLETTER_BREVO_ALLOWED_ORIGINS: ['https://permaphemera.at'] }).allowedOrigins, ['https://permaphemera.at'])
 })
 
 test('a missing key or id leaves the endpoint unready', () => {

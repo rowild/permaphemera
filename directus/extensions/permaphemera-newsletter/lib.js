@@ -73,8 +73,8 @@ export function readConfig(env = {}) {
     apiKey: brevoApiKey(env.NEWSLETTER_BREVO_API_KEY),
     lists: { de: positiveInt(env.NEWSLETTER_BREVO_LIST_DE), en: positiveInt(env.NEWSLETTER_BREVO_LIST_EN) },
     templates: { de: positiveInt(env.NEWSLETTER_BREVO_TEMPLATE_DE), en: positiveInt(env.NEWSLETTER_BREVO_TEMPLATE_EN) },
-    siteUrl: String(env.NEWSLETTER_SITE_URL ?? '').trim().replace(/\/+$/, ''),
-    allowedOrigins: listOf(env.NEWSLETTER_ALLOWED_ORIGINS).map((origin) => origin.replace(/\/+$/, ''))
+    siteUrl: String(env.NEWSLETTER_BREVO_SITE_URL ?? '').trim().replace(/\/+$/, ''),
+    allowedOrigins: listOf(env.NEWSLETTER_BREVO_ALLOWED_ORIGINS).map((origin) => origin.replace(/\/+$/, ''))
   }
   config.ready = Boolean(config.apiKey && config.siteUrl
     && config.lists.de && config.lists.en && config.templates.de && config.templates.en)
