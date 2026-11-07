@@ -138,21 +138,22 @@ Brevo's screens as checked by Claude on 2026-11-07:
 
 1. Brevo, left menu: **Marketing → Templates** → button **"Create template"** (top right).
    A window "What template do you want to create?" opens: click **"Email template"**.
-   Then a window "Create an email" opens: close it with the **×** (the content comes in step 3).
    The page now has two halves: left "Content" with "Add content", right the sender fields.
-   Note: opening the code editor (step 3) already creates the template in Brevo's list, even
+   Note: opening the code editor (step 2) already creates the template in Brevo's list, even
    without saving. (Claude's test template #1 was deleted on the owner's request.)
-2. Right side of the page:
+2. Left side, **"Add content"** → window "Create an email" → the black button
+   **"Create from scratch ⌄"** is a **menu** (small arrow): click it → 3 choices → **"HTML custom
+   code"**. A big empty white box opens: that is the code field.
+3. In the editor, open `doi-template-de.html`, select all (Cmd+A), copy (Cmd+C). In Brevo click
+   into the white box, paste (Cmd+V). Top right: **"Save & Quit"**.
+4. Back on the template page, right side (after the content, in case Brevo forgets fields
+   filled in before the jump into the code page):
    - **Sender email**: preset is the Gmail address with a red warning; choose
      `newsletter@permaphemera.at` instead.
    - **Sender name**: `PERMAPHEMERA`.
    - **Subject line**: `Anmeldung zum Newsletter bestätigen`.
    - **Show advanced settings** → **Tag**: `optin` (that makes it a confirmation mail).
-3. Left side, **"Add content"** → black button **"Create from scratch"** → **"HTML custom code"**.
-   A big empty white box opens: that is the code field.
-4. In the editor, open `doi-template-de.html`, select all (Cmd+A), copy (Cmd+C). In Brevo click
-   into the white box, paste (Cmd+V). Top right: **"Save & Quit"**.
-5. Back on the template page: name (pencil next to "New template"): `Newsletter-Bestätigung DE`.
+5. Name (pencil next to "New template"): `Newsletter-Bestätigung DE`.
    Top right: the small arrow on **"Save"** → **"Save & activate"**.
 6. The same for English: `doi-template-en.html`, subject `Confirm your newsletter sign-up`,
    name `Newsletter confirmation EN`.
