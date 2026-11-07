@@ -118,6 +118,10 @@ not recommended"); never use it for the newsletter.
    `DIRECTUS_ENV_FILE=.env.remote node scripts/brevo-setup.mjs --dry-run`, then without
    `--dry-run`. It creates the folder, the lists "Newsletter DE" / "Newsletter EN" and the
    contact attributes, and prints the lines `NEWSLETTER_LIST_DE=…` / `…_EN=…` for `.env.remote`.
+   **Done 2026-11-07:** key in `.env.remote` (plain `xkeysib-` form); script run: folder
+   PERMAPHEMERA, lists **Newsletter DE = 6**, **Newsletter EN = 7**, the 9 `NL_` attributes.
+   `.env.remote` has all `NEWSLETTER_*` lines; the two template ids are still empty.
+   Brevo's IP lock was already on: the Mac's address had to be allowed first (owner did it).
 4. Brevo → Security → Authorized IPs: add **`138.199.205.241`** (the Hetzner server). Without it
    Brevo refuses the sign-ups once its IP lock is active. Brevo's blue box "Unauthorized IP
    addresses are not blocked" → "Activate for API keys": **only after** `brevo-setup.mjs` has
