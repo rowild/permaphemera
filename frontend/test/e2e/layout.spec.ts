@@ -1,6 +1,6 @@
 import { expect, test, width } from './fixtures'
 
-const PAGES = ['/', '/exhibitions/', '/venues/', '/organisations/', '/artists/', '/news/', '/about/', '/exhibitions/blinddate-der-perspektiven/', '/venues/parkschloessl-spittal-drau/', '/persons/ondina-altran/', '/imprint/', '/en/contact/']
+const PAGES = ['/', '/exhibitions/', '/venues/', '/organisations/', '/artists/', '/news/', '/about/', '/exhibitions/blinddate-der-perspektiven/', '/venues/parkschloessl-spittal-drau/', '/persons/ondina-altran/', '/imprint/', '/en/contact/', '/newsletter/', '/en/newsletter/confirmed/']
 
 test.describe('page frame', () => {
   for (const path of PAGES) {

@@ -59,9 +59,13 @@ export const test = base.extend<object, { directus: Directus }>({
     await request.dispose()
   }, { scope: 'worker' }],
 
-  // Every test also starts with the cookie choice made, so the notice never covers the page.
+  // Every test also starts with the cookie choice made and the newsletter invite closed, so
+  // neither covers the page (test/e2e/newsletter.spec.ts removes the second for its own tests).
   page: async ({ page, baseURL, directus }, use) => {
-    await page.addInitScript(() => localStorage.setItem('permaphemera-cookie-consent', JSON.stringify({ version: 2, googleMaps: 'denied', youtube: 'denied', savedAt: Date.now() })))
+    await page.addInitScript(() => {
+      localStorage.setItem('permaphemera-cookie-consent', JSON.stringify({ version: 2, googleMaps: 'denied', youtube: 'denied', savedAt: Date.now() }))
+      localStorage.setItem('permaphemera-newsletter-invite', JSON.stringify({ state: 'dismissed', savedAt: Date.now(), version: 1 }))
+    })
     const origin = new URL(baseURL!).origin
     await page.route((url) => url.pathname.startsWith('/cms/') && url.origin !== origin, async (route) => {
       const { status, headers, body } = await directus(route.request().url())
