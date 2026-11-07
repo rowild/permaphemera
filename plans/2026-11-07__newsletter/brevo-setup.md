@@ -9,13 +9,29 @@ Today mail to `…@permaphemera.at` bounces: ALL-INKL's server `w00c8d25.kasserv
 "Relay access denied" (checked 2026-11-07). The DNS already points mail to ALL-INKL; only the
 ALL-INKL account must take the domain.
 
-1. Log in to the ALL-INKL KAS.
-2. Check that `permaphemera.at` is a domain of the account (Domain menu). If not: add it.
-3. E-Mail → create a forward (Weiterleitung) `newsletter@permaphemera.at` →
-   `robertwildling@gmail.com`. (A real mailbox also works and allows answering as
-   newsletter@permaphemera.at.)
+Checked again 2026-11-07 (owner's KAS screenshots + DNS): the domain is in the KAS account
+(`w00c8d25`), Cloudflare already has MX `w00c8d25.kasserver.com`, SPF
+`include:spf.kasserver.com` and DMARC. Still "Relay access denied": the account has no mailbox
+or forward for the domain yet. The KAS warning "not connected to our web space" is about the
+website only (it runs on Hetzner); ignore it, change nothing on that page.
+
+1. Log in to the ALL-INKL KAS (`kas.all-inkl.com`).
+2. E-Mail → E-Mail-Postfach → "Neues Postfach anlegen": address `newsletter`, domain
+   `permaphemera.at`, password "automatisch generieren", XLIST on, save. Write down the login
+   name (starts with `m0…`) and the password. Active after 5–15 min.
+   (A forward only — E-Mail → Weiterleitung → to `robertwildling@gmail.com` — also works, but
+   cannot send.)
+3. KAS → Tools → DNS-Einstellungen → `permaphemera.at` → Bearbeiten: compare with Cloudflare.
+   If KAS lists a TXT record whose name contains `_domainkey`, copy it to Cloudflare (DNS only).
+   MX, SPF and DMARC are already in Cloudflare.
 4. Test: send a mail to `newsletter@permaphemera.at` **from another address than the Gmail one**
-   (Gmail hides mail it sent itself), check that it arrives.
+   (Gmail hides mail it sent itself); read it in `webmail.all-inkl.com`. Then answer it, to test
+   sending. Mail programs: server `w00c8d25.kasserver.com`, IMAP 993 SSL/TLS, SMTP 465 SSL/TLS
+   (or 587 STARTTLS), login = the mailbox login name.
+5. Still "Relay access denied" after 30 min: ALL-INKL support, +49 35872 353-41,
+   `support@all-inkl.com` ("Domain permaphemera.at, externe Nameserver bei Cloudflare, MX zeigt
+   auf w00c8d25.kasserver.com, Mails an newsletter@permaphemera.at werden mit 554 Relay access
+   denied abgelehnt").
 
 If ALL-INKL cannot take the domain: Cloudflare → Email → Email Routing, rule
 `newsletter@permaphemera.at` → `robertwildling@gmail.com`. Cloudflare then replaces the MX records
