@@ -80,7 +80,8 @@ async function main() {
   let fileEnv = {}
   try { fileEnv = loadEnv() } catch { /* the key may come from the environment alone */ }
   const read = (name) => process.env[name] || fileEnv[name] || ''
-  const key = read('NEWSLETTER_BREVO_API_KEY')
+  const { brevoApiKey } = await import('../extensions/permaphemera-newsletter/lib.js')
+  const key = brevoApiKey(read('NEWSLETTER_BREVO_API_KEY'))
   if (!key) throw new Error('NEWSLETTER_BREVO_API_KEY is not set (environment or the Directus env file)')
 
   const brevo = async (method, path, body) => {

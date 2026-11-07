@@ -36,7 +36,14 @@ ANSWER=$(curl -sS -X POST "https://permaphemera.at/cms/newsletter/subscribe" \
   -d '{"website":"install-check","startedAt":0}')
 echo "endpoint answers: $ANSWER"
 case "$ANSWER" in
-  *'"state":"pending"'*) echo "ok: the endpoint is loaded and configured" ;;
+  *'"state":"pending"'*)
+    echo "ok: the endpoint is loaded and configured"
+    # The weekly Brevo key check (Brevo switches a key off after 90 days without use).
+    scp -q -i "$KEY" hetzner/brevo-keepalive.sh "$HOST:$STACK/brevo-keepalive.sh"
+    ssh -i "$KEY" -o BatchMode=yes "$HOST" "chmod 755 $STACK/brevo-keepalive.sh && \
+      (crontab -l 2>/dev/null | grep -v 'brevo-keepalive.sh'; echo '23 4 * * 1 $STACK/brevo-keepalive.sh') | crontab - && \
+      $STACK/brevo-keepalive.sh; tail -n 1 $STACK/brevo-keepalive.log"
+    ;;
   *'"error":"unavailable"'*) echo "loaded, but the NEWSLETTER_* variables are missing on the server"; exit 1 ;;
   *) echo "unexpected answer; check: ssh $HOST 'cd $STACK/app && docker compose logs --tail 50 directus'"; exit 1 ;;
 esac

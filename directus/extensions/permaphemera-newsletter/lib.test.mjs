@@ -2,7 +2,7 @@
 // node --test extensions/permaphemera-newsletter/*.test.mjs (from directus/)
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { brevoRequest, createRateLimiter, parseSubscription, pipeList, readConfig, stateSlug, subscribe } from './lib.js'
+import { brevoApiKey, brevoRequest, checkBrevoKey, createRateLimiter, parseSubscription, pipeList, readConfig, stateSlug, subscribe } from './lib.js'
 
 const NOW = Date.UTC(2026, 10, 7, 12, 0, 0)
 const TOWNS = new Map([['wien', 'vienna'], ['graz', 'styria'], ['villach', 'carinthia'], ['spittal-an-der-drau', 'carinthia']])
@@ -260,4 +260,28 @@ test('a network failure or a failing town lookup gives upstream_error', async ()
   const broken = async () => { throw new Error('ECONNRESET') }
   assert.deepEqual(await subscribe(body(), deps({ fetch: broken })), { ok: false, error: 'upstream_error' })
   assert.deepEqual(await subscribe(body(), deps({ loadTowns: broken })), { ok: false, error: 'upstream_error' })
+})
+
+test('brevoApiKey takes the plain key and the base64 "MCP" form of it', () => {
+  assert.equal(brevoApiKey('  xkeysib-abc-def  '), 'xkeysib-abc-def')
+  const mcp = Buffer.from(JSON.stringify({ api_key: 'xkeysib-abc-def' })).toString('base64')
+  assert.equal(brevoApiKey(mcp), 'xkeysib-abc-def')
+  assert.equal(brevoApiKey('not-a-key'), 'not-a-key', 'anything else is passed on; Brevo answers 401')
+  assert.equal(brevoApiKey(undefined), '')
+  assert.equal(readConfig({ ...ENV, NEWSLETTER_BREVO_API_KEY: mcp }).apiKey, 'xkeysib-abc-def')
+})
+
+test('checkBrevoKey asks /account once and reports ok, a refusal, or a network error', async () => {
+  const calls = []
+  const ok = await checkBrevoKey('xkeysib-k', async (url, init) => { calls.push([url, init]); return new Response('{}', { status: 200 }) })
+  assert.deepEqual(ok, { ok: true, status: 200, message: '' })
+  assert.equal(calls.length, 1)
+  assert.equal(calls[0][0], 'https://api.brevo.com/v3/account')
+  assert.equal(calls[0][1].headers['api-key'], 'xkeysib-k')
+  const refused = await checkBrevoKey('xkeysib-k', async () => new Response(JSON.stringify({ message: 'Key not found' }), { status: 401 }))
+  assert.deepEqual(refused, { ok: false, status: 401, message: 'Key not found' })
+  const offline = await checkBrevoKey('xkeysib-k', async () => { throw new Error('ECONNRESET') })
+  assert.deepEqual(offline, { ok: false, status: 0, message: 'ECONNRESET' })
+  const never = async () => { throw new Error('never called') }
+  assert.deepEqual(await checkBrevoKey('', never), { ok: false, status: 0, message: 'NEWSLETTER_BREVO_API_KEY is not set' })
 })

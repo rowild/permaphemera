@@ -30,10 +30,47 @@ const listOf = (value) => (Array.isArray(value) ? value : String(value ?? '').sp
   .map((entry) => String(entry).trim())
   .filter(Boolean)
 
+/**
+ * The Brevo key as the REST API wants it (`xkeysib-…`). Brevo's key page also offers an "MCP"
+ * form, base64 of `{"api_key":"xkeysib-…"}`; both forms work here. Anything else is passed on
+ * unchanged, and Brevo answers 401.
+ */
+export function brevoApiKey(raw) {
+  const key = String(raw ?? '').trim()
+  if (!key || key.startsWith('xkeysib-')) return key
+  try {
+    const inner = JSON.parse(Buffer.from(key, 'base64').toString('utf8'))?.api_key
+    return typeof inner === 'string' && inner.trim() ? inner.trim() : key
+  } catch {
+    return key
+  }
+}
+
+/**
+ * One cheap call with the key (GET /account). Brevo switches a key off after 90 days without
+ * use; directus/hetzner/brevo-keepalive.sh runs this every week, so a quiet newsletter keeps it.
+ */
+export async function checkBrevoKey(apiKey, fetchImpl = fetch) {
+  if (!apiKey) return { ok: false, status: 0, message: 'NEWSLETTER_BREVO_API_KEY is not set' }
+  try {
+    const res = await fetchImpl('https://api.brevo.com/v3/account', {
+      method: 'GET',
+      headers: { 'api-key': apiKey, accept: 'application/json' }
+    })
+    if (res.ok) return { ok: true, status: res.status, message: '' }
+    const text = await res.text()
+    let message = text
+    try { message = JSON.parse(text)?.message ?? text } catch { /* not JSON */ }
+    return { ok: false, status: res.status, message: String(message).slice(0, 200) }
+  } catch (error) {
+    return { ok: false, status: 0, message: String(error?.message ?? error) }
+  }
+}
+
 /** The endpoint's settings from the Directus environment. `ready` is false until all are set. */
 export function readConfig(env = {}) {
   const config = {
-    apiKey: String(env.NEWSLETTER_BREVO_API_KEY ?? '').trim(),
+    apiKey: brevoApiKey(env.NEWSLETTER_BREVO_API_KEY),
     lists: { de: positiveInt(env.NEWSLETTER_LIST_DE), en: positiveInt(env.NEWSLETTER_LIST_EN) },
     templates: { de: positiveInt(env.NEWSLETTER_TEMPLATE_DE), en: positiveInt(env.NEWSLETTER_TEMPLATE_EN) },
     siteUrl: String(env.NEWSLETTER_SITE_URL ?? '').trim().replace(/\/+$/, ''),

@@ -100,3 +100,9 @@ Directus container on the same origin, so institutional networks never see a sec
   `umami-retention-permaphemera.sh` (in this folder; a copy sits in the stack folder),
   run nightly at 03:17 from the crontab of `rowild`, log next to it. It touches only
   website `d7a5053b-…`; the privacy policy states the period.
+- Newsletter Brevo key check (from the newsletter launch on): `brevo-keepalive.sh` (in this
+  folder; `install-extension.sh` copies it to the stack folder and adds the cron line of
+  `rowild` `23 4 * * 1`). It calls Brevo's `GET /account` once a week from inside the Directus
+  container, because Brevo switches an API key off after 90 days without use. When it fails
+  it mails `NEWS_REPORT_TO` with the news report's `mail.env`. Log
+  `/srv/stacks/permaphemera.project-backends.info/brevo-keepalive.log`.

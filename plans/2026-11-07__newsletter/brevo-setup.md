@@ -103,8 +103,15 @@ not recommended"); never use it for the newsletter.
 
 ## 4. API key and the setup script (about 10 min)
 
-1. Brevo → SMTP & API → API keys → "Generate a new API key", name `permaphemera-newsletter`.
-   Copy it once (Brevo shows it only once).
+1. Brevo → SMTP & API → API keys → "Generate a new API key", name `permaphemera-newsletter`,
+   expiry "No expiration", access **Restricted** with only: **Contacts: All** (sign-ups, lists,
+   attributes), **Transactional email: Read** (template check), **Account: Read** (key check).
+   Everything else None. Copy it once (Brevo shows it only once). Brevo may show it in its
+   "MCP" form (base64, ends in `==`); the code takes both forms (`brevoApiKey` in the
+   extension's `lib.js`). **Done 2026-11-07** (owner: "Restricted · 3 scopes", no fixed date).
+   Brevo switches a key off after 90 days without use: `directus/hetzner/brevo-keepalive.sh`
+   uses it every Monday 04:23 on the server and mails the owner when it fails (installed by
+   `install-extension.sh` at the launch).
 2. Put it into `directus/.env.remote` (main checkout, never in git) with the other lines from
    `directus/hetzner/.env.example` (section "Newsletter").
 3. On the Mac, in `directus/`:
@@ -112,7 +119,11 @@ not recommended"); never use it for the newsletter.
    `--dry-run`. It creates the folder, the lists "Newsletter DE" / "Newsletter EN" and the
    contact attributes, and prints the lines `NEWSLETTER_LIST_DE=…` / `…_EN=…` for `.env.remote`.
 4. Brevo → Security → Authorized IPs: add **`138.199.205.241`** (the Hetzner server). Without it
-   Brevo refuses the sign-ups once its IP lock is active.
+   Brevo refuses the sign-ups once its IP lock is active. Brevo's blue box "Unauthorized IP
+   addresses are not blocked" → "Activate for API keys": **only after** `brevo-setup.mjs` has
+   run for the last time (step 5.5), because the script runs on the Mac, whose address is not
+   on the list. The Directus container reaches Brevo over IPv4 (Docker's default network has no
+   IPv6), so the one IPv4 address is enough.
 
 ## 5. The two confirmation mails (about 10 min)
 
