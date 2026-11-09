@@ -3,16 +3,8 @@ import { SITE_OWNER } from '~/utils/siteOwner'
 import { NEWSLETTER_TOPICS, buildSubscribeBody, groupTownsByState } from '~/utils/newsletter'
 import type { NewsletterTopic } from '~/utils/newsletter'
 
-// The newsletter sign-up. `page`: address, first and last name, topics, towns, consent (on /newsletter/).
-// `compact`: address and consent only, all topics (the invite); topics and towns stay
-// on the full page. Plan: plans/2026-11-07__newsletter.md §4.
-const props = withDefaults(defineProps<{
-  variant?: 'page' | 'compact'
-  source?: 'page' | 'invite'
-}>(), {
-  variant: 'page',
-  source: 'page'
-})
+// The newsletter sign-up on /newsletter/: address, first and last name, topics, towns, consent.
+// The only form (the invite holds none since 2026-11-09, owner). Plan: plans/2026-11-07__newsletter.md §4.
 
 const emit = defineEmits<{ subscribed: [] }>()
 
@@ -33,7 +25,6 @@ const ids = {
   message: `${uid}-message`
 }
 
-const full = computed(() => props.variant === 'page')
 const email = ref('')
 const firstName = ref('')
 const lastName = ref('')
@@ -61,16 +52,16 @@ const message = computed(() => {
 })
 
 const send = async () => {
-  if (full.value && topics.value.length === 0) {
+  if (topics.value.length === 0) {
     localError.value = 'missing_topic'
     return
   }
   localError.value = null
   await submit(buildSubscribeBody(
-    { email: email.value, firstName: full.value ? firstName.value : '', lastName: full.value ? lastName.value : '', towns: full.value ? towns.value : [], topics: topics.value, consent: consent.value, website: website.value },
+    { email: email.value, firstName: firstName.value, lastName: lastName.value, towns: towns.value, topics: topics.value, consent: consent.value, website: website.value },
     {
       language: locale.value,
-      source: props.source,
+      source: 'page',
       pageUrl: import.meta.client ? `${window.location.origin}${route.path}` : '',
       startedAt
     }
@@ -90,15 +81,13 @@ const send = async () => {
     </div>
 
     <form v-else class="grid gap-6 compact:gap-4" :aria-describedby="message ? ids.message : undefined" @submit.prevent="send">
-      <div class="grid gap-x-6 gap-y-4" :class="{ 'grid-cols-2 compact:grid-cols-1': full }">
-        <ArchiveTextField :id="ids.email" v-model="email" :class="{ 'col-span-2 compact:col-span-1': full }" type="email" autocomplete="email" required :label="$t('newsletter.form.email')" />
-        <template v-if="full">
-          <ArchiveTextField :id="ids.firstName" v-model="firstName" autocomplete="given-name" :label="$t('newsletter.form.firstName')" />
-          <ArchiveTextField :id="ids.lastName" v-model="lastName" autocomplete="family-name" :label="$t('newsletter.form.lastName')" />
-        </template>
+      <div class="grid grid-cols-2 gap-x-6 gap-y-4 compact:grid-cols-1">
+        <ArchiveTextField :id="ids.email" v-model="email" class="col-span-2 compact:col-span-1" type="email" autocomplete="email" required :label="$t('newsletter.form.email')" />
+        <ArchiveTextField :id="ids.firstName" v-model="firstName" autocomplete="given-name" :label="$t('newsletter.form.firstName')" />
+        <ArchiveTextField :id="ids.lastName" v-model="lastName" autocomplete="family-name" :label="$t('newsletter.form.lastName')" />
       </div>
 
-      <fieldset v-if="full" class="m-0 border-0 p-0" data-part="topics">
+      <fieldset class="m-0 border-0 p-0" data-part="topics">
         <legend class="mb-3 font-display text-sm tracking-widest text-archive-red uppercase compact:text-xs">{{ $t('newsletter.form.topicsLegend') }}</legend>
         <div class="grid grid-cols-2 gap-x-8 gap-y-4 compact:grid-cols-1 compact:gap-3">
           <ArchiveCheckbox
@@ -113,7 +102,7 @@ const send = async () => {
         </div>
       </fieldset>
 
-      <fieldset v-if="full" class="m-0 border-0 p-0">
+      <fieldset class="m-0 border-0 p-0">
         <legend class="mb-1 font-display text-sm tracking-widest text-archive-red uppercase compact:text-xs">{{ $t('newsletter.form.townsLegend') }}</legend>
         <p class="m-0 mb-2 text-xs leading-snug text-archive-muted">{{ $t('newsletter.form.townsNote') }}</p>
         <ArchiveTownSelect v-model="towns" :groups="townGroups" />
@@ -140,10 +129,8 @@ const send = async () => {
           {{ sending ? $t('newsletter.form.sending') : $t('newsletter.form.submit') }} <ArchiveArrow v-if="!sending" />
         </ArchiveButton>
         <!-- The invite says the cadence in its own text already. -->
-        <p v-if="full" class="m-0 text-sm text-archive-muted">{{ $t('newsletter.form.cadence') }}</p>
+        <p class="m-0 text-sm text-archive-muted">{{ $t('newsletter.form.cadence') }}</p>
       </div>
-
-      <ArchiveTextLink v-if="!full" class="justify-self-start" :to="localePath('/newsletter/')">{{ $t('newsletter.form.more') }}</ArchiveTextLink>
     </form>
   </div>
 </template>

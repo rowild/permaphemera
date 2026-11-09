@@ -1133,8 +1133,7 @@
       "honeypot": "Website (leave empty)",
       "submit": "Sign up",
       "sending": "Sending …",
-      "cadence": "Once a month, only when there is news.",
-      "more": "Choose topics and towns"
+      "cadence": "Once a month, only when there is news."
     },
     "topics": {
       "new_records": {

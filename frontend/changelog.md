@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.72 - 2026-11-09 18:15:53 CET
+
+- No visible change. Behind the scenes: the short newsletter form of the old corner invite is gone; the sign-up page holds the only form.
+
 ## 0.0.71 - 2026-11-09 17:52:56 CET
 
 - Newsletter: the sign-up form asks for first name and last name in two fields (both optional) instead of one name field. Both reach Brevo's own name fields, so the contact list shows the name.

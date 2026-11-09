@@ -1133,8 +1133,7 @@
       "honeypot": "Website (leer lassen)",
       "submit": "Anmelden",
       "sending": "Wird gesendet …",
-      "cadence": "Einmal im Monat, nur wenn es Neues gibt.",
-      "more": "Themen und Orte wählen"
+      "cadence": "Einmal im Monat, nur wenn es Neues gibt."
     },
     "topics": {
       "new_records": {

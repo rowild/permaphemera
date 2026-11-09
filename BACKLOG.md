@@ -54,6 +54,24 @@ Open questions for the owner: which images matter most (artworks, exhibition pho
 Is a watermark acceptable? Do galleries and artists need to know about these rules (for
 example on `/how-it-works/` or in the terms)?
 
+## Open points from 2026-11-09 (newsletter modal, linked sources)
+
+Added 2026-11-09. Small, but each needs the owner's word or a later moment.
+
+1. **Upload the tours with their room pictures.** Every tour folder has a new `start-view.jpg`
+   (the newsletter modal shows the newest one; until the upload it shows the Parkschlössl).
+   Tours go up apart from the site (owner): `pnpm deploy:hetzner -- --tours <ids> --no-site` in
+   `frontend/`, or the Tour Editor's upload list.
+2. **Read the research notes on the sources:** `plans/2026-11-09__linked-sources/research-notes.md`
+   lists facts in the texts that the linked page does not hold (e.g. Universität Klagenfurt:
+   the text says 13,300 students, aau.at now more than 13,700), pages that will change ("current
+   exhibition" pages), and second pages of the same site. No text was changed for them.
+3. **Two drafts with a web source that cannot be reached:** `dialog-ars-carinthia-kunst-und-handwerk`
+   (the stadtgalerie.net page now answers 404) and `andreas-kuchler` (the vhsktn.at course page
+   is gone). Find a source before publishing; `pnpm check:data` blocks them once published.
+4. **herbert-de-colle:** the CV link `https://herbertdecolle.com/CV` blocks scripts; it was
+   confirmed only through search results. Open it once in a browser.
+
 ## Events: a new collection for festivals and similar events
 
 Added 2026-11-04 by the owner. **Done 2026-11-04, release 0.0.65** (`plans/2026-11-04__events-collection.md`). Kept below as the record of the decisions.

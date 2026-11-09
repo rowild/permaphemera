@@ -31,7 +31,7 @@ usePageSeo('/newsletter/')
     <section class="[ newsletter-signup ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(2.5rem,5vw,5rem)] compact:px-4 compact:py-6" aria-labelledby="newsletter-form-title">
       <ArchiveSectionHeading id="newsletter-form-title" class="mb-8 compact:mb-4">{{ $t('newsletter.formTitle') }}</ArchiveSectionHeading>
       <div class="max-w-232">
-        <ArchiveNewsletterForm variant="page" source="page" />
+        <ArchiveNewsletterForm />
       </div>
     </section>
   </div>
