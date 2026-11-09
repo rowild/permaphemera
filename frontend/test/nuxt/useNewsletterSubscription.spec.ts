@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-const body = { email: 'maria@example.at', name: '', language: 'de', towns: [], topics: ['nearby'], consent: true, consentVersion: 'v', source: 'page' as const, pageUrl: '', website: '', startedAt: 1 }
+const body = { email: 'maria@example.at', firstName: '', lastName: '', language: 'de', towns: [], topics: ['nearby'], consent: true, consentVersion: 'v', source: 'page' as const, pageUrl: '', website: '', startedAt: 1 }
 
 const answer = (json: unknown) => vi.fn(async () => ({ ok: true, json: async () => json }))
 
