@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.69 - 2026-11-09 16:56:16 CET
+
+- Every source under a text is now a link to the exact page it came from: the article, profile or exhibition page, shown with its headline, the site and the date. Biographies, organisation and gallery texts, exhibition descriptions. A printed source without an online copy (a flyer, a poster) stays plain text.
+- The source links open in a new tab; they are quiet like the list and turn red on hover.
+
 ## 0.0.68 - 2026-11-09 15:52:37 CET
 
 - The newsletter has its own menu item: in the footer (Information) and in the menu behind the compass button.
