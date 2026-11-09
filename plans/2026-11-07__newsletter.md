@@ -104,6 +104,9 @@ Brevo contact attributes (all text, except the date; created by `brevo-setup.mjs
 `NL_CONSENT_VERSION`, `NL_SIGNUP_DATE` (date). Lists of values are written as `|a|b|`, so a
 Brevo segment can ask "`NL_TOWNS` contains `|graz|`" and a new town needs no change in Brevo.
 (The old plan's multiple-choice attributes needed every town typed into Brevo by hand.)
+Since 2026-11-09 the form has two name fields; the endpoint also fills Brevo's own `FIRSTNAME` and
+`LASTNAME` (only when given), because the contact list shows those, not `NL_NAME` (owner: new
+contacts showed their address instead of their name).
 
 ## 4. Frontend
 
@@ -113,9 +116,9 @@ Brevo segment can ask "`NL_TOWNS` contains `|graz|`" and a new town needs no cha
 | `app/composables/useNewsletterSubscription.ts` | The POST and its state (`idle`, `sending`, `pending`, `error`). |
 | `app/composables/useNewsletterInvite.ts` | Shows the invite or not; stores `permaphemera-newsletter-invite` in localStorage. |
 | `ArchiveCheckbox.vue` | One checkbox row (box, title, note). Also used by the cookie notice, which had the same markup three times. |
-| `ArchiveNewsletterForm.vue` | The form, `variant: 'page' | 'compact'`. |
+| `ArchiveNewsletterForm.vue` | The form on `/newsletter/` (one variant since 2026-11-09; the `compact` one served the old invite). |
 | `ArchiveTownSelect.vue` | Towns grouped by federal state. |
-| `ArchiveNewsletterInvite.vue` | The small invite (bottom panel, `archive-modal-frame`). |
+| `ArchiveNewsletterInvite.vue` | The invite: since 2026-11-09 a centred modal (`ArchiveModal`) with a room picture and a link to `/newsletter/`, no form (`2026-11-09__newsletter-modal.md`). Until then a small bottom panel. |
 | `pages/newsletter/index.vue`, `confirmed.vue` | The two routes (de unprefixed, en under `/en/`). The page `unsubscribed.vue` was removed 2026-11-07. |
 | `i18n/locales/*.json` | `newsletter.*` keys; privacy: the "planned" section becomes the Brevo section. |
 | `shared/seo.mjs` | `/newsletter/` in the sitemap; the two other pages `noindex`. |

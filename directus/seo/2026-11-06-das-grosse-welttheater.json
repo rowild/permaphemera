@@ -1,0 +1,8 @@
+[
+  { "collection": "exhibitions", "slug": "das-grosse-welttheater",
+    "en": { "title": "Burgis Paier – Das große Welttheater · Theatergalerie", "meta_description": "350 figures from art and cultural history by Burgis Paier, the permanent exhibition of the Theatergalerie Klagenfurt." },
+    "de": { "title": "Burgis Paier – Das große Welttheater · Theatergalerie", "meta_description": "350 Figuren aus der Kunst- und Kulturgeschichte von Burgis Paier, Dauerausstellung der Theatergalerie Klagenfurt." } },
+  { "collection": "persons", "slug": "burgis-paier",
+    "en": { "title": "Burgis Paier – artist, Klagenfurt", "meta_description": "Burgis Paier (1949–2022), costume and stage designer and visual artist from Klagenfurt. In the archive: Das große Welttheater, Theatergalerie." },
+    "de": { "title": "Burgis Paier – Künstlerin, Klagenfurt", "meta_description": "Burgis Paier (1949–2022), Kostüm- und Bühnenbildnerin und bildende Künstlerin aus Klagenfurt. Im Archiv: Das große Welttheater, Theatergalerie." } }
+]

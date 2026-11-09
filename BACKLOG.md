@@ -71,6 +71,11 @@ Added 2026-11-09. Small, but each needs the owner's word or a later moment.
    is gone). Find a source before publishing; `pnpm check:data` blocks them once published.
 4. **herbert-de-colle:** the CV link `https://herbertdecolle.com/CV` blocks scripts; it was
    confirmed only through search results. Open it once in a browser.
+5. **Stadttheater Klagenfurt is still a draft**, so the published exhibition "Wagner reloaded"
+   does not show its partner (`plans/2026-11-06__wagner-reloaded.md`).
+6. **Trigeniale Brda 26 is all drafts:** check admission (empty shows "free admission"), the
+   hosts and the spring exhibition of the same name, then publish
+   (`plans/2026-11-09__trigeniale-brda-26-kmetija-moro.md`).
 
 ## Events: a new collection for festivals and similar events
 

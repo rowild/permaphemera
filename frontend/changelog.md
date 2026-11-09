@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.73 - 2026-11-09 19:20:55 CET
+
+- No visible change. Behind the scenes: the work logs of "Wagner reloaded", "Das große Welttheater" and "Trigeniale Brda 26" and their SEO texts are filed, and the project docs describe the newsletter and the link rules as they are now.
+
 ## 0.0.72 - 2026-11-09 18:15:53 CET
 
 - No visible change. Behind the scenes: the short newsletter form of the old corner invite is gone; the sign-up page holds the only form.

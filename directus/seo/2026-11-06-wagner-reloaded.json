@@ -1,0 +1,14 @@
+[
+  { "collection": "exhibitions", "slug": "wagner-reloaded",
+    "en": { "title": "Wagner reloaded · Theatergalerie Klagenfurt", "meta_description": "Four Wagner costumes and their designs from the Stadttheater Klagenfurt in the Theatergalerie, April 2026 to February 2027." },
+    "de": { "title": "Wagner reloaded · Theatergalerie Klagenfurt", "meta_description": "Vier Wagner-Kostüme und ihre Entwürfe aus dem Stadttheater Klagenfurt in der Theatergalerie, April 2026 bis Februar 2027." } },
+  { "collection": "persons", "slug": "guenter-schmidauer",
+    "en": { "title": "Günter Schmidauer – curator, Klagenfurt", "meta_description": "Günter Schmidauer, born 1955 in Klagenfurt, is a writer, journalist and dramaturge. In the archive: Wagner reloaded, Theatergalerie Klagenfurt." },
+    "de": { "title": "Günter Schmidauer – Kurator, Klagenfurt", "meta_description": "Günter Schmidauer, 1955 in Klagenfurt geboren, ist Schriftsteller, Journalist und Dramaturg. Im Archiv: Wagner reloaded, Theatergalerie Klagenfurt." } },
+  { "collection": "persons", "slug": "bettina-breitenecker",
+    "en": { "title": "Bettina Breitenecker – costume designer, Klagenfurt", "meta_description": "Bettina Breitenecker, born in Vienna, heads the costume department of the Stadttheater Klagenfurt. In the archive: Wagner reloaded, Theatergalerie." },
+    "de": { "title": "Bettina Breitenecker – Kostümbildnerin, Klagenfurt", "meta_description": "Bettina Breitenecker, in Wien geboren, leitet das Kostümwesen des Stadttheaters Klagenfurt. Im Archiv: Wagner reloaded, Theatergalerie Klagenfurt." } },
+  { "collection": "organisations", "slug": "stadttheater-klagenfurt",
+    "en": { "title": "Stadttheater Klagenfurt – institution, Klagenfurt", "meta_description": "Municipal theatre in Klagenfurt, built 1908–1910 by Fellner & Helmer. Exhibitions it took part in are in the PERMAPHEMERA archive." },
+    "de": { "title": "Stadttheater Klagenfurt – Institution, Klagenfurt", "meta_description": "Städtisches Theater in Klagenfurt, 1908–1910 von Fellner & Helmer erbaut. Ausstellungen mit seiner Beteiligung sind im PERMAPHEMERA-Archiv." } }
+]

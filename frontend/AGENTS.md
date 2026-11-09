@@ -122,12 +122,16 @@ Design: `../docs/superpowers/specs/2026-10-24-seo-design.md`. One pure module, `
 
 Since 0.0.31: the snapshot step removes the folders of records that are no longer published (so `--skip-build` deploys drop them too); an old folder that holds other files stops the deploy, because nginx would answer 403 for it. Every page has a description: without stored text, summary or lede, the module builds one from title, artists, dates, gallery and town (`exhibition.seoDescription*`, `venue.seoDescription`, `organisations.recordSeoDescription`). Share images skip SVG and untyped files: both loaders fetch `<file>.type` into `<field>_type` (`withFileUrls` in `shared/archive-schema.mjs`), and `SHAREABLE_TYPES` is also the list `check:data` applies to `seo.og_image`. Since 0.0.33 the site writes an exhibition's tour sentence itself (`tourSentence()`: "360° tour from <day>." / "… in preparation." / "… online.", from the rules of `shared/tour-access.mjs`, which `app/utils/tourAccess.ts` uses too) after the stored description; stored texts never name the tour and keep to 128 characters when there is a tour (`TOUR_SENTENCE_RESERVE`; `check:data` and `directus/scripts/seo-texts.mjs` enforce both). The browser uses the visitor’s day, the snapshots Vienna’s. So that the snapshots follow the day, the server reruns the snapshot step every night at 00:15: `pnpm deploy:hetzner` copies `scripts/seo-snapshot.mjs` and what it imports to `/srv/sites/permaphemera.at/seo-refresh/` and adds the cron line for `scripts/server/seo-refresh.sh`, which runs it in a `node:24.11.1-alpine` container on the live `html/` (`SEO_OUTPUT_DIR`), rewriting only changed files (log: `/srv/sites/permaphemera.at/seo-refresh.log`). Pages and `sitemap.xml` are not cached by Cloudflare (`cf-cache-status: DYNAMIC`), so the job needs no purge.
 
-## Newsletter (since 2026-11-07, branch `feature/newsletter` until launch)
+## Newsletter (since 2026-11-07, live since 0.0.67)
 
 Plan: `../plans/2026-11-07__newsletter.md`. Brevo holds the subscribers; the site never stores
-an address. `ArchiveNewsletterForm` (`page` on `/newsletter/`, `compact` in the invite) posts
+an address. `ArchiveNewsletterForm` (the only form, on `/newsletter/`: address, first and last
+name, topics, towns, consent) posts
 through `useNewsletterSubscription` to `<NUXT_PUBLIC_DIRECTUS_URL>/newsletter/subscribe`, the
-Directus endpoint extension `../directus/extensions/permaphemera-newsletter/` (no PHP). Pure
+Directus endpoint extension `../directus/extensions/permaphemera-newsletter/` (no PHP), which
+sends first and last name to Brevo's own `FIRSTNAME` / `LASTNAME` (so the contact list shows the
+name; owner, 2026-11-09) and the full name to `NL_NAME`; install it with
+`bash ../directus/hetzner/install-extension.sh`. Pure
 logic (topics, towns by state from the published `pp_locations`, request body, invite rule) is
 `app/utils/newsletter.ts`. `/newsletter/confirmed/` is where
 Brevo's confirmation link leads (`NewsletterStatusPage`, `noindex` in `shared/seo.mjs`); unsubscribing

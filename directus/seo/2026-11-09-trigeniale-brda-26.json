@@ -1,0 +1,17 @@
+[
+  { "collection": "venues", "slug": "kmetija-moro-brda",
+    "en": { "title": "Kmetija Moro, Vipolže, Goriška Brda, Slovenia", "meta_description": "Family farm and winery at Vipolže 62 in Goriška Brda, Slovenia, where bewegungINkultur has shown artists from Carinthia, Friuli and Slovenia since 2018." },
+    "de": { "title": "Kmetija Moro, Vipolže, Goriška Brda, Slowenien", "meta_description": "Familienbetrieb und Weingut in Vipolže 62, Goriška Brda, Slowenien, in dem bewegungINkultur seit 2018 Kunst aus Kärnten, Friaul und Slowenien zeigt." } },
+  { "collection": "exhibitions", "slug": "trigeniale-brda-26",
+    "en": { "title": "Trigeniale Brda 26 – Kmetija Moro, Goriška Brda", "meta_description": "Paintings by Giulia Cernetig, Aleksandra Rusjan and Margrit Pernull at Kmetija Moro, Brda, 25 September–31 December 2026." },
+    "de": { "title": "Trigeniale Brda 26 – Kmetija Moro, Goriška Brda", "meta_description": "Malerei von Giulia Cernetig, Aleksandra Rusjan und Margrit Pernull in der Kmetija Moro, Brda, 25. September–31. Dezember 2026." } },
+  { "collection": "persons", "slug": "giulia-cernetig",
+    "en": { "title": "Giulia Cernetig – artist, Udine, Italy", "meta_description": "Giulia Cernetig is a painter from Udine and a member of the Gruppo artistico culturale Albrecht Dürer. In the archive: “Trigeniale Brda 26”, Goriška Brda." },
+    "de": { "title": "Giulia Cernetig – Künstlerin, Udine, Italien", "meta_description": "Giulia Cernetig ist Malerin aus Udine und Mitglied des Gruppo artistico culturale Albrecht Dürer. Im Archiv: „Trigeniale Brda 26“ in Goriška Brda." } },
+  { "collection": "persons", "slug": "aleksandra-rusjan",
+    "en": { "title": "Aleksandra Rusjan – artist, Goriška Brda, Slovenia", "meta_description": "Aleksandra Rusjan is a painter from Goriška Brda, Slovenia, and a member of the artists’ association DABLO. In the archive: “Trigeniale Brda 26”." },
+    "de": { "title": "Aleksandra Rusjan – Künstlerin, Goriška Brda, Slowenien", "meta_description": "Aleksandra Rusjan ist Malerin aus Goriška Brda, Slowenien, und Mitglied des Künstlervereins DABLO. Im Archiv: „Trigeniale Brda 26“ in der Kmetija Moro." } },
+  { "collection": "persons", "slug": "margrit-pernull",
+    "en": { "title": "Margrit Pernull – artist, Hermagor, Carinthia", "meta_description": "Margrit Pernull, born 1958, paints landscapes, fruit and flowers in Hermagor, Carinthia. In the archive: “Trigeniale Brda 26” at Kmetija Moro, Goriška Brda." },
+    "de": { "title": "Margrit Pernull – Künstlerin, Hermagor, Kärnten", "meta_description": "Margrit Pernull, geboren 1958, malt in Hermagor, Kärnten, Landschaften, Früchte und Blumen. Im Archiv: „Trigeniale Brda 26“ in der Kmetija Moro, Brda." } }
+]

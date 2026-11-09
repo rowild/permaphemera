@@ -1,0 +1,16 @@
++ pp_locations/brda 4ca27fa4-de03-4b49-b2d3-71c30f44ef72
++ pp_venues/kmetija-moro-brda bc81ccea-8a78-4f9b-898b-a8f80e7432dd
++ pp_organisation_venue_relations bewegungINkultur exhibits_at Kmetija Moro
++ pp_persons/giulia-cernetig 43b4f1d5-12bb-48ab-a740-1aeb810572c5
++ pp_persons/aleksandra-rusjan e91f6c82-aae5-4b09-b609-142afc6f6086
++ pp_persons/margrit-pernull 0f7e1c17-0310-45df-9ac7-f9693b06e017
++ pp_exhibitions/trigeniale-brda-26 77ca9d88-16aa-446a-88a6-f41eb06d3c19
++ pp_exhibition_organisers bewegungINkultur organiser
+{
+ "BRDA": "4ca27fa4-de03-4b49-b2d3-71c30f44ef72",
+ "MORO": "bc81ccea-8a78-4f9b-898b-a8f80e7432dd",
+ "CERNETIG": "43b4f1d5-12bb-48ab-a740-1aeb810572c5",
+ "RUSJAN": "e91f6c82-aae5-4b09-b609-142afc6f6086",
+ "PERNULL": "0f7e1c17-0310-45df-9ac7-f9693b06e017",
+ "TRIG": "77ca9d88-16aa-446a-88a6-f41eb06d3c19"
+}

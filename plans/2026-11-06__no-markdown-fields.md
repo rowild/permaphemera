@@ -20,7 +20,8 @@ Nothing outside the website reads these fields (360 pipeline and Tour Editor che
 ## Rule (from now on)
 
 - `directus/scripts/fields.mjs` loses the `markdown` helper; long text uses `richText`
-  (`richText(field, { links: true })` adds the link button where the site keeps links).
+  (`richText(field, { links: true })` added the link button where the site kept links; since
+  2026-11-09 every `richText` has it, links work in every text: `2026-11-09__linked-sources.md`).
 - `directus/scripts/build.test.mjs`: no field may use `input-rich-text-md`.
 - Root `AGENTS.md` (Data model) states the rule; memory `no-markdown-fields`.
 
