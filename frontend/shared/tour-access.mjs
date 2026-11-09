@@ -16,3 +16,10 @@ export const tourAccess = (exhibition, today) => {
   if (exhibition.tour) return { kind: 'open', url: exhibition.tour }
   return { kind: 'preparing' }
 }
+
+// The flat room picture in every tour folder: the view the viewer opens with, cut out of the
+// start panorama by `pnpm tour:publish` / `pnpm tour:start-view` (scripts/lib/tour-start-view.mjs).
+export const TOUR_START_VIEW_FILE = 'start-view.jpg'
+
+/** Address of a tour's room picture, from its folder (`/media/tours/<id>/`). */
+export const tourStartViewUrl = (tour) => `${tour}${TOUR_START_VIEW_FILE}`

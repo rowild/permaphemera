@@ -29,3 +29,14 @@ export type TourAccess =
 export function resolveTourAccess(exhibition: TourReadyExhibition, today = localDateKey()): TourAccess {
   return tourAccess(exhibition, today)
 }
+
+/**
+ * Exhibitions whose 360° tour is open today and that have an image, newest start date first.
+ * The hero fan shows them in this order; the newsletter modal takes the first one's image.
+ */
+export const openTourExhibitions = <T extends TourReadyExhibition & { start_date: string, image: string }>(
+  exhibitions: readonly T[],
+  today: string
+): T[] => exhibitions
+  .filter((exhibition) => exhibition.image && resolveTourAccess(exhibition, today).kind === 'open')
+  .sort((left, right) => right.start_date.localeCompare(left.start_date))

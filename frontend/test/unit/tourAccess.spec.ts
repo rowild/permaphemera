@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { resolveTourAccess } from '~/utils/tourAccess'
+import { openTourExhibitions, resolveTourAccess } from '~/utils/tourAccess'
 
 const record = (overrides: Partial<Parameters<typeof resolveTourAccess>[0]> = {}) => ({
   tour: '/media/tours/example/',
@@ -35,5 +35,25 @@ describe('resolveTourAccess', () => {
   it('never opens a restricted or unavailable tour, regardless of file or date', () => {
     expect(resolveTourAccess(record({ tour_status: 'restricted' }), '2026-09-14')).toEqual({ kind: 'restricted' })
     expect(resolveTourAccess(record({ tour_status: 'unavailable' }), '2026-09-14')).toEqual({ kind: 'unavailable' })
+  })
+})
+
+// The hero fan and the newsletter modal both show exhibitions whose tour is open, newest first.
+describe('openTourExhibitions', () => {
+  const show = (id: string, start_date: string, overrides: Record<string, unknown> = {}) => ({ ...record(), id, start_date, image: `/img/${id}.jpg`, ...overrides })
+
+  it('keeps open tours with an image, newest start date first', () => {
+    const list = [
+      show('old', '2025-01-01'),
+      show('new', '2026-05-01'),
+      show('later', '2026-08-01', { tour_available_from: '2026-12-01' }),
+      show('closed', '2026-07-01', { tour_status: 'restricted' }),
+      show('blank', '2026-07-02', { image: '' })
+    ]
+    expect(openTourExhibitions(list, '2026-09-14').map((item) => item.id)).toEqual(['new', 'old'])
+  })
+
+  it('gives an empty list when no tour is open', () => {
+    expect(openTourExhibitions([show('later', '2026-08-01', { tour_available_from: '2026-12-01' })], '2026-09-14')).toEqual([])
   })
 })

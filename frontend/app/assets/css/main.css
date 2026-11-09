@@ -588,6 +588,12 @@ button {
   -webkit-mask-image: url("/media/svg/icons/menu-compass.svg");
 }
 
+/* The × of every close button (ArchiveCloseButton): drawn, so it sits exactly in the middle. */
+.svg-icon-close {
+  mask-image: url("/media/svg/icons/close.svg");
+  -webkit-mask-image: url("/media/svg/icons/close.svg");
+}
+
 .hero-scroll-cue-mark {
   animation: hero-scroll-cue-bounce 7s ease-in-out infinite;
 }

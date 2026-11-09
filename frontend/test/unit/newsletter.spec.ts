@@ -5,7 +5,9 @@ import {
   NEWSLETTER_TOPICS,
   buildSubscribeBody,
   groupTownsByState,
+  firstLoadedImage,
   inviteAllowed,
+  invitePictures,
   inviteSuppressedOn,
   newsletterEndpoint,
   parseInviteRecord
@@ -110,7 +112,47 @@ describe('the invite', () => {
     expect(INVITE_COOLDOWN_MS).toBe(30 * 24 * 60 * 60 * 1000)
   })
 
+  it('reads the states "shown" and "never" too', () => {
+    expect(parseInviteRecord(JSON.stringify({ state: 'shown', savedAt: 5, version: 1 }))).toEqual({ state: 'shown', savedAt: 5, version: 1 })
+    expect(parseInviteRecord(JSON.stringify({ state: 'never', savedAt: 5, version: 1 }))).toEqual({ state: 'never', savedAt: 5, version: 1 })
+  })
+
+  it('counts the 30 days from the moment it showed', () => {
+    const shown = (ago: number) => ({ state: 'shown' as const, savedAt: NOW - ago, version: 1 as const })
+    expect(inviteAllowed({ record: shown(INVITE_COOLDOWN_MS - 1), now: NOW, path: '/', cookieNoticeOpen: false })).toBe(false)
+    expect(inviteAllowed({ record: shown(INVITE_COOLDOWN_MS + 1), now: NOW, path: '/', cookieNoticeOpen: false })).toBe(true)
+  })
+
+  it('"never show again" keeps it away for good, like a sign-up', () => {
+    expect(inviteAllowed({ record: { state: 'never', savedAt: 0, version: 1 }, now: NOW, path: '/', cookieNoticeOpen: false })).toBe(false)
+  })
+
   it('never shows on a suppressed page', () => {
     expect(inviteAllowed({ record: null, now: NOW, path: '/privacy/', cookieNoticeOpen: false })).toBe(false)
+  })
+})
+
+describe('invitePictures', () => {
+  const show = (slug: string, start_date: string, overrides: Record<string, unknown> = {}) => ({
+    slug, start_date, title: slug.toUpperCase(), venue: 'Galerie', city: 'Stadt', image: `/img/${slug}.jpg`,
+    tour: `/media/tours/${slug}/`, tour_status: 'available' as const, tour_available_from: null, ...overrides
+  })
+
+  it('offers the room pictures of the three newest open tours, newest first', () => {
+    const list = [show('a', '2026-01-01'), show('b', '2026-03-01'), show('c', '2026-02-01'), show('d', '2025-01-01'), show('e', '2026-04-01', { tour: null })]
+    expect(invitePictures(list, '2026-09-01').map((item) => [item.src, item.exhibition.slug])).toEqual([
+      ['/media/tours/b/start-view.jpg', 'b'],
+      ['/media/tours/c/start-view.jpg', 'c'],
+      ['/media/tours/a/start-view.jpg', 'a']
+    ])
+  })
+})
+
+describe('firstLoadedImage', () => {
+  it('gives the first address that loads, and null when none does', async () => {
+    const ok = new Set(['/b.jpg', '/c.jpg'])
+    const load = (src: string) => ok.has(src) ? Promise.resolve() : Promise.reject(new Error('404'))
+    await expect(firstLoadedImage(['/a.jpg', '/b.jpg', '/c.jpg'], load)).resolves.toBe('/b.jpg')
+    await expect(firstLoadedImage(['/a.jpg'], load)).resolves.toBeNull()
   })
 })

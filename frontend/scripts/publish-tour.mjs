@@ -36,6 +36,7 @@ import { fileURLToPath } from 'node:url'
 import { directusPatch, directusToken, loadArchiveFromDirectus } from './lib/archive-source.mjs'
 import { readProjectPaths } from './lib/project-paths.mjs'
 import { ensureFingerprint } from './lib/tour-fingerprint.mjs'
+import { writeStartView } from './lib/tour-start-view.mjs'
 import { parseArguments, recordSummary } from './lib/publish-tour-options.mjs'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -200,6 +201,9 @@ async function mirror(source, target) {
     recursive: true,
     filter: (path) => !basename(path).startsWith('.')
   })
+  // The flat room picture for the newsletter modal (2026-11-09), only in the copy here: the
+  // export and its fingerprint stay as the editor wrote them.
+  log(`Room picture: ${relative(projectRoot, await writeStartView(target))}`)
 }
 
 async function copyOnly(source, target) {

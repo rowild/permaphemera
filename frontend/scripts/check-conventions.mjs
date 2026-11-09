@@ -50,6 +50,15 @@ for (const page of ['imprint', 'privacy', 'terms', 'accessibility']) check(`${pa
 // An organisation's name is one verbatim string, never split or inverted (owner).
 check('organisation entries show the title verbatim', !/formatArtistName|split\(/.test(source['app/components/OrganisationDirectoryEntry.vue']))
 
+// Centred means centred (owner's rule, 2026-11-09, for ever; frontend/AGENTS.md rule 4). Every close
+// button is ArchiveCloseButton, whose × is measured in the middle by the e2e test; a loose ×, ✕ or ☰
+// in a template would be a second, unmeasured symbol button.
+const SYMBOL_CHARACTERS = /&#215;|&times;|&#x2715;|&#10005;|&#9776;|[×✕✖☰]/
+for (const file of [...pages, ...components, 'app/app.vue', 'app/error.vue', 'app/layouts/default.vue']) {
+  const template = source[file].match(/<template>[\s\S]*<\/template>/)?.[0] ?? ''
+  check(`${file}: no loose symbol character (× ✕ ☰ …); close buttons are ArchiveCloseButton (rule 4: centred means centred)`, !SYMBOL_CHARACTERS.test(template))
+}
+
 // Three.js loads with the wheel (utils/threeRuntime.ts), never with the start page's first chunk.
 const appSources = (await readdir(new URL('../app', import.meta.url), { recursive: true })).filter((file) => /\.(vue|ts)$/.test(file))
 for (const file of appSources) {

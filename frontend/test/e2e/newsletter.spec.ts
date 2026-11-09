@@ -39,26 +39,45 @@ test('a refusal shows its reason and keeps the form', async ({ page }) => {
   await expect(page.getByLabel('E-mail address', { exact: true })).toBeVisible()
 })
 
-test('the invite comes after 10 s, small on phones, and closing it keeps it away', async ({ page }) => {
+test('the invite comes after 10 s as a centred modal without a form, and closing it keeps it away', async ({ page }) => {
   await page.addInitScript(() => localStorage.removeItem('permaphemera-newsletter-invite'))
   await page.goto('/exhibitions/')
   await expect(page.locator('h1').first()).toBeVisible()
-  const invite = page.locator('aside.newsletter-invite')
+  const invite = page.locator('.newsletter-invite[role="dialog"]')
   await expect(invite).toBeVisible({ timeout: 15_000 })
 
+  // No form on any screen size: only the link to the sign-up page.
+  await expect(invite.locator('form, input')).toHaveCount(0)
+  await expect(invite.locator('[data-part="to-page"]')).toBeVisible()
+  await expect(invite.locator('[data-part="never"]')).toBeVisible()
+
+  // Inside the screen and in its centre.
   const box = (await invite.boundingBox())!
-  if (width(page) < 768) {
-    // On phones only a button to the page: no form over half the screen.
-    await expect(invite.locator('[data-part="to-page"]')).toBeVisible()
-    await expect(invite.locator('input[type="email"]')).toBeHidden()
-    expect(box.height).toBeLessThan(844 * 0.4)
-  } else {
-    await expect(invite.locator('input[type="email"]')).toBeVisible()
-  }
-  expect(box.x + box.width).toBeLessThanOrEqual(width(page))
+  const viewport = page.viewportSize()!
+  expect(box.x).toBeGreaterThanOrEqual(0)
+  expect(box.x + box.width).toBeLessThanOrEqual(viewport.width)
+  expect(box.y + box.height).toBeLessThanOrEqual(viewport.height)
+  expect(Math.abs(box.x + box.width / 2 - viewport.width / 2)).toBeLessThan(4)
+
+  // The × sits exactly in the middle of its button (owner's rule: symbols in buttons are centred).
+  const button = (await invite.locator('button[data-part="close"]').boundingBox())!
+  const icon = (await invite.locator('[data-part="close-icon"]').boundingBox())!
+  expect(Math.abs(icon.x + icon.width / 2 - (button.x + button.width / 2))).toBeLessThan(0.5)
+  expect(Math.abs(icon.y + icon.height / 2 - (button.y + button.height / 2))).toBeLessThan(0.5)
 
   await invite.locator('button[data-part="close"]').click()
   await expect(invite).toBeHidden()
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('permaphemera-newsletter-invite') ?? 'null'))
   expect(stored).toMatchObject({ state: 'dismissed' })
+})
+
+test('"never show again" stores "never"', async ({ page }) => {
+  await page.addInitScript(() => localStorage.removeItem('permaphemera-newsletter-invite'))
+  await page.goto('/exhibitions/')
+  const invite = page.locator('.newsletter-invite[role="dialog"]')
+  await expect(invite).toBeVisible({ timeout: 15_000 })
+  await invite.locator('[data-part="never"]').click()
+  await expect(invite).toBeHidden()
+  const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('permaphemera-newsletter-invite') ?? 'null'))
+  expect(stored).toMatchObject({ state: 'never' })
 })

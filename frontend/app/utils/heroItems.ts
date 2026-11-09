@@ -1,5 +1,5 @@
 import type { KaleidoscopeExhibitionItem } from '~/types/kaleidoscope'
-import { resolveTourAccess, type TourReadyExhibition } from '~/utils/tourAccess'
+import { openTourExhibitions, type TourReadyExhibition } from '~/utils/tourAccess'
 
 /** The fan at the top of the landing page always has twelve blades. */
 export const HERO_BLADE_COUNT = 12
@@ -51,9 +51,7 @@ export const buildHeroItems = (
   today: string,
   href: HeroHrefs
 ): KaleidoscopeExhibitionItem[] => {
-  const tours: KaleidoscopeExhibitionItem[] = exhibitions
-    .filter((exhibition) => exhibition.image && resolveTourAccess(exhibition, today).kind === 'open')
-    .sort((left, right) => right.start_date.localeCompare(left.start_date))
+  const tours: KaleidoscopeExhibitionItem[] = openTourExhibitions(exhibitions, today)
     .map((exhibition) => ({
       id: exhibition.id,
       kind: 'exhibition',

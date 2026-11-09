@@ -656,7 +656,7 @@
           "p1": "Functional information is stored on your device. It is not used for advertising and is not combined into a usage profile.",
           "locale": "Necessary cookie storing the selected language; retained for up to one year.",
           "consent": "Local browser storage for your individual Google Maps and YouTube choices; requested again after no more than one year.",
-          "newsletterInvite": "Stores whether the newsletter note was closed or a sign-up was sent, so that it does not appear on every visit (date and state, nothing of the sign-up itself)."
+          "newsletterInvite": "Stores when the newsletter note appeared or was closed, and whether a sign-up was sent or \"Don't show again\" was chosen, so that it appears at most once a month (date and state, nothing of the sign-up itself)."
         },
         "contact": {
           "eyebrow": "Direct communication",
@@ -1168,8 +1168,13 @@
     "invite": {
       "aria": "Note about the newsletter",
       "title": "Newsletter",
+      "heading": "News from the archive",
       "text": "Would you like to hear about new records in the archive, openings and last days of exhibitions? Once a month by e-mail, only when there is news.",
-      "close": "Close the newsletter note"
+      "close": "Close the newsletter note",
+      "subscribe": "Subscribe",
+      "neverAgain": "Don't show again",
+      "roomAlt": "View into the exhibition room: {title}",
+      "fallbackAlt": "The Parkschlössl in Spittal an der Drau, a pavilion with a red and yellow striped façade in the town park"
     },
     "confirmed": {
       "seoTitle": "Sign-up confirmed · PERMAPHEMERA",

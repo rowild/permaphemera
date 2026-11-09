@@ -62,6 +62,8 @@ _360_GALLERIES_AND_TOURS/collection/_galleries/<venue>/<tour-id>/building_01/flo
    │
    ▼  _WEBSITE PERMAPHEMERA/frontend:  pnpm tour:publish <tour-id>
    │     copies → frontend/public/media/tours/<tour-id>/
+   │     makes  → start-view.jpg there (flat room picture of the first view, for the
+   │              newsletter modal; since 2026-11-09; `pnpm tour:start-view` for old tours)
    │     sets   → pp_exhibitions.tour = "/media/tours/<tour-id>/"  (PRODUCTION Directus)
    │
    ▼  _WEBSITE PERMAPHEMERA/frontend:  pnpm deploy:hetzner

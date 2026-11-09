@@ -656,7 +656,7 @@
           "p1": "Funktionale Informationen werden auf Ihrem Endgerät gespeichert. Sie dienen nicht der Werbung und werden nicht zu einem Nutzungsprofil zusammengeführt.",
           "locale": "Notwendiges Cookie zur Speicherung der gewählten Sprache; Speicherdauer bis zu einem Jahr.",
           "consent": "Lokaler Browser-Speicher für Ihre einzelnen Entscheidungen zu Google Maps und YouTube; wird nach spätestens einem Jahr erneut abgefragt.",
-          "newsletterInvite": "Speichert, ob der Hinweis auf den Newsletter geschlossen oder eine Anmeldung abgeschickt wurde, damit er nicht bei jedem Besuch erscheint (Datum und Zustand, kein Inhalt der Anmeldung)."
+          "newsletterInvite": "Speichert, wann der Hinweis auf den Newsletter erschien oder geschlossen wurde und ob eine Anmeldung abgeschickt oder „Nicht mehr anzeigen“ gewählt wurde, damit er höchstens einmal im Monat erscheint (Datum und Zustand, kein Inhalt der Anmeldung)."
         },
         "contact": {
           "eyebrow": "Direkte Kommunikation",
@@ -1168,8 +1168,13 @@
     "invite": {
       "aria": "Hinweis auf den Newsletter",
       "title": "Newsletter",
+      "heading": "Neues aus dem Archiv",
       "text": "Möchten Sie von neuen Einträgen im Archiv, von Eröffnungen und letzten Ausstellungstagen erfahren? Einmal im Monat per E-Mail, nur wenn es Neues gibt.",
-      "close": "Newsletter-Hinweis schließen"
+      "close": "Newsletter-Hinweis schließen",
+      "subscribe": "Anmelden",
+      "neverAgain": "Nicht mehr anzeigen",
+      "roomAlt": "Blick in den Ausstellungsraum: {title}",
+      "fallbackAlt": "Das Parkschlössl in Spittal an der Drau, ein Pavillon mit rot-gelb gestreifter Fassade im Stadtpark"
     },
     "confirmed": {
       "seoTitle": "Anmeldung bestätigt · PERMAPHEMERA",

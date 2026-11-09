@@ -7,7 +7,7 @@ const sponsorShouldMarquee = ref(false)
 const footerMenuOpen = ref(false)
 const footerMenuButtonRef = ref<HTMLButtonElement | null>(null)
 const footerDrawerRef = ref<HTMLElement | null>(null)
-const footerDrawerCloseRef = ref<HTMLButtonElement | null>(null)
+const footerDrawerCloseRef = ref<{ focus: () => void } | null>(null)
 const route = useRoute()
 let sponsorResizeObserver: ResizeObserver | null = null
 let drawerMediaQuery: MediaQueryList | null = null
@@ -184,15 +184,13 @@ onBeforeUnmount(() => {
           >
             <div class="relative z-1 mb-3 flex items-center justify-between border-b border-archive-ochre/20 pb-3">
               <p class="m-0 font-display text-xs tracking-widest text-archive-ochre uppercase">{{ $t('footer.navigation') }}</p>
-              <button
+              <ArchiveCloseButton
                 ref="footerDrawerCloseRef"
-                class="grid size-9 place-items-center border-0 bg-transparent p-0 font-display text-xl leading-none text-archive-footer-copy/74 transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-archive-ochre"
-                type="button"
-                :aria-label="$t('footer.closeNavigation')"
+                class="size-9 text-archive-footer-copy/74 transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-archive-ochre"
+                icon-class="size-3.5"
+                :label="$t('footer.closeNavigation')"
                 @click="closeFooterMenu"
-              >
-                <span aria-hidden="true">&#215;</span>
-              </button>
+              />
             </div>
             <ArchiveFooterMenu variant="drawer" />
           </section>
