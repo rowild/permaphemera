@@ -3,7 +3,7 @@ import { SITE_OWNER } from '~/utils/siteOwner'
 import { NEWSLETTER_TOPICS, buildSubscribeBody, groupTownsByState } from '~/utils/newsletter'
 import type { NewsletterTopic } from '~/utils/newsletter'
 
-// The newsletter sign-up. `page`: address, name, topics, towns, consent (on /newsletter/).
+// The newsletter sign-up. `page`: address, first and last name, topics, towns, consent (on /newsletter/).
 // `compact`: address and consent only, all topics (the invite); topics and towns stay
 // on the full page. Plan: plans/2026-11-07__newsletter.md §4.
 const props = withDefaults(defineProps<{
@@ -27,14 +27,16 @@ const invite = useNewsletterInvite()
 const uid = useId()
 const ids = {
   email: `${uid}-email`,
-  name: `${uid}-name`,
+  firstName: `${uid}-first-name`,
+  lastName: `${uid}-last-name`,
   honeypot: `${uid}-website`,
   message: `${uid}-message`
 }
 
 const full = computed(() => props.variant === 'page')
 const email = ref('')
-const name = ref('')
+const firstName = ref('')
+const lastName = ref('')
 const topics = ref<NewsletterTopic[]>([...NEWSLETTER_TOPICS])
 const towns = ref<string[]>([])
 const consent = ref(false)
@@ -65,7 +67,7 @@ const send = async () => {
   }
   localError.value = null
   await submit(buildSubscribeBody(
-    { email: email.value, name: full.value ? name.value : '', towns: full.value ? towns.value : [], topics: topics.value, consent: consent.value, website: website.value },
+    { email: email.value, firstName: full.value ? firstName.value : '', lastName: full.value ? lastName.value : '', towns: full.value ? towns.value : [], topics: topics.value, consent: consent.value, website: website.value },
     {
       language: locale.value,
       source: props.source,
@@ -89,8 +91,11 @@ const send = async () => {
 
     <form v-else class="grid gap-6 compact:gap-4" :aria-describedby="message ? ids.message : undefined" @submit.prevent="send">
       <div class="grid gap-x-6 gap-y-4" :class="{ 'grid-cols-2 compact:grid-cols-1': full }">
-        <ArchiveTextField :id="ids.email" v-model="email" type="email" autocomplete="email" required :label="$t('newsletter.form.email')" />
-        <ArchiveTextField v-if="full" :id="ids.name" v-model="name" autocomplete="name" :label="$t('newsletter.form.name')" />
+        <ArchiveTextField :id="ids.email" v-model="email" :class="{ 'col-span-2 compact:col-span-1': full }" type="email" autocomplete="email" required :label="$t('newsletter.form.email')" />
+        <template v-if="full">
+          <ArchiveTextField :id="ids.firstName" v-model="firstName" autocomplete="given-name" :label="$t('newsletter.form.firstName')" />
+          <ArchiveTextField :id="ids.lastName" v-model="lastName" autocomplete="family-name" :label="$t('newsletter.form.lastName')" />
+        </template>
       </div>
 
       <fieldset v-if="full" class="m-0 border-0 p-0" data-part="topics">

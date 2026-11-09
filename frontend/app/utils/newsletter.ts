@@ -41,7 +41,9 @@ export function groupTownsByState(locations: TownSource[], stateName: (state: st
 
 export interface NewsletterInput {
   email: string
-  name: string
+  /** Brevo's FIRSTNAME / LASTNAME (two fields since 2026-11-09). */
+  firstName: string
+  lastName: string
   towns: string[]
   topics: string[]
   consent: boolean
@@ -59,7 +61,8 @@ export interface NewsletterContext {
 
 export const buildSubscribeBody = (input: NewsletterInput, context: NewsletterContext) => ({
   email: input.email.trim(),
-  name: input.name.trim(),
+  firstName: input.firstName.trim(),
+  lastName: input.lastName.trim(),
   language: context.language,
   towns: [...input.towns],
   topics: [...input.topics],

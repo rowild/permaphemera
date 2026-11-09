@@ -119,7 +119,13 @@ export function parseSubscription(body, { now, towns, siteUrl = 'https://permaph
   const chosenTowns = unique(strings(body.towns).filter((slug) => towns.has(slug)))
   const regions = unique(chosenTowns.map((slug) => towns.get(slug)).filter(Boolean))
 
-  const name = typeof body.name === 'string' ? body.name.replace(CONTROL, '').trim().slice(0, MAX_NAME) : ''
+  // First and last name go to Brevo's own FIRSTNAME / LASTNAME (owner, 2026-11-09). A page from
+  // before the two fields sends one `name`: it becomes the first name.
+  const cleanName = (value) => typeof value === 'string' ? value.replace(CONTROL, '').trim().slice(0, MAX_NAME) : ''
+  const legacyName = cleanName(body.name)
+  const firstName = cleanName(body.firstName) || (cleanName(body.lastName) ? '' : legacyName)
+  const lastName = cleanName(body.lastName)
+  const name = [firstName, lastName].filter(Boolean).join(' ')
   const pageUrl = typeof body.pageUrl === 'string' && body.pageUrl.length <= MAX_PAGE_URL
     && (body.pageUrl === siteUrl || body.pageUrl.startsWith(`${siteUrl}/`))
     ? body.pageUrl
@@ -129,6 +135,8 @@ export function parseSubscription(body, { now, towns, siteUrl = 'https://permaph
     kind: 'ok',
     value: {
       email,
+      firstName,
+      lastName,
       name,
       language: LANGUAGES.includes(body.language) ? body.language : 'de',
       towns: chosenTowns,
@@ -159,6 +167,8 @@ export function brevoRequest(value, config, now) {
         templateId: config.templates[value.language],
         redirectionUrl: `${config.siteUrl}${prefix}/newsletter/confirmed/`,
         attributes: {
+          ...(value.firstName ? { FIRSTNAME: value.firstName } : {}),
+          ...(value.lastName ? { LASTNAME: value.lastName } : {}),
           NL_NAME: value.name,
           NL_LANGUAGE: value.language,
           NL_TOPICS: pipeList(value.topics),

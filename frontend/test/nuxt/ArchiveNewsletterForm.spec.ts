@@ -74,9 +74,10 @@ describe('ArchiveNewsletterForm', () => {
     await wrapper.get('[data-part="consent"] input').setValue(true)
   }
 
-  it('the full form offers name, the four topics (checked) and the published towns', async () => {
+  it('the full form offers first and last name, the four topics (checked) and the published towns', async () => {
     const wrapper = await mountSuspended(ArchiveNewsletterForm, { props: { variant: 'page' } })
-    expect(wrapper.find('input[autocomplete="name"]').exists()).toBe(true)
+    expect(wrapper.find('input[autocomplete="given-name"]').exists()).toBe(true)
+    expect(wrapper.find('input[autocomplete="family-name"]').exists()).toBe(true)
     const topics = wrapper.findAll('[data-part="topics"] input[type="checkbox"]')
     expect(topics).toHaveLength(NEWSLETTER_TOPICS.length)
     expect(topics.every((box) => (box.element as HTMLInputElement).checked)).toBe(true)
@@ -91,6 +92,8 @@ describe('ArchiveNewsletterForm', () => {
     vi.spyOn(Date, 'now').mockReturnValue(1_000_000)
     const wrapper = await mountSuspended(ArchiveNewsletterForm, { props: { variant: 'page' } })
     await fill(wrapper)
+    await wrapper.get('input[autocomplete="given-name"]').setValue(' Maria ')
+    await wrapper.get('input[autocomplete="family-name"]').setValue('Beispiel')
     await wrapper.get('input[value="wien"]').setValue(true)
     await wrapper.get('form').trigger('submit')
     await vi.waitUntil(() => wrapper.text().includes('maria@example.at'))
@@ -98,7 +101,7 @@ describe('ArchiveNewsletterForm', () => {
 
     const sent = JSON.parse(String((fetch.mock.calls[0] as unknown as [string, RequestInit])[1].body))
     expect(sent).toMatchObject({
-      email: 'maria@example.at', language: 'de', towns: ['wien'], topics: [...NEWSLETTER_TOPICS],
+      email: 'maria@example.at', firstName: 'Maria', lastName: 'Beispiel', language: 'de', towns: ['wien'], topics: [...NEWSLETTER_TOPICS],
       consent: true, consentVersion: NEWSLETTER_CONSENT_VERSION, source: 'page', website: ''
     })
     expect(wrapper.get('[role="status"]').text()).toContain('maria@example.at')
@@ -132,7 +135,7 @@ describe('ArchiveNewsletterForm', () => {
     vi.stubGlobal('fetch', fetch)
     vi.spyOn(Date, 'now').mockReturnValue(1_000_000)
     const wrapper = await mountSuspended(ArchiveNewsletterForm, { props: { variant: 'compact', source: 'invite' } })
-    expect(wrapper.find('input[autocomplete="name"]').exists()).toBe(false)
+    expect(wrapper.find('input[autocomplete="given-name"]').exists()).toBe(false)
     expect(wrapper.find('[data-part="topics"]').exists()).toBe(false)
     expect(wrapper.find('details').exists()).toBe(false)
     expect(wrapper.get('a[href="/newsletter/"]').text()).toBe('Themen und Orte wählen')

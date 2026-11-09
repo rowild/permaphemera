@@ -51,12 +51,13 @@ describe('groupTownsByState', () => {
 describe('buildSubscribeBody', () => {
   it('sends what the endpoint reads, with the address trimmed', () => {
     const body = buildSubscribeBody(
-      { email: ' maria@example.at ', name: ' Maria ', towns: ['graz'], topics: ['nearby'], consent: true, website: '' },
+      { email: ' maria@example.at ', firstName: ' Maria ', lastName: ' Beispiel ', towns: ['graz'], topics: ['nearby'], consent: true, website: '' },
       { language: 'en', source: 'invite', pageUrl: 'https://permaphemera.at/en/', startedAt: 1000 }
     )
     expect(body).toEqual({
       email: 'maria@example.at',
-      name: 'Maria',
+      firstName: 'Maria',
+      lastName: 'Beispiel',
       language: 'en',
       towns: ['graz'],
       topics: ['nearby'],

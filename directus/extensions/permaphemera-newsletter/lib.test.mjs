@@ -19,7 +19,8 @@ const ENV = {
 
 const body = (overrides = {}) => ({
   email: '  Maria@Example.AT ',
-  name: ' Maria Beispiel ',
+  firstName: ' Maria ',
+  lastName: ' Beispiel ',
   language: 'de',
   towns: ['wien', 'graz', 'atlantis'],
   topics: ['new_records', 'nearby', 'spam'],
@@ -70,11 +71,13 @@ test('lists are written as |a|b| so a Brevo segment can ask "contains |a|"', () 
 
 // ── parseSubscription ─────────────────────────────────────────────────────
 
-test('a good request is cleaned: e-mail, name, known topics, published towns and their states', () => {
+test('a good request is cleaned: e-mail, names, known topics, published towns and their states', () => {
   const result = parseSubscription(body(), { now: NOW, towns: TOWNS })
   assert.equal(result.kind, 'ok')
   assert.deepEqual(result.value, {
     email: 'maria@example.at',
+    firstName: 'Maria',
+    lastName: 'Beispiel',
     name: 'Maria Beispiel',
     language: 'de',
     towns: ['wien', 'graz'],
@@ -125,17 +128,27 @@ test('a request that is not an object, or has no consent version, is invalid', (
 })
 
 test('language, source, name and page fall back to safe values', () => {
-  const result = parseSubscription(body({ language: 'fr', source: 'evil', name: 'x'.repeat(300), pageUrl: 'https://evil.example/' , towns: 'wien' }), { now: NOW, towns: TOWNS })
+  const result = parseSubscription(body({ language: 'fr', source: 'evil', firstName: 'x'.repeat(300), lastName: 'y'.repeat(300), pageUrl: 'https://evil.example/' , towns: 'wien' }), { now: NOW, towns: TOWNS })
   assert.equal(result.value.language, 'de')
   assert.equal(result.value.source, 'page')
-  assert.equal(result.value.name.length, 100)
+  assert.equal(result.value.firstName.length, 100)
+  assert.equal(result.value.lastName.length, 100)
   assert.equal(result.value.pageUrl, '')
   assert.deepEqual(result.value.towns, [])
   assert.equal(parseSubscription(body({ language: 'en', source: 'invite' }), { now: NOW, towns: TOWNS }).value.source, 'invite')
 })
 
-test('control characters are removed from the name', () => {
-  assert.equal(parseSubscription(body({ name: 'Ma\u0000ria\n' }), { now: NOW, towns: TOWNS }).value.name, 'Maria')
+test('control characters are removed from the names', () => {
+  const value = parseSubscription(body({ firstName: 'Ma\u0000ria\n', lastName: ' Bei\tspiel' }), { now: NOW, towns: TOWNS }).value
+  assert.equal(value.firstName, 'Maria')
+  assert.equal(value.lastName, 'Beispiel')
+})
+
+test('a page from before the two name fields sends one "name": it becomes the first name (2026-11-09)', () => {
+  const value = parseSubscription(body({ firstName: undefined, lastName: undefined, name: ' Maria Beispiel ' }), { now: NOW, towns: TOWNS }).value
+  assert.equal(value.firstName, 'Maria Beispiel')
+  assert.equal(value.lastName, '')
+  assert.equal(value.name, 'Maria Beispiel')
 })
 
 // ── brevoRequest ──────────────────────────────────────────────────────────
@@ -153,6 +166,8 @@ test('the Brevo call uses the list, template and confirmation page of the langua
     templateId: 6,
     redirectionUrl: 'https://permaphemera.at/en/newsletter/confirmed/',
     attributes: {
+      FIRSTNAME: 'Maria',
+      LASTNAME: 'Beispiel',
       NL_NAME: 'Maria Beispiel',
       NL_LANGUAGE: 'en',
       NL_TOPICS: '|new_records|nearby|',
@@ -164,6 +179,17 @@ test('the Brevo call uses the list, template and confirmation page of the langua
       NL_SIGNUP_DATE: '2026-11-07'
     }
   })
+})
+
+test('Brevo shows the name in its own fields; without a name none is sent (owner, 2026-11-09)', () => {
+  const config = readConfig(ENV)
+  const named = JSON.parse(brevoRequest(parseSubscription(body({ lastName: '' }), { now: NOW, towns: TOWNS }).value, config, NOW).init.body)
+  assert.equal(named.attributes.FIRSTNAME, 'Maria')
+  assert.equal('LASTNAME' in named.attributes, false)
+  const nameless = JSON.parse(brevoRequest(parseSubscription(body({ firstName: '', lastName: '' }), { now: NOW, towns: TOWNS }).value, config, NOW).init.body)
+  assert.equal('FIRSTNAME' in nameless.attributes, false)
+  assert.equal('LASTNAME' in nameless.attributes, false)
+  assert.equal(nameless.attributes.NL_NAME, '')
 })
 
 test('German subscribers confirm on the unprefixed page; the date is Vienna\'s day', () => {

@@ -706,7 +706,7 @@
         "newsletter": {
           "eyebrow": "Newsletter",
           "title": "Newsletter über Brevo",
-          "p1": "Bei der Anmeldung zum Newsletter werden die E-Mail-Adresse, ein freiwillig angegebener Name, die gewählten Themen und Orte, die Sprache, die Seite der Anmeldung, das Datum und die Fassung des Einwilligungstextes gespeichert. Zweck ist allein der Versand des Newsletters.",
+          "p1": "Bei der Anmeldung zum Newsletter werden die E-Mail-Adresse, ein freiwillig angegebener Vor- und Nachname, die gewählten Themen und Orte, die Sprache, die Seite der Anmeldung, das Datum und die Fassung des Einwilligungstextes gespeichert. Zweck ist allein der Versand des Newsletters.",
           "p2": "Die Anmeldung läuft im Double-Opt-in-Verfahren: Erst nach dem Klick auf den Link in der Bestätigungs-E-Mail wird die Adresse in die Verteilerliste aufgenommen. Zeitpunkt und IP-Adresse der Bestätigung werden als Nachweis der Einwilligung gespeichert.",
           "p3": "Den Versand übernimmt Brevo (Brevo GmbH, Berlin, Deutschland) als Auftragsverarbeiter mit Servern in der EU. Öffnungen und Klicks werden nicht gemessen.",
           "p4": "Die Einwilligung kann jederzeit über den Abmeldelink in jeder E-Mail oder per E-Mail an den Verantwortlichen widerrufen werden. Nach einer Abmeldung bleibt die Adresse nur als gesperrt vermerkt, damit kein weiterer Versand erfolgt. Nicht bestätigte Anmeldungen werden nach einem Monat gelöscht.",
@@ -1118,7 +1118,8 @@
     "formAria": "Anmeldung zum Newsletter",
     "form": {
       "email": "E-Mail-Adresse",
-      "name": "Name (freiwillig)",
+      "firstName": "Vorname (freiwillig)",
+      "lastName": "Nachname (freiwillig)",
       "topicsLegend": "Themen",
       "townsLegend": "Orte (freiwillig)",
       "townsNote": "Für „Aktuell und demnächst“ und „Letzte Gelegenheit“. Wenn Sie keinen Ort wählen, erhalten Sie Hinweise aus ganz Österreich.",

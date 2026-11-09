@@ -706,7 +706,7 @@
         "newsletter": {
           "eyebrow": "Newsletter",
           "title": "Newsletter through Brevo",
-          "p1": "When signing up for the newsletter, the e-mail address, a name given voluntarily, the chosen topics and towns, the language, the page of the sign-up, the date and the version of the consent text are stored. The only purpose is sending the newsletter.",
+          "p1": "When signing up for the newsletter, the e-mail address, a first and last name given voluntarily, the chosen topics and towns, the language, the page of the sign-up, the date and the version of the consent text are stored. The only purpose is sending the newsletter.",
           "p2": "The sign-up uses double opt-in: the address joins the mailing list only after the link in the confirmation e-mail is clicked. Time and IP address of the confirmation are stored as proof of consent.",
           "p3": "Brevo (Brevo GmbH, Berlin, Germany) sends the newsletter as a processor with servers in the EU. Opens and clicks are not measured.",
           "p4": "The consent can be withdrawn at any time with the unsubscribe link in every e-mail or by e-mail to the controller. After unsubscribing, the address stays only as a blocked entry so that nothing more is sent. Sign-ups that are not confirmed are deleted after one month.",
@@ -1118,7 +1118,8 @@
     "formAria": "Newsletter sign-up",
     "form": {
       "email": "E-mail address",
-      "name": "Name (optional)",
+      "firstName": "First name (optional)",
+      "lastName": "Last name (optional)",
       "topicsLegend": "Topics",
       "townsLegend": "Towns (optional)",
       "townsNote": "For “On now and opening soon” and “Last chance”. If you choose no town, you get news from all of Austria.",
