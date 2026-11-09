@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.71 - 2026-11-09 17:52:56 CET
+
+- Newsletter: the sign-up form asks for first name and last name in two fields (both optional) instead of one name field. Both reach Brevo's own name fields, so the contact list shows the name.
+
 ## 0.0.70 - 2026-11-09 17:45:58 CET
 
 - Links work in every text: biographies, gallery and organisation texts, exhibition descriptions. Before, every link inside these texts was removed. External links open in a new tab.
