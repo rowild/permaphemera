@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.70 - 2026-11-09 17:45:58 CET
+
+- Links work in every text: biographies, gallery and organisation texts, exhibition descriptions. Before, every link inside these texts was removed. External links open in a new tab.
+
 ## 0.0.69 - 2026-11-09 16:56:16 CET
 
 - Every source under a text is now a link to the exact page it came from: the article, profile or exhibition page, shown with its headline, the site and the date. Biographies, organisation and gallery texts, exhibition descriptions. A printed source without an online copy (a flyer, a poster) stays plain text.
