@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.68 - 2026-11-09 15:52:37 CET
+
+- The newsletter has its own menu item: in the footer (Information) and in the menu behind the compass button.
+- The newsletter invite is now a window in the middle of the page, with a picture of an exhibition room and a short text. It holds no form: "Anmelden" leads to the newsletter page. It appears at most once a month, counted from when it was shown. "Nicht mehr anzeigen" keeps it away for good, like a sign-up.
+- The picture is the first view of the newest 360° tour, as a flat image. Until the tours carry this picture on the server, the Parkschlössl appears instead.
+- The × of every close button sits exactly in the middle of its button.
+- The privacy page names what the browser stores for the invite.
+
 ## 0.0.67 - 2026-11-07 17:12:03 CET
 
 - New: **Newsletter.** The page /newsletter/ has a sign-up form: e-mail address, a name if wanted, four topics (new in the archive, on now and opening soon, last chance, project news) and towns to choose, grouped by federal state. Brevo sends a confirmation mail; only after its link is clicked is the address on the list, and the page "Anmeldung bestätigt" says so. At most once a month, only when there is news. No opens or clicks are measured.
