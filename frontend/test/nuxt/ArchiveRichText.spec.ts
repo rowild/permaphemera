@@ -23,11 +23,10 @@ describe('ArchiveRichText', () => {
     expect(lead.get('.archive-rich-text').classes()).not.toContain('text-button')
   })
 
-  it('keeps site links only with `links` and gives them the current language', async () => {
-    const html = '<p><a href="/exhibitions/a/">tour</a></p>'
-    const plain = await mountSuspended(ArchiveRichText, { props: { html } })
-    expect(plain.find('a').exists()).toBe(false)
-    const linked = await mountSuspended(ArchiveRichText, { route: '/en/about/', props: { html, links: true } })
-    expect(linked.get('a').attributes('href')).toBe('/en/exhibitions/a/')
+  it('keeps links in every text and gives site links the current language (owner, 2026-11-09)', async () => {
+    const html = '<p><a href="/exhibitions/a/">tour</a> <a href="https://example.org/x">web</a></p>'
+    const text = await mountSuspended(ArchiveRichText, { route: '/en/about/', props: { html } })
+    expect(text.get('a[href="/en/exhibitions/a/"]').text()).toBe('tour')
+    expect(text.get('a[href="https://example.org/x"]').attributes('target')).toBe('_blank')
   })
 })

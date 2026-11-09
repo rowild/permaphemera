@@ -4,20 +4,18 @@ import { markSources, sanitizeRichText } from '~/utils/richText'
 // Rich text from a Directus WYSIWYG field. Sanitised again here, so no caller can hand
 // unsafe HTML to v-html; `.prose` (docs/STYLE_GUIDE.md, CMS rich text) styles paragraphs and lists.
 // A closing "Quellen" paragraph with its list becomes the source block (owner, 2026-11-06).
+// Links work in every text (owner, 2026-11-09); a site link routes in the app.
 const props = withDefaults(defineProps<{
   html: string
-  /** Keep links to site pages and https addresses (news articles); site links route in the app. */
-  links?: boolean
   /** `lead`: the larger text of the exhibition description. */
   size?: 'body' | 'lead'
 }>(), {
-  links: false,
   size: 'body'
 })
 
 const localePath = useLocalePath()
-// A site link in the text (news) is written without language; it opens in the current one.
-const safeHtml = computed(() => markSources(sanitizeRichText(props.html, { links: props.links, localize: (path) => localePath(path) })))
+// A site link in a text is written without language; it opens in the current one.
+const safeHtml = computed(() => markSources(sanitizeRichText(props.html, { localize: (path) => localePath(path) })))
 
 const sizeClass = computed(() => props.size === 'lead'
   ? 'max-w-3xl text-lg leading-[1.65] compact:leading-normal'

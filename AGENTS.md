@@ -55,9 +55,9 @@ record that breaks the rule (`frontend/test/unit/museumDrafts.spec.ts`).
 **Never Markdown (owner, 2026-11-06).** A new long text field is always WYSIWYG
 (`richText` in `directus/scripts/fields.mjs`, interface `input-rich-text-html`), never Markdown;
 `fields.mjs` has no Markdown helper and `directus/scripts/build.test.mjs` fails on any
-`input-rich-text-md` field. Links in a text only where the site keeps them: news articles, and the closing sources list of
-every text, where each source links to the exact page it came from (owner, 2026-11-09;
-`docs/how-to-gallery-and-exhibition.md` §7a; the fields have the link button). Everywhere else
-links are link records. A short one-line field stays `str` / `text`.
+`input-rich-text-md` field. Links work in every text (owner, 2026-11-09; every WYSIWYG field has the link button): a web
+address in a text is always a link, never plain text, and every source in the closing list links
+to the exact page it came from (`docs/how-to-gallery-and-exhibition.md` §7a). A record's own
+website and profiles also go into its link records (the Links list on its page). A short one-line field stays `str` / `text`.
 The site renders every WYSIWYG field through `ArchiveRichText` (sanitised). Since 2026-11-06 no
 Markdown field is left (`plans/2026-11-06__no-markdown-fields.md`).

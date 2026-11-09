@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs'
 const env = Object.fromEntries(readFileSync(new URL('../../frontend/.env', import.meta.url), 'utf8').split('\n').filter((l) => l.includes('=')).map((l) => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
 const base = env.NUXT_PUBLIC_DIRECTUS_URL
 const headers = { Authorization: `Bearer ${env.DIRECTUS_TOKEN}`, 'Content-Type': 'application/json' }
-const NOTE = 'Paragraphs, bold, italic, lists; sources at the end as their own list, each source linked to the exact page it came from (docs/how-to-gallery-and-exhibition.md §7a). Links only in that list; other addresses go under Links.'
+const NOTE = 'Paragraphs, bold, italic, lists, links (link button: https, or a site page as /exhibitions/<slug>/). Sources at the end as their own list, each linked to the exact page it came from (docs/how-to-gallery-and-exhibition.md §7a). The own website and profiles of the record also go under Links.'
 const TARGETS = { venues: 'about_html', persons: 'about_html', exhibitions: 'description', organisations: 'about_html', events: 'about_html' }
 const fields = (await (await fetch(`${base}/fields`, { headers })).json()).data
 const hits = fields.filter((f) => f.meta?.interface === 'input-rich-text-html' && Object.entries(TARGETS).some(([name, field]) => f.field === field && new RegExp(`^pp_(translations__)?${name}$`).test(f.collection)))

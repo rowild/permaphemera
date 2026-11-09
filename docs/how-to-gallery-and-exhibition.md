@@ -203,7 +203,7 @@ published venue in a draft town does not show).
 | `image`, `hero_image` | the Commons photo; `image_alt`, `hero_image_alt` in English (also in the `en` translation, German in `de`) |
 | `image_caption` | `<what> · Foto: <Author> (<Licence>)` |
 | `lede` | one line |
-| `about_html` | WYSIWYG text, 1–2 paragraphs: building, history, who runs it, opening hours. Paragraphs, bold, italic and lists only; no links (they go into link records), unless the owner asks for one in the text (e.g. the shop „Ideenreich“ in Lebenshilfe Knittelfeld, 2026-11-04). Via the API write HTML: `<p>…</p><p>…</p>` |
+| `about_html` | WYSIWYG text, 1–2 paragraphs: building, history, who runs it, opening hours. Paragraphs, bold, italic, lists and links (§8a). Via the API write HTML: `<p>…</p><p>…</p>` |
 | `description` | one sentence |
 | `translations` | `en` and `de` with `lede`, `about_html`, `description`, `image_alt`, `hero_image_alt`, `image_caption`, `coordinate_label` |
 
@@ -354,8 +354,7 @@ there is one, else it stays plain text and goes on the owner's list.
 </ul>
 ```
 
-The site keeps links only in this closing list (`sanitizeRichText`); links anywhere else in the
-text are dropped (§8a). In the admin app: a new paragraph with only "Quellen", then the list
+Links work in every text (§8a). In the admin app: a new paragraph with only "Quellen", then the list
 button, then select each line and use the link button. All long texts are WYSIWYG fields
 (biographies, organisation and venue texts, exhibition descriptions and news articles since
 2026-11-06); no field is Markdown (root `AGENTS.md`, Data model). `pnpm check:data` fails on a
@@ -366,14 +365,22 @@ documented history); the list at the end still names all sources, linked. Conver
 texts: `plans/2026-11-06__sources-as-list/migrate-sources.mjs`; links added to all 144 texts on
 2026-11-09: `plans/2026-11-09__linked-sources.md`.
 
-## 8a. Links are always link records, never text
+## 8a. Links: in the text and in the link records (owner, 2026-11-09)
 
-Never write a URL, a domain or a handle ("@galeriepalaisfugger") into the running text of
-`about_html`, `description` or any other text: the site cannot click it there. The one exception
-is the closing sources list (§7a), where every source is a link. Every external address goes into a link field
-(`website_url`) or a `pp_websites` row (venue, person, organisation, exhibition). The site
-opens all of them in a new tab. Known platforms show their name ("Instagram", "Facebook"),
-a website its host name ("galerie3.com").
+Links work in every text (biographies, organisation, venue and event texts, exhibition
+descriptions, news). A web address in a text is always a link, never plain text: select the words
+and use the link button (https, http only where a site has no https; a page of the site as
+`/exhibitions/<slug>/`, without `/en`). External links open in a new tab, site links stay in the
+site. The site cleans every text (`sanitizeRichText`): a link to anything else (`javascript:`,
+`data:`) keeps its words and loses the link.
+
+A record's own website and profiles also go into its link records: the venue's website in
+`website_url`, everything else in `pp_websites` rows (venue, person, organisation, exhibition).
+They form the Links list on the record's page. Known platforms show their name ("Instagram",
+"Facebook"), a website its host name ("galerie3.com").
+
+(Until 2026-11-09 the site dropped every link from these texts. Nobody had asked for that; the
+owner ended it.)
 
 ---
 

@@ -7,33 +7,19 @@ describe('sanitizeRichText', () => {
       .toBe('<p>One <strong>two</strong> <em>three</em><br>four</p><ul><li>a</li></ul><ol><li>b</li></ol>')
   })
 
-  it('keeps the text of a link but not the link (links are link records)', () => {
-    expect(sanitizeRichText('<p>See <a href="https://example.org" target="_blank">the site</a>.</p>')).toBe('<p>See the site.</p>')
+  it('keeps links in every text (owner, 2026-11-09): site pages, https and http; drops unsafe targets and every other attribute', () => {
+    const html = '<p><a href="/exhibitions/x/" onclick="evil()">site</a> <a href="https://example.org/a?b=1" target="_self">web</a> <a href="http://plain.org/p">http</a> <a href="javascript:alert(1)">js</a> <a href="//evil.org">proto</a> <a href="/x" onmouseover="evil()">quote</a></p>'
+    expect(sanitizeRichText(html)).toBe('<p><a href="/exhibitions/x/">site</a> <a href="https://example.org/a?b=1" target="_blank" rel="noopener noreferrer">web</a> <a href="http://plain.org/p" target="_blank" rel="noopener noreferrer">http</a> js proto <a href="/x">quote</a></p>')
   })
 
-  it('keeps site and https links only when asked (news), dropping every other link and attribute', () => {
-    const html = '<p><a href="/exhibitions/x/" onclick="evil()">site</a> <a href="https://example.org/a?b=1">web</a> <a href="javascript:alert(1)">js</a> <a href="//evil.org">proto</a> <a href="http://plain.org">http</a> <a href="/x" onmouseover="evil()">quote</a></p>'
-    expect(sanitizeRichText(html, { links: true })).toBe('<p><a href="/exhibitions/x/">site</a> <a href="https://example.org/a?b=1" target="_blank" rel="noopener noreferrer">web</a> js proto http <a href="/x">quote</a></p>')
-  })
-
-  it('gives a kept site link the language prefix (news in English)', () => {
-    expect(sanitizeRichText('<p><a href="/exhibitions/a/">tour</a> <a href="https://x.org/">web</a></p>', { links: true, localize: (path) => `/en${path}` }))
+  it('gives a kept site link the language prefix (English pages)', () => {
+    expect(sanitizeRichText('<p><a href="/exhibitions/a/">tour</a> <a href="https://x.org/">web</a></p>', { localize: (path) => `/en${path}` }))
       .toBe('<p><a href="/en/exhibitions/a/">tour</a> <a href="https://x.org/" target="_blank" rel="noopener noreferrer">web</a></p>')
   })
 
-  it('keeps the https links of the closing sources list, also where the text keeps no other link (owner, 2026-11-09)', () => {
+  it('keeps the links of the closing sources list like every other link', () => {
     const html = '<p>Text <a href="https://a.at/x">here</a>.</p><p>Quellen</p><ul><li><a href="https://www.meinbezirk.at/spittal/c-lokales/neu_a1">„Neu“, meinbezirk.at, 12. 1. 2022</a></li><li><a href="javascript:alert(1)">bad</a></li><li>Plakat</li></ul>'
-    expect(sanitizeRichText(html)).toBe('<p>Text here.</p><p>Quellen</p><ul><li><a href="https://www.meinbezirk.at/spittal/c-lokales/neu_a1" target="_blank" rel="noopener noreferrer">„Neu“, meinbezirk.at, 12. 1. 2022</a></li><li>bad</li><li>Plakat</li></ul>')
-  })
-
-  it('keeps an http link in the sources list (a few sources have no https, e.g. bv-kaernten.at), never in the text', () => {
-    const html = '<p><a href="http://a.at/x">a</a></p><p>Quelle</p><ul><li><a href="http://www.bv-kaernten.at/flohmarkt">„Flohmarkt“, bv-kaernten.at</a></li></ul>'
-    expect(sanitizeRichText(html)).toBe('<p>a</p><p>Quelle</p><ul><li><a href="http://www.bv-kaernten.at/flohmarkt" target="_blank" rel="noopener noreferrer">„Flohmarkt“, bv-kaernten.at</a></li></ul>')
-  })
-
-  it('keeps no link in a list that is not the closing sources list', () => {
-    const html = '<p>Quellen</p><ul><li><a href="https://a.at/x">a</a></li></ul><p>More text.</p>'
-    expect(sanitizeRichText(html)).toBe('<p>Quellen</p><ul><li>a</li></ul><p>More text.</p>')
+    expect(sanitizeRichText(html)).toBe('<p>Text <a href="https://a.at/x" target="_blank" rel="noopener noreferrer">here</a>.</p><p>Quellen</p><ul><li><a href="https://www.meinbezirk.at/spittal/c-lokales/neu_a1" target="_blank" rel="noopener noreferrer">„Neu“, meinbezirk.at, 12. 1. 2022</a></li><li>bad</li><li>Plakat</li></ul>')
   })
 
   it('drops scripts, styles and event handlers entirely', () => {
