@@ -59,6 +59,8 @@ _360_GALLERIES_AND_TOURS/collection/_galleries/<venue>/<tour-id>/building_01/flo
    ▼  Tour Editor: Export (⌘E) → _360_GALLERIES_AND_TOURS/exported/<tour-id>/
    │     or File → Publish to website…: this step and the two below in one window,
    │     plus save + backup; it links the tour only after the upload (Handbook Tutorial No. 4)
+   │     writes → the rights data (Settings → Rights) into every WebP (XMP) and into
+   │              tour.json `rights` (since 2026-11-09, Tour Editor 1.0.10)
    │
    ▼  _WEBSITE PERMAPHEMERA/frontend:  pnpm tour:publish <tour-id>
    │     copies → frontend/public/media/tours/<tour-id>/
