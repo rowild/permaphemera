@@ -16,8 +16,8 @@ sources and decisions: `2026-11-06__wagner-reloaded/worklog.md`; scripts `write-
 
 ## Open
 
-- `pp_organisations/stadttheater-klagenfurt` is still a draft, so the published exhibition does
-  not show its partner. Publish it when it is checked.
+- ~~`pp_organisations/stadttheater-klagenfurt` is still a draft~~: published 2026-11-09 (owner);
+  "Wagner reloaded" names its partner.
 - Renate Wutte (head of make-up) is named in the text only, not as a person record.
 - The exhibition has no link record: the Stadtgalerie's page is "Aktuelle Ausstellung" and moves
   to the archive later.

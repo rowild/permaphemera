@@ -23,8 +23,9 @@ Files in the folder `2026-11-09__trigeniale-brda-26-kmetija-moro/`:
 
 ## State on 2026-11-09 (evening)
 
-- Everything is still a draft: venue `kmetija-moro-brda`, town `brda`, exhibition
-  `trigeniale-brda-26`, persons Giulia Cernetig, Aleksandra Rusjan, Margrit Pernull.
+- Published 2026-11-09 in the evening (owner): venue `kmetija-moro-brda`, town `brda`, exhibition
+  `trigeniale-brda-26`, persons Giulia Cernetig, Aleksandra Rusjan, Margrit Pernull. `pnpm check:data` allows a town in a
+  neighbouring country inside the Alps-Adriatic region (it demanded Austria).
 - SEO texts written (all match `directus/seo/2026-11-09-trigeniale-brda-26.json`).
 - The sources of these texts link the exact pages since 2026-11-09 (`2026-11-09__linked-sources.md`);
   the poster and the artist sheet have no online copy and stay plain text.

@@ -10,6 +10,7 @@
 // Input: the raw archive snapshot (keys of COLLECTIONS; file fields already asset URLs, plus
 // `<field>_placeholder` and `<field>_type`) and the locale messages ({ de, en } from i18n/locales).
 
+import { inHomeCountry } from './countries.mjs'
 import { tourAccess } from './tour-access.mjs'
 
 export const SITE_URL = 'https://permaphemera.at'
@@ -532,12 +533,18 @@ export const staticSeoEntries = (messages, counts = {}) => STATIC_PAGES.flatMap(
   }, SITE_URL)
 }))
 
-/** The numbers in the fixed pages' texts ("13 galleries…"): published records only. */
-export const seoCounts = (archive) => ({
-  venues: (archive.venues ?? []).filter(published).length,
-  organisations: (archive.organisations ?? []).filter(published).length,
-  events: (archive.events ?? []).filter(published).length
-})
+/**
+ * The numbers in the fixed pages' texts ("13 galleries…"): published records only. The galleries
+ * text says "in Austria", so it counts the galleries in Austria (shared/countries.mjs).
+ */
+export const seoCounts = (archive) => {
+  const countryOf = new Map((archive.locations ?? []).map((location) => [location.id, location.country]))
+  return {
+    venues: (archive.venues ?? []).filter((venue) => published(venue) && inHomeCountry(countryOf.get(venue.location))).length,
+    organisations: (archive.organisations ?? []).filter(published).length,
+    events: (archive.events ?? []).filter(published).length
+  }
+}
 
 /** The entry of one page for the running site: a fixed page at once, a record page once the archive is loaded. */
 export const pageSeoEntry = (archive, { path, locale, messages, assetBase, ready, today }) => {

@@ -3,6 +3,7 @@
 // `directus/extensions/permaphemera-newsletter` (plan: plans/2026-11-07__newsletter.md).
 
 import { tourStartViewUrl } from '../../shared/tour-access.mjs'
+import { inHomeCountry } from '../../shared/countries.mjs'
 import { openTourExhibitions, type TourReadyExhibition } from '~/utils/tourAccess'
 
 export const NEWSLETTER_TOPICS = ['new_records', 'nearby', 'closing_soon', 'project_news'] as const
@@ -19,15 +20,18 @@ export const newsletterEndpoint = (directusUrl: string) => `${directusUrl.replac
 
 // ── towns ─────────────────────────────────────────────────────────────────
 
-interface TownSource { slug: string, title: string, state: string, status: string }
+interface TownSource { slug: string, title: string, state: string, status: string, country?: string }
 export interface TownOption { slug: string, title: string }
 export interface TownGroup { state: string, label: string, towns: TownOption[] }
 
-/** Published towns by federal state; `stateName` gives the shown name of a stored state. */
+/**
+ * Published towns in Austria by federal state; `stateName` gives the shown name of a stored state.
+ * Towns abroad are left out, like on the overview pages (shared/countries.mjs).
+ */
 export function groupTownsByState(locations: TownSource[], stateName: (state: string) => string): TownGroup[] {
   const groups = new Map<string, TownOption[]>()
   for (const location of locations) {
-    if (location.status !== 'published') continue
+    if (location.status !== 'published' || !inHomeCountry(location.country)) continue
     const state = location.state ?? ''
     groups.set(state, [...(groups.get(state) ?? []), { slug: location.slug, title: location.title }])
   }

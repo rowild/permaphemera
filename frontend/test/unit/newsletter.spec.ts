@@ -46,6 +46,11 @@ describe('groupTownsByState', () => {
     const groups = groupTownsByState([town('x', 'Xdorf', ''), town('graz', 'Graz', 'Styria')], stateName)
     expect(groups.map((g) => g.state)).toEqual(['Styria', ''])
   })
+
+  it('offers only towns in Austria, like the overview pages (owner, 2026-11-09)', () => {
+    const groups = groupTownsByState([town('graz', 'Graz', 'Styria'), { ...town('dobrovo', 'Dobrovo', 'Goriška'), country: 'Slovenia' }], stateName)
+    expect(groups.map((g) => g.state)).toEqual(['Styria'])
+  })
 })
 
 describe('buildSubscribeBody', () => {

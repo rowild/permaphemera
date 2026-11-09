@@ -7,7 +7,8 @@ const props = defineProps<{
   group: ExhibitionTimeGroupId
 }>()
 
-const { venueExhibitions } = useArchiveData()
+// Overview page: galleries in Austria only (owner, 2026-11-09; shared/countries.mjs).
+const { overviewExhibitions: venueExhibitions } = useArchiveData()
 const archiveToday = useArchiveToday()
 const { t } = useI18n()
 

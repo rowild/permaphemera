@@ -75,6 +75,10 @@ describe('resolveExhibitions', () => {
     expect(record.city).toBe('Spittal an der Drau')
   })
 
+  it('carries the country of its town, for the overview pages (Austria only, text-rules §5a)', () => {
+    expect(resolve()[0].country).toBe('Austria')
+  })
+
   it('passes the localized admission text through, and nothing when it is empty', () => {
     expect(resolve()[0].admission).toBeUndefined()
     const paid = [{ ...exhibitions[0], admission: '€ 5', translations: [{ ...exhibitions[0]!.translations[0], admission: '€ 5' }, { languages_code: 'de', admission: '5 €' }] }]

@@ -340,6 +340,13 @@ describe('pageSeoEntry (what usePageSeo puts into the head)', () => {
     expect(page('/venues/', false)).toEqual(expected)
   })
 
+  it('counts only the galleries in Austria in the galleries page text (owner, 2026-11-09)', () => {
+    const abroad = { ...location, id: 'loc-si', slug: 'dobrovo', country: 'Slovenia', state: 'Goriška' }
+    const withAbroad = archive({ locations: [location, abroad], venues: [venue, { ...venue, id: 'v-si', slug: 'kmetija', location: 'loc-si' }] })
+    const expected = staticSeoEntries(messages, { venues: 1, organisations: 1 }).find((item) => item.path === '/venues/' && item.locale === 'en')
+    expect(pageSeoEntry(withAbroad, { path: '/venues/', locale: 'en', messages, assetBase, ready: true })).toEqual(expected)
+  })
+
   it('serves a record page once the archive is ready', () => {
     expect(page('/exhibitions/trigeniale-26/')?.title).toBe('Trigeniale 26 – Alps-Adriatic exhibition')
     expect(page('/exhibitions/trigeniale-26/', false)).toBeUndefined()

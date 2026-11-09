@@ -3,16 +3,17 @@ const { venues, venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 
 const stateName = useStateName()
+const countryName = useCountryName()
+const inCountry = useInCountry()
 
-const states = computed(() => [...new Set(venues.value.map((venue) => venue.state))]
-  .sort((left, right) => left.localeCompare(right)))
+// All galleries, in Austria and abroad (text-rules §5a). Each country has its own count
+// (owner, 2026-11-09): Austria first with its federal states, then each country with its regions.
+const countryGroups = computed(() => venueCountryGroups(venues.value))
+const states = computed(() => countryGroups.value.flatMap((group) => group.states.map(({ state }) => state)))
+const federalStates = computed(() => countryGroups.value.find((group) => group.home)?.states.length ?? 0)
 const gallerySearchQuery = useQueryParam('q')
 // An unknown ?state= (an old or mistyped link) shows all galleries.
 const selectedState = useQueryParam('state', { validate: (state) => (states.value.includes(state) ? state : '') })
-const stateCounts = computed(() => new Map(states.value.map((state) => [
-  state,
-  venues.value.filter((venue) => venue.state === state).length
-])))
 const recordsByGallery = computed(() => new Map(venues.value.map((venue) => [
   venue.slug,
   venueExhibitions.value.filter((exhibition) => exhibition.venue_slug === venue.slug).length
@@ -29,19 +30,20 @@ const filteredVenues = computed(() => orderedVenues.value.filter((venue) => {
       venue.postal_code,
       stateName(venue.state),
       venue.country,
+      countryName(venue.country),
       venue.address,
       venue.description
   ])
 }))
 const galleryLedgerItems = computed(() => [
-  { label: t('galleries.ledgerGalleries'), value: venues.value.length },
-  { label: t('galleries.ledgerStates'), value: states.value.length },
+  ...countryGroups.value.map((group) => ({ label: t('galleries.ledgerGalleriesIn', { place: inCountry(group.country) }), value: group.count })),
+  { label: t('galleries.ledgerStates'), value: federalStates.value },
   { label: t('galleries.ledgerRecords'), value: venueExhibitions.value.length }
 ])
-// Mobile: the ledger's three facts as one line in the eyebrow's place.
+// Mobile: the ledger's facts as one line in the eyebrow's place.
 const galleryFacts = computed(() => [
-  t('galleries.factGalleries', venues.value.length),
-  t('galleries.factStates', states.value.length),
+  ...countryGroups.value.map((group) => t('galleries.factGalleriesIn', { count: group.count, place: inCountry(group.country) }, group.count)),
+  t('galleries.factStates', federalStates.value),
   t('galleries.factExhibitions', venueExhibitions.value.length)
 ])
 
@@ -79,9 +81,19 @@ definePageMeta({ navActive: 'galleries' })
             :placeholder="$t('galleries.searchPlaceholder')"
           />
 
-          <ArchiveAlphabetRail class="[ gallery-state-filter ] mt-7 gap-5 pb-4 compact:mt-4 compact:gap-4 compact:pb-3" :label="$t('galleries.stateFilterAria')">
-            <button class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="!selectedState" @click="selectedState = ''">{{ $t('common.all') }} <small class="ml-1 text-xs">{{ venues.length }}</small></button>
-            <button v-for="state in states" :key="state" class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="selectedState === state" @click="selectedState = selectedState === state ? '' : state">{{ stateName(state) }} <small class="ml-1 text-xs">{{ stateCounts.get(state) }}</small></button>
+          <ArchiveAlphabetRail class="[ gallery-state-filter ] mt-7 gap-8 pb-4 compact:mt-4 compact:gap-6 compact:pb-3" :label="$t('galleries.stateFilterAria')">
+            <button class="shrink-0 self-end border-0 bg-transparent p-0 text-button text-archive-muted transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-archive-red aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="!selectedState" @click="selectedState = ''">{{ $t('common.all') }} <small class="ml-1 text-xs">{{ venues.length }}</small></button>
+            <!-- One column per country: its name as a small, light eyebrow (a label, not a filter), its states or regions below as filter links (owner, 2026-11-09). -->
+            <template v-for="(group, index) in countryGroups" :key="group.country">
+              <!-- Between two countries: a thin line over the full height of both lines, 65 % transparent. -->
+              <span v-if="index > 0" class="[ gallery-state-divider ] w-px shrink-0 self-stretch bg-archive-rule-warm/35" aria-hidden="true" />
+              <div class="[ gallery-state-group ] flex shrink-0 flex-col gap-1.5" role="group" :aria-label="countryName(group.country)">
+                <span class="text-2xs leading-none tracking-widest text-archive-muted/65 uppercase" aria-hidden="true">{{ countryName(group.country) }}</span>
+                <div class="flex gap-5 compact:gap-4">
+                  <button v-for="{ state, count } in group.states" :key="state" class="shrink-0 border-0 bg-transparent p-0 text-button text-archive-muted transition-colors duration-150 hover:text-archive-red focus-visible:text-archive-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-archive-red aria-pressed:font-medium aria-pressed:text-archive-red compact:text-sm" type="button" :aria-pressed="selectedState === state" @click="selectedState = selectedState === state ? '' : state">{{ stateName(state) }} <small class="ml-1 text-xs">{{ count }}</small></button>
+                </div>
+              </div>
+            </template>
           </ArchiveAlphabetRail>
         </div>
 

@@ -10,6 +10,26 @@
     "Vienna": "Wien",
     "Vorarlberg": "Vorarlberg"
   },
+  "countries": {
+    "Austria": "Österreich",
+    "Croatia": "Kroatien",
+    "Germany": "Deutschland",
+    "Hungary": "Ungarn",
+    "Italy": "Italien",
+    "Slovakia": "Slowakei",
+    "Slovenia": "Slowenien",
+    "Switzerland": "Schweiz"
+  },
+  "inCountry": {
+    "Austria": "in Österreich",
+    "Croatia": "in Kroatien",
+    "Germany": "in Deutschland",
+    "Hungary": "in Ungarn",
+    "Italy": "in Italien",
+    "Slovakia": "in der Slowakei",
+    "Slovenia": "in Slowenien",
+    "Switzerland": "in der Schweiz"
+  },
   "site": {
     "homeAria": "PERMAPHEMERA Startseite",
     "skipToContent": "Zum Inhalt springen",
@@ -240,7 +260,7 @@
     "ledgerRecords": "Bewahrte Einträge",
     "searchLabel": "Galerienverzeichnis durchsuchen",
     "searchPlaceholder": "Galerien suchen…",
-    "stateFilterAria": "Galerien nach Bundesland filtern",
+    "stateFilterAria": "Galerien nach Bundesland oder Region filtern",
     "status": "{visible} von {total} Galerien werden angezeigt.",
     "clearFilters": "Filter löschen",
     "noMatches": "Keine Galerie entspricht dieser Suche und Bundeslandauswahl.",
@@ -251,6 +271,8 @@
     "openGallery": "Profil von {name} öffnen",
     "directory": "Galerienverzeichnis",
     "factGalleries": "{count} Galerie | {count} Galerien",
+    "ledgerGalleriesIn": "Galerien {place}",
+    "factGalleriesIn": "{count} Galerie {place} | {count} Galerien {place}",
     "factStates": "{count} Bundesland | {count} Bundesländer",
     "factExhibitions": "{count} Ausstellung | {count} Ausstellungen"
   },
@@ -773,14 +795,16 @@
           "p1": "PERMAPHEMERA darf im vorgesehenen Funktionsumfang zu privaten, wissenschaftlichen, journalistischen und nichtkommerziellen Informationszwecken genutzt werden. Dabei sind Rechte, Würde und Namensnennung aller Beteiligten zu respektieren.",
           "personal": "Das Ansehen und Verlinken öffentlich zugänglicher Seiten ist gestattet.",
           "noReuse": "Eine eigenständige Vervielfältigung, Weiterveröffentlichung, Bearbeitung, automatisierte Massenauslese oder kommerzielle Nutzung von Texten, Bildern und 360°-Rundgängen ist ohne Erlaubnis nicht gestattet.",
-          "noAi": "Text und Data Mining ist vorbehalten (§ 42h Abs. 6 UrhG), auch zum Training von KI-Systemen. Texte, Bilder und 360°-Rundgänge dürfen ohne Erlaubnis nicht für KI-Training, Bilddatensätze oder das Erzeugen ähnlicher Werke ausgelesen werden. Der Vorbehalt steht auch in maschinenlesbarer Form in robots.txt und /.well-known/tdmrep.json.",
+          "noAi": "Text und Data Mining ist vorbehalten (§ 42h Abs. 6 UrhG), auch zum Training von KI-Systemen. Texte, Bilder und 360°-Rundgänge dürfen ohne Erlaubnis nicht für KI-Training, Bilddatensätze oder das Erzeugen ähnlicher Werke ausgelesen werden. Der Vorbehalt steht auch in maschinenlesbarer Form in robots.txt, in /.well-known/tdmrep.json, in den HTTP-Antworten jeder Seite und jedes Bildes und, wo vorhanden, in den Bilddateien selbst.",
+          "noHotlink": "Bilder und 360°-Rundgänge dürfen nicht in andere Websites oder Anwendungen eingebunden werden (Hotlinking, Einbetten). Ein Link auf die jeweilige Seite von PERMAPHEMERA ist erlaubt.",
           "noInterference": "Sicherheitsmechanismen dürfen nicht umgangen und Betrieb, Verfügbarkeit oder Integrität der Website nicht beeinträchtigt werden."
         },
         "rights": {
           "eyebrow": "Urheber- und Persönlichkeitsrechte",
           "title": "Viele Beiträge, unterschiedliche Rechte",
           "p1": "Die Website vereint eigene Inhalte mit Fotografien, Kunstwerken, Namen, Marken und Informationen Dritter. Rechte verbleiben bei den jeweiligen Urheber:innen, Kunstschaffenden, Fotograf:innen, Institutionen und sonstigen Berechtigten.",
-          "p2": "Die Veröffentlichung im Archiv überträgt keine Nutzungsrechte an Besucher:innen. Gesetzlich zulässige Zitate und sonstige Schranken des Urheberrechts bleiben unberührt; Quelle und Urheberschaft sind angemessen anzugeben."
+          "p2": "Die Veröffentlichung im Archiv überträgt keine Nutzungsrechte an Besucher:innen. Gesetzlich zulässige Zitate und sonstige Schranken des Urheberrechts bleiben unberührt; Quelle und Urheberschaft sind angemessen anzugeben.",
+          "p3": "Bilddateien, besonders die der 360°-Rundgänge, können eingebettete Rechteangaben enthalten: Fotograf:in, Rechteinhaber, einen Hinweis auf die Rechte an den gezeigten Werken, die Nutzungsbedingungen und den Vorbehalt des Text und Data Mining. Diese Angaben dürfen nicht entfernt oder verändert werden (§ 90c UrhG)."
         },
         "links": {
           "eyebrow": "Externe Ziele",

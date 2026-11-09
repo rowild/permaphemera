@@ -1,3 +1,4 @@
+import { inHomeCountry } from '../../shared/countries.mjs'
 import { buildArtistDirectory } from '~/utils/artistDirectory'
 import { isVisible } from '~/utils/contentStatus'
 import { eventByExhibition, resolveEvents } from '~/utils/resolveEvents'
@@ -134,9 +135,17 @@ function buildArchiveData() {
     locale: locale.value
   }))
 
+  // The overview pages (start page, /exhibitions/, current, upcoming, past, the newsletter
+  // invite) list only galleries in Austria for now (owner, 2026-11-09; shared/countries.mjs).
+  // Every record page and /venues/ keep the full lists.
+  const overviewVenues = computed(() => venuesForLocale.value.filter((venue) => inHomeCountry(venue.country)))
+  const overviewExhibitions = computed(() => exhibitionsForLocale.value.filter((exhibition) => inHomeCountry(exhibition.country)))
+
   return {
     venues: venuesForLocale,
     venueExhibitions: exhibitionsForLocale,
+    overviewVenues,
+    overviewExhibitions,
     sponsors: computed(() => archive.value.sponsors.filter(isVisible)),
     organisations: organisationsForLocale,
     artistDirectory,

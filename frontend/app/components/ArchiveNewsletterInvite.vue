@@ -16,7 +16,8 @@ const localePath = useLocalePath()
 const { t } = useI18n()
 const invite = useNewsletterInvite()
 const cookieNotice = useCookieNotice()
-const { venueExhibitions } = useArchiveData()
+// Pictures from galleries in Austria only, like the overview pages (shared/countries.mjs).
+const { overviewExhibitions: venueExhibitions } = useArchiveData()
 const today = useArchiveToday()
 
 const record = ref<InviteRecord | null>(null)

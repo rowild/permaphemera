@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.74 - 2026-11-09 22:30:22 CET
+
+- Galleries page: each country has its own count ("Galerien in Österreich", "Galerien in Slowenien"). The filter shows each country's name above its federal states or regions, with a thin line between countries. The filters turn red on hover, like links. The search also finds a gallery by its country's name.
+- The start page, the exhibitions page and the pages for current, upcoming and past exhibitions show only galleries in Austria for now. The newsletter's town list does too. Galleries abroad keep their own pages and show on the galleries page.
+- Terms of use: images and 360° tours may not be embedded on other websites (a link is fine). Rights data inside image files may not be removed or changed. The AI clause also names the "noai" headers and the image files.
+
 ## 0.0.73 - 2026-11-09 19:20:55 CET
 
 - No visible change. Behind the scenes: the work logs of "Wagner reloaded", "Das große Welttheater" and "Trigeniale Brda 26" and their SEO texts are filed, and the project docs describe the newsletter and the link rules as they are now.

@@ -29,7 +29,8 @@ type Exhibition = ResolvedExhibition
 // header and footer beside <main>, overflow-clip so the sticky header stays.
 definePageMeta({ archiveOptional: true, layout: false })
 
-const { venues, venueExhibitions, artistDirectory: directoryArtists, news } = useArchiveData()
+// Overview page: galleries in Austria only (owner, 2026-11-09; shared/countries.mjs).
+const { overviewVenues: venues, overviewExhibitions: venueExhibitions, artistDirectory: directoryArtists, news } = useArchiveData()
 const archiveReady = useArchiveReady()
 const { t, locale } = useI18n()
 const localePath = useLocalePath()

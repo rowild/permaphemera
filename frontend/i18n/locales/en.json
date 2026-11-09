@@ -10,6 +10,26 @@
     "Vienna": "Vienna",
     "Vorarlberg": "Vorarlberg"
   },
+  "countries": {
+    "Austria": "Austria",
+    "Croatia": "Croatia",
+    "Germany": "Germany",
+    "Hungary": "Hungary",
+    "Italy": "Italy",
+    "Slovakia": "Slovakia",
+    "Slovenia": "Slovenia",
+    "Switzerland": "Switzerland"
+  },
+  "inCountry": {
+    "Austria": "in Austria",
+    "Croatia": "in Croatia",
+    "Germany": "in Germany",
+    "Hungary": "in Hungary",
+    "Italy": "in Italy",
+    "Slovakia": "in Slovakia",
+    "Slovenia": "in Slovenia",
+    "Switzerland": "in Switzerland"
+  },
   "site": {
     "homeAria": "PERMAPHEMERA home",
     "skipToContent": "Skip to content",
@@ -240,7 +260,7 @@
     "ledgerRecords": "Preserved records",
     "searchLabel": "Search the gallery directory",
     "searchPlaceholder": "Search galleries…",
-    "stateFilterAria": "Filter galleries by federal state",
+    "stateFilterAria": "Filter galleries by federal state or region",
     "status": "Showing {visible} of {total} galleries.",
     "clearFilters": "Clear filters",
     "noMatches": "No gallery matches this search and state selection.",
@@ -251,6 +271,8 @@
     "openGallery": "Open the profile for {name}",
     "directory": "Gallery directory",
     "factGalleries": "{count} gallery | {count} galleries",
+    "ledgerGalleriesIn": "Galleries {place}",
+    "factGalleriesIn": "{count} gallery {place} | {count} galleries {place}",
     "factStates": "{count} federal state | {count} federal states",
     "factExhibitions": "{count} exhibition | {count} exhibitions"
   },
@@ -773,14 +795,16 @@
           "p1": "PERMAPHEMERA may be used through its intended functions for private, academic, journalistic and non-commercial information. The rights, dignity and attribution of everyone involved must be respected.",
           "personal": "Viewing and linking to publicly accessible pages is permitted.",
           "noReuse": "Independent reproduction, republication, adaptation, automated bulk extraction or commercial use of texts, images and 360° tours is not permitted without authorisation.",
-          "noAi": "Text and data mining is reserved (§ 42h(6) Austrian Copyright Act; Art. 4(3) Directive (EU) 2019/790), including for training AI systems. Texts, images and 360° tours may not be extracted for AI training, image datasets or the generation of similar works without permission. The reservation is also stated in machine-readable form in robots.txt and /.well-known/tdmrep.json.",
+          "noAi": "Text and data mining is reserved (§ 42h(6) Austrian Copyright Act; Art. 4(3) Directive (EU) 2019/790), including for training AI systems. Texts, images and 360° tours may not be extracted for AI training, image datasets or the generation of similar works without permission. The reservation is also stated in machine-readable form in robots.txt, in /.well-known/tdmrep.json, in the HTTP responses of every page and image and, where present, in the image files themselves.",
+          "noHotlink": "Images and 360° tours may not be embedded in other websites or applications (hotlinking, embedding). A link to the page on PERMAPHEMERA is allowed.",
           "noInterference": "Security mechanisms must not be circumvented, nor may the operation, availability or integrity of the website be impaired."
         },
         "rights": {
           "eyebrow": "Copyright and personality rights",
           "title": "Many contributions, different rights",
           "p1": "The website combines original material with third-party photographs, artworks, names, trademarks and information. Rights remain with the respective authors, artists, photographers, institutions and other rights holders.",
-          "p2": "Publication in the archive grants no licence to visitors. Lawful quotation and other statutory copyright exceptions remain unaffected; sources and authorship must be appropriately acknowledged."
+          "p2": "Publication in the archive grants no licence to visitors. Lawful quotation and other statutory copyright exceptions remain unaffected; sources and authorship must be appropriately acknowledged.",
+          "p3": "Image files, especially those of the 360° tours, may carry embedded rights information: the photographer, the rights holder, a note on the rights in the works shown, the terms of use and the reservation of text and data mining. This information may not be removed or altered (§ 90c Austrian Copyright Act)."
         },
         "links": {
           "eyebrow": "External destinations",

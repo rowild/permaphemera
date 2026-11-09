@@ -11,15 +11,21 @@ and the copy review `website-copy-review-and-ai-brief.md` (2026-10-25, at the re
 
 ## 1. The owner's rules
 
-### 1.1 An exhibition is never a "document"
+### 1.1 A 360° tour is never a "document"
 
-A document is a paper or a digital file, a contract, something to sign. An exhibition is an
-exhibition. A 360° tour is a 360° tour. A gallery is a gallery.
+A document is a paper or a digital file, a contract, something to sign. A 360° tour is a 360°
+tour. A gallery is a gallery. "A 360° document" makes no sense and is never written.
+
+Do not be stricter than that (owner, 2026-11-09). "Dokumentation" / "documentation" is a normal
+word: PERMAPHEMERA documents exhibitions, and its entries may be called its documentation. An
+exhibition can also be a documentation of something itself (historical, biological, social …):
+then the text says so.
 
 | Allowed | Never |
 |---|---|
-| PERMAPHEMERA dokumentiert Ausstellungen. / documents exhibitions | ein Dokument, räumliche Dokumente, Ausstellungsdokumentationen (as the result) |
-| die Dokumentation (the process of documenting) | a document, spatial record, spatial document |
+| PERMAPHEMERA dokumentiert Ausstellungen. / documents exhibitions | the 360° tour as "ein Dokument", "räumliches Dokument", "360°-Dokument" |
+| die Dokumentation, Dokumentationen (the process, the archive's entries) | "a document", "spatial record", "spatial document" for a tour |
+| an exhibition that documents a topic (eine dokumentarische Ausstellung) | |
 | ein 360°-Rundgang einer Ausstellung / a 360° tour of an exhibition | |
 
 A PDF invitation may stay a document.
@@ -100,7 +106,7 @@ position is plain interface or process language and stays.
 
 The section on how a 360° tour is made may reflect a little more (owner, 2026-10-25): why a
 room says more than a single photograph, how the works relate to each other. It still states
-facts, and it never calls an exhibition a document.
+facts, and it never calls a 360° tour a document.
 
 ### 1.9 Sources: a list at the end
 
@@ -177,8 +183,41 @@ disappear." (impeccable, clarify)
 - Concrete facts: dates, places, names, the origin story with its people, place and year.
 - Headers that already name their content ("Aktuelle / kommende Ausstellungen").
 - The hero line "Vergängliche Welten. Dauerhaft bewahrt." (owner, 2026-10-25): the brand line, kept on purpose. It is the one place for such a line; do not copy its form into other headers.
-- Scope: the archive's scope is Austria ("in ganz Österreich", owner 2026-10-25), even while all published galleries are in Carinthia.
+- Scope: the archive's scope is Austria ("in ganz Österreich", owner 2026-10-25), even while all published galleries are in Carinthia. Since 2026-11-09 it also takes in places beyond the border that are tied to Austria (the "Austria and beyond" rule below).
 - Status texts and labels that say what a control does or what state a tour is in.
+
+### 5a. Austria and beyond (owner, 2026-11-09)
+
+PERMAPHEMERA is an archive of exhibitions in Austria. It also records an exhibition outside
+Austria when the exhibition is tied to Austria in one of two ways:
+
+1. **Artists from Austria show abroad.** Artists who live or work in Austria, or come from
+   it, take part in the exhibition.
+2. **Work across the border.** An organisation recorded in the archive (an association, an
+   institution, a cultural initiative) organises the exhibition or takes part in it together
+   with partners in a neighbouring country, as in the Alps-Adriatic region or in an EU project.
+
+Then the venue, its town, the exhibition and everyone who takes part are recorded like any
+other record, whatever their country: a gallery in Slovenia, an artist from Italy, a member of
+a cross-border association from Croatia. Nothing is ranked lower for being abroad. The first
+case was Trigeniale Brda 26 at Kmetija Moro (Brda, Slovenia), organised by bewegungINkultur from
+Carinthia with artists from Carinthia, Friuli and Slovenia.
+
+Not in scope: exhibitions abroad without such a tie to Austria. The site's scope words stay
+"in Österreich" / "in Austria" as long as the owner keeps them; a page that lists or counts
+places names "and beyond" only where the owner has agreed to the wording.
+
+Where places abroad show (owner, 2026-11-09):
+
+- `/venues/` lists every gallery and counts each country on its own ("15 Galerien in
+  Österreich · 1 Galerie in Slowenien"). Its filter shows the federal states, then each country
+  abroad with its regions. "Bundesländer" counts only the Austrian ones.
+- The overview pages list only galleries in Austria for now: the start page, `/exhibitions/`,
+  current, upcoming, past, the newsletter invite and the newsletter's town list. So does the
+  "Galerien in Österreich" count in the galleries page's search text.
+- A record abroad keeps its own page and shows on the pages it is linked to (its organisation,
+  its artists, its event). The rule sits in one place, `frontend/shared/countries.mjs`; the
+  owner may widen it later.
 
 ## 6. In the code
 

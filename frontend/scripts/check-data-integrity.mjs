@@ -106,6 +106,12 @@ async function main() {
   const badShare = shareChecks.map((check, index) => (check.ok && SHAREABLE_TYPES.has(check.type) ? null : `${shareImages[index].slug} (${check.ok ? check.type : 'missing'})`)).filter(Boolean)
   const untyped = fileChecks.map((check, index) => (check.type === 'application/octet-stream' ? fileOwners[index] : null)).filter(Boolean)
   const named = (label, list) => (list.length ? `${label}: ${list.join(', ')}` : label)
+  const inBox = (location, [south, north, west, east]) => location.latitude > south && location.latitude < north && location.longitude > west && location.longitude < east
+  const AUSTRIA = [46, 49, 9, 17]
+  const ALPS_ADRIATIC = [44, 50, 8, 20]
+  const locationsOutside = locations
+    .filter((location) => !inBox(location, (location.country ?? 'Austria') === 'Austria' ? AUSTRIA : ALPS_ADRIATIC))
+    .map((location) => location.slug)
   // The exhibition groups are fixed pages under /exhibitions/; a record with such a slug would have no page.
   const reservedSlugs = exhibitions.filter((exhibition) => ['current', 'upcoming', 'past'].includes(exhibition.slug)).map((exhibition) => exhibition.slug)
   // The site adds the sentence about the 360° tour to an exhibition's SEO description itself
@@ -152,8 +158,9 @@ async function main() {
     ['navigations are main and footer', navigations.map((nav) => nav.key).sort().join(',') === 'footer,main'],
     ['every navigation has items', navigations.every((nav) => navigationItems.some((item) => item.navigation === nav.id))],
 
-    ['every location has coordinates inside Austria', locations.every((location) =>
-      location.latitude > 46 && location.latitude < 49 && location.longitude > 9 && location.longitude < 17)],
+    // A guard against swapped or missing coordinates. Austrian towns lie inside Austria; a town in
+    // a neighbouring country (Brda, Slovenia, since 2026-11-09) inside the wider Alps-Adriatic region.
+    [named('every location has coordinates inside Austria, or in the region around it when its country is another', locationsOutside), locationsOutside.length === 0],
 
     ['venue.location all resolve', venues.every((venue) => locationIds.has(venue.location))],
     ['venue.part_of points at another venue or is empty', venues.every((venue) => venue.part_of === null || (venue.part_of !== venue.id && venueIds.has(venue.part_of)))],

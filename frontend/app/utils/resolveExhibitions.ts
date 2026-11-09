@@ -60,6 +60,8 @@ export interface ResolvedExhibition {
   venue: string
   venue_website?: string
   city: string
+  /** The country of the town (stored in English); the overview pages show Austria only. */
+  country: string
   start_date: string
   end_date: string
   is_permanent: boolean
@@ -193,6 +195,7 @@ export const resolveExhibitions = (
       venue: venue.title,
       venue_website: venue.website_url || undefined,
       city: location.title,
+      country: location.country,
       start_date: exhibition.start_date,
       end_date: exhibition.end_date,
       is_permanent: exhibition.is_permanent,

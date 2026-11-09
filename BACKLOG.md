@@ -9,7 +9,8 @@ Added 2026-11-04 by the owner. Priority: very important, at the top of the backl
 Started 2026-11-04 (`plans/2026-11-04__ai-image-protection.md`, release 0.0.47, report for
 contracts `docs/legal/2026-11-04__ki-schutz-massnahmen.pdf`): done are steps 1 to 4 and 7 below
 (robots.txt, Cloudflare AI training block, TDM reservation, meta tags and nginx headers, terms,
-hotlink protection). Open: steps 5, 6 and 8. Renew the report after each change.
+hotlink protection; its gap for Directus images and `.webp` tour tiles closed 2026-11-09).
+Open: steps 5, 6 and 8. Renew the report after each change.
 
 Goal: AI systems must not take the images of this website (exhibition photos, artworks, the
 360° tours) to train models or to copy them.
@@ -40,7 +41,10 @@ Steps (ideas, cheapest first):
    (`legal.terms…noReuse`). The same sentence says "360°-Dokumentationen", which breaks
    `docs/text-rules.md` §1.1; fix it in the same change.
 5. **Image metadata:** write the rights holder and "data mining: prohibited" into the IPTC/XMP
-   data of the images that Directus delivers.
+   data of the images that Directus delivers. Tested 2026-11-09: Directus drops this data from
+   every resized copy (the only copies the site shows) and refuses to keep it; tour files keep
+   it. Tours: the Tour Editor writes it on export (owner's idea). Directus images: own solution
+   needed (`plans/2026-11-04__ai-image-protection.md`, 2026-11-09).
 6. **Smaller images, no originals:** the public site gets only the sizes it shows, never the
    original file (Directus asset transformations; block `/cms/assets/<id>` without a size
    preset). Rate limits on `/cms/assets/` and `/media/tours/` against mass download.
@@ -71,11 +75,15 @@ Added 2026-11-09. Small, but each needs the owner's word or a later moment.
    is gone). Find a source before publishing; `pnpm check:data` blocks them once published.
 4. **herbert-de-colle:** the CV link `https://herbertdecolle.com/CV` blocks scripts; it was
    confirmed only through search results. Open it once in a browser.
-5. **Stadttheater Klagenfurt is still a draft**, so the published exhibition "Wagner reloaded"
-   does not show its partner (`plans/2026-11-06__wagner-reloaded.md`).
-6. **Trigeniale Brda 26 is all drafts:** check admission (empty shows "free admission"), the
-   hosts and the spring exhibition of the same name, then publish
-   (`plans/2026-11-09__trigeniale-brda-26-kmetija-moro.md`).
+5. ~~Stadttheater Klagenfurt draft~~ and ~~Trigeniale Brda 26 drafts~~: published 2026-11-09
+   (owner). Still open for Trigeniale Brda 26: admission is empty, so the site shows "free
+   admission"; the spring exhibition of the same name is not recorded.
+6. **Scope words on the site (owner to decide):** galleries abroad tied to Austria are in the
+   archive since 2026-11-09 (`docs/text-rules.md` §5a); /venues/ counts each country, the
+   overview pages show Austria only. About 15 visible texts still say only "in Österreich" /
+   "Austrian galleries" (tagline, start page heading, About p6, footer line, newsletter intro).
+   Proposal first, then change. Optional: a click on a country name in the /venues/ filter
+   could show all galleries of that country.
 
 ## Events: a new collection for festivals and similar events
 

@@ -183,6 +183,11 @@ Look at every image before you upload it (open a small preview).
 `translations` en + de (one sentence). Status `draft`; publish it together with its venue (a
 published venue in a draft town does not show).
 
+A town outside Austria is recorded when an exhibition there is tied to Austria
+(`docs/text-rules.md` §5a, "Austria and beyond"): `country` in English (`Slovenia`, `Italy`),
+`state` its region (Brda: `Goriška`), coordinates in the Alps-Adriatic region. `pnpm check:data`
+checks Austrian towns against Austria and other towns against the wider region.
+
 ---
 
 ## 5. Venue (`pp_venues`)

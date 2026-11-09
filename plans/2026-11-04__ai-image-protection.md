@@ -59,3 +59,18 @@ crawlers.
    - Scrape Shield → Hotlink Protection: on (other sites cannot embed the images).
 7. Later (backlog): no original-size images through `/cms/assets/`, rate limits on
    `/cms/assets/` and `/media/tours/`, IPTC/XMP rights data in the images.
+
+## 2026-11-09: hotlink gap closed, rights data tested
+
+- **Hotlink gap.** Cloudflare's Hotlink Protection covers only `.jpg/.jpeg/.png/.gif/.ico`:
+  Directus images (`/cms/assets/<id>`, no ending) and the tour tiles (`.webp`) could be embedded by
+  other sites. Closed with a custom firewall rule (`2026-11-04__ai-image-protection/hotlink-rule.mjs`,
+  token `CLOUDFLARE_SETTINGS_TOKEN`): `/cms/assets/` and `/media/` are blocked when the referer is
+  another site; an empty referer and our own hosts pass. Checked live: foreign referer 403 for a
+  Directus image, a `.webp` tile and a `.jpg`; own pages 200 with every image loaded.
+- **Rights data in images (step 5 of the backlog), tested with a temporary upload:** Directus
+  keeps IPTC/XMP in the original, but every resized copy loses it (`?width=…`, any format), and
+  `transforms=[["withMetadata"]]` is refused (400). The site only shows resized copies, so rights
+  data written into uploads never reaches a visitor. Static files (tours, `start-view.jpg`) are
+  served unchanged, so data written into them stays. Next: the Tour Editor writes the rights data
+  into every exported tour file (owner's idea, 2026-11-09); Directus images need their own way.

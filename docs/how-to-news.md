@@ -35,7 +35,7 @@ Since 2026-11-04. Plan and design: `plans/2026-11-04__news-system.md`.
 ## Texts
 
 Every text follows `docs/text-rules.md`: no "wir" / "we", no "Sie", value-free (never
-"kuratiert", "ausgewählt", "herausragend"), an exhibition and a tour are never a "document", the
+"kuratiert", "ausgewählt", "herausragend"), a 360° tour is never a "document" (§1.1), the
 eyebrow (date · topic) and the title never say the same. An article may name a date ("schließt am
 19. Dezember"), because it carries its own date. What PERMAPHEMERA is: rooms of exhibitions as
 360° tours, recorded with consent (the contract report `docs/legal/` §1 has the wording).

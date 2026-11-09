@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { venueExhibitions } = useArchiveData()
+// Overview page: galleries in Austria only (owner, 2026-11-09; shared/countries.mjs).
+const { overviewExhibitions: venueExhibitions } = useArchiveData()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const archiveToday = useArchiveToday()

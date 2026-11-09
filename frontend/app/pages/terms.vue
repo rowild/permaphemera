@@ -29,13 +29,13 @@ const sections = computed<LegalSection[]>(() => [
     eyebrow: t('legal.terms.sections.use.eyebrow'),
     title: t('legal.terms.sections.use.title'),
     paragraphs: [t('legal.terms.sections.use.p1')],
-    items: [t('legal.terms.sections.use.personal'), t('legal.terms.sections.use.noReuse'), t('legal.terms.sections.use.noAi'), t('legal.terms.sections.use.noInterference')]
+    items: [t('legal.terms.sections.use.personal'), t('legal.terms.sections.use.noReuse'), t('legal.terms.sections.use.noAi'), t('legal.terms.sections.use.noHotlink'), t('legal.terms.sections.use.noInterference')]
   },
   {
     id: 'rights-and-credits',
     eyebrow: t('legal.terms.sections.rights.eyebrow'),
     title: t('legal.terms.sections.rights.title'),
-    paragraphs: [t('legal.terms.sections.rights.p1'), t('legal.terms.sections.rights.p2')]
+    paragraphs: [t('legal.terms.sections.rights.p1'), t('legal.terms.sections.rights.p2'), t('legal.terms.sections.rights.p3')]
   },
   {
     id: 'external-links',
