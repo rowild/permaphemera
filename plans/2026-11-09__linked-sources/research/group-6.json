@@ -1,0 +1,594 @@
+[
+  {
+    "collection": "pp_persons",
+    "id": "0cab472b-3c83-495b-9812-e2ffe45e778d",
+    "slug": "bernhard-tragut",
+    "sources": [
+      {
+        "original": "bernhardtragut.at",
+        "kind": "web",
+        "url": "https://www.bernhardtragut.at/biografie-2/",
+        "title": "Biografie",
+        "site": "bernhardtragut.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 1957 Purgstall; gilder/church restorer apprenticeship 1973–76; Academy Vienna with Hausner, diploma 1983; band Rucki Zucki Palmencombo 1980; lives in Vienna and Purgstall",
+        "note": "Linden wood with casein/oil/acrylic paint is in the work captions on the homepage (https://www.bernhardtragut.at/), not on the biography page."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "17cac075-0327-495a-83eb-8f3144cc0e94",
+    "slug": "gudrun-lenk-wane",
+    "sources": [
+      {
+        "original": "gudrunlenkwane.at",
+        "kind": "web",
+        "url": "https://gudrunlenkwane.at/vita/",
+        "title": "VITA",
+        "site": "gudrunlenkwane.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 1967 Villach; freelance artist and stage/costume designer since 1996; from painting to 3D textiles and plastics, used materials; textile installations in public space from 2011; member of Künstlerhaus; lives in Vienna"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "2517ffff-82f5-4140-bc46-2f8ac57c5759",
+    "slug": "volker-weinhold",
+    "sources": [
+      {
+        "original": "sammlungsfotografen.de",
+        "kind": "web",
+        "url": "https://sammlungsfotografen.de/ueber-uns/",
+        "title": "Köpcke + Weinhold",
+        "site": "sammlungsfotografen.de",
+        "date": null,
+        "language": "de",
+        "supports": "photographers, designers and exhibition makers in Berlin; more than two decades of historical topics; exhibited in museums in Germany, Austria, Switzerland, Russia, Netherlands",
+        "note": "Personal page https://sammlungsfotografen.de/ueber-uns/volker-weinhold/ exists but holds only his own projects; the facts of the text are on the joint 'Über uns' page."
+      },
+      {
+        "original": "villach.at",
+        "kind": "web",
+        "url": "https://villach.at/stadt-erleben/kultur/galerie-freihausgasse/aktuelle-ausstellung",
+        "title": "HOMESTORY – Sebastian Köpcke | Volker Weinhold, Ein fotografischer Essay – Lisa Huber, Farbholzschnitte",
+        "site": "villach.at",
+        "date": null,
+        "language": "de",
+        "supports": "HOMESTORY at Galerie Freihausgasse; staged still lifes of museum collections; meeting with Lisa Huber at Admont",
+        "note": "villach.at has no permanent page for HOMESTORY: this is the gallery's rolling 'Aktuelle Ausstellung' page, which on 2026-11-09 still shows HOMESTORY (11.9.–31.10.2026) but will be replaced by the next exhibition (Vintage, from 12 November). The past-exhibitions page does not list it yet."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "35feee21-ce2a-4abf-b756-a88c7845bf0e",
+    "slug": "judith-lava",
+    "sources": [
+      {
+        "original": "judithlava.com",
+        "kind": "web",
+        "url": "https://www.judithlava.com/",
+        "title": "Judith Lava | Artist",
+        "site": "judithlava.com",
+        "date": null,
+        "language": "de",
+        "supports": "Academy Vienna, Pistoletto master class, diploma 2000; video/installation, 'Lili'; video work for museums; video collaborator of Pipilotti Rist in Zurich; Fachbeirat Kulturgremium Kärnten since 2022",
+        "note": "One-page site: the full CV is on the homepage itself; there is no separate bio URL."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "4888d4dd-6ffe-40c3-a50c-35fa818dea9e",
+    "slug": "wolfgang-daborer",
+    "sources": [
+      {
+        "original": "Wallnerhaus flyer 2026",
+        "kind": "document",
+        "url": null,
+        "title": "Flyer of the exhibition “Atemzüge”, Wallnerhaus Kleblach-Lind, 2026",
+        "site": "Wallnerhaus Kleblach-Lind",
+        "date": null,
+        "language": "de",
+        "supports": "exhibitions in Austria, Germany, Italy and Slovenia; graphic designer/illustrator (per worklog, the flyer filled his bio)",
+        "note": "Printed flyer, not online. Not found on kleblach-lind.at (https://www.kleblach-lind.at/Ausstellung_im_Wallnerhaus has only an opening report and photos) and not stored as source_pdf in Directus (atemzuege has none). Photos taken on site are in _360_GALLERIES_AND_TOURS/collection/_galleries/wallnerhaus_kleblach-lind/2026-05-21-wallnerhaus-kleblach-lind-atemzuege-wolfgang-daborer/_MATERIAL/."
+      },
+      {
+        "original": "daborer.at",
+        "kind": "web",
+        "url": "https://daborer.at/zur-person/",
+        "title": "Wolfgang Daborer (Biographie)",
+        "site": "daborer.at",
+        "date": null,
+        "language": "de",
+        "supports": "lives and works in Spittal since 1989; Graphische Wien, painting with Wilhelm Drach; freelance since 1988; co-founder kultur.im.puls 2009 and artothek-impuls.at 2021; member of Kunstverein Kärnten"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "5d07633c-d079-45f3-9f2e-ff62fbc158c2",
+    "slug": "markus-orsini-rosenberg",
+    "sources": [
+      {
+        "original": "damtschach.at",
+        "kind": "web",
+        "url": "https://damtschach.at/m-o-r/biographie.html",
+        "title": "Markus Orsini - Rosenberg (Biographie)",
+        "site": "damtschach.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 1961 Vienna; 1982–92 painting at Angewandte with Lassnig and Attersee, architecture with Hollein, restoration diploma; solo shows incl. Galerie 3 and Museum Moderner Kunst Kärnten",
+        "note": "Old framed site: the biography is a frame of https://damtschach.at/m-o-r/ ; the page has no own headline, only the HTML title 'Markus Orsini - Rosenberg'."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "71fdc1b7-e34f-42e6-89f7-f0ba9eef736e",
+    "slug": "guenter-schmidauer",
+    "sources": [
+      {
+        "original": "mohorjeva.com",
+        "kind": "web",
+        "url": "https://www.mohorjeva.com/knjige_buecher/avtor_detajl/guenter-schmidauer",
+        "title": "Günter Schmidauer",
+        "site": "mohorjeva.com",
+        "date": null,
+        "language": "de",
+        "supports": "the whole biography: born 1955 Klagenfurt, studies and Kraus thesis, Comoediantenkarren, Burgtheater, ORF, Stadttheater under Wochinz, Porcia/Friesach/Kärntner Komödianten, VolXbühne, university teaching, Feldkirchen city manager, P.E.N. president, books",
+        "note": "Author page of the publisher Mohorjeva/Hermagoras (site navigation in Slovenian, bio text in German)."
+      },
+      {
+        "original": "stadtgalerie.net",
+        "kind": "web",
+        "url": "https://www.stadtgalerie.net/theatergalerie/aktuelle-ausstellung",
+        "title": "WAGNER RELOADED",
+        "site": "stadtgalerie.net",
+        "date": null,
+        "language": "de",
+        "supports": "Dr. Günter Schmidauer as curator of Wagner reloaded in the Theatergalerie",
+        "note": "Rolling 'Aktuelle Ausstellungen' page of the Theatergalerie; on 2026-11-09 it still shows Wagner reloaded, but it will change with the next exhibition. The invitation PDF linked there also names him."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "7e7605bc-18ca-48b3-989a-35e4230f611b",
+    "slug": "matteo-thun",
+    "sources": [
+      {
+        "original": "matteothun.com",
+        "kind": "web",
+        "url": "https://www.matteothun.com/partners/1/matteo_thun/",
+        "title": "Matteo Thun",
+        "site": "matteothun.com",
+        "date": null,
+        "language": "en",
+        "supports": "Kokoschka (Salzburg Academy), architecture degree Florence, Memphis Group with Sottsass 1981, professor of ceramic design at the University of Applied Arts Vienna, studio founded 1984, Milan and Munich",
+        "note": "Birth in Bolzano in 1952 is not stated on this page (nor on /about-the-group/)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "8880b0d3-c6c2-444d-b18f-239da45f7d9d",
+    "slug": "christina-clar",
+    "sources": [
+      {
+        "original": "postwerk.at",
+        "kind": "web",
+        "url": "https://postwerk.at/2026/09/10/fragil-orf-lange-nacht-der-museen/",
+        "title": "FRAGIL | ORF-Lange Nacht der Museen",
+        "site": "postwerk.at",
+        "date": "2026-09-10",
+        "language": "de",
+        "supports": "studied fine art in Paris and London; performance, events, installations, urban interventions, computer-based applications, sound and image; Salzburg Festival with Peter Sellars; Steirischer Herbst, Museum am Bach, Unikum; Feldenkrais practitioner"
+      },
+      {
+        "original": "christinaclar.net",
+        "kind": "web",
+        "url": "https://christinaclar.net/bio-contact/",
+        "title": "bio & contact",
+        "site": "christinaclar.net",
+        "date": null,
+        "language": "en",
+        "supports": "studies between Paris, Vienna and London; Salzburg Festival with Peter Sellars; Steirischer Herbst; Feldenkrais",
+        "note": "Page holds the bio essay in English, German and French."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "922415e5-c4ff-4813-9112-b90a7c5b0a2f",
+    "slug": "gabriel-wartbichler",
+    "sources": [
+      {
+        "original": "gabrielwartbichler.com",
+        "kind": "web",
+        "url": "https://www.gabrielwartbichler.com/about",
+        "title": "About",
+        "site": "gabrielwartbichler.com",
+        "date": null,
+        "language": "en",
+        "supports": "born Klagenfurt 1992; BA Klagenfurt, MA St. Gallen; Edith Maryon Kunstschule Freiburg, F+F Zurich, traditional sculptors in Austria, Japan, Canada; sculptures, assemblages, drawings; life-size bodies with found objects"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "9cad26ce-2070-4f12-ab73-b7ad8e47ae49",
+    "slug": "phil-yaeger",
+    "sources": [
+      {
+        "original": "pyaeger.com",
+        "kind": "web",
+        "url": "https://www.pyaeger.com/about",
+        "title": "Philip Yaeger",
+        "site": "pyaeger.com",
+        "date": null,
+        "language": "en",
+        "supports": "Northern Maine; trombone; BA jazz performance William Paterson 1999; to Austria 2004, master's in Graz; lives in Vienna; trombonist/composer/arranger; Jazzorchester Vorarlberg"
+      },
+      {
+        "original": "postwerk.at",
+        "kind": "web",
+        "url": "https://postwerk.at/2026/09/10/fragil-orf-lange-nacht-der-museen/",
+        "title": "FRAGIL | ORF-Lange Nacht der Museen",
+        "site": "postwerk.at",
+        "date": "2026-09-10",
+        "language": "de",
+        "supports": "trombonist and house composer of the Jazzorchester Vorarlberg; debut album “Hunter” on Jazzwerkstatt Records"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "aa9515ef-16c1-4b79-9828-4d74fbda01c4",
+    "slug": "elisabeth-wedenig",
+    "sources": [
+      {
+        "original": "elisabethwedenig.at",
+        "kind": "web",
+        "url": "https://www.elisabethwedenig.at/about",
+        "title": "Elisabeth Wedenig",
+        "site": "elisabethwedenig.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 1980 St. Veit an der Glan; Academy Vienna, Riga, Athens; collections MMKK and Land Kärnten; state scholarship 2020; Carinthian work grant 2022; co-founder Austrian Painters Crit Club 2025; lives in Glanegg",
+        "note": "Bio in German and English on the same page."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "b5d1cab1-e108-4d1a-8966-3e6b947cc3fb",
+    "slug": "frauke-danzer",
+    "sources": [
+      {
+        "original": "frauke-danzer.com",
+        "kind": "web",
+        "url": "https://www.frauke-danzer.com/biografie",
+        "title": "Frauke Danzer, Künstlerin (Biografie)",
+        "site": "frauke-danzer.com",
+        "date": null,
+        "language": "de",
+        "supports": "Istituto Lorenzo de' Medici Florence 1990–91; product design HdK Berlin 1992–98; Erasmus Angewandte Vienna 1995; freelance since 1999; artist in residence Gmünd 2020"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "c72187cf-7ee7-4f56-b906-e8a6b1b94d74",
+    "slug": "roswitha-bucher-sakowski",
+    "sources": [
+      {
+        "original": "bucher-sakowski.at",
+        "kind": "web",
+        "url": "https://www.bucher-sakowski.at/ueber-mich/vita",
+        "title": "Vita",
+        "site": "bucher-sakowski.at",
+        "date": null,
+        "language": "de",
+        "supports": "factory work and evening commercial school; University of Klagenfurt; founded and led Gewaltschutzzentrum Kärnten; Freie Akademie with master classes Anticevic and Kohl; scholarship Akademie für Malerei Berlin; lecturer and deputy head of the Freie Akademie"
+      },
+      {
+        "original": "akademie-kaernten.info",
+        "kind": "web",
+        "url": "https://akademie-kaernten.info/dozenten/roswitha-bucher-Sakowski138.html",
+        "title": "Roswitha Bucher-Sakowski",
+        "site": "akademie-kaernten.info",
+        "date": null,
+        "language": "de",
+        "supports": "lecturer profile at the Freie Akademie: factory work, evening school, university, founded a violence-protection centre, Freie Akademie master class and diploma, teaches there"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "d02b050d-8f15-4a0d-a074-cccdb3eff7df",
+    "slug": "anton-mahringer",
+    "sources": [
+      {
+        "original": "noetscherkreis.at",
+        "kind": "web",
+        "url": "https://noetscherkreis.at/anton-mahringer/",
+        "title": "Anton Mahringer",
+        "site": "noetscherkreis.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 26 Sep 1902 Neuhausen auf den Fildern; Stuttgart academy, Kolig class 1928 and first Carinthia trip; Gail Valley 1932; State Prize 1948; St. Georgen im Gailtal from 1956; died December 1974 in Villach"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "d8b7f6e7-71ae-4245-a845-08aa22ca0265",
+    "slug": "sebastian-koepcke",
+    "sources": [
+      {
+        "original": "sammlungsfotografen.de",
+        "kind": "web",
+        "url": "https://sammlungsfotografen.de/ueber-uns/",
+        "title": "Köpcke + Weinhold",
+        "site": "sammlungsfotografen.de",
+        "date": null,
+        "language": "de",
+        "supports": "photographers, designers and exhibition makers in Berlin; museums in Germany, Austria, Switzerland, Russia, Netherlands (incl. Benediktinerstift Admont)",
+        "note": "Personal page https://sammlungsfotografen.de/ueber-uns/sebastian-koepcke/ holds only his own projects."
+      },
+      {
+        "original": "villach.at",
+        "kind": "web",
+        "url": "https://villach.at/stadt-erleben/kultur/galerie-freihausgasse/aktuelle-ausstellung",
+        "title": "HOMESTORY – Sebastian Köpcke | Volker Weinhold, Ein fotografischer Essay – Lisa Huber, Farbholzschnitte",
+        "site": "villach.at",
+        "date": null,
+        "language": "de",
+        "supports": "met Lisa Huber as exhibiting artists at Admont Abbey; staged still lifes",
+        "note": "villach.at has no permanent page for HOMESTORY: this is the gallery's rolling 'Aktuelle Ausstellung' page, which on 2026-11-09 still shows HOMESTORY (11.9.–31.10.2026) but will be replaced by the next exhibition (Vintage, from 12 November). The past-exhibitions page does not list it yet."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "f39e4c42-deff-4ad3-9a72-65b0c090b1c2",
+    "slug": "lisa-ortner-kreil",
+    "sources": [
+      {
+        "original": "akbild.ac.at",
+        "kind": "web",
+        "url": "https://www.akbild.ac.at/en/university/Graduates/mentoring_program_art/mentors/2021-2022/lisa-ortner-kreil-curator-bank-austria-kunstforum-wien-and-founder-of-art-hoc-projects",
+        "title": "Lisa Ortner-Kreil | Curator Bank Austria Kunstforum Wien and founder of art hoc projects",
+        "site": "akbild.ac.at",
+        "date": null,
+        "language": "en",
+        "supports": "studies in Vienna, Innsbruck, Rome; springerin, Albertina, Royal Museums Brussels; curator at Kunstforum since 2013; Richter 2020/21, Man Ray 2018, Kogelnik retrospective; art hoc projects; teaching at the Angewandte",
+        "note": "Mentor profile 2021/22. The 2026 Kupelwieser exhibition is not on this page."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "fdde6537-2d9b-4553-99eb-4a845ce435af",
+    "slug": "richard-klammer",
+    "sources": [
+      {
+        "original": "richardklammer.net",
+        "kind": "web",
+        "url": "https://www.richardklammer.net/about/",
+        "title": "Biografie",
+        "site": "richardklammer.net",
+        "date": null,
+        "language": "de",
+        "supports": "born 22 Feb 1964 Obervellach; painting with Prachensky at the Academy Vienna, diploma 1991; painter and musician in Klagenfurt; KunstSportGruppe Hochobir, Talltones, Fuzzman; exhibition list incl. MMKK"
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "172f28da-11eb-4cf9-89ad-d8f65ef0554f",
+    "slug": "homestory",
+    "sources": [
+      {
+        "original": "villach.at",
+        "kind": "web",
+        "url": "https://villach.at/stadt-erleben/kultur/galerie-freihausgasse/aktuelle-ausstellung",
+        "title": "HOMESTORY – Sebastian Köpcke | Volker Weinhold, Ein fotografischer Essay – Lisa Huber, Farbholzschnitte",
+        "site": "villach.at",
+        "date": null,
+        "language": "de",
+        "supports": "photographic essay on Lisa Huber; met at Admont; Berlin studio and workshop in the Haus der künstlerischen Begegnung Villach; staged still lifes; next to her colour woodcuts; part of Triennale IV Kärnten 2026",
+        "note": "villach.at has no permanent page for HOMESTORY: this is the gallery's rolling 'Aktuelle Ausstellung' page, which on 2026-11-09 still shows HOMESTORY (11.9.–31.10.2026) but will be replaced by the next exhibition (Vintage, from 12 November). The past-exhibitions page does not list it yet."
+      },
+      {
+        "original": "langenacht.orf.at",
+        "kind": "web",
+        "url": "https://langenacht.orf.at/museum/bl/kaernten/li/galerie-freihausgasse---galerie-der-stadt-villach",
+        "title": "Galerie Freihausgasse / Galerie der Stadt Villach",
+        "site": "langenacht.orf.at",
+        "date": null,
+        "language": "de",
+        "supports": "HOMESTORY at the ORF Lange Nacht der Museen 2026: Admont meeting, Berlin studio, workshop in the Haus der künstlerischen Begegnung"
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "3f2847a5-3828-41c5-8a8d-8245a0b7711a",
+    "slug": "kunstkalender-hoffnung-und-frieden",
+    "sources": [
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/murtal/c-leute/kunst-die-von-herzen-kommt_a8984211",
+        "title": "Kunstkalender Musik Begegnungen: Kunst, die von Herzen kommt",
+        "site": "meinbezirk.at",
+        "date": "2026-10-30",
+        "language": "de",
+        "supports": "vernissage in the Knittelfeld pop-up gallery; calendar “Hoffnung und Frieden” with Ploschnitznigg and Schmölzer; Johann Hubmann welcomed guests; artists spoke about the calendar"
+      },
+      {
+        "original": "kleinezeitung.at",
+        "kind": "web",
+        "url": "https://www.kleinezeitung.at/artikel/41406246/lebenshilfe-knittelfeld-praesentiert-neuen-kunstkalender-und-wein",
+        "title": "Lebenshilfe Knittelfeld präsentiert neuen Kunstkalender und Wein",
+        "site": "kleinezeitung.at",
+        "date": "2026-10-30",
+        "language": "de",
+        "supports": "the Lebenshilfe presents a calendar designed by its artists",
+        "note": "Only the teaser is readable without subscription."
+      },
+      {
+        "original": "lebenshilfe-knittelfeld.at",
+        "kind": "web",
+        "url": "https://www.lebenshilfe-knittelfeld.at/kuenstlerischer-vormittag/",
+        "title": "Künstlerischer Vormittag",
+        "site": "lebenshilfe-knittelfeld.at",
+        "date": "2026-03-25",
+        "language": "de",
+        "supports": "working morning on 24 March with MS Spielberg, PLO Ploschnitznigg and Adi Schmölzer for “Hoffnung und Frieden”; opening at the Stadtgalerie Judenburg on 2 April 2026",
+        "note": "The local notes had ?p=3784, which resolves to /malworkshop/ (a different workshop without these facts); the matching post is this one."
+      },
+      {
+        "original": "murtalinfo.at",
+        "kind": "web",
+        "url": "https://www.murtalinfo.at/post/hoffnung-und-frieden-als-k%C3%BCnstlerisches-signal-in-judenburg",
+        "title": "Hoffnung und Frieden als künstlerisches Signal in Judenburg",
+        "site": "murtalinfo.at",
+        "date": "2026-04-07",
+        "language": "de",
+        "supports": "exhibition “Hoffnung & Frieden – Ein Signal der Hoffnung” at the Stadtgalerie Judenburg in April 2026 with contributions by the Lebenshilfe Knittelfeld",
+        "note": "Page metadata gives 2026-04-06T22:00Z, i.e. 7 April 2026 local time."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "773b8787-fda4-4aca-b4b0-4c9774cc0192",
+    "slug": "trigeniale-26",
+    "sources": [
+      {
+        "original": "invitation and poster of bewegungINkultur",
+        "kind": "document",
+        "url": "https://permaphemera.project-backends.info/assets/901c0e23-77bc-4e41-a7e9-2f4c93d640ef",
+        "title": "Invitation Trigeniale 26 (bewegungINkultur)",
+        "site": "bewegungINkultur",
+        "date": null,
+        "language": "de",
+        "supports": "five artists and towns, dates, honorary patron Governor Daniel Fellner; poster logos: Euregio Senza Confini, AACC, Alps-Adriatic Alliance",
+        "note": "Invitation PDF (2 pages) is the exhibition's source_pdf in PERMAPHEMERA's Directus, publicly served there (HTTP 200, application/pdf). The poster is only local: _360_GALLERIES_AND_TOURS/collection/_galleries/studiogalerie_klagenfurt/2026-10-15-studiogalerie-klagenfurt-trigeniale-26/_Material/Poster Trigeniale 26.pdf; no copy by the organiser online."
+      },
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/klagenfurt/c-regionauten-community/trigeniale-26-alpenadriatische-harmonie-im-stadthaus-klagenfurt_a8961771",
+        "title": "KünstlerInnen aus Friaul, Slowenien und Kärnten: Trigeniale 26 – Alpenadriatische Harmonie im Stadthaus Klagenfurt",
+        "site": "meinbezirk.at",
+        "date": "2026-10-18",
+        "language": "de",
+        "supports": "five artists and their towns; Grudina flowers, Altran Susanna and the Elders, Nackler conductors/violinists/pianists, Lepicnik; eleven-year exchange with Dürer group, DABLO, ENDAS; Fellner; Alps-Adriatic Alliance, Senza Confini, AACC"
+      },
+      {
+        "original": "novice.at",
+        "kind": "web",
+        "url": "https://www.novice.at/event/odprtje-razstave-trigeniale-26/",
+        "title": "Trigeniale 26",
+        "site": "novice.at",
+        "date": "2026-10-07",
+        "language": "sl",
+        "supports": "opening 15 Oct 2026, the five artists, until 29 Oct, organiser Kulturna iniciativa gibanje IN kultur",
+        "note": "Event listing (Odprtje razstave: Trigeniale 26). It names the venue as Mestna galerija Celovec; the Stadthaus is correct."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "b3d73d2d-d41c-48e6-a233-46f7141c53b5",
+    "slug": "schwach-unperfekt-ausgefranst-echt-2026",
+    "sources": [
+      {
+        "original": "langenacht.orf.at",
+        "kind": "web",
+        "url": "https://langenacht.orf.at/museum/bl/kaernten/li/europahaus-erdgeschoss",
+        "title": "Europahaus Erdgeschoß",
+        "site": "langenacht.orf.at",
+        "date": null,
+        "language": "de",
+        "supports": "Europahaus ground floor; exhibition “Schwach.Unperfekt.Ausgefranst.Echt” in the Triennale IV Kärnten, theme “schwach.sibko.debole”; cracks, frayed edges, imperfection as honesty; contact Inés Urach",
+        "note": "Page text does not show 'from 18:00'."
+      },
+      {
+        "original": "inesurach.at",
+        "kind": "web",
+        "url": "https://www.inesurach.at/home-archiv/",
+        "title": "Ausstellungen/Exhibition",
+        "site": "inesurach.at",
+        "date": null,
+        "language": "de",
+        "supports": "LNDM 2026 “Schwach.Unperfekt.Ausgefranst.Echt.”, Triennale IV Kärnten, 3 October 2026, 18:00, Europahaus Klagenfurt",
+        "note": "Studies at the Freie Akademie are on https://www.inesurach.at/%C3%BCber-mich/ (Über mich/Bio); paper and painting on the homepage https://www.inesurach.at/."
+      }
+    ]
+  },
+  {
+    "collection": "pp_organisations",
+    "id": "44330447-a71c-4ff1-bfd4-cd868a8cdcd9",
+    "slug": "bewegung-in-kultur",
+    "sources": [
+      {
+        "original": "artist sheet of Trigeniale 26 (bewegungINkultur)",
+        "kind": "document",
+        "url": null,
+        "title": "Artist sheet of Trigeniale 26 (bewegungINkultur), German",
+        "site": "bewegungINkultur",
+        "date": null,
+        "language": "de",
+        "supports": "organisation facts from the organiser's sheet",
+        "note": "Local only: _360_GALLERIES_AND_TOURS/collection/_galleries/studiogalerie_klagenfurt/2026-10-15-studiogalerie-klagenfurt-trigeniale-26/_Material/Künstler T26-1+2 - deutsch.pdf. Page 2 of the invitation (online copy https://permaphemera.project-backends.info/assets/901c0e23-77bc-4e41-a7e9-2f4c93d640ef) shows the organisation, but that is the invitation, not the artist sheet."
+      },
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/klagenfurt/c-regionauten-community/trigeniale-26-alpenadriatische-harmonie-im-stadthaus-klagenfurt_a8961771",
+        "title": "KünstlerInnen aus Friaul, Slowenien und Kärnten: Trigeniale 26 – Alpenadriatische Harmonie im Stadthaus Klagenfurt",
+        "site": "meinbezirk.at",
+        "date": "2026-10-18",
+        "language": "de",
+        "supports": "eleven-year exchange of bewegungINkultur with the Dürer group (Tavagnacco), DABLO (Brda), ENDAS (Monfalcone); Trigeniale in the Klagenfurt Stadthaus; Gerhard Lepicnik",
+        "note": "Other facts are in other articles by the same author: Kmetija Moro series 'Kunst in den Hügeln' (five years in 2023, so since 2018): https://www.meinbezirk.at/klagenfurt/c-regionauten-community/kulturhauptstadt-2025-und-fuenf-jahre-kunst-in-den-huegeln-in-der-gorika-brda_a6295668 ; cultural trips: https://www.meinbezirk.at/klagenfurt/c-regionauten-community/schloesser-in-friaul-und-kunst-in-der-gorika-brda_a6058251 ; overview of all its reports: https://www.meinbezirk.at/klagenfurt/profile-49467/bewegung-inkultur"
+      },
+      {
+        "original": "novice.at",
+        "kind": "web",
+        "url": "https://www.novice.at/event/odprtje-razstave-trigeniale-26/",
+        "title": "Trigeniale 26",
+        "site": "novice.at",
+        "date": "2026-10-07",
+        "language": "sl",
+        "supports": "Slovenian name of the initiative as organiser (Kulturna iniciativa gibanje IN kultur); Trigeniale exhibition in Klagenfurt"
+      }
+    ]
+  },
+  {
+    "collection": "pp_organisations",
+    "id": "f390fbfe-43b9-49b1-a947-d79a5ec69a1b",
+    "slug": "jump-dome-klagenfurt",
+    "sources": [
+      {
+        "original": "jumpdome.at",
+        "kind": "web",
+        "url": "https://jumpdome.at/klagenfurt/",
+        "title": "Österreichs größter Trampolinpark auf 5000m²",
+        "site": "jumpdome.at",
+        "date": null,
+        "language": "de",
+        "supports": "trampoline park of 5,000 m² at Magazingasse 14 in Klagenfurt, opened in May 2021"
+      }
+    ]
+  }
+]

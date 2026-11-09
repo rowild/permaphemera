@@ -242,8 +242,9 @@ test('no field is a Markdown field', () => {
   assert.deepEqual(markdown, [])
 })
 
-test('the news text is WYSIWYG with the link button; other WYSIWYG texts have none', () => {
+test('the news text and every text with a sources list have the link button (sources link the exact page, owner 2026-11-09)', () => {
   assert.equal(field('pp_news', 'description').meta.interface, 'input-rich-text-html')
-  assert.ok(field('pp_news', 'description').meta.options.toolbar.includes('link'))
-  assert.ok(!field('pp_exhibitions', 'description').meta.options.toolbar.includes('link'))
+  for (const [collection, name] of [['pp_news', 'description'], ['pp_exhibitions', 'description'], ['pp_persons', 'about_html'], ['pp_venues', 'about_html'], ['pp_organisations', 'about_html'], ['pp_events', 'about_html']]) {
+    assert.ok(field(collection, name).meta.options.toolbar.includes('link'), `${collection}.${name} has the link button`)
+  }
 })

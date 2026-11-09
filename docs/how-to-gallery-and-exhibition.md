@@ -330,7 +330,7 @@ Get the ids with a read of `pp_translations__exhibitions` filtered by `exhibitio
 
 ---
 
-## 7a. Sources: always a list at the end (owner, 2026-11-06)
+## 7a. Sources: always a list at the end, every source linked (owner, 2026-11-06 / 2026-11-09)
 
 Every text that names its sources (biography, organisation text, exhibition description, any
 later text) ends with them as its own block: a paragraph with only the label, then a bullet list,
@@ -339,22 +339,38 @@ for one item, `Sources` / `Quellen` for more (English on the record and in `en`,
 The site finds the block by its label and shows it small, with the diamond bullet of the language
 menu (`markSources` in `frontend/app/utils/richText.ts`); search texts leave it out.
 
+**Every source links to the exact page it came from (owner, 2026-11-09).** The full address of
+the article, profile, CV or exhibition page that holds the facts, never the bare domain or the
+homepage ("meinbezirk.at" alone is useless). Keep the exact URL from the first moment of research
+(worklog). The link text is the page's own headline, then the site, then the date when known
+(German date `12. 1. 2022`, English `12 January 2022`); the whole line is the link, https only.
+A source without a web page (a poster, a printed invitation) links its PDF in Directus when
+there is one, else it stays plain text and goes on the owner's list.
+
 ```html
-<p>… last sentence.</p><p>Quellen</p><ul><li>kuenstlerstadt-gmuend.at</li><li>meinbezirk.at</li></ul>
+<p>… last sentence.</p><p>Quellen</p><ul>
+<li><a href="https://www.meinbezirk.at/spittal/c-lokales/…_a5070000">„Neuer Leiter der Galerie im Schloss Porcia“, meinbezirk.at, 12. 1. 2022</a></li>
+<li><a href="https://www.kuenstlerstadt-gmuend.at/…/severin-kroen">„Séverin Krön“, kuenstlerstadt-gmuend.at</a></li>
+</ul>
 ```
 
-In the admin app: a new paragraph with only "Quellen", then the list button. All long texts are
-WYSIWYG fields (biographies, organisation and venue texts, exhibition descriptions and news
-articles since 2026-11-06); no field is Markdown (root `AGENTS.md`, Data model).
+The site keeps links only in this closing list (`sanitizeRichText`); links anywhere else in the
+text are dropped (§8a). In the admin app: a new paragraph with only "Quellen", then the list
+button, then select each line and use the link button. All long texts are WYSIWYG fields
+(biographies, organisation and venue texts, exhibition descriptions and news articles since
+2026-11-06); no field is Markdown (root `AGENTS.md`, Data model). `pnpm check:data` fails on a
+published text with an unlinked source.
 
 An inline "(Quelle: …)" right after one sensitive fact stays where it is (see the persons'
-documented history); the list at the end still names all sources. Converter for old texts:
-`plans/2026-11-06__sources-as-list/migrate-sources.mjs`.
+documented history); the list at the end still names all sources, linked. Converter for old
+texts: `plans/2026-11-06__sources-as-list/migrate-sources.mjs`; links added to all 144 texts on
+2026-11-09: `plans/2026-11-09__linked-sources.md`.
 
 ## 8a. Links are always link records, never text
 
-Never write a URL, a domain or a handle ("@galeriepalaisfugger") into `about_html`, `description`
-or any other text: the site cannot click it. Every external address goes into a link field
+Never write a URL, a domain or a handle ("@galeriepalaisfugger") into the running text of
+`about_html`, `description` or any other text: the site cannot click it there. The one exception
+is the closing sources list (§7a), where every source is a link. Every external address goes into a link field
 (`website_url`) or a `pp_websites` row (venue, person, organisation, exhibition). The site
 opens all of them in a new tab. Known platforms show their name ("Instagram", "Facebook"),
 a website its host name ("galerie3.com").

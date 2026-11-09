@@ -106,7 +106,9 @@ facts, and it never calls an exhibition a document.
 
 Every text that names its sources ends with them as their own block: a paragraph "Quellen" /
 "Sources" ("Quelle" / "Source" for one), then one source per bullet point (owner, 2026-11-06).
-Never "Quelle: a, b." inside the last sentence. Format and examples:
+Never "Quelle: a, b." inside the last sentence. **Every source is a link to the exact page it
+came from** (owner, 2026-11-09): the article or profile itself, never the bare domain; the link
+text is the page's headline, the site and the date. Format and examples:
 `how-to-gallery-and-exhibition.md` §7a.
 
 ## 2. Word list

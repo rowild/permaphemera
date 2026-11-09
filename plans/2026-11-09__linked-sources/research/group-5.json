@@ -1,0 +1,536 @@
+[
+ {
+  "collection": "pp_persons",
+  "id": "09800f63-75e9-45d0-bef0-aa033d5c5225",
+  "slug": "katya-frei",
+  "sources": [
+   {
+    "original": "katyafrei.com",
+    "kind": "web",
+    "url": "https://katyafrei.com/about/",
+    "title": "Über",
+    "site": "katyafrei.com",
+    "date": null,
+    "language": "de",
+    "supports": "born 1994 in Belarus, grew up in Polesia; Architektur- und Baukolleg Minsk; graphics and printmaking at the Angewandte (diploma 2023); lithography, woodcut, etching, drawing; plants and insects; Klagenfurt since 2023; 2024 Nachwuchspreis Bildende Kunst Kärnten (Wietersdorferpreis)",
+    "note": "English version: https://katyafrei.com/en/about/ (headline 'About'). The page names the 2024 prize but not that it was the third prize."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "159e6d08-18d1-430e-88d1-58c1d424364f",
+  "slug": "karlheinz-simonitsch",
+  "sources": [
+   {
+    "original": "simonitsch-karlheinz.at",
+    "kind": "web",
+    "url": "https://simonitsch-karlheinz.at/biografie",
+    "title": "Biografie",
+    "site": "simonitsch-karlheinz.at",
+    "date": null,
+    "language": "de",
+    "supports": "born 1953 in Lienz; school in Klagenfurt with Egon Wucherer; University of Graz; taught at the Handelsakademie Klagenfurt until 2003; studio in Klagenfurt; Šmartno studio 1995; sacred subjects since the 1990s; glass and ceramics; died December 2015",
+    "note": "The glass cross 'Ich bin das Leben' (1998, St. Johannes Baptista Wölfnitz) is on a separate page of the same site: https://simonitsch-karlheinz.at/werke/uebersicht-einzelobjekte/ich-bin-das-leben"
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "23191859-da2c-4676-85ef-bdd5c53fcbd5",
+  "slug": "ingrid-proeller",
+  "sources": [
+   {
+    "original": "proeller.at",
+    "kind": "web",
+    "url": "https://www.proeller.at/index.php/bio.html",
+    "title": "bio",
+    "site": "proeller.at",
+    "date": null,
+    "language": "en",
+    "supports": "born 1970 in Schärding; Academy of Fine Arts Vienna and sports science 1989–1997; École nationale supérieure des Beaux-Arts Paris 1995; Athens School of Fine Arts 1996–1997; lives and works in Vienna",
+    "note": "Oil/acrylic and the outdoor panoramas on Crete are not on this page (they are on spittal-drau.at's exhibition page)."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "35993051-69bd-4a29-909d-f373e7396bc1",
+  "slug": "alfred-scheikl",
+  "sources": [
+   {
+    "original": "scheiklalfred.at",
+    "kind": "web",
+    "url": "https://www.scheiklalfred.at/ueber-alfred-scheikl/",
+    "title": "Über Alfred Scheikl",
+    "site": "scheiklalfred.at",
+    "date": null,
+    "language": "de",
+    "supports": "studies 2012–2016 with Anticevic, Kohl, Fadinger, Langer; master class with Anticevic 2016–2017; chair of the Kunstverein Velden since 2017 and courses there; abstract and fractal elements; works in Klagenfurt"
+   },
+   {
+    "original": "festivalbled.com",
+    "kind": "web",
+    "url": "https://www.festivalbled.com/razstava-2017.html",
+    "title": "Alfred Scheikl – Slikarska razstava",
+    "site": "festivalbled.com",
+    "date": null,
+    "language": "sl",
+    "supports": "born 1961 in Klagenfurt (Celovec); academy 2012–2016 with Anticevic, Kohl, Fadinger, Langer; chair of the Kunstverein Velden; abstract and fractal elements",
+    "note": "Exhibition page of Festival Bled 2017 (no publication date on the page)."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "4832788d-cbe2-4168-991b-e609e933060d",
+  "slug": "klaus-zlattinger",
+  "sources": [
+   {
+    "original": "kultur-impuls.com",
+    "kind": "web",
+    "url": "https://kultur-impuls.com/events/ausstellung-klauszlattinger/",
+    "title": "Ausstellung Klaus Zlattinger and Friends",
+    "site": "kultur-impuls.com",
+    "date": null,
+    "language": "de",
+    "supports": "artist, art educator and gallerist; died December 2016; exhibition 'Klaus Zlattinger & Friends' on the 10th anniversary of his death, Impuls Center Seeboden (16 Nov 2026 – 7 Dec 2027)",
+    "note": "Event page; the vernissage has its own page: https://kultur-impuls.com/events/vernissage-klaus-zlattinger-and-friends-2/"
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "59f6ad6a-cf86-4d81-97f3-e54fba60eafc",
+  "slug": "inge-lasser",
+  "sources": [
+   {
+    "original": "postwerk.at",
+    "kind": "web",
+    "url": "https://postwerk.at/2014/04/05/inge-lasser/",
+    "title": "Inge Lasser",
+    "site": "postwerk.at",
+    "date": null,
+    "language": "de",
+    "supports": "lives and works in Hermagor; trained with Hoke, Bach and Lüpertz at the Kunstakademie Bad Reichenhall; joined postWERK in 2013; exhibitions in Austria, Germany, Italy, France",
+    "note": "Member profile post (URL dated 2014-04-05, content updated since). Her role as secretary (Schriftführerin) is on https://postwerk.at/statuten/"
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "71d813fa-5927-40e9-a171-19e1ae3d3c78",
+  "slug": "uwe-bressnik",
+  "sources": [
+   {
+    "original": "uwe-bressnik.info",
+    "kind": "web",
+    "url": "https://uwe-bressnik.info/biografie/",
+    "title": "Curriculum vitae",
+    "site": "uwe-bressnik.info",
+    "date": null,
+    "language": "de",
+    "supports": "born 1961 in Villach; University of Applied Arts Vienna 1983–1989; diploma in Ernst Caramelle's master class; Würdigungspreis des Landes Kärnten 2010; lives in Vienna",
+    "note": "Bilingual page (de/en). The 'Soul Source Records' series is documented under https://uwe-bressnik.info/schallplatten/ssr ; the musician activity since about 2000 is not on the CV page."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "7e4df76a-2834-4484-a313-1dcef4dd29ae",
+  "slug": "franz-grabmayr",
+  "sources": [
+   {
+    "original": "franzgrabmayr.at",
+    "kind": "web",
+    "url": "https://franzgrabmayr.at/der-kuenstler",
+    "title": "Der Künstler",
+    "site": "franzgrabmayr.at",
+    "date": null,
+    "language": "de",
+    "supports": "born 1927 in Obervellach; teacher; Academy in the afternoons from 1954; artist only from 1964; Schloss Rosenau, then farm near Zwettl; winter studio in the Karl-Marx-Hof; thick paint; fire, sand pits, mountain streams, dancers; died 2015 in Vienna"
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "86c8988d-d870-4d5d-8904-a75c89a455b0",
+  "slug": "inge-vavra",
+  "sources": [
+   {
+    "original": "stadtgalerie.net",
+    "kind": "web",
+    "url": "https://www.stadtgalerie.net/fileadmin/user_upload/Stadtgalerie_Klagenfurt/Alpen-Adria-Galerie/Ausstellungsarchiv/2013/INGE_VAVRA_-_HELGE_HINTEREGGER/INGE_VAVRA-Kurzbiografie.pdf",
+    "title": "Inge Vavra – Kurzbiografie",
+    "site": "stadtgalerie.net",
+    "date": null,
+    "language": "de",
+    "supports": "born 1942 in Augsburg, grew up in Vienna; 1965 diploma in graphic art and painting, Academy of Fine Arts Vienna; art teacher qualification; exhibiting since 1964; Würdigungspreis des Landes Kärnten 2005; lives and works in Vienna and Krumpendorf",
+    "note": "PDF short biography from the 2013 Alpen-Adria-Galerie exhibition (Inge Vavra – Helge Hinteregger). The art-in-architecture works (LKH Wolfsberg, Pädagogische Hochschule Klagenfurt) are not in it and were not found on stadtgalerie.net."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "916cfec6-b39a-45b5-b745-3c6d41eb9a3f",
+  "slug": "hans-kupelwieser",
+  "sources": [
+   {
+    "original": "kupelwieser.at",
+    "kind": "web",
+    "url": "https://www.kupelwieser.at/profil/biografie",
+    "title": "Biografie",
+    "site": "kupelwieser.at",
+    "date": null,
+    "language": "de",
+    "supports": "born 1948 in Lunz am See, lives in Vienna; Graphische Lehr- und Versuchsanstalt 1970–1973; Hochschule für angewandte Kunst 1976–1982; professorship at TU Graz, Institute of Contemporary Art, 1995; exhibition list"
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "9bd2dc2b-3967-4631-a878-480c16a8ac5d",
+  "slug": "walther-preiml",
+  "sources": [
+   {
+    "original": "waltherpreiml.at",
+    "kind": "web",
+    "url": "https://waltherpreiml.at/vita/",
+    "title": "Vita",
+    "site": "waltherpreiml.at",
+    "date": null,
+    "language": "de",
+    "supports": "Landeskonservatorium Klagenfurt 2003–2004; photography 2006; drawing lessons from 2007; woodcut and paper-cut printing since 2016; songwriter since 2010; freelance since 2022, studio and home in Kötschach-Mauthen"
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "a7ebed19-1971-4bcf-b882-67e132ca1cff",
+  "slug": "margaretha-bauer",
+  "sources": [
+   {
+    "original": "bv-kaernten.at",
+    "kind": "web",
+    "url": "http://www.bv-kaernten.at/_ber_uns.html",
+    "title": "Über uns",
+    "site": "bv-kaernten.at",
+    "date": null,
+    "language": "de",
+    "supports": "board: Margaretha Maria Bauer vice president and treasurer (Kassier) of the BV Kärnten; the association's gallery in Klagenfurt",
+    "note": "The site has no working https (certificate for *.a1webhosting.at), so the http URL is the one that loads. That she heads the gallery and her Kunstverein Kärnten / 'schmaler Grat' participation are not on this page."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "b55c46e5-ad9b-48a7-9bb1-44d4a1cc83cc",
+  "slug": "karl-bauer",
+  "sources": [
+   {
+    "original": "karl-bauer.at",
+    "kind": "web",
+    "url": "https://karl-bauer.at/about/",
+    "title": "Biografie",
+    "site": "karl-bauer.at",
+    "date": null,
+    "language": "de",
+    "supports": "born 1905 in Graz; childhood in Carinthia; Academy Vienna 1925–1930, master class Alois Delug; teacher in Vienna and Klosterneuburg; freelance in Klagenfurt from 1946; landscapes in oil, figures; Eduard Kaiser Verlag covers and illustrations; glass windows and mosaics for Carinthian churches; died 1993 in Klagenfurt",
+    "note": "Bilingual page (de/en). The Kreuzbergl Stations of the Cross mosaics (1959) have their own page: https://karl-bauer.at/kreuzbergl-klagenfurt-kreuzweg-mosaiken/"
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "c6c291f7-d8ee-4d82-9f1c-1218c6b74585",
+  "slug": "eva-schlegel",
+  "sources": [
+   {
+    "original": "evaschlegel.com",
+    "kind": "web",
+    "url": "https://evaschlegel.com/biography/",
+    "title": "biography",
+    "site": "evaschlegel.com",
+    "date": null,
+    "language": "de",
+    "supports": "born 1960; Hochschule für Angewandte Kunst under Oswald Oberhuber 1979–1985; professor at the Academy of Fine Arts Vienna 1997–2006; commissioner of the Austrian Pavilion, Venice Biennale 2011; lives and works in Vienna",
+    "note": "Bilingual page (de/en). Birthplace Hall is not on the page."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "cd845373-c1eb-4400-b2a8-e0efcc4aea7c",
+  "slug": "adi-schmoelzer",
+  "sources": [
+   {
+    "original": "kaernten.orf.at",
+    "kind": "web",
+    "url": "https://kaernten.orf.at/tv/stories/3294698/",
+    "title": "Adi Schmölzer verbindet Kunst und Jazz",
+    "site": "kaernten.orf.at",
+    "date": "2025-03-05",
+    "language": "de",
+    "supports": "artist and architect; studied architecture under Günther Domenig; paints mainly women in motion; large pictures made on the floor; listens to jazz while painting; permanent display at iXart in Spittal"
+   },
+   {
+    "original": "okvolltreffer.at",
+    "kind": "web",
+    "url": "https://okvolltreffer.at/aktuelles-oberkaernten/chronik/adi-schmoelzer-stellt-in-sachsenburg-aus",
+    "title": "Adi Schmölzer stellt in Sachsenburg aus",
+    "site": "okvolltreffer.at",
+    "date": "2025-07-28",
+    "language": "de",
+    "supports": "Upper Carinthian artist; after years of work in Graz and Burgenland returned to Carinthia and lives in Spittal; paints to the rhythm of jazz",
+    "note": "Published by the Osttiroler Bote (Oberkärnten edition)."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "d56c167d-e908-41c6-8d21-5a4cb0617ddb",
+  "slug": "ines-urach",
+  "sources": [
+   {
+    "original": "inesurach.at",
+    "kind": "web",
+    "url": "https://www.inesurach.at/%C3%BCber-mich/",
+    "title": "Über mich/Bio",
+    "site": "inesurach.at",
+    "date": null,
+    "language": "de",
+    "supports": "Freie Akademie Klagenfurt 2013–2017; master class with Luka Anticevic 2018–2020; European Art Academy Trier 2005, 2006; Bad Reichenhall 2011",
+    "note": "Bilingual page (de/en). Her theme 'dialogue between paper and painting' is on the homepage https://www.inesurach.at/ ; the studio in the Europahaus is not stated on either page."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "f0dd1eaa-ef33-48c6-bbcd-8e42b76b6e10",
+  "slug": "gudrun-zikulnig",
+  "sources": [
+   {
+    "original": "gudrun-zikulnig.com",
+    "kind": "web",
+    "url": "https://www.gudrun-zikulnig.com/persoenlich",
+    "title": "Persönlich",
+    "site": "gudrun-zikulnig.com",
+    "date": null,
+    "language": "de",
+    "supports": "née Juch, born 4 April 1965 in Völkermarkt; lives and works in Kühnsdorf; graduate of the Freie Akademie; master class with Luka Anticevic and Peter Kohl; prize at the Ex Tempore di Grisignana 2012",
+    "note": "The HTML <title> is the site name only; 'Persönlich' is the menu name of the page. Course instructor at the Kunstverein Velden is not on this page."
+   }
+  ]
+ },
+ {
+  "collection": "pp_persons",
+  "id": "fcd6e628-9e48-4631-b0eb-4b29301dbc73",
+  "slug": "slava-mohl",
+  "sources": [
+   {
+    "original": "slavaart.at",
+    "kind": "web",
+    "url": "https://www.slavaart.at/?page_id=2",
+    "title": "Slava Mohl",
+    "site": "slavaart.at",
+    "date": null,
+    "language": "de",
+    "supports": "born 1978 in Bosnia, in Austria since 1992; hotel and catering assistant, then office clerk; 2016 master class for painting at the HTBLA Ortweinschule Graz; freelance since; pigment, chalk, paper, canvas",
+    "note": "Exhibitions (Velden, Wolfsberg, Eisenstadt) are on https://www.slavaart.at/?page_id=69 ; the studio in Deutsch Kaltenbrunn is not stated on the site pages checked."
+   }
+  ]
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "1420e853-bbc5-4816-9a30-2692f3e0ec3f",
+  "slug": "epische-gemaelde",
+  "sources": [
+   {
+    "original": "invitation and poster of the Galerie im Schloss Porcia",
+    "kind": "document",
+    "url": null,
+    "title": "Epische Gemälde – Zwischen Mythos und Kosmos (invitation and poster)",
+    "site": "Galerie im Schloss Porcia",
+    "date": null,
+    "language": "de",
+    "supports": "title, artist, poster image 'Endzeit', dates",
+    "note": "Printed invitation and poster of the Galerie im Schloss Porcia (Stadtgemeinde Spittal an der Drau). Local copies: _360_GALLERIES_AND_TOURS/collection/_galleries/galerie_porcia/2026-09-11-galerie-porcia-ingrid-proeller-epische-gemaelde/poster.pdf and _MATERIAL/gbs Einladung_Epische_Gemaelde.pdf, gbs Plakat_Epische_Gemaelde.pdf (image-only PDFs). No online PDF copy found; spittal-drau.at's exhibition page links none."
+   },
+   {
+    "original": "spittal-drau.at",
+    "kind": "web",
+    "url": "https://www.spittal-drau.at/kultur/galerie/epische-gemaelde",
+    "title": "\"Epische Gemälde | Zwischen Mythos und Kosmos\"",
+    "site": "spittal-drau.at",
+    "date": null,
+    "language": "de",
+    "supports": "large formats in the Salamancakeller; archaic to futuristic; Mensch, Natur, Kosmos; 'Wildes Kind', 'Kretische Landschaft', 'Fabel', 'Geburt', 'Endzeit' (boy, octopus), 'Matrix' (cosmonaut as modern Odysseus); Pröller born 1970 in Schärding, Academy Vienna; outdoor studio on Crete; 12 Sep – 24 Oct 2026"
+   }
+  ]
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "34a00445-7c1f-4532-86b4-61cb44218469",
+  "slug": "walther-preiml-sehnsucht",
+  "sources": [
+   {
+    "original": "waltherpreiml.at",
+    "kind": "web",
+    "url": "https://waltherpreiml.at/neues/",
+    "title": "Neue Ausstellung -Sehnsucht- in Kötschach-Mauthen",
+    "site": "waltherpreiml.at",
+    "date": null,
+    "language": "de",
+    "supports": "stARTup Gallery Kötschach-Mauthen; opening at the Lange Nacht der Museen on 3 Oct 2026; woodcuts and frottages on 'Schmerzliches Verlangen nach dem Unerreichbaren'; open 4 Oct – 31 Dec, Fridays 17–19",
+    "note": "News list page without single-post URLs; the entry is the first item on the page and will move down as news is added. The 2024 prints show at the gallery is on https://waltherpreiml.at/vita/"
+   },
+   {
+    "original": "langenacht.orf.at",
+    "kind": "web",
+    "url": "https://langenacht.orf.at/museum/bl/kaernten/li/startup-gallery",
+    "title": "stARTup gallery",
+    "site": "langenacht.orf.at",
+    "date": null,
+    "language": "de",
+    "supports": "ORF Lange Nacht der Museen programme: vernissage Walther Preiml, mountains of the region from his own perspective, own songs",
+    "note": "Programme page of the venue; content is replaced for each year's Lange Nacht."
+   }
+  ]
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "6bd91200-8b2d-43f2-92e3-7bb33da400c6",
+  "slug": "blinddate-der-perspektiven",
+  "sources": [
+   {
+    "original": "kultur-impuls.com",
+    "kind": "web",
+    "url": "https://kultur-impuls.com/events/ausstellung-blinddate-der-perspektiven/",
+    "title": "Ausstellung „Blinddate der Perspektiven“",
+    "site": "kultur-impuls.com",
+    "date": null,
+    "language": "de",
+    "supports": "graduates of the Freie Akademie der bildenden Künste Kärnten; three positions meeting as a blind date; Impuls Center Seeboden; further works in the Marktgemeindeamt Seeboden; 14 Sep – 11 Nov 2026",
+    "note": "Event page (no publication date)."
+   },
+   {
+    "original": "kaerntenportal.at",
+    "kind": "web",
+    "url": "https://www.kaerntenportal.at/blinddate-der-perspektiven/",
+    "title": "Blinddate der Perspektiven",
+    "site": "kaerntenportal.at",
+    "date": "2026-09-07",
+    "language": "de",
+    "supports": "kultur.im.puls; graduates of the Freie Akademie; three artistic paths; vernissage 11 Sep 2026 Impuls Center Seeboden; stairwell of the Seeboden municipal office"
+   },
+   {
+    "original": "inesurach.at",
+    "kind": "web",
+    "url": "https://www.inesurach.at/",
+    "title": "Home",
+    "site": "inesurach.at",
+    "date": null,
+    "language": "de",
+    "supports": "Urach's 'Dialog zwischen Papier und Malerei': paper as material in abstract pictures",
+    "note": "The facts are on the homepage itself (no separate statement page)."
+   },
+   {
+    "original": "nicolinevonheyl.com",
+    "kind": "web",
+    "url": "https://www.nicolinevonheyl.com/%C3%BCber-mich",
+    "title": "über mich",
+    "site": "nicolinevonheyl.com",
+    "date": null,
+    "language": "de",
+    "supports": "von Heyl: study at the Akademie der Bildenden Künste Kärnten from 2020; process-based painting in mixed media"
+   },
+   {
+    "original": "bucher-sakowski.at",
+    "kind": "web",
+    "url": "https://www.bucher-sakowski.at/ueber-mich/vita",
+    "title": "Vita",
+    "site": "bucher-sakowski.at",
+    "date": null,
+    "language": "de",
+    "supports": "Bucher-Sakowski: graduate of the Freie Akademie der bildenden Künste Kärnten; 2026 kultur im.puls Seeboden in the exhibition list",
+    "note": "Her figurative acrylic paintings are shown on https://www.bucher-sakowski.at/malerei/serie-1 ('Werkserie Gegenständlich', mostly 'Acryl auf Leinen')."
+   }
+  ]
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "a23ab66d-6019-4a1a-9a82-21732c90a1d1",
+  "slug": "fragil",
+  "sources": [
+   {
+    "original": "villach.at",
+    "kind": "web",
+    "url": "https://villach.at/stadt-erleben/kultur/dinzlschloss/dinzlschloss-aktuelle-ausstellung",
+    "title": "\"FRAGIL\" Jahresausstellung Kunstverein postWERK",
+    "site": "villach.at",
+    "date": null,
+    "language": "de",
+    "supports": "postWERK annual exhibition at the Dinzlschloss; the tender as attention, not weakness; artists from Austria, Germany, Slovenia and Iran; painting, photography, installation, literature, performance; vulnerability, fragile ecosystems, shared future; Triennale IV Kärnten 2026 'schwach • šibko • debole'",
+    "note": "'Current exhibition' page of the Dinzlschloss: its content will be replaced by the next exhibition."
+   },
+   {
+    "original": "postwerk.at",
+    "kind": "web",
+    "url": "https://postwerk.at/2026/09/02/fragil-jahresausstellung-2026/",
+    "title": "FRAGIL | Jahresthema 2026",
+    "site": "postwerk.at",
+    "date": "2026-09-02",
+    "language": "de",
+    "supports": "annual theme FRAGIL; members and guest artists; Dinzlschloss Villach; Triennale IV Kärnten 2026; Lange Nacht 3 Oct 2026 with the performance 'Wieso wir uns wiegen' by Christina Clar and Phil Yaeger",
+    "note": "Date taken from the post URL. The Lange Nacht post is https://postwerk.at/2026/09/10/fragil-orf-lange-nacht-der-museen/"
+   },
+   {
+    "original": "langenacht.orf.at",
+    "kind": "web",
+    "url": "https://langenacht.orf.at/museum/bl/kaernten/li/dinzlschloss---kulturabteilung-der-stadt-villach",
+    "title": "Dinzlschloss / Kulturabteilung der Stadt Villach",
+    "site": "langenacht.orf.at",
+    "date": null,
+    "language": "de",
+    "supports": "ORF Lange Nacht der Museen programme: postWERK exhibition 'fragil', artists from four countries; performance 'Wieso wir uns wiegen' with Christina Clar and Phil Yaeger at 19, 20, 21",
+    "note": "Programme page of the venue; content is replaced for each year's Lange Nacht."
+   }
+  ]
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "3934001a-940b-4431-84bc-8af5e7834dd9",
+  "slug": "universitaet-klagenfurt",
+  "sources": [
+   {
+    "original": "aau.at",
+    "kind": "web",
+    "url": "https://www.aau.at/universitaet/",
+    "title": "Universität",
+    "site": "aau.at",
+    "date": null,
+    "language": "de",
+    "supports": "founded 1970; four faculties and 30 institutes; student numbers",
+    "note": "The page now says more than 13,700 students (the text says more than 13,300). The Institut für Unterrichts- und Schulentwicklung belonging to the Fakultät für Kulturwissenschaften/Bildungswissenschaften is not on this page."
+   }
+  ]
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "e76185b6-d668-475e-9e05-b0a29dbc398b",
+  "slug": "kunstverein-postwerk",
+  "sources": [
+   {
+    "original": "postwerk.at",
+    "kind": "web",
+    "url": "https://postwerk.at/kunstverein/",
+    "title": "Kunstverein",
+    "site": "postwerk.at",
+    "date": null,
+    "language": "de",
+    "supports": "founded 2012; non-profit; annual focus with long-standing members and guest artists; Villach (Galerie Offenes Atelier D.U.Design under Dorothee Unkel until 2015)",
+    "note": "Dorothee Unkel as honorary president since February 2020 and Barbara Ambrusch-Rapp as chair are on https://postwerk.at/statuten/ ; 'Obfrau bis Jänner 2020: Dorothee Unkel' is on https://postwerk.at/impressum/"
+   }
+  ]
+ }
+]

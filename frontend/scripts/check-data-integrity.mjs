@@ -65,6 +65,12 @@ async function main() {
     ? await directusGet('/items/pp_venues?fields=id,slug,type,status&limit=-1&filter[type][_eq]=museum', { token: directusToken })
     : []
   const museumVenues = [...venues, ...draftMuseums.filter((museum) => !venueIds.has(museum.id))]
+  // Every source under a text links to the exact page it came from (owner, 2026-11-09).
+  const { unlinkedSourceLeaks } = await import('../shared/source-links.mjs')
+  const unlinked = [
+    ...unlinkedSourceLeaks(persons, 'about_html'), ...unlinkedSourceLeaks(exhibitions, 'description'),
+    ...unlinkedSourceLeaks(organisations, 'about_html'), ...unlinkedSourceLeaks(venues, 'about_html'), ...unlinkedSourceLeaks(a.events, 'about_html')
+  ]
   const museumHeld = museumLeaks({ venues: museumVenues, exhibitions, persons, personsVenues: a.personsVenues, participations })
   const fileUrls = []
   const fileOwners = []
@@ -228,6 +234,7 @@ async function main() {
       .filter((item) => item.navigation === navigations.find((nav) => nav.key === 'main')?.id && item.parent === null)
       .every((item) => ['about', 'artists', 'exhibitions', 'galleries', 'organisations', 'events'].includes(item.key))],
 
+    [named('every source of a published text links to the exact page it came from (owner rule; shared/source-links.mjs)', unlinked), unlinked.length === 0],
     [named('no museum, museum exhibition or museum-only person is published (owner rule; shared/museum-drafts.mjs)', museumHeld), museumHeld.length === 0],
     ['every venue has a known type', venues.every((venue) =>
       ['gallery', 'museum', 'kunsthalle', 'art_cafe', 'open_air', 'forum'].includes(venue.type))],

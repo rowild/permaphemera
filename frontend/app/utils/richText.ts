@@ -5,6 +5,8 @@
  * Links are dropped (their text stays): every external address is a link record, never text.
  * Exception (2026-11-04): with `{ links: true }` (news articles) a link stays when it points to
  * a page of the site (`/…`) or to an `https://` address; the external one opens in a new tab.
+ * The closing sources list keeps those links in every text (owner, 2026-11-09): each source
+ * links to the exact page it came from.
  * Script and style blocks go with their content; any other angle bracket is escaped, so no
  * unknown or broken tag can reach the page.
  */
@@ -15,6 +17,8 @@ const KEPT_TAG_WITH_LINKS = /(<\/?(?:p|br|strong|em|ul|ol|li)>|<a href="[^"<>]*"
 /** A site path (`/…`, never `//…`) or an https address, without quotes, brackets or spaces. */
 const INTERNAL_HREF = /^\/(?!\/)[^\s"'<>`]*$/
 const EXTERNAL_HREF = /^https:\/\/[^\s"'<>`]+$/
+/** Sources only: a few source sites have no https (bv-kaernten.at, 2026-11-09). */
+const EXTERNAL_HREF_HTTP = /^https?:\/\/[^\s"'<>`]+$/
 export const isAllowedHref = (href: string) => INTERNAL_HREF.test(href) || EXTERNAL_HREF.test(href)
 
 const hrefOf = (attributes: string) => {
@@ -29,7 +33,14 @@ export interface RichTextOptions {
   localize?: (path: string) => string
 }
 
-export const sanitizeRichText = (html: string, options: RichTextOptions = {}): string => {
+interface CleanOptions extends RichTextOptions {
+  /** Keep http links too (only the closing sources list keeps them). */
+  http?: boolean
+}
+
+const clean = (html: string, options: CleanOptions): string => {
+  const external = options.http ? EXTERNAL_HREF_HTTP : EXTERNAL_HREF
+  const allowedHref = (href: string) => INTERNAL_HREF.test(href) || external.test(href)
   const openLinks: boolean[] = []
   const normalised = html
     .replace(/<!--[\s\S]*?-->/g, '')
@@ -38,10 +49,10 @@ export const sanitizeRichText = (html: string, options: RichTextOptions = {}): s
       if (options.links && name.toLowerCase() === 'a') {
         if (slash) return openLinks.pop() ? '</a>' : ''
         const href = hrefOf(attributes)
-        const allowed = isAllowedHref(href)
+        const allowed = allowedHref(href)
         openLinks.push(allowed)
         if (!allowed) return ''
-        if (EXTERNAL_HREF.test(href)) return `<a href="${href}" target="_blank" rel="noopener noreferrer">`
+        if (external.test(href)) return `<a href="${href}" target="_blank" rel="noopener noreferrer">`
         const local = options.localize ? options.localize(href) : href
         return `<a href="${isAllowedHref(local) ? local : href}">`
       }
@@ -54,6 +65,17 @@ export const sanitizeRichText = (html: string, options: RichTextOptions = {}): s
     .map((part, index) => (index % 2 ? part : part.replace(/</g, '&lt;').replace(/>/g, '&gt;')))
     .join('')
   return escaped.replace(/<p>(?:\s|&nbsp;|<br>)*<\/p>/g, '').trim()
+}
+
+/** The sources block that closes a text, in sanitised HTML: a label paragraph, then the list. */
+const SOURCES = /<p>\s*(Quellen?|Sources?)\s*:?\s*<\/p>\s*<ul>((?:(?!<\/?ul>)[\s\S])*)<\/ul>\s*$/i
+
+export const sanitizeRichText = (html: string, options: RichTextOptions = {}): string => {
+  if (options.links) return clean(html, options)
+  const linked = clean(html, { ...options, links: true, http: true })
+  const sources = linked.match(SOURCES)
+  const end = sources?.index ?? linked.length
+  return linked.slice(0, end).replace(/<a [^>]*>|<\/a>/g, '') + linked.slice(end)
 }
 
 const showsText = (safe: string) => Boolean(safe.replace(/<[^>]+>|&nbsp;/g, '').trim())
@@ -74,7 +96,5 @@ export const toRichHtml = (html?: string | null, options: RichTextOptions = {}):
  * ("Quelle", "Quellen", "Source", "Sources", a colon allowed) and the list right after it, as the
  * last block. Runs on sanitised HTML (no attributes left), so only this step can set the two classes.
  */
-const SOURCES = /<p>\s*(Quellen?|Sources?)\s*:?\s*<\/p>\s*<ul>((?:(?!<\/?ul>)[\s\S])*)<\/ul>\s*$/i
-
 export const markSources = (safeHtml: string): string => safeHtml.replace(SOURCES, (_block, label: string, items: string) =>
   `<p class="archive-sources-label">${label}</p><ul class="archive-sources">${items}</ul>`)

@@ -1,0 +1,687 @@
+[
+  {
+    "collection": "pp_venues",
+    "id": "bc81ccea-8a78-4f9b-898b-a8f80e7432dd",
+    "slug": "kmetija-moro-brda",
+    "sources": [
+      {
+        "original": "moro-wines.com",
+        "kind": "web",
+        "url": "https://www.moro-wines.com/",
+        "title": "Hiša Moro – Zgodba družinske kmetije Moro",
+        "site": "moro-wines.com",
+        "date": null,
+        "language": "sl",
+        "supports": "family farm history (great-grandmother Margerita, grandfather nicknamed Moro for his black hair, son Boris), 7 ha vineyards + 5 ha orchards, Damjan Jakončič, Vipolže 62, 5212 Dobrovo v Brdih",
+        "note": "Page has no visible headline; the section title is 'Hiša Moro', the site title 'Moro Wines'. The English page https://www.moro-wines.com/eng has the same history but gives 5 ha land + 7 ha vineyards; the text follows the Slovenian homepage."
+      },
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/klagenfurt/c-regionauten-community/neue-dreilaenderausstellung-trigeniale-brda-26-in-gorika-brda_a8905011",
+        "title": "Bilderwechsel von Frühling auf Herbst! Neue Dreiländerausstellung „Trigeniale Brda 26\" in Goriška Brda",
+        "site": "meinbezirk.at",
+        "date": "2026-09-18",
+        "language": "de",
+        "supports": "series “Kunst in den Hügeln – Umetnost v Brdih – Arte nel Collio” in the “Kunstbotschaft Kärntens in Slowenien” at Kmetija Moro, Vipolže 62; change from spring to autumn exhibition 2026; artists from Carinthia, Friuli, Slovenia",
+        "note": "Facts are spread over several bewegungINkultur posts: 'since 2018' / five years and Damjan Jakončič as 'Juniorchef' in https://www.meinbezirk.at/klagenfurt/c-regionauten-community/kulturhauptstadt-2025-und-fuenf-jahre-kunst-in-den-huegeln-in-der-gorika-brda_a6295668 (2023-10-01); visits by telephone appointment in https://www.meinbezirk.at/klagenfurt/c-regionauten-community/trigeniale-brda-im-herbst_a8921886 (2026-09-28); 'Boris und Dragica Jakončič' in https://www.meinbezirk.at/klagenfurt/c-regionauten-community/zum-5-mal-kunst-in-den-huegeln-umetnost-v-brdih_a4772672 (2021-07-18)."
+      },
+      {
+        "original": "poster of Trigeniale Brda 26",
+        "kind": "document",
+        "url": null,
+        "title": "Poster: Trigeniale – Kunst in den Hügeln / Umetnost v Brdih / Arte nel Collio, Brda, 25 Sept. to end of 2026",
+        "site": "bewegungINkultur (poster on the hall door of Kmetija Moro)",
+        "date": "2026-09-25",
+        "language": "de",
+        "supports": "“Kunstbotschaft Kärntens in Slowenien” / “Ambasada umetnosti Koroške v Sloveniji” / “Ambasciata d’arte della Carinzia in Slovenia”; Kmetija Moro, Vipolže – Brda",
+        "note": "No online copy found (worklog 2026-11-09). Local copies: _360_GALLERIES_AND_TOURS/collection/_galleries/moro_wine/2026-09-25-moro-wine-trigeniale-brda-26/poster.pdf and plans/2026-11-09__trigeniale-brda-26-kmetija-moro/sources/poster-trigeniale-brda-26-from-360-photo.jpg. Date = opening date printed on the poster."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "0d6b4183-12c8-40da-a3c2-2055232a30a8",
+    "slug": "alda-grudina",
+    "sources": [
+      {
+        "original": "artist sheet of Trigeniale 26 (bewegungINkultur)",
+        "kind": "document",
+        "url": null,
+        "title": "Künstler T26 – artist sheet of Trigeniale 26 (German)",
+        "site": "Kulturinitiative bewegungINkultur",
+        "date": null,
+        "language": "de",
+        "supports": "whole biography: first contact with painting at primary school, teachers Franc Golob, Bojan Bensa, Azad and Silva Karim, Aleksandar Velišček; president of DABLO; Farovž gallery Šmartno, Arkade gallery Dobrovo Castle",
+        "note": "No online copy found. Local file: _360_GALLERIES_AND_TOURS/collection/_galleries/studiogalerie_klagenfurt/2026-10-15-studiogalerie-klagenfurt-trigeniale-26/_Material/Künstler T26-1+2 - deutsch.pdf (also 'Alda Grudina/Wandbild Alda Grudina.docx' in the same folder)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "18050820-ad48-46d9-ace4-df324a9a3e9e",
+    "slug": "santino-solace",
+    "sources": [
+      {
+        "original": "exhibition flyer",
+        "kind": "document",
+        "url": null,
+        "title": "Santino Solace – Das, was entsteht. Ausstellung im Parkschlössl, 8. bis 18. September 2026 (flyer)",
+        "site": "Kulturamt der Stadt Spittal/Drau",
+        "date": null,
+        "language": "de",
+        "supports": "lives and works in Spittal an der Drau; comic artist, illustrator, founder of SolaceWorks; own stories, characters and worlds; manga, comics and digital illustration; platform for young and independent artists",
+        "note": "No online copy found (spittal-drau.at has no page for the exhibition; site search for 'Solace' empty). Local file: _360_GALLERIES_AND_TOURS/collection/_galleries/parkschloessl_spittal/2026-09-07-parkschloessl-spittal-santino-solace/poster.pdf."
+      },
+      {
+        "original": "Kulturamt Spittal/Drau",
+        "kind": "document",
+        "url": null,
+        "title": "Kulturamt der Stadt Spittal/Drau (publisher of the exhibition flyer)",
+        "site": "spittal-drau.at",
+        "date": null,
+        "language": "de",
+        "supports": "the flyer text above is issued by the Kulturamt der Stadt Spittal/Drau, Burgplatz 1",
+        "note": "Not a separate page: the Kulturamt is the publisher printed on the flyer. No web page of the town about Santino Solace found (spittal-drau.at/kultur and the site search checked). Could be merged with the flyer source."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "2e61091c-fa4c-4e71-a60d-a4173b9b2b25",
+    "slug": "gabriele-ruff",
+    "sources": [
+      {
+        "original": "stadtgalerie.net",
+        "kind": "web",
+        "url": "https://www.stadtgalerie.net/fileadmin/user_upload/Stadtgalerie_Klagenfurt/Alpen-Adria-Galerie/Ausstellungsarchiv/2026/Armin_Guerino/Biografien_Armin_Guerino_Gabriele_Ruff.pdf",
+        "title": "Biografien Armin Guerino, Gabriele Ruff",
+        "site": "stadtgalerie.net",
+        "date": null,
+        "language": "de",
+        "supports": "born 1963 in Graz; art history in Vienna; tfm University of Vienna 2009–2023; ÖGFA board and UmBau editorial team 2011–2023; texts on architecture and art; curator incl. Wiener Architekturtage 2014, 2016, 2018",
+        "note": "PDF linked from the exhibition page https://www.stadtgalerie.net/alpen-adria-galerie/aktuelle-ausstellung, which names her as curator of “Armin Guerino – Durch die Zeit” (23 Sept – 29 Nov 2026); that page will move to the archive after the exhibition. Title is the file name (the PDF has no heading)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "3cfbac5f-e237-410c-9cfa-507026a27023",
+    "slug": "severin-kroen",
+    "sources": [
+      {
+        "original": "kuenstlerstadt-gmuend.at",
+        "kind": "web",
+        "url": "https://www.kuenstlerstadt-gmuend.at/programm/severin-kron",
+        "title": "Séverin Krön",
+        "site": "kuenstlerstadt-gmuend.at",
+        "date": null,
+        "language": "de",
+        "supports": "International Guest Studio Maltator in Gmünd; links the catalogue with his CV (born 1964 in Nanterre, studies 1985–1992 Vienna and Mozarteum, teachers Arnulf Rainer and Anton Lehmden, Art permutable since 2007, Ring series 2014, solo exhibitions, Maltator 2015)",
+        "note": "The CV facts are in the catalogue PDF linked from this page (200, application/pdf): https://cdn.prod.website-files.com/5f841f017ffe9516a67c0446/63f89142e37e1157959a66f0__KI_Katalog_SEVERIN_KROEN.pdf – use it instead if a direct document link is preferred."
+      },
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/spittal/c-lokales/svrin-kroen-ist-neuer-galerieleiter_a5117248",
+        "title": "Saisonstart in der Galerie Schloss Porcia: Sévérin Krön ist neuer Galerieleiter",
+        "site": "meinbezirk.at",
+        "date": "2022-01-24",
+        "language": "de",
+        "supports": "new head of the Galerie im Schloss Porcia in January 2022, successor of Elisabeth Kleinwächter, curates the exhibitions",
+        "note": "The 2019 facts (bilingual, 'Art permutable', exhibition at the KUNSTradln gallery in Millstatt) are in a second article: https://www.meinbezirk.at/spittal/c-leute/sverin-kroens-veraenderbare-welten_a3609231 ('Vernissage in der Kunstradeln-Galerie: Séverin Kröns veränderbare Welten', 2019-09-05)."
+      },
+      {
+        "original": "spittal-drau.at",
+        "kind": "web",
+        "url": "https://www.spittal-drau.at/politik/detailansicht?tx_sicaddress_sicaddress%5Baction%5D=show&tx_sicaddress_sicaddress%5Baddress%5D=89&tx_sicaddress_sicaddress%5Bcontroller%5D=Address&cHash=d03425912d020d8d9eaf0504cdd7c5c0",
+        "title": "Severin Krön – Kultur – Galerie (Mitarbeiter von A – Z)",
+        "site": "spittal-drau.at",
+        "date": null,
+        "language": "de",
+        "supports": "staff of the town of Spittal an der Drau, Kultur – Galerie, Schloss Porcia, task 'Galeriebetreuung'",
+        "note": "Staff directory entry; the page headline is only 'Detailansicht', the browser title 'Severin Krön'."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "49d7d79d-bda2-4a54-83d1-e3325466f494",
+    "slug": "helmuth-ploschnitznigg",
+    "sources": [
+      {
+        "original": "murtalinfo.at",
+        "kind": "web",
+        "url": "https://www.murtalinfo.at/post/hoffnung-und-frieden-als-k%C3%BCnstlerisches-signal-in-judenburg",
+        "title": "Hoffnung und Frieden als künstlerisches Signal in Judenburg",
+        "site": "murtalinfo.at",
+        "date": "2026-04-06",
+        "language": "de",
+        "supports": "exhibition “Hoffnung & Frieden” in Judenburg on Ploschnitznigg's idea, 14 artists, contributions of the Lebenshilfe Knittelfeld"
+      },
+      {
+        "original": "lebenshilfe-knittelfeld.at",
+        "kind": "web",
+        "url": "https://www.lebenshilfe-knittelfeld.at/kuenstlerischer-vormittag/",
+        "title": "Künstlerischer Vormittag",
+        "site": "lebenshilfe-knittelfeld.at",
+        "date": "2026-03-25",
+        "language": "de",
+        "supports": "on 24 March 2026 artists of the Lebenshilfe and the MS Spielberg worked with PLO and Adi Schmölzer for the project “Hoffnung und Frieden”"
+      },
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/murau/c-lokales/helmut-ploschnitznigg-praesentiert-zwischenwelten-in-gabelhofen_a814216",
+        "title": "Helmut Ploschnitznigg präsentiert \"Zwischenwelten\" in Gabelhofen",
+        "site": "meinbezirk.at",
+        "date": "2014-01-18",
+        "language": "de",
+        "supports": "Judenburg art teacher (Kunsterzieher); founded the care facility “Simultania” for people with disabilities",
+        "note": "The art calendar “Hoffnung und Frieden” made with Adi Schmölzer and the Lebenshilfe is in a second article: https://www.meinbezirk.at/murtal/c-leute/kunst-die-von-herzen-kommt_a8984211 ('Kunstkalender Musik Begegnungen: Kunst, die von Herzen kommt', 2026-10-30)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "5fa905a0-6a0c-4a8a-93e4-5834be99b2d9",
+    "slug": "gerhard-lepicnik",
+    "sources": [
+      {
+        "original": "novice.at",
+        "kind": "web",
+        "url": "https://www.novice.at/kultura/gerhard-in-boris-snovalca-evrope-v-male/",
+        "title": "Gerhard in Boris - snovalca Evrope v malem",
+        "site": "novice.at",
+        "date": "2021-08-25",
+        "language": "sl",
+        "supports": "Tomaž Ogris: “Dober večer, sosed” could not have been realised without Hans Mosser and Gerhard Lepicnik; chair of the Sängerrunde Ebenthal; series with Boris Jakončič",
+        "note": "Family roots in Sittersdorf/Žitara vas are named in a second novice.at article (paywalled, not readable by curl): https://www.novice.at/kultura/cezmejno-sodelovanje-lepicnikova-promocija-koroske/ ('Čezmejno sodelovanje: Lepičnikova promocija Koroške', 2022-05-16)."
+      },
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/klagenfurt/c-lokales/saengerrunde-nordlicht-auf-kulturfahrt-in-den-sueden_a1537361",
+        "title": "Sängerrunde Nordlicht – auf Kulturfahrt in den Süden!",
+        "site": "meinbezirk.at",
+        "date": "2015-11-06",
+        "language": "de",
+        "supports": "retired head of the former Netzleitung Ost in St. Veit; organiser for bewegung IN kultur",
+        "note": "'Since 2013 at the latest' rests on his own post https://www.meinbezirk.at/klagenfurt/c-lokales/friulanische-impressionen-mit-spitzer-feder-tuschzeichnungen-des-friulanischen-grafikers-z0mpich_a742863 (2013-11-01, Friulian artist Zompich shown in Klagenfurt)."
+      },
+      {
+        "original": "orf.at",
+        "kind": "web",
+        "url": "https://kaernten.orf.at/tv/stories/3245947/",
+        "title": "Kunst in den Hügeln der Goriska Brda",
+        "site": "kaernten.orf.at",
+        "date": "2024-02-24",
+        "language": "de",
+        "supports": "2024 report: in the previous six years about twelve exhibitions with some 30 artists; Kunstbotschaft Kärnten at the Moro winery"
+      },
+      {
+        "original": "klagenfurt.at",
+        "kind": "web",
+        "url": "https://www.klagenfurt.at/fileadmin/user_upload/Stadt_Klagenfurt/03-StadtINFOS/Statistik/Publikationen/Jahrbuch_2010.pdf",
+        "title": "Statistisches Jahrbuch 2010 der Landeshauptstadt Klagenfurt (Chronik 2009)",
+        "site": "klagenfurt.at",
+        "date": null,
+        "language": "de",
+        "supports": "26 June 2009: DI Gerhard Lepicnik receives the Ehrpfennig of the City of Klagenfurt for his cultural work, especially as long-time chairman of the Singkreis Seltenheim",
+        "note": "PDF (the PDF's metadata title is only 'Nachspann'); the entry is in the chronicle under 26.6. Title given from the file name and content."
+      },
+      {
+        "original": "aau.at",
+        "kind": "web",
+        "url": "https://netlibrary.aau.at/obvuklhs/download/pdf/7062783?originalFilename=true",
+        "title": "Transkulturelle Streifzüge mit Pier Paolo Pasolini zur friulanischen Lyrik (Masterarbeit)",
+        "site": "aau.at",
+        "date": "2020-03-21",
+        "language": "de",
+        "supports": "Master of Arts thesis, Angewandte Kulturwissenschaft, University of Klagenfurt, dated 21.3.2020, on Pasolini and Friulian poetry",
+        "note": "Thesis PDF in the university library (netlibrary.aau.at). The student projects are on two other aau.at pages: https://www.aau.at/universitaet/campus/kunst-und-kultur/wissen-schafft-kunst/ (BAUM | MENSCH | KLANG | KUNST, 2014) and https://www.aau.at/blog/for-forest-ein-konflikt-ueber-kunst-ausstellungseroeffnung-am-23-juli-2019-16-uhr-vor-dem-rathaus-klagenfurt/ (For Forest, 2019). 'Landschaft & Identität' (2023) is on ethno.at: https://www.ethno.at/events/detail/razstava-pokrajina-identiteta-v-knjizhnici-celovshke-univerze/de (not re-checked)."
+      },
+      {
+        "original": "ebenthal-kaernten.gv.at",
+        "kind": "web",
+        "url": "https://ebenthal-kaernten.gv.at/fileadmin/ebenthal_in_kaernten/03-Buergerservice/Kunst-Kultur/festschrift.pdf",
+        "title": "Festschrift der Marktgemeinde Ebenthal in Kärnten",
+        "site": "ebenthal-kaernten.gv.at",
+        "date": null,
+        "language": "de",
+        "supports": "1970 Dipl.-Ing. Gerhard Lepičnik became chairman (Obmann) of the Sängerrunde Ebenthal; cultural relations with the Slovenian community",
+        "note": "PDF; title from the PDF metadata ('Festschrift') and content (market town elevation 1998); exact publication year not on the checked pages."
+      },
+      {
+        "original": "d-nb.info",
+        "kind": "web",
+        "url": "https://d-nb.info/209603526/04",
+        "title": "Inhaltsverzeichnis: Strom für Kärnten. 60 Jahre KÄWAG-KELAG, 35 Jahre Landesgesellschaft",
+        "site": "d-nb.info",
+        "date": null,
+        "language": "de",
+        "supports": "Gerhard Lepicnik, Dipl.-Ing., Handlungsbevollmächtigter der Kärntner Elektrizitäts AG, author of the chapter 'Netzbau'",
+        "note": "Scanned table of contents (PDF) of the KELAG company history, 3rd edition, Klagenfurt 1983 (catalogue record https://d-nb.info/209603526). Publication year 1983; no day/month, so date is null."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "7532a56b-0d76-4645-83ff-a4543e83add6",
+    "slug": "fabian-freese",
+    "sources": [
+      {
+        "original": "postwerk.at",
+        "kind": "web",
+        "url": "https://postwerk.at/2014/04/10/fabian-freese/",
+        "title": "Fabian Freese",
+        "site": "postwerk.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 1982 in Wuppertal-Elberfeld; studied fine art at the Freie Akademie der Bildenden Künste from 2006, graduated 2011; shown in Europe, North and South America, Asia, Australia, solo exhibitions in New York and Sydney; everyday objects and long-exposure light paintings",
+        "note": "Member profile of the Kunstverein postWERK; the URL path says 2014/04/10, but that is the post slot, not a reliable publication date, so date is null."
+      },
+      {
+        "original": "ffartspace.com",
+        "kind": "web",
+        "url": "https://www.ffartspace.com/biografie",
+        "title": "Biografie – Fabian Freese",
+        "site": "ffartspace.com",
+        "date": null,
+        "language": "de",
+        "supports": "Fabian Freese artspace (his own site); born 1982 in Wuppertal; Freie Akademie der bildenden Künste (fadbk) Essen 2006–2011; exhibition list incl. New York and Sydney"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "7eb900f2-c386-4da1-9f10-3609b7e6914a",
+    "slug": "burgis-paier",
+    "sources": [
+      {
+        "original": "stadtgalerie.net (biography of Burgis Paier)",
+        "kind": "web",
+        "url": "https://www.stadtgalerie.net/fileadmin/user_upload/Stadtgalerie_Klagenfurt/theatergalerie/2022/BIOGRAFIE_Burgis_Paier.pdf",
+        "title": "Burgis Paier – Biografie",
+        "site": "stadtgalerie.net",
+        "date": null,
+        "language": "de",
+        "supports": "born 1949 in Klagenfurt, died there 2022; costume and stage designer, visual artist (figures, objects, automata, collages, reliquaries, rooms, puppets, embroidery); solo exhibitions from 1977 (Udine, Milan, Bologna …); with Günter Brus “Kaspar Hauser”, “Phantasus”, “Phantasus 2”; 2017 Red Gate Residency Beijing; “Das große Welttheater” Alpen-Adria-Galerie",
+        "note": "PDF linked from https://www.stadtgalerie.net/theatergalerie/aktuelle-ausstellung. The permanent display in the Theatergalerie since December 2022 is stated on https://www.stadtgalerie.net/theatergalerie/theatergalerie-information."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "8aa93f6a-8658-41e5-a17e-cdf422eb3081",
+    "slug": "drago-druskovic",
+    "sources": [
+      {
+        "original": "dragodruskovic.com",
+        "kind": "web",
+        "url": "http://www.dragodruskovic.com/bio.htm",
+        "title": "Drago Druškovič – bio",
+        "site": "dragodruskovic.com",
+        "date": null,
+        "language": "de",
+        "supports": "born 1950 in Klagenfurt, childhood and youth in Carinthia, studies in Graz and Salzburg; painting and drawing since 1974; book illustration, tapestry, printmaking; lives and works in Salzburg and Carinthia",
+        "note": "Site has no https (http only). Page is bilingual German/English; page title only 'drago druskovic'."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "961e3479-6ef5-4911-b64e-9042298d6966",
+    "slug": "marko-lipus",
+    "sources": [
+      {
+        "original": "markolipus.com",
+        "kind": "web",
+        "url": "https://markolipus.com/about/",
+        "title": "ABOUT",
+        "site": "markolipus.com",
+        "date": null,
+        "language": "en",
+        "supports": "born 1974 in Eisenkappel/Železna Kapla; Schule für künstlerische Photographie Friedl Kubelka 1994–1995; Höhere Graphische Bundes-Lehr- und Versuchsanstalt 1996–1998; FAMU Prague two semesters; experimental photography and video since 2004; lives in Vienna and Frankfurt"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "a04cbc25-ea82-4ff2-97df-59dda530eb86",
+    "slug": "theres-cassini",
+    "sources": [
+      {
+        "original": "cassini.at",
+        "kind": "web",
+        "url": "https://www.cassini.at/biog_main.htm",
+        "title": "Theres Cassini – Biography",
+        "site": "cassini.at",
+        "date": null,
+        "language": "en",
+        "supports": "born 1960 in Carinthia, lives and works in Vienna; technical college (mechanical engineering, industrial technology) and acting school in Vienna; 1988–1993 CASSINI + MARLOWE textile object art; since 1997 sculpture, installation, conceptual photography, the human body; since 2018 in the annual design experiments of ARS Carinthia",
+        "note": "The site is built with frames; this is the biography frame (the page itself has no headline, only the title 'Theres Cassini'). Not on this page: birthplace Rattendorf and the 2025 KUNST & HANDWERK GRAND PRIX for „Maria Lassnig – Reflexive Beseelung“ – those come from another source."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "af3c2665-bbc2-4e43-9ed2-4554db480088",
+    "slug": "werner-reiterer",
+    "sources": [
+      {
+        "original": "wernerreiterer.com",
+        "kind": "web",
+        "url": "https://www.wernerreiterer.com/about",
+        "title": "Werner Reiterer – Biography",
+        "site": "wernerreiterer.com",
+        "date": null,
+        "language": "en",
+        "supports": "born 1964 in Graz, lives and works in Vienna; studied graphic art at the Academy of Fine Arts Vienna; member of Forum Stadtpark Graz and the Vienna Secession; 2025 solo exhibition “The Mind Hacker”, Schlossmuseum Linz",
+        "note": "The study years 1984–1988 are not on this page."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "b88804aa-ff78-426d-8d1d-46045b54896f",
+    "slug": "peter-krawagna",
+    "sources": [
+      {
+        "original": "galerie-welz.at",
+        "kind": "web",
+        "url": "https://galerie-welz.at/kuenstler/krawagna-peter/",
+        "title": "Peter Krawagna",
+        "site": "galerie-welz.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 7 May 1937 in Klagenfurt, grew up in Velden; apprenticeship in his parents' painting business; Linz art school from 1953 to 1957 (Herbert Dimmel); Academy Vienna 1957–1961 (Herbert Boeckl); École des Beaux-Arts Paris 1963/64; settled in Krumpendorf 1965"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "c8563b4a-9ac4-46b3-aca3-12f63b85ffdf",
+    "slug": "jochen-traar",
+    "sources": [
+      {
+        "original": "traar.com",
+        "kind": "web",
+        "url": "https://traar.com/?content=biografie",
+        "title": "Jochen Traar – Biographie",
+        "site": "traar.com",
+        "date": null,
+        "language": "de",
+        "supports": "born 1960 in Essen; childhood and youth in St. Kanzian am Klopeiner See 1960–1979; sculpture with Bruno Gironcoli at the Academy Vienna 1979–1984; member of the Vienna Secession since 1986; ART PROTECTS YOU; 2020 kunstbureau Klagenfurt with Ulli Sturm; studio in St. Veit im Jauntal since 2002",
+        "note": "Page title is 'Jochen Traar | Art Protects You'; the section heading reads 'Biographie'."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "d1e6a4f8-12b8-436d-8659-9defae5a5ff0",
+    "slug": "birgit-moertl",
+    "sources": [
+      {
+        "original": "kaerntenportal.at",
+        "kind": "web",
+        "url": "https://www.kaerntenportal.at/kunst-im-park-2/",
+        "title": "Kunst im Park",
+        "site": "kaerntenportal.at",
+        "date": "2026-08-11",
+        "language": "de",
+        "supports": "travel and portrait photography, unposed emotions, natural light, encounters with people and animals; began as gardener and florist; now registered nurse in anaesthesia and intensive care; special connection to Africa; “African Heart” until 21 August",
+        "note": "Article sub-headline: 'Birgit Mörtl – African Heart bis 21. August'."
+      },
+      {
+        "original": "klick-kaernten.at",
+        "kind": "web",
+        "url": "https://www.klick-kaernten.at/1599762026/african-heart-zeigt-besondere-momente-aus-afrika/",
+        "title": "„African Heart“ zeigt besondere Momente aus Afrika",
+        "site": "klick-kaernten.at",
+        "date": "2026-08-01",
+        "language": "de",
+        "supports": "exhibition “African Heart” at the Parkschlössl in Spittal an der Drau: photographs of people, animals and moments from Africa"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "dc7d74e2-4530-4184-8346-8ebc276c7846",
+    "slug": "lisa-huber",
+    "sources": [
+      {
+        "original": "villach.at",
+        "kind": "web",
+        "url": "https://villach.at/stadt-erleben/kultur/galerie-freihausgasse/aktuelle-ausstellung",
+        "title": "HOMESTORY – Sebastian Köpcke | Volker Weinhold: Ein fotografischer Essay / Lisa Huber: Farbholzschnitte",
+        "site": "villach.at",
+        "date": null,
+        "language": "de",
+        "supports": "guest student of Georg Baselitz; since 2007 the Psalms in the Buber/Rosenzweig translation in woodcuts, paper cuts, church windows and embroidered cloths, incl. a Lenten veil for Admont Abbey",
+        "note": "'Aktuelle Ausstellung' page of the Galerie Freihausgasse (exhibition 11 Sept – 31 Oct 2026): it still shows this exhibition on 2026-11-09 but will be replaced by the next one; no permanent archive URL found."
+      },
+      {
+        "original": "lisahuber.de",
+        "kind": "web",
+        "url": "https://lisahuber.de/main.php?M1Id=7",
+        "title": "Biographie",
+        "site": "lisahuber.de",
+        "date": null,
+        "language": "de",
+        "supports": "born 1959 in Villach; sculpture with J. Pillhofer in Graz; University of Applied Arts Vienna, master student of A. Frohner; DAAD scholarship Berlin; guest student of G. Baselitz; 2017 Kulturpreis der Stadt Villach"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "f512a578-85fc-41d3-8a2d-072c3ad6a38d",
+    "slug": "herbert-de-colle",
+    "sources": [
+      {
+        "original": "herbertdecolle.com",
+        "kind": "web",
+        "url": "https://herbertdecolle.com/CV",
+        "title": "Herbert De Colle – CV",
+        "site": "herbertdecolle.com",
+        "date": null,
+        "language": "de",
+        "supports": "born 1978 in Wolfsberg; University of Applied Arts Vienna 1999–2005; exhibitions in Vienna, Berlin, Graz, Klagenfurt (CV list)",
+        "note": "UNCERTAIN: the site answers every scripted request (curl, WebFetch) with a JavaScript browser check (HTTP 403), so the 200 status and the MQ Art Box 2024 entry could not be checked here. The URL and its content (born 1978 in Wolfsberg, Angewandte 1999–2005, exhibition list) are confirmed only by a web search index (page title 'Herbert De Colle'). Please open it once in a browser before linking."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "00f179e1-673e-45fe-939b-cd2eaaec861c",
+    "slug": "das-grosse-welttheater",
+    "sources": [
+      {
+        "original": "stadtgalerie.net",
+        "kind": "web",
+        "url": "https://www.stadtgalerie.net/theatergalerie/theatergalerie-information",
+        "title": "theatergalerie Informationen",
+        "site": "stadtgalerie.net",
+        "date": null,
+        "language": "de",
+        "supports": "Theatergalerie opened 2022; “Das große Welttheater” of Burgis Paier is its permanent exhibition; presentations on the theme of theatre change every half year and enter into dialogue with it",
+        "note": "The 2018 / 350 figures text is also on https://www.stadtgalerie.net/theatergalerie/aktuelle-ausstellung (section 'BURGIS PAIER Das große Welttheater – Seit 14. Dezember 2022 als Dauerausstellung')."
+      },
+      {
+        "original": "Invitation of the Stadtgalerie Klagenfurt (2022)",
+        "kind": "document",
+        "url": "https://www.stadtgalerie.net/fileadmin/user_upload/Stadtgalerie_Klagenfurt/theatergalerie/Einladung_theatergalerie__Paier-Brus.pdf",
+        "title": "Einladung: Eröffnung der theatergalerie – Burgis Paier, Das große Welttheater / Günter Brus, Ausflüge auf die Bühne",
+        "site": "stadtgalerie.net",
+        "date": "2022-12-14",
+        "language": "de",
+        "supports": "2018 serious illness; 350 figures from art and cultural history; neither puppets nor sculptures but hybrids; all figures have the artist's hands; permanent exhibition from 14 December 2022",
+        "note": "Date = start of the permanent exhibition printed on the invitation (vernissage 13 December 2022 per the worklog). Also stored in Directus as the exhibition's source PDF."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "23b6f814-b9be-4821-96b9-93452e8c6725",
+    "slug": "wie-kriege-enden",
+    "sources": [
+      {
+        "original": "villach.at",
+        "kind": "web",
+        "url": "https://villach.at/stadt-erleben/museum-der-stadt/aktuelle-sonderausstellung-im-stadtmuseum",
+        "title": "Sonderausstellung 2026: Wie Kriege enden / How wars end",
+        "site": "villach.at",
+        "date": null,
+        "language": "de",
+        "supports": "bilingual special exhibition of the Museum der Stadt Villach, 2 May – 1 November 2026; six conflicts from Napoleon to Ukraine; eyewitnesses, original objects, interactive formats",
+        "note": "'Aktuelle Sonderausstellung' page: it will show the next special exhibition later; no permanent archive URL found."
+      },
+      {
+        "original": "kaernten.orf.at",
+        "kind": "web",
+        "url": "https://kaernten.orf.at/stories/3315182/",
+        "title": "Ausstellung: Wie Kriege enden",
+        "site": "kaernten.orf.at",
+        "date": "2025-07-26",
+        "language": "de",
+        "supports": "exhibition on how wars end, 80 years after 1945, with eyewitnesses; Lada from Ukraine shot at; bombing of Villach; AI-animated soldier Franz Arneitz"
+      },
+      {
+        "original": "welcome2villach.at",
+        "kind": "web",
+        "url": "https://www.welcome2villach.at/blog/wie-kriege-enden-sonderausstellung-im-stadtmuseum-villach-setzt-ein-zeichen-fuer-den-frieden",
+        "title": "„WIE KRIEGE ENDEN“ – SONDERAUSSTELLUNG IM STADTMUSEUM VILLACH SETZT EIN ZEICHEN FÜR DEN FRIEDEN",
+        "site": "welcome2villach.at",
+        "date": "2025-05-25",
+        "language": "de",
+        "supports": "six conflicts from the Napoleonic Wars to Ukraine; eleven eyewitnesses; replica of an alpine position from the First World War; defused aerial bomb from the Second World War; shot-up vehicle from Ukraine; bilingual and interactive"
+      },
+      {
+        "original": "klick-kaernten.at",
+        "kind": "web",
+        "url": "https://www.klick-kaernten.at/1550312026/museum-zeigt-neue-ausstellung/",
+        "title": "Museum zeigt neue Ausstellung",
+        "site": "klick-kaernten.at",
+        "date": "2026-05-08",
+        "language": "de",
+        "supports": "exhibition extended for 2026; new content on the Cold War, the war in Ukraine and the sinking of the warship “Szent István”"
+      },
+      {
+        "original": "it-gymnasium.at",
+        "kind": "web",
+        "url": "https://www.it-gymnasium.at/schuelerinnen-als-co-kuratorinnen-eroeffnung-der-neuen-mitmachstationen/",
+        "title": "SchülerInnen als Co-KuratorInnen: Eröffnung der neuen Mitmachstationen",
+        "site": "it-gymnasium.at",
+        "date": "2026-07-11",
+        "language": "de",
+        "supports": "two new interactive stations in the Peace Lab (“Frieden auf der Kippe”, “Lass mich in Frieden”) developed by pupils of the BG/BRG Villach St. Martin, opened 2 July 2026",
+        "note": "Publication date from the site's WordPress API (post 23911, 2026-07-11); the date shown in the page sidebar (5 November 2026) belongs to another post."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "4bac4c8e-299c-49ad-92f4-29bd58d841f8",
+    "slug": "atemzuege",
+    "sources": [
+      {
+        "original": "kleblach-lind.at",
+        "kind": "web",
+        "url": "https://www.kleblach-lind.at/Ausstellung_im_Wallnerhaus",
+        "title": "Ausstellung im Wallnerhaus",
+        "site": "kleblach-lind.at",
+        "date": null,
+        "language": "de",
+        "supports": "exhibition “Atemzüge” by Wolfgang Daborer opened in the Wallnerhaus on Thursday 21 May 2026 in the presence of Mayor Manfred Fleißner",
+        "note": "Photo gallery page of the municipality; the opening date in the text (21 May 2026) is not a publication date. The work details (formats 49.5 × 34.5 cm and 200 × 35 cm on linen, line as trace of breath) come from the exhibition flyer, which is not listed as a source."
+      },
+      {
+        "original": "radio-osttirol.at",
+        "kind": "web",
+        "url": "https://radio-osttirol.at/aktuelles-oberkaernten/chronik/ausstellung-im-wallnerhaus",
+        "title": "Ausstellung im Wallnerhaus",
+        "site": "radio-osttirol.at",
+        "date": "2026-05-28",
+        "language": "de",
+        "supports": "Wolfgang Daborer shows his exhibition “ATEMZÜGE” in the Wallnerhaus, Kleblach-Lind; Mayor Manfred Fleißner at the opening",
+        "note": "Online portal of the Osttiroler Bote. Visible date 28 May 2026 (metadata says 2026-05-30)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "77ca9d88-16aa-446a-88a6-f41eb06d3c19",
+    "slug": "trigeniale-brda-26",
+    "sources": [
+      {
+        "original": "poster of the exhibition",
+        "kind": "document",
+        "url": null,
+        "title": "Poster: Trigeniale – Kunst in den Hügeln / Umetnost v Brdih / Arte nel Collio, Brda, 25 Sept. to end of 2026",
+        "site": "bewegungINkultur (poster on the hall door of Kmetija Moro)",
+        "date": "2026-09-25",
+        "language": "de",
+        "supports": "series title in three languages; Kmetija Moro, Vipolže – Brda; works by Margrit Pernull, Aleksandra Rusjan, Giulia Cernetig",
+        "note": "No online copy found. Local copies: _360_GALLERIES_AND_TOURS/collection/_galleries/moro_wine/2026-09-25-moro-wine-trigeniale-brda-26/poster.pdf and plans/2026-11-09__trigeniale-brda-26-kmetija-moro/sources/poster-trigeniale-brda-26-from-360-photo.jpg. Date = opening date on the poster."
+      },
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/klagenfurt/c-regionauten-community/trigeniale-brda-im-herbst_a8921886",
+        "title": "Kunst in den Hügeln: Trigeniale Brda im Herbst",
+        "site": "meinbezirk.at",
+        "date": "2026-09-28",
+        "language": "de",
+        "supports": "opening by Franc Mužič, mayor of Brda, his last opening of the series as he leaves office in November 2026; Rusjan's “Kanjon”, “Češnja”, Dobrovo Castle; Pernull's Weissensee, landscapes, fruit and flowers; Cernetig member of the Gruppo artistico culturale Albrecht Dürer, Tavagnacco",
+        "note": "The announcement with '18th exhibition', partners DABLO and Albrecht Dürer group and the AACC patronage: https://www.meinbezirk.at/klagenfurt/c-regionauten-community/neue-dreilaenderausstellung-trigeniale-brda-26-in-gorika-brda_a8905011 (2026-09-18). Both are linked on the record in Directus."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "e03373b7-de2b-4e3e-9943-cb975b1f9a4e",
+    "slug": "dialog-ars-carinthia-kunst-und-handwerk",
+    "sources": [
+      {
+        "original": "stadtgalerie.net",
+        "kind": "web",
+        "url": null,
+        "title": "Vernissage DIALOG – ARS CARINTHIA | Kunst & Handwerk (Stadtgalerie Klagenfurt news)",
+        "site": "stadtgalerie.net",
+        "date": null,
+        "language": "de",
+        "supports": "DIALOG as part of INSIEME, ARS CARINTHIA in cooperation with the Stadtgalerie Klagenfurt; pairs answering each other; craft workshops",
+        "note": "The page used (recorded in Directus pp_websites: https://www.stadtgalerie.net/news/news-detailseite/vernissage-dialog-ars-carinthia-kunst-handwerk) now returns 404; the exhibition preview https://www.stadtgalerie.net/stadtgalerie/ausstellungsvorschau no longer lists DIALOG, and the 2026 archive page does not list it either. Wayback Machine was unreachable (HTTP 429 / offline) during the check, so no archived copy could be confirmed. Retry: https://web.archive.org/web/2026*/stadtgalerie.net/news/news-detailseite/vernissage-dialog-ars-carinthia-kunst-handwerk"
+      }
+    ]
+  },
+  {
+    "collection": "pp_organisations",
+    "id": "6795ca3d-01bf-4d8f-ab1d-35a16d30cb34",
+    "slug": "stadttheater-klagenfurt",
+    "sources": [
+      {
+        "original": "wikipedia.org",
+        "kind": "web",
+        "url": "https://en.wikipedia.org/wiki/Stadttheater_Klagenfurt",
+        "title": "Stadttheater Klagenfurt",
+        "site": "en.wikipedia.org",
+        "date": null,
+        "language": "en",
+        "supports": "built 1908–1910 by Fellner & Helmer as Kaiser Franz Joseph I. Jubiläumstheater for the 60th jubilee; renovated in the 1960s and 1996–1998 to designs by Günther Domenig; Nestroy Theatre Prizes 2003, 2006, 2011",
+        "note": "Aron Stiehl as Intendant is not in the English article; the German article https://de.wikipedia.org/wiki/Stadttheater_Klagenfurt has it (presented as new Intendant in November 2019). The worklog (plans/2026-11-06__wagner-reloaded) names en.wikipedia.org as the source used."
+      },
+      {
+        "original": "stadtgalerie.net",
+        "kind": "web",
+        "url": "https://www.stadtgalerie.net/fileadmin/user_upload/Stadtgalerie_Klagenfurt/theatergalerie/2026/Wandtexte_Wagner.pdf",
+        "title": "Wandtexte Wagner reloaded",
+        "site": "stadtgalerie.net",
+        "date": null,
+        "language": "de",
+        "supports": "since 2011 the Stadttheater has staged Wagner 'mit bemerkenswerter Intensität'; list 2011 Der fliegende Holländer … 2025 Tristan und Isolde; Aron Stiehl staged the Ring from Walküre",
+        "note": "Wall texts PDF of the exhibition “Wagner reloaded”. Aron Stiehl as 'Intendant Stadttheater Klagenfurt' is on the invitation https://www.stadtgalerie.net/fileadmin/user_upload/Stadtgalerie_Klagenfurt/theatergalerie/2026/Einladung_Wagner_reloaded.pdf; the exhibition page https://www.stadtgalerie.net/theatergalerie/aktuelle-ausstellung has the 'since 2011' sentence but will move to the archive."
+      }
+    ]
+  }
+]

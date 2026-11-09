@@ -1,0 +1,580 @@
+[
+  {
+    "collection": "pp_persons",
+    "id": "09260344-e97d-4976-ab03-30b066f22c97",
+    "slug": "markus-saueregger",
+    "sources": [
+      {
+        "original": "osttirolerbote.at (Volltreffer Oberkärnten, 26 August 2024)",
+        "kind": "web",
+        "url": "https://osttirolerbote.at/fbooks/66c84a4564f03/VO_2024_35/HTML/flipbook.pdf",
+        "title": "Kunst (meile) in Kötschach",
+        "site": "osttirolerbote.at",
+        "date": "2024-08-26",
+        "language": "de",
+        "supports": "comes from Afritz, lives in Dellach/Gail for about 20 years, nursing care profession, earlier shows in Biachakastl and Café Zuckereck, gallery at Kötschach 5 since May 2023, artists shown, one-day Kunstmeile with 17 artists",
+        "note": "PDF of the whole issue Volltreffer Oberkärnten (26 August 2024); the article by Karl Brunner is on page 6."
+      },
+      {
+        "original": "claudiaim.net",
+        "kind": "web",
+        "url": "https://www.claudiaim.net/94-0-Doku_Kunstmeile-Koetschach_2024.html",
+        "title": "Doku_Kunstmeile-Koetschach_2024",
+        "site": "claudiaim.net",
+        "date": null,
+        "language": "de",
+        "supports": "Kunstmeile Kötschach 2024 under Saueregger's direction (stARTup gallery); idea from local small businesses hit by the closure of the Plöcken Pass; artists in shops and cafés"
+      },
+      {
+        "original": "gailtal-journal.at",
+        "kind": "web",
+        "url": "https://gailtal-journal.at/leute/verschiedenartig-brigitte-bock-praesentiert-neue-werke-in-koetschach-mauthen/",
+        "title": "„verschiedenARTig“: Brigitte Bock präsentiert neue Werke in Kötschach-Mauthen",
+        "site": "gailtal-journal.at",
+        "date": "2026-02-12",
+        "language": "de",
+        "supports": "Brigitte Bock shown at the stARTup gallery in Kötschach-Mauthen"
+      },
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/gailtal/c-politik/markus-saueregger-ich-bin-gerne-in-der-natur-unterwegs_a2419426",
+        "title": "Markus Saueregger: \"Ich bin gerne in der Natur unterwegs\"",
+        "site": "meinbezirk.at",
+        "date": "2018-02-28",
+        "language": "de",
+        "supports": "lives in Dellach im Gailtal; works in care of older people (head of a nursing service)",
+        "note": "A second meinbezirk.at article supports Claudia Unterluggauer shown at the gallery: https://www.meinbezirk.at/gailtal/c-freizeit/ausstellung-zu-bedrohten-blumen-im-alpenraum_a8822011 („Ausstellung zu bedrohten Blumen im Alpenraum“, 2026-07-30). The worklog names both; the 2018 profile is the one about him."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "13fc3fb9-e522-41aa-a2e1-1e5e8addae2d",
+    "slug": "barbara-ambrusch-rapp",
+    "sources": [
+      {
+        "original": "postwerk.at",
+        "kind": "web",
+        "url": "https://postwerk.at/2014/04/15/barbara-ambrusch-rapp/",
+        "title": "Barbara Ambrusch-Rapp",
+        "site": "postwerk.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 1972 in Klagenfurt; freelance multimedia artist, curator and cultural worker in Velden am Wörthersee; Kultur-Ehrenzeichen of the City of Villach 2026",
+        "note": "Her chair role (Obfrau) is on https://postwerk.at/impressum/, not on this member page."
+      },
+      {
+        "original": "barbara-rapp.com",
+        "kind": "web",
+        "url": "https://barbara-rapp.com/cv/",
+        "title": "CV | Vita",
+        "site": "barbara-rapp.com",
+        "date": null,
+        "language": "de",
+        "supports": "born 1972 in Klagenfurt; multimedia artist, curator, cultural worker in Velden; performance, theatre, fashion art, public space; creative workshops; Kultur-Ehrenzeichen der Stadt Villach 2026",
+        "note": "The site has an anti-crawler check (curl gets 403); the page loads in a browser and was read via fetch."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "207f6b27-daa9-4d4a-a549-e35ae29ecf39",
+    "slug": "walter-hoesel",
+    "sources": [
+      {
+        "original": "ars-carinthia.at",
+        "kind": "web",
+        "url": "https://www.ars-carinthia.at/caliboc",
+        "title": "Caliboc",
+        "site": "ars-carinthia.at",
+        "date": null,
+        "language": "de",
+        "supports": "CALIBOC series (2026) under Walter Hösel's lead, with Elisabeth Raunig and craft businesses; part of the 10th design experiment „INSIEME 2026“; Hösel welcomes guests at the opening",
+        "note": "The INSIEME 2026 facts (10th design experiment, 30 years of KUNST UND HANDWERK, venues in Klagenfurt incl. Stadtgalerie) are on the start page https://www.ars-carinthia.at/ . No page of ars-carinthia.at found that names him as initiator/organiser or as curator of „DIALOG“ at the Stadtgalerie (checked all pages of the sitemap)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "33f97731-c76f-471a-aaf2-00b812a953c7",
+    "slug": "manfred-ortner",
+    "sources": [
+      {
+        "original": "ortner-ortner.com",
+        "kind": "web",
+        "url": "https://www.ortner-ortner.com/de/baukunst/profil/laurids-und-manfred-ortner",
+        "title": "Profil – Laurids Ortner, Manfred Ortner",
+        "site": "ortner-ortner.com",
+        "date": null,
+        "language": "de",
+        "supports": "studied painting and art education at the Academy of Fine Arts Vienna; Haus-Rucker-Co Düsseldorf 1971–87 with Günter Zamp Kelp and Laurids Ortner; professor of design at FH Potsdam 1994–2012; Grand Austrian State Prize 2020",
+        "note": "The page headline reads only „Profil“, followed by the two partner names. Born 1943 in Linz, the study years 1961–1967 and the work as art teacher are not on this page; the 1987 founding of separate offices is on https://www.ortner-ortner.com/de/haus-rucker-co ."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "458199ed-a9ac-40d1-8b0e-b8d19e0c7951",
+    "slug": "marlies-rapetti",
+    "sources": [
+      {
+        "original": "liekfeld-rapetti.webflow.io",
+        "kind": "web",
+        "url": "https://liekfeld-rapetti.webflow.io/",
+        "title": "Marlies Liekfeld-Rapetti",
+        "site": "liekfeld-rapetti.webflow.io",
+        "date": null,
+        "language": "de",
+        "supports": "born 1939 in Königsberg, grew up in GDR and West Germany, medical technical assistant, studied art and German studies, teaching, museum education, Carinthia 1985–2009, Berlin 2009–2015, Klagenfurt since 2016; paper, textiles, installations",
+        "note": "One-page site; the biography is on the start page itself."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "55793118-f7a3-4e9a-8906-3d89e5eef8d5",
+    "slug": "andreas-kuchler",
+    "sources": [
+      {
+        "original": "kaernten.orf.at",
+        "kind": "web",
+        "url": "https://kaernten.orf.at/stories/3315182/",
+        "title": "Ausstellung: Wie Kriege enden",
+        "site": "kaernten.orf.at",
+        "date": "2025-07-26",
+        "language": "de",
+        "supports": "museum director Andreas Kuchler speaks about the special exhibition „Wie Kriege enden“ at the Museum der Stadt Villach"
+      },
+      {
+        "original": "klick-kaernten.at",
+        "kind": "web",
+        "url": "https://www.klick-kaernten.at/1299722025/wie-aus-krieg-frieden-wird/",
+        "title": "Wie aus Krieg Frieden wird",
+        "site": "klick-kaernten.at",
+        "date": "2025-05-07",
+        "language": "de",
+        "supports": "press presentation of the special exhibition in 2025; photo caption names Andreas Kuchler (Museumsdirektor)"
+      },
+      {
+        "original": "vhsktn.at",
+        "kind": "web",
+        "url": null,
+        "title": null,
+        "site": "vhsktn.at",
+        "date": null,
+        "language": "de",
+        "supports": "curator's tour („Kuratorenführung“) through „Wie Kriege enden“ led by director Dr. Andreas Kuchler (16 October 2025, per the worklog)",
+        "note": "Not found. vhsktn.at answers 403 to scripts; the worklog (plans/2026-11-05__museum-villach-wie-kriege-enden/worklog.md) says it was known only from a search snippet. The course database kurse.vhsktn.at finds nothing for „Kuchler“ or „Kriege“ (past course, no longer listed); web searches found no vhsktn.at page."
+      },
+      {
+        "original": "museumsbund.at",
+        "kind": "web",
+        "url": "https://www.museumsbund.at/museumspraxis/mittendrin-die-museumsstandorte-villachs-als-urbane-identitaetslabore",
+        "title": "Mittendrin: Die Museumsstandorte Villachs als urbane Identitätslabore",
+        "site": "museumsbund.at",
+        "date": "2025-06-02",
+        "language": "de",
+        "supports": "article by Andreas Kuchler (Direktor, Museum der Stadt Villach) about the museum's sites in Villach, 2025; mentions the special exhibition „Wie Kriege enden / How wars end“"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "715ca738-5739-4391-b2b4-d56b6205c92f",
+    "slug": "christl-wiegele",
+    "sources": [
+      {
+        "original": "postwerk.at",
+        "kind": "web",
+        "url": "https://postwerk.at/2014/03/10/christl-wiegele/",
+        "title": "Christl Wiegele",
+        "site": "postwerk.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 1937 in Töbring near Treffen, died September 2020, lived in Radendorf; father the Villach painter LUWALL; lessons from 1995 with Sigi Braun and others; postWERK member; solo exhibitions"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "7bdfb9dc-ef69-4cad-8515-94fb82a30808",
+    "slug": "ulli-sturm",
+    "sources": [
+      {
+        "original": "stadtgalerie.net",
+        "kind": "web",
+        "url": "https://www.stadtgalerie.net/stadtgalerie/ausstellungsarchiv/ausstellungsarchiv-2026",
+        "title": "Ausstellungsarchiv 2026",
+        "site": "stadtgalerie.net",
+        "date": null,
+        "language": "de",
+        "supports": "„ALL ABOUT NATURE“ at the Stadtgalerie Klagenfurt (2026), text signed „Ulli Sturm, Kuratorin“",
+        "note": "„NO PLANET B“ (Alpen-Adria-Galerie, 17 December 2025 – 15 February 2026, „Ulli Sturm | Kuratorin“) is on https://www.stadtgalerie.net/alpen-adria-galerie/ausstellungsarchiv/ausstellungsarchiv-2025 (Ausstellungsarchiv 2025). The kunstbureau facts (2020, Waagplatz 5, with Jochen Traar) are on no stadtgalerie.net page found; they are in e.g. https://foundation.generali.at/de/sammlung/kuenstler-innen/jochen-traar/ and https://kaernten.orf.at/stories/3095580/; both checked: 200, they name the kunstbureau at Waagplatz 5 with Ulli Sturm and Jochen Traar."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "868d9dad-06ca-4877-8bff-2836dc54424e",
+    "slug": "karsten-k-krebs",
+    "sources": [
+      {
+        "original": "karstenkkrebs.de",
+        "kind": "web",
+        "url": "http://karstenkkrebs.de/de/cv.html",
+        "title": "Karsten K. Krebs – CV",
+        "site": "karstenkkrebs.de",
+        "date": null,
+        "language": "de",
+        "supports": "architect; studied architecture and urban planning in Hanover/Florence; professor of Raumkunst at the Peter Behrens School of Architecture, Düsseldorf",
+        "note": "The site works only over http (https fails to connect). Born 1945 in Zeulenroda and the ARS CARINTHIA projects are not on the site; the office in Hanover is on http://karstenkkrebs.de/de/kontakt.html, the fields (architecture, garden, design, light, art) are the site's menu sections. ARS CARINTHIA lists him on https://www.ars-carinthia.at/ ."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "907e0200-659f-4479-92f5-e72c17c8a5f8",
+    "slug": "elisabeth-juan",
+    "sources": [
+      {
+        "original": "bv-kaernten.at",
+        "kind": "web",
+        "url": "http://www.bv-kaernten.at/_ber_uns.html",
+        "title": "Über uns",
+        "site": "bv-kaernten.at",
+        "date": null,
+        "language": "de",
+        "supports": "board of the Landesverband Kärnten: Schriftführerin Elisabeth Juan; the association's own gallery since 1987",
+        "note": "https on www.bv-kaernten.at has a wrong certificate, so the http URL is given. Her membership is on http://www.bv-kaernten.at/mitglieder (list „MitgliederInnen“, „Juan Elisabeth“)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "99ad56b2-55af-4cb2-afb5-12dae78234bc",
+    "slug": "siegfried-zellot",
+    "sources": [
+      {
+        "original": "zesi.at",
+        "kind": "web",
+        "url": "http://zesi.at/ueber/",
+        "title": "Über",
+        "site": "zesi.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 29 August 1953 in Spittal an der Drau; lives and works in Mallenitzen am Faaker See; 2012–2016 Freie Akademie der bildenden Künste Kärnten; master class with Luka Anticevic from 2016; etching and screen printing at the Freie Kunst Akademie Augsburg",
+        "note": "The site works only over http (https does not connect). Teaching at the Kunstverein Velden is not on this page or the start page."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "a448a141-36fd-41fd-a4f6-73da8c799ab3",
+    "slug": "edith-payer",
+    "sources": [
+      {
+        "original": "edithpayer.com",
+        "kind": "web",
+        "url": "https://www.edithpayer.com/about",
+        "title": "about",
+        "site": "edithpayer.com",
+        "date": null,
+        "language": "de",
+        "supports": "collections of found objects and images arranged into museum-like installations and object groups; participatory exhibition projects with other artists; textile works often from second-hand materials; artist's books",
+        "note": "The CV facts (born 1975, Academy of Fine Arts Vienna 1998–2003, Kuvataideakatemia Helsinki 2001, lives in Vienna and Redlschlag) are on https://www.edithpayer.com/biography („cv“). Birth place Wolfsberg is on neither page."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "b50d5db9-a33a-4554-8df1-31bbafb0ee68",
+    "slug": "joerg-auzinger",
+    "sources": [
+      {
+        "original": "auzinger.net",
+        "kind": "web",
+        "url": "https://www.auzinger.net/downloads/Auzinger_Biography.pdf",
+        "title": "JOERG AUZINGER",
+        "site": "auzinger.net",
+        "date": null,
+        "language": "en",
+        "supports": "Ortweinschule Graz with Richard Kriesche; media art with Peter Weibel (University of Applied Arts Vienna); film directing with Axel Corti (Vienna Film Academy); interactive installations, photographs, objects on digital media and perception; taught at the Ortweinschule Graz; visiting professor at the University of Applied Arts Vienna; lives in Vienna and Styria",
+        "note": "Biography PDF linked from the site's start page („Biography“). Born 1972 in Linz is not in it. The start page https://www.auzinger.net/ has a shorter version of the study facts."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "bdbe8324-8486-4fea-8df2-4156ff61876c",
+    "slug": "markus-guschelbauer",
+    "sources": [
+      {
+        "original": "markusguschelbauer.com",
+        "kind": "web",
+        "url": "https://www.markusguschelbauer.com/about",
+        "title": "About",
+        "site": "markusguschelbauer.com",
+        "date": null,
+        "language": "de",
+        "supports": "born 24 December 1974 in Friesach, Carinthia; 2003–2009 University of Applied Arts Vienna, Institute of Fine Arts and Media Art, photography; freelance artist since the diploma in 2009; interventions in landscape with plastic sheeting and other materials; lives and works in Vienna"
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "cd325a20-678b-4bcb-8df2-638a071b3738",
+    "slug": "herbert-meisslitzer",
+    "sources": [
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/klagenfurt/c-regionauten-community/trigeniale-24-kunst-aus-dem-herzen-europas_a6960437",
+        "title": "Alpen-Adria-Kunst im Stadthaus: Trigeniale 24 – Kunst aus dem Herzen Europas",
+        "site": "meinbezirk.at",
+        "date": "2024-10-18",
+        "language": "de",
+        "supports": "Herbert Meißlitzer from Klagenfurt, painting since 1991 in watercolour, acrylic, acrylic collage and oil; member of the International Watercolor Society Austria; his acrylic paintings",
+        "note": "The 2017 garden exhibition in Viktring („zum 6. Mal“, garden of the Meißlitzer family) is in a second meinbezirk.at article: https://www.meinbezirk.at/klagenfurt/c-freizeit/kunstgenuss-mit-weinverkostung_a2208171 („Kunstgenuss mit Weinverkostung“, 2017-08-03)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "d45fe7f6-306b-4ae6-93eb-02a7bf40e730",
+    "slug": "anita-wiegele",
+    "sources": [
+      {
+        "original": "postwerk.at",
+        "kind": "web",
+        "url": "https://postwerk.at/2014/03/15/anita-wiegele/",
+        "title": "Anita Wiegele",
+        "site": "postwerk.at",
+        "date": null,
+        "language": "de",
+        "supports": "born 1964 in Villach; freelance artist, author and performer in Gödersdorf; graduated from the Freie Akademie der Bildenden Künste; books „Kopfverklebung – ein Prozess“ (2016) and „Wolkenköpfe“ (2017); Kultur-Ehrenzeichen der Stadt Villach 2021"
+      },
+      {
+        "original": "anitawiegele.at",
+        "kind": "web",
+        "url": "https://anitawiegele.at/",
+        "title": "kunst. projekt. wohnraum.",
+        "site": "anitawiegele.at",
+        "date": null,
+        "language": "de",
+        "supports": "her own site: artist, address in Gödersdorf, Carinthia",
+        "note": "One-page site (the sitemap lists only the start page); it holds no biography, only the address in Gödersdorf and her art projects."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "e91f6c82-aae5-4b09-b609-142afc6f6086",
+    "slug": "aleksandra-rusjan",
+    "sources": [
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/klagenfurt/c-regionauten-community/trigeniale-brda-im-herbst_a8921886",
+        "title": "Kunst in den Hügeln: Trigeniale Brda im Herbst",
+        "site": "meinbezirk.at",
+        "date": "2026-09-28",
+        "language": "de",
+        "supports": "Aleksandra Rusjan from Brda exhibits with Giulia Cernetig and Margrit Pernull at Trigeniale Brda (autumn 2026) at the Kmetija Moro; works „Kanjon“, „Češnja“ (her favourite) and Dobrovo Castle in the photo captions; DABLO Brda as partner",
+        "note": "The announcement https://www.meinbezirk.at/klagenfurt/c-regionauten-community/neue-dreilaenderausstellung-trigeniale-brda-26-in-gorika-brda_a8905011 also names her and DABLO."
+      }
+    ]
+  },
+  {
+    "collection": "pp_persons",
+    "id": "fa9678e5-5194-46e2-854c-d4323c623b36",
+    "slug": "lilith-erian",
+    "sources": [
+      {
+        "original": "kulturhofvillach.at",
+        "kind": "web",
+        "url": "https://kulturhofvillach.at/events/2024/2024-07-05_vernissage/",
+        "title": "lilith erian // AUSHALTEN – ZDRŽATI",
+        "site": "kulturhofvillach.at",
+        "date": "2024-07-05",
+        "language": "de",
+        "supports": "2024 exhibition „Aushalten – Zdržati“ at the Kulturhof Villach (spectrum festival): portraits of young people from the cultural scene of Kärnten/Koroška with their own statements",
+        "note": "Event page (date = vernissage date). Her photography fields and the 2025 „Kunst am roten Teppich“ show are not on this page. Text in German and Slovenian."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "111e477f-f0e6-4193-91a2-c077abe7e6e0",
+    "slug": "aus-der-asche-empor",
+    "sources": [
+      {
+        "original": "invitation of the Galerie im Schloss Porcia",
+        "kind": "document",
+        "url": null,
+        "title": "„Aus der Asche empor“ – Sylvia Ofner, Skulptur und Stickerei (invitation, Galerie im Schloss Porcia, Spittal an der Drau, opening 6 November 2026)",
+        "site": "Galerie im Schloss Porcia",
+        "date": null,
+        "language": "de",
+        "supports": "title, sculpture and embroidery in the Salamancakeller of Schloss Porcia; figures sewn from old oriental carpets, heirlooms and needlework of the 1930s (phoenix, centaur, sphinx …); story from the roots of Europe to the present; Renaissance setting",
+        "note": "No online copy of the invitation found. The same press text is on the city page https://www.spittal-drau.at/kultur/galerie (section „Aktuelle Ausstellung“, opening 6 Nov 2026, on view 7 Nov – 19 Dec 2026), but that page shows whatever exhibition is current and will change; the poster image is https://www.spittal-drau.at/fileadmin/_processed_/b/e/csm_Plakat_Ofner_Aus_der_Asche_empor_f074841696.jpg. Event listing: https://www.kaerntenportal.at/sylvia-ofner-aus-der-asche-empor/ (not checked in detail)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "2d00261b-11e7-4b1f-9753-c7868591c628",
+    "slug": "vintage-views-from-an-unknown-future",
+    "sources": [
+      {
+        "original": "villach.at",
+        "kind": "web",
+        "url": "https://villach.at/stadt-erleben/news/ab-12-november-vintage-in-der-galerie-freihausgass",
+        "title": "Ab 12. November: Vintage in der Galerie Freihausgasse",
+        "site": "villach.at",
+        "date": "2026-11-04",
+        "language": "de",
+        "supports": "Galerie Freihausgasse shows Gernot Fischer-Kondratovitch, „vintage views from an unknown future“; pictures from a distant future: people, containers, houses and exotic animals in ice and snow landscapes, or palm trees, beaches and seas in front of mountains; „Schnee-Halluzinationen“",
+        "note": "The text was written on 2026-11-01 from the „Vorschau“ block on https://villach.at/stadt-erleben/kultur/galerie-freihausgasse (same wording; that page changes with each exhibition), so this stable news item (published three days later) is given instead. Born 1968 and the work data „Schneehaluzinationen, 2026, acrylic on canvas, 100 × 140 cm“ (press image caption) are not in the news text."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "67474b28-9459-4f91-a909-ab9ecb24c956",
+    "slug": "mediterraneo-harald-scheicher-2026",
+    "sources": [
+      {
+        "original": "langenacht.orf.at",
+        "kind": "web",
+        "url": "https://langenacht.orf.at/museum/bl/kaernten/li/galerie-palais-fugger",
+        "title": "Galerie Palais Fugger",
+        "site": "langenacht.orf.at",
+        "date": null,
+        "language": "de",
+        "supports": "ORF Lange Nacht der Museen: Galerie Palais Fugger shows „Mediterraneo – Ölbilder von Harald Scheicher“ (from 18:00), artist's tours and talks, children's programme",
+        "note": "Programme page of the venue for the Lange Nacht der Museen 2026; ORF may replace its content for the next year's edition."
+      },
+      {
+        "original": "scheicher.cc",
+        "kind": "web",
+        "url": "https://scheicher.cc/",
+        "title": "Die Werkschau zeigt über 2300 Ölbilder des Malers Harald Scheicher.",
+        "site": "scheicher.cc",
+        "date": null,
+        "language": "de",
+        "supports": "paints in oil „pleinair“, in front of the motif, for four decades; southern Carinthian landscape; painting journeys to Istria, Dalmatia and Sicily",
+        "note": "The grandson relation to Werner Berg is on https://scheicher.cc/biographie („1981 Tod des Großvaters, Werner Berg“)."
+      }
+    ]
+  },
+  {
+    "collection": "pp_exhibitions",
+    "id": "9de21df0-8b0e-4388-b56c-3ad6f354210d",
+    "slug": "wagner-reloaded",
+    "sources": [
+      {
+        "original": "stadtgalerie.net",
+        "kind": "web",
+        "url": "https://www.stadtgalerie.net/theatergalerie/aktuelle-ausstellung",
+        "title": "WAGNER RELOADED",
+        "site": "stadtgalerie.net",
+        "date": null,
+        "language": "de",
+        "supports": "Stadttheater Klagenfurt devoted to Wagner since 2011; four costumes and their designs from „Walküre“ and „Tristan und Isolde“; work of tailoring and make-up; photos by Arnold Pöschl; curator Dr. Günter Schmidauer",
+        "note": "Page „Aktuelle Ausstellungen“ of the Theatergalerie; it will change when the next exhibition opens (the exhibition runs to early 2027)."
+      },
+      {
+        "original": "Invitation of the Stadtgalerie Klagenfurt (2026)",
+        "kind": "document",
+        "url": "https://www.stadtgalerie.net/fileadmin/user_upload/Stadtgalerie_Klagenfurt/theatergalerie/2026/Einladung_Wagner_reloaded.pdf",
+        "title": "WAGNER RELOADED",
+        "site": "stadtgalerie.net",
+        "date": null,
+        "language": "de",
+        "supports": "invitation to the opening on 13 April 2026: exhibition text (Wagner since 2011, four costumes and designs, tailoring and make-up), curator Günter Schmidauer, cooperation with the Stadttheater Klagenfurt, on view 14 April 2026 – 28 February 2027",
+        "note": "Online PDF is byte-identical to the copy in plans/2026-11-06__wagner-reloaded/images/einladung-wagner-reloaded-2026.pdf."
+      }
+    ]
+  },
+  {
+    "collection": "pp_organisations",
+    "id": "23619e4b-e366-4006-bbed-53d0822788ca",
+    "slug": "volkskino-klagenfurt",
+    "sources": [
+      {
+        "original": "volkskino.at",
+        "kind": "web",
+        "url": "https://volkskino.at/news/100-jahre-volkskino",
+        "title": "100 JAHRE VOLKSKINO",
+        "site": "volkskino.at",
+        "date": "2026-09-21",
+        "language": "de",
+        "supports": "100 years of the Volkskino celebrated in 2026 (15 October), silent film classic „Panzerkreuzer Potemkin“ with live music; address Kinoplatz 3, Klagenfurt",
+        "note": "The programme types (current films, classics, original versions) are on https://volkskino.at/programm/filme, the school screenings on https://volkskino.at/angebote/schulkino."
+      },
+      {
+        "original": "bmwkms.gv.at",
+        "kind": "web",
+        "url": "https://www.bmwkms.gv.at/dam/jcr:68adab1f-3041-4fa9-a66a-0c1f4ef09fae/veroeffentlichung-programmkinos-2026.pdf",
+        "title": "Förderungen Programmkinos 2026 – Zusagen",
+        "site": "bmwkms.gv.at",
+        "date": null,
+        "language": "de",
+        "supports": "federal funding list for programme cinemas 2026 names „Alternativkino Klagenfurt, Neues Volkskino“ (Jahresförderung 2026, Kärnten)",
+        "note": "PDF linked from https://www.bmwkms.gv.at/themen/kunst-und-kultur/sparten/film/foerderungen.html."
+      }
+    ]
+  },
+  {
+    "collection": "pp_organisations",
+    "id": "cc483b81-115f-4d30-a83a-bd6da361c764",
+    "slug": "lebenshilfe-region-knittelfeld",
+    "sources": [
+      {
+        "original": "lebenshilfe-knittelfeld.at",
+        "kind": "web",
+        "url": "https://www.lebenshilfe-knittelfeld.at/vereinsgeschichte/",
+        "title": "Unsere Geschichte",
+        "site": "lebenshilfe-knittelfeld.at",
+        "date": null,
+        "language": "de",
+        "supports": "founded on 3 February 1982 as a parents' association; today Lebenshilfe Region Knittelfeld gemeinnützige GmbH",
+        "note": "Nearly 100 people working in workshops, homes and projects: https://www.lebenshilfe-knittelfeld.at/ueber-uns/ ; Johann Hubmann as Obmann: https://www.lebenshilfe-knittelfeld.at/vorstand/ ; mobile services: https://www.lebenshilfe-knittelfeld.at/mobile-dienste/ ."
+      },
+      {
+        "original": "lebenshilfe.at",
+        "kind": "web",
+        "url": "https://lebenshilfe.at/wer-wir-sind/lebenshilfe-bundeslaender/",
+        "title": "Die Lebenshilfe in den Bundesländern",
+        "site": "lebenshilfe.at",
+        "date": null,
+        "language": "de",
+        "supports": "the Lebenshilfe network in Austria: regional organisations (associations or non-profit GmbHs owned by them) under Lebenshilfe Österreich",
+        "note": "The page does not name Knittelfeld; it describes the network the organisation belongs to."
+      },
+      {
+        "original": "ideenreich-knittelfeld.at",
+        "kind": "web",
+        "url": "https://ideenreich-knittelfeld.at/",
+        "title": "Willkommen im „Ideenreich“ – unserem inklusiven Verkaufslokal mit integrierter Produktionsstätte",
+        "site": "ideenreich-knittelfeld.at",
+        "date": null,
+        "language": "de",
+        "supports": "shop „Ideenreich“, a project of the Lebenshilfe Region Knittelfeld, Hauptplatz 17, selling products made in its own workshop",
+        "note": "One-page site; the facts are on the start page."
+      },
+      {
+        "original": "meinbezirk.at",
+        "kind": "web",
+        "url": "https://www.meinbezirk.at/murtal/c-wirtschaft/das-ideenreich-eroeffnete-mit-pauken-und-trompeten_a7214084",
+        "title": "Knittelfeld: Das „Ideenreich“ eröffnete mit Pauken und Trompeten",
+        "site": "meinbezirk.at",
+        "date": "2025-03-20",
+        "language": "de",
+        "supports": "opening of the Lebenshilfe shop „Ideenreich“ on the Hauptplatz with clay and wood workshop; Vereinsobmann Johann Hubmann",
+        "note": "The 2026-11-01 worklog does not record which meinbezirk.at article was used (its sources.txt lists only a meinbezirk Facebook post on the art calendar). This article holds the chair and the shop facts."
+      }
+    ]
+  }
+]

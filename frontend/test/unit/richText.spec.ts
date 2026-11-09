@@ -21,6 +21,21 @@ describe('sanitizeRichText', () => {
       .toBe('<p><a href="/en/exhibitions/a/">tour</a> <a href="https://x.org/" target="_blank" rel="noopener noreferrer">web</a></p>')
   })
 
+  it('keeps the https links of the closing sources list, also where the text keeps no other link (owner, 2026-11-09)', () => {
+    const html = '<p>Text <a href="https://a.at/x">here</a>.</p><p>Quellen</p><ul><li><a href="https://www.meinbezirk.at/spittal/c-lokales/neu_a1">„Neu“, meinbezirk.at, 12. 1. 2022</a></li><li><a href="javascript:alert(1)">bad</a></li><li>Plakat</li></ul>'
+    expect(sanitizeRichText(html)).toBe('<p>Text here.</p><p>Quellen</p><ul><li><a href="https://www.meinbezirk.at/spittal/c-lokales/neu_a1" target="_blank" rel="noopener noreferrer">„Neu“, meinbezirk.at, 12. 1. 2022</a></li><li>bad</li><li>Plakat</li></ul>')
+  })
+
+  it('keeps an http link in the sources list (a few sources have no https, e.g. bv-kaernten.at), never in the text', () => {
+    const html = '<p><a href="http://a.at/x">a</a></p><p>Quelle</p><ul><li><a href="http://www.bv-kaernten.at/flohmarkt">„Flohmarkt“, bv-kaernten.at</a></li></ul>'
+    expect(sanitizeRichText(html)).toBe('<p>a</p><p>Quelle</p><ul><li><a href="http://www.bv-kaernten.at/flohmarkt" target="_blank" rel="noopener noreferrer">„Flohmarkt“, bv-kaernten.at</a></li></ul>')
+  })
+
+  it('keeps no link in a list that is not the closing sources list', () => {
+    const html = '<p>Quellen</p><ul><li><a href="https://a.at/x">a</a></li></ul><p>More text.</p>'
+    expect(sanitizeRichText(html)).toBe('<p>Quellen</p><ul><li>a</li></ul><p>More text.</p>')
+  })
+
   it('drops scripts, styles and event handlers entirely', () => {
     expect(sanitizeRichText('<p onclick="alert(1)">Hi</p><script>alert(1)</script><style>p{}</style><img src=x onerror="alert(1)">'))
       .toBe('<p>Hi</p>')

@@ -1,0 +1,290 @@
+[
+ {
+  "collection": "pp_venues",
+  "id": "bc81ccea-8a78-4f9b-898b-a8f80e7432dd",
+  "slug": "kmetija-moro-brda",
+  "status": "draft",
+  "name": "Kmetija Moro",
+  "sources": [
+   "“Hiša Moro – Zgodba družinske kmetije Moro”, moro-wines.com",
+   "“Bilderwechsel von Frühling auf Herbst! Neue Dreiländerausstellung ‘Trigeniale Brda 26’ in Goriška Brda”, meinbezirk.at, 18 September 2026",
+   "poster of Trigeniale Brda 26"
+  ],
+  "text_en": "Kmetija Moro is a family farm at Vipolže 62 in Goriška Brda, Slovenia, near the Italian border. It sells its wines as Moro Wines. According to the family, the farm goes back to the great-grandmother Margerita; the name comes from a grandfather nicknamed Moro because of his black hair. The family cultivates 7 hectares of vineyards and 5 hectares of orchards. The Jakončič family runs it: Boris and Dragica Jakončič and Damjan Jakončič, the junior head. Since 2018 the Kulturinitiative bewegungINkultur from Klagenfurt has organised the exhibition series “Kunst in den Hügeln – Umetnost v Brdih – Arte nel Collio” in the farm’s hall, with artists from Carinthia, Friuli and Slovenia. The organisers call the place the “Kunstbotschaft Kärntens in Slowenien” (Slovenian “Ambasada umetnosti Koroške v Sloveniji”, Italian “Ambasciata d’arte della Carinzia in Slovenia”). In 2026 the exhibitions changed in spring and autumn. Visits are by telephone appointment."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "0d6b4183-12c8-40da-a3c2-2055232a30a8",
+  "slug": "alda-grudina",
+  "status": "published",
+  "name": "Alda Grudina",
+  "sources": [
+   "artist sheet of Trigeniale 26 (bewegungINkultur)"
+  ],
+  "text_en": "Alda Grudina first came into contact with painting at primary school, when she travelled through Yugoslavia with her art teacher and visited artists' colonies. After her studies and years of family duties she returned to painting once her children were grown up. Under the guidance of Franc Golob, the academic painter Bojan Bensa, Azad and Silva Karim and Aleksandar Velišček she developed figurative, colourful painting based on nature. She has shown her work in solo and group exhibitions and had exhibited in Klagenfurt twice before. Alda Grudina is president of the artists' association DABLO (Društvo briških likovnih ustvarjalcev) in Goriška Brda, which organises workshops, ex tempore painting events and exhibitions. In Šmartno she runs the Farovž gallery, and in Dobrovo Castle the Arkade gallery. She works with the Kulturinitiative bewegungINkultur in Klagenfurt and at its exhibitions in Brda."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "18050820-ad48-46d9-ace4-df324a9a3e9e",
+  "slug": "santino-solace",
+  "status": "published",
+  "name": "Santino Solace",
+  "sources": [
+   "exhibition flyer",
+   "Kulturamt Spittal/Drau"
+  ],
+  "text_en": "Santino Solace is a comic artist and illustrator who lives and works in Spittal an der Drau. He develops his own stories, characters and worlds and combines influences from manga, comics and digital illustration. He founded SolaceWorks, a creative platform meant to give young and independent artists room to present their own stories."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "2e61091c-fa4c-4e71-a60d-a4173b9b2b25",
+  "slug": "gabriele-ruff",
+  "status": "published",
+  "name": "Gabriele Ruff",
+  "sources": [
+   "“Biografien Armin Guerino, Gabriele Ruff”, stadtgalerie.net"
+  ],
+  "text_en": "Gabriele Ruff was born in Graz in 1963 and studied art history at the University of Vienna. From 2009 to 2023 she worked at the Department of Theatre, Film and Media Studies (tfm) of the University of Vienna, and from 2011 to 2023 she was a board member of the Österreichische Gesellschaft für Architektur (ÖGFA) and on the editorial team of the journal UmBau. She writes and edits texts on architecture and visual art and curates events and exhibitions in art, architecture and design, including the Wiener Architekturtage in 2014, 2016 and 2018. In 2026 she curated the exhibition “Armin Guerino – Durch die Zeit” at the Alpen-Adria-Galerie in Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "3cfbac5f-e237-410c-9cfa-507026a27023",
+  "slug": "severin-kroen",
+  "status": "published",
+  "name": "Séverin Krön",
+  "sources": [
+   "“Séverin Krön”, kuenstlerstadt-gmuend.at",
+   "“Saisonstart in der Galerie Schloss Porcia: Sévérin Krön ist neuer Galerieleiter”, meinbezirk.at, 24 January 2022",
+   "“Severin Krön – Kultur – Galerie (Mitarbeiter von A – Z)”, spittal-drau.at"
+  ],
+  "text_en": "Séverin Krön was born in 1964 in Nanterre near Paris and grew up bilingual. From 1985 to 1992 he studied painting and art education in Vienna and at the Mozarteum in Salzburg; his teachers included Arnulf Rainer and Anton Lehmden. Since 2007 he has made “Art permutable”: pictures of square panels that can be moved and turned. Myths are a frequent subject, as in a series on the Ring of the Nibelung from 2014. He has had solo exhibitions in Vienna, Paris, Linz, Salzburg, Corbeil and Bern, worked in the International Guest Studio Maltator in Gmünd in 2015 and showed his work at the KUNSTradln gallery in Millstatt in 2019. In January 2022 he followed Elisabeth Kleinwächter as head of the Galerie im Schloss Porcia in Spittal an der Drau, where he curates the exhibitions."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "49d7d79d-bda2-4a54-83d1-e3325466f494",
+  "slug": "helmuth-ploschnitznigg",
+  "status": "draft",
+  "name": "Helmuth Ploschnitznigg",
+  "sources": [
+   "“Hoffnung und Frieden als künstlerisches Signal in Judenburg”, murtalinfo.at, 6 April 2026",
+   "“Künstlerischer Vormittag”, lebenshilfe-knittelfeld.at, 25 March 2026",
+   "“Helmut Ploschnitznigg präsentiert ‘Zwischenwelten’ in Gabelhofen”, meinbezirk.at, 18 January 2014"
+  ],
+  "text_en": "Helmuth Ploschnitznigg, known as PLO, is an artist and art teacher in Judenburg, Styria. He founded the care facility Simultania for people with disabilities. In 2026 the Stadtgalerie Judenburg had the exhibition “Hoffnung & Frieden – Ein Signal der Hoffnung” on his idea, with 14 artists. For this project he worked on 24 March 2026 with Adi Schmölzer and artists of the Lebenshilfe Knittelfeld and the Spielberg middle school, and with them he made the art calendar “Hoffnung und Frieden”."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "5fa905a0-6a0c-4a8a-93e4-5834be99b2d9",
+  "slug": "gerhard-lepicnik",
+  "status": "published",
+  "name": "Gerhard Lepicnik",
+  "sources": [
+   "“Gerhard in Boris - snovalca Evrope v malem”, novice.at, 25 August 2021",
+   "“Sängerrunde Nordlicht – auf Kulturfahrt in den Süden!”, meinbezirk.at, 6 November 2015",
+   "“Kunst in den Hügeln der Goriska Brda”, kaernten.orf.at, 24 February 2024",
+   "“Statistisches Jahrbuch 2010 der Landeshauptstadt Klagenfurt (Chronik 2009)”, klagenfurt.at",
+   "“Transkulturelle Streifzüge mit Pier Paolo Pasolini zur friulanischen Lyrik (Masterarbeit)”, aau.at, 21 March 2020",
+   "“Festschrift der Marktgemeinde Ebenthal in Kärnten”, ebenthal-kaernten.gv.at",
+   "“Inhaltsverzeichnis: Strom für Kärnten. 60 Jahre KÄWAG-KELAG, 35 Jahre Landesgesellschaft”, d-nb.info"
+  ],
+  "text_en": "Gerhard Lepicnik has family roots in Sittersdorf (Žitara vas) and lives in Klagenfurt. He is a graduate engineer (Dipl.-Ing.) and worked for the Carinthian electricity company KELAG, where he was an authorised officer and co-wrote the chapter on grid construction in a company history. He retired as head of the former Netzleitung Ost (eastern grid control) in St. Veit. In 2020 he completed a Master of Arts in Applied Cultural Studies at the University of Klagenfurt with a thesis on Pier Paolo Pasolini and Friulian poetry. From 1970 he chaired the choir Sängerrunde Ebenthal. In 1972 he and the choir leader Heinz Fischer invited the Slovenian choir from Radsberg to a concert in Ebenthal, and the audience boycotted the Sängerrunde in return (source: Thomas Ogris, Kärnten Dokumentation, vol. 38, 2023). According to Tomaž Ogris, the encounters “Dober večer, sosed” (Good evening, neighbour) could not have been realised without him and Hans Mosser (source: novice.at, 2021). On 26 June 2009 the City of Klagenfurt awarded him its Ehrpfennig for his cultural work, especially as long-time chairman of the Singkreis Seltenheim. He has presented artists from Friuli in Carinthia since 2013 at the latest. He is the main organiser of the Kulturinitiative bewegungINkultur, which shows exhibitions with artists from Carinthia, Friuli and Slovenia, among them the Trigeniale in the Studiogalerie of the Klagenfurt Stadthaus. In 2018 he and the winegrower Boris Jakončič started the exhibition series “Kunst in den Hügeln – Umetnost v Brdih” at the Kmetija Moro in Vipolže, Goriška Brda. In 2024 ORF reported that he had organised about twelve exhibitions with some 30 artists in the previous six years. As a student of the University of Klagenfurt he took part in the art projects “BAUM | MENSCH | KLANG | KUNST” (2014) and “For Forest” (2019) and in the Slavic studies exhibition “Landschaft & Identität” (2023). He is married to the artist Marlis Lepicnik."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "7532a56b-0d76-4645-83ff-a4543e83add6",
+  "slug": "fabian-freese",
+  "status": "draft",
+  "name": "Fabian Freese",
+  "sources": [
+   "“Fabian Freese”, postwerk.at",
+   "“Biografie – Fabian Freese”, ffartspace.com"
+  ],
+  "text_en": "Fabian Freese was born in 1982 in Wuppertal-Elberfeld. He studied fine art at the Freie Akademie der Bildenden Künste from 2006 and graduated in 2011. His work has been on view in Europe, North and South America, Asia and Australia, including solo exhibitions in New York and Sydney. He works with everyday objects and long-exposure light paintings and runs the Fabian Freese artspace in Wuppertal."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "7eb900f2-c386-4da1-9f10-3609b7e6914a",
+  "slug": "burgis-paier",
+  "status": "published",
+  "name": "Burgis Paier",
+  "sources": [
+   "“Burgis Paier – Biografie”, stadtgalerie.net"
+  ],
+  "text_en": "Burgis Paier was born in Klagenfurt in 1949 and died there in 2022. She worked as a costume and stage designer and as a visual artist: figures, objects, automata, collages, reliquaries, rooms, puppets and embroidery. From 1977 she showed her work in solo exhibitions in Udine, Milan, Bologna, Klagenfurt, Vienna, Graz, Linz and Salzburg, among other places, several of them together with Günter Brus, such as “Kaspar Hauser” (2008) and the two “Phantasus” exhibitions (2010, 2011). In 2017 she was artist in residence at the Red Gate Residency in Beijing. Her last cycle, Das große Welttheater, was shown in 2020 in the Alpen-Adria-Galerie in Klagenfurt and has been the permanent exhibition of the Theatergalerie since December 2022."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "8aa93f6a-8658-41e5-a17e-cdf422eb3081",
+  "slug": "drago-druskovic",
+  "status": "published",
+  "name": "Drago Druškovič",
+  "sources": [
+   "“Drago Druškovič – bio”, dragodruskovic.com"
+  ],
+  "text_en": "Drago Druškovič was born in Klagenfurt in 1950, spent his childhood and youth in Carinthia and studied in Graz and Salzburg. He began painting and drawing in 1974 and has also worked on book illustration, tapestry and printmaking. He lives and works in Salzburg and in Carinthia."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "961e3479-6ef5-4911-b64e-9042298d6966",
+  "slug": "marko-lipus",
+  "status": "published",
+  "name": "Marko Lipuš",
+  "sources": [
+   "markolipus.com – About"
+  ],
+  "text_en": "Marko Lipuš was born in 1974 in Eisenkappel/Železna Kapla, Carinthia. He trained at Friedl Kubelka's Schule für künstlerische Photographie in Vienna (1994–1995) and at the photography college of the Höhere Graphische Bundes-Lehr- und Versuchsanstalt in Vienna (1996–1998), followed by two semesters at FAMU in Prague. Since 2004 he has worked with experimental photography and video, including scratched photographs and video installations in public and semi-public spaces. He lives and works in Vienna and Frankfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "a04cbc25-ea82-4ff2-97df-59dda530eb86",
+  "slug": "theres-cassini",
+  "status": "draft",
+  "name": "Theres Cassini",
+  "sources": [
+   "“Theres Cassini – Biography”, cassini.at"
+  ],
+  "text_en": "Theres Cassini was born in Rattendorf in the Gail Valley, Carinthia, in 1960 and lives and works in Vienna. She trained in mechanical engineering and industrial technology at a technical college in Vienna and attended acting school; from 1988 to 1993 she made textile object art under the name CASSINI + MARLOWE. Since 1997 she has worked in sculpture, spatial installation and conceptual photography, with the human body as a recurring subject, and since 2018 she has taken part in the annual design experiments of ARS CARINTHIA. In 2025 she won the KUNST &amp; HANDWERK GRAND PRIX with her work „Maria Lassnig – Reflexive Beseelung“."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "af3c2665-bbc2-4e43-9ed2-4554db480088",
+  "slug": "werner-reiterer",
+  "status": "published",
+  "name": "Werner Reiterer",
+  "sources": [
+   "“Werner Reiterer – Biography”, wernerreiterer.com"
+  ],
+  "text_en": "Werner Reiterer was born in Graz in 1964 and studied graphic art at the Academy of Fine Arts Vienna from 1984 to 1988. He makes drawings, sculptures, installations and site-specific mobiles and has realised many works in public space and for architecture. He is a member of the Forum Stadtpark in Graz and of the Vienna Secession and lives and works in Vienna; in 2025 the Schlossmuseum Linz showed his solo exhibition „The Mind Hacker“."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "b88804aa-ff78-426d-8d1d-46045b54896f",
+  "slug": "peter-krawagna",
+  "status": "published",
+  "name": "Peter Krawagna",
+  "sources": [
+   "“Peter Krawagna”, galerie-welz.at"
+  ],
+  "text_en": "Peter Krawagna was born in Klagenfurt on 7 May 1937 and grew up in Velden. After an apprenticeship in his parents’ painting business he studied at the art school in Linz under Herbert Dimmel from 1953 to 1957, at the Academy of Fine Arts Vienna under Herbert Boeckl from 1957 to 1961 and at the École des Beaux-Arts in Paris in 1963/64. In 1965 he settled in Krumpendorf am Wörthersee, where he still lives and works. His paintings start from landscape motifs and reduce them to a few areas of colour close to abstraction."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "c8563b4a-9ac4-46b3-aca3-12f63b85ffdf",
+  "slug": "jochen-traar",
+  "status": "published",
+  "name": "Jochen Traar",
+  "sources": [
+   "“Jochen Traar – Biographie”, traar.com"
+  ],
+  "text_en": "Jochen Traar was born in 1960 in Essen, Germany, and grew up in St. Kanzian am Klopeiner See in Carinthia. From 1979 to 1984 he studied sculpture with Bruno Gironcoli at the Academy of Fine Arts Vienna, and he has been a member of the Vienna Secession since 1986. Under the label “ART PROTECTS YOU” he works with everyday objects, glass, neon and interventions in public space; in 2020 he founded the kunstbureau Klagenfurt together with Ulli Sturm. He lives and works in Vienna and, since 2002, in St. Veit im Jauntal."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "d1e6a4f8-12b8-436d-8659-9defae5a5ff0",
+  "slug": "birgit-moertl",
+  "status": "published",
+  "name": "Birgit Mörtl",
+  "sources": [
+   "“Kunst im Park”, kaerntenportal.at, 11 August 2026",
+   "“‘African Heart’ zeigt besondere Momente aus Afrika”, klick-kaernten.at, 1 August 2026"
+  ],
+  "text_en": "Birgit Mörtl works between travel and portrait photography, focusing on unposed moments, natural light and encounters with people and animals. She started her career as a gardener and florist and today works as a registered nurse in anaesthesia and intensive care. Africa plays a central role in her photography; her exhibition “African Heart” at the Parkschlössl in Spittal an der Drau (August 2026) showed pictures from her travels there."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "dc7d74e2-4530-4184-8346-8ebc276c7846",
+  "slug": "lisa-huber",
+  "status": "draft",
+  "name": "Lisa Huber",
+  "sources": [
+   "“HOMESTORY – Sebastian Köpcke | Volker Weinhold: Ein fotografischer Essay / Lisa Huber: Farbholzschnitte”, villach.at",
+   "lisahuber.de – Biography"
+  ],
+  "text_en": "Lisa Huber was born in Villach. She studied sculpture in Graz with Josef Pillhofer and painting at the University of Applied Arts Vienna, where she was a master student of Adolf Frohner. She held a DAAD scholarship in Berlin-Weißensee and was a guest student of Georg Baselitz in Berlin. Since 2007 she has worked on the Psalms in the Buber/Rosenzweig translation in woodcuts, paper cuts, church windows and embroidered cloths, including a Lenten veil for Admont Abbey. She received the Kulturpreis of the City of Villach in 2017."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "f512a578-85fc-41d3-8a2d-072c3ad6a38d",
+  "slug": "herbert-de-colle",
+  "status": "published",
+  "name": "Herbert de Colle",
+  "sources": [
+   "“Herbert De Colle – CV”, herbertdecolle.com"
+  ],
+  "text_en": "Herbert de Colle was born in 1978 in Wolfsberg and studied at the University of Applied Arts Vienna from 1999 to 2005. He works with terms and symbols from pop and youth culture, such as “Love”, “Peace” or the smiley, and uses them in posters, cut-out black-and-white works and sculptures. He has exhibited in Vienna, Berlin, Graz and Klagenfurt, among other places; in 2024 he showed his series “Emotion” in the MQ Art Box at the Museumsquartier in Vienna."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "00f179e1-673e-45fe-939b-cd2eaaec861c",
+  "slug": "das-grosse-welttheater",
+  "status": "published",
+  "name": "Burgis Paier – Das große Welttheater",
+  "sources": [
+   "“theatergalerie Informationen”, stadtgalerie.net",
+   "“Einladung: Eröffnung der theatergalerie – Burgis Paier, Das große Welttheater / Günter Brus, Ausflüge auf die Bühne”, stadtgalerie.net, 14 December 2022"
+  ],
+  "text_en": "In 2018, when a serious illness first confronted her with her own mortality, the Klagenfurt costume designer and artist Burgis Paier began to stage her great world theatre: 350 figures of people from art and cultural history who had shaped her life and work – artists, writers, composers, philosophers, singers, fashion designers, actors, freedom fighters, explorers, scientists and even fairy-tale characters. They are neither puppets nor classical sculptures but hybrids of the two, and every figure has the artist’s hands. First shown in 2020 in the Alpen-Adria-Galerie, the cycle has been the permanent exhibition of the Theatergalerie since it opened in December 2022. Presentations on the theme of theatre change every half year and enter into dialogue with it."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "23b6f814-b9be-4821-96b9-93452e8c6725",
+  "slug": "wie-kriege-enden",
+  "status": "draft",
+  "name": "Wie Kriege enden / How wars end",
+  "sources": [
+   "“Sonderausstellung 2026: Wie Kriege enden / How wars end”, villach.at",
+   "“Ausstellung: Wie Kriege enden”, kaernten.orf.at, 26 July 2025",
+   "“‘WIE KRIEGE ENDEN’ – SONDERAUSSTELLUNG IM STADTMUSEUM VILLACH SETZT EIN ZEICHEN FÜR DEN FRIEDEN”, welcome2villach.at, 25 May 2025",
+   "“Museum zeigt neue Ausstellung”, klick-kaernten.at, 8 May 2026",
+   "“SchülerInnen als Co-KuratorInnen: Eröffnung der neuen Mitmachstationen”, it-gymnasium.at, 11 July 2026"
+  ],
+  "text_en": "Eighty years after the end of the Second World War, the Museum der Stadt Villach shows how wars end, in German and English. Six conflicts, from the Napoleonic Wars to the war in Ukraine, are linked to the history of Villach. Eleven eyewitnesses tell of flight, violence and new beginnings. Among the objects are a defused aerial bomb from the Second World War, a replica of an alpine position from the First World War and a Lada from Ukraine that was shot at by both sides. For 2026 the exhibition was extended and updated, with new content on the Cold War, the war in Ukraine and the sinking of the warship “Szent István”. It ends in a Peace Lab with interactive stations; two of them were developed by pupils of the BG/BRG Villach St. Martin."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "4bac4c8e-299c-49ad-92f4-29bd58d841f8",
+  "slug": "atemzuege",
+  "status": "published",
+  "name": "Atemzüge",
+  "sources": [
+   "“Ausstellung im Wallnerhaus”, kleblach-lind.at",
+   "“Ausstellung im Wallnerhaus”, radio-osttirol.at, 28 May 2026"
+  ],
+  "text_en": "Wolfgang Daborer, who lives in Spittal an der Drau, shows works from his cycle “Atemzüge” of 2025 and 2026 in the Wallnerhaus: mixed media on paper, 49.5 × 34.5 cm, and on linen, 200 × 35 cm. According to the flyer, the title refers to the line as a trace of breath. The lines come together, separate and open up space, with some accents of colour. The linen strips hang freely in the room. The exhibition opened on 21 May 2026 in the presence of Mayor Manfred Fleißner."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "77ca9d88-16aa-446a-88a6-f41eb06d3c19",
+  "slug": "trigeniale-brda-26",
+  "status": "draft",
+  "name": "Trigeniale Brda 26",
+  "sources": [
+   "poster of the exhibition",
+   "“Kunst in den Hügeln: Trigeniale Brda im Herbst”, meinbezirk.at, 28 September 2026"
+  ],
+  "text_en": "The 18th exhibition of the series “Kunst in den Hügeln – Umetnost v Brdih – Arte nel Collio” shows paintings by three women artists from Friuli, Slovenia and Carinthia in the hall of the Kmetija Moro winery in Vipolže, Goriška Brda. Giulia Cernetig (Udine) belongs to the Gruppo artistico culturale Albrecht Dürer in Tavagnacco. Aleksandra Rusjan (Brda), a member of the artists’ association DABLO, shows among other works “Kanjon”, “Češnja” and Dobrovo Castle. Margrit Pernull (Hermagor) shows landscapes of the Nockberge and the Weissensee, fruit and flowers. The Kulturinitiative bewegungINkultur organises the exhibition with both associations, under the patronage of the Alpe-Adria Center for Cross-border Cooperation (AACC). Franc Mužič, mayor of Brda, opened it; it was his last opening in the series, as he leaves office in November 2026."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "e03373b7-de2b-4e3e-9943-cb975b1f9a4e",
+  "slug": "dialog-ars-carinthia-kunst-und-handwerk",
+  "status": "draft",
+  "name": "DIALOG – ARS CARINTHIA | Kunst & Handwerk",
+  "sources": [
+   "stadtgalerie.net"
+  ],
+  "text_en": "DIALOG is part of INSIEME, the tenth design experiment of ARS CARINTHIA – Kunst &amp; Handwerk, with which the initiative also marks its 30th anniversary in 2026. At the Stadtgalerie Klagenfurt two positions at a time answer each other in sequence: each pair starts from a freely chosen theme, first conceived for a defined space, real or imagined, and selected craft workshops realise the designs as active co-creators. The pairs are Esther Stocker and Matteo Thun, Sofia Podreka and Boris Podrecca, Laurids and Manfred Ortner, Karsten K. Krebs and HG Esch, Theres Cassini and Eva Schlegel, Sophie Grell and Ursula Klein, and Pepo Pichler and Walter Hösel; Tine Steinthaler works in exchange with an artificial intelligence. Curated by Walter Hösel. An exhibition of ARS CARINTHIA in cooperation with the Stadtgalerie Klagenfurt."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "6795ca3d-01bf-4d8f-ab1d-35a16d30cb34",
+  "slug": "stadttheater-klagenfurt",
+  "status": "draft",
+  "name": "Stadttheater Klagenfurt",
+  "sources": [
+   "“Stadttheater Klagenfurt”, en.wikipedia.org",
+   "“Wandtexte Wagner reloaded”, stadtgalerie.net"
+  ],
+  "text_en": "The Stadttheater Klagenfurt was built from 1908 to 1910 to designs by the Viennese firm Fellner &amp; Helmer as the Kaiser-Franz-Joseph-Jubiläumstheater, for the 60th jubilee of Emperor Franz Joseph I. It was renovated in the 1960s and again from 1996 to 1998 to designs by Günther Domenig, and it received Nestroy Theatre Prizes in 2003, 2006 and 2011. Its artistic director (Intendant) is Aron Stiehl. Since 2011 the theatre has staged the works of Richard Wagner with marked intensity, from Der fliegende Holländer (2011) to Tristan und Isolde (2025)."
+ }
+]

@@ -1,0 +1,1664 @@
+[
+ {
+  "collection": "pp_venues",
+  "id": "bc81ccea-8a78-4f9b-898b-a8f80e7432dd",
+  "slug": "kmetija-moro-brda",
+  "status": "draft",
+  "name": "Kmetija Moro",
+  "sources": [
+   "“Hiša Moro – Zgodba družinske kmetije Moro”, moro-wines.com",
+   "“Bilderwechsel von Frühling auf Herbst! Neue Dreiländerausstellung ‘Trigeniale Brda 26’ in Goriška Brda”, meinbezirk.at, 18 September 2026",
+   "poster of Trigeniale Brda 26"
+  ],
+  "text_en": "Kmetija Moro is a family farm at Vipolže 62 in Goriška Brda, Slovenia, near the Italian border. It sells its wines as Moro Wines. According to the family, the farm goes back to the great-grandmother Margerita; the name comes from a grandfather nicknamed Moro because of his black hair. The family cultivates 7 hectares of vineyards and 5 hectares of orchards. The Jakončič family runs it: Boris and Dragica Jakončič and Damjan Jakončič, the junior head. Since 2018 the Kulturinitiative bewegungINkultur from Klagenfurt has organised the exhibition series “Kunst in den Hügeln – Umetnost v Brdih – Arte nel Collio” in the farm’s hall, with artists from Carinthia, Friuli and Slovenia. The organisers call the place the “Kunstbotschaft Kärntens in Slowenien” (Slovenian “Ambasada umetnosti Koroške v Sloveniji”, Italian “Ambasciata d’arte della Carinzia in Slovenia”). In 2026 the exhibitions changed in spring and autumn. Visits are by telephone appointment."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "02961645-a4ad-4698-b7e4-51641bfc7836",
+  "slug": "gernot-fischer-kondratovitch",
+  "status": "published",
+  "name": "Gernot Fischer-Kondratovitch",
+  "sources": [
+   "“GERNOT FISCHER-KONDRATOVITCH”, gernot-fischer.com"
+  ],
+  "text_en": "Gernot Fischer-Kondratovitch was born in Villach in 1968. He studied at the Escuela de Artes Visuales in Caracas (1989–90), graphic art at the Mozarteum in Salzburg (1990–95) and at the Academy of Fine Arts Vienna (1995–97, diploma), and has worked as a freelance artist since 1997. Besides painting, partly in acrylic on old oriental carpets, he works with film, performance and music. He lives and works in Vienna and Carinthia."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "05e5ad4e-2a7b-4403-b0c2-e6d61af7e051",
+  "slug": "arnold-kreuter",
+  "status": "draft",
+  "name": "Arnold Kreuter",
+  "sources": [
+   "“Arnold Kreuter”, postwerk.at"
+  ],
+  "text_en": "Arnold Kreuter was born in 1950 in Villach and lives and works there. He has painted since 1976 and attended art seminars with Franz Schneeweiß, August Svoboda and others. He worked first in pastel chalk and watercolour and now mainly in acrylic and mixed techniques. He received the Kultur-Ehrenzeichen of the City of Villach in 2018 and 2021."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "09260344-e97d-4976-ab03-30b066f22c97",
+  "slug": "markus-saueregger",
+  "status": "published",
+  "name": "Markus Saueregger",
+  "sources": [
+   "“Kunst (meile) in Kötschach”, osttirolerbote.at, 26 August 2024",
+   "“Doku_Kunstmeile-Koetschach_2024”, claudiaim.net",
+   "“‘verschiedenARTig’: Brigitte Bock präsentiert neue Werke in Kötschach-Mauthen”, gailtal-journal.at, 12 February 2026",
+   "“Markus Saueregger: ‘Ich bin gerne in der Natur unterwegs’”, meinbezirk.at, 28 February 2018"
+  ],
+  "text_en": "Markus Saueregger comes from Afritz in the Gegendtal and has lived with his family in Dellach im Gailtal for about 20 years; by profession he works in nursing care. Before he opened the stARTup gallery, he showed two exhibitions at other places in Kötschach-Mauthen, the Biachakastl and the Café Zuckereck. In May 2023 he opened the gallery rooms at Kötschach 5. Since then he has shown artists from the Gail valley and Upper Carinthia there, among them Hannes Grimmer, Herta Hofer, Walther Preiml, Heidulf Gerngross, Claudia Unterluggauer and Brigitte Bock. In 2024 he led a one-day “Kunstmeile” in Kötschach: 17 artists showed works in shops and cafés of the village and in the Protestant church. The idea for the day came from local small businesses that the closure of the nearby Plöcken Pass hit hard."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "09800f63-75e9-45d0-bef0-aa033d5c5225",
+  "slug": "katya-frei",
+  "status": "published",
+  "name": "Katya Frei",
+  "sources": [
+   "katyafrei.com – About"
+  ],
+  "text_en": "Katya Frei was born in Belarus in 1994 and grew up in Polesia in the south-east of the country. She trained at the State College of Architecture and Construction in Minsk and studied graphics and printmaking at the University of Applied Arts Vienna, graduating in 2023. She works with lithography, woodcut, etching and drawing, often with plants and insects as motifs, and has lived and worked in Klagenfurt since 2023. In 2024 she received the third prize of the Nachwuchspreis Bildende Kunst Kärnten, funded by the Wietersdorfer Group."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "0cab472b-3c83-495b-9812-e2ffe45e778d",
+  "slug": "bernhard-tragut",
+  "status": "published",
+  "name": "Bernhard Tragut",
+  "sources": [
+   "bernhardtragut.at – Biography"
+  ],
+  "text_en": "Bernhard Tragut was born in Purgstall, Lower Austria, in 1957. After an apprenticeship as a gilder and church restorer (1973–1976) he studied at the Academy of Fine Arts Vienna with Professor Hausner, graduating in 1983. He makes freestanding sculptures and wall pieces in linden wood painted with casein, oil or acrylic paint, as well as paintings, works on paper and art in public space; in 1980 he also founded the band Rucki Zucki Palmencombo. He lives and works in Vienna and Purgstall."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "0d6b4183-12c8-40da-a3c2-2055232a30a8",
+  "slug": "alda-grudina",
+  "status": "published",
+  "name": "Alda Grudina",
+  "sources": [
+   "artist sheet of Trigeniale 26 (bewegungINkultur)"
+  ],
+  "text_en": "Alda Grudina first came into contact with painting at primary school, when she travelled through Yugoslavia with her art teacher and visited artists' colonies. After her studies and years of family duties she returned to painting once her children were grown up. Under the guidance of Franc Golob, the academic painter Bojan Bensa, Azad and Silva Karim and Aleksandar Velišček she developed figurative, colourful painting based on nature. She has shown her work in solo and group exhibitions and had exhibited in Klagenfurt twice before. Alda Grudina is president of the artists' association DABLO (Društvo briških likovnih ustvarjalcev) in Goriška Brda, which organises workshops, ex tempore painting events and exhibitions. In Šmartno she runs the Farovž gallery, and in Dobrovo Castle the Arkade gallery. She works with the Kulturinitiative bewegungINkultur in Klagenfurt and at its exhibitions in Brda."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "0f7e1c17-0310-45df-9ac7-f9693b06e017",
+  "slug": "margrit-pernull",
+  "status": "draft",
+  "name": "Margrit Pernull",
+  "sources": [
+   "artist sheet in the exhibition Trigeniale Brda 26 (bewegungINkultur)",
+   "“Trigeniale Brda im Herbst”, meinbezirk.at, 28 September 2026"
+  ],
+  "text_en": "Margrit Pernull was born in 1958 in Gmünd in Carinthia and has lived in Hermagor since 1980. She worked as an occupational therapist. After retiring she studied at the Freie Akademie der bildenden Künste in Klagenfurt from 2018 and received her diploma in 2023. Since 2021 she has been a member of the painting group of the academic painter Milan Baltić in Klagenfurt. In 2022 she had a solo exhibition at the Pressegger See; in 2023 and 2024 she took part in group exhibitions at the BV Galerie and the Gewölbegalerie in Klagenfurt and at the Bildungshaus Sodalitas in Tainach. In Trigeniale Brda 26 at the Kmetija Moro in Goriška Brda she showed landscapes of the Nockberge and the Weissensee, fruit and flowers."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "11e9491d-1709-4aa2-aae0-7d4cfcaf84e9",
+  "slug": "nicoline-von-heyl",
+  "status": "published",
+  "name": "Nicoline von Heyl",
+  "sources": [
+   "nicolinevonheyl.com – About"
+  ],
+  "text_en": "Nicoline von Heyl was born in Worms, Germany, in 1981 and has lived in Krumpendorf am Wörthersee since 2016. She trained in Waldorf education with a focus on art at the Freie Hochschule Stuttgart and from 2020 completed a four-year course at the Akademie der Bildenden Künste Kärnten. Alongside portrait and nude studies she works on process-based, non-figurative painting in mixed media, and she has taught visual art in Italy and Austria."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "13fc3fb9-e522-41aa-a2e1-1e5e8addae2d",
+  "slug": "barbara-ambrusch-rapp",
+  "status": "draft",
+  "name": "Barbara Ambrusch-Rapp",
+  "sources": [
+   "“Barbara Ambrusch-Rapp”, postwerk.at",
+   "“CV | Vita”, barbara-rapp.com"
+  ],
+  "text_en": "Barbara Ambrusch-Rapp was born in 1972 in Klagenfurt and works as a freelance multimedia artist, cultural worker and curator in Velden am Wörthersee. She takes part in exhibitions, performance, theatre, fashion art and projects in public space, and gives creative workshops. She chairs the art association postWERK and received the Kultur-Ehrenzeichen of the City of Villach in 2026."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "159e6d08-18d1-430e-88d1-58c1d424364f",
+  "slug": "karlheinz-simonitsch",
+  "status": "published",
+  "name": "Karlheinz Simonitsch",
+  "sources": [
+   "simonitsch-karlheinz.at – Biography"
+  ],
+  "text_en": "Karlheinz Simonitsch was born in Lienz, East Tyrol, in 1953, went to school in Klagenfurt, where Egon Wucherer was one of his teachers, and graduated from the University of Graz. He taught at the Handelsakademie Klagenfurt until 2003 and worked as a freelance artist with a studio in Klagenfurt; in 1995 he worked at the City of Klagenfurt's studio in Šmartno. From the 1990s he turned increasingly to sacred subjects and church interiors, working in drawing, watercolour, oil and mixed media as well as in glass and ceramics, for example the glass cross “Ich bin das Leben” (1998) in the parish church of Klagenfurt-Wölfnitz. He died in December 2015."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "17cac075-0327-495a-83eb-8f3144cc0e94",
+  "slug": "gudrun-lenk-wane",
+  "status": "published",
+  "name": "Gudrun Lenk-Wane",
+  "sources": [
+   "gudrunlenkwane.at – Biography"
+  ],
+  "text_en": "Gudrun Lenk-Wane was born in Villach in 1967 and has worked since 1996 as a freelance visual artist and as a stage and costume designer. Starting from painting, she now works mainly in three dimensions with textiles and plastics, often with used and leftover materials, and has made textile installations in public space since 2011. She is a member of the Künstlerhaus, the society of visual artists in Austria, and lives in Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "18050820-ad48-46d9-ace4-df324a9a3e9e",
+  "slug": "santino-solace",
+  "status": "published",
+  "name": "Santino Solace",
+  "sources": [
+   "exhibition flyer",
+   "Kulturamt Spittal/Drau"
+  ],
+  "text_en": "Santino Solace is a comic artist and illustrator who lives and works in Spittal an der Drau. He develops his own stories, characters and worlds and combines influences from manga, comics and digital illustration. He founded SolaceWorks, a creative platform meant to give young and independent artists room to present their own stories."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "1814f3dd-007a-46d2-bd5d-acb8cbc9f518",
+  "slug": "pepo-pichler",
+  "status": "draft",
+  "name": "Pepo Pichler",
+  "sources": [
+   "“PEPO PICHLER BIOGRAPHY”, pepopichler.com"
+  ],
+  "text_en": "Pepo Pichler was born in Klagenfurt in 1948 and studied painting at the Academy of Fine Arts Vienna under Max Weiler from 1968 to 1973. After travelling in South and Central America and Mexico he settled in San Francisco in 1975. Since 1992 he has spent part of each year in San Francisco and part at Gut Schmelzhofen in St. Margarethen im Lavanttal, where he has his studio; his work comprises painting, objects, sculpture and installations. In 2023 he received the Kunst &amp; Handwerk Grand Prix for the project \"MIRROR MIRROR\"."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "1c2530fc-da5f-402e-bf11-adff026c82b6",
+  "slug": "eva-asaad",
+  "status": "published",
+  "name": "Eva Asaad",
+  "sources": [
+   "“Eva Asaad”, klagenfurt.at"
+  ],
+  "text_en": "Eva Asaad was born in Klagenfurt in 1970, holds a diploma in media communication and education from the University of Klagenfurt and completed the Prague School of Photography. She works as a photo artist, cultural adviser and curator, and since 2011 has run \"Wort im Bild\", an international photography competition on the theme of literature that she initiated. In 2025 she showed computer-processed photographs of ancient statues at the Alpen-Adria-Galerie in Klagenfurt. She is a member of BV Kärnten and photographs exhibitions at the BV Galerie."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "207f6b27-daa9-4d4a-a549-e35ae29ecf39",
+  "slug": "walter-hoesel",
+  "status": "draft",
+  "name": "Walter Hösel",
+  "sources": [
+   "“Caliboc”, ars-carinthia.at"
+  ],
+  "text_en": "Walter Hösel initiated and organises the annual design experiments of ARS CARINTHIA – KUNST &amp; HANDWERK in Klagenfurt, in which artists and architects develop objects together with Carinthian craft businesses. In 2026 the tenth experiment, „INSIEME“, marked 30 years of KUNST &amp; HANDWERK with exhibitions at several venues in Klagenfurt; he curated its exhibition „DIALOG“ at the Stadtgalerie Klagenfurt. He also makes his own objects, such as the series „CALIBOC“ (2026), developed with Elisabeth Raunig and several craft businesses."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "23191859-da2c-4676-85ef-bdd5c53fcbd5",
+  "slug": "ingrid-proeller",
+  "status": "published",
+  "name": "Ingrid Pröller",
+  "sources": [
+   "proeller.at – Biography"
+  ],
+  "text_en": "Ingrid Pröller was born in 1970 in Schärding, Upper Austria. From 1989 to 1997 she studied at the Academy of Fine Arts Vienna and sports science in Vienna, with study stays at the École nationale supérieure des Beaux-Arts in Paris (1995) and the Athens School of Fine Arts (1996–1997). She paints in oil and acrylic on canvas and regularly works on Crete, where she paints large panoramas outdoors. She lives and works in Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "2517ffff-82f5-4140-bc46-2f8ac57c5759",
+  "slug": "volker-weinhold",
+  "status": "draft",
+  "name": "Volker Weinhold",
+  "sources": [
+   "“Köpcke + Weinhold”, sammlungsfotografen.de",
+   "“HOMESTORY – Sebastian Köpcke | Volker Weinhold, Ein fotografischer Essay – Lisa Huber, Farbholzschnitte”, villach.at"
+  ],
+  "text_en": "Volker Weinhold lives and works in Berlin as a photographer, designer and exhibition maker together with Sebastian Köpcke. The two have worked for more than two decades on historical topics in museum collections, photographed as staged still lifes. Their exhibitions have been on view in museums in Germany, Austria, Switzerland, Russia and the Netherlands."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "2e61091c-fa4c-4e71-a60d-a4173b9b2b25",
+  "slug": "gabriele-ruff",
+  "status": "published",
+  "name": "Gabriele Ruff",
+  "sources": [
+   "“Biografien Armin Guerino, Gabriele Ruff”, stadtgalerie.net"
+  ],
+  "text_en": "Gabriele Ruff was born in Graz in 1963 and studied art history at the University of Vienna. From 2009 to 2023 she worked at the Department of Theatre, Film and Media Studies (tfm) of the University of Vienna, and from 2011 to 2023 she was a board member of the Österreichische Gesellschaft für Architektur (ÖGFA) and on the editorial team of the journal UmBau. She writes and edits texts on architecture and visual art and curates events and exhibitions in art, architecture and design, including the Wiener Architekturtage in 2014, 2016 and 2018. In 2026 she curated the exhibition “Armin Guerino – Durch die Zeit” at the Alpen-Adria-Galerie in Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "316e934f-2805-48a7-9b60-4e08e2faf4d2",
+  "slug": "katharina-acht",
+  "status": "draft",
+  "name": "Katharina Acht",
+  "sources": [
+   "“Katharina Acht”, postwerk.at",
+   "katharinaacht.at – About"
+  ],
+  "text_en": "Katharina Acht was born in 1982 in Gmunden and grew up in Ohlsdorf. She completed a graphic design school in 2001 and finished studying fine arts and experimental design at the University of Art and Design Linz in 2006. She led the Linz art association Die Kunstschaffenden from 2015 to 2021 and has looked after the nextcomic festival in Linz since 2018. She has lived and worked in Roitham am Traunfall since 2023."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "33804c60-bedf-47c4-ad15-e53bb24ddc73",
+  "slug": "michaela-fliedl",
+  "status": "published",
+  "name": "Michaela Fliedl",
+  "sources": [
+   "“Curriculum Vitae”, michaelafliedl.com"
+  ],
+  "text_en": "Michaela Fliedl was born in Klagenfurt in 1962. She studied philosophy and German studies at the University of Klagenfurt (master's degree in philosophy, 1986) and painting at the Freie Akademie der Bildenden Künste und Literatur Kärnten, graduating in 2009, the year she received first prize in the Carinthian Art Award. She works as a freelance artist in painting and objects and lives in Klagenfurt; she is a member of BV Kärnten and serves as its auditor."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "33f97731-c76f-471a-aaf2-00b812a953c7",
+  "slug": "manfred-ortner",
+  "status": "draft",
+  "name": "Manfred Ortner",
+  "sources": [
+   "“Profil – Laurids Ortner, Manfred Ortner”, ortner-ortner.com"
+  ],
+  "text_en": "Manfred Ortner was born in Linz in 1943 and studied painting and art education at the Academy of Fine Arts Vienna from 1961 to 1967. After working as an art teacher, he joined the group Haus-Rucker-Co in Düsseldorf in 1971, where he worked with Günter Zamp Kelp and his brother Laurids Ortner until 1987, the year the brothers founded Ortner &amp; Ortner Baukunst (today O&amp;O Baukunst). From 1994 to 2012 he was professor of design at the architecture faculty of FH Potsdam; in 2020 he and his brother received the Grand Austrian State Prize."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "35993051-69bd-4a29-909d-f373e7396bc1",
+  "slug": "alfred-scheikl",
+  "status": "published",
+  "name": "Alfred Scheikl",
+  "sources": [
+   "“Über Alfred Scheikl”, scheiklalfred.at",
+   "“Alfred Scheikl – Slikarska razstava”, festivalbled.com"
+  ],
+  "text_en": "Alfred Scheikl was born in Klagenfurt in 1961. From 2012 to 2016 he studied painting at the Freie Akademie der Bildenden Künste Kärnten with Luka Anticevic, Peter Kohl, Rene Fadinger and Astrid Langer, followed by a master class with Luka Anticevic in 2016–2017. His paintings combine abstract and fractal elements. Since 2017 he has chaired the Kunstverein Velden, where he also teaches drawing and acrylic painting; he works in Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "35feee21-ce2a-4abf-b756-a88c7845bf0e",
+  "slug": "judith-lava",
+  "status": "published",
+  "name": "Judith Lava",
+  "sources": [
+   "“Judith Lava | Artist”, judithlava.com"
+  ],
+  "text_en": "Judith Lava studied sculpture in Michelangelo Pistoletto's master class at the Academy of Fine Arts Vienna and graduated in 2000. She works with video, installation, photography and figures, often around her character “Lili”; since 2006 she has also worked as a video technician and editor for museums and artists, and from 2010 to 2019 she was a video collaborator of Pipilotti Rist in Zurich. Since 2022 she has been a volunteer member of the advisory board for visual art of the Carinthian Kulturgremium. She lives and works in Klagenfurt and Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "3cfbac5f-e237-410c-9cfa-507026a27023",
+  "slug": "severin-kroen",
+  "status": "published",
+  "name": "Séverin Krön",
+  "sources": [
+   "“Séverin Krön”, kuenstlerstadt-gmuend.at",
+   "“Saisonstart in der Galerie Schloss Porcia: Sévérin Krön ist neuer Galerieleiter”, meinbezirk.at, 24 January 2022",
+   "“Severin Krön – Kultur – Galerie (Mitarbeiter von A – Z)”, spittal-drau.at"
+  ],
+  "text_en": "Séverin Krön was born in 1964 in Nanterre near Paris and grew up bilingual. From 1985 to 1992 he studied painting and art education in Vienna and at the Mozarteum in Salzburg; his teachers included Arnulf Rainer and Anton Lehmden. Since 2007 he has made “Art permutable”: pictures of square panels that can be moved and turned. Myths are a frequent subject, as in a series on the Ring of the Nibelung from 2014. He has had solo exhibitions in Vienna, Paris, Linz, Salzburg, Corbeil and Bern, worked in the International Guest Studio Maltator in Gmünd in 2015 and showed his work at the KUNSTradln gallery in Millstatt in 2019. In January 2022 he followed Elisabeth Kleinwächter as head of the Galerie im Schloss Porcia in Spittal an der Drau, where he curates the exhibitions."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "3ed04153-e746-4b73-92c2-b293e3c21f3a",
+  "slug": "laurids-ortner",
+  "status": "draft",
+  "name": "Laurids Ortner",
+  "sources": [
+   "“Laurids Ortner”, ortner-ortner.com"
+  ],
+  "text_en": "Laurids Ortner was born in Linz in 1941 and studied architecture at TU Wien from 1959 to 1965. In 1967 he co-founded the architects' and artists' group Haus-Rucker-Co in Vienna, and in 1987 he founded the office Ortner &amp; Ortner Baukunst (today O&amp;O Baukunst) in Düsseldorf with his brother Manfred Ortner. He taught at the University of Art and Industrial Design Linz from 1976 to 1987 and was professor of architecture at the Kunstakademie Düsseldorf from 1987 to 2011; in 2020 he and his brother received the Grand Austrian State Prize."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "43b4f1d5-12bb-48ab-a740-1aeb810572c5",
+  "slug": "giulia-cernetig",
+  "status": "draft",
+  "name": "Giulia Cernetig",
+  "sources": [
+   "“Trigeniale Brda im Herbst”, meinbezirk.at, 28 September 2026",
+   "“'The Breath of Color' | Exhibition”, benecija.eu"
+  ],
+  "text_en": "Giulia Cernetig is a painter from Udine in Friuli and a member of the Gruppo artistico culturale Albrecht Dürer in Tavagnacco, which works with the Kulturinitiative bewegungINkultur in Klagenfurt. From 6 to 27 June 2026 the municipality of San Pietro al Natisone showed her solo exhibition “The Breath of Color” in its council chamber. In autumn 2026 she exhibited with Aleksandra Rusjan and Margrit Pernull in Trigeniale Brda 26 at the Kmetija Moro in Goriška Brda."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "458199ed-a9ac-40d1-8b0e-b8d19e0c7951",
+  "slug": "marlies-rapetti",
+  "status": "published",
+  "name": "Marlies Rapetti",
+  "sources": [
+   "“Marlies Liekfeld-Rapetti”, liekfeld-rapetti.webflow.io"
+  ],
+  "text_en": "Marlies Liekfeld-Rapetti was born in 1939 in Königsberg, East Prussia, and grew up in the GDR and West Germany. She trained as a medical technical assistant, studied art and German studies, and worked in teaching, in museum education and with a private painting school. She lived in Carinthia from 1985 to 2009 and in Berlin from 2009 to 2015, and has lived and worked in Klagenfurt since 2016; she works with paper and textiles and makes installations."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "4832788d-cbe2-4168-991b-e609e933060d",
+  "slug": "klaus-zlattinger",
+  "status": "published",
+  "name": "Klaus Zlattinger",
+  "sources": [
+   "“Ausstellung Klaus Zlattinger and Friends”, kultur-impuls.com"
+  ],
+  "text_en": "Klaus Zlattinger worked as an artist, art educator and gallerist; he died in December 2016. In 2026 the association kultur.im.puls marks the tenth anniversary of his death with the exhibition “Klaus Zlattinger &amp; Friends” in the Galerie im Stiegenhaus in Seeboden."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "4888d4dd-6ffe-40c3-a50c-35fa818dea9e",
+  "slug": "wolfgang-daborer",
+  "status": "published",
+  "name": "Wolfgang Daborer",
+  "sources": [
+   "Wallnerhaus flyer 2026",
+   "“Wolfgang Daborer (Biographie)”, daborer.at"
+  ],
+  "text_en": "Wolfgang Daborer lives and works in Spittal an der Drau as a freelance graphic designer, illustrator and visual artist. He studied at the Graphische in Vienna, painting with Wilhelm Drach, and has taken part in exhibitions in Austria, Germany, Italy and Slovenia since 1988. In 2009 he founded the art association kultur.im.puls in Seeboden, and in 2021 he helped start the art lending library artothek-impuls. He is a member of the Kunstverein Kärnten."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "49d7d79d-bda2-4a54-83d1-e3325466f494",
+  "slug": "helmuth-ploschnitznigg",
+  "status": "draft",
+  "name": "Helmuth Ploschnitznigg",
+  "sources": [
+   "“Hoffnung und Frieden als künstlerisches Signal in Judenburg”, murtalinfo.at, 6 April 2026",
+   "“Künstlerischer Vormittag”, lebenshilfe-knittelfeld.at, 25 March 2026",
+   "“Helmut Ploschnitznigg präsentiert ‘Zwischenwelten’ in Gabelhofen”, meinbezirk.at, 18 January 2014"
+  ],
+  "text_en": "Helmuth Ploschnitznigg, known as PLO, is an artist and art teacher in Judenburg, Styria. He founded the care facility Simultania for people with disabilities. In 2026 the Stadtgalerie Judenburg had the exhibition “Hoffnung & Frieden – Ein Signal der Hoffnung” on his idea, with 14 artists. For this project he worked on 24 March 2026 with Adi Schmölzer and artists of the Lebenshilfe Knittelfeld and the Spielberg middle school, and with them he made the art calendar “Hoffnung und Frieden”."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "4c8acb18-7a96-4b5a-9dbb-76e699f39378",
+  "slug": "astrid-langer",
+  "status": "published",
+  "name": "Astrid Langer",
+  "sources": [
+   "astrid-langer.com – About"
+  ],
+  "text_en": "Astrid Langer was born in Klagenfurt in 1978 and completed a degree in psychology at the University of Klagenfurt in 2006. In 2007 she began studying at the Freie Akademie der bildenden Künste und Literatur Kärnten, where she now also teaches; she has been a freelance artist since 2009 and is a member of the Berufsvereinigung Bildender Künstler Österreichs. Her work combines painting, caricature and comics, along with drawings and sculptures; her comic “Die Dachziegl” appears in the Carinthian culture magazine “Die Brücke” (since 2012). She lives in Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "4f765949-57a5-4606-be0c-a2f81f189d25",
+  "slug": "harald-scheicher",
+  "status": "published",
+  "name": "Harald Scheicher",
+  "sources": [
+   "scheicher.cc – Biography"
+  ],
+  "text_en": "Harald Scheicher was born in Klagenfurt on 4 December 1959 and grew up in Völkermarkt. He has painted since 1973/74 and is self-taught; he studied medicine in Vienna and Graz (1979–84) and ran a general practice in Völkermarkt from 1987 until 2025. He paints his oil pictures entirely outdoors in front of the subject, mainly landscapes of south-eastern Carinthia. Since the death of his grandfather Werner Berg in 1981 he has managed Berg's artistic estate and has been curator of the Werner Berg Museum in Bleiburg/Pliberk."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "55793118-f7a3-4e9a-8906-3d89e5eef8d5",
+  "slug": "andreas-kuchler",
+  "status": "draft",
+  "name": "Andreas Kuchler",
+  "sources": [
+   "“Ausstellung: Wie Kriege enden”, kaernten.orf.at, 26 July 2025",
+   "“Wie aus Krieg Frieden wird”, klick-kaernten.at, 7 May 2025",
+   "vhsktn.at",
+   "“Mittendrin: Die Museumsstandorte Villachs als urbane Identitätslabore”, museumsbund.at, 2 June 2025"
+  ],
+  "text_en": "Andreas Kuchler is the director of the Museum der Stadt Villach. He presented its special exhibition “Wie Kriege enden / How wars end” in 2025 and led curator’s tours through it. In 2025 he wrote about the museum’s sites in Villach for the Museumsbund Österreich."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "59f6ad6a-cf86-4d81-97f3-e54fba60eafc",
+  "slug": "inge-lasser",
+  "status": "draft",
+  "name": "Inge Lasser",
+  "sources": [
+   "“Inge Lasser”, postwerk.at"
+  ],
+  "text_en": "Inge Lasser lives and works in Hermagor. She trained with Giselbert Hoke, Elvira Bach and Markus Lüpertz at the art academy in Bad Reichenhall. She joined postWERK in 2013 and is its secretary. She has exhibited in Austria, Germany, Italy and France, including the Galerie Offenes Atelier D.U.Design in Villach and the Kunstbahnhof Wörthersee in Velden."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "5d07633c-d079-45f3-9f2e-ff62fbc158c2",
+  "slug": "markus-orsini-rosenberg",
+  "status": "published",
+  "name": "Markus Orsini Rosenberg",
+  "sources": [
+   "“Markus Orsini - Rosenberg (Biographie)”, damtschach.at"
+  ],
+  "text_en": "Markus Orsini-Rosenberg was born in Vienna in 1961. From 1982 to 1992 he studied painting at the Hochschule für angewandte Kunst in Vienna under Maria Lassnig and Christian Ludwig Attersee, also attended architecture classes with Hans Hollein, and holds a diploma in restoration. He paints in oil, mostly landscapes, parks and lakes, several of them in Carinthia, and has exhibited regularly in Carinthia since the 1990s, including at Galerie3 and the Museum Moderner Kunst Kärnten."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "5fa905a0-6a0c-4a8a-93e4-5834be99b2d9",
+  "slug": "gerhard-lepicnik",
+  "status": "published",
+  "name": "Gerhard Lepicnik",
+  "sources": [
+   "“Gerhard in Boris - snovalca Evrope v malem”, novice.at, 25 August 2021",
+   "“Sängerrunde Nordlicht – auf Kulturfahrt in den Süden!”, meinbezirk.at, 6 November 2015",
+   "“Kunst in den Hügeln der Goriska Brda”, kaernten.orf.at, 24 February 2024",
+   "“Statistisches Jahrbuch 2010 der Landeshauptstadt Klagenfurt (Chronik 2009)”, klagenfurt.at",
+   "“Transkulturelle Streifzüge mit Pier Paolo Pasolini zur friulanischen Lyrik (Masterarbeit)”, aau.at, 21 March 2020",
+   "“Festschrift der Marktgemeinde Ebenthal in Kärnten”, ebenthal-kaernten.gv.at",
+   "“Inhaltsverzeichnis: Strom für Kärnten. 60 Jahre KÄWAG-KELAG, 35 Jahre Landesgesellschaft”, d-nb.info"
+  ],
+  "text_en": "Gerhard Lepicnik has family roots in Sittersdorf (Žitara vas) and lives in Klagenfurt. He is a graduate engineer (Dipl.-Ing.) and worked for the Carinthian electricity company KELAG, where he was an authorised officer and co-wrote the chapter on grid construction in a company history. He retired as head of the former Netzleitung Ost (eastern grid control) in St. Veit. In 2020 he completed a Master of Arts in Applied Cultural Studies at the University of Klagenfurt with a thesis on Pier Paolo Pasolini and Friulian poetry. From 1970 he chaired the choir Sängerrunde Ebenthal. In 1972 he and the choir leader Heinz Fischer invited the Slovenian choir from Radsberg to a concert in Ebenthal, and the audience boycotted the Sängerrunde in return (source: Thomas Ogris, Kärnten Dokumentation, vol. 38, 2023). According to Tomaž Ogris, the encounters “Dober večer, sosed” (Good evening, neighbour) could not have been realised without him and Hans Mosser (source: novice.at, 2021). On 26 June 2009 the City of Klagenfurt awarded him its Ehrpfennig for his cultural work, especially as long-time chairman of the Singkreis Seltenheim. He has presented artists from Friuli in Carinthia since 2013 at the latest. He is the main organiser of the Kulturinitiative bewegungINkultur, which shows exhibitions with artists from Carinthia, Friuli and Slovenia, among them the Trigeniale in the Studiogalerie of the Klagenfurt Stadthaus. In 2018 he and the winegrower Boris Jakončič started the exhibition series “Kunst in den Hügeln – Umetnost v Brdih” at the Kmetija Moro in Vipolže, Goriška Brda. In 2024 ORF reported that he had organised about twelve exhibitions with some 30 artists in the previous six years. As a student of the University of Klagenfurt he took part in the art projects “BAUM | MENSCH | KLANG | KUNST” (2014) and “For Forest” (2019) and in the Slavic studies exhibition “Landschaft & Identität” (2023). He is married to the artist Marlis Lepicnik."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "6005c825-f253-4b22-9dbd-01815843a7af",
+  "slug": "armin-guerino",
+  "status": "published",
+  "name": "Armin Guerino",
+  "sources": [
+   "“Curriculum Vitae”, guerino.at",
+   "“Armin Guerino (Biografien Armin Guerino, Gabriele Ruff)”, stadtgalerie.net"
+  ],
+  "text_en": "Armin Guerino was born in Vienna on 12 December 1961. He studied physics at the University of Vienna (1982–1984) and graphic art with Maximilian Melcher at the Academy of Fine Arts Vienna, graduating in 1986. He works in painting, printmaking and photography and creates temporary and permanent projects in public space, many of them in Carinthia, such as the fountain “Wasserringe” for the kärnten.museum in Klagenfurt (2023). He lives and works in Vienna and at Schloss Saager in Carinthia."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "67dc0308-d753-4ddc-b4d7-8606e5ef3866",
+  "slug": "sigrid-friedmann",
+  "status": "published",
+  "name": "Sigrid Friedmann",
+  "sources": [
+   "“Sigrid Friedmann”, sogx.net"
+  ],
+  "text_en": "Sigrid Friedmann was born in Klagenfurt on 4 May 1978 and grew up in Bad Bleiberg. She attended the HBLA for arts and crafts in Linz and the master school for sculpture in Graz, then studied visual media design under Bernhard Leitner and Erwin Wurm at the University of Applied Arts Vienna, graduating with distinction in 2006. She works with video, photography, light objects and spatial installations, often together with Ulrich Kaufmann, with whom she runs the association sogx.net. In 2017 she received the Carinthian state promotion prize for film, photography and electronic media."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "715ca738-5739-4391-b2b4-d56b6205c92f",
+  "slug": "christl-wiegele",
+  "status": "draft",
+  "name": "Christl Wiegele",
+  "sources": [
+   "“Christl Wiegele”, postwerk.at"
+  ],
+  "text_en": "Christl Wiegele was born in 1937 in Töbring near Treffen and died in September 2020. She lived in Radendorf. Her father was the Villach painter LUWALL (Ludwig Wallner). From 1995 she took lessons with Sigi Braun, Heribert Mader, Inge Peischl, Bernhard Vogel and Wolfgang Wiesinger. She joined postWERK in 2014 and had solo exhibitions in Afritz, Albeck, Finkenstein, Arnoldstein and Villach."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "71d813fa-5927-40e9-a171-19e1ae3d3c78",
+  "slug": "uwe-bressnik",
+  "status": "published",
+  "name": "Uwe Bressnik",
+  "sources": [
+   "“Curriculum vitae”, uwe-bressnik.info"
+  ],
+  "text_en": "Uwe Bressnik was born in Villach, Carinthia, in 1961 and studied at the University of Applied Arts Vienna from 1983 to 1989, graduating in Ernst Caramelle’s master class for graphic art. His work links visual art and music: in the series „Soul Source Records“ he makes hand-drawn records, record objects and sound rooms, and since about 2000 he has also performed as an improvising musician. He received the Carinthian Würdigungspreis for visual art in 2010 and lives and works in Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "71fdc1b7-e34f-42e6-89f7-f0ba9eef736e",
+  "slug": "guenter-schmidauer",
+  "status": "published",
+  "name": "Günter Schmidauer",
+  "sources": [
+   "“Günter Schmidauer”, mohorjeva.com",
+   "“WAGNER RELOADED”, stadtgalerie.net"
+  ],
+  "text_en": "Günter Schmidauer was born in Klagenfurt in 1955. He studied theatre studies, German studies and advertising management at the University of Vienna and wrote his doctoral thesis on Karl Kraus’s Die letzten Tage der Menschheit. He founded and ran the travelling street theatre Wiener Comoediantenkarren, was an assistant dramaturge at the Burgtheater and a freelance contributor to ORF Kärnten, and headed dramaturgy, advertising and public relations at the Stadttheater Klagenfurt under Herbert Wochinz. He worked with the Komödienspiele Porcia, the Friesacher Burghofspiele and the Kärntner Komödianten and founded the VolXbühne. He has taught at the University of Klagenfurt, was city manager of Feldkirchen and president of the Kärntner P.E.N. Club, and has published several books. He curated the exhibition Wagner reloaded in the Theatergalerie in Klagenfurt (2026)."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "7532a56b-0d76-4645-83ff-a4543e83add6",
+  "slug": "fabian-freese",
+  "status": "draft",
+  "name": "Fabian Freese",
+  "sources": [
+   "“Fabian Freese”, postwerk.at",
+   "“Biografie – Fabian Freese”, ffartspace.com"
+  ],
+  "text_en": "Fabian Freese was born in 1982 in Wuppertal-Elberfeld. He studied fine art at the Freie Akademie der Bildenden Künste from 2006 and graduated in 2011. His work has been on view in Europe, North and South America, Asia and Australia, including solo exhibitions in New York and Sydney. He works with everyday objects and long-exposure light paintings and runs the Fabian Freese artspace in Wuppertal."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "760979b9-6358-4e62-be94-2f131323e960",
+  "slug": "bettina-breitenecker",
+  "status": "published",
+  "name": "Bettina Breitenecker",
+  "sources": [
+   "“WAGNER RELOADED – Künstlerbiografien”, stadtgalerie.net"
+  ],
+  "text_en": "Bettina Breitenecker was born in Vienna. In 1999 she graduated from the textile design department of the HTBLVA for the textile industry at Spengergasse in Vienna, then trained as a costume painter with ART for ART Theaterservice. From 2003 to 2011 she worked freelance as a costume painter and costume design assistant at theatres including the Theater in der Josefstadt, the Burgtheater, the Volksoper and Theater Bielefeld, and for many years as a costume painter at the Bregenz Festival. She designed the costumes for Fame at the Oper Graz (2012) and for Der Mann von La Mancha at the Gärtnerplatztheater in Munich. At the Stadttheater Klagenfurt she has been head of design for costume and make-up since the 2011/12 season and head of the costume department since 2022/23; her productions there include Tristan und Isolde."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "7a760427-e5a2-4998-8e6d-6ef6aa675b94",
+  "slug": "helmut-ditsch",
+  "status": "published",
+  "name": "Helmut Ditsch",
+  "sources": [
+   "“HELMUT DITSCH”, helmut-ditsch.com"
+  ],
+  "text_en": "Helmut Ditsch was born in Buenos Aires in 1962. In 1988 he moved to Austria, the country of his ancestors, to study painting at the Academy of Fine Arts Vienna. He paints large-format nature subjects such as mountains, glaciers and the sea, mostly in oil on canvas; in 1997 he received a commission from the Oesterreichische Nationalbank. In 2015 he became a professor at the Universidad Nacional de San Martín (UNSAM) in Argentina."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "7bdfb9dc-ef69-4cad-8515-94fb82a30808",
+  "slug": "ulli-sturm",
+  "status": "published",
+  "name": "Ulli Sturm",
+  "sources": [
+   "“Ausstellungsarchiv 2026”, stadtgalerie.net"
+  ],
+  "text_en": "Ulli Sturm is an art educator and curator in Klagenfurt. In 2020 she and the artist Jochen Traar set up the „kunstbureau“ at Waagplatz 5 in Klagenfurt, a room for talks, readings and small site-specific exhibitions. For the Stadtgalerie Klagenfurt she curated „NO PLANET B“ at the Alpen-Adria-Galerie (2025–2026) and „ALL ABOUT NATURE – Zwischen Idylle, Krise und Hoffnung“ at the Stadtgalerie (2026)."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "7e4df76a-2834-4484-a313-1dcef4dd29ae",
+  "slug": "franz-grabmayr",
+  "status": "published",
+  "name": "Franz Grabmayr",
+  "sources": [
+   "“Der Künstler”, franzgrabmayr.at"
+  ],
+  "text_en": "Franz Grabmayr was born in Obervellach, Carinthia, in 1927 and died in Vienna in 2015. He first worked as a teacher, studied at the Academy of Fine Arts Vienna in the afternoons from 1954 and gave up teaching in 1964 to work only as an artist. He lived and painted in the northern Waldviertel, first at Schloss Rosenau and later on a farm near Zwettl, and spent the winters in a studio in the Karl-Marx-Hof in Vienna. His pictures are built up from very thick layers of paint; his subjects include fire, sand pits, mountain streams and dancers."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "7e7605bc-18ca-48b3-989a-35e4230f611b",
+  "slug": "matteo-thun",
+  "status": "draft",
+  "name": "Matteo Thun",
+  "sources": [
+   "“Matteo Thun”, matteothun.com"
+  ],
+  "text_en": "Matteo Thun was born in Bolzano, South Tyrol, in 1952. He attended Oskar Kokoschka's summer academy in Salzburg and graduated in architecture from the University of Florence; in 1981 he co-founded the Memphis group with Ettore Sottsass. He taught ceramic design for several years at the University of Applied Arts Vienna and in 1984 founded his own studio in Milan, today Matteo Thun &amp; Partners with offices in Milan and Munich, working in architecture, interior and product design."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "7eb900f2-c386-4da1-9f10-3609b7e6914a",
+  "slug": "burgis-paier",
+  "status": "published",
+  "name": "Burgis Paier",
+  "sources": [
+   "“Burgis Paier – Biografie”, stadtgalerie.net"
+  ],
+  "text_en": "Burgis Paier was born in Klagenfurt in 1949 and died there in 2022. She worked as a costume and stage designer and as a visual artist: figures, objects, automata, collages, reliquaries, rooms, puppets and embroidery. From 1977 she showed her work in solo exhibitions in Udine, Milan, Bologna, Klagenfurt, Vienna, Graz, Linz and Salzburg, among other places, several of them together with Günter Brus, such as “Kaspar Hauser” (2008) and the two “Phantasus” exhibitions (2010, 2011). In 2017 she was artist in residence at the Red Gate Residency in Beijing. Her last cycle, Das große Welttheater, was shown in 2020 in the Alpen-Adria-Galerie in Klagenfurt and has been the permanent exhibition of the Theatergalerie since December 2022."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "82eb596e-cd9b-4cd2-b99f-bb28a91340f6",
+  "slug": "esther-stocker",
+  "status": "draft",
+  "name": "Esther Stocker",
+  "sources": [
+   "“Esther Stocker”, galeriekrobath.at"
+  ],
+  "text_en": "Esther Stocker was born in Schlanders (Silandro), Italy, in 1974. She studied at the Academy of Fine Arts Vienna from 1994 under Eva Schlegel, at the Accademia di Belle Arti di Brera in Milan in 1996 and at the Art Center College of Design in Pasadena in 1999. She works with painting, installations, wall works, photography and video. She lives and works in Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "8425ebe5-d34a-4e95-adb4-3f38743254ee",
+  "slug": "boris-podrecca",
+  "status": "draft",
+  "name": "Boris Podrecca",
+  "sources": [
+   "“Boris Podrecca”, museum-joanneum.at",
+   "“PODRECCA ARCHITECTS: Studio”, podrecca.com"
+  ],
+  "text_en": "Boris Podrecca was born in Belgrade in 1940 and spent part of his youth in Trieste. He studied at the Academy of Fine Arts Vienna in Roland Rainer's master class (1963–1968) and founded his office, today Podrecca Architects, in Vienna in 1986. His work covers public squares, railway stations, offices, museums and housing in several European countries and in China, among them the Universitätsplatz in Salzburg and the Piazza Tartini in Piran, as well as design objects. For ARS CARINTHIA – Kunst &amp; Handwerk he has contributed objects, among others to the exhibition “DIALOG” at the Stadtgalerie Klagenfurt in 2026."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "868d9dad-06ca-4877-8bff-2836dc54424e",
+  "slug": "karsten-k-krebs",
+  "status": "draft",
+  "name": "Karsten Krebs",
+  "sources": [
+   "“Karsten K. Krebs – CV”, karstenkkrebs.de"
+  ],
+  "text_en": "Karsten K. Krebs was born in Zeulenroda in 1945 and studied architecture and urban planning in Hanover and Florence. He runs the office Karsten K. Krebs Architekten in Hanover and has taught as professor of spatial art (Raumkunst) at the Peter Behrens School of Arts in Düsseldorf. His work covers architecture, interior and garden design, product design, light and art, and he has taken part in several of the art and craft projects of ARS CARINTHIA in Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "86c8988d-d870-4d5d-8904-a75c89a455b0",
+  "slug": "inge-vavra",
+  "status": "published",
+  "name": "Inge Vavra",
+  "sources": [
+   "“Inge Vavra – Kurzbiografie”, stadtgalerie.net"
+  ],
+  "text_en": "Inge Vavra was born in 1942 in Augsburg and grew up in Vienna. She graduated in graphic art and painting from the Academy of Fine Arts Vienna in 1965, also qualified as an art teacher, and has exhibited since 1964. In Carinthia she has carried out several art-in-architecture projects, among them works for the LKH Wolfsberg and the Pädagogische Hochschule in Klagenfurt, and in 2005 she received the Carinthian Würdigungspreis for visual art. She lives and works in Vienna and Krumpendorf."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "8880b0d3-c6c2-444d-b18f-239da45f7d9d",
+  "slug": "christina-clar",
+  "status": "draft",
+  "name": "Christina Clar",
+  "sources": [
+   "“FRAGIL | ORF-Lange Nacht der Museen”, postwerk.at, 10 September 2026",
+   "“bio &amp; contact”, christinaclar.net"
+  ],
+  "text_en": "Christina Clar is an Austrian artist who studied fine art in Paris and London. Her work ranges between performance, events, installations, urban interventions and computer-based applications, with sound and image. She took part in opera productions at the Salzburg Festival with Peter Sellars and in projects for Steirischer Herbst, Museum am Bach and the university culture centre Unikum. She also works as a Feldenkrais practitioner."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "8aa93f6a-8658-41e5-a17e-cdf422eb3081",
+  "slug": "drago-druskovic",
+  "status": "published",
+  "name": "Drago Druškovič",
+  "sources": [
+   "“Drago Druškovič – bio”, dragodruskovic.com"
+  ],
+  "text_en": "Drago Druškovič was born in Klagenfurt in 1950, spent his childhood and youth in Carinthia and studied in Graz and Salzburg. He began painting and drawing in 1974 and has also worked on book illustration, tapestry and printmaking. He lives and works in Salzburg and in Carinthia."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "8bcb9214-239e-4688-9cf8-42d83aaa6362",
+  "slug": "daniel-hosenberg",
+  "status": "published",
+  "name": "Daniel Hosenberg",
+  "sources": [
+   "“Daniel Hosenberg | visual artist”, hosenberg.at"
+  ],
+  "text_en": "Daniel Hosenberg was born in Carinthia in 1985 and studied at the Hochschule für bildende Künste (HFBK) in Hamburg from 2007 to 2010. His works combine painting, photography and collage; they start from photographs, notes and memories he gathers on walks through the city. In 2023 he received the Förderpreis für bildende Kunst of the Province of Carinthia. He lives and works in Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "8f906d7c-9481-4c01-af47-628e25614318",
+  "slug": "alessandra-minin",
+  "status": "published",
+  "name": "Alessandra Minin",
+  "sources": [
+   "artist sheet of Trigeniale 26 (bewegungINkultur)"
+  ],
+  "text_en": "Alessandra Minin was born in Nuremberg and has lived in Tavagnacco near Udine since her childhood. She sings in the Coro Bariglarie and is its vice president, and she is vice president of the artists' group Gruppo artistico culturale Albrecht Dürer. For this group she organises the joint exhibitions with artists from Carinthia and Slovenia in Italy, Slovenia and Carinthia, an exchange that has existed for more than ten years. About once a month she also organises an exhibition under the motto “Il giovedì dell'arte” (Thursday of art) as “Arte per tutti” in the foyer of the Tavagnacco town hall. She began with ceramic and raku objects. When she moved to painting on canvas, she combined her pictures with flotsam from the sea, because the protection of the seas is important to her. Her current paintings are not figurative. She has exhibited in Tavagnacco, Udine and Slovenia, among other places."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "907e0200-659f-4479-92f5-e72c17c8a5f8",
+  "slug": "elisabeth-juan",
+  "status": "published",
+  "name": "Elisabeth Juan",
+  "sources": [
+   "“Über uns”, bv-kaernten.at"
+  ],
+  "text_en": "Elisabeth Juan is the secretary on the board of BV Kärnten, the Carinthian branch of the Berufsvereinigung der bildenden Künstler Österreichs, which runs the BV Galerie in Klagenfurt. The association also lists her among its members."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "916cfec6-b39a-45b5-b745-3c6d41eb9a3f",
+  "slug": "hans-kupelwieser",
+  "status": "draft",
+  "name": "Hans Kupelwieser",
+  "sources": [
+   "kupelwieser.at – Biography"
+  ],
+  "text_en": "Hans Kupelwieser was born in Lunz am See, Lower Austria, in 1948. He trained at the Graphische Lehr- und Versuchsanstalt in Vienna (1970–73) and studied at the Hochschule für angewandte Kunst in Vienna (1976–82); from 1995 he held a professorship at the Institute of Contemporary Art at Graz University of Technology. His work, made since the late 1970s, consists mainly of sculpture and photography, including photograms, anodised aluminium reliefs and objects in stainless steel. He lives and works in Vienna and Lunz am See."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "922415e5-c4ff-4813-9112-b90a7c5b0a2f",
+  "slug": "gabriel-wartbichler",
+  "status": "published",
+  "name": "Gabriel Wartbichler",
+  "sources": [
+   "gabrielwartbichler.com – About"
+  ],
+  "text_en": "Gabriel Wartbichler was born in Klagenfurt in 1992. He studied applied cultural studies at the University of Klagenfurt (BA) and management, organisation and culture at the University of St. Gallen (MA), then trained in sculpture at the Edith Maryon Kunstschule in Freiburg, at the F+F School of Art and Design in Zurich and with artists and traditional sculptors in Austria, Japan and Canada. He makes sculptures, assemblages and drawings, often combining hand-carved, mostly life-size bodies and body parts with found objects."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "961e3479-6ef5-4911-b64e-9042298d6966",
+  "slug": "marko-lipus",
+  "status": "published",
+  "name": "Marko Lipuš",
+  "sources": [
+   "markolipus.com – About"
+  ],
+  "text_en": "Marko Lipuš was born in 1974 in Eisenkappel/Železna Kapla, Carinthia. He trained at Friedl Kubelka's Schule für künstlerische Photographie in Vienna (1994–1995) and at the photography college of the Höhere Graphische Bundes-Lehr- und Versuchsanstalt in Vienna (1996–1998), followed by two semesters at FAMU in Prague. Since 2004 he has worked with experimental photography and video, including scratched photographs and video installations in public and semi-public spaces. He lives and works in Vienna and Frankfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "97853c5f-8d5e-4186-a9ce-d4ede066c8d5",
+  "slug": "peter-tuerk",
+  "status": "published",
+  "name": "Peter Türk",
+  "sources": [
+   "“Über uns”, bv-kaernten.at"
+  ],
+  "text_en": "Peter Türk is president of the Carinthian branch of the Berufsvereinigung der bildenden Künstler Österreichs (BV Kärnten); Margaretha Maria Bauer is vice-president. The association was founded in November 1949 and runs its own gallery with studios at Feldkirchner Straße 31 in Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "97c1cc64-d4f5-4d03-b316-1dc5d63d8035",
+  "slug": "marjeta-angerer-guggenberger",
+  "status": "draft",
+  "name": "Marjeta Angerer-Guggenberger",
+  "sources": [
+   "“Angerer-Guggenberger, Marjeta”, d-nb.info",
+   "“FRAGIL | Jahresthema 2026”, postwerk.at, 2 September 2026"
+  ],
+  "text_en": "Marjeta Angerer-Guggenberger is a textile artist, born in 1963 in Ljubljana and active in Vienna. At the vernissage of the exhibition “FRAGIL” at the Dinzlschloss in 2026 she performed the reading “Häutungen” with Karin Prucha."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "99ad56b2-55af-4cb2-afb5-12dae78234bc",
+  "slug": "siegfried-zellot",
+  "status": "published",
+  "name": "Siegfried Zellot",
+  "sources": [
+   "zesi.at – About"
+  ],
+  "text_en": "Siegfried Zellot, who signs his work as Zesi, was born on 29 August 1953 in Spittal an der Drau. From 2012 to 2016 he studied at the Freie Akademie der bildenden Künste Kärnten, continued in Luka Anticevic’s master class from 2016 and took courses in etching and screen printing at the Freie Kunst Akademie Augsburg. He works in acrylic and oil, drawing, objects and printmaking, and teaches acrylic painting and print techniques at the Kunstverein Velden. He lives and works in Mallenitzen am Faaker See."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "9bd2dc2b-3967-4631-a878-480c16a8ac5d",
+  "slug": "walther-preiml",
+  "status": "published",
+  "name": "Walther Preiml",
+  "sources": [
+   "waltherpreiml.at – Biography"
+  ],
+  "text_en": "Walther Preiml is a printmaker and songwriter in Carinthia. After studying at the Landeskonservatorium Klagenfurt in 2003–2004, he came to art through photography in 2006 and took drawing lessons from 2007; since 2016 he has worked mainly in woodcut and paper-cut printing. Since 2010 he has performed his own songs in Carinthian dialect, and since 2022 he has worked as a freelance artist and songwriter, with his studio and home in Kötschach-Mauthen in the Gail Valley."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "9cad26ce-2070-4f12-ab73-b7ad8e47ae49",
+  "slug": "phil-yaeger",
+  "status": "draft",
+  "name": "Phil Yaeger",
+  "sources": [
+   "“Philip Yaeger”, pyaeger.com",
+   "“FRAGIL | ORF-Lange Nacht der Museen”, postwerk.at, 10 September 2026"
+  ],
+  "text_en": "Phil Yaeger was born in Northern Maine and plays trombone. He received a bachelor’s degree in jazz performance from William Paterson University in 1999 and moved to Austria in 2004, where he took a master’s degree at the University of Music and Performing Arts Graz. He lives in Vienna and works as a trombonist, composer and arranger. He is trombonist and house composer of the Jazzorchester Vorarlberg and released the album “Hunter” on Jazzwerkstatt Records."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "a04cbc25-ea82-4ff2-97df-59dda530eb86",
+  "slug": "theres-cassini",
+  "status": "draft",
+  "name": "Theres Cassini",
+  "sources": [
+   "“Theres Cassini – Biography”, cassini.at"
+  ],
+  "text_en": "Theres Cassini was born in Rattendorf in the Gail Valley, Carinthia, in 1960 and lives and works in Vienna. She trained in mechanical engineering and industrial technology at a technical college in Vienna and attended acting school; from 1988 to 1993 she made textile object art under the name CASSINI + MARLOWE. Since 1997 she has worked in sculpture, spatial installation and conceptual photography, with the human body as a recurring subject, and since 2018 she has taken part in the annual design experiments of ARS CARINTHIA. In 2025 she won the KUNST &amp; HANDWERK GRAND PRIX with her work „Maria Lassnig – Reflexive Beseelung“."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "a3524e34-3fa9-41bf-9d06-873f5e92357d",
+  "slug": "ondina-altran",
+  "status": "published",
+  "name": "Ondina Altran",
+  "sources": [
+   "artist sheet of Trigeniale 26 (bewegungINkultur)"
+  ],
+  "text_en": "Ondina Altran lives and works in Monfalcone. Her works come from a dialogue between charcoal drawing on paper and mixed-media painting: with overlapping lines she draws landscapes and motifs whose contours are at times clear and at times dissolve. Besides painting, her training includes instrumental music (guitar) and choral and lyrical solo singing. She began exhibiting in 2015 with group exhibitions, among them the ENDAS exhibition in the Chiesa dei Battuti in Cividale del Friuli. Since then she has had solo exhibitions in several towns in Friuli and has taken part in international exhibitions, among them “Dreams & Vision” in the Scoletta di San Zaccaria in Venice, “MIITTAC – sconfinamenti creativi dal XIII meridiano” at the Museo Italia Arte in Turin, the sixth and seventh editions of ARS IN TEMPORE in Treviso and “100 years of the Isonzo Front” at the Riko Debenjak Gallery in Kanal, Slovenia, as well as exhibitions in Rome, Croatia and Hungary. In 2018 she won the 25th “Proteo Hirst” trophy."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "a3572e44-64db-4e61-a19d-416559f61664",
+  "slug": "karl-nackler",
+  "status": "published",
+  "name": "Karl Nackler",
+  "sources": [
+   "“Über den Künstler”, nackler.com",
+   "artist sheet of Trigeniale 26 (bewegungINkultur)"
+  ],
+  "text_en": "Karl Nackler grew up in Upper Carinthia and lives in Klagenfurt. During his working life as a manager of a Carinthian energy company he already drew and painted. He took courses in caricature with Wilfried Steurer and in nude and portrait drawing with Ulrike Reinwald, and repeatedly attended the art forum “Zeitlos” of Herbert Schwei. He now concentrates on drawings in white chalk on black card: portraits of conductors, architects, writers and other public figures, nudes and the hands of old people. In still lifes and pictures of insects and flowers he adds colour with pastel. He has exhibited at the Pädagogisches Institut in Klagenfurt, in a group exhibition in Cologne, at the Europahaus Klagenfurt (portraits of the founding fathers of the EU), at the Galerie Kreativraum in Vienna (“Liebe auf den ersten Blick”) and in Friuli and Slovenia."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "a448a141-36fd-41fd-a4f6-73da8c799ab3",
+  "slug": "edith-payer",
+  "status": "published",
+  "name": "Edith Payer",
+  "sources": [
+   "edithpayer.com – About"
+  ],
+  "text_en": "Edith Payer was born in Wolfsberg, Carinthia, in 1975 and studied visual arts at the Academy of Fine Arts Vienna from 1998 to 2003, with a period at the Kuvataideakatemia in Helsinki in 2001. Her work is based on collecting found objects and images, which she arranges into museum-like installations and groups of objects. She also realises participatory exhibition projects together with other artists, makes textile works, often from used materials, and draws artist's books. She lives and works in Vienna and in Redlschlag."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "a7ebed19-1971-4bcf-b882-67e132ca1cff",
+  "slug": "margaretha-bauer",
+  "status": "published",
+  "name": "Margaretha Bauer",
+  "sources": [
+   "“Über uns”, bv-kaernten.at"
+  ],
+  "text_en": "Margaretha Maria Bauer is vice president and treasurer of the Carinthian branch of the Berufsvereinigung der Bildenden Künstler Österreichs (BV Kärnten) and heads its gallery, the BV Galerie in Klagenfurt. She is a member of the Kunstverein Kärnten and in 2026 took part in its group exhibition \"schmaler Grat\" at the Künstlerhaus Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "aa9515ef-16c1-4b79-9828-4d74fbda01c4",
+  "slug": "elisabeth-wedenig",
+  "status": "published",
+  "name": "Elisabeth Wedenig",
+  "sources": [
+   "“Elisabeth Wedenig”, elisabethwedenig.at"
+  ],
+  "text_en": "Elisabeth Wedenig was born in St. Veit an der Glan in 1980 and studied fine arts at the Academy of Fine Arts Vienna, with further studies at the Art Academy of Latvia in Riga and the Athens School of Fine Arts. She works in painting and drawing; her works are held in collections including the MMKK – Museum of Modern Art Carinthia and the collection of the Province of Carinthia. She received the Austrian State Scholarship for Fine Arts in 2020 and a work grant from the Province of Carinthia in 2022, and in 2025 she co-founded the Austrian Painters Crit Club. She lives and works in Glanegg, Carinthia."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "af3c2665-bbc2-4e43-9ed2-4554db480088",
+  "slug": "werner-reiterer",
+  "status": "published",
+  "name": "Werner Reiterer",
+  "sources": [
+   "“Werner Reiterer – Biography”, wernerreiterer.com"
+  ],
+  "text_en": "Werner Reiterer was born in Graz in 1964 and studied graphic art at the Academy of Fine Arts Vienna from 1984 to 1988. He makes drawings, sculptures, installations and site-specific mobiles and has realised many works in public space and for architecture. He is a member of the Forum Stadtpark in Graz and of the Vienna Secession and lives and works in Vienna; in 2025 the Schlossmuseum Linz showed his solo exhibition „The Mind Hacker“."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "b0211bf5-355a-4575-8d3d-3e564c3c4e89",
+  "slug": "arnold-poeschl",
+  "status": "published",
+  "name": "Arnold Pöschl",
+  "sources": [
+   "“About me”, arnoldpoeschl.com"
+  ],
+  "text_en": "Arnold Pöschl was born in Klagenfurt in 1981. He studied history and cultural studies in Graz and Vienna, with a year at the University of Bologna, trained in photography and audiovisual media at the Höhere Graphische Bundes-Lehr- und Versuchsanstalt in Vienna (2006–2008) and attended the Friedl Kubelka school for artistic photography. Since 2009 he has worked as a freelance photographer in Klagenfurt and Vienna, mainly in portrait, food and commercial photography as well as documentary projects. He teaches photography and photo theory as an external lecturer at the University of Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "b2f00894-27ab-463d-9d41-309ebe36588d",
+  "slug": "johannes-puch",
+  "status": "published",
+  "name": "Johannes Puch",
+  "sources": [
+   "“Information”, johannespuch.at"
+  ],
+  "text_en": "Johannes Puch was born in 1974 in Klagenfurt, where he runs his photo studio. He works on commission in industrial, architectural, portrait, reportage and landscape photography and documents art, for clients including the MMKK and the Albertina. He also shows his own photographic work, for example at “photo::vienna” at the MAK in 2015 and in “TOUCH WOOD” at the MMKK and the Stadtgalerie Klagenfurt in 2019/2020."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "b50d5db9-a33a-4554-8df1-31bbafb0ee68",
+  "slug": "joerg-auzinger",
+  "status": "published",
+  "name": "Jörg Auzinger",
+  "sources": [
+   "“JOERG AUZINGER”, auzinger.net"
+  ],
+  "text_en": "Jörg Auzinger was born in 1972 in Linz. After training in audiovisual media and photography at the Ortweinschule in Graz with Richard Kriesche, he studied media art with Peter Weibel at the University of Applied Arts Vienna and film directing with Axel Corti at the Vienna Film Academy. In interactive installations, photographs and objects he examines how digital media affect perception and communication. He has taught media art and photography at the Ortweinschule Graz and was a visiting professor at the University of Applied Arts Vienna; he lives and works in Vienna and Styria."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "b55c46e5-ad9b-48a7-9bb1-44d4a1cc83cc",
+  "slug": "karl-bauer",
+  "status": "published",
+  "name": "Karl Bauer",
+  "sources": [
+   "karl-bauer.at – Biography"
+  ],
+  "text_en": "Karl Bauer was born in Graz in 1905, grew up in Carinthia and studied painting at the Academy of Fine Arts Vienna from 1925 to 1930 in the master class of Alois Delug. After years as a teacher in Vienna and Klosterneuburg, he worked from 1946 as a freelance painter and graphic artist in Klagenfurt, where he died in 1993. He painted mainly landscapes in oil and figure compositions, designed book covers and illustrations for the Eduard Kaiser publishing house, and made mosaics and stained-glass windows for Carinthian churches, among them the Stations of the Cross mosaics at the memorial on the Kreuzbergl in Klagenfurt (1959)."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "b5d1cab1-e108-4d1a-8966-3e6b947cc3fb",
+  "slug": "frauke-danzer",
+  "status": "published",
+  "name": "Frauke Danzer",
+  "sources": [
+   "“Frauke Danzer, Künstlerin (Biografie)”, frauke-danzer.com"
+  ],
+  "text_en": "Frauke Danzer studied painting at the Istituto Lorenzo de' Medici in Florence (1990–91) and product design at the Hochschule der Künste Berlin (1992–1998), with an Erasmus stay at the University of Applied Arts Vienna in 1995. She has worked as a freelance artist since 1999 and makes installations, objects, works on canvas with paper, monotype and collage, and prints and drawings. In 2020 she was artist in residence in Gmünd in Kärnten, and she lives in Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "b88804aa-ff78-426d-8d1d-46045b54896f",
+  "slug": "peter-krawagna",
+  "status": "published",
+  "name": "Peter Krawagna",
+  "sources": [
+   "“Peter Krawagna”, galerie-welz.at"
+  ],
+  "text_en": "Peter Krawagna was born in Klagenfurt on 7 May 1937 and grew up in Velden. After an apprenticeship in his parents’ painting business he studied at the art school in Linz under Herbert Dimmel from 1953 to 1957, at the Academy of Fine Arts Vienna under Herbert Boeckl from 1957 to 1961 and at the École des Beaux-Arts in Paris in 1963/64. In 1965 he settled in Krumpendorf am Wörthersee, where he still lives and works. His paintings start from landscape motifs and reduce them to a few areas of colour close to abstraction."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "ba400ab1-78a3-47f9-b66a-1bf4981be6f0",
+  "slug": "sylvia-ofner",
+  "status": "published",
+  "name": "Sylvia Ofner",
+  "sources": [
+   "“Originelle, witzige und hintergründige Kunstwerke”, meinbezirk.at, 26 January 2023"
+  ],
+  "text_en": "Sylvia Ofner was born in Klagenfurt. She makes heads, figures and objects mainly from used textiles, old carpets and needlework, drawing on Greek mythology and on her own family history; recycling, the throwaway society and the role of women in sewing and mending are among her themes. In 2023 the Stadtgalerie im Amthof in Feldkirchen showed her exhibition „Zwischen Affen und Göttern“, and in 2026 the Galerie im Schloss Porcia in Spittal an der Drau presents „Aus der Asche empor“."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "baab8e45-1016-4d6b-8ce8-a3006e6ecac8",
+  "slug": "ernst-bachinger",
+  "status": "draft",
+  "name": "Ernst Bachinger",
+  "sources": [
+   "“BACHINGER © ARTIST EB”, postwerk.at",
+   "“Atomic Hares”, ernstbachinger.com"
+  ],
+  "text_en": "Ernst Bachinger was born in Munich and lives and works in Carinthia and Vienna. He studied business administration and worked as an advertising consultant, copywriter and creative director before becoming a freelance artist. He works in painting, sculpture, installation and photography and has exhibited in Vienna, Villach, Venice, New York, Klagenfurt, Santa Monica and Ljubljana. He has been a member of postWERK since 2022."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "bdbe8324-8486-4fea-8df2-4156ff61876c",
+  "slug": "markus-guschelbauer",
+  "status": "published",
+  "name": "Markus Guschelbauer",
+  "sources": [
+   "markusguschelbauer.com – About"
+  ],
+  "text_en": "Markus Guschelbauer was born on 24 December 1974 in Friesach, Carinthia. From 2003 to 2009 he studied photography at the Institute of Fine Arts and Media Art of the University of Applied Arts Vienna, and he has worked as a freelance artist since his diploma in 2009. His work deals with landscape: he stages interventions in nature with everyday materials such as plastic sheeting, fabric, mirrors and wooden slats and records them with the camera. He lives and works in Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "c6c291f7-d8ee-4d82-9f1c-1218c6b74585",
+  "slug": "eva-schlegel",
+  "status": "draft",
+  "name": "Eva Schlegel",
+  "sources": [
+   "evaschlegel.com – Biography"
+  ],
+  "text_en": "Eva Schlegel was born in Hall, Austria, in 1960 and studied at the University of Applied Arts Vienna under Oswald Oberhuber from 1979 to 1985. From 1997 to 2006 she was professor of art and photography at the Academy of Fine Arts Vienna. In photographs, objects and installations she examines the relationship between objects and perception. In 2011 she was commissioner of the Austrian Pavilion at the Venice Biennale; she lives and works in Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "c72187cf-7ee7-4f56-b906-e8a6b1b94d74",
+  "slug": "roswitha-bucher-sakowski",
+  "status": "published",
+  "name": "Roswitha Bucher-Sakowski",
+  "sources": [
+   "bucher-sakowski.at – Biography",
+   "“Roswitha Bucher-Sakowski”, akademie-kaernten.info"
+  ],
+  "text_en": "Roswitha Bucher-Sakowski worked in a factory for several years while attending an evening commercial school, then studied at the University of Klagenfurt and founded the Gewaltschutzzentrum Kärnten, a centre for protection against violence, which she directed for many years. Alongside this she completed her studies at the Freie Akademie der Bildenden Künste Kärnten, including the master classes of Luka Anticevic and Peter Kohl, and held a scholarship at the Akademie für Malerei Berlin. She paints figurative and abstract pictures, mostly in acrylic on canvas, and draws portraits and nudes in graphite. She lives in Klagenfurt and is deputy head of the Freie Akademie, where she teaches drawing and painting."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "c8563b4a-9ac4-46b3-aca3-12f63b85ffdf",
+  "slug": "jochen-traar",
+  "status": "published",
+  "name": "Jochen Traar",
+  "sources": [
+   "“Jochen Traar – Biographie”, traar.com"
+  ],
+  "text_en": "Jochen Traar was born in 1960 in Essen, Germany, and grew up in St. Kanzian am Klopeiner See in Carinthia. From 1979 to 1984 he studied sculpture with Bruno Gironcoli at the Academy of Fine Arts Vienna, and he has been a member of the Vienna Secession since 1986. Under the label “ART PROTECTS YOU” he works with everyday objects, glass, neon and interventions in public space; in 2020 he founded the kunstbureau Klagenfurt together with Ulli Sturm. He lives and works in Vienna and, since 2002, in St. Veit im Jauntal."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "c90a36d9-9032-4086-8d54-62b74fd6ca42",
+  "slug": "schulklassen-aus-kaernten",
+  "status": "published",
+  "name": "Schulklassen aus Kärnten",
+  "sources": [
+   "“BIODIVERSITÄT ENTDECKEN – Kleine Künstler*innen für eine große Vielfalt”, stadtgalerie.net"
+  ],
+  "text_en": "Classes from 17 primary schools across Carinthia took part in the kidsmobil workshop “Kleine Künstler*innen für eine große Vielfalt” of the wissens.wert.welt at the kärnten.museum and built animal rescue islands from natural materials near their schools; the Living Studio of the Stadtgalerie Klagenfurt showed the results in 2026. The participating schools: Praxisvolksschule der Pädagogischen Hochschule Kärnten, Volksschule 1 am Kreuzbergl, Volksschule 10 Waidmannsdorf, Volksschule 21 Hörtendorf, Volksschule 22 Ponfeld, Volksschule 24 / Ljudska šola 24, Volksschule Bad Bleiberg, Volksschule Diex, Volksschule Goritschach / Ljudska šola Goriče, Volksschule Gurnitz, Volksschule Magdalensberg, Volksschule Moosburg, Volksschule St. Johann im Lavanttal, Volksschule St. Margarethen ob Töllerberg, Volksschule St. Michael im Lavanttal, Volksschule Weißenstein and VS Feistritz im Rosental / LŠ Bistrica v Rožu."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "cb3055ad-c194-47cb-bae8-c473a7229e4b",
+  "slug": "herbert-boeckl",
+  "status": "published",
+  "name": "Herbert Boeckl",
+  "sources": [
+   "“Atelier Herbert Boeckl”, belvedere.at"
+  ],
+  "text_en": "Herbert Boeckl was born in Klagenfurt on 3 June 1894 and died in Vienna on 20 January 1966. After an unsuccessful application to the Vienna Academy of Fine Arts, he studied architecture at the Technische Hochschule in Vienna from 1912 and took private lessons with Adolf Loos. From 1935 he was a professor at the Academy of Fine Arts Vienna. He joined the NSDAP in 1941 and was classified as “politically unreliable” in 1944; in 1945 he became provisional rector of the Academy and in 1946 he was removed from that office because he had not registered as a former NSDAP member in 1945 (source: Belvedere chronology, belvedere.at/herbert-boeckl). From 1951 to 1960 he painted the frescoes of the Angel Chapel in Seckau Abbey, and in 1962 the Academy elected him rector. His studio at Argentinierstraße 42 in Vienna, which he used from 1928, is today presented by the Belvedere."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "cd325a20-678b-4bcb-8df2-638a071b3738",
+  "slug": "herbert-meisslitzer",
+  "status": "published",
+  "name": "Herbert Meißlitzer",
+  "sources": [
+   "“Alpen-Adria-Kunst im Stadthaus: Trigeniale 24 – Kunst aus dem Herzen Europas”, meinbezirk.at, 18 October 2024"
+  ],
+  "text_en": "Herbert Meißlitzer from Klagenfurt has been painting since 1991, working in watercolour, acrylic, acrylic collage and oil. He is a member of the International Watercolor Society Austria. His acrylic paintings show landscapes and well-known townscapes. In 2017 he showed his work for the sixth time in an exhibition in his family's garden in Klagenfurt-Viktring."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "cd845373-c1eb-4400-b2a8-e0efcc4aea7c",
+  "slug": "adi-schmoelzer",
+  "status": "published",
+  "name": "Adi Schmölzer",
+  "sources": [
+   "“Adi Schmölzer verbindet Kunst und Jazz”, kaernten.orf.at, 5 March 2025",
+   "“Adi Schmölzer stellt in Sachsenburg aus”, okvolltreffer.at, 28 July 2025"
+  ],
+  "text_en": "Adi Schmölzer is a painter and architect from Upper Carinthia; he studied architecture, among others with Günther Domenig. His paintings, many of them large and made on the floor, mostly show women as figures in motion, and he usually listens to jazz while he paints. After years of work in Graz and Burgenland he returned to Carinthia and now lives in Spittal an der Drau, where the gallery iXart shows a permanent display of his work."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "d02b050d-8f15-4a0d-a074-cccdb3eff7df",
+  "slug": "anton-mahringer",
+  "status": "published",
+  "name": "Anton Mahringer",
+  "sources": [
+   "“Anton Mahringer”, noetscherkreis.at"
+  ],
+  "text_en": "Anton Mahringer was born on 26 September 1902 in Neuhausen auf den Fildern near Stuttgart and died on 29 December 1974 in Villach. He studied at the Stuttgart Academy, from 1928 in the painting class of Anton Kolig, with whom he first came to Carinthia that year; in 1932 he settled permanently in the Gail Valley. His paintings mainly show the landscape of the Gail Valley, and in 1948 he received the Austrian State Prize for Painting. He is counted among the painters of the Nötscher Kreis and from 1956 lived and worked in St. Georgen im Gailtal."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "d1e6a4f8-12b8-436d-8659-9defae5a5ff0",
+  "slug": "birgit-moertl",
+  "status": "published",
+  "name": "Birgit Mörtl",
+  "sources": [
+   "“Kunst im Park”, kaerntenportal.at, 11 August 2026",
+   "“‘African Heart’ zeigt besondere Momente aus Afrika”, klick-kaernten.at, 1 August 2026"
+  ],
+  "text_en": "Birgit Mörtl works between travel and portrait photography, focusing on unposed moments, natural light and encounters with people and animals. She started her career as a gardener and florist and today works as a registered nurse in anaesthesia and intensive care. Africa plays a central role in her photography; her exhibition “African Heart” at the Parkschlössl in Spittal an der Drau (August 2026) showed pictures from her travels there."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "d381ae3f-d91c-4ad5-b815-2759bf092075",
+  "slug": "katharina-gruzei",
+  "status": "published",
+  "name": "Katharina Gruzei",
+  "sources": [
+   "katharinagruzei.com – About"
+  ],
+  "text_en": "Katharina Gruzei was born in Klagenfurt in 1983 and studied fine arts at the University of Art and Design Linz in the class for experimental audiovisual arts and cultural studies, with study periods at the University of California Santa Barbara and the Berlin University of the Arts. She works with photography, video, film, sound and installation, often in public space, on social and urban questions and feminist themes. Her books include the monograph “Bodies of Work” and “Mir Metro” on the Moscow Metro (Hatje Cantz, 2021). She lives and works in Vienna and Linz."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "d4441089-07d6-4e5a-8c39-30c29b5180ba",
+  "slug": "jure-markota",
+  "status": "draft",
+  "name": "Jure Markota",
+  "sources": [
+   "“Vielseitige Ausstellung vom Slowenen JURE MARKOTA”, meinbezirk.at, 21 April 2023",
+   "“Impuls und Synergie | Jure Markota”, postwerk.at, 3 October 2024"
+  ],
+  "text_en": "Jure Markota was born in 1985 in Slovenj Gradec, Slovenia. He studied sculpture at the Academy of Fine Arts and Design in Ljubljana from 2004. Besides sculpture he works in painting, graphic design, architecture and new media. He lives and works in Carinthia and Slovenia. In October 2024 the Kunstbahnhof Wörthersee in Velden had his exhibition “Impuls und Synergie”."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "d45fe7f6-306b-4ae6-93eb-02a7bf40e730",
+  "slug": "anita-wiegele",
+  "status": "draft",
+  "name": "Anita Wiegele",
+  "sources": [
+   "“Anita Wiegele”, postwerk.at",
+   "“kunst. projekt. wohnraum.”, anitawiegele.at"
+  ],
+  "text_en": "Anita Wiegele was born in 1964 in Villach and works as a freelance artist, author and performer in Gödersdorf. She graduated from the Freie Akademie der Bildenden Künste and Literatur-Kärnten and illustrates book projects. She published the books “Kopfverklebung – ein Prozess” (2016) and “Wolkenköpfe” (2017). She received the Kultur-Ehrenzeichen of the City of Villach in 2021."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "d56c167d-e908-41c6-8d21-5a4cb0617ddb",
+  "slug": "ines-urach",
+  "status": "published",
+  "name": "Inés Urach",
+  "sources": [
+   "“Über mich/Bio”, inesurach.at"
+  ],
+  "text_en": "Inés Urach studied at the Freie Akademie der Bildenden Künste in Klagenfurt from 2013 to 2017 and attended its master class with Luka Anticevic from 2018 to 2020. Before that she took painting courses at the European Art Academy in Trier (2005, 2006) and at the art academy in Bad Reichenhall (2011). Her abstract paintings deal with the relationship between paper and painting, with paper used as a material in the picture. Her studio is in the Europahaus in Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "d8b7f6e7-71ae-4245-a845-08aa22ca0265",
+  "slug": "sebastian-koepcke",
+  "status": "draft",
+  "name": "Sebastian Köpcke",
+  "sources": [
+   "“Köpcke + Weinhold”, sammlungsfotografen.de",
+   "“HOMESTORY – Sebastian Köpcke | Volker Weinhold, Ein fotografischer Essay – Lisa Huber, Farbholzschnitte”, villach.at"
+  ],
+  "text_en": "Sebastian Köpcke lives and works in Berlin as a photographer, designer and exhibition maker together with Volker Weinhold. The two photograph museum collections in staged still lifes and have exhibited in museums in Germany, Austria, Switzerland, Russia and the Netherlands. They met Lisa Huber as exhibiting artists at the Benedictine Abbey of Admont."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "dc7d74e2-4530-4184-8346-8ebc276c7846",
+  "slug": "lisa-huber",
+  "status": "draft",
+  "name": "Lisa Huber",
+  "sources": [
+   "“HOMESTORY – Sebastian Köpcke | Volker Weinhold: Ein fotografischer Essay / Lisa Huber: Farbholzschnitte”, villach.at",
+   "lisahuber.de – Biography"
+  ],
+  "text_en": "Lisa Huber was born in Villach. She studied sculpture in Graz with Josef Pillhofer and painting at the University of Applied Arts Vienna, where she was a master student of Adolf Frohner. She held a DAAD scholarship in Berlin-Weißensee and was a guest student of Georg Baselitz in Berlin. Since 2007 she has worked on the Psalms in the Buber/Rosenzweig translation in woodcuts, paper cuts, church windows and embroidered cloths, including a Lenten veil for Admont Abbey. She received the Kulturpreis of the City of Villach in 2017."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "de1c95ba-7885-4cdc-a3f1-a1a52c53cd63",
+  "slug": "peter-kohlweiss",
+  "status": "published",
+  "name": "Peter Kohlweiß",
+  "sources": [
+   "exhibition flyer",
+   "Kulturamt Spittal/Drau"
+  ],
+  "text_en": "Peter Kohlweiß has been painting since 1982; he gained his first experience with Professor Hans Piccottini at the HTL Villach and later developed his own style through courses and seminars. He works mainly in watercolour and drawing, with motifs taken from nature and architecture, and describes painting as a hobby. He showed his work at Café s’Kunstwerk in Döbriach in 2024 and 2025; in 2026 the Kulturamt of Spittal an der Drau presented his exhibition “Gehen &amp; Sehen” at the Parkschlössl."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "e0fa4ac5-0abc-426c-a3e1-d11c69e2185c",
+  "slug": "elisabeth-penker",
+  "status": "published",
+  "name": "Elisabeth Penker",
+  "sources": [
+   "“Elisabeth Penker”, wiels.org"
+  ],
+  "text_en": "Elisabeth Penker, born in 1974, studied sculpture under Bruno Gironcoli at the Academy of Fine Arts Vienna from 1993 to 1998 and then at the National Academy of Fine Arts in Oslo; in 2006 she was a theory researcher at the Jan van Eyck Academie in Maastricht. She works with sculpture, with sound compositions based on the grammatical structures of languages, and with the series \"Split Representation\", painted photo collages that rework portraits of philosophers, anthropologists and artists. In 2016 she was artist in residence at WIELS in Brussels."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "e91f6c82-aae5-4b09-b609-142afc6f6086",
+  "slug": "aleksandra-rusjan",
+  "status": "draft",
+  "name": "Aleksandra Rusjan",
+  "sources": [
+   "“Kunst in den Hügeln: Trigeniale Brda im Herbst”, meinbezirk.at, 28 September 2026"
+  ],
+  "text_en": "Aleksandra Rusjan is a painter from Goriška Brda in Slovenia and a member of the artists’ association DABLO (Društvo briških likovnih ustvarjalcev) in Brda. In autumn 2026 she exhibited with Giulia Cernetig and Margrit Pernull in Trigeniale Brda 26 at the Kmetija Moro in Vipolže. Her works there included “Kanjon” (canyon), “Češnja” (cherry), which she called her favourite work, and a painting of Dobrovo Castle."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "f0dd1eaa-ef33-48c6-bbcd-8e42b76b6e10",
+  "slug": "gudrun-zikulnig",
+  "status": "published",
+  "name": "Gudrun Zikulnig",
+  "sources": [
+   "“Persönlich”, gudrun-zikulnig.com"
+  ],
+  "text_en": "Gudrun Zikulnig (née Juch) was born in Völkermarkt on 4 April 1965 and lives and works in Kühnsdorf. She graduated from the Freie Akademie für bildende Künste und Literatur Kärnten, with a master class under Luka Anticevic and Peter Kohl. She paints in oil and acrylic and works with collage, and teaches these techniques as a course instructor at the Kunstverein Velden. In 2012 she won a prize at the Ex Tempore in Grisignana."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "f39e4c42-deff-4ad3-9a72-65b0c090b1c2",
+  "slug": "lisa-ortner-kreil",
+  "status": "draft",
+  "name": "Lisa Ortner-Kreil",
+  "sources": [
+   "“Lisa Ortner-Kreil | Curator Bank Austria Kunstforum Wien and founder of art hoc projects”, akbild.ac.at"
+  ],
+  "text_en": "Lisa Ortner-Kreil studied comparative literature, art history and Romance studies in Vienna, Innsbruck and Rome and holds a doctorate. After working for the art magazine springerin, the Albertina and the Royal Museums of Fine Arts in Brussels, she has been a curator at the Bank Austria Kunstforum Wien since 2013, with exhibitions on Gerhard Richter (2020/21), Man Ray (2018) and a Kiki Kogelnik retrospective, among others. In 2020 she co-founded the initiative art hoc projects with Barbara Horvath, and she teaches at the University of Applied Arts Vienna. For the Stadtgalerie Klagenfurt she curated Hans Kupelwieser's exhibition “Raumschatten” in 2026."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "f512a578-85fc-41d3-8a2d-072c3ad6a38d",
+  "slug": "herbert-de-colle",
+  "status": "published",
+  "name": "Herbert de Colle",
+  "sources": [
+   "“Herbert De Colle – CV”, herbertdecolle.com"
+  ],
+  "text_en": "Herbert de Colle was born in 1978 in Wolfsberg and studied at the University of Applied Arts Vienna from 1999 to 2005. He works with terms and symbols from pop and youth culture, such as “Love”, “Peace” or the smiley, and uses them in posters, cut-out black-and-white works and sculptures. He has exhibited in Vienna, Berlin, Graz and Klagenfurt, among other places; in 2024 he showed his series “Emotion” in the MQ Art Box at the Museumsquartier in Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "f741a9c4-68db-40e3-8442-ab107a2413d1",
+  "slug": "melitta-moschik",
+  "status": "published",
+  "name": "Melitta Moschik",
+  "sources": [
+   "moschik.at – Biography"
+  ],
+  "text_en": "Melitta Moschik was born in Villach in 1960. She completed studies in mathematics and physics at the University of Graz in 1984 and since 1991 has carried out interdisciplinary projects linking art, science and technology. Her work includes computer graphics, media installations, metal sculpture and conceptual art, as well as numerous commissions for art in architecture and public space. She lives and works in Klagenfurt, Graz and Vienna."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "fa85b773-0fc2-4f54-9bcf-4372fb581504",
+  "slug": "marlis-lepicnik",
+  "status": "published",
+  "name": "Marlis Lepicnik",
+  "sources": [
+   "artist sheet of Trigeniale 26 (bewegungINkultur)"
+  ],
+  "text_en": "Marlis Lepicnik grew up in Abtei in Carinthia and has lived and worked in Klagenfurt since her childhood. She came to art from fashion design. Nude drawing courses with Rudolf Fuchs of the University of Applied Arts Vienna and with Susanne Axmann in Feldkirchen led her to work from the live model. Her works range from charcoal and pencil drawings and watercolours to pictures in mixed media and acrylic on linen; she usually works in series on specific themes. In recent years she has exhibited in Carinthia (among others at the Galerie ART IST in Klagenfurt and the Skybox on the Pyramidenkogel), in Friuli (Udine Castle), Trieste, Genoa, Cologne, Vienna (Galerie Art Pool Vienna) and Slovenia. She is a member of the Österreichischer Kunstverein and of the Kulturinitiative bewegungINkultur."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "fa9678e5-5194-46e2-854c-d4323c623b36",
+  "slug": "lilith-erian",
+  "status": "published",
+  "name": "Lilith Erian",
+  "sources": [
+   "“lilith erian // AUSHALTEN – ZDRŽATI”, kulturhofvillach.at, 5 July 2024"
+  ],
+  "text_en": "Lilith Erian is a visual artist who works mainly with photography, including landscape, portrait and travel photography. In 2024 the Kulturhof Villach showed her series “Aushalten – Zdržati”, portraits of ten young people from the cultural scene of Carinthia/Koroška combined with their own statements. In 2025, at the age of 22, she was the youngest artist so far to show in the series “Kunst am roten Teppich” at the SPÖ parliamentary club in Klagenfurt."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "fcd6e628-9e48-4631-b0eb-4b29301dbc73",
+  "slug": "slava-mohl",
+  "status": "published",
+  "name": "Slava Mohl",
+  "sources": [
+   "“Slava Mohl”, slavaart.at"
+  ],
+  "text_en": "Slava Mohl was born in Bosnia in 1978 and has lived in Austria since 1992. After training as a hotel and catering assistant she worked for several years as an office clerk; in 2016 she gave up that job to attend the master class for painting at the HTBLA Ortweinschule in Graz. Since then she has worked as a freelance painter, using pigment, chalk, paper and canvas. Her studio is in Deutsch Kaltenbrunn in Burgenland, and she has exhibited in Velden, Wolfsberg and Eisenstadt, among other places."
+ },
+ {
+  "collection": "pp_persons",
+  "id": "fdde6537-2d9b-4553-99eb-4a845ce435af",
+  "slug": "richard-klammer",
+  "status": "published",
+  "name": "Richard Klammer",
+  "sources": [
+   "richardklammer.net – Biography"
+  ],
+  "text_en": "Richard Klammer was born on 22 February 1964 in Obervellach in the Möll valley, Carinthia. He studied painting under Markus Prachensky at the Academy of Fine Arts Vienna and graduated in 1991. He lives in Klagenfurt as a painter and musician and is a member of the artists’ group KunstSportGruppe Hochobir and of the bands Talltones and Fuzzman. His work is held by the Museum Moderner Kunst Kärnten and the City of Klagenfurt."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "00f179e1-673e-45fe-939b-cd2eaaec861c",
+  "slug": "das-grosse-welttheater",
+  "status": "published",
+  "name": "Burgis Paier – Das große Welttheater",
+  "sources": [
+   "“theatergalerie Informationen”, stadtgalerie.net",
+   "“Einladung: Eröffnung der theatergalerie – Burgis Paier, Das große Welttheater / Günter Brus, Ausflüge auf die Bühne”, stadtgalerie.net, 14 December 2022"
+  ],
+  "text_en": "In 2018, when a serious illness first confronted her with her own mortality, the Klagenfurt costume designer and artist Burgis Paier began to stage her great world theatre: 350 figures of people from art and cultural history who had shaped her life and work – artists, writers, composers, philosophers, singers, fashion designers, actors, freedom fighters, explorers, scientists and even fairy-tale characters. They are neither puppets nor classical sculptures but hybrids of the two, and every figure has the artist’s hands. First shown in 2020 in the Alpen-Adria-Galerie, the cycle has been the permanent exhibition of the Theatergalerie since it opened in December 2022. Presentations on the theme of theatre change every half year and enter into dialogue with it."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "05c1c210-9912-49a6-9187-686f4ac5e1b5",
+  "slug": "drago-druskovic-alpen-adria-galerie",
+  "status": "published",
+  "name": "Drago Druškovič",
+  "sources": [
+   "“Ausstellungsvorschau – DRAGO DRUŠKOVIČ”, stadtgalerie.net"
+  ],
+  "text_en": "The Alpen-Adria-Galerie announces an exhibition of works by Drago Druškovič for the turn of the year 2026/27. Opening on 15 December 2026 at 18:00; on view until 31 January 2027. Title and further details have not been published yet; the gallery reserves the right to make changes."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "05eb6bf9-58c5-4653-b33a-b04de4267fd4",
+  "slug": "biodiversitaet-entdecken",
+  "status": "published",
+  "name": "Biodiversität entdecken",
+  "sources": [
+   "“BIODIVERSITÄT ENTDECKEN – Kleine Künstler*innen für eine große Vielfalt”, stadtgalerie.net"
+  ],
+  "text_en": "Classes from 17 primary schools across Carinthia showed what they had made in the kidsmobil workshop “Kleine Künstler*innen für eine große Vielfalt” of the wissens.wert.welt at the kärnten.museum: animal rescue islands built from natural materials near their schools, documented in photographs, with interactive stations and workshop materials. Three classes were to be awarded for the most rescue islands for hedgehog, wolf and lynx; the proceeds from the sale of the photographs were intended for the Climate Fund Klagenfurt. Part of the EU project Climate Art City, the exhibition was organised by the Stadtgalerie Klagenfurt with the kärnten.museum, the University of Klagenfurt and the Climate Fund Klagenfurt. Scientific supervision: Franz Rauch, Cornelia Malojer, Petra Korenjak and Stefanie Margarita Preiml (University of Klagenfurt); project lead: Katharina Kavallar (kärnten.museum). PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "111e477f-f0e6-4193-91a2-c077abe7e6e0",
+  "slug": "aus-der-asche-empor",
+  "status": "published",
+  "name": "Aus der Asche empor – Skulptur und Stickerei",
+  "sources": [
+   "invitation of the Galerie im Schloss Porcia"
+  ],
+  "text_en": "Announcement. This exhibition has not opened yet. Under the title “Aus der Asche empor” (rising from the ashes), Sylvia Ofner shows sculpture and embroidery in the Salamancakeller of Schloss Porcia. From old oriental carpets, heirlooms and needlework of the 1930s she sews mythological figures: phoenix and centaur, Europa and the bull, Gilgamesh, Lamassu and the sphinx. With needle and thread she spins a story from the roots of Europe in Egypt and Mesopotamia to the present, a Europe that has reinvented itself again and again after wars and crises. The setting echoes the theme: the palace was built in the Renaissance, the age that saw itself as the rebirth of antiquity."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "1420e853-bbc5-4816-9a30-2692f3e0ec3f",
+  "slug": "epische-gemaelde",
+  "status": "published",
+  "name": "Epische Gemälde – Zwischen Mythos und Kosmos",
+  "sources": [
+   "invitation and poster of the Galerie im Schloss Porcia",
+   "“‘Epische Gemälde | Zwischen Mythos und Kosmos’”, spittal-drau.at"
+  ],
+  "text_en": "Under the title “Epische Gemälde – Zwischen Mythos und Kosmos” (epic paintings – between myth and cosmos), Ingrid Pröller shows large-format paintings, some up to five metres wide, in the vaulted Salamancakeller of Schloss Porcia. The cycle runs from archaic landscapes to futuristic images and asks how people, nature and the cosmos relate. In “Wildes Kind” and “Kretische Landschaft” consumer waste intrudes on idyllic landscapes; “Geburt” and “Fabel” take up motifs of creation and storytelling. The poster image “Endzeit” (2022) reads a coastal scene with a child, an octopus and dead animals as a passage to a new beginning, and “Matrix” shows a cosmonaut as a modern Odysseus. Pröller, born in Schärding in 1970 and trained at the Akademie der bildenden Künste in Vienna, paints many of her works in an open-air studio on Crete."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "172f28da-11eb-4cf9-89ad-d8f65ef0554f",
+  "slug": "homestory",
+  "status": "draft",
+  "name": "HOMESTORY",
+  "sources": [
+   "“HOMESTORY – Sebastian Köpcke | Volker Weinhold, Ein fotografischer Essay – Lisa Huber, Farbholzschnitte”, villach.at",
+   "“Galerie Freihausgasse / Galerie der Stadt Villach”, langenacht.orf.at"
+  ],
+  "text_en": "The photographers Sebastian Köpcke and Volker Weinhold portray the artist Lisa Huber, born in Villach, in a photographic essay. They met as exhibiting artists at Admont Abbey and then photographed in her Berlin studio and in her workshop in the Haus der künstlerischen Begegnung in Villach. Their staged still lifes show objects from her life and work. The gallery hangs them next to large colour woodcuts by Lisa Huber. The exhibition is part of the Triennale IV Kärnten 2026."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "23b6f814-b9be-4821-96b9-93452e8c6725",
+  "slug": "wie-kriege-enden",
+  "status": "draft",
+  "name": "Wie Kriege enden / How wars end",
+  "sources": [
+   "“Sonderausstellung 2026: Wie Kriege enden / How wars end”, villach.at",
+   "“Ausstellung: Wie Kriege enden”, kaernten.orf.at, 26 July 2025",
+   "“‘WIE KRIEGE ENDEN’ – SONDERAUSSTELLUNG IM STADTMUSEUM VILLACH SETZT EIN ZEICHEN FÜR DEN FRIEDEN”, welcome2villach.at, 25 May 2025",
+   "“Museum zeigt neue Ausstellung”, klick-kaernten.at, 8 May 2026",
+   "“SchülerInnen als Co-KuratorInnen: Eröffnung der neuen Mitmachstationen”, it-gymnasium.at, 11 July 2026"
+  ],
+  "text_en": "Eighty years after the end of the Second World War, the Museum der Stadt Villach shows how wars end, in German and English. Six conflicts, from the Napoleonic Wars to the war in Ukraine, are linked to the history of Villach. Eleven eyewitnesses tell of flight, violence and new beginnings. Among the objects are a defused aerial bomb from the Second World War, a replica of an alpine position from the First World War and a Lada from Ukraine that was shot at by both sides. For 2026 the exhibition was extended and updated, with new content on the Cold War, the war in Ukraine and the sinking of the warship “Szent István”. It ends in a Peace Lab with interactive stations; two of them were developed by pupils of the BG/BRG Villach St. Martin."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "2663ff78-e74f-4770-94e9-e632e74046dd",
+  "slug": "bv-flohmarkt-2026",
+  "status": "published",
+  "name": "BV Flohmarkt 2026",
+  "sources": [
+   "“Willkommen auf der Seite des Landesverbandes Kärnten der Berufsvereinigung der bildenden Künstler Österreichs”, bv-kaernten.at",
+   "“Wir laden herzlich zum Besuch unseres BV Flohmarktes”, bv-kaernten.at"
+  ],
+  "text_en": "Announcement. The Carinthian branch of the Berufsvereinigung bildender Künstler Österreichs invites to its BV flea market at the gallery, Feldkirchner Straße 31: painting, graphic art, small furniture and tableware from the members. The market opens on Monday, 28 September 2026 from 16:00 to 20:00 and runs from 29 September to 2 October 2026 during the gallery's opening hours. This is a sale, not an exhibition, so PERMAPHEMERA will not record it as a 360° tour."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "27fcc5ab-73d8-4a9b-b4c2-9349093140fa",
+  "slug": "franz-grabmayr-stadtgalerie-klagenfurt",
+  "status": "published",
+  "name": "Franz Grabmayr – Alles Farbe",
+  "sources": [
+   "“FRANZ GRABMAYR – Alles Farbe”, stadtgalerie.net"
+  ],
+  "text_en": "The Stadtgalerie Klagenfurt devotes its winter exhibition “Alles Farbe” to Franz Grabmayr (1927–2015), the Carinthian-born painter whose thickly layered landscapes, sand pits and dance pictures made him one of Austria’s most distinctive post-war painters. Opening on 19 November 2026 at 18:00; further details have not been published yet."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "2d00261b-11e7-4b1f-9753-c7868591c628",
+  "slug": "vintage-views-from-an-unknown-future",
+  "status": "draft",
+  "name": "Gernot Fischer-Kondratovitch – vintage views from an unknown future",
+  "sources": [
+   "“Ab 12. November: Vintage in der Galerie Freihausgasse”, villach.at, 4 November 2026"
+  ],
+  "text_en": "Announcement. This exhibition has not opened yet. The Galerie Freihausgasse shows paintings by Gernot Fischer-Kondratovitch, born in Villach in 1968, under the title “vintage views from an unknown future”. According to the gallery they show pictures from a distant future: people, containers, houses and exotic animals in landscapes of ice and snow, or palm trees, beaches and seas in front of mountains. One of the works is from the series “Schneehaluzinationen” of 2026, acrylic on canvas, 100 × 140 cm."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "34a00445-7c1f-4532-86b4-61cb44218469",
+  "slug": "walther-preiml-sehnsucht",
+  "status": "published",
+  "name": "Walther Preiml – Sehnsucht",
+  "sources": [
+   "“Neue Ausstellung -Sehnsucht- in Kötschach-Mauthen”, waltherpreiml.at",
+   "“stARTup gallery”, langenacht.orf.at"
+  ],
+  "text_en": "Under the title “Sehnsucht” (longing), the printmaker and songwriter Walther Preiml, who lives in Kötschach-Mauthen, shows new work at the stARTup gallery. His woodcuts and frottages revolve around a “painful longing for the unattainable”; according to the ORF programme, the mountains of the region, seen from Preiml’s own perspective, are at the centre. The exhibition opened during the ORF Lange Nacht der Museen on 3 October 2026, when the artist also performed songs of his own. It is on view until 31 December 2026, on Fridays from 17:00 to 19:00. Preiml had already exhibited prints at the gallery in 2024."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "3f2847a5-3828-41c5-8a8d-8245a0b7711a",
+  "slug": "kunstkalender-hoffnung-und-frieden",
+  "status": "published",
+  "name": "Exhibition for the presentation of the art calendar “Hoffnung und Frieden”",
+  "sources": [
+   "“Kunstkalender Musik Begegnungen: Kunst, die von Herzen kommt”, meinbezirk.at, 30 October 2026",
+   "“Lebenshilfe Knittelfeld präsentiert neuen Kunstkalender und Wein”, kleinezeitung.at, 30 October 2026",
+   "“Künstlerischer Vormittag”, lebenshilfe-knittelfeld.at, 25 March 2026",
+   "“Hoffnung und Frieden als künstlerisches Signal in Judenburg”, murtalinfo.at, 7 April 2026"
+  ],
+  "text_en": "The Lebenshilfe Region Knittelfeld presents its art calendar “Hoffnung und Frieden” in a pop-up gallery in Knittelfeld, with the works for it on the walls. Artists of the Lebenshilfe with and without disabilities made it with Helmuth Ploschnitznigg and Adi Schmölzer, partly at a working morning with the Spielberg middle school on 24 March 2026. Works from the project also hung in the exhibition “Hoffnung &amp; Frieden” at the Stadtgalerie Judenburg in April 2026. At the vernissage Johann Hubmann, chair of the Lebenshilfe, welcomed the guests, and the two artists spoke about how the calendar came about."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "4bac4c8e-299c-49ad-92f4-29bd58d841f8",
+  "slug": "atemzuege",
+  "status": "published",
+  "name": "Atemzüge",
+  "sources": [
+   "“Ausstellung im Wallnerhaus”, kleblach-lind.at",
+   "“Ausstellung im Wallnerhaus”, radio-osttirol.at, 28 May 2026"
+  ],
+  "text_en": "Wolfgang Daborer, who lives in Spittal an der Drau, shows works from his cycle “Atemzüge” of 2025 and 2026 in the Wallnerhaus: mixed media on paper, 49.5 × 34.5 cm, and on linen, 200 × 35 cm. According to the flyer, the title refers to the line as a trace of breath. The lines come together, separate and open up space, with some accents of colour. The linen strips hang freely in the room. The exhibition opened on 21 May 2026 in the presence of Mayor Manfred Fleißner."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "585ac22d-0dd3-4526-87e5-ca2972be9974",
+  "slug": "armin-guerino-durch-die-zeit",
+  "status": "published",
+  "name": "Armin Guerino – Durch die Zeit",
+  "sources": [
+   "“ARMIN GUERINO – Durch die Zeit”, stadtgalerie.net"
+  ],
+  "text_en": "Armin Guerino’s practice bridges painting and art in public space. Landscape is his central theme, fed by travel and by his experiences in Africa. Recent works look at ecological change and extreme weather through motifs such as horizons, clouds, rain, cities and heads: the line becomes a trace, a path and a labyrinth; the city becomes landscape. Curated by Gabriele Ruff. The exhibition in the Alpen-Adria-Galerie at Theaterplatz 3 is free of charge."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "5eff5a0d-3e7c-4168-a6ca-e46867a8cc5b",
+  "slug": "karlheinz-simonitsch-living-studio",
+  "status": "published",
+  "name": "Karlheinz Simonitsch",
+  "sources": [
+   "“KARLHEINZ SIMONITSCH”, stadtgalerie.net"
+  ],
+  "text_en": "The Living Studio of the Stadtgalerie Klagenfurt announces an exhibition of works by Karlheinz Simonitsch. Opening on 1 December 2026 at 18:00; on view until 31 January 2027. Title and further details have not been published yet; the gallery reserves the right to make changes."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "67474b28-9459-4f91-a909-ab9ecb24c956",
+  "slug": "mediterraneo-harald-scheicher-2026",
+  "status": "published",
+  "name": "Mediterraneo – Ölbilder von Harald Scheicher",
+  "sources": [
+   "“Galerie Palais Fugger”, langenacht.orf.at",
+   "“Die Werkschau zeigt über 2300 Ölbilder des Malers Harald Scheicher.”, scheicher.cc"
+  ],
+  "text_en": "For the ORF Lange Nacht der Museen on 3 October 2026, the Galerie Palais Fugger in Klagenfurt showed oil paintings by the Carinthian painter Harald Scheicher under the title “Mediterraneo”. A grandson of Werner Berg, Scheicher has painted outdoors in front of the motif for decades; besides the landscape of southern Carinthia, painting journeys regularly take him to Istria, Dalmatia and Sicily. From 18:00 the artist guided visitors through the exhibition and was available for conversation; children could join tours, puzzle rallies and drawing. Whether the exhibition stayed on view after that night is not documented."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "6bd91200-8b2d-43f2-92e3-7bb33da400c6",
+  "slug": "blinddate-der-perspektiven",
+  "status": "published",
+  "name": "Blinddate der Perspektiven",
+  "sources": [
+   "“Ausstellung ‘Blinddate der Perspektiven’”, kultur-impuls.com",
+   "“Blinddate der Perspektiven”, kaerntenportal.at, 7 September 2026",
+   "inesurach.at – Home page",
+   "nicolinevonheyl.com – About",
+   "bucher-sakowski.at – Biography"
+  ],
+  "text_en": "The association kultur.im.puls shows works by three graduates of the Freie Akademie der Bildenden Künste Kärnten in Klagenfurt: Inés Urach, Nicoline von Heyl and Roswitha Bucher-Sakowski. According to the organiser, the title “Blinddate der Perspektiven” (blind date of perspectives) refers to three separately developed positions meeting in one exhibition. Urach combines paper and paint in abstract pictures, von Heyl paints process-based works in mixed media, and Bucher-Sakowski paints figurative pictures in acrylic. The works hang in the daylit stairwell gallery of the Impuls Center; further works are on view in the stairwell of the Seeboden municipal office."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "773b8787-fda4-4aca-b4b0-4c9774cc0192",
+  "slug": "trigeniale-26",
+  "status": "published",
+  "name": "Trigeniale 26",
+  "sources": [
+   "“Invitation Trigeniale 26 (bewegungINkultur)”, bewegungINkultur",
+   "“KünstlerInnen aus Friaul, Slowenien und Kärnten: Trigeniale 26 – Alpenadriatische Harmonie im Stadthaus Klagenfurt”, meinbezirk.at, 18 October 2026",
+   "“Trigeniale 26”, novice.at, 7 October 2026"
+  ],
+  "text_en": "The international Alps-Adriatic joint exhibition of the Kulturinitiative bewegungINkultur shows works by five artists from four municipalities in Friuli, Carinthia and Slovenia. Alda Grudina (Goriška Brda) shows flower paintings in oil, Alessandra Minin (Tavagnacco) abstract paintings and Ondina Altran (Monfalcone) paintings of the biblical story of Susanna and the Elders. Karl Nackler (Klagenfurt) shows white-on-black drawings of conductors, violinists and pianists as well as still lifes in colour; Marlis Lepicnik (Klagenfurt) shows women's faces. The exhibition continues the initiative's eleven-year exchange with the Gruppo artistico culturale Albrecht Dürer in Tavagnacco, the artists' association DABLO in Brda and the Circolo Culturale ENDAS in Monfalcone. Governor Daniel Fellner is the honorary patron; the Euregio Senza Confini, the Alps-Adriatic Alliance and the Alpe-Adria Center for Cross-border Cooperation (AACC) give their patronage."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "77ca9d88-16aa-446a-88a6-f41eb06d3c19",
+  "slug": "trigeniale-brda-26",
+  "status": "draft",
+  "name": "Trigeniale Brda 26",
+  "sources": [
+   "poster of the exhibition",
+   "“Kunst in den Hügeln: Trigeniale Brda im Herbst”, meinbezirk.at, 28 September 2026"
+  ],
+  "text_en": "The 18th exhibition of the series “Kunst in den Hügeln – Umetnost v Brdih – Arte nel Collio” shows paintings by three women artists from Friuli, Slovenia and Carinthia in the hall of the Kmetija Moro winery in Vipolže, Goriška Brda. Giulia Cernetig (Udine) belongs to the Gruppo artistico culturale Albrecht Dürer in Tavagnacco. Aleksandra Rusjan (Brda), a member of the artists’ association DABLO, shows among other works “Kanjon”, “Češnja” and Dobrovo Castle. Margrit Pernull (Hermagor) shows landscapes of the Nockberge and the Weissensee, fruit and flowers. The Kulturinitiative bewegungINkultur organises the exhibition with both associations, under the patronage of the Alpe-Adria Center for Cross-border Cooperation (AACC). Franc Mužič, mayor of Brda, opened it; it was his last opening in the series, as he leaves office in November 2026."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "7c5b46b5-3c37-4f42-9cfb-440799b6dfe2",
+  "slug": "spannungsfelder-und-perspektiven-2026",
+  "status": "published",
+  "name": "Spannungsfelder und Perspektiven",
+  "sources": [
+   "“Europahaus 1. Stock – Großer und Kleiner Saal”, langenacht.orf.at",
+   "“Geschichte”, kunstverein-velden.at"
+  ],
+  "text_en": "For the ORF Lange Nacht der Museen 2026, the Kunstverein Velden showed the group exhibition “Spannungsfelder und Perspektiven” (fields of tension and perspectives) in the large and small halls on the first floor of the Europahaus in Klagenfurt. The works by members of the association circled around opposites, encounters and shifting points of view – the contrasts that arise where different things meet. The range of motifs, techniques and approaches was correspondingly wide, from gestural painting to drawing. The announcement named Siegfried Zellot, Gudrun Zikulnig, Slava Mohl, Alfred Scheikl and Sylvia Campidell. Guided tours started at 18:00, and the artists were present for conversation. The association from Velden am Wörther See has taken part in the Lange Nacht with themed exhibitions since 2004. PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "90b23239-414e-49c4-8261-49e5c3b2ecca",
+  "slug": "klaus-zlattinger-and-friends",
+  "status": "published",
+  "name": "Klaus Zlattinger & Friends",
+  "sources": [
+   "“Ausstellung Klaus Zlattinger and Friends”, kultur-impuls.com"
+  ],
+  "text_en": "Announcement. This exhibition has not opened yet. The association kultur.im.puls marks the tenth anniversary of the death of Klaus Zlattinger, who died in December 2016 and worked as an artist, art educator and gallerist. The exhibition presents a cross-section of his work together with works by artist friends, among them Wolfgang Daborer, Christine De Pauli, Otmar Eder and Karl Vouk; the complete list has not been published. At the vernissage Christine Strobl-Oman reads from the poetry volume “alles leben”, which includes photographic works by Zlattinger. Further works are on view in the Seeboden municipal office."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "9de21df0-8b0e-4388-b56c-3ad6f354210d",
+  "slug": "wagner-reloaded",
+  "status": "published",
+  "name": "Wagner reloaded",
+  "sources": [
+   "“WAGNER RELOADED”, stadtgalerie.net",
+   "“WAGNER RELOADED”, stadtgalerie.net"
+  ],
+  "text_en": "Since 2011 the Stadttheater Klagenfurt has staged Richard Wagner with marked intensity, from Der fliegende Holländer to Tristan und Isolde. The Theatergalerie shows four costumes from Wagner’s Walküre and Tristan und Isolde together with their designs, and turns to the work behind the curtain: the theatre’s tailoring and make-up departments, headed by Bettina Breitenecker and Renate Wutte. Stage photographs by Arnold Pöschl accompany the costumes. Curated by Günter Schmidauer, in cooperation with the Stadttheater Klagenfurt, which lent the works. The room also holds Burgis Paier’s permanent installation Das große Welttheater."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "a23ab66d-6019-4a1a-9a82-21732c90a1d1",
+  "slug": "fragil",
+  "status": "draft",
+  "name": "FRAGIL",
+  "sources": [
+   "“‘FRAGIL’ Jahresausstellung Kunstverein postWERK”, villach.at",
+   "“FRAGIL | Jahresthema 2026”, postwerk.at, 2 September 2026",
+   "“Dinzlschloss / Kulturabteilung der Stadt Villach”, langenacht.orf.at"
+  ],
+  "text_en": "The Kunstverein postWERK devotes its annual exhibition at the Dinzlschloss to fragility, within the theme “schwach • šibko • debole” of the Triennale IV Kärnten 2026. Members and guest artists from Austria, Germany, Slovenia and Iran show painting, photography, installation, literature and performance. According to the organiser the exhibition treats tenderness as a state of attention, not of weakness. The works deal with vulnerability in material and in people, with fragile ecosystems and with a shared future. On the ORF Long Night of Museums on 3 October 2026, Christina Clar and Phil Yaeger performed “Wieso wir uns wiegen”."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "b3d73d2d-d41c-48e6-a233-46f7141c53b5",
+  "slug": "schwach-unperfekt-ausgefranst-echt-2026",
+  "status": "published",
+  "name": "Schwach.Unperfekt.Ausgefranst.Echt",
+  "sources": [
+   "“Europahaus Erdgeschoß”, langenacht.orf.at",
+   "“Ausstellungen/Exhibition”, inesurach.at"
+  ],
+  "text_en": "On the ground floor of the Europahaus in Klagenfurt, Inés Urach showed the solo exhibition “Schwach.Unperfekt.Ausgefranst.Echt” (weak, imperfect, frayed, real) for the ORF Lange Nacht der Museen 2026. She announced it as a contribution to the Triennale IV Kärnten and its theme “schwach.šibko.debole”. The exhibition set cracks, breaks and frayed edges against the ideal of smooth, flawless surfaces and read them as traces of movement, time and resistance: imperfection not as a lack but as a form of honesty. Urach studied at the Freie Akademie der Bildenden Künste in Klagenfurt; she works abstractly and combines painting with paper and collaged elements. The artist was present for talks and guided tours from 18:00. PERMAPHEMERA recorded the exhibition as a 360° tour, which is being prepared for publication here."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "e03373b7-de2b-4e3e-9943-cb975b1f9a4e",
+  "slug": "dialog-ars-carinthia-kunst-und-handwerk",
+  "status": "draft",
+  "name": "DIALOG – ARS CARINTHIA | Kunst & Handwerk",
+  "sources": [
+   "stadtgalerie.net"
+  ],
+  "text_en": "DIALOG is part of INSIEME, the tenth design experiment of ARS CARINTHIA – Kunst &amp; Handwerk, with which the initiative also marks its 30th anniversary in 2026. At the Stadtgalerie Klagenfurt two positions at a time answer each other in sequence: each pair starts from a freely chosen theme, first conceived for a defined space, real or imagined, and selected craft workshops realise the designs as active co-creators. The pairs are Esther Stocker and Matteo Thun, Sofia Podreka and Boris Podrecca, Laurids and Manfred Ortner, Karsten K. Krebs and HG Esch, Theres Cassini and Eva Schlegel, Sophie Grell and Ursula Klein, and Pepo Pichler and Walter Hösel; Tine Steinthaler works in exchange with an artificial intelligence. Curated by Walter Hösel. An exhibition of ARS CARINTHIA in cooperation with the Stadtgalerie Klagenfurt."
+ },
+ {
+  "collection": "pp_exhibitions",
+  "id": "e0d42e01-4846-4aa8-9e22-16566122847e",
+  "slug": "bv-art-ex-26",
+  "status": "published",
+  "name": "BV ART-EX 26",
+  "sources": [
+   "“BV Galerie Kärnten”, art-navi.at"
+  ],
+  "text_en": "Announcement. This exhibition has not opened yet. ART-EX is the annual exhibition of the members of the Carinthian branch of the Berufsvereinigung bildender Künstler Österreichs. The 2026 edition opens on Thursday, 5 November 2026 at 18:00 at the BV Galerie Kärnten, Feldkirchner Straße 31, and runs until 24 November 2026. Gallery direction: Margaretha Bauer, vice president of the BV Kärnten. Press: Eva Asaad. Details on the participating artists follow as soon as the invitation is published."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "0a004d03-d556-4f92-bfca-e9a79ad5e2de",
+  "slug": "kultur-im-puls",
+  "status": "published",
+  "name": "kultur.im.puls",
+  "sources": [
+   "“Der Verein ‘kultur.im.puls’”, kultur-impuls.com",
+   "impulscenter.at"
+  ],
+  "text_en": "The association kultur.im.puls was founded in 2009 and runs the Galerie im Stiegenhaus in the staircase of the Impuls Center in Seeboden, with a second exhibition space in the stairwell of the Seeboden municipal office. Carolin Meinl has chaired it since 2024; Peter Kleinfercher, owner of the Impuls Center, is its honorary chairman. Besides the exhibitions it organises “Kunst am Abend”, poetry slams, painting Saturdays and an art lending library (Artothek)."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "23619e4b-e366-4006-bbed-53d0822788ca",
+  "slug": "volkskino-klagenfurt",
+  "status": "draft",
+  "name": "Volkskino Klagenfurt",
+  "sources": [
+   "“100 JAHRE VOLKSKINO”, volkskino.at, 21 September 2026",
+   "“Förderungen Programmkinos 2026 – Zusagen”, bmwkms.gv.at"
+  ],
+  "text_en": "The Volkskino at Kinoplatz 3 in Klagenfurt shows current films, film classics, silent films and original-language versions, and offers screenings for schools. The federal funding list for programme cinemas for 2026 names it as “Alternativkino Klagenfurt, Neues Volkskino”. In 2026 the cinema marks 100 years of the Volkskino."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "3934001a-940b-4431-84bc-8af5e7834dd9",
+  "slug": "universitaet-klagenfurt",
+  "status": "published",
+  "name": "Universität Klagenfurt",
+  "sources": [
+   "“Universität”, aau.at"
+  ],
+  "text_en": "The Universität Klagenfurt was founded in 1970. It has four faculties and 30 institutes, with more than 13,300 students. Its Institute of Instructional and School Development (Institut für Unterrichts- und Schulentwicklung) belongs to the Faculty of Cultural and Educational Sciences."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "44330447-a71c-4ff1-bfd4-cd868a8cdcd9",
+  "slug": "bewegung-in-kultur",
+  "status": "published",
+  "name": "bewegung / movimento / gibanje IN kultur",
+  "sources": [
+   "artist sheet of Trigeniale 26 (bewegungINkultur)",
+   "“KünstlerInnen aus Friaul, Slowenien und Kärnten: Trigeniale 26 – Alpenadriatische Harmonie im Stadthaus Klagenfurt”, meinbezirk.at, 18 October 2026",
+   "“Trigeniale 26”, novice.at, 7 October 2026"
+  ],
+  "text_en": "The Kulturinitiative bewegung / movimento / gibanje IN kultur (short: bewegungINkultur) is based in Klagenfurt and names itself in German, Italian and Slovenian. Since 2015 it has kept up friendly and cultural contacts with artists and organisations in Friuli and Slovenia, above all with the Gruppo artistico culturale Albrecht Dürer in Tavagnacco near Udine, the artists' association DABLO in Goriška Brda and the Circolo Culturale ENDAS in Monfalcone. With them it organises bilateral and trilateral exhibitions in Carinthia, Friuli and the Slovenian Littoral. In Klagenfurt the initiative shows its three-country exhibitions in the Studiogalerie of the Stadthaus, since 2024 under the title Trigeniale. Since 2018 it has run the exhibition series “Kunst in den Hügeln – Umetnost v Brdih – Arte nel Collio” at the Kmetija Moro winery in Vipolže, Goriška Brda, where artists from Carinthia exhibit. It also organises cultural trips to castles, palaces and exhibitions in Friuli and Slovenia. Its contact person and main organiser is Gerhard Lepicnik."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "6795ca3d-01bf-4d8f-ab1d-35a16d30cb34",
+  "slug": "stadttheater-klagenfurt",
+  "status": "draft",
+  "name": "Stadttheater Klagenfurt",
+  "sources": [
+   "“Stadttheater Klagenfurt”, en.wikipedia.org",
+   "“Wandtexte Wagner reloaded”, stadtgalerie.net"
+  ],
+  "text_en": "The Stadttheater Klagenfurt was built from 1908 to 1910 to designs by the Viennese firm Fellner &amp; Helmer as the Kaiser-Franz-Joseph-Jubiläumstheater, for the 60th jubilee of Emperor Franz Joseph I. It was renovated in the 1960s and again from 1996 to 1998 to designs by Günther Domenig, and it received Nestroy Theatre Prizes in 2003, 2006 and 2011. Its artistic director (Intendant) is Aron Stiehl. Since 2011 the theatre has staged the works of Richard Wagner with marked intensity, from Der fliegende Holländer (2011) to Tristan und Isolde (2025)."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "6bacd2a2-dfc2-4eb4-8202-962eefb416f8",
+  "slug": "climate-fund-klagenfurt",
+  "status": "published",
+  "name": "Climate Fund Klagenfurt",
+  "sources": [
+   "“Climate Fund Klagenfurt”, smartclimatelab.at"
+  ],
+  "text_en": "The Climate Fund Klagenfurt was set up in 2025 as an association within the EU project Climate Funding 4 Cities. It raises money for climate protection and climate adaptation projects in the greater Klagenfurt area; the projects are chosen in regular idea competitions run by the Smart Climate Lab, the city's citizen office for climate matters. In the first round, in spring 2025, a jury selected seven projects, funded with about 32,000 euros."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "94e3cf95-8c95-42b9-9dc2-be350e092c35",
+  "slug": "kaernten-museum",
+  "status": "published",
+  "name": "kärnten.museum",
+  "sources": [
+   "“kärnten.museum”, de.wikipedia.org",
+   "“Über uns”, wissenswertwelt.at"
+  ],
+  "text_en": "The kärnten.museum is the museum of cultural history and natural science of the State of Carinthia. Its history begins in 1844 with the founding of the Geschichtsverein für Kärnten; the main building, the Rudolfinum at Museumgasse 2 in Klagenfurt, opened on 10 July 1884. After water damage in 2014 and a general renovation from 2020, the museum reopened on 21 November 2022 under the name kärnten.museum, formerly Landesmuseum Kärnten. Its hands-on museum for children and young people, the wissens.wert.welt, visits schools across Carinthia with the kidsmobil."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "cc483b81-115f-4d30-a83a-bd6da361c764",
+  "slug": "lebenshilfe-region-knittelfeld",
+  "status": "draft",
+  "name": "Lebenshilfe Region Knittelfeld",
+  "sources": [
+   "“Unsere Geschichte”, lebenshilfe-knittelfeld.at",
+   "“Die Lebenshilfe in den Bundesländern”, lebenshilfe.at",
+   "“Willkommen im ‘Ideenreich’ – unserem inklusiven Verkaufslokal mit integrierter Produktionsstätte”, ideenreich-knittelfeld.at",
+   "“Knittelfeld: Das ‘Ideenreich’ eröffnete mit Pauken und Trompeten”, meinbezirk.at, 20 March 2025"
+  ],
+  "text_en": "The Lebenshilfe Region Knittelfeld began on 3 February 1982 as a parents’ association and today is a non-profit company with its association behind it, chaired by Johann Hubmann. Nearly 100 people work in its workshops, homes and mobile services for people with intellectual disabilities. It is a member of the Lebenshilfe network in Austria. In the shop “Ideenreich” at Hauptplatz 17 it sells products made in its workshops."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "e76185b6-d668-475e-9e05-b0a29dbc398b",
+  "slug": "kunstverein-postwerk",
+  "status": "draft",
+  "name": "Kunstverein postWERK",
+  "sources": [
+   "“Kunstverein”, postwerk.at"
+  ],
+  "text_en": "The Kunstverein postWERK is a non-profit art association based in Villach, founded in 2012 by Dorothee Unkel, its honorary president. Barbara Ambrusch-Rapp has chaired it since January 2020. Members and guest artists show an annual exhibition on a yearly theme, in 2026 “FRAGIL” at the Dinzlschloss in Villach."
+ },
+ {
+  "collection": "pp_organisations",
+  "id": "f390fbfe-43b9-49b1-a947-d79a5ec69a1b",
+  "slug": "jump-dome-klagenfurt",
+  "status": "draft",
+  "name": "JUMP DOME Klagenfurt",
+  "sources": [
+   "“Österreichs größter Trampolinpark auf 5000m²”, jumpdome.at"
+  ],
+  "text_en": "JUMP DOME Klagenfurt is a trampoline park of more than 5,000 m² at Magazingasse 14 in Klagenfurt. It opened in May 2021."
+ }
+]
