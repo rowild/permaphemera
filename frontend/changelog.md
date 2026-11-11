@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.77 - 2026-11-11 10:07:06 CET
+
+- No change in the site's code. In the archive (live since today): the Galerie im Stiegenhaus shows photos of its own building; the association kultur.im.puls has a board photo, its address and a longer text (its board and team members show once they are published); the exhibition "Klaus Zlattinger & Friends" now shows with an image and its organiser, and the artists Klaus Zlattinger, Karl Vouk, Othmar Eder and Christine De Pauli have biographies. The work logs and SEO texts of these changes are filed.
+
 ## 0.0.76 - 2026-11-11 08:35:08 CET
 
 - No visible change. Behind the scenes: the nightly update of the search texts and link previews works again (it had stopped after 0.0.74 because a file was missing on the server). The monthly news report had the same gap.

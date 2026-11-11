@@ -1,0 +1,20 @@
+[
+  { "collection": "exhibitions", "slug": "klaus-zlattinger-and-friends",
+    "en": { "title": "Klaus Zlattinger & Friends – Galerie im Stiegenhaus", "meta_description": "Ten years after his death: works by Klaus Zlattinger with Daborer, De Pauli, Eder, Vouk and Januš, Galerie im Stiegenhaus, Seeboden, 16 Nov–7 Dec 2026." },
+    "de": { "title": "Klaus Zlattinger & Friends – Galerie im Stiegenhaus", "meta_description": "Zehn Jahre nach seinem Tod: Werke von Klaus Zlattinger mit Daborer, De Pauli, Eder, Vouk und Januš, Galerie im Stiegenhaus, Seeboden, 16. 11.–7. 12. 2026." } },
+  { "collection": "persons", "slug": "klaus-zlattinger",
+    "en": { "title": "Klaus Zlattinger (1956–2016) – artist, Spittal", "meta_description": "Klaus Zlattinger (1956–2016), artist and gallerist, ran the Galerie im Schloss Porcia in Spittal from 1993 to 2005; prints made from travel photographs." },
+    "de": { "title": "Klaus Zlattinger (1956–2016) – Künstler, Spittal", "meta_description": "Klaus Zlattinger (1956–2016), Künstler und Galerist, leitete 1993 bis 2005 die Galerie im Schloss Porcia in Spittal; Fotografiken nach Reisefotos." } },
+  { "collection": "persons", "slug": "karl-vouk",
+    "en": { "title": "Karl Vouk – artist and architect, Carinthia", "meta_description": "Karl Vouk, born 1958 in Klagenfurt, artist and architect: drawing, painting, film, art in public space and cross-border projects in Carinthia and Slovenia." },
+    "de": { "title": "Karl Vouk – Künstler und Architekt, Kärnten", "meta_description": "Karl Vouk, geboren 1958 in Klagenfurt, Künstler und Architekt: Zeichnung, Malerei, Film, Kunst im öffentlichen Raum, Projekte über die Grenze nach Slowenien." } },
+  { "collection": "persons", "slug": "otmar-eder",
+    "en": { "title": "Othmar Eder – artist from Kufstein", "meta_description": "Othmar Eder, born 1955 in Kufstein, studied in Vienna and lives in Switzerland since 1982: drawing, video, photography; Thurgauer Kulturpreis 2025." },
+    "de": { "title": "Othmar Eder – Künstler aus Kufstein", "meta_description": "Othmar Eder, geboren 1955 in Kufstein, studierte in Wien und lebt seit 1982 in der Schweiz: Zeichnung, Video, Fotografie; Thurgauer Kulturpreis 2025." } },
+  { "collection": "persons", "slug": "christine-de-pauli",
+    "en": { "title": "Christine De Pauli – painter, Klagenfurt", "meta_description": "Christine De Pauli, born 1946 near Trento, studied with Josef Mikl in Vienna and paints in Klagenfurt, mostly egg tempera; works in the Albertina." },
+    "de": { "title": "Christine De Pauli – Malerin, Klagenfurt", "meta_description": "Christine De Pauli, geboren 1946 bei Trient, studierte bei Josef Mikl in Wien und malt in Klagenfurt, meist in Eitempera; Arbeiten in der Albertina." } },
+  { "collection": "persons", "slug": "gustav-janus",
+    "en": { "title": "Gustav Januš – painter and poet, Carinthia", "meta_description": "Gustav Januš, born 1939 in Zell-Pfarre, Carinthian painter and poet who writes in Slovene; Petrarca-Preis 1984, poems translated by Peter Handke." },
+    "de": { "title": "Gustav Januš – Maler und Dichter, Kärnten", "meta_description": "Gustav Januš, geboren 1939 in Zell-Pfarre, Kärntner Maler und Dichter, der slowenisch schreibt; Petrarca-Preis 1984, Gedichte übersetzt von Peter Handke." } }
+]

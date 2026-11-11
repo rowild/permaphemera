@@ -58,6 +58,24 @@ Open questions for the owner: which images matter most (artworks, exhibition pho
 Is a watermark acceptable? Do galleries and artists need to know about these rules (for
 example on `/how-it-works/` or in the terms)?
 
+## Open points from 2026-11-11 (Galerie im Stiegenhaus, kultur.im.puls, Zlattinger)
+
+Added 2026-11-11. Each needs the owner's word or material from outside.
+
+1. **Publish the drafts:** the 11 new members of kultur.im.puls (`plans/2026-11-11__kultur-im-puls.md`)
+   and Gustav Januš (`plans/2026-11-11__klaus-zlattinger-und-friends.md`). Their memberships and
+   the participation appear as soon as they are published.
+2. **Poster of "Klaus Zlattinger & Friends":** none is online. The exhibition shows the small
+   image "Wie eine Landschaft" (468 px, artist not named). Ask Wolfgang Daborer for the poster
+   or invitation PDF; then replace `image` and set `source_pdf`.
+3. **Organisation logos:** `pp_organisations.logo` is filled for kultur.im.puls, but no page
+   shows organisation logos. Owner to decide whether the organisation page should (design
+   change, test first).
+4. **Photographer of the Stiegenhaus photos:** both photos credit only "© kultur.im.puls"; ask
+   Wolfgang Daborer who took them.
+5. **Unused file:** the old Hauptplatz photo of Seeboden (`hauptplatz-seeboden.jpg`) is no longer
+   used by any record; delete it in the admin app if wanted.
+
 ## Open points from 2026-11-09 (newsletter modal, linked sources)
 
 Added 2026-11-09. Small, but each needs the owner's word or a later moment.
