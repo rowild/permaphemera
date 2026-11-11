@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.75 - 2026-11-11 08:30:13 CET
+
+- Photos stand straight: the gallery cards on the galleries page and the framed picture at the top of a gallery, person, organisation or event page are no longer tilted. On hover a card photo only grows a little.
+
 ## 0.0.74 - 2026-11-09 22:30:22 CET
 
 - Galleries page: each country has its own count ("Galerien in Österreich", "Galerien in Slowenien"). The filter shows each country's name above its federal states or regions, with a thin line between countries. The filters turn red on hover, like links. The search also finds a gallery by its country's name.
