@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "docs/legal/2026-11-11__ki-schutz-massnahmen.html"
+        ],
+        "createdAt": "2026-11-11T20:07:38.294Z",
+        "reason": "Claude decided: the page copies the owner's letter 'Partner der ersten Stunde'; title is 32pt vs 10.6pt text, and the small spaced-capital section labels are taken from that letter on purpose"
+      }
+    ]
+  }
+}

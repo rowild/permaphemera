@@ -74,3 +74,10 @@ crawlers.
   data written into uploads never reaches a visitor. Static files (tours, `start-view.jpg`) are
   served unchanged, so data written into them stays. Next: the Tour Editor writes the rights data
   into every exported tour file (owner's idea, 2026-11-09); Directus images need their own way.
+
+## 2026-11-11: report renewed
+
+`docs/legal/2026-11-11__ki-schutz-massnahmen.pdf` replaces the 2026-11-04 report (layout of the
+letter "Partner der ersten Stunde"; facts checked live, read-only, on 2026-11-11). New in it:
+Cloudflare's own robots.txt section (Content-Signal `ai-train=no`, 32 ids), the 2026-11-09 hotlink
+rule, the current terms quote. See `plans/2026-11-11__ki-schutz-pdf-layout.md`.

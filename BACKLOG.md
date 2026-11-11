@@ -10,7 +10,9 @@ Started 2026-11-04 (`plans/2026-11-04__ai-image-protection.md`, release 0.0.47, 
 contracts `docs/legal/2026-11-04__ki-schutz-massnahmen.pdf`): done are steps 1 to 4 and 7 below
 (robots.txt, Cloudflare AI training block, TDM reservation, meta tags and nginx headers, terms,
 hotlink protection; its gap for Directus images and `.webp` tour tiles closed 2026-11-09).
-Open: steps 5, 6 and 8. Renew the report after each change.
+Open: steps 5, 6 and 8. Renew the report after each change. Renewed 2026-11-11 in the layout of
+the letter "Partner der ersten Stunde": `docs/legal/2026-11-11__ki-schutz-massnahmen.pdf` (source
+`.html` beside it, render `plans/2026-11-11__ki-schutz-pdf-layout/scripts/render-pdf.cjs`).
 
 Goal: AI systems must not take the images of this website (exhibition photos, artworks, the
 360° tours) to train models or to copy them.

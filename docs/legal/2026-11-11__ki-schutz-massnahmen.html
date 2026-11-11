@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Schutz vor KI-Auslese – PermaPhemera</title>
+<!-- Source of docs/legal/2026-11-11__ki-schutz-massnahmen.pdf.
+     Layout, colours and sender block as in "Partner der ersten Stunde" (11. November 2026).
+     Render: node plans/2026-11-11__ki-schutz-pdf-layout/scripts/render-pdf.cjs -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=block" rel="stylesheet">
+<style>
+  :root {
+    --ink: #191714;
+    --muted: #5d5852;
+    --address: #57524c;
+    --accent: #843f2e;
+    --rule: #eadcd7;
+    --display: "Cormorant Garamond", "EB Garamond", Garamond, serif;
+    --body: "EB Garamond", Garamond, serif;
+    --mono: "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  @page {
+    size: A4;
+    margin: 24mm 27mm 22mm 32mm;
+    @bottom-left {
+      content: "PermaPhemera · KI-Schutz 2026";
+      font: 500 6.8pt var(--display);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      vertical-align: top;
+      padding-top: 6mm;
+      margin-left: -2.5mm;
+    }
+    @bottom-right {
+      content: counter(page) " / " counter(pages);
+      font: 500 6.8pt var(--display);
+      letter-spacing: 0.24em;
+      color: var(--accent);
+      vertical-align: top;
+      padding-top: 6mm;
+      margin-right: -2.5mm;
+    }
+  }
+
+  html { background: #fff; }
+  body {
+    margin: 0;
+    font: 400 10.6pt/1.47 var(--body);
+    color: var(--ink);
+    font-kerning: normal;
+    hyphens: auto;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Head: logo left, date right, thin rule under both. */
+  .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 4.2mm;
+    border-bottom: 0.5pt solid var(--rule);
+  }
+  .head img { width: 88mm; height: auto; display: block; }
+  .head .date {
+    font: italic 400 11.5pt var(--display);
+    color: var(--muted);
+    line-height: 1;
+    padding-bottom: 0.6mm;
+  }
+
+  h1 {
+    font: 300 32pt/1.05 var(--display);
+    margin: 15mm 0 2.5mm;
+    letter-spacing: 0.002em;
+  }
+  .subtitle {
+    font: italic 400 14.5pt/1.3 var(--display);
+    color: var(--muted);
+    margin: 0 0 4mm;
+  }
+  .meta {
+    font-size: 9pt;
+    line-height: 1.5;
+    color: var(--address);
+    margin: 0 0 10mm;
+  }
+
+  p { margin: 0 0 2.6mm; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Section label: spaced capitals in the accent, with a rule above. */
+  h2 {
+    font: 500 8.4pt/1.3 var(--display);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 7.5mm 0 5mm;
+    padding-top: 6.5mm;
+    border-top: 0.5pt solid var(--rule);
+    break-after: avoid;
+  }
+  h2:first-of-type { border-top: 0; padding-top: 0; }
+
+  /* Numbered item: number in the left column, italic lead in the accent. */
+  .item {
+    display: grid;
+    grid-template-columns: 9mm 1fr;
+    margin: 0 0 3.6mm;
+  }
+  .item > .n {
+    font: italic 400 11pt/1.4 var(--display);
+    color: var(--accent);
+    padding-top: 0.5mm;
+  }
+  .item > .n.wide { letter-spacing: -0.01em; }
+  .lead { font-style: italic; color: var(--accent); }
+  .item ul { margin: 1.4mm 0 2.4mm; }
+  .item p:last-child, .item ul:last-child { margin-bottom: 0; }
+
+  ul { margin: 0 0 3mm; padding-left: 4.2mm; }
+  li { margin: 0 0 1.4mm; padding-left: 0.6mm; }
+  li::marker { color: var(--accent); }
+
+  code {
+    font: 400 8.2pt var(--mono);
+    color: var(--address);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .bots { font-size: 9.6pt; line-height: 1.45; color: var(--address); }
+
+  blockquote {
+    margin: 2.4mm 0 3.4mm 9mm;
+    font: italic 400 10.6pt/1.47 var(--body);
+    color: var(--accent);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.2pt;
+    line-height: 1.4;
+    margin: 1mm 0 4mm;
+  }
+  th {
+    font: 500 7.4pt var(--display);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: left;
+    padding: 0 3mm 2mm 0;
+    border-bottom: 0.5pt solid var(--rule);
+  }
+  td {
+    vertical-align: top;
+    padding: 1.7mm 3mm 1.7mm 0;
+    border-bottom: 0.5pt solid var(--rule);
+  }
+  td:first-child { width: 47%; }
+  tr { break-inside: avoid; }
+  .ok { color: var(--ink); }
+
+  .closing { margin-top: 6mm; }
+
+  /* Sender block, as in the letter. */
+  .sign { margin-top: 9mm; break-inside: avoid; }
+  .sign .name { font-weight: 500; margin: 0 0 1.2mm; }
+  .sign .addr { font-size: 9.4pt; line-height: 1.5; color: var(--address); margin: 0; }
+  .lines { margin-top: 13mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+  .lines div {
+    border-top: 0.5pt solid var(--address);
+    padding-top: 1.5mm;
+    font-size: 8.6pt;
+    color: var(--address);
+  }
+
+  .keep { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<header class="head">
+  <img src="assets/permaphemera-logo-v2-de.svg" alt="PermaPhemera – Ein Archiv von Ausstellungen in Österreich">
+  <div class="date">11. November 2026</div>
+</header>
+
+<h1>Schutz vor KI-Auslese</h1>
+<p class="subtitle">Bericht über die technischen und rechtlichen Maßnahmen für die Inhalte von permaphemera.at</p>
+<p class="meta">
+  Website: https://permaphemera.at · Betreiber: Robert Wildling (Medieninhaber laut Impressum)<br>
+  Stand: 11. November 2026 · Dieser Bericht ersetzt den Bericht vom 4. November 2026.
+</p>
+
+<h2>1 · Gegenstand</h2>
+
+<p>PermaPhemera bewahrt Ausstellungen als 360°-Rundgänge auf. Die Aufnahmen entstehen im
+Einverständnis mit der Galerie oder den Inhaber:innen des Ausstellungsorts und mit den
+Kunstschaffenden. Nach dem Abbau bleibt die Ausstellung als Rundgang auf der Website
+permaphemera.at erhalten, die für alle öffentlich und frei zugänglich ist.</p>
+
+<p>Gezeigt werden Räume, nicht einzelne Kunstwerke: wie eine Ausstellung im Raum eingerichtet war,
+wie die Werke zueinander, zum Licht und zur Architektur stehen, welche Blickwinkel, Wege und
+welche Atmosphäre entstanden sind. Jede Ausstellung muss diese Anordnung im Raum neu finden.
+Ein zweidimensionales Bild in einem Katalog hält sie nicht fest. 360°-Aufnahmen, zu einem
+begehbaren Rundgang verbunden (ähnlich wie bei Google Street View), halten sie fest.</p>
+
+<p>Dazu enthält die Website Fotografien von Ausstellungsräumen und Gebäuden, Einladungen und Texte
+zu Ausstellungen, Kunstschaffenden und Orten. In den Rundgängen und Bildern sind Kunstwerke zu
+sehen. Die Rechte an den Werken bleiben bei den Kunstschaffenden, die Rechte an Fotografien bei
+den Fotograf:innen, Institutionen und sonstigen Berechtigten.</p>
+
+<p>Dieser Bericht beschreibt, welche Maßnahmen bestehen, damit diese Inhalte nicht für das Training
+von KI-Systemen, für Bilddatensätze oder für das Erzeugen ähnlicher Werke ausgelesen werden. Er
+beschreibt auch, wo die Grenzen dieser Maßnahmen liegen und welche weiteren Schritte geplant sind.</p>
+
+<h2>2 · Rechtliche Grundlage</h2>
+
+<div class="item"><div class="n">a</div><div>
+  <span class="lead">§ 42h Abs. 6 UrhG (Österreich).</span> Vervielfältigungen für Text und Data Mining sind
+  nicht frei zulässig, wenn der Rechteinhaber sie ausdrücklich untersagt hat. Bei Werken, die im
+  Internet öffentlich zugänglich sind, muss dieser Nutzungsvorbehalt in maschinenlesbarer Form
+  erfolgen.
+</div></div>
+<div class="item"><div class="n">b</div><div>
+  <span class="lead">Art. 4 Abs. 3 der Richtlinie (EU) 2019/790 (DSM-Richtlinie).</span> Die europäische
+  Grundlage dieses Vorbehalts.
+</div></div>
+<div class="item"><div class="n">c</div><div>
+  <span class="lead">Verordnung (EU) 2024/1689 (KI-Verordnung), Art. 53 Abs. 1 lit. c.</span> Anbieter von
+  KI-Modellen mit allgemeinem Verwendungszweck müssen eine Strategie zur Einhaltung des
+  Urheberrechts der Union haben, insbesondere um einen solchen Vorbehalt zu ermitteln und
+  einzuhalten.
+</div></div>
+
+<p>PermaPhemera erklärt den Vorbehalt auf fünf voneinander unabhängigen Wegen, in maschinenlesbarer
+Form und in den Nutzungsbedingungen (Abschnitte 3.1 bis 3.5). Zusätzlich sperrt der Netzwerkdienst
+der Website bekannte KI-Trainings-Crawler technisch (Abschnitt 3.6).</p>
+
+<h2>3 · Umgesetzte Maßnahmen</h2>
+
+<p>Alle Maßnahmen gelten für die gesamte Website, alle Seiten, alle Bilder und alle 360°-Rundgänge.
+Sie bestehen seit 4. November 2026 (Version 0.0.47 der Website); der Hotlink-Schutz in 3.6 wurde
+am 9. November 2026 erweitert. Alle Schritte sind in der Versionsverwaltung des Projekts
+festgehalten. Dieser Bericht gibt den Stand von Version 0.0.80 wieder.</p>
+
+<div class="item"><div class="n wide">3.1</div><div>
+  <p><span class="lead">robots.txt: Sperre der KI-Crawler.</span> Datei: https://permaphemera.at/robots.txt.
+  robots.txt ist der Standard (RFC 9309), mit dem eine Website automatischen Programmen (Crawlern)
+  sagt, was sie lesen dürfen.</p>
+  <p><span class="lead">a) Vollständig gesperrt</span> sind Crawler, die Inhalte für das Training von
+  KI-Modellen oder für Datensätze sammeln (<code>Disallow: /</code>):</p>
+  <p class="bots">GPTBot (OpenAI), ClaudeBot und anthropic-ai (Anthropic), CCBot (Common Crawl),
+  Google-Extended (Google, Training von Gemini), GoogleOther (Google), Applebot-Extended (Apple),
+  meta-externalagent und FacebookBot (Meta), Bytespider (ByteDance), Amazonbot (Amazon),
+  cohere-ai und cohere-training-data-crawler (Cohere), Diffbot, ImagesiftBot, img2dataset,
+  Omgilibot, Timpibot, AI2Bot und Ai2Bot-Dolma (Allen Institute for AI), PanguBot (Huawei),
+  Kangaroo Bot. Zusammen 22 Kennungen.</p>
+  <p><span class="lead">b) Teilweise gesperrt</span> sind KI-Such- und Antwortdienste, die eine Seite
+  abrufen, wenn eine Person einer KI eine Frage stellt. Sie dürfen Seiten lesen, aber keine Bilder
+  und keine 360°-Rundgänge (<code>Disallow: /cms/assets/</code> und <code>Disallow: /media/</code>):</p>
+  <p class="bots">OAI-SearchBot und ChatGPT-User (OpenAI), Claude-SearchBot und Claude-User (Anthropic),
+  PerplexityBot und Perplexity-User (Perplexity), DuckAssistBot (DuckDuckGo), MistralAI-User
+  (Mistral). Zusammen 8 Kennungen.</p>
+  <p><span class="lead">c) Nicht betroffen</span> sind Suchmaschinen wie Google und Bing. Die Website
+  bleibt in der normalen Suche auffindbar. Die Sperre von „Google-Extended“ betrifft nur das
+  KI-Training von Google, nicht die Google-Suche.</p>
+  <p><span class="lead">d) Abschnitt des Netzwerkdienstes.</span> Der Netzwerkdienst Cloudflare (3.6)
+  stellt der Datei einen eigenen Abschnitt voran. Er erklärt für alle Programme das Signal
+  <code>Content-Signal: search=yes,ai-train=no</code> (Suche erlaubt, KI-Training nicht erlaubt)
+  ausdrücklich als Rechtevorbehalt nach Art. 4 der DSM-Richtlinie und sperrt 32 Kennungen
+  vollständig, darunter auch Kennungen, die in a) nicht stehen (zum Beispiel Claude-Web,
+  MistralAI-Training und Google-CloudVertexBot).</p>
+</div></div>
+
+<div class="item keep"><div class="n wide">3.2</div><div>
+  <p><span class="lead">TDM-Vorbehalt nach dem TDMRep-Protokoll.</span> Datei:
+  https://permaphemera.at/.well-known/tdmrep.json. TDMRep ist ein Protokoll einer W3C Community
+  Group, mit dem Rechteinhaber den Vorbehalt nach Art. 4 DSM-Richtlinie maschinenlesbar erklären.
+  Die Datei erklärt den Vorbehalt für die gesamte Website (<code>"location": "/*"</code>,
+  <code>"tdm-reservation": 1</code>).</p>
+</div></div>
+
+<div class="item"><div class="n wide">3.3</div><div>
+  <p><span class="lead">Kennzeichnung in jeder Seite (HTML).</span> Jede Seite der Website enthält im
+  Kopfbereich:</p>
+  <ul>
+    <li><code>&lt;meta name="tdm-reservation" content="1"&gt;</code>: der TDM-Vorbehalt nach TDMRep;</li>
+    <li><code>&lt;meta name="robots" content="noai, noimageai"&gt;</code>: die Anweisung, Texte und
+    Bilder nicht für KI zu verwenden. Diese Werte sind kein formaler Standard, werden aber von
+    Werkzeugen zum Aufbau von Bilddatensätzen ausgewertet.</li>
+  </ul>
+  <p>Seiten mit einer eigenen robots-Anweisung (zum Beispiel nicht zu indexierende Seiten)
+  wiederholen <code>noai, noimageai</code> in dieser Anweisung, damit der Vorbehalt nicht verloren
+  geht.</p>
+</div></div>
+
+<div class="item"><div class="n wide">3.4</div><div>
+  <p><span class="lead">Kennzeichnung in jeder Server-Antwort (HTTP-Header).</span> Der Webserver
+  (nginx) sendet bei jeder Antwort, also bei jeder Seite, jedem Bild und jeder Datei der
+  360°-Rundgänge, zwei Header:</p>
+  <ul>
+    <li><code>X-Robots-Tag: noai, noimageai</code></li>
+    <li><code>tdm-reservation: 1</code></li>
+  </ul>
+  <p>Das ist besonders für Bilder wichtig: Ein Bild hat keinen HTML-Kopf, die Kennzeichnung kann nur
+  im Header stehen. Das Werkzeug img2dataset, mit dem große Bilddatensätze für KI-Training gebaut
+  wurden, überspringt nach seinen Standardeinstellungen Bilder mit diesen Headern.</p>
+</div></div>
+
+<div class="item"><div class="n wide">3.5</div><div>
+  <p><span class="lead">Nutzungsbedingungen.</span> Die Nutzungsbedingungen
+  (https://permaphemera.at/terms/, englisch https://permaphemera.at/en/terms/) enthalten im
+  Abschnitt „Erlaubte Nutzung“ folgende Regeln:</p>
+</div></div>
+<blockquote>Eine eigenständige Vervielfältigung, Weiterveröffentlichung, Bearbeitung, automatisierte
+Massenauslese oder kommerzielle Nutzung von Texten, Bildern und 360°-Rundgängen ist ohne Erlaubnis
+nicht gestattet.</blockquote>
+<blockquote>Text und Data Mining ist vorbehalten (§ 42h Abs. 6 UrhG), auch zum Training von
+KI-Systemen. Texte, Bilder und 360°-Rundgänge dürfen ohne Erlaubnis nicht für KI-Training,
+Bilddatensätze oder das Erzeugen ähnlicher Werke ausgelesen werden. Der Vorbehalt steht auch in
+maschinenlesbarer Form in robots.txt, in /.well-known/tdmrep.json, in den HTTP-Antworten jeder
+Seite und jedes Bildes und, wo vorhanden, in den Bilddateien selbst.</blockquote>
+
+<div class="item"><div class="n wide">3.6</div><div>
+  <p><span class="lead">Technische Sperre beim Netzwerkdienst Cloudflare.</span> Der gesamte Verkehr
+  der Website läuft über den Netzwerkdienst Cloudflare, bevor er den Server erreicht. Dort gelten
+  zwei Einstellungen:</p>
+  <ul>
+    <li><span class="lead">Sperre der KI-Trainings-Crawler</span> (seit 4. November 2026): Crawler, die
+    Cloudflare als Crawler für KI-Training erkennt, erhalten keinen Zugriff (Antwort „403
+    Forbidden“). Das gilt auch für Crawler, die robots.txt nicht beachten. KI-Such- und
+    Antwortdienste sind davon nicht erfasst; für sie gilt die Regel aus 3.1 b (Seiten ja, Bilder und
+    Rundgänge nein).</li>
+    <li><span class="lead">Hotlink-Schutz</span> (seit 4. November 2026, erweitert am 9. November 2026):
+    Bilder und Dateien der 360°-Rundgänge werden nur ausgeliefert, wenn sie von permaphemera.at
+    selbst angefordert werden oder ohne Herkunftsangabe (zum Beispiel für die Vorschau eines geteilten
+    Links). Fremde Websites können sie nicht direkt einbinden. Die Standardfunktion von Cloudflare
+    erfasst nur Dateien mit den Endungen .jpg, .jpeg, .png, .gif und .ico. Eine eigene Regel erfasst
+    seit 9. November 2026 zusätzlich alle Bilder unter <code>/cms/assets/</code> (ohne Dateiendung)
+    und alle Dateien unter <code>/media/</code>, auch die Bildkacheln der Rundgänge (.webp).</li>
+  </ul>
+</div></div>
+
+<h2>4 · Prüfung am 11. November 2026</h2>
+
+<p>Alle Maßnahmen wurden am 11. November 2026 auf der öffentlichen Website geprüft.</p>
+
+<table>
+  <thead><tr><th>Prüfung</th><th>Ergebnis</th></tr></thead>
+  <tbody>
+    <tr><td>https://permaphemera.at/robots.txt</td><td>erreichbar; eigener Abschnitt: 22 Kennungen gesperrt, 8 teilweise gesperrt; Abschnitt von Cloudflare: <code>ai-train=no</code>, 32 Kennungen gesperrt; Suchmaschinen erlaubt</td></tr>
+    <tr><td>https://permaphemera.at/.well-known/tdmrep.json</td><td>erreichbar (HTTP 200, <code>application/json</code>), Vorbehalt für <code>/*</code></td></tr>
+    <tr><td>Startseite, HTML-Kopf</td><td><code>tdm-reservation</code> = 1 und <code>robots</code> = <code>noai, noimageai</code> vorhanden</td></tr>
+    <tr><td>Header einer Seite (<code>/terms/</code>)</td><td><code>X-Robots-Tag: noai, noimageai</code>, <code>tdm-reservation: 1</code></td></tr>
+    <tr><td>Header eines Ausstellungsbildes (<code>/cms/assets/…</code>)</td><td><code>X-Robots-Tag: noai, noimageai</code>, <code>tdm-reservation: 1</code></td></tr>
+    <tr><td>Header eines Bildes unter <code>/media/</code> (Startansicht eines Rundgangs, .jpg)</td><td><code>X-Robots-Tag: noai, noimageai</code>, <code>tdm-reservation: 1</code></td></tr>
+    <tr><td>Header einer Bildkachel eines 360°-Rundgangs (<code>/media/tours/…</code>, .webp)</td><td><code>X-Robots-Tag: noai, noimageai</code>, <code>tdm-reservation: 1</code></td></tr>
+    <tr><td>Nutzungsbedingungen, deutsch und englisch</td><td>beide Regeln aus 3.5 sichtbar</td></tr>
+    <tr><td>Abruf der Startseite als „GPTBot“ (OpenAI) und „CCBot“ (Common Crawl)</td><td>gesperrt (HTTP 403)</td></tr>
+    <tr><td>Abruf der Startseite als „Googlebot“ (Suchmaschine)</td><td>erlaubt (HTTP 200)</td></tr>
+    <tr><td>Ausstellungsbild, Startansicht und Bildkachel mit fremder Website als Herkunft (Hotlink)</td><td>gesperrt (HTTP 403)</td></tr>
+    <tr><td>dieselben Dateien von permaphemera.at selbst und ohne Herkunftsangabe</td><td>ausgeliefert (HTTP 200)</td></tr>
+  </tbody>
+</table>
+
+<p>Jede Person kann diese Prüfung wiederholen: die genannten Adressen im Browser öffnen, oder für
+die Header zum Beispiel <code>curl -I https://permaphemera.at/</code> ausführen.</p>
+
+<h2>5 · Grenzen der Maßnahmen</h2>
+
+<p>Diese Maßnahmen erklären den Vorbehalt auf allen üblichen maschinenlesbaren Wegen und sperren
+die bekannten KI-Crawler. Sie sind keine technische Garantie:</p>
+<ul>
+  <li>robots.txt, Meta-Tags und Header wirken nur bei Programmen, die sie beachten. Die Sperre in 3.6
+  erfasst nur Crawler, die Cloudflare als solche erkennt. Ein Programm, das sie bewusst übergeht oder
+  sich als gewöhnlicher Browser ausgibt, wird dadurch nicht technisch gehindert. In diesem Fall
+  erfolgt die Auslese entgegen dem erklärten Vorbehalt.</li>
+  <li>Die Liste der KI-Crawler ändert sich laufend. Neue Kennungen werden ergänzt, sobald sie bekannt
+  werden.</li>
+  <li>Inhalte, die vor dem 4. November 2026 bereits ausgelesen wurden, sind davon nicht erfasst.</li>
+  <li>Was eine Person mit einem Bildschirmfoto macht, kann eine Website nicht verhindern.</li>
+</ul>
+
+<h2>6 · Geplante weitere Maßnahmen</h2>
+
+<p>Noch nicht umgesetzt; in Vorbereitung:</p>
+<div class="item"><div class="n">1</div><div>
+  <span class="lead">Keine Originalgrößen.</span> Bilder werden öffentlich nur in den Größen
+  ausgeliefert, die die Website anzeigt, nicht als Originaldatei.
+</div></div>
+<div class="item"><div class="n">2</div><div>
+  <span class="lead">Begrenzung der Abrufrate.</span> Massenhafte Abrufe von Bildern und Rundgängen in
+  kurzer Zeit werden gebremst.
+</div></div>
+<div class="item"><div class="n">3</div><div>
+  <span class="lead">Rechteangaben in den Bilddateien.</span> Rechteinhaber und „Data Mining: verboten“
+  in den IPTC/XMP-Daten der ausgelieferten Bilder.
+</div></div>
+
+<p class="closing">Dieser Bericht wird bei jeder wesentlichen Änderung neu ausgestellt.</p>
+
+<div class="sign">
+  <p class="name">Robert Wildling</p>
+  <p class="addr">
+    Betreiber von PermaPhemera · https://permaphemera.at<br>
+    Göllnergasse 19/30, A-1030 Wien<br>
+    +43 676 6089613 · archiv@permaphemera.at
+  </p>
+  <div class="lines">
+    <div>Ort, Datum</div>
+    <div>Unterschrift</div>
+  </div>
+</div>
+
+</body>
+</html>

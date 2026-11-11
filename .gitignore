@@ -48,3 +48,24 @@ _Plans/designs/
 plans/*/images/
 # Plan source pages: downloaded web pages and PDFs, third-party content
 plans/*/pages/
+plans/*/venv/
+__pycache__/
+plans/*/screenshots/
+plans/*/logs/
+plans/*/research/
+plans/*/*.jpg
+plans/*/*.png
+.impeccable/hook.cache.json# Plan working files (owner, 2026-11-11): screenshots, logs, research copies, third-party
+# images (the uploaded copies are in Directus), Python environments and caches.
+plans/*/screenshots/
+plans/*/logs/
+plans/*/research/
+plans/*/*.jpg
+plans/*/*.png
+plans/*/venv/
+__pycache__/
+# Brand logo: the -v2 files are copies of the tracked permaphemera-logo-*.svg; scripts were checks
+plans/2026-11-11__brand-logo-svg/permaphemera-logo-v2-*.svg
+plans/2026-11-11__brand-logo-svg/scripts/
+# Design-check cache (the rules in .impeccable/config.json stay tracked)
+.impeccable/hook.cache.json

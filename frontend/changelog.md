@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.81 - 2026-11-11 22:10:57 CET
+
+- No change in the site's code. The report on the protection against AI training, for contracts, is renewed as of 11 November 2026 in the layout of the PermaPhemera letters (logo, fonts, colours, sender address). It now also names the AI section that the network service Cloudflare adds to robots.txt, the image protection for all images and tour files since 9 November, and the current wording of the terms of use. It replaces the report of 4 November 2026.
+
 ## 0.0.80 - 2026-11-11 20:18:06 CET
 
 - Visit statistics are kept for good as weekly sums. Every Monday a job on the server adds up the past week's visits and stores them in Directus ("Statistics (weekly)", admin only, never public): per exhibition, person, gallery, organisation, event, news article and sponsor, per town, per other page, per visitor country and city, per referring website and per device. The detailed visit data still goes after 36 months; the sums point to no person. The weeks since Umami started (19 October 2026) are already stored.
