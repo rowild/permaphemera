@@ -71,8 +71,6 @@
   --text-lede--line-height: 1.5;
   --text-h4: clamp(1.25rem, 1.7vw, 1.72rem);
   --text-h4--line-height: 1.15;
-  --text-brand: clamp(1.45rem, 1.8vw, 1.95rem);
-  --text-brand--line-height: 1.1;
   --text-h3-sm: clamp(1.65rem, 2.2vw, 2.4rem);
   --text-h3-sm--line-height: 1.1;
   --text-h3: clamp(1.75rem, 2.65vw, 2.62rem);
@@ -382,6 +380,49 @@ button {
   width: 5rem;
   height: 5rem;
   opacity: 0.16;
+}
+
+/* The logo: temple mark and word (header, footer). Owner, 2026-11-11.
+   archive-temple.svg in its 64-unit box: the lowest step ends at 58.9, the underside of the roof's
+   base line is at 23.9, the top of the roof peak at 6.8. The P of Cormorant Garamond is 0.628 em.
+   - The mark stands with its lowest step on the word's baseline: its box ends on the baseline
+     (baseline alignment) and is moved down by (64 - 58.9) / 64 of its size.
+   - The P is as tall as the house from the lowest step to the underside of the roof's base line:
+     the word is (58.9 - 23.9) / 64 / 0.628 = 0.87082 of the mark.
+   - The header eyebrow stands on the roof peak and starts where the word starts.
+   The lockup sets --brand-mark (the mark's size, default 2rem) and --brand-gap (mark to word,
+   default 0.65rem) with utilities per state; the defaults stay fallbacks here, so the utilities
+   win. test/e2e/layout.spec.ts "logo geometry" measures all three rules. */
+.archive-brand-mark {
+  flex: none;
+  width: var(--brand-mark, 2rem);
+  height: var(--brand-mark, 2rem);
+  translate: 0 calc(var(--brand-mark, 2rem) * 0.0796875);
+}
+
+.archive-brand-word {
+  font-size: calc(var(--brand-mark, 2rem) * 0.87082);
+  line-height: 1;
+}
+
+/* Placed in the lockup (position: relative), whose top is the mark's box top; the peak lies
+   (0.0796875 + 0.10625) of the mark below it. The box is trimmed to end on the alphabetic baseline
+   (text-box) and moved up by its own height, so its baseline is the peak, whatever the browser's
+   font metrics. Without text-box (Firefox): the box ends 0.22 em below the baseline (measured). */
+.archive-brand-eyebrow {
+  position: absolute;
+  left: calc(var(--brand-mark, 2rem) + var(--brand-gap, 0.65rem));
+  top: calc(var(--brand-mark, 2rem) * 0.1859375);
+  translate: 0 -100%;
+  line-height: 1;
+  white-space: nowrap;
+  text-box: trim-end cap alphabetic;
+}
+
+@supports not (text-box: trim-end cap alphabetic) {
+  .archive-brand-eyebrow {
+    translate: 0 calc(-100% + 0.22em);
+  }
 }
 
 .archive-header-surface {

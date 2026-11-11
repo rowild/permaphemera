@@ -214,7 +214,9 @@ function playPageIntro() {
   brand.forEach((letter, index) => {
     timeline.to(letter, { ...LETTER_SHOWN, duration: 0.6, ease: 'power3.out' }, 0.1 + index * BRAND_STAGGER)
   })
-  timeline.from(tagline, { opacity: 0, duration: 0.6, ease: 'power1.out' }, 0.1 + brand.length * BRAND_STAGGER)
+  // fromTo, then clearProps: the tagline's resting opacity belongs to the CSS (it fades out in the
+  // slim header); a `from` read it while it could be 0 and left it there (2026-11-11).
+  timeline.fromTo(tagline, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power1.out', clearProps: 'opacity' }, 0.1 + brand.length * BRAND_STAGGER)
   timeline.call(revealMenu, undefined, MENU_START)
   timeline.to(language, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, LANGUAGE_START)
   timeline.to(menuStar, { opacity: 1, duration: 0.5, ease: 'power1.out' }, MENU_STAR_START)

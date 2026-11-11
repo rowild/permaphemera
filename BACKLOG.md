@@ -75,6 +75,14 @@ Added 2026-11-11. Each needs the owner's word or material from outside.
    Wolfgang Daborer who took them.
 5. **Unused file:** the old Hauptplatz photo of Seeboden (`hauptplatz-seeboden.jpg`) is no longer
    used by any record; delete it in the admin app if wanted.
+6. **Browser tests against the dev server:** run with `E2E_BASE_URL=http://localhost:4991`, the
+   dev build asks `permaphemera.project-backends.info` directly, which the paced helper in
+   `test/e2e/fixtures.ts` does not cover; several test browsers then get "429" and pages fail to
+   load (seen 2026-11-11). Against the built site (`pnpm deploy:hetzner`) all is paced. Either
+   route the dev URL through the helper too, or document that e2e runs on the built site only.
+7. **Logo spelling:** the logo files and the site still show PERMAPHEMERA; the planned spelling
+   "PermaPhemera" is open (see "The name on the website"). The logo SVGs are rebuilt with
+   `plans/2026-11-11__brand-logo-svg/build_v2.py`.
 
 ## Open points from 2026-11-09 (newsletter modal, linked sources)
 

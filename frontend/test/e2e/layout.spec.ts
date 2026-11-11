@@ -60,3 +60,83 @@ test('the footer drawer (tablet, phone) opens, keeps focus inside and closes wit
   await expect(trigger).toHaveAttribute('aria-expanded', 'false')
   await expect(trigger).toBeFocused()
 })
+
+// Owner, 2026-11-11: the logo's geometry. In archive-temple.svg (64 units) the lowest step ends at
+// 58.9, the underside of the roof's base line is at 23.9 and the top of the roof peak at 6.8.
+// 1. The lowest step and the word share one baseline.
+// 2. The P is as tall as the house from the lowest step to the underside of the roof's base line
+//    (Cormorant Garamond: P = 0.628 em), so the word's size is 35 / 64 / 0.628 of the mark.
+// 3. The header eyebrow stands on the roof peak and starts where the word starts.
+// A zero-height inline-block sits on its line's baseline: the probe that measures it.
+type LogoGeometry = { mark: number, stepGap: number, sizeRatio: number, eyebrowGap?: number, eyebrowX?: number }
+const logoGeometry = (lockup: string, mark: string, word: string, eyebrow?: string) => ({ lockup, mark, word, eyebrow })
+const measureLogo = async (page: import('@playwright/test').Page, selectors: ReturnType<typeof logoGeometry>) => page.evaluate((s) => {
+  const baselineOf = (element: Element) => {
+    const probe = document.createElement('span')
+    probe.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline'
+    element.appendChild(probe)
+    const y = probe.getBoundingClientRect().bottom
+    probe.remove()
+    return y
+  }
+  const root = [...document.querySelectorAll(s.lockup)].find((element) => element.getClientRects().length)!
+  const markBox = root.querySelector(s.mark)!.getBoundingClientRect()
+  const word = root.querySelector(s.word)!
+  const size = Number.parseFloat(getComputedStyle(word).fontSize)
+  const result: LogoGeometry = {
+    mark: markBox.width,
+    stepGap: markBox.bottom - markBox.height * (64 - 58.9) / 64 - baselineOf(word.querySelector('[aria-hidden="true"]') ?? word),
+    sizeRatio: size / markBox.width
+  }
+  if (s.eyebrow) {
+    const eyebrow = root.querySelector(s.eyebrow)!
+    result.eyebrowGap = baselineOf(eyebrow) - (markBox.top + markBox.height * 6.8 / 64)
+    const firstLetter = word.querySelector('[data-letter]')!.getBoundingClientRect().left
+    const range = document.createRange()
+    range.setStart(eyebrow.firstChild!, eyebrow.textContent!.search(/\S/))
+    range.setEnd(eyebrow.firstChild!, eyebrow.textContent!.search(/\S/) + 1)
+    result.eyebrowX = range.getBoundingClientRect().left - firstLetter
+  }
+  return result
+}, selectors)
+const WORD_RATIO = (58.9 - 23.9) / 64 / 0.628
+
+test.describe('logo geometry', () => {
+  const header = logoGeometry('header.site-header', '[data-header-brand-mark]', '[data-header-brand]', '[data-header-tagline]')
+
+  test('the header logo: one baseline, the P as tall as the house, the eyebrow on the roof peak', async ({ page }) => {
+    await page.goto('/venues/')
+    // A worker's first page waits for its paced Directus requests (fixtures.ts).
+    await expect(page.locator('[data-header-brand]')).toBeVisible({ timeout: 30_000 })
+    await page.waitForTimeout(400)
+    const logo = await measureLogo(page, header)
+    // The mark's size per width, as before the change: 32 px, 24 px up to 700 px, 20 px up to 420 px.
+    expect(logo.mark).toBeCloseTo(width(page) <= 420 ? 20 : width(page) <= 700 ? 24 : 32, 1)
+    expect(Math.abs(logo.stepGap)).toBeLessThan(0.5)
+    expect(logo.sizeRatio).toBeCloseTo(WORD_RATIO, 3)
+    expect(Math.abs(logo.eyebrowGap!)).toBeLessThan(0.5)
+    expect(Math.abs(logo.eyebrowX!)).toBeLessThan(0.5)
+  })
+
+  test('the slim header keeps the baseline and the proportion', async ({ page }) => {
+    await page.goto('/venues/')
+    await expect(page.locator('h1').first()).toBeVisible()
+    await page.mouse.wheel(0, 1500)
+    await expect(page.locator('header.site-header')).toHaveAttribute('data-compact')
+    await page.waitForTimeout(500)
+    const logo = await measureLogo(page, { ...header, eyebrow: undefined })
+    expect(logo.mark).toBeLessThanOrEqual(24.01)
+    expect(Math.abs(logo.stepGap)).toBeLessThan(0.5)
+    expect(logo.sizeRatio).toBeCloseTo(WORD_RATIO, 3)
+  })
+
+  test('the footer logo: one baseline, the P as tall as the house', async ({ page }) => {
+    await page.goto('/imprint/')
+    const footer = page.locator('.footer-brand-lockup:visible')
+    await footer.scrollIntoViewIfNeeded()
+    await expect(footer).toBeVisible()
+    const logo = await measureLogo(page, logoGeometry('.footer-brand-lockup', '.footer-brand-mark', 'strong'))
+    expect(Math.abs(logo.stepGap)).toBeLessThan(0.5)
+    expect(logo.sizeRatio).toBeCloseTo(WORD_RATIO, 3)
+  })
+})

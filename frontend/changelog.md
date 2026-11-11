@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.78 - 2026-11-11 11:32:36 CET
+
+- New logo geometry in the header and the footer: the word PERMAPHEMERA stands on the temple's lowest step, its P is exactly as tall as the house up to the roof, and in the header the line "Ein Archiv von Ausstellungen in Österreich" sits on the roof's peak. The temple keeps its sizes; the word follows them and is a little larger: 27.9 instead of 23.2 px on desktop, 20.9 instead of 20 px in the slim header, 17.4 instead of 16 px on small phones.
+- The logo also exists as a scalable SVG file in German and English (letters drawn as shapes, no font needed).
+
 ## 0.0.77 - 2026-11-11 10:07:06 CET
 
 - No change in the site's code. In the archive (live since today): the Galerie im Stiegenhaus shows photos of its own building; the association kultur.im.puls has a board photo, its address and a longer text (its board and team members show once they are published); the exhibition "Klaus Zlattinger & Friends" now shows with an image and its organiser, and the artists Klaus Zlattinger, Karl Vouk, Othmar Eder and Christine De Pauli have biographies. The work logs and SEO texts of these changes are filed.

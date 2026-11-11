@@ -311,7 +311,22 @@ Avoid setting full paragraphs in uppercase or widely tracked type.
 - mobile tracking `0.13em`;
 - single line at every breakpoint.
 
-The footer wordmark uses `1.7rem` and `0.16em` tracking. Do not distort, italicize, outline, or place the name inside a badge. **A logo or wordmark must never be underlined, including on hover, focus, or current-page states.** Its color may change, but its lockup remains undecorated.
+**Logo geometry (owner, 2026-11-11).** The temple mark and the word form one lockup with three
+fixed relations, in header and footer at every size:
+
+1. the mark's lowest step and the word share one baseline;
+2. the P is as tall as the house from the lowest step to the underside of the roof's base line,
+   so the word's size is `0.87082` × the mark's size;
+3. the header tagline stands on the roof peak (its baseline at the top of the peak) and starts
+   where the word starts.
+
+Only the mark's size is set per state (`--brand-mark`: header `2rem`, slim header and up to
+700 px `1.5rem`, up to 420 px `1.25rem`; footer `2rem`, up to 700 px `1.5rem`); everything else
+follows from it in `main.css` (`.archive-brand-mark`, `.archive-brand-word`,
+`.archive-brand-eyebrow`). `test/e2e/layout.spec.ts` ("logo geometry") measures the three rules.
+The logo as a file: `plans/2026-11-11__brand-logo-svg/` (SVG, outlined letters, de and en).
+
+The footer wordmark uses `0.16em` tracking. Do not distort, italicize, outline, or place the name inside a badge. **A logo or wordmark must never be underlined, including on hover, focus, or current-page states.** Its color may change, but its lockup remains undecorated.
 
 ### 6.9 Links
 

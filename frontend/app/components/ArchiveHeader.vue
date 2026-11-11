@@ -58,20 +58,24 @@ const runAction = (action?: string) => {
 <template>
   <header class="[ site-header ] archive-header-surface group/header sticky top-0 z-30 grid min-h-[6.4rem] transition-[min-height,padding] duration-300 ease-out motion-reduce:transition-none data-compact:min-h-16 data-compact:pt-1 tablet:data-compact:min-h-14 compact:data-compact:min-h-12 compact:data-compact:pt-1 grid-cols-[auto_minmax(0,1fr)_auto] content-center items-baseline px-gutter pt-3 tablet:min-h-24 tablet:grid-cols-[1fr_auto] tablet:items-center tablet:pt-3 compact:min-h-16 compact:grid-cols-[minmax(0,1fr)_auto] compact:content-start compact:gap-y-0 compact:px-4 compact:pt-2 compact:pb-0" :data-compact="compact || undefined" @keydown.esc="closeMenu">
     <a class="[ skip-link ] absolute left-5 -top-20 z-60 border border-archive-red bg-archive-paper px-4 py-[0.7rem] text-archive-ink focus:top-[0.65rem]" :href="`#${props.skipTarget}`">{{ $t('site.skipToContent') }}</a>
-    <p data-header-tagline class="[ header-eyebrow ] col-span-full m-0 max-h-4 translate-y-1 self-end overflow-hidden transition-[max-height,margin] duration-300 ease-out motion-reduce:transition-none group-data-compact/header:max-h-0 pl-[2.65rem] font-display text-3xs leading-none font-medium tracking-widest text-archive-red/82 compact:translate-y-2 compact:pl-8 narrow:pl-7">
-      {{ $t('site.headerTagline') }}
-    </p>
-    <NuxtLink class="[ brand ] inline-flex items-baseline gap-[0.65rem] justify-self-start font-display text-brand leading-none font-medium tracking-[0.24em] transition-[font-size,letter-spacing] duration-300 ease-out motion-reduce:transition-none group-data-compact/header:text-xl compact:gap-2 compact:text-xl compact:tracking-widest compact:whitespace-nowrap narrow:text-base narrow:tracking-[0.08em]" :to="localePath('/')" :aria-label="$t('site.homeAria')" data-header-brand>
-      <img
-        class="[ brand-mark ] size-8 flex-none translate-y-0.5 self-baseline object-contain opacity-82 transition-[width,height] duration-300 ease-out motion-reduce:transition-none group-data-compact/header:size-6 compact:size-6 narrow:size-5"
-        src="/media/svg/brand/archive-temple.svg"
-        alt=""
-        width="64"
-        height="64"
-        data-header-brand-mark
-      >
-      <span><ArchiveLetters text="PERMAPHEMERA" :stuck="BRAND_STUCK_LETTER" :fallen="!props.intro" /></span>
-    </NuxtLink>
+    <!-- The logo's geometry (mark size, word size, eyebrow on the roof peak) lives in main.css
+         (.archive-brand-*); here only the mark's size per state. Owner, 2026-11-11. -->
+    <div class="[ brand-lockup ] relative flex justify-self-start group-data-compact/header:[--brand-mark:1.5rem] compact:[--brand-mark:1.5rem] compact:[--brand-gap:0.5rem] narrow:[--brand-mark:1.25rem]" data-header-lockup>
+      <p data-header-tagline class="[ header-eyebrow ] archive-brand-eyebrow m-0 font-display text-3xs font-medium tracking-widest text-archive-red/82 transition-opacity duration-300 ease-out motion-reduce:transition-none group-data-compact/header:invisible group-data-compact/header:opacity-0">
+        {{ $t('site.headerTagline') }}
+      </p>
+      <NuxtLink class="[ brand ] archive-brand-word inline-flex items-baseline gap-(--brand-gap,0.65rem) font-display font-medium tracking-[0.24em] transition-[font-size,letter-spacing] duration-300 ease-out motion-reduce:transition-none compact:tracking-widest compact:whitespace-nowrap narrow:tracking-[0.08em]" :to="localePath('/')" :aria-label="$t('site.homeAria')" data-header-brand>
+        <img
+          class="[ brand-mark ] archive-brand-mark object-contain opacity-82 transition-[width,height,translate] duration-300 ease-out motion-reduce:transition-none"
+          src="/media/svg/brand/archive-temple.svg"
+          alt=""
+          width="64"
+          height="64"
+          data-header-brand-mark
+        >
+        <span><ArchiveLetters text="PERMAPHEMERA" :stuck="BRAND_STUCK_LETTER" :fallen="!props.intro" /></span>
+      </NuxtLink>
+    </div>
     <nav class="[ desktop-nav ] archive-primary-nav ml-[clamp(3.5rem,5vw,6rem)] flex items-baseline gap-[clamp(0.75rem,1.2vw,1.25rem)] justify-self-start self-baseline font-display text-lg leading-none font-normal whitespace-nowrap transition-[font-size,letter-spacing] duration-300 ease-out motion-reduce:transition-none group-data-compact/header:text-base tablet:hidden" :aria-label="$t('navigation.primaryAria')" data-header-nav>
       <template v-for="(link, index) in primaryLinks" :key="link.key">
         <NuxtLink

@@ -12,9 +12,10 @@ const localePath = useLocalePath()
 
 <template>
   <div class="[ footer-brand ]">
-    <NuxtLink class="[ footer-brand-lockup ] group/footer-brand mb-[0.65rem] inline-flex items-center gap-[0.65rem] no-underline transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red focus-visible:no-underline" :to="localePath('/')" :aria-label="$t('site.homeAria')">
-      <span class="[ footer-brand-mark ] archive-footer-brand-mark size-8 flex-none bg-archive-ochre opacity-90 transition-colors duration-150 ease-out group-hover/footer-brand:bg-archive-red group-focus-visible/footer-brand:bg-archive-red" aria-hidden="true" />
-      <strong class="m-0 block font-display text-title-lg font-medium tracking-[0.16em] compact:text-xl compact:tracking-widest"><ArchiveLetters text="PERMAPHEMERA" :stuck="BRAND_STUCK_LETTER" fallen /></strong>
+    <!-- The logo's geometry: main.css .archive-brand-* (owner, 2026-11-11). -->
+    <NuxtLink class="[ footer-brand-lockup ] group/footer-brand mb-[0.65rem] inline-flex items-baseline gap-(--brand-gap,0.65rem) no-underline transition-colors duration-150 ease-out hover:text-archive-red focus-visible:text-archive-red focus-visible:no-underline compact:[--brand-mark:1.5rem] compact:[--brand-gap:0.5rem]" :to="localePath('/')" :aria-label="$t('site.homeAria')">
+      <span class="[ footer-brand-mark ] archive-brand-mark archive-footer-brand-mark bg-archive-ochre opacity-90 transition-colors duration-150 ease-out group-hover/footer-brand:bg-archive-red group-focus-visible/footer-brand:bg-archive-red" aria-hidden="true" />
+      <strong class="archive-brand-word m-0 block font-display font-medium tracking-[0.16em] compact:tracking-widest"><ArchiveLetters text="PERMAPHEMERA" :stuck="BRAND_STUCK_LETTER" fallen /></strong>
     </NuxtLink>
     <span class="[ footer-brand-rule ] archive-footer-brand-rule mb-5 block aspect-65/10 w-[4.1rem] bg-archive-ochre opacity-52 compact:mb-3" aria-hidden="true" />
     <p class="mb-8 max-w-72 font-display text-button text-archive-footer-copy/86 compact:mb-0 compact:text-sm">{{ $t('footer.tagline') }}</p>

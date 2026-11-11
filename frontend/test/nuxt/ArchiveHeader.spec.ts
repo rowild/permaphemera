@@ -28,8 +28,8 @@ describe('ArchiveHeader', () => {
     expect(header.attributes('data-compact')).toBeDefined()
     // Every part follows the mark: tagline away, smaller brand, mark and menu, solid background.
     expect(wrapper.get('[data-header-tagline]').classes().join(' ')).toMatch(/group-data-compact\/header:/)
-    expect(wrapper.get('[data-header-brand]').classes().join(' ')).toMatch(/group-data-compact\/header:text-/)
-    expect(wrapper.get('[data-header-brand-mark]').classes().join(' ')).toMatch(/group-data-compact\/header:size-/)
+    // The logo follows one size, the mark's (main.css .archive-brand-*; geometry in test/e2e/layout.spec.ts).
+    expect(wrapper.get('[data-header-lockup]').classes().join(' ')).toMatch(/group-data-compact\/header:\[--brand-mark:/)
     // The solid background: main.css .archive-header-surface[data-compact] (checked in the browser).
     expect(header.classes()).toContain('archive-header-surface')
     await scrollTo(0)
