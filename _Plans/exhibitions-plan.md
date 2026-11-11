@@ -85,6 +85,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_organisations` | main | `pp_archive` | no |
 | `pp_quotes` | main | `pp_archive` | no |
 | `pp_news` | main | `pp_archive` | no |
+| `pp_stats_weekly` | main, statusless, **private** (no public read rule; weekly Umami sums, 2026-11-11) | `pp_archive` | no |
 | `pp_exhibition_organisers` | child of exhibitions | `pp_exhibitions` | yes |
 | `pp_organisation_memberships` | child of organisations | `pp_organisations` | yes |
 | `pp_organisation_venue_relations` | child of organisations | `pp_organisations` | yes |

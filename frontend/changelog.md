@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.80 - 2026-11-11 20:18:06 CET
+
+- Visit statistics are kept for good as weekly sums. Every Monday a job on the server adds up the past week's visits and stores them in Directus ("Statistics (weekly)", admin only, never public): per exhibition, person, gallery, organisation, event, news article and sponsor, per town, per other page, per visitor country and city, per referring website and per device. The detailed visit data still goes after 36 months; the sums point to no person. The weeks since Umami started (19 October 2026) are already stored.
+- Opening a 360° tour is now counted (a Umami event with the tour's name), so the sums also show how often each tour was opened.
+- The privacy page says this: tour openings are counted, and weekly totals are kept without limit (updated 11 November 2026).
+- In the archive (drafts, not visible yet): the exhibition "Klaus Zlattinger – In Memoriam" at the Wallnerhaus Kleblach-Lind; the collective "Künstlerinnen und Künstler der Lebenshilfe Region Knittelfeld", deleted by mistake, is restored with its place in its exhibition.
+
 ## 0.0.79 - 2026-11-11 13:20:54 CET
 
 - The start page leads with the 360° tours: "Soeben bewahrt" ("Just preserved") shows the four tours that came online last, beside the news. Current and announced exhibitions follow below in two small rows of up to five that scroll sideways when they do not fit. "Aus dem Archiv" ("From the archive", before: "Zuletzt eröffnet") continues with the next five tours and now comes before the galleries.

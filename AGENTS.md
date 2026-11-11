@@ -38,6 +38,7 @@ Cross-cutting design specs (Directus + frontend together) live in `docs/superpow
 - `/away <task>` (`.claude/commands/away.md`): the owner is away; work to the end without questions, delete nothing.
 - The `fin-patch` skill is global (`~/.claude/skills/fin-patch/`) and works from any folder.
 - Agreed work parked for later lives in `BACKLOG.md` at the root.
+- Visit statistics: Umami (cookieless) counts pages and 360° tour openings (`tour-open` event, `frontend/app/utils/tourTracking.ts`). Its visit details go after 36 months; every Monday `frontend/scripts/server/stats-weekly.sh` keeps weekly sums for good in Directus `pp_stats_weekly` (private, never public; per record, town, page, visitor country and city, referrer, device). Plan `plans/2026-11-11__umami-weekly-sums.md`.
 - News articles ("Aktuelles", `pp_news`, `/news/`): written on the owner's command as drafts, after `docs/how-to-news.md`; the monthly report that prompts them is `frontend/scripts/news-report.mjs` (`pnpm news:report`).
 - Newsletter (Brevo, double opt-in): plan `plans/2026-11-07__newsletter.md`, the owner's steps `plans/2026-11-07__newsletter/brevo-setup.md`; server side `directus/extensions/permaphemera-newsletter/` (no PHP), site side `frontend/AGENTS.md` "Newsletter".
 - Every text visitors read (locale files, fixed and SEO texts in Directus) follows `docs/text-rules.md`: the owner's rules, a word list and the method for changing a text.

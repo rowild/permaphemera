@@ -4,7 +4,7 @@
 >
 > - `/Users/robertwildling/Desktop/_WWW/_WEBSITE PERMAPHEMERA/PROJECT_INFO.md`
 > - `/Users/robertwildling/Desktop/_WWW/_360_GALLERIES_AND_TOURS/PROJECT_INFO.md`
-> - `/Users/robertwildling/Desktop/_WWW/_MacAPP TOUR-VIEWER/PROJECT_INFO.md`
+> - `/Users/robertwildling/Desktop/_WWW/_MacAPP TOUR-EDITOR/PROJECT_INFO.md`
 >
 > It tells any agent, fast, what the 3 projects are, how they connect, and
 > where each step of the work happens. It is a map. The detailed rules live in
@@ -15,7 +15,7 @@
 > ```sh
 > SRC="/Users/robertwildling/Desktop/_WWW/_WEBSITE PERMAPHEMERA/PROJECT_INFO.md"
 > cp "$SRC" "/Users/robertwildling/Desktop/_WWW/_360_GALLERIES_AND_TOURS/PROJECT_INFO.md"
-> cp "$SRC" "/Users/robertwildling/Desktop/_WWW/_MacAPP TOUR-VIEWER/PROJECT_INFO.md"
+> cp "$SRC" "/Users/robertwildling/Desktop/_WWW/_MacAPP TOUR-EDITOR/PROJECT_INFO.md"
 > ```
 >
 > **Important rule (owner, 2026-11-04): this file is always committed, in your own folder
@@ -38,7 +38,7 @@ Live site: <https://permaphemera.at>.
 | Folder (all under `/Users/robertwildling/Desktop/_WWW/`) | What it is | Git |
 |---|---|---|
 | `_360_GALLERIES_AND_TOURS/` | **The pixels.** Camera files, the grading pipeline, graded masters, the tour folders, and the exports. | text files only (GitHub `rowild/permaphemera-tour-data`) |
-| `_MacAPP TOUR-VIEWER/` | **The Tour Editor** (Tauri Mac app, `Tour Editor.app`) that turns a folder of panoramas into a tour (`tour.json`). Also the **web viewer** (Photo Sphere Viewer 5) that the website embeds. | yes |
+| `_MacAPP TOUR-EDITOR/` | **The Tour Editor** (Tauri Mac app, `Tour Editor.app`) that turns a folder of panoramas into a tour (`tour.json`). Also the **web viewer** (Photo Sphere Viewer 5) that the website embeds. | yes |
 | `_WEBSITE PERMAPHEMERA/` | **The website** (`frontend/`, Nuxt 4, static) and the **Directus CMS** setup (`directus/`). Also a separate side site `galerien-oesterreich/`. | yes |
 
 ### How data flows
@@ -92,10 +92,10 @@ The only link between the two is the text field `pp_exhibitions.tour`.
 | **Where do I grade images?** | `run.sh` in the global skill `rowild-panorama-tour` (`~/.claude/skills/rowild-panorama-tour/scripts/`). Fuse brackets first with the global skill `rowild-photo-fuse`. See §3 step 4. |
 | **Where do I add or update a gallery (venue), a town, an artist or an exhibition?** | In **Directus** (production): `pp_venues`, `pp_locations`, `pp_persons`, `pp_exhibitions`. Follow the step-by-step how-to **`_WEBSITE PERMAPHEMERA/docs/how-to-gallery-and-exhibition.md`** (global Claude skill `rowild-create-or-update-gallery-or-exhibition-in-permaphemera`). The sources for each gallery are in `_360_GALLERIES_AND_TOURS/collection/<group>/<venue-folder>/sources.txt` and its PDFs. See §4. |
 | **Where do I start a new 360° tour (a new shoot)?** | `_360_GALLERIES_AND_TOURS/collection/<group>/<venue>/<tour-id>/building_01/floor_01/room_01/normal/`. See §3 step 2. |
-| **Where do I build the tour (links, hotspots, texts)?** | `Tour Editor.app` (in `_MacAPP TOUR-VIEWER/`). See §3 steps 5–6 (markers are made by script first). |
+| **Where do I build the tour (links, hotspots, texts)?** | `Tour Editor.app` (in `_MacAPP TOUR-EDITOR/`). See §3 steps 5–6 (markers are made by script first). |
 | **Where do I upload finalised tours?** | Export from the Tour Editor to `_360_GALLERIES_AND_TOURS/exported/`. Then in `_WEBSITE PERMAPHEMERA/frontend/`: `pnpm tour:publish <tour-id>`, then `pnpm deploy:hetzner -- --tours <tour-id> --no-site` (only this tour; the site is not built, tested or uploaded). Or in the Tour Editor: File → Publish to website… (or the tour's Export tab), which does these steps plus the save and the backup in one window (Handbook Tutorial No. 4). Since 2026-11-04 it uploads only the tour: the site reads Directus in the browser, so a tour needs no site build. See §3 steps 7–8. |
 | **Where do I change the database schema (new fields)?** | `_WEBSITE PERMAPHEMERA/directus/scripts/schema.mjs` plus the other files that root `AGENTS.md` lists. Never only in the admin app. |
-| **Where does the viewer JS on the website come from?** | `_MacAPP TOUR-VIEWER`. In `_WEBSITE PERMAPHEMERA/frontend/`, `pnpm viewer:update` runs its `pnpm build:all`, copies `dist/tour-viewer.js` and `dist/tour-viewer.css` to `public/media/tour-viewer/` and writes their fingerprint (`app/utils/tourViewerBuild.ts`); then commit and `pnpm deploy:hetzner`. Or in the Tour Editor: File → Update viewer on website… does all of it, and uploads ONLY the two viewer files (`pnpm deploy:hetzner -- --viewer-only`: no site build, no site tests; since 1.0.2, 2026-11-04). When the viewer changed, the editor shows it: a warning on the start page, and a red pulsing dot on "File" and on that menu item. It asks only when the viewer itself changed, not on every release (since 1.0.2); the viewer says the app version it was built in (`TourViewer.version`, `data-viewer-version`), so the website's viewer may say an older version than the app. |
+| **Where does the viewer JS on the website come from?** | `_MacAPP TOUR-EDITOR`. In `_WEBSITE PERMAPHEMERA/frontend/`, `pnpm viewer:update` runs its `pnpm build:all`, copies `dist/tour-viewer.js` and `dist/tour-viewer.css` to `public/media/tour-viewer/` and writes their fingerprint (`app/utils/tourViewerBuild.ts`); then commit and `pnpm deploy:hetzner`. Or in the Tour Editor: File → Update viewer on website… does all of it, and uploads ONLY the two viewer files (`pnpm deploy:hetzner -- --viewer-only`: no site build, no site tests; since 1.0.2, 2026-11-04). When the viewer changed, the editor shows it: a warning on the start page, and a red pulsing dot on "File" and on that menu item. It asks only when the viewer itself changed, not on every release (since 1.0.2); the viewer says the app version it was built in (`TourViewer.version`, `data-viewer-version`), so the website's viewer may say an older version than the app. |
 
 ---
 
@@ -115,7 +115,7 @@ section is only the overview.
 | 3 | `rename` + `check-heights` | `run.sh` in the skill | `rowild-panorama-tour` (NAMING.md) |
 | 4 | `proof`, `grade`, `web` (`sky` outdoors), `verify` | `run.sh` in the skill | `rowild-panorama-tour` (GRADING.md) |
 | 5 | Markers + hidden markers | `scripts/markers/` in the skill | `rowild-panorama-tour` (MARKERS.md) |
-| 6 | Check and save (⌘S) in the Tour Editor | `_MacAPP TOUR-VIEWER` | `rowild-panorama-tour` (SKILL.md) |
+| 6 | Check and save (⌘S) in the Tour Editor | `_MacAPP TOUR-EDITOR` | `rowild-panorama-tour` (SKILL.md) |
 | 7 | Export (⌘E) to `exported/<tour-id>/` | Tour Editor | `rowild-panorama-tour` (SKILL.md) |
 | 8 | `pnpm tour:publish` + `pnpm deploy:hetzner` (or steps 7–8 in one go: File → Publish to website…, which also saves and backs up) | `_WEBSITE PERMAPHEMERA/frontend/` | `rowild-panorama-tour` (SKILL.md) |
 
@@ -206,7 +206,7 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 - This folder was called `_tours/` and sat inside the Tour Editor repo until
   2026-09-29.
 
-### `_MacAPP TOUR-VIEWER/` (git, GitHub `rowild/tour-editor`, private, since 2026-10-20)
+### `_MacAPP TOUR-EDITOR/` (git, GitHub `rowild/tour-editor`, private, since 2026-10-20)
 
 - Read first: `CLAUDE.md`, `README.md`, `AGENTS.md` (large; skim headings).
 - Two apps, one data file (`tour.json`, schema v2; Tour → Building → Floor →
@@ -259,6 +259,7 @@ are uploaded with `directus/scripts/upload-files.mjs`.
 | Tours on the server | `/srv/sites/permaphemera.at/html/media/tours/<tour-id>/` |
 | Directus, production | Admin <https://permaphemera.project-backends.info>. The site reads it at <https://permaphemera.at/cms/>. Server stack `/srv/stacks/permaphemera.project-backends.info/`. Credentials: `directus/.env.remote` (git-ignored). |
 | Directus, local | <http://localhost:8077> via `directus/docker-compose.yml`, credentials in `directus/.env`. |
+| Visit statistics | Umami, self-hosted at <https://umami.project-backends.info> (cookieless, no consent switch). Visit details are deleted after 36 months (`directus/hetzner/umami-retention-permaphemera.sh`). Weekly sums are kept for good in Directus `pp_stats_weekly` (admin only): a job on the server, Mondays 05:30, `frontend/scripts/server/stats-weekly.sh`; log `/srv/sites/permaphemera.at/stats-weekly.log`. Plan: `plans/2026-11-11__umami-weekly-sums.md`. |
 | `frontend/.env` | `NUXT_PUBLIC_DIRECTUS_URL` = **production**. So `pnpm dev` and `pnpm tour:publish` use production data. |
 | Old host (legacy) | `pnpm deploy` (`frontend/scripts/deploy.mjs`) uploads to all-inkl, `exhibition-archiv.rowild.at`. Not the permaphemera.at route. |
 | GVÖ side site | `gvoe.rowild.at`, via `galerien-oesterreich/scripts/deploy-all-inkl.sh`. |

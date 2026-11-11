@@ -7,6 +7,7 @@
 // Callers offer a tour only while it is open (see utils/tourAccess).
 
 import { TOUR_VIEWER_BUILD } from '~/utils/tourViewerBuild'
+import { trackTourOpen } from '~/utils/tourTracking'
 
 // The fingerprint makes every viewer update a new address, so neither a
 // browser nor Cloudflare can hand out the old file (`pnpm viewer:update`).
@@ -95,6 +96,7 @@ export function useTourViewer() {
       if (closed) return
       tour = await mountTour(modal, { tourUrl, closable: true })
       if (closed) tour.destroy()
+      else trackTourOpen(tourUrl)
     } catch (error) {
       console.error('The 360° tour could not be opened.', error)
       close()

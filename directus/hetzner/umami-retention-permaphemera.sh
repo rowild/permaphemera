@@ -1,6 +1,8 @@
 #!/bin/sh
 # Deletes PERMAPHEMERA visit data older than 36 months from the self-hosted Umami
 # (owner's decision, 2026-10-24; the privacy policy states this period).
+# Before that, the weekly job keeps weekly sums for good in Directus pp_stats_weekly
+# (frontend/scripts/server/stats-weekly.sh, Mondays; owner, 2026-11-11).
 # Only the website d7a5053b-…; the other websites on this Umami instance are not touched.
 # Installed on the Hetzner host as
 #   /srv/stacks/umami.project-backends.info/umami-retention-permaphemera.sh

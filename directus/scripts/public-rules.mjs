@@ -26,8 +26,14 @@ const pathsOf = (key) => {
 const nest = (path) => path.reduceRight((inner, field) => ({ [field]: inner }), PUBLISHED)
 const toFilter = (paths) => (paths.length === 1 ? nest(paths[0]) : { _and: paths.map(nest) })
 
+// Collections marked `private` in schema.mjs (the weekly statistics) never get a public rule.
+export const PRIVATE_COLLECTIONS = new Set(Object.entries(entities).filter(([, e]) => e.private).map(([key]) => col(key)))
+/** True for a collection the public may never read. */
+export const isPrivate = (collection) => PRIVATE_COLLECTIONS.has(collection)
+
 const rules = new Map()
 for (const key of Object.keys(entities)) {
+  if (entities[key].private) continue
   rules.set(col(key), toFilter(pathsOf(key)))
   rules.set(translationsTable(key), toFilter(pathsOf(key).map((path) => [fk(key), ...path])))
 }

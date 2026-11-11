@@ -4,7 +4,7 @@
 //   node scripts/permissions.mjs [--reset]
 import { loadEnv, login } from './lib.mjs'
 import { col } from './naming.mjs'
-import { publicReadRule } from './public-rules.mjs'
+import { isPrivate, publicReadRule } from './public-rules.mjs'
 
 // Fields Directus exposes for a file without a token: enough to render an <img>/link, never uploaded_by.
 const FILES_PUBLIC_FIELDS = ['id', 'type', 'title', 'filename_download', 'width', 'height', 'filesize', 'modified_on', 'folder']
@@ -18,7 +18,7 @@ if (!publicPolicy) throw new Error('no public policy ($t:public_label) found')
 
 const collections = (await api('GET', '/collections')).map((c) => c.collection)
 const targets = [
-  ...collections.filter((n) => n.startsWith('pp_') && n !== col('meta') && n !== col('archive')),
+  ...collections.filter((n) => n.startsWith('pp_') && n !== col('meta') && n !== col('archive') && !isPrivate(n)),
   'languages',
   'directus_files',
 ]
@@ -30,6 +30,11 @@ if (reset) {
   for (const t of targets) {
     if (byCollection.has(t)) { await api('DELETE', `/permissions/${byCollection.get(t)}`); console.log(`- ${t}`); byCollection.delete(t) }
   }
+}
+
+// A private collection (the weekly statistics) must never be readable without a token.
+for (const n of collections.filter(isPrivate)) {
+  if (byCollection.has(n)) { await api('DELETE', `/permissions/${byCollection.get(n)}`); console.log(`- ${n} (private)`) }
 }
 
 for (const t of targets) {

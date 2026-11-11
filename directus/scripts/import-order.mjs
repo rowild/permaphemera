@@ -6,6 +6,8 @@ export const IMPORT_ORDER = [
   // Entities, each after the ones it points to.
   'pp_locations', 'pp_venues', 'pp_persons', 'pp_roles', 'pp_websites', 'pp_events', 'pp_event_editions', 'pp_exhibitions', 'pp_sponsors',
   'pp_organisations', 'pp_quotes', 'pp_news', 'pp_navigations', 'pp_navigation_items',
+  // The weekly Umami sums (2026-11-11): kept for good, so a restore must bring them back too.
+  'pp_stats_weekly',
   // Child rows without status.
   'pp_exhibition_participations', 'pp_exhibition_statements', 'pp_exhibition_organisers',
   'pp_organisation_memberships', 'pp_organisation_venue_relations', 'pp_event_organisers',

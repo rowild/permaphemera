@@ -14,7 +14,7 @@ the points that differ between Safari and Chrome on this site:
   then fakes it, and Safari fakes it differently from Chrome).
 - **The 360° tour modal** opens and closes from the exhibition page (smoke
   check only). Travel between panoramas and large images are the tour
-  viewer's own review: `_MacAPP TOUR-VIEWER`, `qa/safari/`.
+  viewer's own review: `_MacAPP TOUR-EDITOR`, `qa/safari/`.
 
 Dev tool only: nothing in `app/` imports it; the site stays a static build.
 

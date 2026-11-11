@@ -45,6 +45,7 @@ KEY="${HETZNER_KEY:-$HOME/.ssh/id_hetzner}"
 REMOTE_DIR="${HETZNER_REMOTE_DIR:-/srv/sites/permaphemera.at/html}"
 SEO_REFRESH_DIR="$(dirname "$REMOTE_DIR")/seo-refresh"
 NEWS_REPORT_DIR="$(dirname "$REMOTE_DIR")/news-report"
+STATS_WEEKLY_DIR="$(dirname "$REMOTE_DIR")/stats-weekly"
 export NUXT_PUBLIC_DIRECTUS_URL="${NUXT_PUBLIC_DIRECTUS_URL_PROD:-https://permaphemera.at/cms}"
 
 SKIP_BUILD=0
@@ -240,6 +241,19 @@ if [[ "$SITE" == 1 ]]; then
   cp scripts/server/news-report.sh "$bundle/news-report.sh"
   rsync -az --delete -e "ssh -i $KEY -o BatchMode=yes" "$bundle/" "$HOST:$NEWS_REPORT_DIR/"
   ssh -i "$KEY" -o BatchMode=yes "$HOST" "mkdir -p '$NEWS_REPORT_DIR-data' && chmod 700 '$NEWS_REPORT_DIR-data' && crontab -l 2>/dev/null | grep -qF '$NEWS_REPORT_DIR/news-report.sh' || { crontab -l 2>/dev/null; echo '0 8 1 * * sh $NEWS_REPORT_DIR/news-report.sh'; } | crontab -"
+  # The weekly Umami sums, kept for good in Directus (scripts/server/stats-weekly.sh): code next to
+  # the site, the job's token in stats-weekly-data/ (directus/scripts/stats-job-access.mjs writes
+  # it; never touched by a deploy), cron on Mondays at 05:30.
+  echo "[deploy] weekly statistics: code to $STATS_WEEKLY_DIR, cron Mondays 05:30"
+  bundle=.output/stats-weekly
+  rm -rf "$bundle" && mkdir -p "$bundle"
+  stats_files="$(node scripts/lib/server-bundle.mjs scripts/stats-weekly.mjs)"
+  for file in $stats_files scripts/server/stats-weekly.sql; do
+    mkdir -p "$bundle/$(dirname "$file")" && cp "$file" "$bundle/$file"
+  done
+  cp scripts/server/stats-weekly.sh "$bundle/stats-weekly.sh"
+  rsync -az --delete -e "ssh -i $KEY -o BatchMode=yes" "$bundle/" "$HOST:$STATS_WEEKLY_DIR/"
+  ssh -i "$KEY" -o BatchMode=yes "$HOST" "crontab -l 2>/dev/null | grep -qF '$STATS_WEEKLY_DIR/stats-weekly.sh' || { crontab -l 2>/dev/null; echo '30 5 * * 1 sh $STATS_WEEKLY_DIR/stats-weekly.sh'; } | crontab -"
   # The job only logs; say here when its last night went wrong.
   last_run="$(ssh -i "$KEY" -o BatchMode=yes "$HOST" "tail -n 20 '$(dirname "$REMOTE_DIR")/seo-refresh.log' 2>/dev/null | awk '/^== [0-9]/ { block = \"\" } { block = block \$0 \"\\n\" } END { printf \"%s\", block }'")"
   if grep -qE 'failed|problems' <<<"$last_run"; then

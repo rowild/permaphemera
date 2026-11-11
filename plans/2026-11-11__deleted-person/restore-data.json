@@ -1,0 +1,52 @@
+{
+ "person": {
+  "status": "draft",
+  "first_name": "",
+  "last_name": "",
+  "middle_initial": null,
+  "display_name": "Künstlerinnen und Künstler der Lebenshilfe Region Knittelfeld",
+  "slug": "kuenstlerinnen-und-kuenstler-der-lebenshilfe-knittelfeld",
+  "id": "f7c02cfe-8aa2-4341-8c27-4852c219078a",
+  "sort": null,
+  "date_created": "2026-11-01T20:41:26.378Z",
+  "date_updated": "2026-11-01T20:43:02.178Z",
+  "is_collective": true,
+  "born": null,
+  "based_in": "Knittelfeld",
+  "image_alt": null,
+  "image_caption": null,
+  "lede": "Artists with and without disabilities of the Lebenshilfe Region Knittelfeld.",
+  "about_html": "<p>Artists of the Lebenshilfe Region Knittelfeld, with and without disabilities, worked on the project “Hoffnung und Frieden” in 2026. On 24 March 2026 they made a carpet and pictures in their workshop with pupils of the Spielberg middle school, Helmuth Ploschnitznigg and Adi Schmölzer. The sources do not name the artists one by one. Source: lebenshilfe-knittelfeld.at, meinbezirk.at.</p>",
+  "seo": {
+   "title": "Artists of the Lebenshilfe Region Knittelfeld",
+   "meta_description": "Artists with and without disabilities of the Lebenshilfe Region Knittelfeld, Styria. In the archive: the art calendar Hoffnung und Frieden, Knittelfeld, 2026."
+  }
+ },
+ "translations": [
+  {
+   "id": 211,
+   "based_in": "Knittelfeld",
+   "image_alt": null,
+   "image_caption": null,
+   "lede": "Artists with and without disabilities of the Lebenshilfe Region Knittelfeld.",
+   "about_html": "<p>Artists of the Lebenshilfe Region Knittelfeld, with and without disabilities, worked on the project “Hoffnung und Frieden” in 2026. On 24 March 2026 they made a carpet and pictures in their workshop with pupils of the Spielberg middle school, Helmuth Ploschnitznigg and Adi Schmölzer. The sources do not name the artists one by one. Source: lebenshilfe-knittelfeld.at, meinbezirk.at.</p>",
+   "seo": {
+    "title": "Artists of the Lebenshilfe Region Knittelfeld",
+    "meta_description": "Artists with and without disabilities of the Lebenshilfe Region Knittelfeld, Styria. In the archive: the art calendar Hoffnung und Frieden, Knittelfeld, 2026."
+   }
+  },
+  {
+   "id": 212,
+   "based_in": "Knittelfeld",
+   "image_alt": null,
+   "image_caption": null,
+   "lede": "Künstler:innen mit und ohne Behinderung der Lebenshilfe Region Knittelfeld.",
+   "about_html": "<p>Künstler:innen der Lebenshilfe Region Knittelfeld, mit und ohne Behinderung, arbeiteten 2026 am Projekt „Hoffnung und Frieden“. Am 24. März 2026 gestalteten sie in ihrer Werkstatt mit der MS Spielberg, Helmuth Ploschnitznigg und Adi Schmölzer einen Teppich und Bilder. Die Quellen nennen die Künstler:innen nicht einzeln. Quelle: lebenshilfe-knittelfeld.at, meinbezirk.at.</p>",
+   "seo": {
+    "title": "Künstler:innen der Lebenshilfe Region Knittelfeld",
+    "meta_description": "Künstler:innen mit und ohne Behinderung der Lebenshilfe Region Knittelfeld. Im Archiv: der Kunstkalender Hoffnung und Frieden, Knittelfeld, 2026."
+   }
+  }
+ ],
+ "role": null
+}

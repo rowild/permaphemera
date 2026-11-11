@@ -17,14 +17,14 @@ test('every collection name passes the conventions regex', () => {
   }
 })
 
-test('the expected 54 prefixed collections exist', () => {
+test('the expected 55 prefixed collections exist', () => {
   const names = collections.map((c) => c.collection).filter((n) => n.startsWith('pp_')).sort()
   assert.deepEqual(names, [
     'pp_archive', 'pp_event_editions', 'pp_event_organisers', 'pp_events', 'pp_exhibition_organisers', 'pp_exhibition_participations', 'pp_exhibition_statements', 'pp_exhibitions', 'pp_locations',
     'pp_meta', 'pp_mm__events_news', 'pp_mm__events_websites', 'pp_mm__exhibitions_news', 'pp_mm__exhibitions_sponsors', 'pp_mm__exhibitions_venues', 'pp_mm__exhibitions_websites', 'pp_mm__locations_sponsors',
     'pp_mm__news_organisations', 'pp_mm__news_persons', 'pp_mm__news_sponsors', 'pp_mm__news_venues',
     'pp_mm__organisations_websites', 'pp_mm__persons_roles', 'pp_mm__persons_sponsors', 'pp_mm__persons_venues', 'pp_mm__persons_websites', 'pp_mm__sponsors_venues', 'pp_mm__venues_websites',
-    'pp_navigation_items', 'pp_navigations', 'pp_news', 'pp_organisation_memberships', 'pp_organisation_venue_relations', 'pp_organisations', 'pp_persons', 'pp_quotes', 'pp_roles', 'pp_sponsors',
+    'pp_navigation_items', 'pp_navigations', 'pp_news', 'pp_organisation_memberships', 'pp_organisation_venue_relations', 'pp_organisations', 'pp_persons', 'pp_quotes', 'pp_roles', 'pp_sponsors', 'pp_stats_weekly',
     'pp_translations__events', 'pp_translations__exhibition_statements', 'pp_translations__exhibitions', 'pp_translations__locations',
     'pp_translations__navigation_items', 'pp_translations__news', 'pp_translations__organisation_memberships', 'pp_translations__organisations', 'pp_translations__persons', 'pp_translations__quotes', 'pp_translations__roles', 'pp_translations__sponsors', 'pp_translations__venues', 'pp_translations__websites',
     'pp_venues', 'pp_websites',
@@ -247,4 +247,15 @@ test('every WYSIWYG text has the link button (links work in every text, owner 20
   for (const [collection, name] of [['pp_news', 'description'], ['pp_exhibitions', 'description'], ['pp_persons', 'about_html'], ['pp_venues', 'about_html'], ['pp_organisations', 'about_html'], ['pp_events', 'about_html']]) {
     assert.ok(field(collection, name).meta.options.toolbar.includes('link'), `${collection}.${name} has the link button`)
   }
+})
+
+// Owner, 2026-11-11: the weekly Umami sums stay for good, in Directus, never public.
+test('the weekly statistics are a private collection without status', async () => {
+  const { isPrivate, publicReadRule } = await import('./public-rules.mjs')
+  assert.equal(isPrivate('pp_stats_weekly'), true)
+  assert.equal(isPrivate('pp_persons'), false)
+  assert.deepEqual(publicReadRule('pp_persons'), { status: { _eq: 'published' } })
+  assert.equal(field('pp_stats_weekly', 'status'), undefined)
+  assert.equal(field('pp_stats_weekly', 'key').schema.is_unique, true)
+  for (const f of ['week', 'kind', 'collection', 'item', 'label', 'path', 'views', 'visitors', 'tour_opens']) assert.ok(field('pp_stats_weekly', f), f)
 })

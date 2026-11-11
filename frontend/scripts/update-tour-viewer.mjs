@@ -9,7 +9,7 @@
 //
 // The editor project is --from, else TOUR_EDITOR_REPO, else TOUR_EDITOR_REPO
 // in ~/.config/rowild-skills/paths.env (the Tour Editor's Settings → Folders
-// tab writes it), else ../../_MacAPP TOUR-VIEWER beside this repository.
+// tab writes it), else ../../_MacAPP TOUR-EDITOR beside this repository.
 //
 // It stops before commit and deploy on purpose.
 import { spawnSync } from 'node:child_process'
@@ -25,7 +25,7 @@ const fromIndex = args.indexOf('--from')
 const configuredEditor = process.env.TOUR_EDITOR_REPO || (await readProjectPaths()).TOUR_EDITOR_REPO
 const editorRoot = fromIndex >= 0 && args[fromIndex + 1]
   ? resolve(args[fromIndex + 1])
-  : resolve(configuredEditor || resolve(projectRoot, '../../_MacAPP TOUR-VIEWER'))
+  : resolve(configuredEditor || resolve(projectRoot, '../../_MacAPP TOUR-EDITOR'))
 const targetDir = join(projectRoot, 'public', 'media', 'tour-viewer')
 const files = ['tour-viewer.js', 'tour-viewer.css']
 

@@ -4,7 +4,7 @@
 //   node scripts/check-conventions.mjs
 import { loadEnv, login } from './lib.mjs'
 import { col, isValidName } from './naming.mjs'
-import { publicReadRule } from './public-rules.mjs'
+import { isPrivate, publicReadRule } from './public-rules.mjs'
 import { entities } from './schema.mjs'
 
 const FILES_PUBLIC_FIELDS = ['id', 'type', 'title', 'filename_download', 'width', 'height', 'filesize', 'modified_on', 'folder']
@@ -84,6 +84,7 @@ for (const c of collections) {
   if (isFolder(c) || c.collection === 'pp_meta') continue
   const n = c.collection
   const rule = ruleByCollection.get(n)
+  if (isPrivate(n)) { check(!rule, `private collection has a public read rule: ${n}`); continue }
   check(Boolean(rule), `no public read rule: ${n}`)
   if (!rule) continue
   // Only published content is public: see public-rules.mjs.

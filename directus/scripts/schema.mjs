@@ -4,7 +4,7 @@
 import { bool, date, dropdown, file, float, integer, m2o, richText, seo, str, text } from './fields.mjs'
 
 export const COLOR = '#a6523c'
-export const SCHEMA_VERSION = '2026-11-04.3'
+export const SCHEMA_VERSION = '2026-11-11.1'
 export const ROOT_FOLDER = 'archive'
 export const ROOT_LABEL = 'PERMAPHEMERA'
 
@@ -408,6 +408,31 @@ export const entities = {
     layout: [
       section('title', 'Quote', ['status', 'line_1', 'line_2', 'accent', 'source']),
       section('display', 'Display', ['weight', 'visible_from', 'visible_until']),
+    ],
+  },
+  // Owner, 2026-11-11: Umami deletes visit details after 36 months; these weekly sums stay for
+  // good. Written only by the weekly job (frontend/scripts/stats-weekly.mjs) with its own token.
+  // `private`: never a public read rule (public-rules.mjs), the site never reads it.
+  stats_weekly: {
+    kind: 'main', icon: 'monitoring', sort: 13, labels: ['Statistics (weekly)', 'Weekly sum', 'Weekly sums'],
+    statusless: true, private: true,
+    display: ['label'], displayTemplate: '{{week}} · {{kind}} · {{label}}',
+    note: 'Weekly visit sums from Umami, kept for good (the visit details go after 36 months). One row per week (Monday, Vienna time), kind and thing. Written by the weekly job every Monday; do not edit. Plan: plans/2026-11-11__umami-weekly-sums.md.',
+    fields: [
+      str('key', { required: true, unique: true, note: 'week|kind|id: a row is written once, never twice.' }),
+      date('week', { required: true, note: 'Monday the week starts on (Vienna time).' }),
+      dropdown('kind', ['site', 'record', 'town', 'page', 'country', 'city', 'referrer', 'device'], { note: 'site: the whole site · record: one exhibition, person, gallery, organisation, event, news article or sponsor · town: its galleries, exhibitions, organisations, events · page: any other page · country, city: where visitors came from · referrer: website that sent them · device: desktop, mobile, tablet.' }),
+      str('collection', { width: 'half', note: 'For record and town rows: the collection, e.g. pp_persons.' }),
+      str('item', { width: 'half', note: 'For record and town rows: the record id.' }),
+      str('label', { note: 'Name at the time of the sum (title, page path, country, city, domain).' }),
+      str('path', { note: 'Page address without /en, for record and page rows.' }),
+      integer('views', { default: 0, note: 'Page views.' }),
+      integer('visitors', { default: 0, note: 'Distinct visitors of the week (Umami visitor code).' }),
+      integer('tour_opens', { default: 0, note: 'Openings of 360° tours (exhibitions, towns, site, countries, cities).' }),
+    ],
+    layout: [
+      section('title', 'Row', ['key', 'week', 'kind', 'collection', 'item', 'label', 'path']),
+      section('numbers', 'Numbers', ['views', 'visitors', 'tour_opens']),
     ],
   },
   news: {

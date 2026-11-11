@@ -100,6 +100,13 @@ Directus container on the same origin, so institutional networks never see a sec
   `umami-retention-permaphemera.sh` (in this folder; a copy sits in the stack folder),
   run nightly at 03:17 from the crontab of `rowild`, log next to it. It touches only
   website `d7a5053b-…`; the privacy policy states the period.
+- Weekly sums of PERMAPHEMERA's Umami data, kept for good (owner, 2026-11-11):
+  `/srv/sites/permaphemera.at/stats-weekly/stats-weekly.sh` (copied by the frontend deploy from
+  `frontend/scripts/server/`), Mondays 05:30 from the crontab of `rowild`, log
+  `/srv/sites/permaphemera.at/stats-weekly.log`. It writes Directus `pp_stats_weekly` with the
+  token of the user "Statistics job" in `stats-weekly-data/directus.env` (mode 600; written by
+  `directus/scripts/stats-job-access.mjs`, `--rotate` for a new token). Plan
+  `plans/2026-11-11__umami-weekly-sums.md`.
 - Newsletter Brevo key check (from the newsletter launch on): `brevo-keepalive.sh` (in this
   folder; `install-extension.sh` copies it to the stack folder and adds the cron line of
   `rowild` `23 4 * * 1`). It calls Brevo's `GET /account` once a week from inside the Directus

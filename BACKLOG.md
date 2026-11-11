@@ -250,8 +250,8 @@ Bullies and unfair votes (ideas):
 - The owner can remove votes or reset an exhibition's rating in Directus.
 - Optional: votes only for exhibitions whose 360° tour is online, so the voter could see it.
 
-Also useful: Umami already counts page views and time on page per exhibition and tour
-(cookieless). It shows interest without any rating function and can sit next to the stars in
+Also useful: Umami already counts page views per exhibition and, since 2026-11-11, the openings
+of its 360° tour (cookieless); the weekly sums in Directus `pp_stats_weekly` keep them for good. It shows interest without any rating function and can sit next to the stars in
 the statistic.
 
 Protection without accounts (good enough, not perfect):
