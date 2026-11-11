@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.76 - 2026-11-11 08:35:08 CET
+
+- No visible change. Behind the scenes: the nightly update of the search texts and link previews works again (it had stopped after 0.0.74 because a file was missing on the server). The monthly news report had the same gap.
+
 ## 0.0.75 - 2026-11-11 08:30:13 CET
 
 - Photos stand straight: the gallery cards on the galleries page and the framed picture at the top of a gallery, person, organisation or event page are no longer tilted. On hover a card photo only grows a little.
