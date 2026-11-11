@@ -34,11 +34,13 @@ test('the fact box puts each label above its value on phones, beside it elsewher
   else expect(value.x).toBeGreaterThan(label.x + label.width - 1)
 })
 
+// An exhibition that is over and was not photographed (tour_status unavailable). Until 2026-11-11
+// this was Blinddate der Perspektiven, which has a published tour since then.
 test('an exhibition page shows its short text and its tour notice once', async ({ page }) => {
-  await page.goto('/exhibitions/blinddate-der-perspektiven/')
+  await page.goto('/exhibitions/kunstkalender-hoffnung-und-frieden/')
   const text = await page.locator('main').innerText()
   expect(text.match(/keinen 360°-Rundgang/g)?.length).toBe(1)
-  expect(text.match(/Drei Absolventinnen der Freien Akademie/g)?.length).toBe(1)
+  expect(text.match(/entstanden mit Helmuth Ploschnitznigg und Adi Schmölzer, in einer Pop-up-Galerie/g)?.length).toBe(1)
 })
 
 // Three.js (about 730 KB) loads with the wheel, never in the files the page needs to show itself
