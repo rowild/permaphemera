@@ -220,8 +220,9 @@ if [[ "$SITE" == 1 ]]; then
   echo "[deploy] nightly SEO refresh: code to $SEO_REFRESH_DIR, cron 00:15"
   bundle=.output/seo-refresh
   rm -rf "$bundle" && mkdir -p "$bundle"
-  for file in scripts/seo-snapshot.mjs scripts/lib/seo-snapshot.mjs scripts/lib/archive-source.mjs \
-    shared/seo.mjs shared/archive-schema.mjs shared/tour-access.mjs i18n/locales/de.json i18n/locales/en.json; do
+  # The modules follow the imports (scripts/lib/server-bundle.mjs); the locales are read as files.
+  seo_files="$(node scripts/lib/server-bundle.mjs scripts/seo-snapshot.mjs)"
+  for file in $seo_files i18n/locales/de.json i18n/locales/en.json; do
     mkdir -p "$bundle/$(dirname "$file")" && cp "$file" "$bundle/$file"
   done
   cp scripts/server/seo-refresh.sh "$bundle/seo-refresh.sh"
@@ -232,8 +233,8 @@ if [[ "$SITE" == 1 ]]; then
   echo "[deploy] monthly news report: code to $NEWS_REPORT_DIR, cron 1st of the month 08:00"
   bundle=.output/news-report
   rm -rf "$bundle" && mkdir -p "$bundle"
-  for file in scripts/news-report.mjs scripts/lib/news-report.mjs scripts/lib/archive-source.mjs \
-    shared/seo.mjs shared/archive-schema.mjs shared/tour-access.mjs; do
+  news_files="$(node scripts/lib/server-bundle.mjs scripts/news-report.mjs)"
+  for file in $news_files; do
     mkdir -p "$bundle/$(dirname "$file")" && cp "$file" "$bundle/$file"
   done
   cp scripts/server/news-report.sh "$bundle/news-report.sh"
