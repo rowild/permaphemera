@@ -23,6 +23,11 @@ Cross-cutting design specs (Directus + frontend together) live in `docs/superpow
 
 ## Rules that apply everywhere
 
+- **360° tours are published on the last day of an exhibition. Exceptions apply.** (owner's
+  rule, written down 2026-11-11). An empty `tour_available_from` means the last day
+  (`end_date`); a date there is an exception, earlier or later. The site, the SEO texts and the
+  scripts read it through one function, `tourOnlineDate` / `tourAccess` in
+  `frontend/shared/tour-access.mjs`. The start page leads with the tours that came online last.
 - Run frontend commands from `frontend/` on the Node version in `frontend/.nvmrc` (`nvm use` first).
 - Run Directus commands from `directus/` with `docker compose`.
 - Never commit `directus/.env`, `directus/database/`, `directus/uploads/`, or `frontend/.env.deploy.local`.

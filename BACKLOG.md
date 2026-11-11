@@ -58,6 +58,12 @@ Open questions for the owner: which images matter most (artworks, exhibition pho
 Is a watermark acceptable? Do galleries and artists need to know about these rules (for
 example on `/how-it-works/` or in the terms)?
 
+## Pilot partners and sponsors (plan ready, waiting for the owner's answers)
+
+Added 2026-11-11. Plan: `plans/2026-11-11__pilot-partners.md` (data model `pp_partnerships`,
+page `/partners/`, logo band on the start page, badges on gallery pages; sponsors later in the
+same model). Six questions in its §5 need the owner's answers before building.
+
 ## Open points from 2026-11-11 (Galerie im Stiegenhaus, kultur.im.puls, Zlattinger)
 
 Added 2026-11-11. Each needs the owner's word or material from outside.

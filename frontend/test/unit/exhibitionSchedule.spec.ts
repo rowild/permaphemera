@@ -2,8 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   groupExhibitionsByTime,
   localDateKey,
-  selectExhibitionSchedule,
-  selectFeaturedExhibition
+  selectExhibitionSchedule
 } from '~/utils/exhibitionSchedule'
 
 const exhibition = (
@@ -76,32 +75,6 @@ describe('groupExhibitionsByTime', () => {
 
   it('never puts a permanent exhibition in the past', () => {
     expect(groupExhibitionsByTime(records, '2030-01-01').past.map(({ id }) => id)).not.toContain('permanent')
-  })
-})
-
-describe('selectFeaturedExhibition', () => {
-  const orderedRecords = [
-    exhibition('newest-future', '2026-09-08', '2026-09-18'),
-    exhibition('next', '2026-08-25', '2026-09-04'),
-    exhibition('current-late', '2026-08-01', '2026-08-22'),
-    exhibition('current-soon', '2026-08-11', '2026-08-15'),
-    exhibition('past', '2026-07-01', '2026-07-31')
-  ]
-
-  it('selects a current exhibition before newer upcoming records', () => {
-    expect(selectFeaturedExhibition(orderedRecords, '2026-08-13')?.id).toBe('current-soon')
-  })
-
-  it('selects the immediately upcoming exhibition when none is current', () => {
-    expect(selectFeaturedExhibition(orderedRecords, '2026-08-23')?.id).toBe('next')
-  })
-
-  it('falls back to the first supplied record when none is current or upcoming', () => {
-    expect(selectFeaturedExhibition(orderedRecords, '2027-01-01')?.id).toBe('newest-future')
-  })
-
-  it('returns undefined for an empty collection', () => {
-    expect(selectFeaturedExhibition([], '2026-08-13')).toBeUndefined()
   })
 })
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildHeroItems, selectOpenedExhibitions } from '~/utils/heroItems'
+import { buildHeroItems } from '~/utils/heroItems'
 
 const today = '2026-10-14'
 
@@ -17,17 +17,6 @@ const href = {
   exhibition: (slug: string) => `/exhibitions/${slug}/`,
   venue: (slug: string) => `/venues/${slug}/`
 }
-
-describe('selectOpenedExhibitions', () => {
-  it('keeps current and past exhibitions and drops the ones that have not opened yet', () => {
-    const list = [exhibition('past', '2026-06-01', '2026-06-12'), exhibition('now', '2026-10-03', '2026-10-30'), exhibition('later', '2026-11-20', '2027-01-31')]
-    expect(selectOpenedExhibitions(list, today).map((item) => item.id)).toEqual(['past', 'now'])
-  })
-
-  it('counts an exhibition that opens today as current', () => {
-    expect(selectOpenedExhibitions([exhibition('today', today, '2026-11-01')], today)).toHaveLength(1)
-  })
-})
 
 describe('buildHeroItems', () => {
   const open = (id: string, start: string) => exhibition(id, start, start, { tour: `/media/tours/${id}/`, status: 'available', from: '2026-01-01' })

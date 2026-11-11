@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { openTourExhibitions, resolveTourAccess } from '~/utils/tourAccess'
+import { newestOnlineTours, openTourExhibitions, resolveTourAccess, tourOnlineDate } from '~/utils/tourAccess'
 
 const record = (overrides: Partial<Parameters<typeof resolveTourAccess>[0]> = {}) => ({
   tour: '/media/tours/example/',
@@ -18,8 +18,21 @@ describe('resolveTourAccess', () => {
     expect(resolveTourAccess(record(), '2026-06-12')).toEqual({ kind: 'scheduled', date: '2026-06-13' })
   })
 
-  it('opens immediately when no release date is set', () => {
-    expect(resolveTourAccess(record({ tour_available_from: null }), '2020-01-01'))
+  // Owner, 2026-11-11: "360° tours are published on the last day of an exhibition. Exceptions
+  // apply." Without a date the tour opens on the last day; a date is an exception.
+  it('opens on the last day of the exhibition when no release date is set', () => {
+    const lastDay = record({ tour_available_from: null, end_date: '2026-12-31' })
+    expect(resolveTourAccess(lastDay, '2026-12-30')).toEqual({ kind: 'scheduled', date: '2026-12-31' })
+    expect(resolveTourAccess(lastDay, '2026-12-31')).toEqual({ kind: 'open', url: '/media/tours/example/' })
+  })
+
+  it('lets an exception date open the tour before the last day', () => {
+    expect(resolveTourAccess(record({ tour_available_from: '2026-10-03', end_date: '2026-12-31' }), '2026-11-11'))
+      .toEqual({ kind: 'open', url: '/media/tours/example/' })
+  })
+
+  it('opens at once when there is neither a date nor a last day (permanent)', () => {
+    expect(resolveTourAccess(record({ tour_available_from: null, end_date: null }), '2020-01-01'))
       .toEqual({ kind: 'open', url: '/media/tours/example/' })
   })
 
@@ -55,5 +68,32 @@ describe('openTourExhibitions', () => {
 
   it('gives an empty list when no tour is open', () => {
     expect(openTourExhibitions([show('later', '2026-08-01', { tour_available_from: '2026-12-01' })], '2026-09-14')).toEqual([])
+  })
+})
+
+// The day a tour comes online: its exception date, else the last day of the exhibition.
+describe('tourOnlineDate', () => {
+  it('is the release date when one is set, else the last day, else none', () => {
+    expect(tourOnlineDate({ tour_available_from: '2026-10-03', end_date: '2026-12-31' })).toBe('2026-10-03')
+    expect(tourOnlineDate({ tour_available_from: null, end_date: '2026-11-10' })).toBe('2026-11-10')
+    expect(tourOnlineDate({ tour_available_from: null, end_date: null })).toBeNull()
+  })
+})
+
+// The start page leads with the tours that came online last (owner, 2026-11-11).
+describe('newestOnlineTours', () => {
+  const show = (id: string, end_date: string, overrides: Record<string, unknown> = {}) => ({ ...record({ tour_available_from: null, end_date }), id, title: id, start_date: '2026-01-01', image: `/img/${id}.jpg`, ...overrides })
+
+  it('lists open tours by the day they came online, newest first', () => {
+    const list = [
+      show('june', '2026-06-12'),
+      show('early-exception', '2027-02-28', { tour_available_from: '2026-11-07' }),
+      show('november', '2026-11-10'),
+      show('not-yet', '2026-12-31'),
+      show('no-file', '2026-10-01', { tour: null }),
+      show('no-image', '2026-10-02', { image: '' }),
+      show('restricted', '2026-10-03', { tour_status: 'restricted' })
+    ]
+    expect(newestOnlineTours(list, '2026-11-11').map((item) => item.id)).toEqual(['november', 'early-exception', 'june'])
   })
 })

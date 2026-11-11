@@ -35,10 +35,6 @@ interface HeroHrefs {
   venue: (slug: string) => string
 }
 
-/** Exhibitions that have opened (current or past). Nothing that has not opened yet. */
-export const selectOpenedExhibitions = <T extends DatedExhibition>(exhibitions: readonly T[], today: string): T[] =>
-  exhibitions.filter((exhibition) => exhibition.start_date <= today)
-
 /**
  * The fan offers only exhibitions whose 360° experience is open, newest first; a blade opens the
  * tour itself (`tourUrl`), and `href` (the exhibition page) is the fallback for a new tab. Until there are

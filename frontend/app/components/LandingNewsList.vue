@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ResolvedNews } from '~/utils/resolveNews'
 
-// The latest news articles on the start page. `column`: the right part of the row of current
-// and upcoming exhibitions (desktop and tablet), stays in view while the cards scroll past.
+// The latest news articles on the start page. `column`: the right part of the row of the newest
+// tours (desktop and tablet; its heading carries the section line, owner 2026-11-11), stays in view while the cards scroll past.
 // `section`: a section of its own (mobile, and the start page without a schedule row).
 const props = withDefaults(defineProps<{
   news: ResolvedNews[]
@@ -21,7 +21,7 @@ const headingId = computed(() => `news-latest-${props.variant}-title`)
     class="[ news-latest ] sticky top-32 min-w-0 self-start border-l border-archive-rule-brown/24 pl-[clamp(1.5rem,2.5vw,2.5rem)]"
     :aria-labelledby="headingId"
   >
-    <h3 :id="headingId" class="m-0 mb-1 pl-1 text-eyebrow font-medium tracking-widest text-archive-copy uppercase">{{ $t('newsPage.latest') }}</h3>
+    <h3 :id="headingId" class="archive-section-eyebrow m-0 mb-1 inline-flex items-center gap-[0.7rem] pl-1 text-eyebrow font-medium tracking-widest text-archive-copy uppercase">{{ $t('newsPage.latest') }}</h3>
     <ol class="m-0 list-none divide-y divide-archive-rule-warm/22 p-0">
       <li v-for="item in props.news" :key="item.id"><NewsEntry :news="item" /></li>
     </ol>

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.79 - 2026-11-11 13:20:54 CET
+
+- The start page leads with the 360° tours: "Soeben bewahrt" ("Just preserved") shows the four tours that came online last, beside the news. Current and announced exhibitions follow below in two small rows of up to five that scroll sideways when they do not fit. "Aus dem Archiv" ("From the archive", before: "Zuletzt eröffnet") continues with the next five tours and now comes before the galleries.
+- The news column on the start page carries the same line graphic as the section headings; "Alle Ausstellungen ansehen" closes the tour area.
+- A 360° tour comes online on the last day of its exhibition unless another day is set. Exhibitions without a set day now say "360° tour from <last day>" instead of "in preparation" until then; tours put online early keep their day.
+
 ## 0.0.78 - 2026-11-11 11:32:36 CET
 
 - New logo geometry in the header and the footer: the word PERMAPHEMERA stands on the temple's lowest step, its P is exactly as tall as the house up to the roof, and in the header the line "Ein Archiv von Ausstellungen in Österreich" sits on the roof's peak. The temple keeps its sizes; the word follows them and is a little larger: 27.9 instead of 23.2 px on desktop, 20.9 instead of 20 px in the slim header, 17.4 instead of 16 px on small phones.

@@ -53,7 +53,7 @@ const pageHint = computed(() => t(props.exhibition.kind === 'event' ? 'cards.abo
 // The 360° tile only while the tour is open; a scheduled or prepared tour gets
 // a line in its place. "Unavailable" and "restricted" records promise nothing.
 const tourAccess = computed(() => props.exhibition.tour_status
-  ? resolveTourAccess({ tour: props.exhibition.tour, tour_status: props.exhibition.tour_status, tour_available_from: props.exhibition.tour_available_from ?? null }, archiveToday.value)
+  ? resolveTourAccess({ tour: props.exhibition.tour, tour_status: props.exhibition.tour_status, tour_available_from: props.exhibition.tour_available_from ?? null, end_date: props.exhibition.end_date ?? null }, archiveToday.value)
   : { kind: 'unavailable' as const })
 const tourNote = computed(() => {
   const access = tourAccess.value

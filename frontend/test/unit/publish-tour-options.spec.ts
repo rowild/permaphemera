@@ -29,9 +29,10 @@ describe('parseArguments', () => {
 
 describe('recordSummary', () => {
   it('keeps what the window needs to decide about the Start button', () => {
-    const record = { id: 'u', slug: 's', start_date: '2026-10-15', tour_status: 'available', tour_available_from: null, tour: null, translations: [] }
+    // end_date since 2026-11-11: without tour_available_from the tour opens on the last day.
+    const record = { id: 'u', slug: 's', start_date: '2026-10-15', end_date: '2026-10-29', tour_status: 'available', tour_available_from: null, tour: null, translations: [] }
     expect(recordSummary(record, 'Trigeniale 26')).toEqual({
-      slug: 's', title: 'Trigeniale 26', start_date: '2026-10-15', tour_status: 'available', tour_available_from: null,
+      slug: 's', title: 'Trigeniale 26', start_date: '2026-10-15', tour_status: 'available', tour_available_from: null, end_date: '2026-10-29',
     })
   })
 })

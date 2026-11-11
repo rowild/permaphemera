@@ -5,12 +5,11 @@ import {
 } from '@lucide/vue'
 import { gsap } from 'gsap'
 import type { KaleidoscopeExhibitionItem } from '~/types/kaleidoscope'
-import { MAX_SCHEDULE_SLIDES_PER_GROUP, selectExhibitionSchedule, selectFeaturedExhibition } from '~/utils/exhibitionSchedule'
-import { buildHeroItems, HERO_BLADE_COUNT, selectOpenedExhibitions } from '~/utils/heroItems'
+import { MAX_SCHEDULE_SLIDES_PER_GROUP, selectExhibitionSchedule } from '~/utils/exhibitionSchedule'
+import { buildHeroItems, HERO_BLADE_COUNT } from '~/utils/heroItems'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
-import type { ResolvedExhibition } from '~/utils/resolveExhibitions'
 import { pickQuote, resolveQuotes } from '~/utils/quotes'
-import { resolveTourAccess } from '~/utils/tourAccess'
+import { newestOnlineTours, resolveTourAccess } from '~/utils/tourAccess'
 
 // `directoryVenues` below doesn't hand out the full resolved records — it
 // rebuilds a smaller landing-page card projection with a `location_id` field
@@ -20,7 +19,6 @@ import { resolveTourAccess } from '~/utils/tourAccess'
 interface Venue extends Pick<ResolvedVenue, 'id' | 'slug' | 'name' | 'city' | 'address' | 'website_url' | 'image' | 'featured' | 'archive_number'> {
   location_id: string
 }
-type Exhibition = ResolvedExhibition
 
 // The start page renders before the archive arrives (app.vue): the hero shows
 // at once, the wheel's arrows run faded, everything below waits for the data.
@@ -63,33 +61,26 @@ const archiveOrder = (left: Venue, right: Venue) =>
 const orderedOtherVenues = computed(() => [...otherVenues.value].sort(archiveOrder))
 const venueStackVenue = computed(() => orderedOtherVenues.value[LANDING_VENUE_COUNT])
 const regularVenues = computed(() => orderedOtherVenues.value.slice(0, LANDING_VENUE_COUNT))
-const orderedExhibitions = computed(() => [...venueExhibitions.value]
-  .sort((left, right) => right.start_date.localeCompare(left.start_date)
-    || right.end_date.localeCompare(left.end_date)
-    || left.title.localeCompare(right.title)))
-// "Selected exhibitions" shows what is on or has been on; announced exhibitions have their own section.
-const openedExhibitions = computed(() => selectOpenedExhibitions(orderedExhibitions.value, archiveToday.value))
-const featuredExhibitionRecord = computed(() => selectFeaturedExhibition(openedExhibitions.value, archiveToday.value))
-const selectedExhibitions = computed<Exhibition[]>(() => {
-  const featured = featuredExhibitionRecord.value
-  const records = featured
-    ? [featured, ...openedExhibitions.value.filter((exhibition) => exhibition.id !== featured.id)]
-    : openedExhibitions.value
-
-  return records.slice(0, 5)
-})
-const featuredExhibition = computed(() => selectedExhibitions.value.find((exhibition) => exhibition.id === featuredExhibitionRecord.value?.id) ?? selectedExhibitions.value[0]!)
-const sideExhibitions = computed(() => selectedExhibitions.value.filter((exhibition) => exhibition.id !== featuredExhibition.value.id))
+// The site is about 360° tours that come online on a certain day (owner, 2026-11-11; by rule
+// the last day of an exhibition). The first section shows the four newest tours online; the
+// "Ausstellungen" section continues with the next five (one large card, four small ones).
+const NEW_TOUR_COUNT = 4
+const ARCHIVE_TOUR_COUNT = 5
+const onlineTours = computed(() => newestOnlineTours(venueExhibitions.value, archiveToday.value))
+const newTours = computed(() => onlineTours.value.slice(0, NEW_TOUR_COUNT))
+const archiveTours = computed(() => onlineTours.value.slice(NEW_TOUR_COUNT, NEW_TOUR_COUNT + ARCHIVE_TOUR_COUNT))
+const featuredExhibition = computed(() => archiveTours.value[0])
+const sideExhibitions = computed(() => archiveTours.value.slice(1))
 // Up to five per group for the mobile slider; the desktop columns show the first three.
 const exhibitionSchedule = computed(() => selectExhibitionSchedule(venueExhibitions.value, archiveToday.value, MAX_SCHEDULE_SLIDES_PER_GROUP))
 const currentExhibitions = computed(() => exhibitionSchedule.value.current)
 const upcomingExhibitions = computed(() => exhibitionSchedule.value.upcoming)
-const hasTimelyExhibitions = computed(() => currentExhibitions.value.length > 0 || upcomingExhibitions.value.length > 0)
+const hasTimelyExhibitions = computed(() => newTours.value.length > 0 || currentExhibitions.value.length > 0 || upcomingExhibitions.value.length > 0)
 // The latest news: up to five beside the current and upcoming exhibitions, three on mobile,
 // where they sit as their own section before the sponsors (or in the row's place without it).
 const latestNews = computed(() => news.value.slice(0, 5))
 const latestNewsMobile = computed(() => news.value.slice(0, 3))
-const firstLandingSectionTarget = computed(() => hasTimelyExhibitions.value ? '#current-upcoming' : '#venues')
+const firstLandingSectionTarget = computed(() => hasTimelyExhibitions.value ? '#new-tours' : archiveTours.value.length ? '#exhibitions' : '#venues')
 // The fan links only to open 360° experiences; galleries fill it up to twelve blades for now.
 const heroExhibitionItems = computed<KaleidoscopeExhibitionItem[]>(() => buildHeroItems(
   venueExhibitions.value,
@@ -403,7 +394,7 @@ const toggleLandingArtistDetails = (slug: string) => {
 const { opening: tourOpening, openTour } = useTourViewer()
 const openTourUrls = computed(() => venueExhibitions.value.flatMap((exhibition) => {
   if (!exhibition.tour_status) return []
-  const access = resolveTourAccess({ tour: exhibition.tour, tour_status: exhibition.tour_status, tour_available_from: exhibition.tour_available_from ?? null }, archiveToday.value)
+  const access = resolveTourAccess({ tour: exhibition.tour, tour_status: exhibition.tour_status, tour_available_from: exhibition.tour_available_from ?? null, end_date: exhibition.end_date ?? null }, archiveToday.value)
   return access.kind === 'open' ? [access.url] : []
 }))
 const openRandomTour = (event: MouseEvent) => {
@@ -503,13 +494,40 @@ const openRandomTour = (event: MouseEvent) => {
     <template v-if="archiveReady">
       <LandingExhibitionSchedule
         v-if="belowHeroStep >= 1"
+        :tours="newTours"
         :current="currentExhibitions"
         :upcoming="upcomingExhibitions"
         :news="latestNews"
       />
       <LandingNewsList v-if="belowHeroStep >= 1 && latestNews.length && !hasTimelyExhibitions" class="compact:hidden" :news="latestNews" variant="section" />
 
-      <section v-if="belowHeroStep >= 2" id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
+      <section v-if="belowHeroStep >= 2 && featuredExhibition" id="exhibitions" class="[ exhibitions-section ] [ section-band ] relative isolate mx-auto max-w-band overflow-hidden px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
+        <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
+          <ArchiveEyebrow ornament="section">{{ $t('landing.exhibitions.eyebrow') }}</ArchiveEyebrow>
+          <ArchiveSectionHeading class="max-w-232">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></ArchiveSectionHeading>
+        </div>
+
+        <div class="[ exhibition-layout ] grid grid-cols-[minmax(28rem,1.35fr)_minmax(23rem,0.85fr)] gap-8 tablet:grid-cols-1 compact:grid-cols-2 compact:gap-3">
+          <ExhibitionCard
+            class="[ featured-exhibition ] tablet:col-span-full"
+            :exhibition="featuredExhibition"
+            layout="hero"
+          />
+
+          <div class="[ record-list ] grid content-start gap-4 tablet:grid-cols-2 tablet:gap-5 compact:contents">
+            <ExhibitionCard
+              v-for="exhibition in sideExhibitions"
+              :key="exhibition.id"
+              :exhibition="exhibition"
+              layout="side"
+            />
+          </div>
+        </div>
+
+        <ArchiveExhibitionsDivider />
+      </section>
+
+      <section v-if="belowHeroStep >= 3" id="venues" class="[ venues-section ] [ section-band ] relative mx-auto max-w-band px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
         <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
           <ArchiveEyebrow ornament="section">{{ $t('landing.venues.eyebrow') }}</ArchiveEyebrow>
           <ArchiveSectionHeading class="max-w-232">{{ $t('landing.venues.title') }} <span class="text-archive-red">{{ $t('landing.venues.accent') }}</span></ArchiveSectionHeading>
@@ -535,32 +553,6 @@ const openRandomTour = (event: MouseEvent) => {
             variant="venue"
             :to="localePath('/venues/')"
           />
-        </div>
-
-        <ArchiveExhibitionsDivider />
-      </section>
-
-      <section v-if="belowHeroStep >= 3" id="exhibitions" class="[ exhibitions-section ] [ section-band ] relative isolate mx-auto max-w-band overflow-hidden px-gutter py-[clamp(3rem,5vw,5rem)] compact:px-4 compact:py-5">
-        <div class="[ section-heading ] relative z-1 mb-8 compact:mb-4">
-          <ArchiveEyebrow ornament="section">{{ $t('landing.exhibitions.eyebrow') }}</ArchiveEyebrow>
-          <ArchiveSectionHeading class="max-w-232">{{ $t('landing.exhibitions.title') }} <span class="text-archive-red">{{ $t('landing.exhibitions.accent') }}</span></ArchiveSectionHeading>
-        </div>
-
-        <div class="[ exhibition-layout ] grid grid-cols-[minmax(28rem,1.35fr)_minmax(23rem,0.85fr)] gap-8 tablet:grid-cols-1 compact:grid-cols-2 compact:gap-3">
-          <ExhibitionCard
-            class="[ featured-exhibition ] tablet:col-span-full"
-            :exhibition="featuredExhibition"
-            layout="hero"
-          />
-
-          <div class="[ record-list ] grid content-start gap-4 tablet:grid-cols-2 tablet:gap-5 compact:contents">
-            <ExhibitionCard
-              v-for="exhibition in sideExhibitions"
-              :key="exhibition.id"
-              :exhibition="exhibition"
-              layout="side"
-            />
-          </div>
         </div>
 
         <ArchiveExhibitionsDivider />

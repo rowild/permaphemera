@@ -103,3 +103,39 @@ test('a gallery page names its curator and its head, and no other person tied to
   // Eva Asaad photographs the gallery's exhibitions: a tie, but neither curator nor head.
   await expect(facts.getByRole('link', { name: 'Eva Asaad' })).toHaveCount(0)
 })
+
+// Owner, 2026-11-11: the start page leads with the newest 360° tours. The first section shows
+// them in its left two thirds with the link to all exhibitions at the end of that area; the news
+// column keeps its place and carries the section line; current and announced exhibitions follow
+// in two small rows of at most five that scroll sideways when needed; "Ausstellungen" (more
+// tours) comes before "Räume".
+test('the start page leads with the newest tours', async ({ page }) => {
+  await page.goto('/')
+  const section = page.locator('#new-tours')
+  await expect(section).toBeVisible({ timeout: 30_000 })
+  // The sections below the hero are built one per frame after the hero text (index.vue).
+  await expect(page.locator('#venues')).toBeAttached({ timeout: 30_000 })
+  const order = await page.evaluate(() => ['#new-tours', '#exhibitions', '#venues'].map((id) => {
+    const element = document.querySelector(id)
+    return element ? [...document.querySelectorAll('section[id]')].indexOf(element as HTMLElement) : -1
+  }))
+  expect(order[0]).toBeGreaterThanOrEqual(0)
+  expect(order[1]).toBeGreaterThan(order[0]!)
+  expect(order[2]).toBeGreaterThan(order[1]!)
+
+  for (const row of await section.locator('[data-schedule-row]').all()) {
+    expect(await row.locator('li').count()).toBeLessThanOrEqual(5)
+    const track = row.locator('ul')
+    const { scroll, client, overflow } = await track.evaluate((element) => ({ scroll: element.scrollWidth, client: element.clientWidth, overflow: getComputedStyle(element).overflowX }))
+    if (scroll > client + 1) expect(overflow).toBe('auto')
+  }
+
+  if (width(page) < 701) return
+  const news = section.locator('.news-latest')
+  await expect(news).toBeVisible()
+  const newsBox = (await news.boundingBox())!
+  const link = (await section.locator('.new-tours-heading a[href$="/exhibitions/"]').boundingBox())!
+  expect(link.x + link.width).toBeLessThanOrEqual(newsBox.x)
+  expect(link.y + link.height).toBeLessThanOrEqual(newsBox.y + 1)
+  expect(await news.locator('h3').evaluate((heading) => getComputedStyle(heading, '::after').content)).not.toBe('none')
+})

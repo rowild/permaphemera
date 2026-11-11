@@ -18,7 +18,8 @@
 //   --link-only [--exhibition <slug>] [--show-now]
 //                          Directus only; the copy must already be here.
 //                          --show-now also sets tour_status "available" and
-//                          clears tour_available_from
+//                          sets tour_available_from to today (an empty date
+//                          means the last day of the exhibition, 2026-11-11)
 //
 // The tour id is the folder the editor wrote on export (Tutorial No. 2). With
 // no --exhibition and no existing link, the script lists the records that
@@ -38,6 +39,7 @@ import { readProjectPaths } from './lib/project-paths.mjs'
 import { ensureFingerprint } from './lib/tour-fingerprint.mjs'
 import { writeStartView } from './lib/tour-start-view.mjs'
 import { parseArguments, recordSummary } from './lib/publish-tour-options.mjs'
+import { viennaToday } from '../shared/seo.mjs'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const toursDirectory = join(projectRoot, 'public', 'media', 'tours')
@@ -224,7 +226,8 @@ async function linkOnly(options, target, tourPath) {
   }
   const { exhibitions } = await loadCatalogue()
   const linked = exhibitions.find((record) => record.tour === tourPath)
-  const showNow = options.showNow ? { tour_status: 'available', tour_available_from: null } : {}
+  // An empty date means the exhibition's last day (owner's rule, 2026-11-11): "now" is today's date.
+  const showNow = options.showNow ? { tour_status: 'available', tour_available_from: viennaToday() } : {}
   let record = linked
   let patch = showNow
 

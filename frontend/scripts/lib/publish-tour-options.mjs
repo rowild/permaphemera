@@ -50,4 +50,5 @@ export const recordSummary = (record, title) => ({
   start_date: record.start_date,
   tour_status: record.tour_status,
   tour_available_from: record.tour_available_from ?? null,
+  end_date: record.end_date ?? null,
 })

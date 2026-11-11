@@ -285,7 +285,7 @@ exhibition's `event_edition` instead (see "Words" above). A frame without an org
 
 | Situation | `tour_status` | `tour_available_from` | Text |
 |---|---|---|---|
-| Photographed or will be photographed | `available` | ask the owner: EMPTY = the button shows at once (as soon as `tour` is linked), or a DATE = from that day, e.g. the last day (`end_date`) | Before a date the site shows it ("360° tour from 19 December 2026"). No tour sentence in `summary` or `description`: the page says it itself, and a written date goes stale (2026-10-25; four stale sentences removed 2026-11-03) |
+| Photographed or will be photographed | `available` | EMPTY = the rule: the tour goes online on the last day (`end_date`). A DATE only for an exception (owner, 2026-11-11: "360° tours are published on the last day of an exhibition. Exceptions apply.") | Before a date the site shows it ("360° tour from 19 December 2026"). No tour sentence in `summary` or `description`: the page says it itself, and a written date goes stale (2026-10-25; four stale sentences removed 2026-11-03) |
 | Photographed, date passed, files not yet published | `available` | as above | The site shows "360° tour in preparation" / "360°-Rundgang in Vorbereitung" by itself (page, cards, SEO), until `tour` is linked. Write nothing in the texts |
 | Tour published | `available` | as above | `pnpm tour:publish <id>` sets `tour` (see `PROJECT_INFO.md` §3) |
 | Not photographed | `unavailable` | empty | no tour sentence |
@@ -305,7 +305,7 @@ and only when both are empty builds a plain text from title, artists, dates, gal
 - The share image (`og_image`) is optional. Choose a JPEG, PNG or WebP (TIFF and AVIF work too),
   never an SVG logo: link previews cannot show SVG, and `pnpm check:data` fails on it.
 - **Never write the tour into an exhibition's description.** The site adds the sentence itself
-  from the tour fields: "360° tour from 29 October." before `tour_available_from`, "… in
+  from the tour fields: "360° tour from 29 October." before the tour's day (`tour_available_from`, else `end_date`), "… in
   preparation." from that day until `pnpm tour:publish` links the tour, "… online." after; none
   for `restricted` or `unavailable`. The server rewrites the static pages every night at 00:15,
   so the sentence changes on its day without a deploy. Exhibitions with a tour therefore keep

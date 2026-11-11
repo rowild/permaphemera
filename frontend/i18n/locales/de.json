@@ -116,7 +116,7 @@
       "loadingCounter": "{current} von {total}",
       "loadingProgress": "{loaded} von {total} Ausstellungen geladen",
       "continue": "Weiter zu den Galerien",
-      "continueSchedule": "Weiter zu aktuellen und kommenden Ausstellungen"
+      "continueSchedule": "Weiter zu den neuen 360°-Rundgängen"
     },
     "venues": {
       "eyebrow": "Räume",
@@ -125,13 +125,13 @@
     },
     "exhibitions": {
       "eyebrow": "Ausstellungen",
-      "title": "Zuletzt",
-      "accent": "eröffnet"
+      "title": "Aus dem",
+      "accent": "Archiv"
     },
     "schedule": {
-      "eyebrow": "Programm",
-      "titleBefore": "Jetzt und",
-      "titleAccent": "demnächst",
+      "eyebrow": "360°-Rundgänge",
+      "titleBefore": "Soeben",
+      "titleAccent": "bewahrt",
       "current": "Aktuelle Ausstellungen",
       "upcoming": "Kommende Ausstellungen",
       "viewAll": "Alle Ausstellungen ansehen"

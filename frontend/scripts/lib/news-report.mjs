@@ -3,7 +3,7 @@
 // the archive, so the owner can decide whether a news article is worth writing. Pure logic: the
 // archive (published records, as the public API delivers them) and the state of the last report
 // go in; the mail text and the next state come out.
-import { tourAccess } from '../../shared/tour-access.mjs'
+import { tourAccess, tourOnlineDate } from '../../shared/tour-access.mjs'
 
 export const SITE_URL = 'https://permaphemera.at'
 export const ADMIN_URL = 'https://permaphemera.project-backends.info/admin/content'
@@ -46,8 +46,8 @@ export const buildReport = (archive, previous, today) => {
       exhibitions.filter((e) => next.openTours.includes(e.slug) && isNew('openTours')(e.slug))
         .map((e) => line(e.title, where(e), `/exhibitions/${e.slug}/`, 'pp_exhibitions', e.id))],
     ['360° tours that go online within 3 weeks',
-      exhibitions.filter((e) => { const access = tourAccess(e, today); return access.kind === 'scheduled' && access.date <= soon }).sort(byDate('tour_available_from'))
-        .map((e) => line(e.title, [where(e), `tour from ${longDate(e.tour_available_from)}`].filter(Boolean).join(', '), `/exhibitions/${e.slug}/`, 'pp_exhibitions', e.id))],
+      exhibitions.filter((e) => { const access = tourAccess(e, today); return access.kind === 'scheduled' && access.date <= soon }).sort((a, b) => (tourOnlineDate(a) ?? '').localeCompare(tourOnlineDate(b) ?? ''))
+        .map((e) => line(e.title, [where(e), `tour from ${longDate(tourOnlineDate(e))}`].filter(Boolean).join(', '), `/exhibitions/${e.slug}/`, 'pp_exhibitions', e.id))],
     ['New galleries since the last report (a "welcome" article)',
       (archive.venues ?? []).filter((r) => published(r) && isNew('venues')(r.slug)).map((r) => line(r.title, '', `/venues/${r.slug}/`, 'pp_venues', r.id))],
     ['New artists and other persons since the last report (a "welcome" article)',

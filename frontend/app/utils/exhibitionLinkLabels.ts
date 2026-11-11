@@ -24,7 +24,7 @@ export function exhibitionLinkLabels(
 ): ExhibitionLinkLabels {
   const event = exhibition.kind === 'event'
   const tourOpen = exhibition.tour_status !== undefined
-    && resolveTourAccess({ tour: exhibition.tour, tour_status: exhibition.tour_status, tour_available_from: exhibition.tour_available_from ?? null }, today).kind === 'open'
+    && resolveTourAccess({ tour: exhibition.tour, tour_status: exhibition.tour_status, tour_available_from: exhibition.tour_available_from ?? null, end_date: exhibition.end_date ?? null }, today).kind === 'open'
 
   if (tourOpen) {
     return event

@@ -276,9 +276,14 @@ old folder names and paths, `TOUR=` examples) were corrected that day in all
 
 - `pnpm deploy` still exists in `frontend/package.json`. It uploads to the old
   all-inkl host, not to permaphemera.at. Use **`pnpm deploy:hetzner`**.
-- A tour button shows only when `tour_status` is `available` **and**
-  `tour_available_from` has passed. `pnpm tour:publish` sets only `tour`
-  (except `--link-only --show-now`, which the Publish window uses for "Show now").
+- **Rule: 360° tours are published on the last day of an exhibition. Exceptions apply.**
+  A tour button shows only when `tour_status` is `available` **and** the tour's day has come:
+  `tour_available_from` when set (an exception), else the exhibition's last day (`end_date`;
+  since 2026-11-11, before that an empty date meant "at once"). `pnpm tour:publish` sets only
+  `tour` (except `--link-only --show-now`, which the Publish window uses for "Show now"; it now
+  writes today's date into `tour_available_from`). **Tour Editor:** its Publish window reads
+  `tour_available_from` from `--candidates-json`, which now also carries `end_date`; an empty
+  date there means the last day, not "at once".
 - The Kindergalerie tour is no longer in `collection/`: it sits in
   `__MATERIAL/kindergalerie_klagenfurt/`. It was graded ad hoc on 2026-09-22 (log:
   `__MATERIAL/kindergalerie_klagenfurt/_grading/grading-claude-2026-09-22.txt`); its
