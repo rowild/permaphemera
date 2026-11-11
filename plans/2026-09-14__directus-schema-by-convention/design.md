@@ -2,11 +2,11 @@
 
 Date: 2026-09-14
 Status: approved by the owner in three review rounds on 2026-09-14; ready for the implementation plan
-Supersedes: the collection shapes in `_Plans/exhibitions-plan.md` §2 as built on 2026-09-14 (they are rebuilt from zero)
+Supersedes: the collection shapes in `docs/exhibitions-plan.md` §2 as built on 2026-09-14 (they are rebuilt from zero)
 
 ## Problem
 
-The 13 Directus collections created earlier today follow the plan but not the house rules. `_Plans/directus-schema-conventions.md` defines those rules: prefix, naming of junctions and translation tables, `title` as the headline column, M2O fields named by meaning, three-value `status`, a fixed form layout, sidebar nesting, delete behaviour and labels. Two menus exist only as hard-coded links in two Vue components. People appear only as "artists", but a person can also curate a show, and one person can be both on the same show. The owner also decided that every translatable field keeps its English original on the record and all languages in the translation table.
+The 13 Directus collections created earlier today follow the plan but not the house rules. `docs/directus-schema-conventions.md` defines those rules: prefix, naming of junctions and translation tables, `title` as the headline column, M2O fields named by meaning, three-value `status`, a fixed form layout, sidebar nesting, delete behaviour and labels. Two menus exist only as hard-coded links in two Vue components. People appear only as "artists", but a person can also curate a show, and one person can be both on the same show. The owner also decided that every translatable field keeps its English original on the record and all languages in the translation table.
 
 The database is empty, so nothing is migrated. Everything is rebuilt from a script.
 

@@ -2,7 +2,7 @@
 
 Date: 2026-09-15
 Status: approved by the owner on 2026-09-15 ("go")
-Builds on: `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md` (schema, JSON mirror). Branch: `feature/directus-runtime`.
+Builds on: `plans/2026-09-14__directus-schema-by-convention/design.md` (schema, JSON mirror). Branch: `feature/directus-runtime`.
 
 ## Problem
 

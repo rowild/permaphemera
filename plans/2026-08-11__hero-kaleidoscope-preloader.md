@@ -8,7 +8,7 @@
 
 **Tech Stack:** Nuxt 4, Vue 3 `<script setup>`, TypeScript, Tailwind CSS v4, GSAP, Three.js, `@nuxtjs/i18n`.
 
-**Spec:** `docs/superpowers/specs/2026-08-11-hero-kaleidoscope-preloader-design.md`
+**Spec:** `plans/2026-08-11__hero-kaleidoscope-preloader/design.md`
 
 ## Global Constraints
 

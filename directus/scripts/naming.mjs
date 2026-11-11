@@ -1,5 +1,5 @@
 // directus/scripts/naming.mjs
-// The three derived-name rules from _Plans/directus-schema-conventions.md §1.
+// The three derived-name rules from docs/directus-schema-conventions.md §1.
 // Nothing else in the scripts spells a derived name by hand.
 
 export const PREFIX = 'pp_'

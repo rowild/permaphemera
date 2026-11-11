@@ -2,7 +2,7 @@
 
 ## Current Working Direction
 
-The current working identity is **PERMAPHEMERA**. The landing page mockups in `_Plans/designs/landing-page/` already use this name, so implementation planning should treat it as the active project name unless it is explicitly changed later.
+The current working identity is **PERMAPHEMERA**. The landing page mockups in `_Material/designs/landing-page/` already use this name, so implementation planning should treat it as the active project name unless it is explicitly changed later.
 
 The core identity line from the current mockups is:
 

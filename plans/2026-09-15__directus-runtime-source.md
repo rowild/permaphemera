@@ -8,7 +8,7 @@
 
 **Tech Stack:** Directus 11.17.4 (SQLite, `uploads/`), Node 24 (`fetch`, `FormData`, `Blob`; no dependencies), bash; Nuxt 4 SPA (`ssr: false`), pnpm, Vitest.
 
-**Spec:** `docs/superpowers/specs/2026-09-15-directus-runtime-source-design.md`. Schema reference: `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md`.
+**Spec:** `plans/2026-09-15__directus-runtime-source/design.md`. Schema reference: `plans/2026-09-14__directus-schema-by-convention/design.md`.
 
 ## Global Constraints
 
@@ -1048,7 +1048,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 ### Task 9: QA and docs
 
 **Files:**
-- Modify: `frontend/AGENTS.md`, `frontend/README.md`, root `README.md`, `_Plans/exhibitions-plan.md` (Phase 4 tracker)
+- Modify: `frontend/AGENTS.md`, `frontend/README.md`, root `README.md`, `docs/exhibitions-plan.md` (Phase 4 tracker)
 
 - [ ] **Step 1: QA walk on the Directus-backed site**
 
@@ -1062,12 +1062,12 @@ Same walk as 2026-09-14 (landing de/en desktop, footer, cookie notice, mobile me
 
 Root `README.md`: the "Where we are" paragraph says the site reads from the local Directus; next step is hosting Directus.
 
-`_Plans/exhibitions-plan.md` Phase 4: tick "Introduce Directus SDK data adapter…" as "[x] Frontend reads from Directus at runtime (`useArchiveSource`), no SDK dependency — 2026-09-15", and "Test data query payload outputs…" as "[x] covered by `check:data` against the live instance — 2026-09-15"; add "[x] Content imported: 17/36/73/13/8 records, 45 files — 2026-09-15".
+`docs/exhibitions-plan.md` Phase 4: tick "Introduce Directus SDK data adapter…" as "[x] Frontend reads from Directus at runtime (`useArchiveSource`), no SDK dependency — 2026-09-15", and "Test data query payload outputs…" as "[x] covered by `check:data` against the live instance — 2026-09-15"; add "[x] Content imported: 17/36/73/13/8 records, 45 files — 2026-09-15".
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add AGENTS.md README.md ../README.md ../_Plans/exhibitions-plan.md
+git add AGENTS.md README.md ../README.md docs/exhibitions-plan.md
 git commit -m "Document the Directus-backed frontend
 
 Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"

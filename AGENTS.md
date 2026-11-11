@@ -17,9 +17,10 @@ work, and tell the owner.
 | `frontend/` | `frontend/AGENTS.md` (strict CSS and data rules, check scripts) |
 | `directus/` | `directus/README.md`                         |
 | `galerien-oesterreich/` | `galerien-oesterreich/README.md`   |
-| `_Plans/`   | `_Plans/exhibitions-plan.md` is the active architecture plan. `_Plans/original chat.md` is history, not a source of truth. |
+| `docs/`     | Rules that stay true: `docs/exhibitions-plan.md` (the active architecture plan, §2 = data model), `docs/directus-schema-conventions.md`, the how-tos and `docs/text-rules.md`. |
+| `plans/`    | Every dated job: plans, specs, audits, reviews (`plans/YYYY-MM-DD__<title>.md`, its files in a folder of the same name). `plans/2026-06-22__original-chat.md` is history, not a source of truth. |
 
-Cross-cutting design specs (Directus + frontend together) live in `docs/superpowers/specs/` at the root, named `YYYY-MM-DD-<topic>-design.md`. Frontend-only specs stay in `frontend/docs/superpowers/specs/`.
+Design specs (Directus, frontend or both) live in `plans/`, named `YYYY-MM-DD__<topic>-design.md`, or `YYYY-MM-DD__<topic>/design.md` next to their plan. `docs/superpowers/` is not used.
 
 ## Rules that apply everywhere
 
@@ -49,7 +50,7 @@ Directus is the single content source. The frontend reads it at app start;
 the schema lives in `directus/scripts/schema.mjs`. When a field changes,
 change `schema.mjs`, `frontend/shared/archive-schema.mjs` if it is a file
 field or a new collection, `frontend/app/types/content.ts`, and
-`_Plans/exhibitions-plan.md` §2 in the same commit.
+`docs/exhibitions-plan.md` §2 in the same commit.
 
 **Museums stay draft (owner, 2026-11-06).** A venue of type `museum`, every exhibition at it
 (`primary_venue`) and every person who appears only there stay `draft` until the owner releases

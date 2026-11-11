@@ -44,7 +44,7 @@ Read these before every migration slice:
 3. `frontend/docs/tailwindcss-v4-usage.md`
 4. `frontend/app/assets/css/main.css`
 5. every Vue consumer of the selectors being changed
-6. relevant approved mockups under `_Plans/designs/landing-page/`
+6. relevant approved mockups under `_Material/designs/landing-page/`
 
 `STYLE_GUIDE.md` is authoritative for appearance and interaction. `tailwindcss-v4-usage.md` is authoritative for Tailwind notation, CMS prose usage, and project CSS architecture. When framework convenience conflicts with either guide, preserve the guides.
 

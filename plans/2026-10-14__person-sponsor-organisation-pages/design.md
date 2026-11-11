@@ -46,7 +46,7 @@ This creates `pp_translations__persons`; its public rule comes from `public-rule
 
 Same commit, per root `AGENTS.md`: `frontend/shared/archive-schema.mjs` (`TRANSLATED` gains
 `pp_persons`; `FILE_FIELDS` gains `pp_persons.image`, `pp_organisations.image`),
-`frontend/app/types/content.ts`, `_Plans/exhibitions-plan.md` §2.
+`frontend/app/types/content.ts`, `docs/exhibitions-plan.md` §2.
 
 ## 2. Pages
 
@@ -127,7 +127,7 @@ archive`, empty states as above. No metaphors.
   consent of <holder>.`
 - Links are created `published`.
 - The 8 demo sponsors get no content.
-- Deliverable: `docs/content/2026-10-person-organisation-sources.md` — one entry per person and
+- Deliverable: `plans/2026-10-14__person-sponsor-organisation-pages/sources.md` — one entry per person and
   organisation: photo file, bio, facts, source URLs, open questions.
 
 ## 4. Verification and rollout

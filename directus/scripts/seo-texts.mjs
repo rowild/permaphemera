@@ -1,6 +1,6 @@
 // directus/scripts/seo-texts.mjs
 // Rules for the hand-written SEO texts that write-seo.mjs puts into Directus
-// (docs/superpowers/specs/2026-10-24-seo-design.md, "Content").
+// (plans/2026-10-24__seo/design.md, "Content").
 import { TOUR_SENTENCE_RESERVE, mentionsTour } from '../../frontend/shared/seo.mjs'
 
 export const TITLE_MAX = 60

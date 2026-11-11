@@ -1246,7 +1246,7 @@ const PENDING_DRAW_SECONDS = PENDING_STAGGER * PENDING_LEAD
 // there, and the wheel waits the given time after the archive has arrived
 // before it loads its first image. Everything else runs as usual: the text
 // intro, the page below the hero and the loading dial. Without the switch,
-// this costs nothing. Full notes: docs/superpowers/specs/2026-08-11-hero-kaleidoscope-preloader-design.md, "Test switch".
+// this costs nothing. Full notes: plans/2026-08-11__hero-kaleidoscope-preloader/design.md, "Test switch".
 const wheelTestDelaySeconds = (() => {
   const value = new URLSearchParams(window.location.search).get('wheel-delay')
   if (value === null) return 0

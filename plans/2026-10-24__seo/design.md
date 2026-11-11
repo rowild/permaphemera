@@ -51,7 +51,7 @@ Why: the site is a client-rendered SPA (`ssr: false`). Today every route has the
   `seo_no_index` (boolean). The frontend reads either shape through one adapter.
 - Schema as code: `directus/scripts/schema.mjs` (and helpers), the public read rules,
   `frontend/app/types/content.ts`, `frontend/shared/archive-schema.mjs` if the loader needs the
-  field, `_Plans/exhibitions-plan.md` §2 — one commit.
+  field, `docs/exhibitions-plan.md` §2 — one commit.
 - Extension install: through the Directus API (`POST /extensions/registry/install`) with the admin
   token, documented in `directus/README.md`.
 

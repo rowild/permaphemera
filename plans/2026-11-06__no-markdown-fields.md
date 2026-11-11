@@ -45,4 +45,4 @@ a look at one live exhibition and one live news article.
 ## Docs
 
 `docs/how-to-news.md` (writing an article in the editor), `docs/how-to-gallery-and-exhibition.md`,
-`_Plans/exhibitions-plan.md` §2 (news line), `frontend/docs/STYLE_GUIDE.md`.
+`docs/exhibitions-plan.md` §2 (news line), `frontend/docs/STYLE_GUIDE.md`.

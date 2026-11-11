@@ -1,6 +1,6 @@
 // directus/scripts/check-conventions.mjs
 // Reads the LIVE schema and asserts the house rules from
-// _Plans/directus-schema-conventions.md. Exit 1 on the first group of failures.
+// docs/directus-schema-conventions.md. Exit 1 on the first group of failures.
 //   node scripts/check-conventions.mjs
 import { loadEnv, login } from './lib.mjs'
 import { col, isValidName } from './naming.mjs'

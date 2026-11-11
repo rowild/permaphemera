@@ -154,7 +154,7 @@ Rules:
 - **Adding records is not a schema change.** A new field or collection is: then
   change `directus/scripts/schema.mjs`, `frontend/shared/archive-schema.mjs`
   (file fields / new collections), `frontend/app/types/content.ts`, and
-  `_Plans/exhibitions-plan.md` §2 in the same commit (root `AGENTS.md`).
+  `docs/exhibitions-plan.md` §2 in the same commit (root `AGENTS.md`).
 - `galerien-oesterreich/` (657 researched Austrian galleries, a separate site
   at gvoe.rowild.at) is **not** connected to Directus. Use it as a research
   source only.
@@ -246,7 +246,7 @@ are uploaded with `directus/scripts/upload-files.mjs`.
   towns, artists and exhibitions. Global Claude skill:
   `~/.claude/skills/rowild-create-or-update-gallery-or-exhibition-in-permaphemera/` (until 2026-10-20 the project skill `gallery-exhibition`).
 - `galerien-oesterreich/` — separate static React site (GVÖ), not linked to Directus.
-- `_Plans/exhibitions-plan.md` — the active architecture plan (§2 = data model).
+- `docs/exhibitions-plan.md` — the active architecture plan (§2 = data model).
 - `_Material/`, `_BU/` — git-ignored source material and backups.
 
 ---

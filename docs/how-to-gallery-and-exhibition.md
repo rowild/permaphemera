@@ -2,7 +2,7 @@
 
 For people and AI agents. Written 2026-10-14 from a real run (Europahaus, Galerie im
 Schloss Porcia, Galerie Palais Fugger, stARTup gallery, Stadtgalerie programme).
-Data model background: `_Plans/exhibitions-plan.md` §2. Project map: `PROJECT_INFO.md`.
+Data model background: `docs/exhibitions-plan.md` §2. Project map: `PROJECT_INFO.md`.
 
 Words: say **exhibition** (German *Ausstellung*), never "show". A single special record that is
 not an exhibition (a sale like the BV Flohmarkt) is `kind: event` ("Veranstaltungseintrag").

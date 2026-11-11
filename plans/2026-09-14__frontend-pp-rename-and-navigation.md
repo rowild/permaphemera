@@ -8,7 +8,7 @@
 
 **Tech Stack:** Nuxt 4, Vue 3, TypeScript, Vitest (`test/unit/**`), the nine `scripts/check-*.mjs` assertion scripts, pnpm, Node 24 (`nvm use` first). No Directus at runtime.
 
-**Spec:** `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md` (sections "Persons, roles, participations", "Fields", "Seeded data", "Frontend"). Part 1 is `docs/superpowers/plans/2026-09-14-directus-schema-by-convention.md`; it must be complete (the live Directus carries the `pp_` schema) before this plan starts, because Task 1 mirrors that schema.
+**Spec:** `plans/2026-09-14__directus-schema-by-convention/design.md` (sections "Persons, roles, participations", "Fields", "Seeded data", "Frontend"). Part 1 is `plans/2026-09-14__directus-schema-by-convention.md`; it must be complete (the live Directus carries the `pp_` schema) before this plan starts, because Task 1 mirrors that schema.
 
 ## Global Constraints
 
@@ -38,7 +38,7 @@
 | `app/components/ArchiveHeader.vue`, `ArchiveFooterMenu.vue` | render from `useSiteNavigation()` |
 | `i18n/locales/en.json`, `de.json` | remove keys that only served as menu labels |
 | `test/unit/resolveVenues.spec.ts`, `resolveExhibitions.spec.ts`, `artistDirectory.spec.ts`, `resolveNavigation.spec.ts` | updated / new |
-| `AGENTS.md`, `README.md` (frontend), `_Plans/exhibitions-plan.md` tracker | docs |
+| `AGENTS.md`, `README.md` (frontend), `docs/exhibitions-plan.md` tracker | docs |
 
 ---
 
@@ -1441,14 +1441,14 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 ### Task 6: Docs, build, QA
 
 **Files:**
-- Modify: `AGENTS.md` (frontend), `README.md` (frontend), `_Plans/exhibitions-plan.md` (Phase 4 tracker), `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md` (one line)
+- Modify: `AGENTS.md` (frontend), `README.md` (frontend), `docs/exhibitions-plan.md` (Phase 4 tracker), `plans/2026-09-14__directus-schema-by-convention/design.md` (one line)
 
 - [ ] **Step 1: Frontend AGENTS.md data paragraph**
 
 Replace the paragraph that begins `Local JSON mirrors the Directus collections in` with:
 
 ```markdown
-Local JSON mirrors the Directus collections 1:1, file by file and key by key, named after the collection: `pp_locations.json` (towns, with the coordinates radius search needs), `pp_venues.json` (buildings, each with a `type` and a `location`), `pp_persons.json` (people and collectives: name, slug, website link, nothing more), `pp_roles.json` + `pp_mm__persons_roles.json` (what a person can be), `pp_exhibitions.json`, `pp_exhibition_participations.json` (one person in one role on one show), `pp_exhibition_statements.json`, `pp_sponsors.json`, `pp_navigations.json` + `pp_navigation_items.json` (header and footer menus), and six empty `pp_mm__*.json` junctions for sponsor, venue and travelling-show links. The schema itself lives in `../directus/scripts/schema.mjs`; `../_Plans/exhibitions-plan.md` §2 describes it. Joins happen in `useArchiveData()` and `useSiteNavigation()`, never in components. When a field is added or removed, change `../directus/scripts/schema.mjs`, the JSON, `app/types/content.ts` and §2 in the same commit. Every translatable field exists on the record as the English original and in `translations[]` for every language; `pnpm check:data` enforces that they match.
+Local JSON mirrors the Directus collections 1:1, file by file and key by key, named after the collection: `pp_locations.json` (towns, with the coordinates radius search needs), `pp_venues.json` (buildings, each with a `type` and a `location`), `pp_persons.json` (people and collectives: name, slug, website link, nothing more), `pp_roles.json` + `pp_mm__persons_roles.json` (what a person can be), `pp_exhibitions.json`, `pp_exhibition_participations.json` (one person in one role on one show), `pp_exhibition_statements.json`, `pp_sponsors.json`, `pp_navigations.json` + `pp_navigation_items.json` (header and footer menus), and six empty `pp_mm__*.json` junctions for sponsor, venue and travelling-show links. The schema itself lives in `../directus/scripts/schema.mjs`; `docs/exhibitions-plan.md` §2 describes it. Joins happen in `useArchiveData()` and `useSiteNavigation()`, never in components. When a field is added or removed, change `../directus/scripts/schema.mjs`, the JSON, `app/types/content.ts` and §2 in the same commit. Every translatable field exists on the record as the English original and in `translations[]` for every language; `pnpm check:data` enforces that they match.
 ```
 
 Also in `AGENTS.md`, search for `exhibitions_artists`, `artists.json`, `venues.json` and `locations.json` and replace each with the `pp_` name.
@@ -1459,7 +1459,7 @@ In `README.md`, replace `local English source records, local German translation 
 
 - [ ] **Step 3: Tracker and spec line**
 
-In `_Plans/exhibitions-plan.md` Phase 4, tick the line `[ ] Rename the frontend JSON, types and resolvers to the pp_ shape; header and footer read the navigations (plan part 2)` to `[x] … — <today's date>`.
+In `docs/exhibitions-plan.md` Phase 4, tick the line `[ ] Rename the frontend JSON, types and resolvers to the pp_ shape; header and footer read the navigations (plan part 2)` to `[x] … — <today's date>`.
 
 In the spec, "Persons, roles, participations" section, replace `The artist directory lists persons who have at least one `artist` participation.` with `The artist directory lists persons who hold the `artist` role (via `pp_mm__persons_roles`); their records are their artist-role participations, so filler artists without shows still appear on the alphabet rail.`
 
@@ -1473,7 +1473,7 @@ Then invoke the `frontend-qa-checklist` skill against `http://localhost:4991` an
 - [ ] **Step 5: Commit and push**
 
 ```bash
-git add AGENTS.md README.md ../_Plans/exhibitions-plan.md ../docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md
+git add AGENTS.md README.md docs/exhibitions-plan.md plans/2026-09-14__directus-schema-by-convention/design.md
 git commit -m "Document the pp_ data layer and the data-driven menus
 
 Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"

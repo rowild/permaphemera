@@ -8,13 +8,13 @@
 
 **Tech Stack:** Nuxt 4 (static SPA), Vue 3, Tailwind v4, vitest, Directus 11 (SQLite), Node 24 (`frontend/.nvmrc`), pnpm.
 
-**Spec:** `docs/superpowers/specs/2026-10-14-person-sponsor-organisation-pages-design.md`
+**Spec:** `plans/2026-10-14__person-sponsor-organisation-pages/design.md`
 
 ## Global Constraints
 
 - Run frontend commands in `frontend/` after `source ~/.nvm/nvm.sh && nvm use`.
 - Directus admin scripts run in `directus/` with `DIRECTUS_ENV_FILE=.env.remote` (production). Back up first: `node scripts/export.mjs --to ../_BU/<dated-name>`.
-- Schema changes go through `directus/scripts/schema.mjs` + `create-schema.mjs` (additive), then `permissions.mjs`, then `snapshot.mjs`. Same change set: `frontend/shared/archive-schema.mjs`, `frontend/app/types/content.ts`, `_Plans/exhibitions-plan.md` §2.
+- Schema changes go through `directus/scripts/schema.mjs` + `create-schema.mjs` (additive), then `permissions.mjs`, then `snapshot.mjs`. Same change set: `frontend/shared/archive-schema.mjs`, `frontend/app/types/content.ts`, `docs/exhibitions-plan.md` §2.
 - Visibility: only published records render; relation rows have no status; resolvers drop missing/unpublished ends and never throw.
 - Tailwind: no bracketed font sizes, no `<style>` blocks, structural markers keep inner spaces (`[ person-hero ]`); run `pnpm check:tailwind`.
 - Every UI string in both `i18n/locales/en.json` and `de.json`; run `pnpm check:i18n`.
@@ -40,7 +40,7 @@
 - Modify: `directus/scripts/build.test.mjs` (expected collection list)
 - Modify: `frontend/shared/archive-schema.mjs` (`TRANSLATED`, `FILE_FIELDS`)
 - Modify: `frontend/app/types/content.ts` (`PersonRecord`, `OrganisationRecord`)
-- Modify: `_Plans/exhibitions-plan.md` §2 (persons and organisations field lists)
+- Modify: `docs/exhibitions-plan.md` §2 (persons and organisations field lists)
 
 **Interfaces:**
 - Produces: `PersonRecord` gains `image: string | null`, `image_alt: string | null`, `image_caption: string | null`, `lede: string | null`, `about: string[] | null`, `born: string | null`, `based_in: string | null`, `translations: TranslationEntry[]`. `OrganisationRecord` gains `image: string | null`, `image_alt: string | null`, `image_caption: string | null`.
@@ -134,7 +134,7 @@ and add to `OrganisationRecord`: `image?: string | null`, `image_alt?: string | 
 
 - [x] **Step 6: Document the fields**
 
-In `_Plans/exhibitions-plan.md` §2, append to the `pp_persons` field list: `born`, `based_in` (translated), `image` (file), `image_alt`, `image_caption` (translated), `lede` (translated), `about` (translated JSON paragraphs) — added 2026-10-14 for the person page. Append `image`, `image_alt`, `image_caption` (translated) to the `pp_organisations` list.
+In `docs/exhibitions-plan.md` §2, append to the `pp_persons` field list: `born`, `based_in` (translated), `image` (file), `image_alt`, `image_caption` (translated), `lede` (translated), `about` (translated JSON paragraphs) — added 2026-10-14 for the person page. Append `image`, `image_alt`, `image_caption` (translated) to the `pp_organisations` list.
 
 - [x] **Step 7: Apply to production**
 
@@ -1193,7 +1193,7 @@ Expected: all pass.
 ### Task 11: Research and fill (photos, bios, facts)
 
 **Files:**
-- Create: `docs/content/2026-10-person-organisation-sources.md`
+- Create: `plans/2026-10-14__person-sponsor-organisation-pages/sources.md`
 - Writes: Directus `pp_persons`, `pp_organisations`, files under `media/persons/<slug>` and `media/organisations/<slug>`
 
 - [x] **Step 1: List the targets** — read all persons (`slug, first_name, last_name, display_name, status, roles.roles_id.slug, websites.websites_id.url, participations.exhibition.title`) and all organisations via the MCP; split into batches of 10.
@@ -1206,7 +1206,7 @@ Expected: all pass.
 
 - [x] **Step 5: Verify** — `cd frontend && pnpm -s check:data` → OK; open 5 random person pages live.
 
-- [x] **Step 6: Source list** — write `docs/content/2026-10-person-organisation-sources.md`: one section per person/organisation with photo file id, bio EN, facts, source URLs, open questions; persons without findings listed under "Nothing found".
+- [x] **Step 6: Source list** — write `plans/2026-10-14__person-sponsor-organisation-pages/sources.md`: one section per person/organisation with photo file id, bio EN, facts, source URLs, open questions; persons without findings listed under "Nothing found".
 
 ---
 

@@ -67,7 +67,7 @@ pp_partnerships                       (one row = one partnership)
   published record behind it; a published pilot row needs a logo (own or via organisation).
 
 Schema change: `directus/scripts/schema.mjs`, `frontend/app/types/content.ts`,
-`_Plans/exhibitions-plan.md` §2 in the same commit (root `AGENTS.md`, "Data model").
+`docs/exhibitions-plan.md` §2 in the same commit (root `AGENTS.md`, "Data model").
 
 ## 3. Places on the website
 

@@ -326,7 +326,7 @@ existing free-text `medium` field and to `kind` (exhibition / event)?
 Technical sketch: a `pp_tags` collection (name and slug, `translations`, a `group`), many-to-many
 with `pp_exhibitions`; filter chips on /exhibitions/, a tag line on the exhibition page and the
 cards. Schema change by the root `AGENTS.md` rule (`schema.mjs`, `archive-schema.mjs`,
-`content.ts`, `_Plans/exhibitions-plan.md` §2).
+`content.ts`, `docs/exhibitions-plan.md` §2).
 
 ## 🚨 URGENT — Improve the site texts: no metaphors, no AI slop
 
@@ -355,8 +355,8 @@ Rules (owner):
   not a law: a comma is fine where the phrase needs it. The goal is a good, natural text.
 
 Done on 2026-10-25: the whole start page, section by section with the owner
-(`docs/text-audit/start-page.md`). Done on 2026-10-26: the header and footer of every page,
-and the error page (`docs/text-audit/header-footer.md`). The rules now live in `docs/text-rules.md` (the owner's
+(`plans/2026-10-25__text-audit-start-page.md`). Done on 2026-10-26: the header and footer of every page,
+and the error page (`plans/2026-10-26__text-audit-header-footer.md`). The rules now live in `docs/text-rules.md` (the owner's
 rules, a word list, the method after impeccable "clarify", the audit workflow). Next pages:
 About, How it works, the index pages, contact.
 
@@ -399,7 +399,7 @@ run (2026-10-23, release 0.0.26) that it should cover:
 
 Added 2026-10-26. The owner decides in December or January what support pays for and how it
 works. Then revisit the supporters part of the footer (`footer.callTitle`, `footer.callText`,
-`footer.callLink`; `docs/text-audit/header-footer.md`) and say it there. Until then the text
+`footer.callLink`; `plans/2026-10-26__text-audit-header-footer.md`) and say it there. Until then the text
 stays as it is: "Diese Zeile ist für die Namen von Fördernden, Sponsor:innen und
 Partnerinstitutionen reserviert. Der erste Platz ist noch frei."
 
@@ -407,7 +407,7 @@ Partnerinstitutionen reserviert. Der erste Platz ist noch frei."
 
 Added 2026-10-24. Priority: important. Next after the texts.
 
-Build the newsletter sign-up. The plan of 2026-08-13 is `_Plans/newsletter-subscription.md`
+Build the newsletter sign-up. The plan of 2026-08-13 is `plans/2026-11-07__newsletter/older-plan-subscription.md`
 (Brevo, double opt-in, towns to choose, links in footer and menu, no open or click tracking).
 Parts of it are out of date: it names the old ALL-INKL host and the JSON files in `app/data/`;
 the site now runs on Hetzner and reads Directus. Check the plan with the owner before the work

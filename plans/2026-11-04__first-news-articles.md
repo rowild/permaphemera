@@ -10,7 +10,7 @@ images and links, in German and English, as news entries.
 
 - Start: 2 June 2026, Adi Schmölzer's "All the magic" opens the summer season at the
   Parkschlössl, Spittal an der Drau (vernissage 1 June); he gave the impetus and the contact to
-  Monika Gaberscek (About page, `about.body.p10`; the original planning chat, `_Plans/original chat.md`).
+  Monika Gaberscek (About page, `about.body.p10`; the original planning chat, `plans/2026-06-22__original-chat.md`).
 - Website code from 9 July 2026 (first commit), Tour Editor from 13 July 2026 (first commit,
   761 commits by 4 Nov, version 0.25.x, Photo Sphere Viewer 5.14), live on permaphemera.at since
   16 September 2026 (`frontend/AGENTS.md`).

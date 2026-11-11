@@ -9,7 +9,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Restructure the local JSON layer into six collections that map 1:1 onto the Directus schema in `_Plans/exhibitions-plan.md` §2, so the later migration is an adapter swap rather than a rewrite.
+**Goal:** Restructure the local JSON layer into six collections that map 1:1 onto the Directus schema in `docs/exhibitions-plan.md` §2, so the later migration is an adapter swap rather than a rewrite.
 
 **Architecture:** New collections are built in a staging directory `app/data/v2/`, validated by a new `check:data` script, then moved into place in one atomic flip task that also rewires `useArchiveData()`. The site keeps working at every task boundary except inside the flip. Component-facing shapes never change, so the eight existing `check:*` scripts stay meaningful throughout and act as the regression net.
 
@@ -1691,7 +1691,7 @@ Each record carries a `translations[]` array of `{ languages_code, … }` entrie
 In `AGENTS.md`'s Data Rules section, replace the "Recommended initial files" guidance with:
 
 ```markdown
-Local JSON mirrors the Directus collections in `../_Plans/exhibitions-plan.md` §2: `locations.json` (cities, with the coordinates radius search needs), `venues.json` (buildings, each with a `type` and a `location_id`), `artists.json`, `exhibitions.json`, and the `exhibitions_artists.json` junction. Joins happen in `useArchiveData()`, never in components.
+Local JSON mirrors the Directus collections in `docs/exhibitions-plan.md` §2: `locations.json` (cities, with the coordinates radius search needs), `venues.json` (buildings, each with a `type` and a `location_id`), `artists.json`, `exhibitions.json`, and the `exhibitions_artists.json` junction. Joins happen in `useArchiveData()`, never in components.
 
 `status` (`draft` | `published`) records provenance, not visibility. Draft records render; the gate is the single `VISIBLE_STATUSES` constant in `app/utils/contentStatus.ts`. Never add a status conditional to a component.
 ```

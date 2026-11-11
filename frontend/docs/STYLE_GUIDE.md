@@ -2,7 +2,7 @@
 
 Version: 1.30
 Reference implementation: `app/pages/index.vue` and `app/assets/css/main.css`
-Design references: `../../_Plans/designs/landing-page/`
+Design references: `../../_Material/designs/landing-page/`
 Purpose: define the visual, structural, interaction, content, and implementation rules required for new pages to feel native to PERMAPHEMERA.
 
 ## 1. How To Use This Guide

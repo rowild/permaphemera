@@ -5,7 +5,7 @@
 // so what crawlers read without JavaScript and what the running site shows never differ.
 //
 // Plain JS (like archive-schema.mjs) so the Node scripts import it without a build step;
-// declarations in seo.d.mts. Design: docs/superpowers/specs/2026-10-24-seo-design.md.
+// declarations in seo.d.mts. Design: plans/2026-10-24__seo/design.md.
 //
 // Input: the raw archive snapshot (keys of COLLECTIONS; file fields already asset URLs, plus
 // `<field>_placeholder` and `<field>_type`) and the locale messages ({ de, en } from i18n/locales).

@@ -74,7 +74,7 @@ All three are many-to-many junctions in the existing `junctions` list of `schema
 
 ### 6. Order of work (one commit each)
 
-1. Schema: `directus/scripts/schema.mjs` (entity + four junctions), `naming.mjs` if a junction needs an extra named column it cannot derive, `create-schema.mjs` on local and server, `snapshot.mjs`, `_Plans/exhibitions-plan.md` §2, `frontend/shared/archive-schema.mjs`, `app/types/content.ts`.
+1. Schema: `directus/scripts/schema.mjs` (entity + four junctions), `naming.mjs` if a junction needs an extra named column it cannot derive, `create-schema.mjs` on local and server, `snapshot.mjs`, `docs/exhibitions-plan.md` §2, `frontend/shared/archive-schema.mjs`, `app/types/content.ts`.
 2. Loader and resolvers: `useArchiveData()`, `resolveExhibitions.ts` (organisers), `resolveVenues.ts` (operators), artist directory (functions).
 3. Site: exhibition facts row, venue facts row, person function line, the organisation directory and detail route with their navigation entries; strings in both locales; checks updated (integrity rule, artist-directory rule, a `check:organisations` route script like `check:directories`).
 4. Data migration on the server, then delete the stopgap person and the slug list entry.

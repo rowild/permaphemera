@@ -19,7 +19,7 @@ deleting.
 | Confirmation mails | `doi-template-de.html`, `doi-template-en.html` | — (to paste into Brevo) |
 | Owner's steps + launch | `brevo-setup.md` | — |
 | Server install script | `directus/hetzner/install-extension.sh` | `bash -n` only; **not run** (no deploy without the owner's word) |
-| Docs | `AGENTS.md`, `frontend/AGENTS.md`, `directus/README.md`, `directus/hetzner/README.md`, `.env.example` files, `BACKLOG.md`, note in `_Plans/newsletter-subscription.md` | — |
+| Docs | `AGENTS.md`, `frontend/AGENTS.md`, `directus/README.md`, `directus/hetzner/README.md`, `.env.example` files, `BACKLOG.md`, note in `plans/2026-11-07__newsletter/older-plan-subscription.md` | — |
 
 ## Decisions made alone
 

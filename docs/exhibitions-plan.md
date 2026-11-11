@@ -6,27 +6,27 @@ This plan outlines the complete execution roadmap for the WebGL 360° Exhibition
 
 ## 0. Current Planning Inputs
 
-The current working identity is **PERMAPHEMERA**: a curated archive of temporary exhibitions and spatial memories. The design direction is no longer abstract; the frontend implementation must be based on the mockups and source images in `_Plans/designs/landing-page/`.
+The current working identity is **PERMAPHEMERA**: a curated archive of temporary exhibitions and spatial memories. The design direction is no longer abstract; the frontend implementation must be based on the mockups and source images in `_Material/designs/landing-page/`.
 
 ### Available Landing Page Design Assets
 
-* `_Plans/designs/landing-page/landing-page-01-hero-section.png`
+* `_Material/designs/landing-page/landing-page-01-hero-section.png`
   * Desktop hero: editorial archive layout, top navigation, language switcher, large serif headline, primary/secondary CTAs, and radial image-collage archive motif.
-* `_Plans/designs/landing-page/landing-page-01-hero-section_mobile-version.png`
+* `_Material/designs/landing-page/landing-page-01-hero-section_mobile-version.png`
   * Mobile hero: compact top bar, language switcher, hamburger menu, radial collage first, three circular navigation controls, stacked headline, and full-width CTA buttons.
-* `_Plans/designs/landing-page/landing-page-02-locations v2.png`
+* `_Material/designs/landing-page/landing-page-02-locations v2.png`
   * Locations section: "Galleries across Austria", large search bar, featured Parkschlössl card, smaller venue cards, and "Show more" pagination/action.
-* `_Plans/designs/landing-page/landing-page-03-selected-exhibitions v2.png`
+* `_Material/designs/landing-page/landing-page-03-selected-exhibitions v2.png`
   * Selected exhibitions section: large featured 360° record card with carousel arrows and a right-hand list of exhibition records.
-* `_Plans/designs/landing-page/landing-page-04-artists.png`
+* `_Material/designs/landing-page/landing-page-04-artists.png`
   * Artists section: searchable alphabetical artist index with side metadata for archive span and locations.
-* `_Plans/designs/landing-page/landing-page-05-how-to-navigate.png`
+* `_Material/designs/landing-page/landing-page-05-how-to-navigate.png`
   * Method/how-it-works section: archive method copy, layered paper/photo composition, panorama navigation markers, and three-step explanation (`Captured`, `Connected`, `Preserved`).
-* `_Plans/designs/landing-page/landing-page-06-sponsors-and-footer.png`
+* `_Material/designs/landing-page/landing-page-06-sponsors-and-footer.png`
   * Light sponsor/footer option: supporter strip, footer navigation groups, language switcher, legal links, and archival seal.
-* `_Plans/designs/landing-page/landing-page-06-sponsors-and-footer-dark.png`
+* `_Material/designs/landing-page/landing-page-06-sponsors-and-footer-dark.png`
   * Dark sponsor/footer option: preferred high-contrast footer variant with horizontally scrollable sponsor strip.
-* `_Plans/designs/landing-page/Parkschlössl.jpg`
+* `_Material/designs/landing-page/Parkschlössl.jpg`
   * Real venue image for the first pilot location card.
 
 ### Landing Page Structure
@@ -58,7 +58,7 @@ The following infrastructure components are **omitted from the first implementat
 
 ## 2. Production Database Schema (Directus v11)
 
-This section is the **single living schema**. It is built by `directus/scripts/schema.mjs` (the source of truth for Directus), mirrored 1:1 by the frontend's runtime snapshot (`useArchiveSource()`, which reads Directus at app start; the JSON files in `frontend/app/data/` were retired on 2026-09-15) and the types in `frontend/app/types/content.ts`. Naming and layout follow `_Plans/directus-schema-conventions.md` with prefix `pp_`. The design that produced it is `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md`.
+This section is the **single living schema**. It is built by `directus/scripts/schema.mjs` (the source of truth for Directus), mirrored 1:1 by the frontend's runtime snapshot (`useArchiveSource()`, which reads Directus at app start; the JSON files in `frontend/app/data/` were retired on 2026-09-15) and the types in `frontend/app/types/content.ts`. Naming and layout follow `docs/directus-schema-conventions.md` with prefix `pp_`. The design that produced it is `plans/2026-09-14__directus-schema-by-convention/design.md`.
 
 Last reconciled: 2026-09-23. Schema version `2026-09-23.2` (see `pp_meta`).
 
@@ -123,7 +123,7 @@ Root folder `pp_archive` (label "PERMAPHEMERA", icon `inventory_2`, colour `#a65
 | `pp_translations__news` | structural | `pp_news` | yes |
 | `pp_meta` | installer state, singleton | root | yes |
 
-48 `pp_` entries with the `pp_archive` folder and `pp_meta` (2026-11-04, after `pp_news`, its translations and five junctions; `directus/scripts/build.test.mjs` pins the list). `pp_navigations`, `pp_exhibition_organisers`, `pp_exhibition_participations` and `pp_organisation_venue_relations` have no translation table. The organisations family was added on 2026-09-23 (design: `docs/superpowers/specs/2026-09-23-organisations-design.md`).
+48 `pp_` entries with the `pp_archive` folder and `pp_meta` (2026-11-04, after `pp_news`, its translations and five junctions; `directus/scripts/build.test.mjs` pins the list). `pp_navigations`, `pp_exhibition_organisers`, `pp_exhibition_participations` and `pp_organisation_venue_relations` have no translation table. The organisations family was added on 2026-09-23 (design: `plans/2026-09-23__organisations-design.md`).
 
 ### Relation map
 
@@ -185,7 +185,7 @@ Translated: `description`, `lede`, `about_html`, `image_caption`, `coordinate_la
 #### `pp_persons`
 
 `id`, `status`, `sort`, `first_name`, `last_name`, `middle_initial`, `display_name` (was `artist_name` in the JSON before 2026-09-14) (pseudonym or collective name, shown instead of first + last when set), `is_collective` (bool, 2026-09-23: the name is shown verbatim, never inverted), `slug` (unique), `born` (free text, e.g. "1970, Schärding"), `based_in`, `image` (file, press portrait), `image_alt`, `image_caption` (credit line), `lede` (one line), `about_html` (WYSIWYG HTML: paragraphs, bold, italic, lists; replaced the JSON array `about` on 2026-10-15), `translations`, `roles`, `venues`, `sponsors`, `websites` (m2m), `participations`, `memberships` (o2m), audit.
-Translated: `based_in`, `image_alt`, `image_caption`, `lede`, `about_html`. The page fields were added on 2026-10-14 for the person page `/persons/<slug>/` (design: `docs/superpowers/specs/2026-10-14-person-sponsor-organisation-pages-design.md`); before that, persons had no translations. Links live in `pp_websites` (2026-09-15); the former single `website_url` column was migrated into link rows and dropped.
+Translated: `based_in`, `image_alt`, `image_caption`, `lede`, `about_html`. The page fields were added on 2026-10-14 for the person page `/persons/<slug>/` (design: `plans/2026-10-14__person-sponsor-organisation-pages/design.md`); before that, persons had no translations. Links live in `pp_websites` (2026-09-15); the former single `website_url` column was migrated into link rows and dropped.
 
 #### `pp_roles`
 
@@ -261,7 +261,7 @@ id), `no_index`, `no_follow`, `sitemap.change_frequency`, `sitemap.priority`. Th
 English title and description plus the share image, robots and sitemap settings for both languages;
 a translation entry holds only title and description for its language, and `en` equals the record
 (`check:data`). The site reads it through `frontend/shared/seo.mjs`; design in
-`docs/superpowers/specs/2026-10-24-seo-design.md`.
+`plans/2026-10-24__seo/design.md`.
 
 #### Structural junctions
 
@@ -308,7 +308,7 @@ Initial frontend constraints:
 * Use local JSON files as the only data source for the first build.
 * Do not require Directus, PostgreSQL, Docker, Hetzner, or Cloudflare to run the first landing page.
 * Keep the JSON data model compatible with the future Directus schema.
-* Use `_Plans/designs/landing-page/` as the visual source of truth for the first page.
+* Use `_Material/designs/landing-page/` as the visual source of truth for the first page.
 
 Recommended initial data layout:
 
@@ -332,7 +332,7 @@ frontend/
   package.json
 ```
 
-The landing-page design images should be copied or re-exported into `frontend/public/images/landing/` only when they are needed by the running prototype. Until then, `_Plans/designs/landing-page/` remains the planning source.
+The landing-page design images should be copied or re-exported into `frontend/public/images/landing/` only when they are needed by the running prototype. Until then, `_Material/designs/landing-page/` remains the planning source.
 
 ### Styling Setup: Tailwind CSS v4 Architecture
 
@@ -582,7 +582,7 @@ export function preloadPanoramasToCache(urls: string[]): void {
     ├── [x] Implement artists archive section with search field, alphabet filter, and archive metadata sidebar
     ├── [x] Implement how-to-navigate/archive-method section with three-step method cards
     ├── [x] Implement supporters/footer section, preferring the dark footer variant unless later changed
-    └── [ ] Verify desktop and mobile layouts against _Plans/designs/landing-page/ images
+    └── [ ] Verify desktop and mobile layouts against _Material/designs/landing-page/ images
 
 [ ] PHASE 3: COMPONENT DEVELOPMENT & TEXTURE SAFETY PIPELINE
     ├── [ ] Implement usePanoramaTexture abstraction ensuring explicit .dispose() execution

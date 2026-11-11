@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.82 - 2026-11-11 23:00:10 CET
+
+- No change in the site's code. The project's notes are tidied: rules that stay true are in `docs/`, every dated plan, design, text check and review is in `plans/`. The folder `_Plans/` is gone; its design mockups are with the other source material.
+
 ## 0.0.81 - 2026-11-11 22:10:57 CET
 
 - No change in the site's code. The report on the protection against AI training, for contracts, is renewed as of 11 November 2026 in the layout of the PermaPhemera letters (logo, fonts, colours, sender address). It now also names the AI section that the network service Cloudflare adds to robots.txt, the image protection for all images and tour files since 9 November, and the current wording of the terms of use. It replaces the report of 4 November 2026.

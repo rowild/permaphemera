@@ -23,7 +23,7 @@ Helper scripts and read-outs: `plans/2026-11-04__events-collection/`.
    that the live install is `create-schema.mjs` plus one data script.
 
 ## Schema (`directus/scripts/schema.mjs`; also `frontend/shared/archive-schema.mjs`,
-`frontend/app/types/content.ts`, `_Plans/exhibitions-plan.md` §2, as root `AGENTS.md` says)
+`frontend/app/types/content.ts`, `docs/exhibitions-plan.md` §2, as root `AGENTS.md` says)
 
 - `pp_events` (entity, status): `title`, `slug`, `kind` (`festival`, `long_night`),
   `location` (M2O town; empty for a nation-wide event), `lede`, `description`, `about_html`,
@@ -90,7 +90,7 @@ Notes:
 4. Then update the two global data skills (`~/.claude/skills/rowild-new-gallery-creation`,
    `…/rowild-create-or-update-gallery-or-exhibition-in-permaphemera`): a festival or museum night
    is an event with an edition, never an organisation (as in the how-to).
-5. Schema snapshot (`snapshot.mjs`), `_Plans/exhibitions-plan.md` §2, BACKLOG entry closed.
+5. Schema snapshot (`snapshot.mjs`), `docs/exhibitions-plan.md` §2, BACKLOG entry closed.
 
 ## Steps
 

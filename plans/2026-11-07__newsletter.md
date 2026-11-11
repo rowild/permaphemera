@@ -1,7 +1,7 @@
 # Newsletter: plan of 2026-11-07
 
 Status: **live since 2026-11-07 (release 0.0.67)**, merged into `main` on the owner's word ("merge, update the server, fin-patch and push"; the invite shows to every visitor). Built on branch `feature/newsletter` in the visible worktree folder `worktree-newsletter/`. Open: the menu item (Directus draft), the owner's test sign-up, the lawyer.
-Replaces the technical parts of `_Plans/newsletter-subscription.md` (2026-08-13). That plan
+Replaces the technical parts of `plans/2026-11-07__newsletter/older-plan-subscription.md` (2026-08-13). That plan
 stays as background for the reasons behind the topics (§2), the legal rules (§7) and the
 choice of Brevo (§8). Where the two disagree, this plan wins.
 

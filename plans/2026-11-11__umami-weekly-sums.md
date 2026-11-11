@@ -57,7 +57,7 @@ therefore exact within a week.
    (Mondays 05:30). First run: all weeks since 2026-10-19 (Umami started 2026-10-24).
 6. **Texts**: privacy page de/en (tour openings are counted; detail rows go after 36 months,
    weekly totals stay), its date; `directus/hetzner/README.md`, retention script comment,
-   `AGENTS.md` and `frontend/AGENTS.md` pointers, `BACKLOG.md`, `_Plans/exhibitions-plan.md` §2,
+   `AGENTS.md` and `frontend/AGENTS.md` pointers, `BACKLOG.md`, `docs/exhibitions-plan.md` §2,
    restore order (`directus/scripts/import-order.mjs`).
 
 ## Not changed

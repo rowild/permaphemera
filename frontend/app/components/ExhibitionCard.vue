@@ -5,7 +5,7 @@ import { resolveTourAccess } from '~/utils/tourAccess'
 
 // The one exhibition card. Every list of exhibition records renders this
 // component; the page only decides the layout and the grid cell. The rules
-// (docs/superpowers/specs/2026-10-21-exhibition-card-rules-design.md):
+// (plans/2026-10-21__exhibition-card-rules-design.md):
 //
 // - Every card has the same slots: title (2 lines, reserved), artist (1 line,
 //   reserved), place, date, summary (wide stacked cards only), action row. A

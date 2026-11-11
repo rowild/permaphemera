@@ -1,16 +1,15 @@
 --- NEUE GALERIEN / AUSSTELUNGSORTE ---
 
-- Art Hotel Spielberg, Steiermark
-
-https://www.arthotel-spielberg.at/
-
-
-- Lebenshilfe Knittelfeld, Ideenreich
-
-https://www.lebenshilfe-knittelfeld.at/
 
 
 --- NEUE KÜNSTLER / PERSONEN
+
+
+
+--- IGNORE ---
+
+Any information found below "IGNORE" is already in the Directus Database, so ignore it.
+
 
 - Séverin Krön (Kurator der Galerie Porcia)
 
@@ -25,10 +24,9 @@ https://www.zugaenglichekunst.at/severin-kron-kunst-oder-spiel/
 https://www.youtube.com/channel/UC09uCVSCgehz7HnPjf_VjbA
 
 
+- Art Hotel Spielberg, Steiermark
 
---- IGNORE ---
-
-Any information found below "IGNORE" is already in the Directus Database, so ignore it.
+https://www.arthotel-spielberg.at/
 
 
 - Galerie Freihausgasse Villach

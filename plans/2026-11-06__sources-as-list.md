@@ -74,7 +74,7 @@ first written (2026-09-14); the WYSIWYG fields came on 2026-10-15 for the about 
 site always printed the description as plain text. All 93 texts were one plain paragraph, without
 Markdown. So the field becomes `input-rich-text-html` like every other long text:
 
-- `directus/scripts/schema.mjs`: `richText('description', …)` on exhibitions; `_Plans/exhibitions-plan.md` §2.
+- `directus/scripts/schema.mjs`: `richText('description', …)` on exhibitions; `docs/exhibitions-plan.md` §2.
 - `resolveExhibitions`: `descriptionHtml` (safe HTML for the page) and `description` (plain text, search).
   The exhibition page renders `descriptionHtml` through `ArchiveRichText size="lead"`.
   The interim `markdownToHtml` step is gone; news stays Markdown.

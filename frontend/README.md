@@ -31,7 +31,7 @@ The first Nuxt frontend milestone is implemented. It includes:
 
 The site reads its content from Directus at runtime; see Data Source below. Production is a client-rendered SPA, live at `https://permaphemera.at` on the Hetzner host (nginx), where Directus is reached same-origin under `/cms/`. Exhibition pages open their exported 360-degree tour in the embedded viewer from `public/media/tour-viewer/`; only a record whose tour is open (`tour` set, `tour_status` `available`, `tour_available_from` passed — `app/utils/tourAccess.ts`) gets the button; every other state shows a sentence instead. `pnpm tour:publish <tour id>` copies one exported tour into `public/media/tours/`, links it to its exhibition record and runs the public-namespace check; deploying (`pnpm deploy:hetzner`) stays a separate, explicit step.
 
-The active architecture plan is `../_Plans/exhibitions-plan.md`; the design references are under `../_Plans/designs/landing-page/`. The Directus backend lives in `../directus/`. All of these are part of the same repository; see the root `README.md`.
+The active architecture plan is `../docs/exhibitions-plan.md`; the design references are under `../_Material/designs/landing-page/`. The Directus backend lives in `../directus/`. All of these are part of the same repository; see the root `README.md`.
 
 ## Requirements
 

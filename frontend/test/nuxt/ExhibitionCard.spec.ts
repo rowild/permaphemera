@@ -6,7 +6,7 @@ const base = { id: 'e1', slug: 'hydrotopia', title: 'Hydrotopia', artist: 'Katha
 const card = (tour: Record<string, unknown>) => mountSuspended(ExhibitionCard, { route: '/exhibitions/', props: { exhibition: { ...base, ...tour } } })
 const tiles = async (tour: Record<string, unknown>) => (await card(tour)).findAllComponents({ name: 'ExhibitionActionTile' }).map((tile) => tile.props('kind'))
 
-// Card rules (docs/superpowers/specs/2026-10-21-exhibition-card-rules-design.md), as behaviour
+// Card rules (plans/2026-10-21__exhibition-card-rules-design.md), as behaviour
 // instead of the text matching of check-directory-routes.
 describe('ExhibitionCard', () => {
   it('offers the 360° tour while it is open, and always the exhibition page', async () => {

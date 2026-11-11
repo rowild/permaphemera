@@ -7,7 +7,7 @@ rules (§1) come first; where another guide disagrees, they win.
 
 Set up on 2026-10-25 by the owner. Sources: the owner's decisions of 2026-10-14 to
 2026-10-25, the "clarify" guide of the impeccable skill (`~/.claude/skills/impeccable/reference/clarify.md`),
-and the copy review `website-copy-review-and-ai-brief.md` (2026-10-25, at the repository root).
+and the copy review `plans/2026-10-25__website-copy-review.md` (2026-10-25, at the repository root).
 
 ## 1. The owner's rules
 

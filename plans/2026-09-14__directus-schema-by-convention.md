@@ -2,13 +2,13 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Rebuild the PERMAPHEMERA Directus instance from zero so every collection, field, relation, label and form layout follows `_Plans/directus-schema-conventions.md` with prefix `pp_`, including persons/roles/participations, sponsors and navigations, and so a wiped database comes back with one command and no clicking.
+**Goal:** Rebuild the PERMAPHEMERA Directus instance from zero so every collection, field, relation, label and form layout follows `docs/directus-schema-conventions.md` with prefix `pp_`, including persons/roles/participations, sponsors and navigations, and so a wiped database comes back with one command and no clicking.
 
 **Architecture:** One declarative file, `directus/scripts/schema.mjs`, describes entities, junctions and layouts as data. `create-schema.mjs` turns that data into Directus API calls (collections, fields, relations), idempotently. Derived names (junction tables, translation tables, FK columns) come from three helper functions and are never typed by hand. `seed.mjs`, `apply-settings.mjs`, `check-conventions.mjs` and `snapshot.mjs` are small single-purpose scripts; `reset.sh` chains them.
 
 **Tech Stack:** Directus 11.17.4 in Docker (SQLite), Node 24 (plain `fetch`, no dependencies), bash. Frontend is untouched by this plan; part 2 covers it.
 
-**Spec:** `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md` — read it first. The conventions themselves are in `_Plans/directus-schema-conventions.md`.
+**Spec:** `plans/2026-09-14__directus-schema-by-convention/design.md` — read it first. The conventions themselves are in `docs/directus-schema-conventions.md`.
 
 ## Global Constraints
 
@@ -45,7 +45,7 @@
 | `directus/scripts/reset.sh` | wipe + rebuild — **new** |
 | `directus/scripts/naming.test.mjs`, `build.test.mjs` | `node --test` unit tests — **new** |
 | `directus/README.md` | commands — **modified** |
-| `_Plans/exhibitions-plan.md` §2 | rewritten to the new collections — **modified** (Task 10) |
+| `docs/exhibitions-plan.md` §2 | rewritten to the new collections — **modified** (Task 10) |
 
 Tests use Node's built-in runner: `node --test scripts/` from `directus/`.
 
@@ -116,7 +116,7 @@ Expected: FAIL, `Cannot find module './naming.mjs'`.
 
 ```js
 // directus/scripts/naming.mjs
-// The three derived-name rules from _Plans/directus-schema-conventions.md §1.
+// The three derived-name rules from docs/directus-schema-conventions.md §1.
 // Nothing else in the scripts spells a derived name by hand.
 
 export const PREFIX = 'pp_'
@@ -1344,7 +1344,7 @@ console.log(`settings: ${settings.project_name} · ${settings.project_color} · 
 ```js
 // directus/scripts/check-conventions.mjs
 // Reads the LIVE schema and asserts the house rules from
-// _Plans/directus-schema-conventions.md. Exit 1 on the first group of failures.
+// docs/directus-schema-conventions.md. Exit 1 on the first group of failures.
 //   node scripts/check-conventions.mjs
 import { loadEnv, login } from './lib.mjs'
 import { isValidName } from './naming.mjs'
@@ -1495,7 +1495,7 @@ Replace the "Schema scripts" section of `directus/README.md` with:
 
 The schema is data: `scripts/schema.mjs` describes entities, junctions and form
 layouts; `scripts/naming.mjs` derives every junction, translation-table and FK
-name from the conventions in `../_Plans/directus-schema-conventions.md`
+name from the conventions in `docs/directus-schema-conventions.md`
 (prefix `pp_`). Never create or rename a collection in the admin app.
 
 ```bash
@@ -1513,7 +1513,7 @@ A fresh database starts without any browser interaction: `PROJECT_NAME`,
 
 To change a field: edit `scripts/schema.mjs`, run `bash scripts/reset.sh --yes`,
 then update `../frontend/app/data/`, `../frontend/app/types/content.ts` and
-`../_Plans/exhibitions-plan.md` §2 in the same commit.
+`docs/exhibitions-plan.md` §2 in the same commit.
 ```
 
 - [ ] **Step 5: Commit**
@@ -1530,7 +1530,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 ### Task 10: Rewrite the plan's schema section
 
 **Files:**
-- Modify: `_Plans/exhibitions-plan.md` §2 (lines from `## 2.` to the `---` before `## 3.`)
+- Modify: `docs/exhibitions-plan.md` §2 (lines from `## 2.` to the `---` before `## 3.`)
 
 - [ ] **Step 1: Replace §2**
 
@@ -1539,7 +1539,7 @@ Replace the whole section with a version that lists the 25 collections of the sp
 ```markdown
 ## 2. Production Database Schema (Directus v11)
 
-This section is the **single living schema**. It is built by `directus/scripts/schema.mjs` (the source of truth for Directus), mirrored 1:1 by the JSON files in `frontend/app/data/` and the types in `frontend/app/types/content.ts`. Naming and layout follow `_Plans/directus-schema-conventions.md` with prefix `pp_`. The design that produced it is `docs/superpowers/specs/2026-09-14-directus-conventions-schema-design.md`.
+This section is the **single living schema**. It is built by `directus/scripts/schema.mjs` (the source of truth for Directus), mirrored 1:1 by the JSON files in `frontend/app/data/` and the types in `frontend/app/types/content.ts`. Naming and layout follow `docs/directus-schema-conventions.md` with prefix `pp_`. The design that produced it is `plans/2026-09-14__directus-schema-by-convention/design.md`.
 
 Last reconciled: 2026-09-14. Schema version `2026-09-14.1` (see `pp_meta`).
 ```
@@ -1560,7 +1560,7 @@ In the `PHASE 4` block, replace the four `[x]` lines with:
 - [ ] **Step 3: Commit**
 
 ```bash
-git add _Plans/exhibitions-plan.md
+git add docs/exhibitions-plan.md
 git commit -m "Rewrite the plan's schema section to the pp_ collections
 
 Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"

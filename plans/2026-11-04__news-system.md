@@ -204,7 +204,7 @@ for one article a month. The frontend keeps `VISIBLE_STATUSES` as the second saf
 
 Same-commit rule (root `AGENTS.md`): change `directus/scripts/schema.mjs`,
 `frontend/shared/archive-schema.mjs`, `frontend/app/types/content.ts` and
-`_Plans/exhibitions-plan.md` §2 together.
+`docs/exhibitions-plan.md` §2 together.
 
 ## 7. The monthly report (the reminder)
 

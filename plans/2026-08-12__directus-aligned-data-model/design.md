@@ -1,11 +1,11 @@
 # Directus-Aligned Data Model — Design
 
 Date: 2026-08-12
-Status: implemented 2026-08-13. The living schema is now maintained in `_Plans/exhibitions-plan.md` §2 (repository root); this document records the design decisions and is not updated for later field additions such as the 360° tour fields or `exhibition_statements`.
+Status: implemented 2026-08-13. The living schema is now maintained in `docs/exhibitions-plan.md` §2 (repository root); this document records the design decisions and is not updated for later field additions such as the 360° tour fields or `exhibition_statements`.
 
 ## Problem
 
-`_Plans/exhibitions-plan.md` §2 documents the production Directus v11 schema. The local JSON layer was meant to mirror it so the later migration is an adapter swap. It has drifted, and the repository now holds two competing models at once:
+`docs/exhibitions-plan.md` §2 documents the production Directus v11 schema. The local JSON layer was meant to mirror it so the later migration is an adapter swap. It has drifted, and the repository now holds two competing models at once:
 
 - `locations.json` — 26 records, **flattened**: venue fields (`name`, `address`, `image`, `archive_number`) and place fields (`city_name`, `postal_code`, `state`, `country`, `latitude`, `longitude`) in one row. Powers the live site.
 - `venues.json` — 7 records, **plan-shaped**: carries `location_id`, `website_url` and richer detail fields. Only 1 of its 7 slugs (`parkschloessl-spittal-drau`) also exists in `locations.json`, and its `location_id` values (`location-spittal`, `location-wien`) point at a cities collection **that does not exist**.
@@ -63,7 +63,7 @@ archive_number, featured, status,
 translations[]                // { languages_code, description, lede, about[], image_caption, coordinate_label }
 ```
 
-`type` is **new — it is not in `_Plans/exhibitions-plan.md` §2** and that document must be updated to match. Initial values: `gallery`, `museum`, `kunsthalle`, `art_cafe`, `open_air`, `forum`. In Directus this becomes a Dropdown. Each value needs an i18n label pair, e.g. `venueType.gallery` = "Gallery" / "Galerie".
+`type` is **new — it is not in `docs/exhibitions-plan.md` §2** and that document must be updated to match. Initial values: `gallery`, `museum`, `kunsthalle`, `art_cafe`, `open_air`, `forum`. In Directus this becomes a Dropdown. Each value needs an i18n label pair, e.g. `venueType.gallery` = "Gallery" / "Galerie".
 
 #### `artists.json` — people and collectives (62 rows)
 
