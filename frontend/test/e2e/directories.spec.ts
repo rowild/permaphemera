@@ -112,3 +112,39 @@ for (const path of INDEX_PAGES) {
     expect(gap).toBeGreaterThanOrEqual(width(page) < 768 ? 12 : 24)
   })
 }
+
+// Owner, 2026-11-11: photos stand straight. The tilt (an idea of a broken, crooked archive) is gone
+// from the preview cards and from the framed picture at the top of a record page. Sums the turn of
+// the picture and of every box around it up to <main>, in degrees.
+const turnOf = (element: Element) => {
+  let degrees = 0
+  for (let box: Element | null = element; box && box.tagName !== 'MAIN'; box = box.parentElement) {
+    const { transform, rotate } = getComputedStyle(box)
+    if (transform !== 'none') {
+      const matrix = new DOMMatrixReadOnly(transform)
+      degrees += Math.atan2(matrix.b, matrix.a) * 180 / Math.PI
+    }
+    if (rotate && rotate !== 'none') degrees += Number.parseFloat(rotate)
+  }
+  return degrees
+}
+
+test('the gallery cards show their photos straight, also on hover', async ({ page }) => {
+  await page.goto('/venues/')
+  const images = page.locator('.gallery-directory-card .venue-card-image')
+  await expect(images.first()).toBeVisible()
+  for (const turn of await images.evaluateAll((all, source) => all.map(new Function(`return (${source})`)()), turnOf.toString())) {
+    expect(Math.abs(turn)).toBeLessThan(0.01)
+  }
+  const first = page.locator('.gallery-directory-card').first()
+  await first.hover()
+  await page.waitForTimeout(600)
+  expect(Math.abs(await first.locator('.venue-card-image').evaluate((element, source) => new Function(`return (${source})`)()(element), turnOf.toString()))).toBeLessThan(0.01)
+})
+
+test('a record page shows its framed picture straight', async ({ page }) => {
+  await page.goto('/venues/galerie-im-stiegenhaus-seeboden/')
+  const picture = page.locator('.record-figure .framed-archive-image')
+  await expect(picture).toBeVisible()
+  expect(Math.abs(await picture.evaluate((element, source) => new Function(`return (${source})`)()(element), turnOf.toString()))).toBeLessThan(0.01)
+})

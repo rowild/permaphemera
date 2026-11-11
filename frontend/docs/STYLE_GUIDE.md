@@ -60,7 +60,7 @@ Typography and whitespace must establish the page before ornaments are added. De
 
 ### 3.2 Controlled asymmetry
 
-Layouts are balanced rather than perfectly symmetrical. Featured records may occupy more space; sidebars may be narrow; ornaments may sit off-axis; paper stacks may rotate by a few degrees. The underlying grid must remain disciplined.
+Layouts are balanced rather than perfectly symmetrical. Featured records may occupy more space; sidebars may be narrow; ornaments may sit off-axis; paper stacks may rotate by a few degrees. The underlying grid must remain disciplined. Photos always stand straight (owner, 2026-11-11): the preview images on cards and the framed picture at the top of a record page are never rotated; on hover a preview may only grow slightly (`test/e2e/directories.spec.ts` measures the angle).
 
 ### 3.3 Physical archive, digitally interpreted
 

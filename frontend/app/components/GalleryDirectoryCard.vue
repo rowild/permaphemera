@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import type { ResolvedVenue } from '~/utils/resolveVenues'
-import { createCornerOrnament, createDirectoryImageTransform, createOrnamentTransform, placeOrnament } from '~/utils/seededLayout'
+import { createCornerOrnament, createOrnamentTransform, placeOrnament } from '~/utils/seededLayout'
 
 const props = withDefaults(defineProps<{
   venue: ResolvedVenue
@@ -15,10 +15,10 @@ const stateName = useStateName()
 
 const active = ref(false)
 const localePath = useLocalePath()
-const imageTransform = computed(() => createDirectoryImageTransform(props.venue.id))
 const ornament = computed(() => createOrnamentTransform(`gallery-directory:${props.venue.id}`, props.featured))
+// The preview image stands straight (owner, 2026-11-11); on hover it only grows a little.
 const imageStyle = computed<CSSProperties>(() => ({
-  transform: active.value ? imageTransform.value.active : imageTransform.value.rest
+  transform: active.value ? 'scale(1.012)' : 'none'
 }))
 const ornamentStyle = computed<CSSProperties>(() => placeOrnament(ornament.value, active.value))
 // Regular cards carry the ornament in the text area's top-right corner; the
