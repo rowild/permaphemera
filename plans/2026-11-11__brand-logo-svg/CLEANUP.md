@@ -10,3 +10,4 @@ Keep the two logo SVGs and `build.py` (they are the result and how to rebuild it
 | `plans/2026-11-11__brand-logo-svg/permaphemera-logo-v2-*.svg` | the proposal files, same content as the final `permaphemera-logo-de/en(-guides).svg` | now |
 | `plans/2026-11-11__brand-logo-svg/logs/` | output of `pnpm verify` and the layout browser tests | now |
 | `plans/2026-11-11__brand-logo-svg/scripts/make_overlay_v2.py`, `scripts/overlay_v2.js` | overlay check of the final SVG on the new header | now, unless the logo changes again |
+| `plans/2026-11-11__brand-logo-svg/logs/deploy.log` | output of the 0.0.78 upload (three runs) | now |
